@@ -1,0 +1,23 @@
+#firsttestinMaestro
+
+appId: ${APP_ID}
+tags:
+  - smokeTest
+---
+- launchApp:
+      clearState: true
+- tapOn: "Log In"
+- tapOn: "Email address"
+- inputText: ${EMAIL}
+- tapOn: "Password"
+- inputText: ${PASSWORD}
+- hideKeyboard
+- tapOn: "Continue"
+- assertVisible:
+      text: "Verify login"
+- tapOn:
+      point: "50%,26%"
+- inputText: "212212"
+- tapOn: "Confirm"
+- assertVisible: "Home\nTab 1 of 4"
+

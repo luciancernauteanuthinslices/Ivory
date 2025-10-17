@@ -83,6 +83,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -91,6 +93,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   test: ^1.22.0
+  patrol: ^3.19.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -149,3 +152,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+patrol:
+  app_name: My App
+  android:
+    package_name: com.thinslices.solarisdemo
+  ios:
+    bundle_id: com.thinslices.solarisdemo
+  macos:
+    bundle_id: com.thinslices.solarisdemo

@@ -56,6 +56,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        testInstrumentationRunner = "pl.leancode.patrol.PatrolJUnitRunner"
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
+
     }
 
    signingConfigs {
@@ -75,6 +78,10 @@ android {
                 'proguard-rules.pro'
        }
    }
+   
+   testOptions {
+       execution = "ANDROIDX_TEST_ORCHESTRATOR"
+   }
     namespace 'com.thinslices.solarisdemo'
 }
 
@@ -88,4 +95,5 @@ dependencies {
         transitive = true
     }
     implementation("com.nimbusds:nimbus-jose-jwt:9.23")
+    androidTestUtil("androidx.test:orchestrator:1.5.1")
 }

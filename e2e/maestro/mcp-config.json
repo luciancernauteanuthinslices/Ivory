@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "maestro": {
+      "command": "maestro",
+      "args": ["mcp"],
+      "cwd": "/Users/lucian.cernauteanuthinslices.com/Documents/Repos/Ivory_Clone/Ivory/e2e/maestro",
+      "env": {
+        "PATH": "/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  }
+}
