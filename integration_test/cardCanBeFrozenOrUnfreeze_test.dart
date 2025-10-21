@@ -43,6 +43,7 @@ import 'package:solarisdemo/utilities/device_info/device_info.dart';
 
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'auth/loginToApp.dart';
+import 'pages/bottomActionBar/bottomActionButtons.dart';
 
 
 void main() {
@@ -76,6 +77,7 @@ void main() {
     final pushNotificationService = PushNotificationServiceProvider.instance.service;
 
     // Create the store with all required services
+    // Note: Using real API endpoints now that /account/cards has been fixed
     final store = createStore(
       initialState: AppState.initialState(),
       pushNotificationService: pushNotificationService,
@@ -117,15 +119,17 @@ void main() {
         store: store,
       ),
     );
-
+    final bottomActionButtons = BottomActionButtons($);
     await LoginToApp($, email: 'lifebloom77@yahoo.com', password: 'TestPass1').login();
 
     // Tap by label
-    await $('Cards').tap();
-    await $.pumpAndSettle();
+    await bottomActionButtons.tapCards();
 
-    //expect we are on Cards page
-    await $.waitUntilVisible($(keys.cardsPage.cardsPageTitle));
+    // Give some time for navigation but don't wait indefinitely
+    await $.pump(Duration(milliseconds: 500));
+
+    //expect we are on Cards page  
+    await $.waitUntilVisible($(keys.cardsPage.cardsPageTitle), timeout: Duration(seconds: 10));
 
     //freezeCard
     await $(keys.cardActions.freezeCardButton).tap();

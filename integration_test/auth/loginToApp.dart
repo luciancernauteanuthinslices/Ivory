@@ -14,8 +14,8 @@ class LoginToApp {
   LoginToApp(this.$, {required this.email, required this.password});
 
   Future<void> login() async {
-    // Wait for welcome screen to load
-    await $.waitUntilVisible($(keys.welcomeScreen.logInButton));
+
+    // expect login button to be displayed
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
 
     // Tap on the "Log in" button

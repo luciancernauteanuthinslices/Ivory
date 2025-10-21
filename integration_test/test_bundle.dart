@@ -11,6 +11,7 @@ import 'package:test_api/src/backend/invoker.dart';
 // START: GENERATED TEST IMPORTS
 import 'cardCanBeFrozenOrUnfreeze_test.dart' as cardCanBeFrozenOrUnfreeze_test;
 import 'example_test.dart' as example_test;
+import 'repaymentRateIsSaved_test.dart' as repaymentRateIsSaved_test;
 // END: GENERATED TEST IMPORTS
 
 Future<void> main() async {
@@ -72,6 +73,7 @@ Future<void> main() async {
   // START: GENERATED TEST GROUPS
   group('cardCanBeFrozenOrUnfreeze_test', cardCanBeFrozenOrUnfreeze_test.main);
   group('example_test', example_test.main);
+  group('repaymentRateIsSaved_test', repaymentRateIsSaved_test.main);
   // END: GENERATED TEST GROUPS
 
   final dartTestGroup = await testExplorationCompleter.future;
