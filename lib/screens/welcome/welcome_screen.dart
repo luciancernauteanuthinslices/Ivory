@@ -16,6 +16,7 @@ import 'package:solarisdemo/screens/onboarding/start/onboarding_start_screen.dar
 import 'package:solarisdemo/widgets/screen_scaffold.dart';
 import 'package:solarisdemo/widgets/scrollable_screen_container.dart';
 import 'package:video_player/video_player.dart';
+import 'package:solarisdemo/integration_test_keys.dart';
 
 import '../../widgets/button.dart';
 
@@ -225,6 +226,7 @@ class WelcomeScreenContent extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: SecondaryButton(
+                key: keys.welcomeScreen.logInButton,
                 borderWidth: 2,
                 text: "Log in",
                 onPressed: () => Navigator.pushNamed(context, LoginScreen.routeName),
@@ -234,6 +236,7 @@ class WelcomeScreenContent extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: PrimaryButton(
+                key: keys.welcomeScreen.signUpButton,
                 text: "Sign up",
                 onPressed: () => Navigator.pushNamed(context, OnboardingStartScreen.routeName),
               ),

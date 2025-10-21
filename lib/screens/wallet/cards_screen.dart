@@ -49,6 +49,7 @@ class BankCardsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppToolbar(
+                  key: const Key("cardsPageTitle"),
                   title: "Cards",
                   scrollController: scrollController,
                   padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,

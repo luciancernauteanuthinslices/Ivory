@@ -11,6 +11,7 @@ import 'package:solarisdemo/widgets/app_toolbar.dart';
 import 'package:solarisdemo/widgets/button.dart';
 import 'package:solarisdemo/widgets/screen_scaffold.dart';
 import 'package:solarisdemo/widgets/tan_input.dart';
+import 'package:solarisdemo/integration_test_keys.dart';
 
 class LoginWithTanScreen extends StatefulWidget {
   static const routeName = "/loginTanScreen";
@@ -27,6 +28,34 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
   final TextEditingController _tanInputController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   bool _isInputComplete = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Add listener to controller for test compatibility
+    _tanInputController.addListener(_checkInputComplete);
+  }
+
+  @override
+  void dispose() {
+    _tanInputController.removeListener(_checkInputComplete);
+    _tanInputController.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _checkInputComplete() {
+    final isComplete = _tanInputController.text.length == 6;
+    if (_isInputComplete != isComplete) {
+      debugPrint('OTP Input Complete: $isComplete (length: ${_tanInputController.text.length})');
+      setState(() {
+        _isInputComplete = isComplete;
+        if (isComplete) {
+          _focusNode.unfocus();
+        }
+      });
+    }
+  }
 
   void updateInputComplete(bool isComplete) {
     setState(() {
@@ -108,6 +137,7 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                         width: double.infinity,
                         height: 48,
                         child: Button(
+                          key: keys.loginPage.otpConfirmButton,
                           text: 'Confirm',
                           disabledColor: const Color(0xFFDFE2E6),
                           color: ClientConfig.getColorScheme().tertiary,

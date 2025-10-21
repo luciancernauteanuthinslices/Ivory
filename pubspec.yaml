@@ -159,5 +159,5 @@ patrol:
     package_name: com.thinslices.solarisdemo
   ios:
     bundle_id: com.thinslices.solarisdemo
-  macos:
-    bundle_id: com.thinslices.solarisdemo
+#  macos:
+#    bundle_id: com.thinslices.solarisdemo

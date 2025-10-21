@@ -5,12 +5,14 @@ class PushNotificationServiceProvider {
 
   static final PushNotificationServiceProvider instance = PushNotificationServiceProvider._();
 
-  late PushNotificationService _service;
+  PushNotificationService? _service;
 
   factory PushNotificationServiceProvider.init(PushNotificationService service) {
     instance._service = service;
     return instance;
   }
 
-  PushNotificationService get service => _service;
+  PushNotificationService get service => _service!;
+  
+  bool get isInitialized => _service != null;
 }

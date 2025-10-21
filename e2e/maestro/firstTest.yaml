@@ -1,0 +1,34 @@
+#firsttestinMaestro
+
+appId: ${APP_ID}
+---
+- launchApp:
+      clearState: true
+- tapOn: "Log In"
+- tapOn: "Email address"
+- inputText: ${EMAIL}
+- tapOn: "Password"
+- inputText: ${PASSWORD}
+- hideKeyboard
+- tapOn: "Continue"
+- assertVisible:
+      text: "Verify login"
+- tapOn:
+      point: "50%,26%"
+- inputText: "212212"
+- tapOn: "Confirm"
+- tapOn: Cards Tab 2 of 4
+- assertVisible:
+      text: "Cards"
+- tapOn:
+        point: "86%,45%"
+- assertVisible:
+      text: "Unfreeze"
+- tapOn:
+        point: "50%,45%"
+- assertVisible:
+        text: "Cards"
+- tapOn:
+    point: "87%,87%"
+- assertVisible:
+    

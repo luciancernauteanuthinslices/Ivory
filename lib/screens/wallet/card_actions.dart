@@ -13,6 +13,7 @@ import 'package:solarisdemo/screens/wallet/change_pin/card_change_pin_choose_scr
 import 'package:solarisdemo/widgets/button.dart';
 import 'package:solarisdemo/widgets/ivory_list_tile.dart';
 import 'package:solarisdemo/widgets/ivory_switch.dart';
+import 'package:solarisdemo/integration_test_keys.dart';
 
 import '../../widgets/ivory_list_title.dart';
 
@@ -172,6 +173,7 @@ class ActiveCard extends StatelessWidget {
               ),
               CardOptionsButton(
                 icon: Icons.ac_unit,
+                key: keys.cardActions.freezeCardButton,
                 textLabel: 'Freeze',
                 onPressed: () {
                   StoreProvider.of<AppState>(context).dispatch(
@@ -270,6 +272,7 @@ class FrozenCard extends StatelessWidget {
           children: [
             CardOptionsButton(
               icon: Icons.ac_unit,
+              key: keys.cardActions.unFreezeCardButton,
               textLabel: 'Unfreeze',
               onPressed: () async {
                 StoreProvider.of<AppState>(context).dispatch(

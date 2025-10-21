@@ -22,9 +22,10 @@ Future<T> neverEndingFuture<T>() async {
 }
 
 void setupFirebaseMessagingMocks() {
+  setupFirebaseCoreMocks();
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  setupFirebaseCoreMocks();
+
 
   // Mock Platform Interface Methods
   when(mockMessagingPlatform.delegateFor(app: anyNamed('app'))).thenReturn(mockMessagingPlatform);

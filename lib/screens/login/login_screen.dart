@@ -21,6 +21,7 @@ import 'package:solarisdemo/widgets/modal.dart';
 import 'package:solarisdemo/widgets/screen_scaffold.dart';
 import 'package:solarisdemo/widgets/screen_title.dart';
 import 'package:solarisdemo/widgets/scrollable_screen_container.dart';
+import 'package:solarisdemo/integration_test_keys.dart';
 
 import '../../utilities/validator.dart';
 import '../../widgets/button.dart';
@@ -61,6 +62,7 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppToolbar(
+                key: keys.loginPage.loginTitle,
                 title: "Login",
                 backButtonEnabled: viewModel is! AuthLoadingViewModel,
                 onBackButtonPressed: () => Navigator.pop(context),
@@ -87,11 +89,13 @@ class LoginScreen extends StatelessWidget {
                           tabs: [
                             const TabViewItem(
                               text: "Mobile",
-                              child: PhoneNumberLoginForm(),
+                              child: PhoneNumberLoginForm(
+                                  key: ValueKey("MobileTab")),
                             ),
                             TabViewItem(
                               text: "Email",
                               child: EmailLoginForm(
+                                key: keys.loginPage.emailTab,
                                 viewModel: viewModel,
                               ),
                             ),
@@ -200,12 +204,14 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                       listenable: _selectCountryController,
                       builder: (context, child) {
                         return IvoryTextField(
+                          key: const Key("MobileNumberTextField"),
                           label: 'Mobile number',
                           keyboardType: TextInputType.phone,
                           controller: _phoneInputController,
                           focusNode: _phoneInputFocusNode,
                           inputFormatters: [_phoneNumberFormatter],
                           prefix: GestureDetector(
+
                             onTap: () {
                               showBottomModal(
                                 context: context,
@@ -215,6 +221,7 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                                 statusbarVisibilityForTallModal: true,
                                 useScrollableChild: false,
                                 content: IvoryOptionPicker(
+                                  key: const Key("MobileNumberPrefixDropdown"),
                                   controller: _selectCountryController,
                                   filterOptions: true,
                                   enabledSearch: true,
@@ -269,6 +276,7 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                       height: 24,
                     ),
                     IvoryTextField(
+                      key: const Key("PasswordTextFieldForMobileTab"),
                       label: "Password",
                       placeholder: 'Password',
                       controller: _passwordInputController,
@@ -298,6 +306,7 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                   children: [
                     Text(
                       "Forgot your password?",
+                      key: const Key("ForgotPasswordButton"),
                       style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(
                             color: viewModel is AuthLoadingViewModel
                                 ? ClientConfig.getCustomColors().neutral500
@@ -309,9 +318,11 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                     ),
                     SizedBox(
                       child: ListenableBuilder(
+                        key: const Key("ContinueButton"),
                         listenable: _continueButtonController,
                         builder: (context, child) {
                           return Button(
+                            key: const Key("ContinueButton"),
                             text: 'Continue',
                             disabledColor: ClientConfig.getCustomColors().neutral300,
                             color: ClientConfig.getColorScheme().tertiary,
@@ -471,6 +482,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                       },
                     ),
                     IvoryTextField(
+                      key: const Key("EmailTextField"),
                       label: 'Email address',
                       placeholder: 'Email address',
                       controller: _emailInputController,
@@ -482,6 +494,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                     ),
                     const SizedBox(height: 8),
                     IvoryTextField(
+                      key: const Key("PasswordTextFieldForEmailTab"),
                       label: 'Password',
                       placeholder: 'Password',
                       controller: _passwordInputController,
@@ -493,6 +506,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                     Row(
                       children: [
                         CheckboxWidget(
+                          key: const Key("ShowPasswordButton"),
                           isChecked: false,
                           onChanged: viewModel is AuthLoadingViewModel
                               ? null
@@ -530,7 +544,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                       child: ListenableBuilder(
                         listenable: _continueButtonController,
                         builder: (context, child) {
-                          return Button(
+                          return Button(key: const Key("ContinueButton"),
                             text: 'Continue',
                             disabledColor: ClientConfig.getCustomColors().neutral300,
                             color: ClientConfig.getColorScheme().tertiary,

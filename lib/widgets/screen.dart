@@ -65,7 +65,7 @@ class Screen extends StatelessWidget {
                   minHeight:
                       viewportConstraints.maxHeight - bottomStickyWidgetHeight,
                 ),
-                child: IntrinsicHeight(child: child),
+                child: child,
               ),
             ],
           ),
