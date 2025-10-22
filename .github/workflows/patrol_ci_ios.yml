@@ -44,8 +44,8 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.x'
           channel: 'stable'
+          # Using latest stable to get Dart SDK 3.8.0+ required by patrol_finders
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app
