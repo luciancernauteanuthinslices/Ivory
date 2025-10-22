@@ -44,13 +44,17 @@ import 'package:solarisdemo/utilities/device_info/device_info.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'auth/loginToApp.dart';
 import 'pages/bottomActionBar/bottomActionButtons.dart';
-
+import 'package:test/test.dart' hide expect;
 
 void main() {
   patrolTest('Check if virtual card can be frozen and unfrozen',
       framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive, ($) async {
     // Load environment variables
     await dotenv.load();
+    
+    // Load test credentials from .patrol.env
+    await LoginToApp.loadPatrolEnv();
+
 
     // Get client configuration
     final clientConfig = ClientConfig.getClientConfig();
@@ -112,6 +116,7 @@ void main() {
       onboardingCardConfigurationService: OnboardingCardConfigurationService(),
     );
 
+
     // Pump the IvoryApp widget
     await $.pumpWidgetAndSettle(
       IvoryApp(
@@ -120,7 +125,9 @@ void main() {
       ),
     );
     final bottomActionButtons = BottomActionButtons($);
-    await LoginToApp($, email: 'lifebloom77@yahoo.com', password: 'TestPass1').login();
+
+    //login to app
+    await LoginToApp($).login();
 
     // Tap by label
     await bottomActionButtons.tapCards();
@@ -143,6 +150,5 @@ void main() {
 
     //expect subtitle "If your card is compromised" to not be visible
     expect(ifYourCardIsCompromised, findsNothing);
-
   });
 }

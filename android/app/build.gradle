@@ -78,11 +78,10 @@ android {
                 'proguard-rules.pro'
        }
    }
-   
-   testOptions {
-       execution = "ANDROIDX_TEST_ORCHESTRATOR"
-   }
     namespace 'com.thinslices.solarisdemo'
+    testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+    }
 }
 
 flutter {

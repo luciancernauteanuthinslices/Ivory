@@ -1,0 +1,21 @@
+name: Patrol Local Fast Checks
+
+on:
+  workflow_dispatch:
+
+jobs:
+  local_fast_checks:
+    runs-on: ubuntu-latest
+    if: ${{ env.ACT }}   # Only runs under act; will be skipped on GitHub
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: "3.24.x"
+
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: flutter analyze
+      - run: flutter test -r compact

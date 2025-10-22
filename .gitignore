@@ -11,6 +11,7 @@
 .svn/
 /keys
 .env
+integration_test/.patrol.env
 
 # IntelliJ related
 *.iml

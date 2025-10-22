@@ -50,6 +50,9 @@ void main() {
       framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive, ($) async {
         // Load environment variables
         await dotenv.load();
+        
+        // Load test credentials from .patrol.env
+        await LoginToApp.loadPatrolEnv();
 
         // Get client configuration
         final clientConfig = ClientConfig.getClientConfig();
