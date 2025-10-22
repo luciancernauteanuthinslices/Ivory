@@ -54,6 +54,9 @@ jobs:
         uses: futureware-tech/simulator-action@v3
         with:
           model: "iPhone 15 Pro"
+          os_version: "17.4"
+          erase_before_boot: true
+          shutdown_after_job: true
 
       - name: Flutter pub get
         run: flutter pub get
