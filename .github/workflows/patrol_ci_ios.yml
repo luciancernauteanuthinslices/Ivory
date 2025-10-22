@@ -84,26 +84,32 @@ jobs:
           EOF
           echo "✅ Created .patrol.env with test credentials"
 
-      - name: Run Patrol on iOS
-        env:
-          # Disable FileSystemSynchronizedGroups for Xcode 15.4 compatibility
-          DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
+      - name: Fix Xcode project file for Xcode 15.4 compatibility
         run: |
-          # Disable problematic Xcode feature
-          defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM NO
-          defaults write com.apple.dt.Xcode IDEFileSystemSynchronizedGroupsEnabled NO
-          
+          # Remove PBXFileSystemSynchronizedRootGroup objects that cause Xcode 15.4 to crash
+          PROJECT_FILE="ios/Runner.xcodeproj/project.pbxproj"
+          echo "Fixing Xcode project file..."
+          cp "$PROJECT_FILE" "$PROJECT_FILE.backup"
+          # Remove the entire PBXFileSystemSynchronizedRootGroup section and all references
+          awk '
+            # Skip the entire PBXFileSystemSynchronizedRootGroup section
+            /\/\* Begin PBXFileSystemSynchronizedRootGroup section \*\//,/\/\* End PBXFileSystemSynchronizedRootGroup section \*\// { next }
+            # Skip any line with PBXFileSystemSynchronized
+            /PBXFileSystemSynchronized/ { next }
+            # Skip fileSystemSynchronizedGroups lines
+            /fileSystemSynchronizedGroups/ { next }
+            # Skip the group reference line
+            /7DC899AD2EA221A300A0745F/ { next }
+            # Print everything else
+            { print }
+          ' "$PROJECT_FILE.backup" > "$PROJECT_FILE"
+          echo "✅ Fixed Xcode project file"
+
+      - name: Run Patrol on iOS
+        run: |
           flutter doctor -v
-          
-          # Determine test path based on input filter
-          TEST_FILTER="${{ github.event.inputs.test_filter }}"
-          if [ -z "$TEST_FILTER" ]; then
-            echo "🎯 Running all tests in: integration_test/"
-            patrol test integration_test/
-          else
-            echo "🎯 Running filtered tests: integration_test/$TEST_FILTER"
-            patrol test "integration_test/$TEST_FILTER"
-          fi
+          echo "🎯 Running all tests in: integration_test/"
+          patrol test integration_test/${{ github.event.inputs.test_filter || '' }}
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic

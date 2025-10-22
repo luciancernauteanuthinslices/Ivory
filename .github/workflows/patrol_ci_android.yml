@@ -114,16 +114,7 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
-          script: |
-            flutter doctor -v
-            TEST_FILTER="${{ github.event.inputs.test_filter }}"
-            if [ -z "$TEST_FILTER" ]; then
-              echo "🎯 Running all tests in: integration_test/"
-              patrol test integration_test/
-            else
-              echo "🎯 Running filtered tests: integration_test/$TEST_FILTER"
-              patrol test "integration_test/$TEST_FILTER"
-            fi
+          script: flutter doctor -v && patrol test integration_test/${{ github.event.inputs.test_filter || '' }}
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic
