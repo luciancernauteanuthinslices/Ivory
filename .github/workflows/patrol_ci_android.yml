@@ -115,22 +115,15 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
           script: |
-            # Keep suite lean; GitHub runners are slow for emulators
             flutter doctor -v
-            
-            # Determine test path based on input filter
-            TEST_PATH="integration_test/"
             if [ -n "${{ github.event.inputs.test_filter }}" ]; then
               TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
               echo "🎯 Running filtered tests: $TEST_PATH"
             else
+              TEST_PATH="integration_test/"
               echo "🎯 Running all tests in: $TEST_PATH"
             fi
-            
-            # Run patrol tests
-            # Note: We're using .patrol.env file instead of dart-defines
-            # because our LoginToApp.loadPatrolEnv() reads from the file
-            patrol test "$TEST_PATH" -r expanded --concurrency=1
+            patrol test "$TEST_PATH"
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic
@@ -139,13 +132,14 @@ jobs:
       #   run: |
       #     pass=0; fail=0
       #     RETRIES=${{ github.event.inputs.max_retries }}
-      #     TEST_PATH="integration_test/"
       #     if [ -n "${{ github.event.inputs.test_filter }}" ]; then
       #       TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
+      #     else
+      #       TEST_PATH="integration_test/"
       #     fi
       #     for i in $(seq 2 $RETRIES); do
       #       echo "=== RETRY $i/$RETRIES ==="
-      #       if patrol test "$TEST_PATH" -r expanded --concurrency=1; then
+      #       if patrol test "$TEST_PATH"; then
       #         pass=$((pass+1))
       #         break
       #       else
