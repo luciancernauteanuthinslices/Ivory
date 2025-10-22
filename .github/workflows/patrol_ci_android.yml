@@ -1,0 +1,150 @@
+name: Patrol Android CI
+
+# Emulator on ubuntu is inherently slow/unstable; this is a smoke gate, not a full suite.
+# Secrets required: PATROL_EMAIL, PATROL_PASSWORD
+# Configure these in: Settings → Secrets and variables → Actions → Repository secrets
+#
+# CUSTOM RUNNERS:
+# To improve emulator stability/speed, switch runs-on to a custom label:
+#   runs-on: buildjet-4vcpu-ubuntu-2204  # BuildJet (faster, paid)
+#   runs-on: [self-hosted, linux]        # Self-hosted runner
+# Keep suites short on default GitHub runners; rely on device clouds or custom runners for heavier coverage.
+
+on:
+  push:
+    branches:
+      - main
+      - test_playground
+      - SOL-*
+  pull_request:
+    branches:
+      - main
+      - test_playground
+      - SOL-*
+  workflow_dispatch:
+    inputs:
+      test_filter:
+        description: 'Test filter (e.g., cardCanBeFrozenOrUnfreeze_test.dart or leave empty for all)'
+        required: false
+        default: ''
+      max_retries:
+        description: 'Number of retry attempts'
+        required: false
+        default: '1'
+
+jobs:
+  patrol-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [31, 34]  # Test on Android 12 (API 31) and Android 14 (API 34)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.x'
+          channel: 'stable'
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      # Optional: Gradle cache to speed up build times
+      - name: Gradle cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      # Create main .env file (required for app config)
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "API_BASE_URL=${{ secrets.API_BASE_URL || 'https://api.example.com' }}" >> .env
+          echo "# Add other required env vars from your .env.example if needed" >> .env
+
+      # Create .patrol.env with test credentials from GitHub secrets
+      - name: Create .patrol.env with test credentials
+        run: |
+          mkdir -p integration_test
+          cat > integration_test/.patrol.env << EOF
+          #login credentials
+          EMAIL=${{ secrets.PATROL_EMAIL }}
+          PASSWORD=${{ secrets.PATROL_PASSWORD }}
+          EOF
+          echo "✅ Created .patrol.env with test credentials"
+
+      - name: Start Android emulator and run Patrol (API ${{ matrix.api }})
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          target: default
+          profile: pixel_5
+          emulator-options: -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
+          script: |
+            # Keep suite lean; GitHub runners are slow for emulators
+            flutter doctor -v
+            
+            # Determine test path based on input filter
+            TEST_PATH="integration_test/"
+            if [ -n "${{ github.event.inputs.test_filter }}" ]; then
+              TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
+              echo "🎯 Running filtered tests: $TEST_PATH"
+            else
+              echo "🎯 Running all tests in: $TEST_PATH"
+            fi
+            
+            # Run patrol tests
+            # Note: We're using .patrol.env file instead of dart-defines
+            # because our LoginToApp.loadPatrolEnv() reads from the file
+            patrol test "$TEST_PATH" -r expanded --concurrency=1
+
+      # OPTIONAL: Serial retries for flaky tests
+      # Uncomment to enable retry logic
+      # - name: Patrol retries (serial)
+      #   if: failure() && github.event.inputs.max_retries > 1
+      #   run: |
+      #     pass=0; fail=0
+      #     RETRIES=${{ github.event.inputs.max_retries }}
+      #     TEST_PATH="integration_test/"
+      #     if [ -n "${{ github.event.inputs.test_filter }}" ]; then
+      #       TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
+      #     fi
+      #     for i in $(seq 2 $RETRIES); do
+      #       echo "=== RETRY $i/$RETRIES ==="
+      #       if patrol test "$TEST_PATH" -r expanded --concurrency=1; then
+      #         pass=$((pass+1))
+      #         break
+      #       else
+      #         fail=$((fail+1))
+      #       fi
+      #     done
+      #     echo "PASS:$pass  FAIL:$fail"
+      #     test $fail -eq 0
+
+      - name: Upload Patrol results (if any)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patrol-android-api${{ matrix.api }}-results
+          path: |
+            build/**/reports/**
+            **/test-results/**
+            **/patrol_logs/**
+            **/screenshots/**
+          if-no-files-found: ignore

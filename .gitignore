@@ -10,8 +10,14 @@
 .history
 .svn/
 /keys
+
+# Environment variables
 .env
+.env.*
 integration_test/.patrol.env
+# Allow example env files to be committed
+!.env.example
+!integration_test/.patrol.env.example
 
 # IntelliJ related
 *.iml

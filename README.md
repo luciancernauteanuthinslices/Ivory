@@ -55,6 +55,60 @@ Find more details [here](https://www.thinslices.com/ivory-banking-app).
 
 You can find the prototype [here](https://www.figma.com/proto/XReOTW8hCzSSTPsfqWhwy6/Ivory---Demo-App?page-id=1086%3A72864&type=design&node-id=1221-101377&viewport=-1964%2C1794%2C0.19&t=XEC1Fu5v6GR6h7B3-1&scaling=contain&starting-point-node-id=1221%3A101373).
 
+## CI with Patrol
+
+Automated integration tests run on GitHub Actions using [Patrol](https://patrol.leancode.co/).
+
+### Platform Support
+
+- **Android**: Runs on `ubuntu-latest` using `android-emulator-runner` action
+  - Slower but reliable for smoke testing
+  - Uses API level 31 (Android 12) by default
+  
+- **iOS**: Runs on `macos-14` using iOS Simulator
+  - Faster execution with better performance
+  - Uses iPhone 15 Pro simulator by default
+
+### Required Secrets
+
+For CI to run integration tests, configure these GitHub repository secrets:
+
+- `PATROL_EMAIL` - Test account email for login tests
+- `PATROL_PASSWORD` - Test account password for login tests
+
+### Branch Triggers
+
+CI runs automatically on:
+- Pushes to `main` branch
+- Pushes to feature branches matching `SOL-*` pattern
+- Pull requests targeting these branches
+
+**Note**: Update branch patterns in `.github/workflows/*.yml` if your branch naming differs.
+
+### Environment Setup
+
+Integration tests use two environment files:
+1. **Main `.env`** (root) - App configuration (API URLs, Firebase, Cognito, etc.)
+2. **Test `.patrol.env`** (integration_test/) - Test credentials only (EMAIL, PASSWORD)
+
+The `.patrol.env` file is gitignored and created from `.patrol.env.example` during CI runs using repository secrets.
+
+### Running Tests Locally
+
+```bash
+# Create test credentials file
+cp integration_test/.patrol.env.example integration_test/.patrol.env
+
+# Edit with your test account credentials
+# Then run tests
+patrol test integration_test/
+
+# Or run specific test
+patrol test integration_test/cardCanBeFrozenOrUnfreeze_test.dart
+```
+
+See `integration_test/ENV_SETUP.md` for detailed environment configuration.
+
 ## Contact
 
 For any questions, guidance or other interests _(like building projects or getting hired)_ contact [Thinslices](https://www.thinslices.com/contact).
