@@ -116,14 +116,14 @@ jobs:
           emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
           script: |
             flutter doctor -v
-            if [ -n "${{ github.event.inputs.test_filter }}" ]; then
-              TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
-              echo "🎯 Running filtered tests: $TEST_PATH"
+            TEST_FILTER="${{ github.event.inputs.test_filter }}"
+            if [ -z "$TEST_FILTER" ]; then
+              echo "🎯 Running all tests in: integration_test/"
+              patrol test integration_test/
             else
-              TEST_PATH="integration_test/"
-              echo "🎯 Running all tests in: $TEST_PATH"
+              echo "🎯 Running filtered tests: integration_test/$TEST_FILTER"
+              patrol test "integration_test/$TEST_FILTER"
             fi
-            patrol test "$TEST_PATH"
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic
@@ -132,14 +132,15 @@ jobs:
       #   run: |
       #     pass=0; fail=0
       #     RETRIES=${{ github.event.inputs.max_retries }}
-      #     if [ -n "${{ github.event.inputs.test_filter }}" ]; then
-      #       TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
-      #     else
-      #       TEST_PATH="integration_test/"
-      #     fi
+      #     TEST_FILTER="${{ github.event.inputs.test_filter }}"
       #     for i in $(seq 2 $RETRIES); do
       #       echo "=== RETRY $i/$RETRIES ==="
-      #       if patrol test "$TEST_PATH"; then
+      #       if [ -z "$TEST_FILTER" ]; then
+      #         RESULT=$(patrol test integration_test/ && echo "PASS" || echo "FAIL")
+      #       else
+      #         RESULT=$(patrol test "integration_test/$TEST_FILTER" && echo "PASS" || echo "FAIL")
+      #       fi
+      #       if [ "$RESULT" = "PASS" ]; then
       #         pass=$((pass+1))
       #         break
       #       else

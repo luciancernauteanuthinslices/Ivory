@@ -85,22 +85,25 @@ jobs:
           echo "✅ Created .patrol.env with test credentials"
 
       - name: Run Patrol on iOS
+        env:
+          # Disable FileSystemSynchronizedGroups for Xcode 15.4 compatibility
+          DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
         run: |
+          # Disable problematic Xcode feature
+          defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM NO
+          defaults write com.apple.dt.Xcode IDEFileSystemSynchronizedGroupsEnabled NO
+          
           flutter doctor -v
           
           # Determine test path based on input filter
-          if [ -n "${{ github.event.inputs.test_filter }}" ]; then
-            TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
-            echo "🎯 Running filtered tests: $TEST_PATH"
+          TEST_FILTER="${{ github.event.inputs.test_filter }}"
+          if [ -z "$TEST_FILTER" ]; then
+            echo "🎯 Running all tests in: integration_test/"
+            patrol test integration_test/
           else
-            TEST_PATH="integration_test/"
-            echo "🎯 Running all tests in: $TEST_PATH"
+            echo "🎯 Running filtered tests: integration_test/$TEST_FILTER"
+            patrol test "integration_test/$TEST_FILTER"
           fi
-          
-          # Run patrol tests
-          # Note: We're using .patrol.env file instead of dart-defines
-          # because our LoginToApp.loadPatrolEnv() reads from the file
-          patrol test "$TEST_PATH"
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic
@@ -109,14 +112,15 @@ jobs:
       #   run: |
       #     pass=0; fail=0
       #     RETRIES=${{ github.event.inputs.max_retries }}
-      #     if [ -n "${{ github.event.inputs.test_filter }}" ]; then
-      #       TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
-      #     else
-      #       TEST_PATH="integration_test/"
-      #     fi
+      #     TEST_FILTER="${{ github.event.inputs.test_filter }}"
       #     for i in $(seq 2 $RETRIES); do
       #       echo "=== RETRY $i/$RETRIES ==="
-      #       if patrol test "$TEST_PATH"; then
+      #       if [ -z "$TEST_FILTER" ]; then
+      #         RESULT=$(patrol test integration_test/ && echo "PASS" || echo "FAIL")
+      #       else
+      #         RESULT=$(patrol test "integration_test/$TEST_FILTER" && echo "PASS" || echo "FAIL")
+      #       fi
+      #       if [ "$RESULT" = "PASS" ]; then
       #         pass=$((pass+1))
       #         break
       #       else
