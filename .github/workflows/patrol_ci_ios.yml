@@ -69,9 +69,13 @@ jobs:
       # Create main .env file (required for app config)
       - name: Create .env file
         run: |
-          touch .env
-          echo "API_BASE_URL=${{ secrets.API_BASE_URL || 'https://api.example.com' }}" >> .env
-          echo "# Add other required env vars from your .env.example if needed" >> .env
+          cat > .env << EOF
+          COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}
+          COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}
+          API_BASE_URL=${{ secrets.API_BASE_URL }}
+          GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
+          EOF
+          echo "✅ Created .env with app configuration"
 
       # Create .patrol.env with test credentials from GitHub secrets
       - name: Create .patrol.env with test credentials
