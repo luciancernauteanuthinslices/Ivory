@@ -25,7 +25,8 @@ class LoginToApp {
   static Future<void> loadPatrolEnv() async {
     try {
       final file = File('integration_test/.patrol.env');
-
+      
+  
       final lines = await file.readAsLines();
       
       // Parse only EMAIL and PASSWORD from .patrol.env
@@ -44,6 +45,7 @@ class LoginToApp {
           }
         }
       }
+      
       // ignore: avoid_print
       print('✅ Loaded test credentials from .patrol.env (EMAIL: ${dotenv.env['EMAIL']})');
     } catch (e) {
@@ -55,11 +57,7 @@ class LoginToApp {
   Future<void> login() async {
     // Debug: Show which credentials are being used
     // ignore: avoid_print
-    final atIndex = email.indexOf('@');
-    final maskedEmail = email.isNotEmpty && atIndex > 3
-        ? email.replaceRange(3, atIndex, '***')
-        : '***@***';
-    print('🔐 Logging in with email: $maskedEmail');
+    print('🔐 Logging in with email: ${email.replaceRange(3, email.indexOf('@'), '***')}');
 
     // expect login button to be displayed
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
@@ -81,8 +79,8 @@ class LoginToApp {
       await $.native.grantPermissionWhenInUse();
     }
 
-    // Verify login with OTP - wait for the screen to appear
-    await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
+    // Verify login with OTP
+    // await $.waitUntilVisible($('Verify login'));
     expect($('Verify login'), findsOneWidget);
 
     // Tap on the OTP input area to focus it
