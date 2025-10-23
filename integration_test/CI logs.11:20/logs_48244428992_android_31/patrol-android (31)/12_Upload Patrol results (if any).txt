@@ -1,0 +1,30 @@
+﻿2025-10-23T09:37:14.4507237Z ##[group]Run actions/upload-artifact@v4
+2025-10-23T09:37:14.4507553Z with:
+2025-10-23T09:37:14.4507768Z   name: patrol-android-api31-results
+2025-10-23T09:37:14.4508144Z   path: build/**/reports/**
+**/test-results/**
+**/patrol_logs/**
+**/screenshots/**
+
+2025-10-23T09:37:14.4508538Z   if-no-files-found: ignore
+2025-10-23T09:37:14.4508773Z   compression-level: 6
+2025-10-23T09:37:14.4508974Z   overwrite: false
+2025-10-23T09:37:14.4509182Z   include-hidden-files: false
+2025-10-23T09:37:14.4509398Z env:
+2025-10-23T09:37:14.4509678Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T09:37:14.4510329Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T09:37:14.4510755Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T09:37:14.4511082Z   PUB_CACHE: /home/runner/.pub-cache
+2025-10-23T09:37:14.4511348Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2025-10-23T09:37:14.4511600Z ##[endgroup]
+2025-10-23T09:37:15.5795130Z With the provided path, there will be 6 files uploaded
+2025-10-23T09:37:15.5801365Z Artifact name is valid!
+2025-10-23T09:37:15.5802414Z Root directory input is valid!
+2025-10-23T09:37:15.7340577Z Beginning upload of artifact content to blob storage
+2025-10-23T09:37:15.8688917Z Uploaded bytes 7012
+2025-10-23T09:37:15.9033222Z Finished uploading artifact content to blob storage!
+2025-10-23T09:37:15.9036029Z SHA256 digest of uploaded artifact zip is c6132a82003a29db4eb33e1faa0e4bf97bedccd2babd8e245e3f29ca2878cace
+2025-10-23T09:37:15.9037634Z Finalizing artifact upload
+2025-10-23T09:37:16.0145789Z Artifact patrol-android-api31-results.zip successfully finalized. Artifact ID 4350008113
+2025-10-23T09:37:16.0147064Z Artifact patrol-android-api31-results has been successfully uploaded! Final size is 7012 bytes. Artifact ID is 4350008113
+2025-10-23T09:37:16.0153916Z Artifact download URL: https://github.com/luciancernauteanuthinslices/Ivory/actions/runs/18743827667/artifacts/4350008113

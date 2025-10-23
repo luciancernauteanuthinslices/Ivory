@@ -1,0 +1,5 @@
+2025-10-23T09:25:20.2060000Z Job is about to start running on the hosted runner: GitHub Actions 1000000271
+2025-10-23T09:25:20.2060000Z Job is waiting for a hosted runner to come online.
+2025-10-23T09:25:20.1960000Z Requested labels: ubuntu-latest
+2025-10-23T09:25:20.1960000Z Job defined at: luciancernauteanuthinslices/Ivory/.github/workflows/patrol_ci_android.yml@refs/heads/test_playground
+2025-10-23T09:25:20.1960000Z Waiting for a runner to pick up this job...

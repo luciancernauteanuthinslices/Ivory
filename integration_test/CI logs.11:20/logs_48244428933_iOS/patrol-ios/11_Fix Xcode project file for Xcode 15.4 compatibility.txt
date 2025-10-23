@@ -1,0 +1,41 @@
+﻿2025-10-23T09:28:36.8526470Z ##[group]Run # Remove PBXFileSystemSynchronizedRootGroup objects that cause Xcode 15.4 to crash
+2025-10-23T09:28:36.8527100Z [36;1m# Remove PBXFileSystemSynchronizedRootGroup objects that cause Xcode 15.4 to crash[0m
+2025-10-23T09:28:36.8527510Z [36;1mPROJECT_FILE="ios/Runner.xcodeproj/project.pbxproj"[0m
+2025-10-23T09:28:36.8527780Z [36;1m[0m
+2025-10-23T09:28:36.8527940Z [36;1mif [ ! -f "$PROJECT_FILE" ]; then[0m
+2025-10-23T09:28:36.8528240Z [36;1m  echo "❌ ERROR: $PROJECT_FILE not found!"[0m
+2025-10-23T09:28:36.8528460Z [36;1m  exit 1[0m
+2025-10-23T09:28:36.8528620Z [36;1mfi[0m
+2025-10-23T09:28:36.8528760Z [36;1m[0m
+2025-10-23T09:28:36.8528970Z [36;1mecho "📝 Checking if Xcode project needs fixing..."[0m
+2025-10-23T09:28:36.8529380Z [36;1mif grep -q "PBXFileSystemSynchronizedRootGroup" "$PROJECT_FILE"; then[0m
+2025-10-23T09:28:36.8529720Z [36;1m  echo "🔧 Fixing Xcode project file..."[0m
+2025-10-23T09:28:36.8529950Z [36;1m  [0m
+2025-10-23T09:28:36.8530140Z [36;1m  # Use perl for reliable multi-line pattern removal[0m
+2025-10-23T09:28:36.8530460Z [36;1m  perl -i.backup -0pe '[0m
+2025-10-23T09:28:36.8530730Z [36;1m    # Remove PBXFileSystemSynchronizedRootGroup section[0m
+2025-10-23T09:28:36.8531270Z [36;1m    s!/\* Begin PBXFileSystemSynchronizedRootGroup section \*/.*?/\* End PBXFileSystemSynchronizedRootGroup section \*/!!gs;[0m
+2025-10-23T09:28:36.8531780Z [36;1m    # Remove fileSystemSynchronizedGroups array[0m
+2025-10-23T09:28:36.8532120Z [36;1m    s/\s*fileSystemSynchronizedGroups\s*=\s*\([^)]*\)\s*;\s*//gs;[0m
+2025-10-23T09:28:36.8532430Z [36;1m    # Remove the specific UUID reference[0m
+2025-10-23T09:28:36.8532670Z [36;1m    s/.*7DC899AD2EA221A300A0745F.*\n//g;[0m
+2025-10-23T09:28:36.8532910Z [36;1m  ' "$PROJECT_FILE"[0m
+2025-10-23T09:28:36.8533080Z [36;1m  [0m
+2025-10-23T09:28:36.8533240Z [36;1m  # Verify the fix worked[0m
+2025-10-23T09:28:36.8533550Z [36;1m  if grep -q "PBXFileSystemSynchronizedRootGroup" "$PROJECT_FILE"; then[0m
+2025-10-23T09:28:36.8533960Z [36;1m    echo "❌ ERROR: Failed to remove PBXFileSystemSynchronizedRootGroup"[0m
+2025-10-23T09:28:36.8534300Z [36;1m    exit 1[0m
+2025-10-23T09:28:36.8534460Z [36;1m  fi[0m
+2025-10-23T09:28:36.8534600Z [36;1m  [0m
+2025-10-23T09:28:36.8534860Z [36;1m  echo "✅ Fixed Xcode project file (removed Xcode 16 incompatible features)"[0m
+2025-10-23T09:28:36.8535160Z [36;1melse[0m
+2025-10-23T09:28:36.8535400Z [36;1m  echo "✅ Xcode project file is already compatible (no fix needed)"[0m
+2025-10-23T09:28:36.8535940Z [36;1mfi[0m
+2025-10-23T09:28:36.8587540Z shell: /bin/bash -e {0}
+2025-10-23T09:28:36.8587740Z env:
+2025-10-23T09:28:36.8588080Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T09:28:36.8588580Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T09:28:36.8599500Z ##[endgroup]
+2025-10-23T09:28:36.9016600Z 📝 Checking if Xcode project needs fixing...
+2025-10-23T09:28:36.9105350Z 🔧 Fixing Xcode project file...
+2025-10-23T09:28:36.9311050Z ✅ Fixed Xcode project file (removed Xcode 16 incompatible features)

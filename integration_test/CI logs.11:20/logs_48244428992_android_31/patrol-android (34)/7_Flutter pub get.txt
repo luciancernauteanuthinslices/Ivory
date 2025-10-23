@@ -1,0 +1,224 @@
+﻿2025-10-23T09:28:37.7180950Z ##[group]Run flutter pub get
+2025-10-23T09:28:37.7181259Z [36;1mflutter pub get[0m
+2025-10-23T09:28:37.7213186Z shell: /usr/bin/bash -e {0}
+2025-10-23T09:28:37.7213427Z env:
+2025-10-23T09:28:37.7213732Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T09:28:37.7214206Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T09:28:37.7214649Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T09:28:37.7215006Z   PUB_CACHE: /home/runner/.pub-cache
+2025-10-23T09:28:37.7215261Z ##[endgroup]
+2025-10-23T09:28:42.4696610Z Resolving dependencies...
+2025-10-23T09:28:44.2067215Z Downloading packages...
+2025-10-23T09:28:55.0240460Z + _fe_analyzer_shared 85.0.0 (91.0.0 available)
+2025-10-23T09:28:55.0241143Z + _flutterfire_internals 1.3.59 (1.3.63 available)
+2025-10-23T09:28:55.0241721Z + amazon_cognito_identity_dart_2 3.8.1
+2025-10-23T09:28:55.0242457Z + analyzer 7.7.1 (8.4.0 available)
+2025-10-23T09:28:55.0242881Z + ansicolor 2.0.3
+2025-10-23T09:28:55.0243301Z + app_settings 6.1.1
+2025-10-23T09:28:55.0243651Z + archive 4.0.7
+2025-10-23T09:28:55.0243967Z + args 2.7.0
+2025-10-23T09:28:55.0244260Z + asn1lib 1.6.5
+2025-10-23T09:28:55.0244552Z + async 2.13.0
+2025-10-23T09:28:55.0244838Z + badges 3.1.2
+2025-10-23T09:28:55.0245163Z + bloc 8.1.4 (9.1.0 available)
+2025-10-23T09:28:55.0245541Z + boolean_selector 2.1.2
+2025-10-23T09:28:55.0245890Z + build 3.1.0 (4.0.2 available)
+2025-10-23T09:28:55.0246240Z + build_config 1.2.0
+2025-10-23T09:28:55.0246557Z + build_daemon 4.1.0
+2025-10-23T09:28:55.0246896Z + build_resolvers 3.0.3 (3.0.4 available)
+2025-10-23T09:28:55.0247320Z + build_runner 2.7.1 (2.10.0 available)
+2025-10-23T09:28:55.0247769Z + build_runner_core 9.3.1 (9.3.2 available)
+2025-10-23T09:28:55.0248219Z + built_collection 5.1.1
+2025-10-23T09:28:55.0248617Z + built_value 8.12.0
+2025-10-23T09:28:55.0248991Z + characters 1.4.0 (1.4.1 available)
+2025-10-23T09:28:55.0249414Z + checked_yaml 2.0.4
+2025-10-23T09:28:55.0249767Z + cli_config 0.2.0
+2025-10-23T09:28:55.0250137Z + clock 1.1.2
+2025-10-23T09:28:55.0250461Z + code_builder 4.11.0
+2025-10-23T09:28:55.0250810Z + collection 1.19.1
+2025-10-23T09:28:55.0251142Z + convert 3.1.2
+2025-10-23T09:28:55.0251460Z + coverage 1.15.0
+2025-10-23T09:28:55.0251785Z + cross_file 0.3.4+2
+2025-10-23T09:28:55.0252321Z + crypto 3.0.6
+2025-10-23T09:28:55.0252672Z + crypto_keys 0.3.0+1 (0.3.0+2 available)
+2025-10-23T09:28:55.0253013Z + csslib 1.0.2
+2025-10-23T09:28:55.0253227Z + cupertino_icons 1.0.8
+2025-10-23T09:28:55.0253467Z + dart_style 3.1.1 (3.1.2 available)
+2025-10-23T09:28:55.0253718Z + dbus 0.7.11
+2025-10-23T09:28:55.0253947Z + device_info_plus 11.5.0 (12.2.0 available)
+2025-10-23T09:28:55.0254261Z + device_info_plus_platform_interface 7.0.3
+2025-10-23T09:28:55.0254528Z + dio 5.9.0
+2025-10-23T09:28:55.0254720Z + dio_web_adapter 2.1.1
+2025-10-23T09:28:55.0254939Z + dispose_scope 2.1.0
+2025-10-23T09:28:55.0255167Z + dotted_border 2.1.0 (3.1.0 available)
+2025-10-23T09:28:55.0255426Z + equatable 2.0.7
+2025-10-23T09:28:55.0255630Z + fake_async 1.3.3
+2025-10-23T09:28:55.0255820Z + ffi 2.1.4
+2025-10-23T09:28:55.0255996Z + file 7.0.1
+2025-10-23T09:28:55.0256198Z + firebase_core 3.15.2 (4.2.0 available)
+2025-10-23T09:28:55.0256480Z + firebase_core_platform_interface 6.0.2
+2025-10-23T09:28:55.0256760Z + firebase_core_web 2.24.1 (3.2.0 available)
+2025-10-23T09:28:55.0257091Z + firebase_messaging 15.2.10 (16.0.3 available)
+2025-10-23T09:28:55.0257444Z + firebase_messaging_platform_interface 4.6.10 (4.7.3 available)
+2025-10-23T09:28:55.0257806Z + firebase_messaging_web 3.10.10 (4.0.3 available)
+2025-10-23T09:28:55.0258089Z + fixnum 1.1.1
+2025-10-23T09:28:55.0258293Z + fl_chart 0.69.2 (1.1.1 available)
+2025-10-23T09:28:55.0258548Z + flutter 0.0.0 from sdk flutter
+2025-10-23T09:28:55.0258798Z + flutter_bloc 8.1.6 (9.1.1 available)
+2025-10-23T09:28:55.0259329Z + flutter_dotenv 5.2.1 (6.0.0 available)
+2025-10-23T09:28:55.0259596Z + flutter_driver 0.0.0 from sdk flutter
+2025-10-23T09:28:55.0259856Z + flutter_lints 5.0.0 (6.0.0 available)
+2025-10-23T09:28:55.0260329Z + flutter_local_notifications 18.0.1 (19.5.0 available)
+2025-10-23T09:28:55.0260741Z + flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+2025-10-23T09:28:55.0261451Z + flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+2025-10-23T09:28:55.0262135Z + flutter_native_splash 2.4.7
+2025-10-23T09:28:55.0262459Z + flutter_platform_widgets 7.0.1 (9.0.0 available)
+2025-10-23T09:28:55.0262770Z + flutter_plugin_android_lifecycle 2.0.32
+2025-10-23T09:28:55.0263107Z + flutter_redux 0.10.0
+2025-10-23T09:28:55.0263350Z + flutter_svg 2.2.1
+2025-10-23T09:28:55.0263555Z + flutter_switch 0.3.2
+2025-10-23T09:28:55.0263786Z + flutter_test 0.0.0 from sdk flutter
+2025-10-23T09:28:55.0264063Z + flutter_web_plugins 0.0.0 from sdk flutter
+2025-10-23T09:28:55.0264344Z + frontend_server_client 4.0.0
+2025-10-23T09:28:55.0264623Z + fuchsia_remote_debug_protocol 0.0.0 from sdk flutter
+2025-10-23T09:28:55.0264911Z + glob 2.1.3
+2025-10-23T09:28:55.0265099Z + graphs 2.3.2
+2025-10-23T09:28:55.0265295Z + html 0.15.6
+2025-10-23T09:28:55.0265478Z + http 1.5.0
+2025-10-23T09:28:55.0265674Z + http_mock_adapter 0.6.1
+2025-10-23T09:28:55.0265904Z + http_multi_server 3.2.2
+2025-10-23T09:28:55.0266142Z + http_parser 4.1.2
+2025-10-23T09:28:55.0266337Z + image 4.5.4
+2025-10-23T09:28:55.0266801Z + integration_test 0.0.0 from sdk flutter
+2025-10-23T09:28:55.0267274Z + intl 0.19.0 (0.20.2 available)
+2025-10-23T09:28:55.0267688Z + io 1.0.5
+2025-10-23T09:28:55.0268004Z + jose 0.3.5
+2025-10-23T09:28:55.0268326Z + js 0.7.2
+2025-10-23T09:28:55.0268668Z + json_annotation 4.9.0
+2025-10-23T09:28:55.0268908Z + jwt_decoder 2.0.1
+2025-10-23T09:28:55.0269113Z + leak_tracker 11.0.2
+2025-10-23T09:28:55.0269339Z + leak_tracker_flutter_testing 3.0.10
+2025-10-23T09:28:55.0269607Z + leak_tracker_testing 3.0.2
+2025-10-23T09:28:55.0269852Z + lints 5.1.1 (6.0.0 available)
+2025-10-23T09:28:55.0270092Z + local_auth 2.3.0 (3.0.0 available)
+2025-10-23T09:28:55.0270357Z + local_auth_android 1.0.56 (2.0.0 available)
+2025-10-23T09:28:55.0270648Z + local_auth_darwin 1.6.1 (2.0.0 available)
+2025-10-23T09:28:55.0270929Z + local_auth_platform_interface 1.1.0
+2025-10-23T09:28:55.0271202Z + local_auth_windows 1.0.11 (2.0.0 available)
+2025-10-23T09:28:55.0271464Z + logger 2.6.2
+2025-10-23T09:28:55.0271652Z + logging 1.3.0
+2025-10-23T09:28:55.0271862Z + mask_text_input_formatter 2.9.0
+2025-10-23T09:28:55.0272329Z + matcher 0.12.17
+2025-10-23T09:28:55.0272576Z + material_color_utilities 0.11.1 (0.13.0 available)
+2025-10-23T09:28:55.0272868Z + meta 1.16.0 (1.17.0 available)
+2025-10-23T09:28:55.0273096Z + mime 2.0.0
+2025-10-23T09:28:55.0273295Z + mockito 5.5.0 (5.5.1 available)
+2025-10-23T09:28:55.0273524Z + nested 1.0.0
+2025-10-23T09:28:55.0273716Z + node_preamble 2.0.2
+2025-10-23T09:28:55.0273933Z + package_config 2.2.0
+2025-10-23T09:28:55.0274149Z + path 1.9.1
+2025-10-23T09:28:55.0274337Z + path_drawing 1.0.1
+2025-10-23T09:28:55.0274544Z + path_parsing 1.1.0
+2025-10-23T09:28:55.0274752Z + path_provider 2.1.5
+2025-10-23T09:28:55.0274982Z + path_provider_android 2.2.20
+2025-10-23T09:28:55.0275233Z + path_provider_foundation 2.4.3
+2025-10-23T09:28:55.0275482Z + path_provider_linux 2.2.1
+2025-10-23T09:28:55.0275735Z + path_provider_platform_interface 2.1.2
+2025-10-23T09:28:55.0276015Z + path_provider_windows 2.3.0
+2025-10-23T09:28:55.0276246Z + patrol 3.19.0
+2025-10-23T09:28:55.0276451Z + patrol_finders 2.9.0
+2025-10-23T09:28:55.0276670Z + patrol_log 0.5.0
+2025-10-23T09:28:55.0276883Z + percent_indicator 4.2.5
+2025-10-23T09:28:55.0277237Z + permission_handler 11.4.0 (12.0.1 available)
+2025-10-23T09:28:55.0277787Z + permission_handler_android 12.1.0 (13.0.1 available)
+2025-10-23T09:28:55.0278240Z + permission_handler_apple 9.4.7
+2025-10-23T09:28:55.0278669Z + permission_handler_html 0.1.3+5
+2025-10-23T09:28:55.0279098Z + permission_handler_platform_interface 4.3.0
+2025-10-23T09:28:55.0279921Z + permission_handler_windows 0.2.1
+2025-10-23T09:28:55.0280338Z + petitparser 7.0.1
+2025-10-23T09:28:55.0280688Z + pin_input_text_field 4.5.2
+2025-10-23T09:28:55.0281269Z + platform 3.1.6
+2025-10-23T09:28:55.0281626Z + plugin_platform_interface 2.1.8
+2025-10-23T09:28:55.0282297Z + pointycastle 3.9.1 (4.0.0 available)
+2025-10-23T09:28:55.0282569Z + pool 1.5.2
+2025-10-23T09:28:55.0282756Z + posix 6.0.3
+2025-10-23T09:28:55.0282948Z + process 5.0.5
+2025-10-23T09:28:55.0283142Z + provider 6.1.5+1
+2025-10-23T09:28:55.0283342Z + pub_semver 2.2.0
+2025-10-23T09:28:55.0283540Z + pubspec_parse 1.5.0
+2025-10-23T09:28:55.0283749Z + quiver 3.2.2
+2025-10-23T09:28:55.0283932Z + redux 5.0.0
+2025-10-23T09:28:55.0284134Z + share_plus 10.1.4 (12.0.1 available)
+2025-10-23T09:28:55.0284436Z + share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-10-23T09:28:55.0284739Z + shared_preferences 2.5.3
+2025-10-23T09:28:55.0284981Z + shared_preferences_android 2.4.15
+2025-10-23T09:28:55.0285258Z + shared_preferences_foundation 2.5.5
+2025-10-23T09:28:55.0285526Z + shared_preferences_linux 2.4.1
+2025-10-23T09:28:55.0285794Z + shared_preferences_platform_interface 2.4.1
+2025-10-23T09:28:55.0286084Z + shared_preferences_web 2.4.3
+2025-10-23T09:28:55.0286436Z + shared_preferences_windows 2.4.1
+2025-10-23T09:28:55.0286680Z + shelf 1.4.2
+2025-10-23T09:28:55.0286966Z + shelf_packages_handler 3.0.2
+2025-10-23T09:28:55.0287326Z + shelf_static 1.1.3
+2025-10-23T09:28:55.0287647Z + shelf_web_socket 3.0.0
+2025-10-23T09:28:55.0287959Z + shimmer 3.0.0
+2025-10-23T09:28:55.0288261Z + sky_engine 0.0.0 from sdk flutter
+2025-10-23T09:28:55.0288634Z + smooth_page_indicator 1.2.1
+2025-10-23T09:28:55.0288989Z + source_gen 3.1.0 (4.0.2 available)
+2025-10-23T09:28:55.0289427Z + source_map_stack_trace 2.1.2
+2025-10-23T09:28:55.0289850Z + source_maps 0.10.13
+2025-10-23T09:28:55.0290245Z + source_span 1.10.1
+2025-10-23T09:28:55.0290622Z + sprintf 7.0.0
+2025-10-23T09:28:55.0290971Z + stack_trace 1.12.1
+2025-10-23T09:28:55.0291359Z + stream_channel 2.1.4
+2025-10-23T09:28:55.0291756Z + stream_transform 2.1.1
+2025-10-23T09:28:55.0292360Z + string_scanner 1.4.1
+2025-10-23T09:28:55.0292765Z + sync_http 0.3.1
+2025-10-23T09:28:55.0293195Z + syncfusion_flutter_core 27.2.5 (31.2.3 available)
+2025-10-23T09:28:55.0293831Z + syncfusion_flutter_datepicker 27.2.5 (31.2.3 available)
+2025-10-23T09:28:55.0294392Z + term_glyph 1.2.2
+2025-10-23T09:28:55.0294765Z + test 1.26.2 (1.26.3 available)
+2025-10-23T09:28:55.0295196Z + test_api 0.7.6 (0.7.7 available)
+2025-10-23T09:28:55.0295649Z + test_core 0.6.11 (0.6.12 available)
+2025-10-23T09:28:55.0296107Z + timezone 0.10.1
+2025-10-23T09:28:55.0296394Z + timing 1.0.2
+2025-10-23T09:28:55.0296736Z + typed_data 1.4.0
+2025-10-23T09:28:55.0297028Z + universal_io 2.2.2
+2025-10-23T09:28:55.0297239Z + url_launcher 6.3.2
+2025-10-23T09:28:55.0297457Z + url_launcher_android 6.3.24
+2025-10-23T09:28:55.0297699Z + url_launcher_ios 6.3.5
+2025-10-23T09:28:55.0297925Z + url_launcher_linux 3.2.1
+2025-10-23T09:28:55.0298162Z + url_launcher_macos 3.2.4
+2025-10-23T09:28:55.0298404Z + url_launcher_platform_interface 2.3.2
+2025-10-23T09:28:55.0298672Z + url_launcher_web 2.4.1
+2025-10-23T09:28:55.0298896Z + url_launcher_windows 3.1.4
+2025-10-23T09:28:55.0299123Z + uuid 4.5.1
+2025-10-23T09:28:55.0299311Z + vector_graphics 1.1.19
+2025-10-23T09:28:55.0299541Z + vector_graphics_codec 1.1.13
+2025-10-23T09:28:55.0299791Z + vector_graphics_compiler 1.1.19
+2025-10-23T09:28:55.0300033Z + vector_math 2.2.0
+2025-10-23T09:28:55.0300235Z + video_player 2.10.0
+2025-10-23T09:28:55.0300455Z + video_player_android 2.8.17
+2025-10-23T09:28:55.0300702Z + video_player_avfoundation 2.8.5
+2025-10-23T09:28:55.0300966Z + video_player_platform_interface 6.5.0
+2025-10-23T09:28:55.0301230Z + video_player_web 2.4.0
+2025-10-23T09:28:55.0301470Z + vm_service 15.0.2
+2025-10-23T09:28:55.0301670Z + watcher 1.1.4
+2025-10-23T09:28:55.0301859Z + web 1.1.1
+2025-10-23T09:28:55.0302254Z + web_socket 1.0.1
+2025-10-23T09:28:55.0302464Z + web_socket_channel 3.0.3
+2025-10-23T09:28:55.0302870Z + webdriver 3.1.0
+2025-10-23T09:28:55.0303086Z + webkit_inspection_protocol 1.2.1
+2025-10-23T09:28:55.0303337Z + webview_flutter 4.13.0
+2025-10-23T09:28:55.0303567Z + webview_flutter_android 4.10.5
+2025-10-23T09:28:55.0303944Z + webview_flutter_platform_interface 2.14.0
+2025-10-23T09:28:55.0304225Z + webview_flutter_wkwebview 3.23.1
+2025-10-23T09:28:55.0304464Z + win32 5.15.0
+2025-10-23T09:28:55.0304657Z + win32_registry 2.1.0
+2025-10-23T09:28:55.0304857Z + x509 0.2.4+3
+2025-10-23T09:28:55.0305043Z + xdg_directories 1.1.0
+2025-10-23T09:28:55.0305248Z + xml 6.6.1
+2025-10-23T09:28:55.0305427Z + yaml 3.1.3
+2025-10-23T09:28:55.0305648Z Changed 210 dependencies!
+2025-10-23T09:28:55.0306202Z 46 packages have newer versions incompatible with dependency constraints.
+2025-10-23T09:28:55.0306611Z Try `flutter pub outdated` for more information.
