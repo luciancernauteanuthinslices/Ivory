@@ -1,0 +1,70 @@
+﻿2025-10-23T08:01:37.3093760Z ##[group]Run actions/checkout@v4
+2025-10-23T08:01:37.3094400Z with:
+2025-10-23T08:01:37.3095160Z   repository: luciancernauteanuthinslices/Ivory
+2025-10-23T08:01:37.3095840Z   token: ***
+2025-10-23T08:01:37.3096130Z   ssh-strict: true
+2025-10-23T08:01:37.3096430Z   ssh-user: git
+2025-10-23T08:01:37.3096720Z   persist-credentials: true
+2025-10-23T08:01:37.3097030Z   clean: true
+2025-10-23T08:01:37.3097310Z   sparse-checkout-cone-mode: true
+2025-10-23T08:01:37.3097650Z   fetch-depth: 1
+2025-10-23T08:01:37.3097930Z   fetch-tags: false
+2025-10-23T08:01:37.3098240Z   show-progress: true
+2025-10-23T08:01:37.3098520Z   lfs: false
+2025-10-23T08:01:37.3098780Z   submodules: false
+2025-10-23T08:01:37.3099060Z   set-safe-directory: true
+2025-10-23T08:01:37.3099790Z ##[endgroup]
+2025-10-23T08:01:37.4519420Z Syncing repository: luciancernauteanuthinslices/Ivory
+2025-10-23T08:01:37.4520940Z ##[group]Getting Git version info
+2025-10-23T08:01:37.4521420Z Working directory is '/Users/runner/work/Ivory/Ivory'
+2025-10-23T08:01:37.4522220Z [command]/opt/homebrew/bin/git version
+2025-10-23T08:01:37.4715650Z git version 2.50.1
+2025-10-23T08:01:37.4731680Z ##[endgroup]
+2025-10-23T08:01:37.4738100Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/7358530e-66e6-4c6b-9892-535c120038aa/.gitconfig'
+2025-10-23T08:01:37.4744280Z Temporarily overriding HOME='/Users/runner/work/_temp/7358530e-66e6-4c6b-9892-535c120038aa' before making global git config changes
+2025-10-23T08:01:37.4745390Z Adding repository directory to the temporary git global config as a safe directory
+2025-10-23T08:01:37.4753510Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Ivory/Ivory
+2025-10-23T08:01:37.4830650Z Deleting the contents of '/Users/runner/work/Ivory/Ivory'
+2025-10-23T08:01:37.4834020Z ##[group]Initializing the repository
+2025-10-23T08:01:37.4838140Z [command]/opt/homebrew/bin/git init /Users/runner/work/Ivory/Ivory
+2025-10-23T08:01:37.5001740Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-10-23T08:01:37.5002890Z hint: is subject to change. To configure the initial branch name to use in all
+2025-10-23T08:01:37.5003800Z hint: of your new repositories, which will suppress this warning, call:
+2025-10-23T08:01:37.5004420Z hint:
+2025-10-23T08:01:37.5004990Z hint: 	git config --global init.defaultBranch <name>
+2025-10-23T08:01:37.5005480Z hint:
+2025-10-23T08:01:37.5006190Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-10-23T08:01:37.5007040Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-10-23T08:01:37.5007680Z hint:
+2025-10-23T08:01:37.5008200Z hint: 	git branch -m <name>
+2025-10-23T08:01:37.5008760Z hint:
+2025-10-23T08:01:37.5009320Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-10-23T08:01:37.5014460Z Initialized empty Git repository in /Users/runner/work/Ivory/Ivory/.git/
+2025-10-23T08:01:37.5052910Z [command]/opt/homebrew/bin/git remote add origin https://github.com/luciancernauteanuthinslices/Ivory
+2025-10-23T08:01:37.5070710Z ##[endgroup]
+2025-10-23T08:01:37.5071360Z ##[group]Disabling automatic garbage collection
+2025-10-23T08:01:37.5073840Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2025-10-23T08:01:37.5117370Z ##[endgroup]
+2025-10-23T08:01:37.5118030Z ##[group]Setting up auth
+2025-10-23T08:01:37.5121310Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-10-23T08:01:37.5160240Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-10-23T08:01:37.5762800Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-10-23T08:01:37.5803830Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-10-23T08:01:37.6292730Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-10-23T08:01:37.6345920Z ##[endgroup]
+2025-10-23T08:01:37.6348460Z ##[group]Fetching the repository
+2025-10-23T08:01:37.6350580Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +0eaa5753f99f25fe111241ee6aafa3553cf86472:refs/remotes/origin/test_playground
+2025-10-23T08:01:39.4648820Z From https://github.com/luciancernauteanuthinslices/Ivory
+2025-10-23T08:01:39.4650460Z  * [new ref]         0eaa5753f99f25fe111241ee6aafa3553cf86472 -> origin/test_playground
+2025-10-23T08:01:39.4709290Z ##[endgroup]
+2025-10-23T08:01:39.4710090Z ##[group]Determining the checkout info
+2025-10-23T08:01:39.4710950Z ##[endgroup]
+2025-10-23T08:01:39.4713270Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2025-10-23T08:01:39.4775350Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2025-10-23T08:01:39.4825420Z ##[group]Checking out the ref
+2025-10-23T08:01:39.4827650Z [command]/opt/homebrew/bin/git checkout --progress --force -B test_playground refs/remotes/origin/test_playground
+2025-10-23T08:01:39.6602230Z Switched to a new branch 'test_playground'
+2025-10-23T08:01:39.6608480Z branch 'test_playground' set up to track 'origin/test_playground'.
+2025-10-23T08:01:39.6619410Z ##[endgroup]
+2025-10-23T08:01:39.6690980Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2025-10-23T08:01:39.6742820Z 0eaa5753f99f25fe111241ee6aafa3553cf86472

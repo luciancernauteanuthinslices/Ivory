@@ -1,0 +1,2129 @@
+﻿2025-10-23T08:03:43.9977956Z ##[group]Run reactivecircus/android-emulator-runner@v2
+2025-10-23T08:03:43.9978534Z with:
+2025-10-23T08:03:43.9978852Z   api-level: 34
+2025-10-23T08:03:43.9979195Z   arch: x86_64
+2025-10-23T08:03:43.9979525Z   target: default
+2025-10-23T08:03:43.9979872Z   profile: pixel_5
+2025-10-23T08:03:43.9980239Z   force-avd-creation: false
+2025-10-23T08:03:43.9980888Z   disable-animations: true
+2025-10-23T08:03:43.9981594Z   emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
+2025-10-23T08:03:43.9982898Z   script: flutter doctor -v
+echo "📝 Running tests with verbose logging for better debugging"
+patrol test integration_test/ --verbose
+
+2025-10-23T08:03:43.9983843Z   cores: 2
+2025-10-23T08:03:43.9984153Z   avd-name: test
+2025-10-23T08:03:43.9984794Z   emulator-boot-timeout: 600
+2025-10-23T08:03:43.9985213Z   emulator-port: 5554
+2025-10-23T08:03:43.9985604Z   disable-spellchecker: false
+2025-10-23T08:03:43.9986032Z   disable-linux-hw-accel: auto
+2025-10-23T08:03:43.9986451Z   enable-hw-keyboard: false
+2025-10-23T08:03:43.9986888Z   channel: stable
+2025-10-23T08:03:43.9987206Z env:
+2025-10-23T08:03:43.9987740Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T08:03:43.9988600Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T08:03:43.9989385Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T08:03:43.9990004Z   PUB_CACHE: /home/runner/.pub-cache
+2025-10-23T08:03:43.9990669Z ##[endgroup]
+2025-10-23T08:03:44.0554792Z ##[group]Configure emulator
+2025-10-23T08:03:44.0558639Z API level: 34
+2025-10-23T08:03:44.0559093Z System image API level: 34
+2025-10-23T08:03:44.0559609Z target: default
+2025-10-23T08:03:44.0560486Z CPU architecture: x86_64
+2025-10-23T08:03:44.0561080Z Hardware profile: pixel_5
+2025-10-23T08:03:44.0561566Z Cores: 2
+2025-10-23T08:03:44.0561949Z RAM size: 
+2025-10-23T08:03:44.0562349Z Heap size: 
+2025-10-23T08:03:44.0563426Z SD card path or size: 
+2025-10-23T08:03:44.0564362Z Disk size: 
+2025-10-23T08:03:44.0564801Z AVD name: test
+2025-10-23T08:03:44.0565643Z force avd creation: false
+2025-10-23T08:03:44.0566168Z Emulator boot timeout: 600
+2025-10-23T08:03:44.0567842Z emulator port: 5554
+2025-10-23T08:03:44.0568723Z emulator options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
+2025-10-23T08:03:44.0569695Z disable animations: true
+2025-10-23T08:03:44.0570207Z disable spellchecker: false
+2025-10-23T08:03:44.0570986Z disable Linux hardware acceleration: false
+2025-10-23T08:03:44.0572181Z enable hardware keyboard: false
+2025-10-23T08:03:44.0573166Z Channel: 0 (stable)
+2025-10-23T08:03:44.0575565Z Script:
+2025-10-23T08:03:44.0576443Z flutter doctor -v
+2025-10-23T08:03:44.0577470Z echo "📝 Running tests with verbose logging for better debugging"
+2025-10-23T08:03:44.0578080Z patrol test integration_test/ --verbose
+2025-10-23T08:03:44.0578528Z Pre emulator launch script:
+2025-10-23T08:03:44.0578976Z ##[endgroup]
+2025-10-23T08:03:44.0580693Z ##[group]Install Android SDK
+2025-10-23T08:03:44.0691205Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+2025-10-23T08:03:51.3243563Z Installing latest build tools, platform tools, and platform.
+2025-10-23T08:03:51.3266706Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-34'> /dev/null
+2025-10-23T08:03:52.9212305Z Installing latest emulator.
+2025-10-23T08:03:52.9233951Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+2025-10-23T08:04:00.9467891Z Installing system images.
+2025-10-23T08:04:00.9485803Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-34;default;x86_64' --channel=0 > /dev/null
+2025-10-23T08:04:15.9426624Z ##[endgroup]
+2025-10-23T08:04:15.9430108Z ##[group]Launch Emulator
+2025-10-23T08:04:15.9431094Z Creating AVD.
+2025-10-23T08:04:15.9451330Z [command]/usr/bin/sh -c \echo no | avdmanager create avd --force -n test --abi 'default/x86_64' --package 'system-images;android-34;default;x86_64' --device 'pixel_5'
+2025-10-23T08:04:16.6613888Z Loading local repository...                                                     
+2025-10-23T08:04:16.6625731Z [=========                              ] 25% Loading local repository...       
+2025-10-23T08:04:16.6626499Z [=========                              ] 25% Fetch remote repository...        
+2025-10-23T08:04:16.6637481Z [=======================================] 100% Fetch remote repository...       
+2025-10-23T08:04:17.2488109Z [command]/usr/bin/sh -c \printf 'hw.cpu.ncore=2
+2025-10-23T08:04:17.2488777Z ' >> /home/runner/.android/avd/test.avd/config.ini
+2025-10-23T08:04:17.2509787Z Starting emulator.
+2025-10-23T08:04:17.2528981Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect &
+2025-10-23T08:04:17.2666187Z INFO         | Android emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
+2025-10-23T08:04:17.2666874Z INFO         | Graphics backend: gfxstream
+2025-10-23T08:04:17.2667578Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-34/default/x86_64/
+2025-10-23T08:04:17.9196079Z INFO         | Increasing RAM size to 2048MB
+2025-10-23T08:04:17.9196719Z ##############################################################################
+2025-10-23T08:04:17.9197329Z ##                        WARNING - ACTION REQUIRED                         ##
+2025-10-23T08:04:17.9198071Z ##  Consider using the '-metrics-collection' flag to help improve the       ##
+2025-10-23T08:04:17.9198940Z ##  emulator by sending anonymized usage data. Or use the '-no-metrics'     ##
+2025-10-23T08:04:17.9199677Z ##  flag to bypass this warning and turn off the metrics collection.        ##
+2025-10-23T08:04:17.9200410Z ##  In a future release this warning will turn into a one-time blocking     ##
+2025-10-23T08:04:17.9200969Z ##  prompt to ask for explicit user input regarding metrics collection.     ##
+2025-10-23T08:04:17.9201410Z ##                                                                          ##
+2025-10-23T08:04:17.9201865Z ##  Please see '-help-metrics-collection' for more details. You can use     ##
+2025-10-23T08:04:17.9202416Z ##  '-metrics-to-file' or '-metrics-to-console' flags to see what type of   ##
+2025-10-23T08:04:17.9202955Z ##  data is being collected by emulator as part of usage statistics.        ##
+2025-10-23T08:04:17.9203402Z ##############################################################################
+2025-10-23T08:04:17.9203758Z INFO         | Guest GLES Driver: Auto (ext controls)
+2025-10-23T08:04:17.9204196Z library_mode swiftshader_indirect gpu mode swiftshader_indirect
+2025-10-23T08:04:17.9204715Z INFO         | Checking system compatibility:
+2025-10-23T08:04:17.9205262Z INFO         |   Checking: hasSufficientDiskSpace
+2025-10-23T08:04:17.9205882Z INFO         |      Ok: Disk space requirements to run avd: `test` are met
+2025-10-23T08:04:17.9206490Z INFO         |   Checking: hasSufficientHwGpu
+2025-10-23T08:04:17.9207090Z INFO         |      Ok: Hardware GPU compatibility checks are not required
+2025-10-23T08:04:17.9207716Z INFO         |   Checking: hasSufficientSystem
+2025-10-23T08:04:17.9208248Z INFO         |      Ok: System requirements to run avd: `test` are met
+2025-10-23T08:04:17.9208832Z ERROR        | Unable to connect to adb daemon on port: 5037
+2025-10-23T08:04:17.9209368Z INFO         | Storing crashdata in: /tmp/android-runner/emu-crash-36.2.12.db, detection is enabled for process: 4787
+2025-10-23T08:04:17.9209893Z INFO         | Initializing hardware OpenGLES emulation support
+2025-10-23T08:04:17.9216860Z INFO         | android_startOpenglesRenderer: gpu info
+2025-10-23T08:04:17.9217349Z INFO         | 
+2025-10-23T08:04:17.9220730Z INFO         | HealthMonitor disabled.
+2025-10-23T08:04:17.9221740Z INFO         | initIcdPaths: ICD set to 'swiftshader', using Swiftshader ICD
+2025-10-23T08:04:17.9222798Z INFO         | Setting ICD filenames for the loader = /usr/local/lib/android/sdk/emulator/lib64/vulkan/vk_swiftshader_icd.json
+2025-10-23T08:04:17.9223990Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-10-23T08:04:17.9225185Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+2025-10-23T08:04:17.9226433Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix): begin
+2025-10-23T08:04:17.9227622Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-10-23T08:04:17.9229180Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] failed (posix). dlerror: []
+2025-10-23T08:04:17.9229990Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-10-23T08:04:17.9231172Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]: not found in map, open for the first time
+2025-10-23T08:04:17.9232221Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix): begin
+2025-10-23T08:04:17.9233353Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-10-23T08:04:17.9234537Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] failed (posix). dlerror: []
+2025-10-23T08:04:17.9235282Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-10-23T08:04:17.9236030Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+2025-10-23T08:04:17.9236816Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so] (posix): begin
+2025-10-23T08:04:17.9237866Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-10-23T08:04:17.9238813Z INFO         | SharedLibrary::open succeeded for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so].
+2025-10-23T08:04:17.9239400Z INFO         | Added library: /usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so
+2025-10-23T08:04:17.9391594Z INFO         | Selecting Vulkan device: SwiftShader Device (Subzero), Version: 1.3.0
+2025-10-23T08:04:17.9570946Z INFO         | Disabling sparse binding feature support
+2025-10-23T08:04:17.9571749Z INFO         | SharedLibrary::open for [libGLESv2.so]: not found in map, open for the first time
+2025-10-23T08:04:17.9572335Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix): begin
+2025-10-23T08:04:17.9572912Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix,linux): call dlopen on [libGLESv2.so]
+2025-10-23T08:04:17.9583001Z INFO         | SharedLibrary::open succeeded for [libGLESv2.so].
+2025-10-23T08:04:17.9583823Z INFO         | SharedLibrary::open for [libEGL.so]: not found in map, open for the first time
+2025-10-23T08:04:17.9584623Z INFO         | SharedLibrary::open for [libEGL.so] (posix): begin
+2025-10-23T08:04:17.9585404Z INFO         | SharedLibrary::open for [libEGL.so] (posix,linux): call dlopen on [libEGL.so]
+2025-10-23T08:04:17.9586195Z INFO         | SharedLibrary::open succeeded for [libEGL.so].
+2025-10-23T08:04:17.9599042Z INFO         | SharedLibrary::open for [libX11]
+2025-10-23T08:04:17.9599951Z INFO         | SharedLibrary::open for [libX11]: not found in map, open for the first time
+2025-10-23T08:04:17.9601451Z INFO         | SharedLibrary::open for [libX11] (posix): begin
+2025-10-23T08:04:17.9602230Z INFO         | SharedLibrary::open for [libX11] (posix,linux): call dlopen on [libX11.so]
+2025-10-23T08:04:17.9603260Z INFO         | SharedLibrary::open for [libX11] failed (posix). dlerror: []
+2025-10-23T08:04:17.9603895Z INFO         | SharedLibrary::open for [libX11.so.6]
+2025-10-23T08:04:17.9604590Z INFO         | SharedLibrary::open for [libX11.so.6]: not found in map, open for the first time
+2025-10-23T08:04:17.9605188Z INFO         | SharedLibrary::open for [libX11.so.6] (posix): begin
+2025-10-23T08:04:17.9605780Z INFO         | SharedLibrary::open for [libX11.so.6] (posix,linux): call dlopen on [libX11.so.6]
+2025-10-23T08:04:17.9606598Z INFO         | SharedLibrary::open succeeded for [libX11.so.6].
+2025-10-23T08:04:17.9607048Z WARNING: could not open libX11.so, try libX11.so.6
+2025-10-23T08:04:17.9650964Z INFO         | Initializing VkEmulation features:
+2025-10-23T08:04:17.9651654Z INFO         |     glInteropSupported: false
+2025-10-23T08:04:17.9652172Z INFO         |     useDeferredCommands: true
+2025-10-23T08:04:17.9652687Z INFO         |     createResourceWithRequirements: true
+2025-10-23T08:04:17.9653210Z INFO         |     useVulkanComposition: false
+2025-10-23T08:04:17.9653708Z INFO         |     useVulkanNativeSwapchain: false
+2025-10-23T08:04:17.9654207Z INFO         |     enable guestRenderDoc: false
+2025-10-23T08:04:17.9654683Z INFO         |     ASTC LDR emulation mode: Gpu
+2025-10-23T08:04:17.9655157Z INFO         |     enable ETC2 emulation: true
+2025-10-23T08:04:17.9655633Z INFO         |     enable Ycbcr emulation: false
+2025-10-23T08:04:17.9655953Z INFO         |     guestVulkanOnly: false
+2025-10-23T08:04:17.9656302Z INFO         |     useDedicatedAllocations: false
+2025-10-23T08:04:17.9656916Z INFO         | Graphics Adapter Vendor Google (Google Inc.)
+2025-10-23T08:04:17.9657645Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+2025-10-23T08:04:17.9658423Z INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+2025-10-23T08:04:17.9662007Z INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+2025-10-23T08:04:17.9665221Z INFO         | Graphics Device Extensions N/A
+2025-10-23T08:04:17.9722068Z INFO         | Sending adb public key [QAAAADm+IOT3L1ytePTdMxmXFO+EDeLFld2tYBKr4032rzYlIiune+/lIsSE0lBkOlJxG/S6Kv03JH+wcdnaI0yvs/NMYcLLYT9ZUxCpW4F9wmtWTXrI+dZNMi3nDV4hSuzaB6McdQPKKL1ZDJJvoCPbMnGmFXh96bOs48ZO8mkf4fPP3P1V6wEnBBPUqgHR9RGBAKFlFZdk0B2TnXhZ87Tyuvbo8ivdo6OxJGQtf35VfrHTTBojPCIBz4FYi4OBlA0DlA+Q8h7X8AdfaqXr9IDwmuA3W7I7R03R4K/Qz2A9Mo7issNM8WJLNzky8jBNYrS1kk5bJBQaI5nZOUTUQUAXjw9f2JqPom0nlXr6M/H7pwWvEfryVNVa4+DPjhhSOAe8AIqYXeST0mbbsuxtSm1nRnvWZG07cDKnhiZTRSjx7a4AtCHvCUgymjNjZMpyqMYyI59VAR5aMxv/x+jRL9m3Uo7/HGCAniIim1RUZJHsTuDSXA8jEMKqe6eVDpz/2amQ9XHQA6JmCGoyBeLqUKrVy8SrIOeKPpagfjg4kPmwYzywFWVrzBv/ODgmzBeZInOTLoITJ3ydBTSL9EDtXI/QaDmL2+WkebpW86akwTP/RSIfH/+l7ReWu6zUUa5n4F9ahQ8Ae6BcR5kJe+WbZe2Cm9Tgck260lq4U/LlPo0mdvZ/lfwrEwEAAQA= runner@unknown]
+2025-10-23T08:04:17.9728565Z INFO         | Userspace boot properties:
+2025-10-23T08:04:17.9729265Z INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+2025-10-23T08:04:17.9730007Z INFO         |   androidboot.dalvik.vm.heapsize=512m
+2025-10-23T08:04:17.9730739Z INFO         |   androidboot.debug.hwui.renderer=skiagl
+2025-10-23T08:04:17.9731320Z INFO         |   androidboot.debug.sf.nobootanimation=1
+2025-10-23T08:04:17.9732088Z INFO         |   androidboot.hardware=ranchu
+2025-10-23T08:04:17.9732625Z INFO         |   androidboot.hardware.gltransport=pipe
+2025-10-23T08:04:17.9733188Z INFO         |   androidboot.hardware.vulkan=ranchu
+2025-10-23T08:04:17.9733698Z INFO         |   androidboot.logcat=*:V
+2025-10-23T08:04:17.9734220Z INFO         |   androidboot.opengles.version=196608
+2025-10-23T08:04:17.9734716Z INFO         |   androidboot.qemu=1
+2025-10-23T08:04:17.9739450Z INFO         |   androidboot.qemu.adb.pubkey=QAAAADm+IOT3L1ytePTdMxmXFO+EDeLFld2tYBKr4032rzYlIiune+/lIsSE0lBkOlJxG/S6Kv03JH+wcdnaI0yvs/NMYcLLYT9ZUxCpW4F9wmtWTXrI+dZNMi3nDV4hSuzaB6McdQPKKL1ZDJJvoCPbMnGmFXh96bOs48ZO8mkf4fPP3P1V6wEnBBPUqgHR9RGBAKFlFZdk0B2TnXhZ87Tyuvbo8ivdo6OxJGQtf35VfrHTTBojPCIBz4FYi4OBlA0DlA+Q8h7X8AdfaqXr9IDwmuA3W7I7R03R4K/Qz2A9Mo7issNM8WJLNzky8jBNYrS1kk5bJBQaI5nZOUTUQUAXjw9f2JqPom0nlXr6M/H7pwWvEfryVNVa4+DPjhhSOAe8AIqYXeST0mbbsuxtSm1nRnvWZG07cDKnhiZTRSjx7a4AtCHvCUgymjNjZMpyqMYyI59VAR5aMxv/x+jRL9m3Uo7/HGCAniIim1RUZJHsTuDSXA8jEMKqe6eVDpz/2amQ9XHQA6JmCGoyBeLqUKrVy8SrIOeKPpagfjg4kPmwYzywFWVrzBv/ODgmzBeZInOTLoITJ3ydBTSL9EDtXI/QaDmL2+WkebpW86akwTP/RSIfH/+l7ReWu6zUUa5n4F9ahQ8Ae6BcR5kJe+WbZe2Cm9Tgck260lq4U/LlPo0mdvZ/lfwrEwEAAQA= runner@unknown
+2025-10-23T08:04:17.9743443Z INFO         |   androidboot.qemu.avd_name=test
+2025-10-23T08:04:17.9743787Z INFO         |   androidboot.qemu.camera_hq_edge_processing=0
+2025-10-23T08:04:17.9744127Z INFO         |   androidboot.qemu.camera_protocol_ver=1
+2025-10-23T08:04:17.9744452Z INFO         |   androidboot.qemu.cpuvulkan.version=4202496
+2025-10-23T08:04:17.9744825Z INFO         |   androidboot.qemu.gltransport.drawFlushInterval=800
+2025-10-23T08:04:17.9745195Z INFO         |   androidboot.qemu.gltransport.name=pipe
+2025-10-23T08:04:17.9745523Z INFO         |   androidboot.qemu.hwcodec.avcdec=2
+2025-10-23T08:04:17.9745837Z INFO         |   androidboot.qemu.hwcodec.hevcdec=2
+2025-10-23T08:04:17.9746142Z INFO         |   androidboot.qemu.hwcodec.vpxdec=2
+2025-10-23T08:04:17.9746517Z INFO         |   androidboot.qemu.settings.system.screen_off_timeout=2147483647
+2025-10-23T08:04:17.9746899Z INFO         |   androidboot.qemu.virtiowifi=1
+2025-10-23T08:04:17.9747182Z INFO         |   androidboot.qemu.vsync=60
+2025-10-23T08:04:17.9747477Z INFO         |   androidboot.serialno=EMULATOR36X2X12X0
+2025-10-23T08:04:17.9747953Z INFO         |   androidboot.vbmeta.digest=8bee4f6105b6acd7de887b1ee6629ab07066df02ee9bbca07663adffdad97fc1
+2025-10-23T08:04:17.9748434Z INFO         |   androidboot.vbmeta.hash_alg=sha256
+2025-10-23T08:04:17.9748722Z INFO         |   androidboot.vbmeta.size=6656
+2025-10-23T08:04:17.9749011Z INFO         |   androidboot.veritymode=enforcing
+2025-10-23T08:04:17.9939775Z WARNING: cannnot unmap ptr 0x7f1244001000 as it is in the protected range from 0x7f11c4000000 to 0x7f1244200000
+2025-10-23T08:04:18.0114160Z INFO         | Monitoring duration of emulator setup.
+2025-10-23T08:04:18.0368553Z INFO         | Setting display: 0 configuration to: 1080x2340, dpi: 440x440 
+2025-10-23T08:04:18.0369033Z INFO         | setDisplayActiveConfig 0
+2025-10-23T08:04:18.0440975Z USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.
+2025-10-23T08:04:18.0442278Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2025-10-23T08:04:18.7694482Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2025-10-23T08:04:21.0046894Z INFO         | Activated packet streamer for bluetooth emulation
+2025-10-23T08:04:27.2603697Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:27.2644857Z * daemon not running; starting now at tcp:5037
+2025-10-23T08:04:30.4222390Z * daemon started successfully
+2025-10-23T08:04:30.4562462Z 
+2025-10-23T08:04:32.4626227Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:32.4961939Z 
+2025-10-23T08:04:34.5043689Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:34.5411683Z 
+2025-10-23T08:04:36.5475792Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:36.5723007Z 
+2025-10-23T08:04:38.5773488Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:38.6218517Z 
+2025-10-23T08:04:40.6287447Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:40.6578137Z 
+2025-10-23T08:04:42.6645607Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:42.7947423Z 
+2025-10-23T08:04:44.8003125Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:44.8532216Z 
+2025-10-23T08:04:46.1055831Z INFO         | Boot completed in 28810 ms
+2025-10-23T08:04:46.1059034Z INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+2025-10-23T08:04:46.8811872Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:04:46.9606760Z 1
+2025-10-23T08:04:46.9680882Z Emulator booted.
+2025-10-23T08:04:46.9711792Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+2025-10-23T08:04:49.5021495Z Disabling animations.
+2025-10-23T08:04:49.5038081Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+2025-10-23T08:04:49.6101733Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+2025-10-23T08:04:49.7444776Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+2025-10-23T08:04:49.8694765Z ##[endgroup]
+2025-10-23T08:04:49.8732889Z [command]/usr/bin/sh -c flutter doctor -v
+2025-10-23T08:04:50.2814011Z [✓] Flutter (Channel stable, 3.35.6, on Ubuntu 24.04.3 LTS 6.11.0-1018-azure, locale C.UTF-8) [76ms]
+2025-10-23T08:04:50.2818165Z     • Flutter version 3.35.6 on channel stable at /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T08:04:50.2823462Z     • Upstream repository https://github.com/flutter/flutter.git
+2025-10-23T08:04:50.2824300Z     • Framework revision 9f455d2486 (2 weeks ago), 2025-10-08 14:55:31 -0500
+2025-10-23T08:04:50.2826859Z     • Engine revision d2913632a4
+2025-10-23T08:04:50.2829675Z     • Dart version 3.9.2
+2025-10-23T08:04:50.2830209Z     • DevTools version 2.48.0
+2025-10-23T08:04:50.2831890Z     • Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-lldb-debugging
+2025-10-23T08:04:50.2833078Z 
+2025-10-23T08:04:53.5673895Z [✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0) [3.3s]
+2025-10-23T08:04:53.5678957Z     • Android SDK at /usr/local/lib/android/sdk
+2025-10-23T08:04:53.5683934Z     • Emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
+2025-10-23T08:04:53.5688831Z     • Platform android-36.1, build-tools 36.1.0
+2025-10-23T08:04:53.5693469Z     • ANDROID_HOME = /usr/local/lib/android/sdk
+2025-10-23T08:04:53.5697757Z     • ANDROID_SDK_ROOT = /usr/local/lib/android/sdk
+2025-10-23T08:04:53.5702630Z     • Java binary at: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64/bin/java
+2025-10-23T08:04:53.5707046Z       This JDK is specified by the JAVA_HOME environment variable.
+2025-10-23T08:04:53.5711478Z       To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+2025-10-23T08:04:53.5714832Z     • Java version OpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)
+2025-10-23T08:04:53.5717789Z     • All Android licenses accepted.
+2025-10-23T08:04:53.5720068Z 
+2025-10-23T08:04:53.5722747Z [✓] Chrome - develop for the web [18ms]
+2025-10-23T08:04:53.5725537Z     • Chrome at google-chrome
+2025-10-23T08:04:53.5727688Z 
+2025-10-23T08:04:53.9198136Z [✗] Linux toolchain - develop for Linux desktop [3.7s]
+2025-10-23T08:04:53.9199424Z     • Ubuntu clang version 18.1.3 (1ubuntu1)
+2025-10-23T08:04:53.9200484Z     • cmake version 3.31.6
+2025-10-23T08:04:53.9201041Z     • ninja version 1.13.1
+2025-10-23T08:04:53.9205011Z     • pkg-config version 1.8.1
+2025-10-23T08:04:53.9207766Z     ✗ GTK 3.0 development libraries are required for Linux development.
+2025-10-23T08:04:53.9215059Z       They are likely available from your distribution (e.g.: apt install libgtk-3-dev)
+2025-10-23T08:04:53.9215818Z     ! Unable to access driver information using 'eglinfo'.
+2025-10-23T08:04:53.9233748Z       It is likely available from your distribution (e.g.: apt install mesa-utils)
+2025-10-23T08:04:53.9234289Z 
+2025-10-23T08:04:53.9234476Z [!] Android Studio (not installed) [12ms]
+2025-10-23T08:04:53.9235446Z     • Android Studio not found; download from https://developer.android.com/studio/index.html
+2025-10-23T08:04:53.9236463Z       (or visit https://flutter.dev/to/linux-android-setup for detailed instructions).
+2025-10-23T08:04:53.9237290Z 
+2025-10-23T08:04:53.9237626Z [✓] Connected device (3 available) [1,887ms]
+2025-10-23T08:04:53.9238608Z     • Android SDK built for x86 64 (mobile) • emulator-5554 • android-x64    • Android 14 (API 34) (emulator)
+2025-10-23T08:04:53.9239948Z     • Linux (desktop)                       • linux         • linux-x64      • Ubuntu 24.04.3 LTS 6.11.0-1018-azure
+2025-10-23T08:04:53.9241172Z     • Chrome (web)                          • chrome        • web-javascript • Google Chrome 140.0.7339.207
+2025-10-23T08:04:53.9241676Z 
+2025-10-23T08:04:53.9241926Z [✓] Network resources [381ms]
+2025-10-23T08:04:53.9242533Z     • All expected network resources are available.
+2025-10-23T08:04:53.9242892Z 
+2025-10-23T08:04:53.9243139Z ! Doctor found issues in 2 categories.
+2025-10-23T08:04:53.9507726Z [command]/usr/bin/sh -c echo "📝 Running tests with verbose logging for better debugging"
+2025-10-23T08:04:53.9528868Z 📝 Running tests with verbose logging for better debugging
+2025-10-23T08:04:53.9581444Z [command]/usr/bin/sh -c patrol test integration_test/ --verbose
+2025-10-23T08:04:54.2475907Z Verbose mode enabled. More logs will be printed.
+2025-10-23T08:04:54.2921394Z 
+2025-10-23T08:04:54.2951638Z Completion files installed. To enable completion, run the following command in your shell:
+2025-10-23T08:04:54.2952810Z source /home/runner/.bash_profile
+2025-10-23T08:04:54.2953210Z 
+2025-10-23T08:04:54.6251898Z Received 2 test target(s)
+2025-10-23T08:04:54.6260964Z Received test target: /home/runner/work/Ivory/Ivory/integration_test/cardCanBeFrozenOrUnfreeze_test.dart
+2025-10-23T08:04:54.6262313Z Received test target: /home/runner/work/Ivory/Ivory/integration_test/repaymentRateIsSaved_test.dart
+2025-10-23T08:04:54.6299261Z Generated entrypoint /home/runner/work/Ivory/Ivory/integration_test/test_bundle.dart with 2 bundled test(s)
+2025-10-23T08:04:54.6329719Z $ flutter --no-version-check --suppress-analytics devices --machine
+2025-10-23T08:04:55.0122133Z No device specified, using the first one (Android SDK built for x86 64)
+2025-10-23T08:04:55.0122885Z Received 1 device(s) to run on
+2025-10-23T08:04:55.0123503Z Received device: Android SDK built for x86 64 (emulator-5554)
+2025-10-23T08:04:55.0134236Z $ flutter doctor --verbose
+2025-10-23T08:04:57.4145352Z $ flutter --suppress-analytics --no-version-check pub deps --style=list
+2025-10-23T08:04:57.9353322Z Received 9 --dart-define(s) (0 custom, 9 internal)
+2025-10-23T08:04:57.9354739Z Received internal --dart-define: PATROL_APP_PACKAGE_NAME=com.thinslices.solarisdemo
+2025-10-23T08:04:57.9356409Z Received internal --dart-define: PATROL_APP_BUNDLE_ID=com.thinslices.solarisdemo
+2025-10-23T08:04:57.9357813Z Received internal --dart-define: PATROL_ANDROID_APP_NAME=Ivory
+2025-10-23T08:04:57.9358887Z Received internal --dart-define: PATROL_IOS_APP_NAME=Ivory
+2025-10-23T08:04:57.9359803Z Received internal --dart-define: INTEGRATION_TEST_SHOULD_REPORT_RESULTS_TO_NATIVE=false
+2025-10-23T08:04:57.9361566Z Received internal --dart-define: PATROL_TEST_LABEL_ENABLED=true
+2025-10-23T08:04:57.9362318Z Received internal --dart-define: PATROL_TEST_SERVER_PORT=8081
+2025-10-23T08:04:57.9363035Z Received internal --dart-define: PATROL_APP_SERVER_PORT=8082
+2025-10-23T08:04:57.9363738Z Received internal --dart-define: COVERAGE_ENABLED=false
+2025-10-23T08:04:57.9388169Z $ flutter build apk --config-only -t integration_test/test_bundle.dart
+2025-10-23T08:04:58.7725698Z $ flutter doctor --verbose
+2025-10-23T08:05:00.6996137Z $ ./gradlew :app:dependencies
+2025-10-23T08:12:46.6871398Z • Building apk with entrypoint test_bundle.dart...
+2025-10-23T08:12:46.6906768Z $ ./gradlew :app:assembleDebug -Ptarget=/home/runner/work/Ivory/Ivory/integration_test/test_bundle.dart -Pdart-defines=UEFUUk9MX0FQUF9QQUNLQUdFX05BTUU9Y29tLnRoaW5zbGljZXMuc29sYXJpc2RlbW8=,UEFUUk9MX0FQUF9CVU5ETEVfSUQ9Y29tLnRoaW5zbGljZXMuc29sYXJpc2RlbW8=,UEFUUk9MX0FORFJPSURfQVBQX05BTUU9SXZvcnk=,UEFUUk9MX0lPU19BUFBfTkFNRT1Jdm9yeQ==,SU5URUdSQVRJT05fVEVTVF9TSE9VTERfUkVQT1JUX1JFU1VMVFNfVE9fTkFUSVZFPWZhbHNl,UEFUUk9MX1RFU1RfTEFCRUxfRU5BQkxFRD10cnVl,UEFUUk9MX1RFU1RfU0VSVkVSX1BPUlQ9ODA4MQ==,UEFUUk9MX0FQUF9TRVJWRVJfUE9SVD04MDgy,Q09WRVJBR0VfRU5BQkxFRD1mYWxzZQ== -Papp-server-port=8082 -Ptest-server-port=8081
+2025-10-23T08:12:47.5179342Z 	: > Task :gradle:checkKotlinGradlePluginConfigurationErrors
+2025-10-23T08:12:47.5180709Z 	: > Task :gradle:compileKotlin UP-TO-DATE
+2025-10-23T08:12:47.5182852Z 	: > Task :gradle:compileJava NO-SOURCE
+2025-10-23T08:12:47.5183721Z 	: > Task :gradle:compileGroovy NO-SOURCE
+2025-10-23T08:12:47.5188095Z 	: > Task :gradle:pluginDescriptors UP-TO-DATE
+2025-10-23T08:12:47.5213455Z 	: > Task :gradle:processResources UP-TO-DATE
+2025-10-23T08:12:47.5214041Z 	: > Task :gradle:classes UP-TO-DATE
+2025-10-23T08:12:47.6152429Z 	: > Task :gradle:jar UP-TO-DATE
+2025-10-23T08:12:47.9143040Z 	: 
+2025-10-23T08:12:47.9146264Z 	: > Configure project :app
+2025-10-23T08:12:47.9154942Z 	: WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+2025-10-23T08:12:47.9155776Z 	: The current default is 'false'.
+2025-10-23T08:12:47.9156309Z 	: It will be removed in version 9.0 of the Android Gradle plugin.
+2025-10-23T08:12:47.9157078Z 	: To keep using this feature, add the following to your module-level build.gradle files:
+2025-10-23T08:12:47.9157579Z 	:     android.buildFeatures.buildConfig = true
+2025-10-23T08:12:47.9158028Z 	: or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+2025-10-23T08:12:49.3149063Z 	: WARNING: We recommend using a newer Android Gradle plugin to use compileSdk = 36
+2025-10-23T08:12:49.3150199Z 	: 
+2025-10-23T08:12:49.3158566Z 	: This Android Gradle plugin (8.6.0) was tested up to compileSdk = 35.
+2025-10-23T08:12:49.3159242Z 	: 
+2025-10-23T08:12:49.3159730Z 	: You are strongly encouraged to update your project to use a newer
+2025-10-23T08:12:49.3160832Z 	: Android Gradle plugin that has been tested with compileSdk = 36.
+2025-10-23T08:12:49.3161448Z 	: 
+2025-10-23T08:12:49.3161941Z 	: If you are already using the latest version of the Android Gradle plugin,
+2025-10-23T08:12:49.3162811Z 	: you may need to wait until a newer version with support for compileSdk = 36 is available.
+2025-10-23T08:12:49.3163449Z 	: 
+2025-10-23T08:12:49.3163810Z 	: For more information refer to the compatibility table:
+2025-10-23T08:12:49.3164397Z 	: https://d.android.com/r/tools/api-level-support
+2025-10-23T08:12:49.3164851Z 	: 
+2025-10-23T08:12:49.3165186Z 	: To suppress this warning, add/update
+2025-10-23T08:12:49.3165702Z 	:     android.suppressUnsupportedCompileSdk=36
+2025-10-23T08:12:49.3166219Z 	: to this project's gradle.properties.
+2025-10-23T08:12:50.2141691Z 	: Checking the license for package Android SDK Platform 33 in /usr/local/lib/android/sdk/licenses
+2025-10-23T08:12:50.2142797Z 	: License for package Android SDK Platform 33 accepted.
+2025-10-23T08:12:50.2143517Z 	: Preparing "Install Android SDK Platform 33 (revision 3)".
+2025-10-23T08:12:53.0151962Z 	: "Install Android SDK Platform 33 (revision 3)" ready.
+2025-10-23T08:12:53.0153872Z 	: Installing Android SDK Platform 33 in /usr/local/lib/android/sdk/platforms/android-33
+2025-10-23T08:12:53.0154732Z 	: "Install Android SDK Platform 33 (revision 3)" complete.
+2025-10-23T08:12:53.1154482Z 	: "Install Android SDK Platform 33 (revision 3)" finished.
+2025-10-23T08:12:54.0140880Z 	: 
+2025-10-23T08:12:54.0147886Z 	: > Task :app:DebugMinSdkCheck
+2025-10-23T08:12:54.0148575Z 	: > Task :app:preBuild UP-TO-DATE
+2025-10-23T08:12:54.0149048Z 	: > Task :app:preDebugBuild UP-TO-DATE
+2025-10-23T08:12:54.0149590Z 	: > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+2025-10-23T08:12:54.0150444Z 	: > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:12:54.0151471Z 	: > Task :app:generateDebugBuildConfig
+2025-10-23T08:13:14.2140660Z 	: > Task :app:compileFlutterBuildDebug
+2025-10-23T08:13:14.2141655Z 	: > Task :app:packJniLibsflutterBuildDebug
+2025-10-23T08:13:14.2142488Z 	: > Task :app_settings:preBuild UP-TO-DATE
+2025-10-23T08:13:14.2143033Z 	: > Task :app_settings:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:14.2143583Z 	: > Task :app_settings:writeDebugAarMetadata
+2025-10-23T08:13:15.2146381Z 	: > Task :device_info_plus:preBuild UP-TO-DATE
+2025-10-23T08:13:15.2147308Z 	: > Task :device_info_plus:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:15.2148836Z 	: > Task :firebase_core:preBuild UP-TO-DATE
+2025-10-23T08:13:15.2149448Z 	: > Task :firebase_core:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:15.2150090Z 	: > Task :device_info_plus:writeDebugAarMetadata
+2025-10-23T08:13:15.2151194Z 	: > Task :firebase_messaging:preBuild UP-TO-DATE
+2025-10-23T08:13:15.2151788Z 	: > Task :firebase_core:writeDebugAarMetadata
+2025-10-23T08:13:15.2152406Z 	: > Task :firebase_messaging:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:15.2153076Z 	: > Task :flutter_local_notifications:preBuild UP-TO-DATE
+2025-10-23T08:13:15.2154350Z 	: > Task :flutter_local_notifications:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:15.2154981Z 	: > Task :firebase_messaging:writeDebugAarMetadata
+2025-10-23T08:13:16.2167811Z 	: > Task :flutter_local_notifications:writeDebugAarMetadata
+2025-10-23T08:13:16.2203502Z 	: > Task :flutter_native_splash:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2204485Z 	: > Task :flutter_native_splash:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.2205075Z 	: > Task :flutter_native_splash:writeDebugAarMetadata
+2025-10-23T08:13:16.2205720Z 	: > Task :flutter_plugin_android_lifecycle:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2206474Z 	: > Task :flutter_plugin_android_lifecycle:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.2207181Z 	: > Task :integration_test:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2207839Z 	: > Task :flutter_plugin_android_lifecycle:writeDebugAarMetadata
+2025-10-23T08:13:16.2208555Z 	: > Task :integration_test:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.2209137Z 	: > Task :local_auth_android:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2209703Z 	: > Task :local_auth_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.2210544Z 	: > Task :integration_test:writeDebugAarMetadata
+2025-10-23T08:13:16.2211140Z 	: > Task :local_auth_android:writeDebugAarMetadata
+2025-10-23T08:13:16.2211734Z 	: > Task :path_provider_android:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2213992Z 	: > Task :path_provider_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.2215594Z 	: > Task :path_provider_android:writeDebugAarMetadata
+2025-10-23T08:13:16.2216137Z 	: > Task :patrol:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2216605Z 	: > Task :patrol:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.2217074Z 	: > Task :patrol:writeDebugAarMetadata
+2025-10-23T08:13:16.2217596Z 	: > Task :permission_handler_android:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2218206Z 	: > Task :permission_handler_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.2218847Z 	: > Task :permission_handler_android:writeDebugAarMetadata
+2025-10-23T08:13:16.2219399Z 	: > Task :share_plus:preBuild UP-TO-DATE
+2025-10-23T08:13:16.2219924Z 	: > Task :share_plus:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.3143953Z 	: > Task :shared_preferences_android:preBuild UP-TO-DATE
+2025-10-23T08:13:16.3155325Z 	: > Task :shared_preferences_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.3164145Z 	: > Task :share_plus:writeDebugAarMetadata
+2025-10-23T08:13:16.3187289Z 	: > Task :url_launcher_android:preBuild UP-TO-DATE
+2025-10-23T08:13:16.3189270Z 	: > Task :url_launcher_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.3191818Z 	: > Task :shared_preferences_android:writeDebugAarMetadata
+2025-10-23T08:13:16.3194452Z 	: > Task :video_player_android:preBuild UP-TO-DATE
+2025-10-23T08:13:16.3203883Z 	: > Task :url_launcher_android:writeDebugAarMetadata
+2025-10-23T08:13:16.3206013Z 	: > Task :video_player_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.3208401Z 	: > Task :webview_flutter_android:preBuild UP-TO-DATE
+2025-10-23T08:13:16.3214166Z 	: > Task :webview_flutter_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:13:16.3215497Z 	: > Task :video_player_android:writeDebugAarMetadata
+2025-10-23T08:13:16.3217489Z 	: > Task :app:cleanMergeDebugAssets UP-TO-DATE
+2025-10-23T08:13:16.3219341Z 	: > Task :webview_flutter_android:writeDebugAarMetadata
+2025-10-23T08:13:16.3221133Z 	: > Task :app:mergeDebugShaders
+2025-10-23T08:13:33.4161995Z 	: > Task :app:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.4162839Z 	: > Task :app:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.4167092Z 	: > Task :app_settings:mergeDebugShaders
+2025-10-23T08:13:33.4167921Z 	: > Task :app_settings:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.4168616Z 	: > Task :app_settings:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.4169240Z 	: > Task :app_settings:packageDebugAssets
+2025-10-23T08:13:33.4169710Z 	: > Task :app:checkDebugAarMetadata
+2025-10-23T08:13:33.4170224Z 	: > Task :device_info_plus:mergeDebugShaders
+2025-10-23T08:13:33.4170990Z 	: > Task :device_info_plus:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.4171626Z 	: > Task :device_info_plus:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.4172216Z 	: > Task :device_info_plus:packageDebugAssets
+2025-10-23T08:13:33.4220853Z 	: > Task :firebase_core:mergeDebugShaders
+2025-10-23T08:13:33.4221756Z 	: > Task :firebase_core:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.4222649Z 	: > Task :firebase_core:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.4223614Z 	: > Task :firebase_core:packageDebugAssets
+2025-10-23T08:13:33.4224455Z 	: > Task :firebase_messaging:mergeDebugShaders
+2025-10-23T08:13:33.4225058Z 	: > Task :firebase_messaging:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.4225655Z 	: > Task :firebase_messaging:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.4226205Z 	: > Task :firebase_messaging:packageDebugAssets
+2025-10-23T08:13:33.4226766Z 	: > Task :flutter_local_notifications:mergeDebugShaders
+2025-10-23T08:13:33.4227451Z 	: > Task :flutter_local_notifications:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.4228215Z 	: > Task :flutter_local_notifications:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5204010Z 	: > Task :flutter_local_notifications:packageDebugAssets
+2025-10-23T08:13:33.5204704Z 	: > Task :flutter_native_splash:mergeDebugShaders
+2025-10-23T08:13:33.5205294Z 	: > Task :flutter_native_splash:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5205941Z 	: > Task :flutter_native_splash:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5206542Z 	: > Task :flutter_native_splash:packageDebugAssets
+2025-10-23T08:13:33.5207120Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugShaders
+2025-10-23T08:13:33.5207812Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5208598Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5209344Z 	: > Task :flutter_plugin_android_lifecycle:packageDebugAssets
+2025-10-23T08:13:33.5210016Z 	: > Task :integration_test:mergeDebugShaders
+2025-10-23T08:13:33.5210725Z 	: > Task :integration_test:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5211320Z 	: > Task :integration_test:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5219010Z 	: > Task :integration_test:packageDebugAssets
+2025-10-23T08:13:33.5219841Z 	: > Task :local_auth_android:mergeDebugShaders
+2025-10-23T08:13:33.5220691Z 	: > Task :local_auth_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5221289Z 	: > Task :local_auth_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5221844Z 	: > Task :local_auth_android:packageDebugAssets
+2025-10-23T08:13:33.5222380Z 	: > Task :path_provider_android:mergeDebugShaders
+2025-10-23T08:13:33.5223271Z 	: > Task :path_provider_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5224775Z 	: > Task :path_provider_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5225367Z 	: > Task :path_provider_android:packageDebugAssets
+2025-10-23T08:13:33.5226117Z 	: > Task :patrol:mergeDebugShaders
+2025-10-23T08:13:33.5226572Z 	: > Task :patrol:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5227071Z 	: > Task :patrol:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5227546Z 	: > Task :patrol:packageDebugAssets
+2025-10-23T08:13:33.5228031Z 	: > Task :permission_handler_android:mergeDebugShaders
+2025-10-23T08:13:33.5228649Z 	: > Task :permission_handler_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5229331Z 	: > Task :permission_handler_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5229956Z 	: > Task :permission_handler_android:packageDebugAssets
+2025-10-23T08:13:33.5230632Z 	: > Task :share_plus:mergeDebugShaders
+2025-10-23T08:13:33.5231112Z 	: > Task :share_plus:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5231628Z 	: > Task :share_plus:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5232120Z 	: > Task :share_plus:packageDebugAssets
+2025-10-23T08:13:33.5232608Z 	: > Task :shared_preferences_android:mergeDebugShaders
+2025-10-23T08:13:33.5233343Z 	: > Task :shared_preferences_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5234059Z 	: > Task :shared_preferences_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5234719Z 	: > Task :shared_preferences_android:packageDebugAssets
+2025-10-23T08:13:33.5235262Z 	: > Task :url_launcher_android:mergeDebugShaders
+2025-10-23T08:13:33.5235840Z 	: > Task :url_launcher_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.5236488Z 	: > Task :url_launcher_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.5237062Z 	: > Task :url_launcher_android:packageDebugAssets
+2025-10-23T08:13:33.5237577Z 	: > Task :video_player_android:mergeDebugShaders
+2025-10-23T08:13:33.6167224Z 	: > Task :video_player_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.6168400Z 	: > Task :video_player_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.6178713Z 	: > Task :video_player_android:packageDebugAssets
+2025-10-23T08:13:33.6181503Z 	: > Task :webview_flutter_android:mergeDebugShaders
+2025-10-23T08:13:33.6182155Z 	: > Task :webview_flutter_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:13:33.6193640Z 	: > Task :webview_flutter_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:13:33.6197712Z 	: > Task :webview_flutter_android:packageDebugAssets
+2025-10-23T08:13:33.7143327Z 	: > Task :app:mergeDebugAssets
+2025-10-23T08:13:34.1144865Z 	: > Task :app:copyFlutterAssetsDebug
+2025-10-23T08:13:34.1147066Z 	: > Task :app:generateDebugResValues
+2025-10-23T08:13:34.1148094Z 	: > Task :app:processDebugGoogleServices
+2025-10-23T08:13:34.1148667Z 	: > Task :app_settings:generateDebugResValues
+2025-10-23T08:13:34.1149246Z 	: > Task :app_settings:generateDebugResources
+2025-10-23T08:13:34.1149817Z 	: > Task :app_settings:packageDebugResources
+2025-10-23T08:13:34.2161652Z 	: > Task :device_info_plus:generateDebugResValues
+2025-10-23T08:13:34.2162770Z 	: > Task :device_info_plus:generateDebugResources
+2025-10-23T08:13:34.2163551Z 	: > Task :device_info_plus:packageDebugResources
+2025-10-23T08:13:34.2164296Z 	: > Task :firebase_core:generateDebugResValues
+2025-10-23T08:13:34.2164950Z 	: > Task :firebase_core:generateDebugResources
+2025-10-23T08:13:34.2165621Z 	: > Task :firebase_core:packageDebugResources
+2025-10-23T08:13:34.2166829Z 	: > Task :firebase_messaging:generateDebugResValues
+2025-10-23T08:13:34.2167577Z 	: > Task :firebase_messaging:generateDebugResources
+2025-10-23T08:13:34.2168240Z 	: > Task :firebase_messaging:packageDebugResources
+2025-10-23T08:13:34.2169018Z 	: > Task :flutter_local_notifications:generateDebugResValues
+2025-10-23T08:13:34.2169864Z 	: > Task :flutter_local_notifications:generateDebugResources
+2025-10-23T08:13:34.2170918Z 	: > Task :flutter_local_notifications:packageDebugResources
+2025-10-23T08:13:34.2172597Z 	: > Task :flutter_native_splash:generateDebugResValues
+2025-10-23T08:13:34.2173166Z 	: > Task :flutter_native_splash:generateDebugResources
+2025-10-23T08:13:34.2173754Z 	: > Task :flutter_native_splash:packageDebugResources
+2025-10-23T08:13:34.2174684Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugResValues
+2025-10-23T08:13:34.2175395Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugResources
+2025-10-23T08:13:34.2176099Z 	: > Task :flutter_plugin_android_lifecycle:packageDebugResources
+2025-10-23T08:13:34.2176733Z 	: > Task :integration_test:generateDebugResValues
+2025-10-23T08:13:34.2177292Z 	: > Task :integration_test:generateDebugResources
+2025-10-23T08:13:34.2177852Z 	: > Task :integration_test:packageDebugResources
+2025-10-23T08:13:34.2178417Z 	: > Task :local_auth_android:generateDebugResValues
+2025-10-23T08:13:34.2178988Z 	: > Task :local_auth_android:generateDebugResources
+2025-10-23T08:13:34.3160182Z 	: > Task :local_auth_android:packageDebugResources
+2025-10-23T08:13:34.3165282Z 	: > Task :path_provider_android:generateDebugResValues
+2025-10-23T08:13:34.3166407Z 	: > Task :path_provider_android:generateDebugResources
+2025-10-23T08:13:34.3167248Z 	: > Task :path_provider_android:packageDebugResources
+2025-10-23T08:13:34.3168075Z 	: > Task :patrol:generateDebugResValues
+2025-10-23T08:13:34.3168674Z 	: > Task :patrol:generateDebugResources
+2025-10-23T08:13:34.3169272Z 	: > Task :patrol:packageDebugResources
+2025-10-23T08:13:34.3169936Z 	: > Task :permission_handler_android:generateDebugResValues
+2025-10-23T08:13:34.3170895Z 	: > Task :permission_handler_android:generateDebugResources
+2025-10-23T08:13:34.3171655Z 	: > Task :permission_handler_android:packageDebugResources
+2025-10-23T08:13:34.3172959Z 	: > Task :share_plus:generateDebugResValues
+2025-10-23T08:13:34.3190156Z 	: > Task :share_plus:generateDebugResources
+2025-10-23T08:13:34.3193728Z 	: > Task :share_plus:packageDebugResources
+2025-10-23T08:13:34.4154043Z 	: > Task :shared_preferences_android:generateDebugResValues
+2025-10-23T08:13:34.4155963Z 	: > Task :shared_preferences_android:generateDebugResources
+2025-10-23T08:13:34.4157542Z 	: > Task :shared_preferences_android:packageDebugResources
+2025-10-23T08:13:34.4160486Z 	: > Task :url_launcher_android:generateDebugResValues
+2025-10-23T08:13:34.4163013Z 	: > Task :url_launcher_android:generateDebugResources
+2025-10-23T08:13:34.4164010Z 	: > Task :url_launcher_android:packageDebugResources
+2025-10-23T08:13:34.4164782Z 	: > Task :video_player_android:generateDebugResValues
+2025-10-23T08:13:34.4165563Z 	: > Task :video_player_android:generateDebugResources
+2025-10-23T08:13:34.4166309Z 	: > Task :video_player_android:packageDebugResources
+2025-10-23T08:13:34.4167075Z 	: > Task :webview_flutter_android:generateDebugResValues
+2025-10-23T08:13:34.4167825Z 	: > Task :webview_flutter_android:generateDebugResources
+2025-10-23T08:13:34.4168538Z 	: > Task :webview_flutter_android:packageDebugResources
+2025-10-23T08:13:34.6152768Z 	: > Task :app:mapDebugSourceSetPaths
+2025-10-23T08:13:34.6156476Z 	: > Task :app:generateDebugResources
+2025-10-23T08:13:35.5141038Z 	: > Task :app:createDebugCompatibleScreenManifests
+2025-10-23T08:13:35.5141770Z 	: > Task :app:extractDeepLinksDebug
+2025-10-23T08:13:35.5142734Z 	: > Task :app_settings:extractDeepLinksDebug
+2025-10-23T08:13:36.0146766Z 	: > Task :device_info_plus:extractDeepLinksDebug
+2025-10-23T08:13:36.0147724Z 	: > Task :firebase_core:extractDeepLinksDebug
+2025-10-23T08:13:36.1148145Z 	: 
+2025-10-23T08:13:36.1149411Z 	: > Task :app_settings:processDebugManifest
+2025-10-23T08:13:36.1151188Z 	: package="com.spencerccf.app_settings" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/app_settings-5.2.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1153224Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1156271Z 	: Recommendation: remove package="com.spencerccf.app_settings" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/app_settings-5.2.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1158072Z 	: 
+2025-10-23T08:13:36.1158723Z 	: > Task :firebase_core:processDebugManifest
+2025-10-23T08:13:36.1162225Z 	: package="io.flutter.plugins.firebase.core" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/firebase_core-3.15.2/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1164375Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1166483Z 	: Recommendation: remove package="io.flutter.plugins.firebase.core" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/firebase_core-3.15.2/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1168236Z 	: 
+2025-10-23T08:13:36.1169004Z 	: > Task :device_info_plus:processDebugManifest
+2025-10-23T08:13:36.1170926Z 	: package="dev.fluttercommunity.plus.device_info" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/device_info_plus-11.5.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1176343Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1181016Z 	: Recommendation: remove package="dev.fluttercommunity.plus.device_info" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/device_info_plus-11.5.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1184755Z 	: 
+2025-10-23T08:13:36.1185345Z 	: > Task :firebase_messaging:extractDeepLinksDebug
+2025-10-23T08:13:36.1187380Z 	: > Task :flutter_local_notifications:extractDeepLinksDebug
+2025-10-23T08:13:36.1188275Z 	: > Task :flutter_native_splash:extractDeepLinksDebug
+2025-10-23T08:13:36.1188924Z 	: 
+2025-10-23T08:13:36.1194300Z 	: > Task :flutter_local_notifications:processDebugManifest
+2025-10-23T08:13:36.1207253Z 	: package="com.dexterous.flutterlocalnotifications" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/flutter_local_notifications-18.0.1/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1212188Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1221062Z 	: Recommendation: remove package="com.dexterous.flutterlocalnotifications" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/flutter_local_notifications-18.0.1/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1230608Z 	: 
+2025-10-23T08:13:36.1231358Z 	: > Task :firebase_messaging:processDebugManifest
+2025-10-23T08:13:36.1238286Z 	: package="io.flutter.plugins.firebase.messaging" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/firebase_messaging-15.2.10/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1246266Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1255019Z 	: Recommendation: remove package="io.flutter.plugins.firebase.messaging" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/firebase_messaging-15.2.10/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1257623Z 	: 
+2025-10-23T08:13:36.1258244Z 	: > Task :flutter_native_splash:processDebugManifest
+2025-10-23T08:13:36.1259709Z 	: package="net.jonhanson.flutter_native_splash" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/flutter_native_splash-2.4.7/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1268900Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1271064Z 	: Recommendation: remove package="net.jonhanson.flutter_native_splash" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/flutter_native_splash-2.4.7/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1272482Z 	: 
+2025-10-23T08:13:36.1277095Z 	: > Task :flutter_plugin_android_lifecycle:extractDeepLinksDebug
+2025-10-23T08:13:36.1278393Z 	: 
+2025-10-23T08:13:36.1279257Z 	: > Task :flutter_plugin_android_lifecycle:processDebugManifest
+2025-10-23T08:13:36.1281426Z 	: package="io.flutter.plugins.flutter_plugin_android_lifecycle" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.32/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1286689Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1289264Z 	: Recommendation: remove package="io.flutter.plugins.flutter_plugin_android_lifecycle" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.32/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1294966Z 	: 
+2025-10-23T08:13:36.1295726Z 	: > Task :integration_test:extractDeepLinksDebug
+2025-10-23T08:13:36.1296570Z 	: 
+2025-10-23T08:13:36.1297274Z 	: > Task :integration_test:processDebugManifest
+2025-10-23T08:13:36.1299644Z 	: package="dev.flutter.integration_test" found in source AndroidManifest.xml: /opt/hostedtoolcache/flutter/stable-3.35.6-x64/packages/integration_test/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1301940Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.1304250Z 	: Recommendation: remove package="dev.flutter.integration_test" from the source AndroidManifest.xml: /opt/hostedtoolcache/flutter/stable-3.35.6-x64/packages/integration_test/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.1306077Z 	: 
+2025-10-23T08:13:36.1306809Z 	: > Task :local_auth_android:extractDeepLinksDebug
+2025-10-23T08:13:36.2221915Z 	: > Task :path_provider_android:extractDeepLinksDebug
+2025-10-23T08:13:36.2223065Z 	: 
+2025-10-23T08:13:36.2223788Z 	: > Task :local_auth_android:processDebugManifest
+2025-10-23T08:13:36.2225560Z 	: package="io.flutter.plugins.localauth" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/local_auth_android-1.0.56/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.2250886Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.2252678Z 	: Recommendation: remove package="io.flutter.plugins.localauth" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/local_auth_android-1.0.56/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.2253913Z 	: 
+2025-10-23T08:13:36.2254221Z 	: > Task :patrol:extractDeepLinksDebug
+2025-10-23T08:13:36.2254599Z 	: 
+2025-10-23T08:13:36.2254924Z 	: > Task :path_provider_android:processDebugManifest
+2025-10-23T08:13:36.2256137Z 	: package="io.flutter.plugins.pathprovider" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.20/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.2257727Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.2259447Z 	: Recommendation: remove package="io.flutter.plugins.pathprovider" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.20/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.2261235Z 	: 
+2025-10-23T08:13:36.2261662Z 	: > Task :permission_handler_android:extractDeepLinksDebug
+2025-10-23T08:13:36.2262176Z 	: 
+2025-10-23T08:13:36.2262506Z 	: > Task :patrol:processDebugManifest
+2025-10-23T08:13:36.2263633Z 	: package="pl.leancode.patrol" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/patrol-3.19.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.2265249Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.2267064Z 	: Recommendation: remove package="pl.leancode.patrol" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/patrol-3.19.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.2268694Z 	: 
+2025-10-23T08:13:36.2269047Z 	: > Task :app:mergeDebugResources
+2025-10-23T08:13:36.2269483Z 	: 
+2025-10-23T08:13:36.2269900Z 	: > Task :permission_handler_android:processDebugManifest
+2025-10-23T08:13:36.2271591Z 	: package="com.baseflow.permissionhandler" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.2273690Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.2275763Z 	: Recommendation: remove package="com.baseflow.permissionhandler" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3147180Z 	: 
+2025-10-23T08:13:36.3149901Z 	: > Task :share_plus:extractDeepLinksDebug
+2025-10-23T08:13:36.3150870Z 	: > Task :shared_preferences_android:extractDeepLinksDebug
+2025-10-23T08:13:36.3151467Z 	: 
+2025-10-23T08:13:36.3151830Z 	: > Task :share_plus:processDebugManifest
+2025-10-23T08:13:36.3153252Z 	: package="dev.fluttercommunity.plus.share" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3155289Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.3157165Z 	: Recommendation: remove package="dev.fluttercommunity.plus.share" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3158123Z 	: 
+2025-10-23T08:13:36.3158391Z 	: > Task :url_launcher_android:extractDeepLinksDebug
+2025-10-23T08:13:36.3158727Z 	: 
+2025-10-23T08:13:36.3159010Z 	: > Task :shared_preferences_android:processDebugManifest
+2025-10-23T08:13:36.3159981Z 	: package="io.flutter.plugins.sharedpreferences" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.15/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3161553Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.3162864Z 	: Recommendation: remove package="io.flutter.plugins.sharedpreferences" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.15/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3163817Z 	: 
+2025-10-23T08:13:36.3164052Z 	: > Task :video_player_android:extractDeepLinksDebug
+2025-10-23T08:13:36.3164357Z 	: 
+2025-10-23T08:13:36.3164591Z 	: > Task :url_launcher_android:processDebugManifest
+2025-10-23T08:13:36.3165455Z 	: package="io.flutter.plugins.urllauncher" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.24/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3166608Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.3167844Z 	: Recommendation: remove package="io.flutter.plugins.urllauncher" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.24/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3169096Z 	: 
+2025-10-23T08:13:36.3169336Z 	: > Task :webview_flutter_android:extractDeepLinksDebug
+2025-10-23T08:13:36.3169631Z 	: 
+2025-10-23T08:13:36.3169851Z 	: > Task :video_player_android:processDebugManifest
+2025-10-23T08:13:36.3171039Z 	: package="io.flutter.plugins.videoplayer" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/video_player_android-2.8.17/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3172050Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.3173443Z 	: Recommendation: remove package="io.flutter.plugins.videoplayer" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/video_player_android-2.8.17/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3174212Z 	: 
+2025-10-23T08:13:36.3174435Z 	: > Task :webview_flutter_android:processDebugManifest
+2025-10-23T08:13:36.3175207Z 	: package="io.flutter.plugins.webviewflutter" found in source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/webview_flutter_android-4.10.5/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:36.3176212Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:36.3177296Z 	: Recommendation: remove package="io.flutter.plugins.webviewflutter" from the source AndroidManifest.xml: /home/runner/.pub-cache/hosted/pub.dev/webview_flutter_android-4.10.5/android/src/main/AndroidManifest.xml.
+2025-10-23T08:13:37.1143068Z 	: 
+2025-10-23T08:13:37.1145156Z 	: > Task :app_settings:compileDebugLibraryResources
+2025-10-23T08:13:37.3184073Z 	: 
+2025-10-23T08:13:37.3187313Z 	: > Task :app:processDebugMainManifest
+2025-10-23T08:13:37.3189110Z 	: package="com.thinslices.solarisdemo" found in source AndroidManifest.xml: /home/runner/work/Ivory/Ivory/android/app/src/main/AndroidManifest.xml.
+2025-10-23T08:13:37.3193789Z 	: Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+2025-10-23T08:13:37.3196185Z 	: Recommendation: remove package="com.thinslices.solarisdemo" from the source AndroidManifest.xml: /home/runner/work/Ivory/Ivory/android/app/src/main/AndroidManifest.xml.
+2025-10-23T08:13:37.4140612Z 	: 
+2025-10-23T08:13:37.4145918Z 	: > Task :app:processDebugManifest
+2025-10-23T08:13:37.8167722Z 	: > Task :app:processDebugManifestForPackage
+2025-10-23T08:13:37.8169460Z 	: > Task :device_info_plus:compileDebugLibraryResources
+2025-10-23T08:13:37.9140817Z 	: > Task :app_settings:parseDebugLocalResources
+2025-10-23T08:13:39.0138730Z 	: > Task :device_info_plus:parseDebugLocalResources
+2025-10-23T08:13:42.6139498Z 	: > Task :app_settings:generateDebugRFile
+2025-10-23T08:13:43.7139792Z 	: > Task :firebase_core:compileDebugLibraryResources
+2025-10-23T08:13:43.7141528Z 	: > Task :firebase_messaging:compileDebugLibraryResources
+2025-10-23T08:13:43.7142709Z 	: > Task :device_info_plus:generateDebugRFile
+2025-10-23T08:13:43.7143539Z 	: > Task :firebase_core:parseDebugLocalResources
+2025-10-23T08:13:43.7144294Z 	: > Task :firebase_messaging:parseDebugLocalResources
+2025-10-23T08:13:44.1150842Z 	: > Task :flutter_local_notifications:compileDebugLibraryResources
+2025-10-23T08:13:44.1152113Z 	: > Task :flutter_local_notifications:parseDebugLocalResources
+2025-10-23T08:13:44.1153173Z 	: > Task :flutter_native_splash:compileDebugLibraryResources
+2025-10-23T08:13:44.1154701Z 	: > Task :firebase_core:generateDebugRFile
+2025-10-23T08:13:44.1155261Z 	: > Task :flutter_local_notifications:generateDebugRFile
+2025-10-23T08:13:44.2140897Z 	: > Task :firebase_messaging:generateDebugRFile
+2025-10-23T08:13:45.2151160Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugLibraryResources
+2025-10-23T08:13:45.2152057Z 	: > Task :flutter_native_splash:parseDebugLocalResources
+2025-10-23T08:13:45.6139838Z 	: > Task :flutter_plugin_android_lifecycle:parseDebugLocalResources
+2025-10-23T08:13:45.6140772Z 	: > Task :flutter_native_splash:generateDebugRFile
+2025-10-23T08:13:45.7141169Z 	: > Task :integration_test:compileDebugLibraryResources
+2025-10-23T08:13:45.7141946Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugRFile
+2025-10-23T08:13:45.7150573Z 	: > Task :integration_test:parseDebugLocalResources
+2025-10-23T08:13:45.8139357Z 	: > Task :local_auth_android:compileDebugLibraryResources
+2025-10-23T08:13:47.9140794Z 	: > Task :integration_test:generateDebugRFile
+2025-10-23T08:13:48.0138618Z 	: > Task :path_provider_android:compileDebugLibraryResources
+2025-10-23T08:13:48.0139727Z 	: > Task :local_auth_android:parseDebugLocalResources
+2025-10-23T08:13:48.0141110Z 	: > Task :path_provider_android:parseDebugLocalResources
+2025-10-23T08:13:51.0139485Z 	: > Task :patrol:compileDebugLibraryResources
+2025-10-23T08:13:51.0141948Z 	: > Task :local_auth_android:generateDebugRFile
+2025-10-23T08:13:51.0142743Z 	: > Task :path_provider_android:generateDebugRFile
+2025-10-23T08:13:51.0143283Z 	: > Task :patrol:parseDebugLocalResources
+2025-10-23T08:13:51.0143879Z 	: > Task :permission_handler_android:compileDebugLibraryResources
+2025-10-23T08:13:53.0144334Z 	: > Task :permission_handler_android:parseDebugLocalResources
+2025-10-23T08:13:53.0147800Z 	: > Task :share_plus:compileDebugLibraryResources
+2025-10-23T08:13:53.0150588Z 	: > Task :patrol:generateDebugRFile
+2025-10-23T08:13:53.0152438Z 	: > Task :permission_handler_android:generateDebugRFile
+2025-10-23T08:13:53.0156243Z 	: > Task :shared_preferences_android:compileDebugLibraryResources
+2025-10-23T08:13:53.0156905Z 	: > Task :share_plus:parseDebugLocalResources
+2025-10-23T08:13:53.1138465Z 	: > Task :shared_preferences_android:parseDebugLocalResources
+2025-10-23T08:13:55.0162629Z 	: > Task :share_plus:generateDebugRFile
+2025-10-23T08:14:00.0139997Z 	: > Task :url_launcher_android:compileDebugLibraryResources
+2025-10-23T08:14:00.0142969Z 	: > Task :url_launcher_android:parseDebugLocalResources
+2025-10-23T08:14:00.0143629Z 	: > Task :video_player_android:compileDebugLibraryResources
+2025-10-23T08:14:00.0144277Z 	: > Task :shared_preferences_android:generateDebugRFile
+2025-10-23T08:14:00.1151574Z 	: > Task :video_player_android:parseDebugLocalResources
+2025-10-23T08:14:00.1152964Z 	: > Task :webview_flutter_android:compileDebugLibraryResources
+2025-10-23T08:14:00.1153846Z 	: > Task :url_launcher_android:generateDebugRFile
+2025-10-23T08:14:00.1154665Z 	: > Task :webview_flutter_android:parseDebugLocalResources
+2025-10-23T08:14:00.1155475Z 	: > Task :video_player_android:generateDebugRFile
+2025-10-23T08:14:00.1156344Z 	: > Task :app_settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:14:00.1157277Z 	: > Task :app_settings:generateDebugBuildConfig
+2025-10-23T08:14:00.1157955Z 	: > Task :webview_flutter_android:generateDebugRFile
+2025-10-23T08:14:01.3139040Z 	: > Task :app:processDebugResources
+2025-10-23T08:14:06.8145346Z 	: > Task :device_info_plus:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:14:06.8147256Z 	: > Task :app_settings:javaPreCompileDebug
+2025-10-23T08:14:06.8147801Z 	: > Task :device_info_plus:generateDebugBuildConfig
+2025-10-23T08:14:07.6143009Z 	: > Task :device_info_plus:javaPreCompileDebug
+2025-10-23T08:14:07.6148002Z 	: > Task :firebase_core:generateDebugBuildConfig
+2025-10-23T08:14:07.6150954Z 	: > Task :firebase_core:javaPreCompileDebug
+2025-10-23T08:14:07.6152636Z 	: > Task :firebase_messaging:generateDebugBuildConfig
+2025-10-23T08:14:14.1161892Z 	: > Task :app_settings:compileDebugKotlin
+2025-10-23T08:14:14.1164289Z 	: > Task :device_info_plus:compileDebugKotlin
+2025-10-23T08:14:15.8140433Z 	: > Task :firebase_core:compileDebugJavaWithJavac
+2025-10-23T08:14:16.1139706Z 	: > Task :app_settings:compileDebugJavaWithJavac
+2025-10-23T08:14:16.1142513Z 	: > Task :app_settings:bundleLibCompileToJarDebug
+2025-10-23T08:14:16.2139177Z 	: > Task :device_info_plus:compileDebugJavaWithJavac
+2025-10-23T08:14:16.2140425Z 	: > Task :device_info_plus:bundleLibCompileToJarDebug
+2025-10-23T08:14:16.2140954Z 	: > Task :firebase_core:bundleLibCompileToJarDebug
+2025-10-23T08:14:16.2141501Z 	: > Task :firebase_messaging:javaPreCompileDebug
+2025-10-23T08:14:16.2141880Z 	: > Task :flutter_local_notifications:generateDebugBuildConfig
+2025-10-23T08:14:17.1140694Z 	: > Task :firebase_messaging:compileDebugJavaWithJavac
+2025-10-23T08:14:17.1142706Z 	: > Task :firebase_messaging:bundleLibCompileToJarDebug
+2025-10-23T08:14:17.1143358Z 	: > Task :flutter_local_notifications:javaPreCompileDebug
+2025-10-23T08:14:17.1143985Z 	: > Task :flutter_native_splash:generateDebugBuildConfig
+2025-10-23T08:14:17.6138961Z 	: > Task :flutter_local_notifications:compileDebugJavaWithJavac
+2025-10-23T08:14:17.6140094Z 	: > Task :flutter_native_splash:javaPreCompileDebug
+2025-10-23T08:14:17.6141077Z 	: > Task :flutter_local_notifications:bundleLibCompileToJarDebug
+2025-10-23T08:14:17.6141960Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugBuildConfig
+2025-10-23T08:14:19.9148838Z 	: > Task :flutter_native_splash:compileDebugJavaWithJavac
+2025-10-23T08:14:19.9149615Z 	: > Task :flutter_native_splash:bundleLibCompileToJarDebug
+2025-10-23T08:14:19.9150476Z 	: > Task :flutter_plugin_android_lifecycle:javaPreCompileDebug
+2025-10-23T08:14:19.9151117Z 	: > Task :integration_test:generateDebugBuildConfig
+2025-10-23T08:14:22.9191599Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugJavaWithJavac
+2025-10-23T08:14:22.9203976Z 	: > Task :flutter_plugin_android_lifecycle:bundleLibCompileToJarDebug
+2025-10-23T08:14:22.9205137Z 	: > Task :integration_test:javaPreCompileDebug
+2025-10-23T08:14:22.9205708Z 	: > Task :local_auth_android:generateDebugBuildConfig
+2025-10-23T08:14:24.1144015Z 	: > Task :integration_test:compileDebugJavaWithJavac
+2025-10-23T08:14:24.1145817Z 	: > Task :integration_test:bundleLibCompileToJarDebug
+2025-10-23T08:14:24.1146385Z 	: > Task :local_auth_android:javaPreCompileDebug
+2025-10-23T08:14:24.1146970Z 	: > Task :path_provider_android:generateDebugBuildConfig
+2025-10-23T08:14:24.4139384Z 	: > Task :local_auth_android:compileDebugJavaWithJavac
+2025-10-23T08:14:24.4140909Z 	: > Task :patrol:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:14:24.4142802Z 	: > Task :path_provider_android:javaPreCompileDebug
+2025-10-23T08:14:24.4143427Z 	: > Task :local_auth_android:bundleLibCompileToJarDebug
+2025-10-23T08:14:24.4144006Z 	: > Task :patrol:generateDebugBuildConfig
+2025-10-23T08:14:24.5138443Z 	: > Task :path_provider_android:compileDebugJavaWithJavac
+2025-10-23T08:14:24.5139265Z 	: > Task :path_provider_android:bundleLibCompileToJarDebug
+2025-10-23T08:14:26.7157645Z 	: > Task :patrol:javaPreCompileDebug
+2025-10-23T08:14:26.7162125Z 	: > Task :permission_handler_android:generateDebugBuildConfig
+2025-10-23T08:14:26.7166212Z 	: > Task :share_plus:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:14:26.7170416Z 	: > Task :permission_handler_android:javaPreCompileDebug
+2025-10-23T08:14:26.7174284Z 	: > Task :share_plus:generateDebugBuildConfig
+2025-10-23T08:14:27.0148188Z 	: > Task :permission_handler_android:compileDebugJavaWithJavac
+2025-10-23T08:14:27.1139329Z 	: > Task :permission_handler_android:bundleLibCompileToJarDebug
+2025-10-23T08:14:27.4213948Z 	: > Task :shared_preferences_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:14:27.4215615Z 	: > Task :share_plus:javaPreCompileDebug
+2025-10-23T08:14:27.4216458Z 	: > Task :shared_preferences_android:generateDebugBuildConfig
+2025-10-23T08:14:29.3142331Z 	: > Task :shared_preferences_android:javaPreCompileDebug
+2025-10-23T08:14:29.3150880Z 	: > Task :url_launcher_android:generateDebugBuildConfig
+2025-10-23T08:14:29.4141522Z 	: > Task :url_launcher_android:javaPreCompileDebug
+2025-10-23T08:14:30.0145655Z 	: > Task :url_launcher_android:compileDebugJavaWithJavac
+2025-10-23T08:14:30.0146409Z 	: > Task :url_launcher_android:bundleLibCompileToJarDebug
+2025-10-23T08:14:30.0147210Z 	: > Task :video_player_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:14:30.0148375Z 	: > Task :video_player_android:generateDebugBuildConfig
+2025-10-23T08:14:31.4140711Z 	: > Task :share_plus:compileDebugKotlin
+2025-10-23T08:14:32.3183135Z 	: > Task :share_plus:compileDebugJavaWithJavac
+2025-10-23T08:14:32.3188087Z 	: > Task :share_plus:bundleLibCompileToJarDebug
+2025-10-23T08:14:32.4140873Z 	: > Task :video_player_android:javaPreCompileDebug
+2025-10-23T08:14:32.4142244Z 	: > Task :webview_flutter_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:14:32.4143549Z 	: > Task :webview_flutter_android:generateDebugBuildConfig
+2025-10-23T08:14:36.4145063Z 	: > Task :video_player_android:compileDebugKotlin
+2025-10-23T08:14:37.1139601Z 	: > Task :shared_preferences_android:compileDebugKotlin
+2025-10-23T08:14:38.9140873Z 	: > Task :video_player_android:compileDebugJavaWithJavac
+2025-10-23T08:14:39.9145344Z 	: > Task :shared_preferences_android:compileDebugJavaWithJavac
+2025-10-23T08:14:39.9150538Z 	: > Task :shared_preferences_android:bundleLibCompileToJarDebug
+2025-10-23T08:14:39.9154752Z 	: > Task :video_player_android:bundleLibCompileToJarDebug
+2025-10-23T08:14:39.9158729Z 	: > Task :webview_flutter_android:javaPreCompileDebug
+2025-10-23T08:14:39.9162937Z 	: > Task :app:javaPreCompileDebug
+2025-10-23T08:14:42.0142616Z 	: 
+2025-10-23T08:14:42.0144422Z 	: > Task :patrol:compileDebugKotlin
+2025-10-23T08:14:42.0147029Z 	: w: file:///home/runner/.pub-cache/hosted/pub.dev/patrol-3.19.0/android/src/main/kotlin/pl/leancode/patrol/Automator.kt:260:33 'static field LOCATION_MODE: String' is deprecated. Deprecated in Java.
+2025-10-23T08:14:42.0152925Z 	: w: file:///home/runner/.pub-cache/hosted/pub.dev/patrol-3.19.0/android/src/main/kotlin/pl/leancode/patrol/PatrolAppServiceClient.kt:23:17 Condition is always 'false'.
+2025-10-23T08:14:42.0155202Z 	: w: file:///home/runner/.pub-cache/hosted/pub.dev/patrol-3.19.0/android/src/main/kotlin/pl/leancode/patrol/PatrolServer.kt:19:17 Condition is always 'false'.
+2025-10-23T08:14:43.1151722Z 	: 
+2025-10-23T08:14:43.1155789Z 	: > Task :app:compressDebugAssets
+2025-10-23T08:14:46.1144233Z 	: > Task :patrol:compileDebugJavaWithJavac
+2025-10-23T08:14:46.2165557Z 	: > Task :app_settings:processDebugJavaRes
+2025-10-23T08:14:46.2201144Z 	: > Task :patrol:bundleLibCompileToJarDebug
+2025-10-23T08:14:46.2202067Z 	: > Task :device_info_plus:processDebugJavaRes
+2025-10-23T08:14:46.2202942Z 	: > Task :firebase_core:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2203837Z 	: > Task :firebase_messaging:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2255363Z 	: > Task :flutter_local_notifications:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2256211Z 	: > Task :flutter_native_splash:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2257062Z 	: > Task :flutter_plugin_android_lifecycle:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2257840Z 	: > Task :integration_test:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2258596Z 	: > Task :local_auth_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2259319Z 	: > Task :path_provider_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2259963Z 	: > Task :patrol:processDebugJavaRes
+2025-10-23T08:14:46.2260771Z 	: > Task :permission_handler_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.2261483Z 	: > Task :share_plus:processDebugJavaRes
+2025-10-23T08:14:46.2262105Z 	: > Task :shared_preferences_android:processDebugJavaRes
+2025-10-23T08:14:46.2262819Z 	: > Task :url_launcher_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:14:46.3225586Z 	: > Task :video_player_android:processDebugJavaRes
+2025-10-23T08:14:47.3139387Z 	: > Task :app:l8DexDesugarLibDebug
+2025-10-23T08:14:47.4140667Z 	: > Task :webview_flutter_android:compileDebugKotlin
+2025-10-23T08:14:55.2142347Z 	: > Task :app:checkDebugDuplicateClasses
+2025-10-23T08:14:55.5141837Z 	: > Task :webview_flutter_android:compileDebugJavaWithJavac
+2025-10-23T08:14:55.5148358Z 	: > Task :webview_flutter_android:processDebugJavaRes
+2025-10-23T08:14:55.5149017Z 	: > Task :webview_flutter_android:bundleLibCompileToJarDebug
+2025-10-23T08:14:55.6141488Z 	: > Task :app:desugarDebugFileDependencies
+2025-10-23T08:14:58.5201885Z 	: > Task :app:compileDebugKotlin
+2025-10-23T08:15:25.8156284Z 	: > Task :app:mergeExtDexDebug
+2025-10-23T08:15:48.4143838Z 	: > Task :app:compileDebugJavaWithJavac
+2025-10-23T08:15:48.5142533Z 	: > Task :app:processDebugJavaRes
+2025-10-23T08:15:56.0139288Z 	: > Task :app_settings:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.0144295Z 	: > Task :device_info_plus:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.0149048Z 	: > Task :firebase_messaging:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.2297035Z 	: > Task :firebase_core:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.2298309Z 	: > Task :flutter_local_notifications:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.5140606Z 	: > Task :flutter_native_splash:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.6147373Z 	: > Task :local_auth_android:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.6192472Z 	: > Task :flutter_plugin_android_lifecycle:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.7139275Z 	: > Task :integration_test:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.8146353Z 	: > Task :path_provider_android:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.8154046Z 	: > Task :permission_handler_android:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.9178202Z 	: > Task :patrol:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:56.9182757Z 	: > Task :share_plus:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:57.2146917Z 	: > Task :url_launcher_android:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:57.2152201Z 	: > Task :shared_preferences_android:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:57.4151744Z 	: > Task :video_player_android:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:57.8143150Z 	: > Task :webview_flutter_android:bundleLibRuntimeToDirDebug
+2025-10-23T08:15:58.6139413Z 	: > Task :app:dexBuilderDebug
+2025-10-23T08:15:58.8139437Z 	: > Task :app:mergeProjectDexDebug
+2025-10-23T08:15:59.4143084Z 	: > Task :app:mergeDebugJavaResource
+2025-10-23T08:16:00.6140936Z 	: 
+2025-10-23T08:16:00.6141450Z 	: > Task :app:configureCMakeDebug[arm64-v8a]
+2025-10-23T08:16:00.6142897Z 	: Checking the license for package CMake 3.22.1 in /usr/local/lib/android/sdk/licenses
+2025-10-23T08:16:00.6144130Z 	: License for package CMake 3.22.1 accepted.
+2025-10-23T08:16:00.6145151Z 	: Preparing "Install CMake 3.22.1 v.3.22.1".
+2025-10-23T08:16:00.6146107Z 	: "Install CMake 3.22.1 v.3.22.1" ready.
+2025-10-23T08:16:00.6147226Z 	: Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1
+2025-10-23T08:16:00.6148340Z 	: "Install CMake 3.22.1 v.3.22.1" complete.
+2025-10-23T08:16:00.6151185Z 	: "Install CMake 3.22.1 v.3.22.1" finished.
+2025-10-23T08:16:01.1227567Z 	: 
+2025-10-23T08:16:01.1228462Z 	: > Task :app:buildCMakeDebug[arm64-v8a]
+2025-10-23T08:16:01.3139490Z 	: > Task :app:mergeLibDexDebug
+2025-10-23T08:16:01.4157569Z 	: > Task :app:configureCMakeDebug[armeabi-v7a]
+2025-10-23T08:16:01.4162189Z 	: > Task :app:buildCMakeDebug[armeabi-v7a]
+2025-10-23T08:16:01.7138029Z 	: > Task :app:configureCMakeDebug[x86_64]
+2025-10-23T08:16:01.7146412Z 	: > Task :app:buildCMakeDebug[x86_64]
+2025-10-23T08:16:01.7147071Z 	: > Task :app:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7161715Z 	: > Task :app_settings:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7162414Z 	: > Task :app_settings:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7163036Z 	: > Task :app_settings:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7163634Z 	: > Task :device_info_plus:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7164194Z 	: > Task :device_info_plus:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7164805Z 	: > Task :device_info_plus:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7165410Z 	: > Task :firebase_core:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7166024Z 	: > Task :firebase_core:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7166579Z 	: > Task :firebase_core:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7167118Z 	: > Task :firebase_messaging:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7169894Z 	: > Task :firebase_messaging:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7170728Z 	: > Task :firebase_messaging:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7171334Z 	: > Task :flutter_local_notifications:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7171980Z 	: > Task :flutter_local_notifications:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7172651Z 	: > Task :flutter_local_notifications:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7173275Z 	: > Task :flutter_native_splash:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7173904Z 	: > Task :flutter_native_splash:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7174600Z 	: > Task :flutter_native_splash:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7176625Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7177662Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7178380Z 	: > Task :flutter_plugin_android_lifecycle:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7179006Z 	: > Task :integration_test:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7179558Z 	: > Task :integration_test:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7180126Z 	: > Task :integration_test:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7180874Z 	: > Task :local_auth_android:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7181427Z 	: > Task :local_auth_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7182004Z 	: > Task :local_auth_android:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7182580Z 	: > Task :path_provider_android:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7183162Z 	: > Task :path_provider_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7183759Z 	: > Task :path_provider_android:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7184304Z 	: > Task :patrol:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7184800Z 	: > Task :patrol:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7185307Z 	: > Task :patrol:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7185861Z 	: > Task :permission_handler_android:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7187253Z 	: > Task :permission_handler_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7187828Z 	: > Task :permission_handler_android:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7188310Z 	: > Task :share_plus:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7188731Z 	: > Task :share_plus:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7189175Z 	: > Task :share_plus:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7189647Z 	: > Task :shared_preferences_android:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7190451Z 	: > Task :shared_preferences_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7191038Z 	: > Task :shared_preferences_android:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7191572Z 	: > Task :url_launcher_android:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7192050Z 	: > Task :url_launcher_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7192551Z 	: > Task :url_launcher_android:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7193037Z 	: > Task :video_player_android:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7193517Z 	: > Task :video_player_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7194013Z 	: > Task :video_player_android:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:01.7194501Z 	: > Task :webview_flutter_android:mergeDebugJniLibFolders
+2025-10-23T08:16:01.7195009Z 	: > Task :webview_flutter_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:01.7195535Z 	: > Task :webview_flutter_android:copyDebugJniLibsProjectOnly
+2025-10-23T08:16:02.9144040Z 	: > Task :app:validateSigningDebug
+2025-10-23T08:16:06.9142710Z 	: > Task :app:writeDebugAppMetadata
+2025-10-23T08:16:06.9148880Z 	: > Task :app:writeDebugSigningConfigVersions
+2025-10-23T08:16:10.6138881Z 	: > Task :app:mergeDebugNativeLibs
+2025-10-23T08:16:11.1139066Z 	: > Task :app:stripDebugDebugSymbols
+2025-10-23T08:16:12.4138281Z 	: > Task :app:packageDebug
+2025-10-23T08:16:12.4139183Z 	: > Task :app:createDebugApkListingFileRedirect
+2025-10-23T08:16:12.6139484Z 	: > Task :app:assembleDebug
+2025-10-23T08:16:12.6141396Z 	: 
+2025-10-23T08:16:12.6141725Z 	: BUILD SUCCESSFUL in 3m 25s
+2025-10-23T08:16:12.6142180Z 	: 373 actionable tasks: 368 executed, 5 up-to-date
+2025-10-23T08:16:12.6706454Z $ ./gradlew :app:assembleDebugAndroidTest -Ptarget=/home/runner/work/Ivory/Ivory/integration_test/test_bundle.dart -Pdart-defines=UEFUUk9MX0FQUF9QQUNLQUdFX05BTUU9Y29tLnRoaW5zbGljZXMuc29sYXJpc2RlbW8=,UEFUUk9MX0FQUF9CVU5ETEVfSUQ9Y29tLnRoaW5zbGljZXMuc29sYXJpc2RlbW8=,UEFUUk9MX0FORFJPSURfQVBQX05BTUU9SXZvcnk=,UEFUUk9MX0lPU19BUFBfTkFNRT1Jdm9yeQ==,SU5URUdSQVRJT05fVEVTVF9TSE9VTERfUkVQT1JUX1JFU1VMVFNfVE9fTkFUSVZFPWZhbHNl,UEFUUk9MX1RFU1RfTEFCRUxfRU5BQkxFRD10cnVl,UEFUUk9MX1RFU1RfU0VSVkVSX1BPUlQ9ODA4MQ==,UEFUUk9MX0FQUF9TRVJWRVJfUE9SVD04MDgy,Q09WRVJBR0VfRU5BQkxFRD1mYWxzZQ== -Papp-server-port=8082 -Ptest-server-port=8081
+2025-10-23T08:16:13.8060835Z 	: > Task :gradle:checkKotlinGradlePluginConfigurationErrors
+2025-10-23T08:16:13.8061348Z 	: > Task :gradle:compileKotlin UP-TO-DATE
+2025-10-23T08:16:13.8061650Z 	: > Task :gradle:compileJava NO-SOURCE
+2025-10-23T08:16:13.8061928Z 	: > Task :gradle:compileGroovy NO-SOURCE
+2025-10-23T08:16:13.8062228Z 	: > Task :gradle:pluginDescriptors UP-TO-DATE
+2025-10-23T08:16:13.8062530Z 	: > Task :gradle:processResources UP-TO-DATE
+2025-10-23T08:16:13.8062805Z 	: > Task :gradle:classes UP-TO-DATE
+2025-10-23T08:16:13.8063056Z 	: > Task :gradle:jar UP-TO-DATE
+2025-10-23T08:16:14.1023822Z 	: 
+2025-10-23T08:16:14.1025124Z 	: > Configure project :app
+2025-10-23T08:16:14.1032727Z 	: WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+2025-10-23T08:16:14.1033836Z 	: The current default is 'false'.
+2025-10-23T08:16:14.1036623Z 	: It will be removed in version 9.0 of the Android Gradle plugin.
+2025-10-23T08:16:14.1037396Z 	: To keep using this feature, add the following to your module-level build.gradle files:
+2025-10-23T08:16:14.1037858Z 	:     android.buildFeatures.buildConfig = true
+2025-10-23T08:16:14.1038581Z 	: or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+2025-10-23T08:16:15.4036474Z 	: WARNING: We recommend using a newer Android Gradle plugin to use compileSdk = 36
+2025-10-23T08:16:15.4037582Z 	: 
+2025-10-23T08:16:15.4040764Z 	: This Android Gradle plugin (8.6.0) was tested up to compileSdk = 35.
+2025-10-23T08:16:15.4041362Z 	: 
+2025-10-23T08:16:15.4041847Z 	: You are strongly encouraged to update your project to use a newer
+2025-10-23T08:16:15.4042586Z 	: Android Gradle plugin that has been tested with compileSdk = 36.
+2025-10-23T08:16:15.4043148Z 	: 
+2025-10-23T08:16:15.4043639Z 	: If you are already using the latest version of the Android Gradle plugin,
+2025-10-23T08:16:15.4044552Z 	: you may need to wait until a newer version with support for compileSdk = 36 is available.
+2025-10-23T08:16:15.4045241Z 	: 
+2025-10-23T08:16:15.4045646Z 	: For more information refer to the compatibility table:
+2025-10-23T08:16:15.4046269Z 	: https://d.android.com/r/tools/api-level-support
+2025-10-23T08:16:15.4046769Z 	: 
+2025-10-23T08:16:15.4047112Z 	: To suppress this warning, add/update
+2025-10-23T08:16:15.4047632Z 	:     android.suppressUnsupportedCompileSdk=36
+2025-10-23T08:16:15.4048151Z 	: to this project's gradle.properties.
+2025-10-23T08:16:15.7025513Z 	: 
+2025-10-23T08:16:15.7026671Z 	: > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:15.7027615Z 	: > Task :app:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7032936Z 	: > Task :app:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7033543Z 	: > Task :app:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:15.7034121Z 	: > Task :app_settings:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7034708Z 	: > Task :app_settings:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7035348Z 	: > Task :app_settings:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7035957Z 	: > Task :device_info_plus:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7041734Z 	: > Task :device_info_plus:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7046343Z 	: > Task :device_info_plus:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7047936Z 	: > Task :firebase_core:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7049923Z 	: > Task :firebase_core:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7050772Z 	: > Task :firebase_core:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7059633Z 	: > Task :firebase_messaging:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7062960Z 	: > Task :firebase_messaging:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7065334Z 	: > Task :firebase_messaging:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7066464Z 	: > Task :flutter_local_notifications:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7072283Z 	: > Task :flutter_local_notifications:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7073417Z 	: > Task :flutter_local_notifications:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7074093Z 	: > Task :flutter_native_splash:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7074679Z 	: > Task :flutter_native_splash:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7075321Z 	: > Task :flutter_native_splash:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7075965Z 	: > Task :flutter_plugin_android_lifecycle:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7077004Z 	: > Task :flutter_plugin_android_lifecycle:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7077595Z 	: > Task :flutter_plugin_android_lifecycle:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7078087Z 	: > Task :integration_test:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7078655Z 	: > Task :integration_test:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7079284Z 	: > Task :integration_test:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7079851Z 	: > Task :local_auth_android:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7080591Z 	: > Task :local_auth_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7081249Z 	: > Task :local_auth_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7081868Z 	: > Task :path_provider_android:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7082486Z 	: > Task :path_provider_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7083157Z 	: > Task :path_provider_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7083797Z 	: > Task :patrol:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7084313Z 	: > Task :patrol:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7084684Z 	: > Task :patrol:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7085278Z 	: > Task :permission_handler_android:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7089987Z 	: > Task :permission_handler_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7091002Z 	: > Task :permission_handler_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7094149Z 	: > Task :share_plus:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7098330Z 	: > Task :share_plus:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7099006Z 	: > Task :share_plus:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7099642Z 	: > Task :shared_preferences_android:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7100522Z 	: > Task :shared_preferences_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7106017Z 	: > Task :shared_preferences_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7106857Z 	: > Task :url_launcher_android:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7108575Z 	: > Task :url_launcher_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7109245Z 	: > Task :url_launcher_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7109849Z 	: > Task :video_player_android:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7110610Z 	: > Task :video_player_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7111217Z 	: > Task :video_player_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.7111824Z 	: > Task :webview_flutter_android:preBuild UP-TO-DATE
+2025-10-23T08:16:15.7112260Z 	: > Task :webview_flutter_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:15.7112655Z 	: > Task :webview_flutter_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.9026157Z 	: > Task :app:checkDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:15.9028689Z 	: > Task :app:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:15.9029588Z 	: > Task :app:processDebugGoogleServices UP-TO-DATE
+2025-10-23T08:16:15.9030216Z 	: > Task :app_settings:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:15.9031072Z 	: > Task :app_settings:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9031655Z 	: > Task :app_settings:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9032252Z 	: > Task :device_info_plus:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:15.9034850Z 	: > Task :device_info_plus:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9035538Z 	: > Task :device_info_plus:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9036157Z 	: > Task :firebase_core:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:15.9037010Z 	: > Task :firebase_core:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9037593Z 	: > Task :firebase_core:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9038203Z 	: > Task :firebase_messaging:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:15.9038849Z 	: > Task :firebase_messaging:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9039476Z 	: > Task :firebase_messaging:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9040176Z 	: > Task :flutter_local_notifications:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:15.9041120Z 	: > Task :flutter_local_notifications:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9041660Z 	: > Task :flutter_local_notifications:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:15.9042406Z 	: > Task :flutter_native_splash:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0062913Z 	: > Task :flutter_native_splash:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0063980Z 	: > Task :flutter_native_splash:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0065019Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0066149Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0067221Z 	: > Task :flutter_plugin_android_lifecycle:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0068257Z 	: > Task :integration_test:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0069128Z 	: > Task :integration_test:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0070048Z 	: > Task :integration_test:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0075364Z 	: > Task :local_auth_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0123253Z 	: > Task :local_auth_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0124295Z 	: > Task :local_auth_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0125297Z 	: > Task :path_provider_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0126533Z 	: > Task :path_provider_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0129168Z 	: > Task :path_provider_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0129780Z 	: > Task :patrol:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0130559Z 	: > Task :patrol:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0131096Z 	: > Task :patrol:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0136952Z 	: > Task :permission_handler_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0137783Z 	: > Task :permission_handler_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0138561Z 	: > Task :permission_handler_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0139201Z 	: > Task :share_plus:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0140147Z 	: > Task :share_plus:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0140891Z 	: > Task :share_plus:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0141544Z 	: > Task :shared_preferences_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0142515Z 	: > Task :shared_preferences_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0143257Z 	: > Task :shared_preferences_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0143960Z 	: > Task :url_launcher_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0144980Z 	: > Task :url_launcher_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0145649Z 	: > Task :url_launcher_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0146297Z 	: > Task :video_player_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0146901Z 	: > Task :video_player_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0147536Z 	: > Task :video_player_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0148220Z 	: > Task :webview_flutter_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:16.0148909Z 	: > Task :webview_flutter_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0149637Z 	: > Task :webview_flutter_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0150802Z 	: > Task :app:mapDebugSourceSetPaths UP-TO-DATE
+2025-10-23T08:16:16.0151368Z 	: > Task :app:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0152185Z 	: > Task :app:mergeDebugResources UP-TO-DATE
+2025-10-23T08:16:16.0152842Z 	: > Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+2025-10-23T08:16:16.0153476Z 	: > Task :app:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0154056Z 	: > Task :app_settings:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0154669Z 	: > Task :app_settings:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0155256Z 	: > Task :device_info_plus:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0155865Z 	: > Task :device_info_plus:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0156452Z 	: > Task :firebase_core:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0157059Z 	: > Task :firebase_core:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0157680Z 	: > Task :firebase_messaging:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0158331Z 	: > Task :firebase_messaging:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0159021Z 	: > Task :flutter_local_notifications:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0159761Z 	: > Task :flutter_local_notifications:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0160657Z 	: > Task :flutter_native_splash:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0161259Z 	: > Task :flutter_native_splash:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0162207Z 	: > Task :flutter_plugin_android_lifecycle:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0163022Z 	: > Task :flutter_plugin_android_lifecycle:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0163734Z 	: > Task :integration_test:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0164385Z 	: > Task :integration_test:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0165058Z 	: > Task :local_auth_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0165736Z 	: > Task :local_auth_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0166423Z 	: > Task :path_provider_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0167117Z 	: > Task :path_provider_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0167769Z 	: > Task :patrol:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0168343Z 	: > Task :patrol:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0169014Z 	: > Task :permission_handler_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0169805Z 	: > Task :permission_handler_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0170644Z 	: > Task :share_plus:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0171166Z 	: > Task :share_plus:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0171763Z 	: > Task :shared_preferences_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0172697Z 	: > Task :shared_preferences_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0173353Z 	: > Task :url_launcher_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0173947Z 	: > Task :url_launcher_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0174528Z 	: > Task :video_player_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0175425Z 	: > Task :video_player_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.0176058Z 	: > Task :webview_flutter_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:16.0176759Z 	: > Task :webview_flutter_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.1033611Z 	: > Task :app:processDebugMainManifest UP-TO-DATE
+2025-10-23T08:16:16.1045438Z 	: > Task :app:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:16.1046120Z 	: > Task :app:processDebugManifestForPackage UP-TO-DATE
+2025-10-23T08:16:16.1046812Z 	: > Task :app_settings:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.1047496Z 	: > Task :app_settings:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.1048114Z 	: > Task :app_settings:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.1049158Z 	: > Task :device_info_plus:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.1049887Z 	: > Task :device_info_plus:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.1050750Z 	: > Task :device_info_plus:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.1051430Z 	: > Task :firebase_core:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.1052114Z 	: > Task :firebase_core:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.1052726Z 	: > Task :firebase_core:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.1053380Z 	: > Task :firebase_messaging:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.1054098Z 	: > Task :firebase_messaging:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.1054753Z 	: > Task :firebase_messaging:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.1055480Z 	: > Task :flutter_local_notifications:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.1056290Z 	: > Task :flutter_local_notifications:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.2024270Z 	: > Task :flutter_local_notifications:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.2033618Z 	: > Task :flutter_native_splash:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.2035822Z 	: > Task :flutter_native_splash:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.2037719Z 	: > Task :flutter_native_splash:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.2048205Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.2049330Z 	: > Task :flutter_plugin_android_lifecycle:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.2051292Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.2052033Z 	: > Task :integration_test:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.2052699Z 	: > Task :integration_test:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.2053320Z 	: > Task :integration_test:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.2054002Z 	: > Task :local_auth_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.2054704Z 	: > Task :local_auth_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.2055334Z 	: > Task :local_auth_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.2056026Z 	: > Task :path_provider_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.2056745Z 	: > Task :path_provider_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.2057414Z 	: > Task :path_provider_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.2058039Z 	: > Task :patrol:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.2058625Z 	: > Task :patrol:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.2059158Z 	: > Task :patrol:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.2059812Z 	: > Task :permission_handler_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.3024008Z 	: > Task :permission_handler_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.3033525Z 	: > Task :permission_handler_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.3039479Z 	: > Task :share_plus:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.3042467Z 	: > Task :share_plus:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.3043506Z 	: > Task :share_plus:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.3044149Z 	: > Task :shared_preferences_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.3044878Z 	: > Task :shared_preferences_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.3045544Z 	: > Task :shared_preferences_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.3046227Z 	: > Task :url_launcher_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.3046940Z 	: > Task :url_launcher_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.3047599Z 	: > Task :url_launcher_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.3048285Z 	: > Task :video_player_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.3049254Z 	: > Task :video_player_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.3049905Z 	: > Task :video_player_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.3050885Z 	: > Task :webview_flutter_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:16.3051633Z 	: > Task :webview_flutter_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:16.3052323Z 	: > Task :webview_flutter_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:16.4036919Z 	: > Task :app:processDebugResources UP-TO-DATE
+2025-10-23T08:16:16.4038917Z 	: > Task :app_settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:16.4039694Z 	: > Task :app_settings:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.4040644Z 	: > Task :app_settings:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:16.4041210Z 	: > Task :app_settings:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.4041795Z 	: > Task :app_settings:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.4042551Z 	: > Task :app_settings:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.4043154Z 	: > Task :device_info_plus:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:16.4043644Z 	: > Task :device_info_plus:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.4044010Z 	: > Task :device_info_plus:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:16.4044382Z 	: > Task :device_info_plus:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.4044751Z 	: > Task :device_info_plus:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.4045137Z 	: > Task :device_info_plus:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.4045505Z 	: > Task :firebase_core:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.4045859Z 	: > Task :firebase_core:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.4046208Z 	: > Task :firebase_core:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.4046588Z 	: > Task :firebase_core:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.4046980Z 	: > Task :firebase_messaging:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.4047348Z 	: > Task :firebase_messaging:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.4047721Z 	: > Task :firebase_messaging:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.4048126Z 	: > Task :firebase_messaging:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.4048560Z 	: > Task :flutter_local_notifications:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.4048995Z 	: > Task :flutter_local_notifications:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.5026912Z 	: > Task :flutter_local_notifications:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.5028817Z 	: > Task :flutter_local_notifications:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.5030481Z 	: > Task :flutter_native_splash:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.5031343Z 	: > Task :flutter_native_splash:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.5032073Z 	: > Task :flutter_native_splash:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.5032797Z 	: > Task :flutter_native_splash:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.5033549Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.5034690Z 	: > Task :flutter_plugin_android_lifecycle:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.5035693Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.5036631Z 	: > Task :flutter_plugin_android_lifecycle:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.5037416Z 	: > Task :integration_test:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.5038056Z 	: > Task :integration_test:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.5038709Z 	: > Task :integration_test:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.5039396Z 	: > Task :integration_test:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.5040689Z 	: > Task :local_auth_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.5041922Z 	: > Task :local_auth_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.5042755Z 	: > Task :local_auth_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.5043516Z 	: > Task :local_auth_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.5044267Z 	: > Task :path_provider_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.5044976Z 	: > Task :path_provider_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.5045691Z 	: > Task :path_provider_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.5046241Z 	: > Task :path_provider_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.5046709Z 	: > Task :patrol:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:16.5047285Z 	: > Task :patrol:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.6036020Z 	: > Task :patrol:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:16.6038041Z 	: > Task :patrol:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.6038710Z 	: > Task :patrol:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.6039317Z 	: > Task :patrol:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.6040152Z 	: > Task :permission_handler_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.6041128Z 	: > Task :permission_handler_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.6041909Z 	: > Task :permission_handler_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.6042775Z 	: > Task :permission_handler_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.6043625Z 	: > Task :share_plus:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:16.6044350Z 	: > Task :share_plus:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.6044934Z 	: > Task :share_plus:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:16.6045501Z 	: > Task :share_plus:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.6046100Z 	: > Task :share_plus:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.6046737Z 	: > Task :share_plus:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.6047581Z 	: > Task :shared_preferences_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:16.6048521Z 	: > Task :shared_preferences_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.6049277Z 	: > Task :shared_preferences_android:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:16.6049995Z 	: > Task :shared_preferences_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.6050999Z 	: > Task :shared_preferences_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.6051776Z 	: > Task :shared_preferences_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.6052513Z 	: > Task :url_launcher_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.6053150Z 	: > Task :url_launcher_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.6053806Z 	: > Task :url_launcher_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.6054508Z 	: > Task :url_launcher_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.6055298Z 	: > Task :video_player_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:16.6056098Z 	: > Task :video_player_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.6057121Z 	: > Task :video_player_android:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:16.6057741Z 	: > Task :video_player_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.7057151Z 	: > Task :video_player_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.7058335Z 	: > Task :video_player_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.7059496Z 	: > Task :webview_flutter_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:16.7064972Z 	: > Task :webview_flutter_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:16.7074990Z 	: > Task :webview_flutter_android:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:16.7080484Z 	: > Task :webview_flutter_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.7081260Z 	: > Task :webview_flutter_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:16.7082051Z 	: > Task :webview_flutter_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:16.7082754Z 	: > Task :app:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:16.7083294Z 	: > Task :app:preDebugAndroidTestBuild SKIPPED
+2025-10-23T08:16:16.8049760Z 	: > Task :app:processDebugAndroidTestManifest
+2025-10-23T08:16:16.8051054Z 	: > Task :app:generateDebugAndroidTestBuildConfig
+2025-10-23T08:16:16.8051915Z 	: > Task :app:checkDebugAndroidTestAarMetadata
+2025-10-23T08:16:16.8052790Z 	: > Task :app:generateDebugAndroidTestResValues
+2025-10-23T08:16:16.8053554Z 	: > Task :app:mapDebugAndroidTestSourceSetPaths
+2025-10-23T08:16:16.8054332Z 	: > Task :app:generateDebugAndroidTestResources
+2025-10-23T08:16:16.8055104Z 	: > Task :app:mergeDebugAndroidTestResources
+2025-10-23T08:16:16.8056375Z 	: > Task :app:javaPreCompileDebugAndroidTest
+2025-10-23T08:16:16.8057234Z 	: > Task :app:mergeDebugAndroidTestShaders
+2025-10-23T08:16:16.8058009Z 	: > Task :app:compileDebugAndroidTestShaders NO-SOURCE
+2025-10-23T08:16:16.8058933Z 	: > Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+2025-10-23T08:16:16.8059872Z 	: > Task :app_settings:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.8061024Z 	: > Task :app_settings:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.8061919Z 	: > Task :app_settings:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8062488Z 	: > Task :app_settings:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8063035Z 	: > Task :device_info_plus:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.8063606Z 	: > Task :device_info_plus:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.8064160Z 	: > Task :device_info_plus:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8064695Z 	: > Task :device_info_plus:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8065279Z 	: > Task :firebase_core:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.8065866Z 	: > Task :firebase_core:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.8066452Z 	: > Task :firebase_core:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8067010Z 	: > Task :firebase_core:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8067622Z 	: > Task :firebase_messaging:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.8068262Z 	: > Task :firebase_messaging:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.8068893Z 	: > Task :firebase_messaging:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8069558Z 	: > Task :firebase_messaging:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8078975Z 	: > Task :flutter_local_notifications:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.8079757Z 	: > Task :flutter_local_notifications:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.8080575Z 	: > Task :flutter_local_notifications:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8081278Z 	: > Task :flutter_local_notifications:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8081950Z 	: > Task :flutter_native_splash:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.8082568Z 	: > Task :flutter_native_splash:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.8083188Z 	: > Task :flutter_native_splash:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8084146Z 	: > Task :flutter_native_splash:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8084840Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.8085602Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.8086380Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.8087164Z 	: > Task :flutter_plugin_android_lifecycle:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9027306Z 	: > Task :integration_test:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9028626Z 	: > Task :integration_test:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9033410Z 	: > Task :integration_test:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9038774Z 	: > Task :integration_test:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9039984Z 	: > Task :local_auth_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9041731Z 	: > Task :local_auth_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9091584Z 	: > Task :local_auth_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9098240Z 	: > Task :local_auth_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9099459Z 	: > Task :path_provider_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9110947Z 	: > Task :path_provider_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9111945Z 	: > Task :path_provider_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9112823Z 	: > Task :path_provider_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9113736Z 	: > Task :patrol:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9114531Z 	: > Task :patrol:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9115261Z 	: > Task :patrol:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9115983Z 	: > Task :patrol:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9116756Z 	: > Task :permission_handler_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9117636Z 	: > Task :permission_handler_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9119323Z 	: > Task :permission_handler_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9120579Z 	: > Task :permission_handler_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9126811Z 	: > Task :share_plus:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9127603Z 	: > Task :share_plus:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9128348Z 	: > Task :share_plus:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9129066Z 	: > Task :share_plus:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9129862Z 	: > Task :shared_preferences_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9130979Z 	: > Task :shared_preferences_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9131817Z 	: > Task :shared_preferences_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9132637Z 	: > Task :shared_preferences_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9133594Z 	: > Task :url_launcher_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9135016Z 	: > Task :url_launcher_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9135935Z 	: > Task :url_launcher_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9137208Z 	: > Task :url_launcher_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9138091Z 	: > Task :video_player_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9139315Z 	: > Task :video_player_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9140704Z 	: > Task :video_player_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9141986Z 	: > Task :video_player_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9142880Z 	: > Task :webview_flutter_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:16.9144154Z 	: > Task :webview_flutter_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:16.9145179Z 	: > Task :webview_flutter_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9146389Z 	: > Task :webview_flutter_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:16.9148525Z 	: > Task :app:compileDebugKotlin
+2025-10-23T08:16:16.9149193Z 	: > Task :app:mergeDebugAndroidTestAssets
+2025-10-23T08:16:17.0025573Z 	: > Task :app:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:17.0026318Z 	: > Task :app:compressDebugAndroidTestAssets
+2025-10-23T08:16:17.0026970Z 	: > Task :app_settings:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:17.0028842Z 	: > Task :device_info_plus:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:17.0029993Z 	: > Task :firebase_core:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0031927Z 	: > Task :firebase_messaging:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0034759Z 	: > Task :flutter_local_notifications:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0035505Z 	: > Task :flutter_native_splash:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0036596Z 	: > Task :flutter_plugin_android_lifecycle:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0039148Z 	: > Task :integration_test:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0041397Z 	: > Task :local_auth_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0042246Z 	: > Task :path_provider_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0042895Z 	: > Task :app:bundleDebugClassesToCompileJar
+2025-10-23T08:16:17.0044833Z 	: > Task :patrol:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:17.0045478Z 	: > Task :permission_handler_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0046025Z 	: > Task :share_plus:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:17.0046465Z 	: > Task :shared_preferences_android:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:17.0046853Z 	: > Task :url_launcher_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:17.0047215Z 	: > Task :video_player_android:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:17.0047606Z 	: > Task :webview_flutter_android:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:17.0047975Z 	: > Task :app:checkDebugAndroidTestDuplicateClasses
+2025-10-23T08:16:17.0048467Z 	: > Task :app:desugarDebugAndroidTestFileDependencies
+2025-10-23T08:16:17.0048803Z 	: > Task :app:mergeExtDexDebugAndroidTest
+2025-10-23T08:16:17.0049127Z 	: > Task :app_settings:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0049507Z 	: > Task :device_info_plus:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0049904Z 	: > Task :firebase_messaging:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0050516Z 	: > Task :firebase_core:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0050959Z 	: > Task :flutter_local_notifications:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0051406Z 	: > Task :flutter_native_splash:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0051818Z 	: > Task :local_auth_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0052258Z 	: > Task :flutter_plugin_android_lifecycle:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0052695Z 	: > Task :integration_test:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0053092Z 	: > Task :path_provider_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0053473Z 	: > Task :patrol:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0053803Z 	: > Task :app:processDebugAndroidTestResources
+2025-10-23T08:16:17.0054192Z 	: > Task :permission_handler_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:17.0054603Z 	: > Task :app:compileDebugAndroidTestKotlin NO-SOURCE
+2025-10-23T08:16:18.2035227Z 	: > Task :app:compileDebugAndroidTestJavaWithJavac
+2025-10-23T08:16:18.2037958Z 	: > Task :app:processDebugAndroidTestJavaRes NO-SOURCE
+2025-10-23T08:16:18.2038555Z 	: > Task :share_plus:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:18.2039209Z 	: > Task :shared_preferences_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:18.2039965Z 	: > Task :url_launcher_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:18.2040734Z 	: > Task :app:mergeDebugAndroidTestJavaResource
+2025-10-23T08:16:18.2041311Z 	: > Task :video_player_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:18.2042313Z 	: > Task :webview_flutter_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:18.2042882Z 	: > Task :app:dexBuilderDebugAndroidTest
+2025-10-23T08:16:18.2043356Z 	: > Task :app:mergeDebugAndroidTestJniLibFolders
+2025-10-23T08:16:18.2043835Z 	: > Task :app:mergeLibDexDebugAndroidTest
+2025-10-23T08:16:18.2044290Z 	: > Task :app:mergeProjectDexDebugAndroidTest
+2025-10-23T08:16:18.3023834Z 	: > Task :app:configureCMakeDebug[arm64-v8a]
+2025-10-23T08:16:18.3046924Z 	: > Task :app:buildCMakeDebug[arm64-v8a]
+2025-10-23T08:16:18.3047846Z 	: > Task :app:configureCMakeDebug[armeabi-v7a]
+2025-10-23T08:16:18.3048643Z 	: > Task :app:buildCMakeDebug[armeabi-v7a]
+2025-10-23T08:16:18.3052056Z 	: > Task :app:configureCMakeDebug[x86_64]
+2025-10-23T08:16:18.3052819Z 	: > Task :app:buildCMakeDebug[x86_64]
+2025-10-23T08:16:18.3053271Z 	: > Task :app:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3053803Z 	: > Task :app_settings:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3054349Z 	: > Task :app_settings:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3054887Z 	: > Task :app_settings:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3055462Z 	: > Task :device_info_plus:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3056018Z 	: > Task :device_info_plus:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3056586Z 	: > Task :device_info_plus:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3057169Z 	: > Task :firebase_core:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3057706Z 	: > Task :firebase_core:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3058262Z 	: > Task :firebase_core:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3059002Z 	: > Task :firebase_messaging:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3060729Z 	: > Task :firebase_messaging:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3064900Z 	: > Task :firebase_messaging:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3065875Z 	: > Task :flutter_local_notifications:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3066913Z 	: > Task :flutter_local_notifications:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3067823Z 	: > Task :flutter_local_notifications:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3068763Z 	: > Task :flutter_native_splash:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3069668Z 	: > Task :flutter_native_splash:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3074927Z 	: > Task :flutter_native_splash:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3075694Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3076348Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3077040Z 	: > Task :flutter_plugin_android_lifecycle:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3077782Z 	: > Task :integration_test:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3078365Z 	: > Task :integration_test:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3078996Z 	: > Task :integration_test:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3079655Z 	: > Task :local_auth_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3080466Z 	: > Task :local_auth_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3081104Z 	: > Task :local_auth_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3081809Z 	: > Task :path_provider_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3082469Z 	: > Task :path_provider_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3082907Z 	: > Task :path_provider_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3083314Z 	: > Task :patrol:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3083664Z 	: > Task :patrol:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3084160Z 	: > Task :patrol:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3084771Z 	: > Task :permission_handler_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3085767Z 	: > Task :permission_handler_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3086431Z 	: > Task :permission_handler_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3087068Z 	: > Task :share_plus:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3087570Z 	: > Task :share_plus:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3088108Z 	: > Task :share_plus:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3088718Z 	: > Task :shared_preferences_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3097764Z 	: > Task :shared_preferences_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3098572Z 	: > Task :shared_preferences_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3099511Z 	: > Task :url_launcher_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3100115Z 	: > Task :url_launcher_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3101006Z 	: > Task :url_launcher_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3101665Z 	: > Task :video_player_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3102274Z 	: > Task :video_player_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3102909Z 	: > Task :video_player_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3105570Z 	: > Task :webview_flutter_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:18.3106237Z 	: > Task :webview_flutter_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3106913Z 	: > Task :webview_flutter_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:18.3107515Z 	: > Task :app:mergeDebugNativeLibs UP-TO-DATE
+2025-10-23T08:16:18.3108035Z 	: > Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+2025-10-23T08:16:18.3108601Z 	: > Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+2025-10-23T08:16:18.3109129Z 	: > Task :app:validateSigningDebugAndroidTest
+2025-10-23T08:16:18.3109657Z 	: > Task :app:writeDebugAndroidTestSigningConfigVersions
+2025-10-23T08:16:18.3793642Z 	: > Task :app:packageDebugAndroidTest
+2025-10-23T08:16:18.3794903Z 	: > Task :app:createDebugAndroidTestApkListingFileRedirect
+2025-10-23T08:16:18.3803344Z 	: > Task :app:assembleDebugAndroidTest
+2025-10-23T08:16:18.3803820Z 	: 
+2025-10-23T08:16:18.3805024Z 	: BUILD SUCCESSFUL in 5s
+2025-10-23T08:16:18.3805494Z 	: 375 actionable tasks: 34 executed, 341 up-to-date
+2025-10-23T08:16:18.3916180Z ✓ Completed building apk with entrypoint test_bundle.dart (211.7s)
+2025-10-23T08:16:18.3916965Z Will uninstall apps before running tests
+2025-10-23T08:16:18.3917681Z Uninstalling com.thinslices.solarisdemo from Android SDK built for x86 64
+2025-10-23T08:16:18.7680638Z Uninstalling com.thinslices.solarisdemo.test from Android SDK built for x86 64
+2025-10-23T08:16:19.0930000Z • Executing tests of apk with entrypoint test_bundle.dart on emulator-5554...
+2025-10-23T08:16:19.0945303Z $ ./gradlew :app:connectedDebugAndroidTest -Ptarget=/home/runner/work/Ivory/Ivory/integration_test/test_bundle.dart -Pdart-defines=UEFUUk9MX0FQUF9QQUNLQUdFX05BTUU9Y29tLnRoaW5zbGljZXMuc29sYXJpc2RlbW8=,UEFUUk9MX0FQUF9CVU5ETEVfSUQ9Y29tLnRoaW5zbGljZXMuc29sYXJpc2RlbW8=,UEFUUk9MX0FORFJPSURfQVBQX05BTUU9SXZvcnk=,UEFUUk9MX0lPU19BUFBfTkFNRT1Jdm9yeQ==,SU5URUdSQVRJT05fVEVTVF9TSE9VTERfUkVQT1JUX1JFU1VMVFNfVE9fTkFUSVZFPWZhbHNl,UEFUUk9MX1RFU1RfTEFCRUxfRU5BQkxFRD10cnVl,UEFUUk9MX1RFU1RfU0VSVkVSX1BPUlQ9ODA4MQ==,UEFUUk9MX0FQUF9TRVJWRVJfUE9SVD04MDgy,Q09WRVJBR0VfRU5BQkxFRD1mYWxzZQ== -Papp-server-port=8082 -Ptest-server-port=8081
+2025-10-23T08:16:19.8514860Z 	: > Task :gradle:checkKotlinGradlePluginConfigurationErrors
+2025-10-23T08:16:19.9502368Z 	: > Task :gradle:compileKotlin UP-TO-DATE
+2025-10-23T08:16:19.9503297Z 	: > Task :gradle:compileJava NO-SOURCE
+2025-10-23T08:16:19.9503860Z 	: > Task :gradle:compileGroovy NO-SOURCE
+2025-10-23T08:16:19.9504369Z 	: > Task :gradle:pluginDescriptors UP-TO-DATE
+2025-10-23T08:16:19.9504899Z 	: > Task :gradle:processResources UP-TO-DATE
+2025-10-23T08:16:19.9505816Z 	: > Task :gradle:classes UP-TO-DATE
+2025-10-23T08:16:19.9506251Z 	: > Task :gradle:jar UP-TO-DATE
+2025-10-23T08:16:20.1492198Z 	: 
+2025-10-23T08:16:20.1493110Z 	: > Configure project :app
+2025-10-23T08:16:20.1502219Z 	: WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+2025-10-23T08:16:20.1503047Z 	: The current default is 'false'.
+2025-10-23T08:16:20.1503618Z 	: It will be removed in version 9.0 of the Android Gradle plugin.
+2025-10-23T08:16:20.1504409Z 	: To keep using this feature, add the following to your module-level build.gradle files:
+2025-10-23T08:16:20.1505141Z 	:     android.buildFeatures.buildConfig = true
+2025-10-23T08:16:20.1505842Z 	: or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+2025-10-23T08:16:21.1491548Z 	: WARNING: We recommend using a newer Android Gradle plugin to use compileSdk = 36
+2025-10-23T08:16:21.1497349Z 	: 
+2025-10-23T08:16:21.1498139Z 	: This Android Gradle plugin (8.6.0) was tested up to compileSdk = 35.
+2025-10-23T08:16:21.1498831Z 	: 
+2025-10-23T08:16:21.1499320Z 	: You are strongly encouraged to update your project to use a newer
+2025-10-23T08:16:21.1500129Z 	: Android Gradle plugin that has been tested with compileSdk = 36.
+2025-10-23T08:16:21.1500947Z 	: 
+2025-10-23T08:16:21.1501458Z 	: If you are already using the latest version of the Android Gradle plugin,
+2025-10-23T08:16:21.1502355Z 	: you may need to wait until a newer version with support for compileSdk = 36 is available.
+2025-10-23T08:16:21.1503038Z 	: 
+2025-10-23T08:16:21.1503457Z 	: For more information refer to the compatibility table:
+2025-10-23T08:16:21.1504091Z 	: https://d.android.com/r/tools/api-level-support
+2025-10-23T08:16:21.1504593Z 	: 
+2025-10-23T08:16:21.1504935Z 	: To suppress this warning, add/update
+2025-10-23T08:16:21.1505482Z 	:     android.suppressUnsupportedCompileSdk=36
+2025-10-23T08:16:21.1506048Z 	: to this project's gradle.properties.
+2025-10-23T08:16:21.4484260Z 	: 
+2025-10-23T08:16:21.4486497Z 	: > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:21.4488447Z 	: > Task :app:preBuild UP-TO-DATE
+2025-10-23T08:16:21.4489148Z 	: > Task :app:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:21.4489665Z 	: > Task :app:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:27.0501611Z 	: > Task :app:compileFlutterBuildDebug
+2025-10-23T08:16:27.0502903Z 	: > Task :app:packJniLibsflutterBuildDebug UP-TO-DATE
+2025-10-23T08:16:27.0504694Z 	: > Task :app_settings:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0507566Z 	: > Task :app_settings:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0508206Z 	: > Task :app_settings:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0508798Z 	: > Task :device_info_plus:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0509382Z 	: > Task :device_info_plus:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0509994Z 	: > Task :device_info_plus:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0512584Z 	: > Task :firebase_core:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0513180Z 	: > Task :firebase_core:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0513804Z 	: > Task :firebase_core:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0514401Z 	: > Task :firebase_messaging:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0514975Z 	: > Task :firebase_messaging:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0515607Z 	: > Task :firebase_messaging:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0516281Z 	: > Task :flutter_local_notifications:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0516935Z 	: > Task :flutter_local_notifications:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0517675Z 	: > Task :flutter_local_notifications:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0518368Z 	: > Task :flutter_native_splash:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0518975Z 	: > Task :flutter_native_splash:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0519648Z 	: > Task :flutter_native_splash:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0520622Z 	: > Task :flutter_plugin_android_lifecycle:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0532658Z 	: > Task :flutter_plugin_android_lifecycle:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0533454Z 	: > Task :flutter_plugin_android_lifecycle:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0534184Z 	: > Task :integration_test:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0534767Z 	: > Task :integration_test:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0535390Z 	: > Task :integration_test:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0536028Z 	: > Task :local_auth_android:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0561414Z 	: > Task :local_auth_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0562418Z 	: > Task :local_auth_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0563370Z 	: > Task :path_provider_android:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0564334Z 	: > Task :path_provider_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0565006Z 	: > Task :path_provider_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0565603Z 	: > Task :patrol:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0566104Z 	: > Task :patrol:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0566646Z 	: > Task :patrol:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0567238Z 	: > Task :permission_handler_android:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0567886Z 	: > Task :permission_handler_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0568611Z 	: > Task :permission_handler_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0569267Z 	: > Task :share_plus:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0569792Z 	: > Task :share_plus:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0570553Z 	: > Task :share_plus:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0571149Z 	: > Task :shared_preferences_android:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0571781Z 	: > Task :shared_preferences_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0572478Z 	: > Task :shared_preferences_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0573122Z 	: > Task :url_launcher_android:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0573746Z 	: > Task :url_launcher_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0574376Z 	: > Task :url_launcher_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0574991Z 	: > Task :video_player_android:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0575562Z 	: > Task :video_player_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0576207Z 	: > Task :video_player_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.0576832Z 	: > Task :webview_flutter_android:preBuild UP-TO-DATE
+2025-10-23T08:16:27.0577443Z 	: > Task :webview_flutter_android:preDebugBuild UP-TO-DATE
+2025-10-23T08:16:27.0578114Z 	: > Task :webview_flutter_android:writeDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.1501001Z 	: > Task :app:checkDebugAarMetadata UP-TO-DATE
+2025-10-23T08:16:27.1502120Z 	: > Task :app:cleanMergeDebugAssets
+2025-10-23T08:16:27.1508419Z 	: > Task :app:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1509335Z 	: > Task :app:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1510165Z 	: > Task :app:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1511425Z 	: > Task :app_settings:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1512818Z 	: > Task :app_settings:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1513393Z 	: > Task :app_settings:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1513971Z 	: > Task :app_settings:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1514549Z 	: > Task :device_info_plus:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1515151Z 	: > Task :device_info_plus:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1515748Z 	: > Task :device_info_plus:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1516340Z 	: > Task :device_info_plus:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1516909Z 	: > Task :firebase_core:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1517456Z 	: > Task :firebase_core:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1518031Z 	: > Task :firebase_core:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1518963Z 	: > Task :firebase_core:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1519556Z 	: > Task :firebase_messaging:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1520166Z 	: > Task :firebase_messaging:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1562792Z 	: > Task :firebase_messaging:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1563493Z 	: > Task :firebase_messaging:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1564178Z 	: > Task :flutter_local_notifications:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1564906Z 	: > Task :flutter_local_notifications:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1565635Z 	: > Task :flutter_local_notifications:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1575901Z 	: > Task :flutter_local_notifications:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1576901Z 	: > Task :flutter_native_splash:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1577549Z 	: > Task :flutter_native_splash:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1578203Z 	: > Task :flutter_native_splash:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1578883Z 	: > Task :flutter_native_splash:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1579613Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1580595Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1581421Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1582215Z 	: > Task :flutter_plugin_android_lifecycle:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1582917Z 	: > Task :integration_test:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1583514Z 	: > Task :integration_test:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1584132Z 	: > Task :integration_test:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1584757Z 	: > Task :integration_test:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1585495Z 	: > Task :local_auth_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1586116Z 	: > Task :local_auth_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1586736Z 	: > Task :local_auth_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1587359Z 	: > Task :local_auth_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1587994Z 	: > Task :path_provider_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1588648Z 	: > Task :path_provider_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1589327Z 	: > Task :path_provider_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1590624Z 	: > Task :path_provider_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1591206Z 	: > Task :patrol:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1591752Z 	: > Task :patrol:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1592301Z 	: > Task :patrol:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1592842Z 	: > Task :patrol:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1593477Z 	: > Task :permission_handler_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1594261Z 	: > Task :permission_handler_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1594989Z 	: > Task :permission_handler_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1595786Z 	: > Task :permission_handler_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1596454Z 	: > Task :share_plus:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1597008Z 	: > Task :share_plus:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1597563Z 	: > Task :share_plus:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1598109Z 	: > Task :share_plus:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1598740Z 	: > Task :shared_preferences_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1599453Z 	: > Task :shared_preferences_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1600188Z 	: > Task :shared_preferences_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1601210Z 	: > Task :shared_preferences_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1602186Z 	: > Task :url_launcher_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1602804Z 	: > Task :url_launcher_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1603397Z 	: > Task :url_launcher_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1604035Z 	: > Task :url_launcher_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1604631Z 	: > Task :video_player_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1605209Z 	: > Task :video_player_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1605797Z 	: > Task :video_player_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1606432Z 	: > Task :video_player_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1607070Z 	: > Task :webview_flutter_android:mergeDebugShaders UP-TO-DATE
+2025-10-23T08:16:27.1607941Z 	: > Task :webview_flutter_android:compileDebugShaders NO-SOURCE
+2025-10-23T08:16:27.1608636Z 	: > Task :webview_flutter_android:generateDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1609336Z 	: > Task :webview_flutter_android:packageDebugAssets UP-TO-DATE
+2025-10-23T08:16:27.1609906Z 	: > Task :app:mergeDebugAssets
+2025-10-23T08:16:27.5486892Z 	: > Task :app:copyFlutterAssetsDebug
+2025-10-23T08:16:27.5512517Z 	: > Task :app:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.5513194Z 	: > Task :app:processDebugGoogleServices UP-TO-DATE
+2025-10-23T08:16:27.5530833Z 	: > Task :app_settings:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.5580735Z 	: > Task :app_settings:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.5581898Z 	: > Task :app_settings:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.5582868Z 	: > Task :device_info_plus:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.5583732Z 	: > Task :device_info_plus:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.5584665Z 	: > Task :device_info_plus:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.5585490Z 	: > Task :firebase_core:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.5586299Z 	: > Task :firebase_core:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6482285Z 	: > Task :firebase_core:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6483728Z 	: > Task :firebase_messaging:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6493502Z 	: > Task :firebase_messaging:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6494699Z 	: > Task :firebase_messaging:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6495786Z 	: > Task :flutter_local_notifications:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6496928Z 	: > Task :flutter_local_notifications:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6497995Z 	: > Task :flutter_local_notifications:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6499034Z 	: > Task :flutter_native_splash:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6542681Z 	: > Task :flutter_native_splash:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6547317Z 	: > Task :flutter_native_splash:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6548399Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6553214Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6554538Z 	: > Task :flutter_plugin_android_lifecycle:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6555648Z 	: > Task :integration_test:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6556642Z 	: > Task :integration_test:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6557541Z 	: > Task :integration_test:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6558426Z 	: > Task :local_auth_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6559077Z 	: > Task :local_auth_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6559739Z 	: > Task :local_auth_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6560759Z 	: > Task :path_provider_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6561479Z 	: > Task :path_provider_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6562495Z 	: > Task :path_provider_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6563131Z 	: > Task :patrol:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6563706Z 	: > Task :patrol:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6564263Z 	: > Task :patrol:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6564925Z 	: > Task :permission_handler_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6565694Z 	: > Task :permission_handler_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6566464Z 	: > Task :permission_handler_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6567127Z 	: > Task :share_plus:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6567704Z 	: > Task :share_plus:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6568500Z 	: > Task :share_plus:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6569165Z 	: > Task :shared_preferences_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6569945Z 	: > Task :shared_preferences_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6570950Z 	: > Task :shared_preferences_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6571686Z 	: > Task :url_launcher_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6572368Z 	: > Task :url_launcher_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6573051Z 	: > Task :url_launcher_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6573747Z 	: > Task :video_player_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6574414Z 	: > Task :video_player_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6575096Z 	: > Task :video_player_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6575805Z 	: > Task :webview_flutter_android:generateDebugResValues UP-TO-DATE
+2025-10-23T08:16:27.6576527Z 	: > Task :webview_flutter_android:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6577242Z 	: > Task :webview_flutter_android:packageDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6577898Z 	: > Task :app:mapDebugSourceSetPaths UP-TO-DATE
+2025-10-23T08:16:27.6578451Z 	: > Task :app:generateDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6578977Z 	: > Task :app:mergeDebugResources UP-TO-DATE
+2025-10-23T08:16:27.6579573Z 	: > Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+2025-10-23T08:16:27.6580204Z 	: > Task :app:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6601249Z 	: > Task :app_settings:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6601902Z 	: > Task :app_settings:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6602544Z 	: > Task :device_info_plus:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6603189Z 	: > Task :device_info_plus:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6603829Z 	: > Task :firebase_core:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6604457Z 	: > Task :firebase_core:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6605142Z 	: > Task :firebase_messaging:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6605846Z 	: > Task :firebase_messaging:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6606567Z 	: > Task :flutter_local_notifications:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6607322Z 	: > Task :flutter_local_notifications:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6608066Z 	: > Task :flutter_native_splash:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6608864Z 	: > Task :flutter_native_splash:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6609620Z 	: > Task :flutter_plugin_android_lifecycle:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6610609Z 	: > Task :flutter_plugin_android_lifecycle:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6611345Z 	: > Task :integration_test:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6611994Z 	: > Task :integration_test:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6612638Z 	: > Task :local_auth_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6613275Z 	: > Task :local_auth_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6614190Z 	: > Task :path_provider_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6614859Z 	: > Task :path_provider_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6615463Z 	: > Task :patrol:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6616010Z 	: > Task :patrol:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6616651Z 	: > Task :permission_handler_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6617430Z 	: > Task :permission_handler_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6618078Z 	: > Task :share_plus:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6618647Z 	: > Task :share_plus:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6619291Z 	: > Task :shared_preferences_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6620233Z 	: > Task :shared_preferences_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6621081Z 	: > Task :url_launcher_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6621746Z 	: > Task :url_launcher_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6622408Z 	: > Task :video_player_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6623063Z 	: > Task :video_player_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6623746Z 	: > Task :webview_flutter_android:extractDeepLinksDebug UP-TO-DATE
+2025-10-23T08:16:27.6624459Z 	: > Task :webview_flutter_android:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6625091Z 	: > Task :app:processDebugMainManifest UP-TO-DATE
+2025-10-23T08:16:27.6625642Z 	: > Task :app:processDebugManifest UP-TO-DATE
+2025-10-23T08:16:27.6626213Z 	: > Task :app:processDebugManifestForPackage UP-TO-DATE
+2025-10-23T08:16:27.6626846Z 	: > Task :app_settings:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.6627500Z 	: > Task :app_settings:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.7489449Z 	: > Task :app_settings:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.7501954Z 	: > Task :device_info_plus:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.7502739Z 	: > Task :device_info_plus:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.7503143Z 	: > Task :device_info_plus:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.7503516Z 	: > Task :firebase_core:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.7503898Z 	: > Task :firebase_core:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.7504240Z 	: > Task :firebase_core:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.7504609Z 	: > Task :firebase_messaging:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.7505012Z 	: > Task :firebase_messaging:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.7505384Z 	: > Task :firebase_messaging:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.7505807Z 	: > Task :flutter_local_notifications:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.7506263Z 	: > Task :flutter_local_notifications:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.7506756Z 	: > Task :flutter_local_notifications:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.7507574Z 	: > Task :flutter_native_splash:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.7508280Z 	: > Task :flutter_native_splash:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.7508949Z 	: > Task :flutter_native_splash:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.7509703Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.7510736Z 	: > Task :flutter_plugin_android_lifecycle:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.7511540Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.7512278Z 	: > Task :integration_test:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.7512989Z 	: > Task :integration_test:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.8490961Z 	: > Task :integration_test:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.8492004Z 	: > Task :local_auth_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.8493222Z 	: > Task :local_auth_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.8493879Z 	: > Task :local_auth_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.8494650Z 	: > Task :path_provider_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.8495416Z 	: > Task :path_provider_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.8496712Z 	: > Task :path_provider_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.8497356Z 	: > Task :patrol:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.8497845Z 	: > Task :patrol:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.8498184Z 	: > Task :patrol:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.8499231Z 	: > Task :permission_handler_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.8500032Z 	: > Task :permission_handler_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.8500825Z 	: > Task :permission_handler_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.8501244Z 	: > Task :share_plus:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.8501619Z 	: > Task :share_plus:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.8501946Z 	: > Task :share_plus:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.8502335Z 	: > Task :shared_preferences_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.8502783Z 	: > Task :shared_preferences_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.9487543Z 	: > Task :shared_preferences_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.9489467Z 	: > Task :url_launcher_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.9490237Z 	: > Task :url_launcher_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.9491249Z 	: > Task :url_launcher_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.9492093Z 	: > Task :video_player_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.9492861Z 	: > Task :video_player_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.9493521Z 	: > Task :video_player_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.9494245Z 	: > Task :webview_flutter_android:compileDebugLibraryResources UP-TO-DATE
+2025-10-23T08:16:27.9495027Z 	: > Task :webview_flutter_android:parseDebugLocalResources UP-TO-DATE
+2025-10-23T08:16:27.9495741Z 	: > Task :webview_flutter_android:generateDebugRFile UP-TO-DATE
+2025-10-23T08:16:27.9496344Z 	: > Task :app:processDebugResources UP-TO-DATE
+2025-10-23T08:16:27.9497020Z 	: > Task :app_settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:27.9497747Z 	: > Task :app_settings:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:27.9498352Z 	: > Task :app_settings:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:27.9498938Z 	: > Task :app_settings:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:27.9499533Z 	: > Task :app_settings:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:27.9500191Z 	: > Task :app_settings:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:27.9501115Z 	: > Task :device_info_plus:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:27.9501891Z 	: > Task :device_info_plus:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0486781Z 	: > Task :device_info_plus:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:28.0488585Z 	: > Task :device_info_plus:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0491367Z 	: > Task :device_info_plus:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0492039Z 	: > Task :device_info_plus:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0492669Z 	: > Task :firebase_core:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0493347Z 	: > Task :firebase_core:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0493962Z 	: > Task :firebase_core:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0494572Z 	: > Task :firebase_core:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0495195Z 	: > Task :firebase_messaging:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0496119Z 	: > Task :firebase_messaging:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0496740Z 	: > Task :firebase_messaging:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0497393Z 	: > Task :firebase_messaging:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0498082Z 	: > Task :flutter_local_notifications:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0498776Z 	: > Task :flutter_local_notifications:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0510149Z 	: > Task :flutter_local_notifications:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0511131Z 	: > Task :flutter_local_notifications:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0512132Z 	: > Task :flutter_native_splash:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0512807Z 	: > Task :flutter_native_splash:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0513476Z 	: > Task :flutter_native_splash:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0514187Z 	: > Task :flutter_native_splash:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0514927Z 	: > Task :flutter_plugin_android_lifecycle:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0515706Z 	: > Task :flutter_plugin_android_lifecycle:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0516511Z 	: > Task :flutter_plugin_android_lifecycle:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0517370Z 	: > Task :flutter_plugin_android_lifecycle:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0518142Z 	: > Task :integration_test:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0518776Z 	: > Task :integration_test:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0519410Z 	: > Task :integration_test:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0521502Z 	: > Task :integration_test:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0522168Z 	: > Task :local_auth_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0522800Z 	: > Task :local_auth_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0523431Z 	: > Task :local_auth_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0524106Z 	: > Task :local_auth_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0524801Z 	: > Task :path_provider_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.0525477Z 	: > Task :path_provider_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.0526142Z 	: > Task :path_provider_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.0526807Z 	: > Task :path_provider_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.0527564Z 	: > Task :patrol:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:28.0528721Z 	: > Task :patrol:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.1499679Z 	: > Task :patrol:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:28.1500626Z 	: > Task :patrol:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.1501294Z 	: > Task :patrol:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.1501941Z 	: > Task :patrol:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.1502692Z 	: > Task :permission_handler_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.1503539Z 	: > Task :permission_handler_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.1504365Z 	: > Task :permission_handler_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.1505254Z 	: > Task :permission_handler_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.1506118Z 	: > Task :share_plus:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:28.1506832Z 	: > Task :share_plus:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.1507438Z 	: > Task :share_plus:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:28.1508015Z 	: > Task :share_plus:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.1508598Z 	: > Task :share_plus:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.1509639Z 	: > Task :share_plus:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.1510713Z 	: > Task :shared_preferences_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:28.1511657Z 	: > Task :shared_preferences_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.1512454Z 	: > Task :shared_preferences_android:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:28.1513192Z 	: > Task :shared_preferences_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.1513986Z 	: > Task :shared_preferences_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.1514846Z 	: > Task :shared_preferences_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.1515682Z 	: > Task :url_launcher_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.1516757Z 	: > Task :url_launcher_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.1517495Z 	: > Task :url_launcher_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.1518273Z 	: > Task :url_launcher_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.1519190Z 	: > Task :video_player_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:28.1520054Z 	: > Task :video_player_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.2499834Z 	: > Task :video_player_android:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:28.2504705Z 	: > Task :video_player_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.2506427Z 	: > Task :video_player_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.2508486Z 	: > Task :video_player_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.2509276Z 	: > Task :webview_flutter_android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+2025-10-23T08:16:28.2509839Z 	: > Task :webview_flutter_android:generateDebugBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.2510512Z 	: > Task :webview_flutter_android:compileDebugKotlin UP-TO-DATE
+2025-10-23T08:16:28.2511233Z 	: > Task :webview_flutter_android:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.2511953Z 	: > Task :webview_flutter_android:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.2513106Z 	: > Task :webview_flutter_android:bundleLibCompileToJarDebug UP-TO-DATE
+2025-10-23T08:16:28.2514212Z 	: > Task :app:javaPreCompileDebug UP-TO-DATE
+2025-10-23T08:16:28.2514750Z 	: > Task :app:preDebugAndroidTestBuild SKIPPED
+2025-10-23T08:16:28.2515563Z 	: > Task :app:processDebugAndroidTestManifest UP-TO-DATE
+2025-10-23T08:16:28.2516235Z 	: > Task :app:generateDebugAndroidTestBuildConfig UP-TO-DATE
+2025-10-23T08:16:28.2516927Z 	: > Task :app:checkDebugAndroidTestAarMetadata UP-TO-DATE
+2025-10-23T08:16:28.2517579Z 	: > Task :app:generateDebugAndroidTestResValues UP-TO-DATE
+2025-10-23T08:16:28.2518229Z 	: > Task :app:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+2025-10-23T08:16:28.2518925Z 	: > Task :app:generateDebugAndroidTestResources UP-TO-DATE
+2025-10-23T08:16:28.2519575Z 	: > Task :app:mergeDebugAndroidTestResources UP-TO-DATE
+2025-10-23T08:16:28.2520221Z 	: > Task :app:processDebugAndroidTestResources UP-TO-DATE
+2025-10-23T08:16:28.2521065Z 	: > Task :app:javaPreCompileDebugAndroidTest UP-TO-DATE
+2025-10-23T08:16:28.2521648Z 	: > Task :app:compressDebugAssets UP-TO-DATE
+2025-10-23T08:16:28.2522175Z 	: > Task :app:l8DexDesugarLibDebug UP-TO-DATE
+2025-10-23T08:16:28.2522726Z 	: > Task :app_settings:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.2523336Z 	: > Task :device_info_plus:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.2523932Z 	: > Task :firebase_core:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2524540Z 	: > Task :firebase_messaging:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2525231Z 	: > Task :flutter_local_notifications:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2525973Z 	: > Task :flutter_native_splash:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2526720Z 	: > Task :flutter_plugin_android_lifecycle:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2527461Z 	: > Task :integration_test:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2528616Z 	: > Task :local_auth_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2529319Z 	: > Task :path_provider_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2529958Z 	: > Task :patrol:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.2530851Z 	: > Task :permission_handler_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2531520Z 	: > Task :share_plus:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.2532187Z 	: > Task :shared_preferences_android:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.2532895Z 	: > Task :url_launcher_android:processDebugJavaRes NO-SOURCE
+2025-10-23T08:16:28.2533572Z 	: > Task :video_player_android:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.2534258Z 	: > Task :webview_flutter_android:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.3552069Z 	: > Task :app:checkDebugDuplicateClasses UP-TO-DATE
+2025-10-23T08:16:28.3552808Z 	: > Task :app:desugarDebugFileDependencies UP-TO-DATE
+2025-10-23T08:16:28.3553368Z 	: > Task :app:compileDebugKotlin
+2025-10-23T08:16:28.3553896Z 	: > Task :app:mergeExtDexDebug UP-TO-DATE
+2025-10-23T08:16:28.3554465Z 	: > Task :app:compileDebugJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.3555083Z 	: > Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+2025-10-23T08:16:28.3555719Z 	: > Task :app:compileDebugAndroidTestKotlin NO-SOURCE
+2025-10-23T08:16:28.3556389Z 	: > Task :app:compileDebugAndroidTestJavaWithJavac UP-TO-DATE
+2025-10-23T08:16:28.3557012Z 	: > Task :app:processDebugJavaRes UP-TO-DATE
+2025-10-23T08:16:28.3557534Z 	: > Task :app:mergeDebugJavaResource UP-TO-DATE
+2025-10-23T08:16:28.3558129Z 	: > Task :app_settings:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3558785Z 	: > Task :device_info_plus:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3559532Z 	: > Task :firebase_messaging:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3560218Z 	: > Task :firebase_core:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3561224Z 	: > Task :flutter_local_notifications:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3562042Z 	: > Task :flutter_native_splash:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3562779Z 	: > Task :local_auth_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3563570Z 	: > Task :flutter_plugin_android_lifecycle:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3564362Z 	: > Task :integration_test:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.3565095Z 	: > Task :path_provider_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4496874Z 	: > Task :patrol:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4497712Z 	: > Task :permission_handler_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4498651Z 	: > Task :share_plus:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4499433Z 	: > Task :shared_preferences_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4500225Z 	: > Task :url_launcher_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4501223Z 	: > Task :video_player_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4501980Z 	: > Task :webview_flutter_android:bundleLibRuntimeToDirDebug UP-TO-DATE
+2025-10-23T08:16:28.4502626Z 	: > Task :app:dexBuilderDebug UP-TO-DATE
+2025-10-23T08:16:28.4503120Z 	: > Task :app:mergeLibDexDebug UP-TO-DATE
+2025-10-23T08:16:28.4503633Z 	: > Task :app:mergeProjectDexDebug UP-TO-DATE
+2025-10-23T08:16:28.4504165Z 	: > Task :app:configureCMakeDebug[arm64-v8a]
+2025-10-23T08:16:28.4504819Z 	: > Task :app:buildCMakeDebug[arm64-v8a]
+2025-10-23T08:16:28.4505327Z 	: > Task :app:configureCMakeDebug[armeabi-v7a]
+2025-10-23T08:16:28.4505834Z 	: > Task :app:buildCMakeDebug[armeabi-v7a]
+2025-10-23T08:16:28.4506326Z 	: > Task :app:configureCMakeDebug[x86_64]
+2025-10-23T08:16:28.4506820Z 	: > Task :app:buildCMakeDebug[x86_64]
+2025-10-23T08:16:28.4507297Z 	: > Task :app:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4507872Z 	: > Task :app_settings:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4508893Z 	: > Task :app_settings:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4509515Z 	: > Task :app_settings:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4510171Z 	: > Task :device_info_plus:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4511001Z 	: > Task :device_info_plus:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4511675Z 	: > Task :device_info_plus:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4512352Z 	: > Task :firebase_core:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4512959Z 	: > Task :firebase_core:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4513578Z 	: > Task :firebase_core:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4514240Z 	: > Task :firebase_messaging:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4515153Z 	: > Task :firebase_messaging:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4515834Z 	: > Task :firebase_messaging:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4516606Z 	: > Task :flutter_local_notifications:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4517368Z 	: > Task :flutter_local_notifications:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4518094Z 	: > Task :flutter_local_notifications:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4518850Z 	: > Task :flutter_native_splash:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4520499Z 	: > Task :flutter_native_splash:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4521317Z 	: > Task :flutter_native_splash:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4522139Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4522958Z 	: > Task :flutter_plugin_android_lifecycle:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4523819Z 	: > Task :flutter_plugin_android_lifecycle:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4524609Z 	: > Task :integration_test:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4525259Z 	: > Task :integration_test:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4525928Z 	: > Task :integration_test:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4526620Z 	: > Task :local_auth_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4527264Z 	: > Task :local_auth_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4527920Z 	: > Task :local_auth_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4528770Z 	: > Task :path_provider_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4529459Z 	: > Task :path_provider_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4530175Z 	: > Task :path_provider_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4531097Z 	: > Task :patrol:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4531657Z 	: > Task :patrol:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4532225Z 	: > Task :patrol:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4532917Z 	: > Task :permission_handler_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4533693Z 	: > Task :permission_handler_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4534475Z 	: > Task :permission_handler_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4535192Z 	: > Task :share_plus:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4535779Z 	: > Task :share_plus:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4536374Z 	: > Task :share_plus:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4537084Z 	: > Task :shared_preferences_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4537850Z 	: > Task :shared_preferences_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4538616Z 	: > Task :shared_preferences_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4539407Z 	: > Task :url_launcher_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4540069Z 	: > Task :url_launcher_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4541239Z 	: > Task :url_launcher_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4541977Z 	: > Task :video_player_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4542648Z 	: > Task :video_player_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4543341Z 	: > Task :video_player_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4544068Z 	: > Task :webview_flutter_android:mergeDebugJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4544765Z 	: > Task :webview_flutter_android:mergeDebugNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4545528Z 	: > Task :webview_flutter_android:copyDebugJniLibsProjectOnly UP-TO-DATE
+2025-10-23T08:16:28.4546215Z 	: > Task :app:mergeDebugNativeLibs UP-TO-DATE
+2025-10-23T08:16:28.4546961Z 	: > Task :app:stripDebugDebugSymbols UP-TO-DATE
+2025-10-23T08:16:28.4547487Z 	: > Task :app:validateSigningDebug UP-TO-DATE
+2025-10-23T08:16:28.4548003Z 	: > Task :app:writeDebugAppMetadata UP-TO-DATE
+2025-10-23T08:16:28.4548562Z 	: > Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+2025-10-23T08:16:28.4549121Z 	: > Task :app:packageDebug UP-TO-DATE
+2025-10-23T08:16:28.4549676Z 	: > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+2025-10-23T08:16:28.4550464Z 	: > Task :app:mergeDebugAndroidTestShaders UP-TO-DATE
+2025-10-23T08:16:28.4551043Z 	: > Task :app:compileDebugAndroidTestShaders NO-SOURCE
+2025-10-23T08:16:28.4551633Z 	: > Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+2025-10-23T08:16:28.4552230Z 	: > Task :app:mergeDebugAndroidTestAssets UP-TO-DATE
+2025-10-23T08:16:28.4552804Z 	: > Task :app:compressDebugAndroidTestAssets UP-TO-DATE
+2025-10-23T08:16:28.4553411Z 	: > Task :app:processDebugAndroidTestJavaRes NO-SOURCE
+2025-10-23T08:16:28.4554025Z 	: > Task :app:mergeDebugAndroidTestJavaResource UP-TO-DATE
+2025-10-23T08:16:28.4554725Z 	: > Task :app:checkDebugAndroidTestDuplicateClasses UP-TO-DATE
+2025-10-23T08:16:28.4555449Z 	: > Task :app:desugarDebugAndroidTestFileDependencies UP-TO-DATE
+2025-10-23T08:16:28.4556110Z 	: > Task :app:mergeExtDexDebugAndroidTest UP-TO-DATE
+2025-10-23T08:16:28.4556692Z 	: > Task :app:mergeLibDexDebugAndroidTest UP-TO-DATE
+2025-10-23T08:16:28.4557246Z 	: > Task :app:dexBuilderDebugAndroidTest UP-TO-DATE
+2025-10-23T08:16:28.4557832Z 	: > Task :app:mergeProjectDexDebugAndroidTest UP-TO-DATE
+2025-10-23T08:16:28.4558478Z 	: > Task :app:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
+2025-10-23T08:16:28.4559117Z 	: > Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+2025-10-23T08:16:28.4559735Z 	: > Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+2025-10-23T08:16:28.4560526Z 	: > Task :app:validateSigningDebugAndroidTest UP-TO-DATE
+2025-10-23T08:16:28.4561228Z 	: > Task :app:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
+2025-10-23T08:16:28.4561899Z 	: > Task :app:packageDebugAndroidTest UP-TO-DATE
+2025-10-23T08:16:28.4562569Z 	: > Task :app:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
+2025-10-23T08:16:35.7481241Z 	: [EmulatorConsole]: Failed to start Emulator console for 5554
+2025-10-23T08:16:52.7486636Z 	: 
+2025-10-23T08:16:52.7489140Z 	: > Task :app:connectedDebugAndroidTest
+2025-10-23T08:16:52.7491748Z 	: Starting 2 tests on emulator-5554 - 14
+2025-10-23T08:16:53.1058180Z 🧪 Check if virtual card can be frozen and unfrozen
+2025-10-23T08:16:55.3175980Z dlopen "libcuda.so" failed!
+2025-10-23T08:16:55.3176545Z dlopen "libcuda.so" failed!
+2025-10-23T08:16:55.3176973Z dlopen "libcuda.so" failed!
+2025-10-23T08:16:55.3177565Z Failed to call cuInit, cannot use nvidia cuvid decoder for h264 stream
+2025-10-23T08:16:55.3301128Z [h264 @ 0x55d2e225da80] no frame!
+2025-10-23T08:16:55.3413611Z [h264 @ 0x55d2e225da80] no frame!
+2025-10-23T08:16:57.8999622Z ❌ Check if virtual card can be frozen and unfrozen [90m(integration_test/cardCanBeFrozenOrUnfreeze_test.dart)[0m [90m(4s)[0m
+2025-10-23T08:16:57.9016605Z [31m══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════[0m
+2025-10-23T08:16:57.9018102Z [31mThe following _Exception was thrown running a test:[0m
+2025-10-23T08:16:57.9019471Z [31mException: ❌ Test credentials not loaded! Check .patrol.env file[0m
+2025-10-23T08:16:57.9020116Z [31m[0m
+2025-10-23T08:16:57.9020825Z [31mWhen the exception was thrown, this was the stack:[0m
+2025-10-23T08:16:57.9021897Z [31m#0      LoginToApp.login (file:///home/runner/work/Ivory/Ivory/integration_test/auth/loginToApp.dart:60:7)[0m
+2025-10-23T08:16:57.9023483Z [31m#1      main.<anonymous closure> (file:///home/runner/work/Ivory/Ivory/integration_test/cardCanBeFrozenOrUnfreeze_test.dart:130:25)[0m
+2025-10-23T08:16:57.9039848Z [31m<asynchronous suspension>[0m
+2025-10-23T08:16:57.9040832Z [31m#2      patrolTest.<anonymous closure> (package:patrol/src/common.dart:149:7)[0m
+2025-10-23T08:16:57.9041575Z [31m<asynchronous suspension>[0m
+2025-10-23T08:16:57.9042935Z [31m#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)[0m
+2025-10-23T08:16:57.9043900Z [31m<asynchronous suspension>[0m
+2025-10-23T08:16:57.9044869Z [31m#4      PatrolBinding._wrapTestBodyWithExceptionGatherer (package:patrol/src/binding.dart:250:5)[0m
+2025-10-23T08:16:57.9051500Z [31m<asynchronous suspension>[0m
+2025-10-23T08:16:57.9052405Z [31m#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)[0m
+2025-10-23T08:16:57.9053244Z [31m<asynchronous suspension>[0m
+2025-10-23T08:16:57.9054456Z [31m#6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:814:12)[0m
+2025-10-23T08:16:57.9055614Z [31m<asynchronous suspension>[0m
+2025-10-23T08:16:57.9056095Z [31m[0m
+2025-10-23T08:16:57.9056513Z [31mThe test description was:[0m
+2025-10-23T08:16:57.9057151Z [31m  Check if virtual card can be frozen and unfrozen[0m
+2025-10-23T08:16:57.9058087Z [31m═════════════════════════════════════════════════════════════════[0m
+2025-10-23T08:16:57.9058684Z [31m[0m
+2025-10-23T08:16:58.0509828Z 	: 
+2025-10-23T08:16:58.0511857Z 	: com.thinslices.solarisdemo.MainActivityTest > runDartTest[cardCanBeFrozenOrUnfreeze_test Check if virtual card can be frozen and unfrozen][emulator-5554 - 14] [31mFAILED [0m
+2025-10-23T08:16:58.0513779Z 	: 	java.lang.AssertionError: Dart test failed: cardCanBeFrozenOrUnfreeze_test Check if virtual card can be frozen and unfrozen
+2025-10-23T08:16:58.0515085Z 	: 	══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+2025-10-23T08:17:02.2732445Z 🧪 Repayment rate is saved correctly
+2025-10-23T08:17:02.7481089Z 	: 
+2025-10-23T08:17:02.7483631Z 	: emulator-5554 - 14 Tests 1/2 completed. (0 skipped) (1 failed)
+2025-10-23T08:17:03.7054086Z [h264 @ 0x55d2ed95d600] no frame!
+2025-10-23T08:17:03.7118979Z [h264 @ 0x55d2ed95d600] no frame!
+2025-10-23T08:17:04.8416178Z         ⏳   1. [33mtap[0m widgets with key [<'LoginButton'>].
+2025-10-23T08:17:07.0035975Z [A[K        ✅   1. [33mtap[0m widgets with key [<'LoginButton'>].
+2025-10-23T08:17:07.0041140Z         ⏳   2. [36mwaitUntilVisible[0m widgets with key [<'LoginTitle'>].
+2025-10-23T08:17:07.0290056Z [A[K        ✅   2. [36mwaitUntilVisible[0m widgets with key [<'LoginTitle'>].
+2025-10-23T08:17:07.0308016Z         ⏳   3. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Email address".
+2025-10-23T08:17:12.6442072Z [A[K        ✅   3. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Email address".
+2025-10-23T08:17:12.6443590Z         ⏳   4. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Password".
+2025-10-23T08:17:15.0299388Z [A[K        ✅   4. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Password".
+2025-10-23T08:17:15.0376874Z         ⏳   5. [33mtap[0m widgets with text "Continue".
+2025-10-23T08:17:25.2328351Z [A[K        ✅   5. [33mtap[0m widgets with text "Continue".
+2025-10-23T08:17:25.2329613Z         ⏳   6. [94misPermissionDialogVisible[0m [90m(native)[0m
+2025-10-23T08:17:26.8577128Z [A[K        ✅   6. [94misPermissionDialogVisible[0m [90m(native)[0m
+2025-10-23T08:17:26.8634818Z         ⏳   7. [36mwaitUntilVisible[0m widgets with text "Verify login".
+2025-10-23T08:17:36.9542089Z [A[K        ❌   7. [36mwaitUntilVisible[0m widgets with text "Verify login".
+2025-10-23T08:17:37.3538008Z ❌ Repayment rate is saved correctly [90m(integration_test/repaymentRateIsSaved_test.dart)[0m [90m(35s)[0m
+2025-10-23T08:17:37.3554076Z [31m══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════[0m
+2025-10-23T08:17:37.3558895Z [31mThe following WaitUntilVisibleTimeoutException was thrown running[0m
+2025-10-23T08:17:37.3582896Z [31ma test:[0m
+2025-10-23T08:17:37.4508555Z 	: 
+2025-10-23T08:17:37.4509546Z 	: > Task :app:connectedDebugAndroidTest
+2025-10-23T08:17:37.4510897Z 	: 
+2025-10-23T08:17:37.4512410Z 	: com.thinslices.solarisdemo.MainActivityTest > runDartTest[repaymentRateIsSaved_test Repayment rate is saved correctly][emulator-5554 - 14] [31mFAILED [0m
+2025-10-23T08:17:37.4514077Z 	: 	java.lang.AssertionError: Dart test failed: repaymentRateIsSaved_test Repayment rate is saved correctly
+2025-10-23T08:17:37.4516135Z 	: 	══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+2025-10-23T08:17:39.2486629Z 	: Tests on emulator-5554 - 14 failed: There was 2 failure(s).
+2025-10-23T08:17:39.2521804Z 	: 
+2025-10-23T08:17:39.2522324Z 	: Finished 2 tests on emulator-5554 - 14
+2025-10-23T08:17:40.2480745Z 	: 
+2025-10-23T08:17:40.2482143Z 	: > Task :app:connectedDebugAndroidTest FAILED
+2025-10-23T08:17:40.2482744Z 	
+2025-10-23T08:17:40.2487088Z 	FAILURE: Build failed with an exception.
+2025-10-23T08:17:40.2488842Z 	
+2025-10-23T08:17:40.2491914Z 	* What went wrong:
+2025-10-23T08:17:40.2492481Z 	Execution failed for task ':app:connectedDebugAndroidTest'.
+2025-10-23T08:17:40.2493683Z 	See the report at: file:///home/runner/work/Ivory/Ivory/build/app/reports/androidTests/connected/connected/debug/index.html
+2025-10-23T08:17:40.2494676Z 	
+2025-10-23T08:17:40.2494976Z 	* Try:
+2025-10-23T08:17:40.2495411Z 	> Run with --stacktrace option to get the stack trace.
+2025-10-23T08:17:40.2495991Z 	> Run with --info or --debug option to get more log output.
+2025-10-23T08:17:40.2496509Z 	> Run with --scan to get full insights.
+2025-10-23T08:17:40.2496984Z 	> Get more help at https://help.gradle.org.
+2025-10-23T08:17:40.2497398Z 	
+2025-10-23T08:17:40.2497670Z 	BUILD FAILED in 1m 21s
+2025-10-23T08:17:40.2498078Z 	: 398 actionable tasks: 13 executed, 385 up-to-date
+2025-10-23T08:17:40.3216885Z 
+2025-10-23T08:17:40.3218964Z [1mTest summary:[0m
+2025-10-23T08:17:40.3219507Z 📝 Total: 2
+2025-10-23T08:17:40.3219941Z ✅ Successful: 0
+2025-10-23T08:17:40.3220514Z ❌ Failed: 2
+2025-10-23T08:17:40.3221429Z   - Check if virtual card can be frozen and unfrozen [90m(integration_test/cardCanBeFrozenOrUnfreeze_test.dart)[0m
+2025-10-23T08:17:40.3222863Z   - Repayment rate is saved correctly [90m(integration_test/repaymentRateIsSaved_test.dart)[0m
+2025-10-23T08:17:40.3223747Z ⏩ Skipped: 0
+2025-10-23T08:17:40.3224696Z 📊 Report: file:///home/runner/work/Ivory/Ivory/build/app/reports/androidTests/connected/index.html
+2025-10-23T08:17:40.3225628Z ⏱️  Duration: 1m 21s
+2025-10-23T08:17:40.3225867Z 
+2025-10-23T08:17:40.3228180Z ✗ Failed to execute tests of apk with entrypoint test_bundle.dart on emulator-5554 (Gradle test execution failed with code 1) (81.2s)
+2025-10-23T08:17:40.3241585Z Exception: Gradle test execution failed with code 1
+2025-10-23T08:17:40.3243513Z #0      AndroidTestBackend.execute.<anonymous closure> (package:patrol_cli/src/android/android_test_backend.dart:311:9)
+2025-10-23T08:17:40.3244484Z <asynchronous suspension>
+2025-10-23T08:17:40.3245091Z #1      DisposeScope.run (package:dispose_scope/src/dispose_scope.dart:46:7)
+2025-10-23T08:17:40.3245756Z <asynchronous suspension>
+2025-10-23T08:17:40.3246469Z #2      AndroidTestBackend.execute (package:patrol_cli/src/android/android_test_backend.dart:229:5)
+2025-10-23T08:17:40.3247234Z <asynchronous suspension>
+2025-10-23T08:17:40.3247812Z #3      TestCommand._execute (package:patrol_cli/src/commands/test.dart:395:7)
+2025-10-23T08:17:40.3248844Z <asynchronous suspension>
+2025-10-23T08:17:40.3249391Z #4      TestCommand.run (package:patrol_cli/src/commands/test.dart:268:23)
+2025-10-23T08:17:40.3249970Z <asynchronous suspension>
+2025-10-23T08:17:40.3251877Z #5      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2025-10-23T08:17:40.3252464Z <asynchronous suspension>
+2025-10-23T08:17:40.3253143Z #6      PatrolCommandRunner.runCommand (package:patrol_cli/src/runner/patrol_command_runner.dart:401:18)
+2025-10-23T08:17:40.3253876Z <asynchronous suspension>
+2025-10-23T08:17:40.3254500Z #7      PatrolCommandRunner.run (package:patrol_cli/src/runner/patrol_command_runner.dart:335:18)
+2025-10-23T08:17:40.3255506Z <asynchronous suspension>
+2025-10-23T08:17:40.3256110Z #8      patrolCommandRunner (package:patrol_cli/src/runner/patrol_command_runner.dart:79:20)
+2025-10-23T08:17:40.3256784Z <asynchronous suspension>
+2025-10-23T08:17:40.3257392Z #9      main (file:///home/runner/.pub-cache/hosted/pub.dev/patrol_cli-3.10.0/bin/main.dart:6:20)
+2025-10-23T08:17:40.3258061Z <asynchronous suspension>
+2025-10-23T08:17:40.3258287Z 
+2025-10-23T08:17:40.3258626Z Uninstalling com.thinslices.solarisdemo from Android SDK built for x86 64
+2025-10-23T08:17:40.3259713Z See the logs above to learn what happened. Also consider running with --verbose. If the logs still aren't useful, then it's a bug - please report it.
+2025-10-23T08:17:40.6938870Z Uninstalling com.thinslices.solarisdemo.test from Android SDK built for x86 64
+2025-10-23T08:17:40.9749521Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+2025-10-23T08:17:40.9760178Z ##[group]Terminate Emulator
+2025-10-23T08:17:40.9761144Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2025-10-23T08:17:40.9778901Z OK: killing emulator, bye bye
+2025-10-23T08:17:40.9779258Z OK
+2025-10-23T08:17:40.9786017Z ##[endgroup]
+2025-10-23T08:17:40.9787181Z INFO         | Wait for emulator (pid 4787) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+2025-10-23T08:17:40.9788272Z 
+2025-10-23T08:17:40.9894539Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+2025-10-23T08:17:40.9897216Z INFO         | Saving snapshot 'default_boot' using 0 ms
+2025-10-23T08:17:41.3108998Z ERROR        | stop: Not implemented
+2025-10-23T08:17:41.3110216Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
