@@ -1,0 +1,397 @@
+﻿2025-10-23T08:56:23.1880372Z ##[group]Run reactivecircus/android-emulator-runner@v2
+2025-10-23T08:56:23.1880674Z with:
+2025-10-23T08:56:23.1880862Z   api-level: 31
+2025-10-23T08:56:23.1881053Z   arch: x86_64
+2025-10-23T08:56:23.1881240Z   target: default
+2025-10-23T08:56:23.1881436Z   profile: pixel_5
+2025-10-23T08:56:23.1881643Z   force-avd-creation: false
+2025-10-23T08:56:23.1881881Z   disable-animations: true
+2025-10-23T08:56:23.1882266Z   emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
+2025-10-23T08:56:23.1883455Z   script: flutter doctor -v
+echo "📝 Running tests with verbose logging for better debugging"
+echo "🔐 Passing credentials via --dart-define"
+patrol test integration_test/ \
+  --dart-define=PATROL_EMAIL="***" \
+  --dart-define=PATROL_PASSWORD="***" \
+  --verbose
+
+2025-10-23T08:56:23.1884286Z   cores: 2
+2025-10-23T08:56:23.1884489Z   avd-name: test
+2025-10-23T08:56:23.1884699Z   emulator-boot-timeout: 600
+2025-10-23T08:56:23.1884930Z   emulator-port: 5554
+2025-10-23T08:56:23.1885189Z   disable-spellchecker: false
+2025-10-23T08:56:23.1885430Z   disable-linux-hw-accel: auto
+2025-10-23T08:56:23.1885665Z   enable-hw-keyboard: false
+2025-10-23T08:56:23.1886387Z   channel: stable
+2025-10-23T08:56:23.1886598Z env:
+2025-10-23T08:56:23.1886882Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T08:56:23.1887326Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T08:56:23.1887744Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T08:56:23.1888076Z   PUB_CACHE: /home/runner/.pub-cache
+2025-10-23T08:56:23.1888338Z ##[endgroup]
+2025-10-23T08:56:23.2373587Z ##[group]Configure emulator
+2025-10-23T08:56:23.2378206Z API level: 31
+2025-10-23T08:56:23.2378589Z System image API level: 31
+2025-10-23T08:56:23.2379111Z target: default
+2025-10-23T08:56:23.2379709Z CPU architecture: x86_64
+2025-10-23T08:56:23.2380117Z Hardware profile: pixel_5
+2025-10-23T08:56:23.2381599Z Cores: 2
+2025-10-23T08:56:23.2381999Z RAM size: 
+2025-10-23T08:56:23.2382386Z Heap size: 
+2025-10-23T08:56:23.2382774Z SD card path or size: 
+2025-10-23T08:56:23.2383196Z Disk size: 
+2025-10-23T08:56:23.2383557Z AVD name: test
+2025-10-23T08:56:23.2383962Z force avd creation: false
+2025-10-23T08:56:23.2384427Z Emulator boot timeout: 600
+2025-10-23T08:56:23.2385634Z emulator port: 5554
+2025-10-23T08:56:23.2386548Z emulator options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
+2025-10-23T08:56:23.2387414Z disable animations: true
+2025-10-23T08:56:23.2387877Z disable spellchecker: false
+2025-10-23T08:56:23.2388394Z disable Linux hardware acceleration: false
+2025-10-23T08:56:23.2388966Z enable hardware keyboard: false
+2025-10-23T08:56:23.2389430Z Channel: 0 (stable)
+2025-10-23T08:56:23.2391469Z Script:
+2025-10-23T08:56:23.2392118Z flutter doctor -v
+2025-10-23T08:56:23.2393024Z echo "📝 Running tests with verbose logging for better debugging"
+2025-10-23T08:56:23.2393846Z echo "🔐 Passing credentials via --dart-define"
+2025-10-23T08:56:23.2394461Z patrol test integration_test/ \
+2025-10-23T08:56:23.2394986Z --dart-define=PATROL_EMAIL="***" \
+2025-10-23T08:56:23.2395607Z --dart-define=PATROL_PASSWORD="***" \
+2025-10-23T08:56:23.2396285Z --verbose
+2025-10-23T08:56:23.2396602Z Pre emulator launch script:
+2025-10-23T08:56:23.2397295Z ##[endgroup]
+2025-10-23T08:56:23.2397864Z ##[group]Install Android SDK
+2025-10-23T08:56:23.2487913Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+2025-10-23T08:56:31.4303994Z Installing latest build tools, platform tools, and platform.
+2025-10-23T08:56:31.4320211Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-31'> /dev/null
+2025-10-23T08:56:36.1497458Z Installing latest emulator.
+2025-10-23T08:56:36.1514154Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+2025-10-23T08:56:43.7423551Z Installing system images.
+2025-10-23T08:56:43.7441767Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-31;default;x86_64' --channel=0 > /dev/null
+2025-10-23T08:57:04.9476579Z ##[endgroup]
+2025-10-23T08:57:04.9480219Z ##[group]Launch Emulator
+2025-10-23T08:57:04.9480720Z Creating AVD.
+2025-10-23T08:57:04.9502476Z [command]/usr/bin/sh -c \echo no | avdmanager create avd --force -n test --abi 'default/x86_64' --package 'system-images;android-31;default;x86_64' --device 'pixel_5'
+2025-10-23T08:57:05.6219912Z Loading local repository...                                                     
+2025-10-23T08:57:05.6222600Z [=========                              ] 25% Loading local repository...       
+2025-10-23T08:57:05.6224572Z [=========                              ] 25% Fetch remote repository...        
+2025-10-23T08:57:05.6225280Z [=======================================] 100% Fetch remote repository...       
+2025-10-23T08:57:06.1756505Z [command]/usr/bin/sh -c \printf 'hw.cpu.ncore=2
+2025-10-23T08:57:06.1756983Z ' >> /home/runner/.android/avd/test.avd/config.ini
+2025-10-23T08:57:06.1773041Z Starting emulator.
+2025-10-23T08:57:06.1788929Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect &
+2025-10-23T08:57:06.1902694Z INFO         | Android emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
+2025-10-23T08:57:06.1903472Z INFO         | Graphics backend: gfxstream
+2025-10-23T08:57:06.1904316Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-31/default/x86_64/
+2025-10-23T08:57:06.7954138Z WARNING      | Please update the emulator to one that supports the feature(s): Vulkan
+2025-10-23T08:57:06.7955264Z INFO         | Increasing RAM size to 2048MB
+2025-10-23T08:57:06.7956210Z ##############################################################################
+2025-10-23T08:57:06.7956806Z ##                        WARNING - ACTION REQUIRED                         ##
+2025-10-23T08:57:06.7957852Z ##  Consider using the '-metrics-collection' flag to help improve the       ##
+2025-10-23T08:57:06.7958845Z ##  emulator by sending anonymized usage data. Or use the '-no-metrics'     ##
+2025-10-23T08:57:06.7959890Z ##  flag to bypass this warning and turn off the metrics collection.        ##
+2025-10-23T08:57:06.7960820Z ##  In a future release this warning will turn into a one-time blocking     ##
+2025-10-23T08:57:06.7961807Z ##  prompt to ask for explicit user input regarding metrics collection.     ##
+2025-10-23T08:57:06.7962540Z ##                                                                          ##
+2025-10-23T08:57:06.7963306Z ##  Please see '-help-metrics-collection' for more details. You can use     ##
+2025-10-23T08:57:06.7964217Z ##  '-metrics-to-file' or '-metrics-to-console' flags to see what type of   ##
+2025-10-23T08:57:06.7965115Z ##  data is being collected by emulator as part of usage statistics.        ##
+2025-10-23T08:57:06.7965844Z ##############################################################################
+2025-10-23T08:57:06.7966624Z INFO         | Guest GLES Driver: Auto (ext controls)
+2025-10-23T08:57:06.7967326Z library_mode swiftshader_indirect gpu mode swiftshader_indirect
+2025-10-23T08:57:06.7967923Z INFO         | Checking system compatibility:
+2025-10-23T08:57:06.7968426Z INFO         |   Checking: hasSufficientDiskSpace
+2025-10-23T08:57:06.7968964Z INFO         |      Ok: Disk space requirements to run avd: `test` are met
+2025-10-23T08:57:06.7969505Z INFO         |   Checking: hasSufficientHwGpu
+2025-10-23T08:57:06.7970029Z INFO         |      Ok: Hardware GPU compatibility checks are not required
+2025-10-23T08:57:06.7970562Z INFO         |   Checking: hasSufficientSystem
+2025-10-23T08:57:06.7971030Z INFO         |      Ok: System requirements to run avd: `test` are met
+2025-10-23T08:57:06.7971584Z ERROR        | Unable to connect to adb daemon on port: 5037
+2025-10-23T08:57:06.7972408Z INFO         | Storing crashdata in: /tmp/android-runner/emu-crash-36.2.12.db, detection is enabled for process: 4850
+2025-10-23T08:57:06.7973249Z INFO         | Initializing hardware OpenGLES emulation support
+2025-10-23T08:57:06.7973986Z INFO         | android_startOpenglesRenderer: gpu info
+2025-10-23T08:57:06.7974430Z INFO         | 
+2025-10-23T08:57:06.7974778Z INFO         | HealthMonitor disabled.
+2025-10-23T08:57:06.7975361Z INFO         | initIcdPaths: ICD set to 'swiftshader', using Swiftshader ICD
+2025-10-23T08:57:06.7976478Z INFO         | Setting ICD filenames for the loader = /usr/local/lib/android/sdk/emulator/lib64/vulkan/vk_swiftshader_icd.json
+2025-10-23T08:57:06.7977723Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-10-23T08:57:06.7979198Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+2025-10-23T08:57:06.7980829Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix): begin
+2025-10-23T08:57:06.7982660Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-10-23T08:57:06.7983824Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] failed (posix). dlerror: []
+2025-10-23T08:57:06.7984596Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-10-23T08:57:06.7985416Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]: not found in map, open for the first time
+2025-10-23T08:57:06.7986550Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix): begin
+2025-10-23T08:57:06.7987770Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-10-23T08:57:06.7988904Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] failed (posix). dlerror: []
+2025-10-23T08:57:06.7989617Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-10-23T08:57:06.7990327Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+2025-10-23T08:57:06.7991089Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so] (posix): begin
+2025-10-23T08:57:06.7992086Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-10-23T08:57:06.7992993Z INFO         | SharedLibrary::open succeeded for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so].
+2025-10-23T08:57:06.7993572Z INFO         | Added library: /usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so
+2025-10-23T08:57:06.8132777Z INFO         | Selecting Vulkan device: SwiftShader Device (Subzero), Version: 1.3.0
+2025-10-23T08:57:06.8410375Z INFO         | Disabling sparse binding feature support
+2025-10-23T08:57:06.8411338Z INFO         | SharedLibrary::open for [libGLESv2.so]: not found in map, open for the first time
+2025-10-23T08:57:06.8411965Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix): begin
+2025-10-23T08:57:06.8412517Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix,linux): call dlopen on [libGLESv2.so]
+2025-10-23T08:57:06.8420338Z INFO         | SharedLibrary::open succeeded for [libGLESv2.so].
+2025-10-23T08:57:06.8421247Z INFO         | SharedLibrary::open for [libEGL.so]: not found in map, open for the first time
+2025-10-23T08:57:06.8422315Z INFO         | SharedLibrary::open for [libEGL.so] (posix): begin
+2025-10-23T08:57:06.8423068Z INFO         | SharedLibrary::open for [libEGL.so] (posix,linux): call dlopen on [libEGL.so]
+2025-10-23T08:57:06.8423727Z INFO         | SharedLibrary::open succeeded for [libEGL.so].
+2025-10-23T08:57:06.8437462Z INFO         | SharedLibrary::open for [libX11]
+2025-10-23T08:57:06.8438246Z INFO         | SharedLibrary::open for [libX11]: not found in map, open for the first time
+2025-10-23T08:57:06.8438762Z INFO         | SharedLibrary::open for [libX11] (posix): begin
+2025-10-23T08:57:06.8439168Z INFO         | SharedLibrary::open for [libX11] (posix,linux): call dlopen on [libX11.so]
+2025-10-23T08:57:06.8439601Z INFO         | SharedLibrary::open for [libX11] failed (posix). dlerror: []
+2025-10-23T08:57:06.8440102Z INFO         | SharedLibrary::open for [libX11.so.6]
+2025-10-23T08:57:06.8440841Z INFO         | SharedLibrary::open for [libX11.so.6]: not found in map, open for the first time
+2025-10-23T08:57:06.8441486Z INFO         | SharedLibrary::open for [libX11.so.6] (posix): begin
+2025-10-23T08:57:06.8442153Z INFO         | SharedLibrary::open for [libX11.so.6] (posix,linux): call dlopen on [libX11.so.6]
+2025-10-23T08:57:06.8442823Z WARNING: could not open libX11.so, try libX11.so.6
+2025-10-23T08:57:06.8444774Z INFO         | SharedLibrary::open succeeded for [libX11.so.6].
+2025-10-23T08:57:06.8490746Z INFO         | Initializing VkEmulation features:
+2025-10-23T08:57:06.8492057Z INFO         |     glInteropSupported: false
+2025-10-23T08:57:06.8492622Z INFO         |     useDeferredCommands: true
+2025-10-23T08:57:06.8493155Z INFO         |     createResourceWithRequirements: true
+2025-10-23T08:57:06.8493696Z INFO         |     useVulkanComposition: false
+2025-10-23T08:57:06.8494245Z INFO         |     useVulkanNativeSwapchain: false
+2025-10-23T08:57:06.8495135Z INFO         |     enable guestRenderDoc: false
+2025-10-23T08:57:06.8495621Z INFO         |     ASTC LDR emulation mode: Gpu
+2025-10-23T08:57:06.8496156Z INFO         |     enable ETC2 emulation: true
+2025-10-23T08:57:06.8496538Z INFO         |     enable Ycbcr emulation: false
+2025-10-23T08:57:06.8497065Z INFO         |     guestVulkanOnly: false
+2025-10-23T08:57:06.8497600Z INFO         |     useDedicatedAllocations: false
+2025-10-23T08:57:06.8498245Z INFO         | Graphics Adapter Vendor Google (Google Inc.)
+2025-10-23T08:57:06.8498916Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+2025-10-23T08:57:06.8499509Z INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+2025-10-23T08:57:06.8501614Z INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+2025-10-23T08:57:06.8503330Z INFO         | Graphics Device Extensions N/A
+2025-10-23T08:57:06.8558762Z INFO         | Sending adb public key [QAAAAJeX8KTZp7RxKSQxBM7QuIbl5fY3xQ9lI2lhnALaJYV3zo03r4SoXiDtnmgvCnppOCNzi4rUoqlPbZUGz/GkDWdU42+uQRYux6aSKCkayOawUvdSOtC5+m6O0tsMkyn3ZFb2v7SyJtWKB5+iqE5pjRAhJtpi61DFt22DC+rYDMLErXZoUGH2bWpW/o+uvIuAH6WlZQnjksKOCry1olw1ZIqMgqTTcSrl0ShSqvndJgAgqKABXs+1H2L+jhNylrp70I6+WkmGsxH82b0uz2Z8iX0gKoLuAMzExZINDNMG1zvBz6CnWr3OqhL6eeVZeME3rhJe7fwPpVFKtsQmKHOFWpocQRyc9ZUDQmEOfNnQuv0XZXo0qxDWRA5jJF6KfdTaPhVrfouRyU3DCmGqEt9WmuodzQcz+1ApvgUfcJkxd5QFNfdfKS3mgK0cTG9A9kQWefZYgQYnm4cZsXpXMBcmp3FGT3C6e/LIlBG9I4aM+2j5WlBhdx1pO4VPaQaFKhNhEGMrs/FX2s9iiNai9ysHovegZM0b62XuDRtgSuqtO1cNVstuOSBfNqD8WOM68+adhm1Mtojq2B55zUf1ou7IIC8Cj6kQQy8uCyJ+G/iuaMHYhaVPasnhBPSTKlCuQNU+qcfzy+DlaB3/JJ9LbntlKIeccRBQ2bl97FpEOL+POwKlZ71acQEAAQA= runner@unknown]
+2025-10-23T08:57:06.8566334Z INFO         | Userspace boot properties:
+2025-10-23T08:57:06.8567060Z INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+2025-10-23T08:57:06.8567784Z INFO         |   androidboot.dalvik.vm.heapsize=512m
+2025-10-23T08:57:06.8568357Z INFO         |   androidboot.debug.hwui.renderer=skiagl
+2025-10-23T08:57:06.8568955Z INFO         |   androidboot.debug.sf.nobootanimation=1
+2025-10-23T08:57:06.8569510Z INFO         |   androidboot.hardware=ranchu
+2025-10-23T08:57:06.8570063Z INFO         |   androidboot.hardware.gltransport=pipe
+2025-10-23T08:57:06.8570630Z INFO         |   androidboot.hardware.vulkan=ranchu
+2025-10-23T08:57:06.8571147Z INFO         |   androidboot.logcat=*:V
+2025-10-23T08:57:06.8571678Z INFO         |   androidboot.opengles.version=196608
+2025-10-23T08:57:06.8572199Z INFO         |   androidboot.qemu=1
+2025-10-23T08:57:06.8579081Z INFO         |   androidboot.qemu.adb.pubkey=QAAAAJeX8KTZp7RxKSQxBM7QuIbl5fY3xQ9lI2lhnALaJYV3zo03r4SoXiDtnmgvCnppOCNzi4rUoqlPbZUGz/GkDWdU42+uQRYux6aSKCkayOawUvdSOtC5+m6O0tsMkyn3ZFb2v7SyJtWKB5+iqE5pjRAhJtpi61DFt22DC+rYDMLErXZoUGH2bWpW/o+uvIuAH6WlZQnjksKOCry1olw1ZIqMgqTTcSrl0ShSqvndJgAgqKABXs+1H2L+jhNylrp70I6+WkmGsxH82b0uz2Z8iX0gKoLuAMzExZINDNMG1zvBz6CnWr3OqhL6eeVZeME3rhJe7fwPpVFKtsQmKHOFWpocQRyc9ZUDQmEOfNnQuv0XZXo0qxDWRA5jJF6KfdTaPhVrfouRyU3DCmGqEt9WmuodzQcz+1ApvgUfcJkxd5QFNfdfKS3mgK0cTG9A9kQWefZYgQYnm4cZsXpXMBcmp3FGT3C6e/LIlBG9I4aM+2j5WlBhdx1pO4VPaQaFKhNhEGMrs/FX2s9iiNai9ysHovegZM0b62XuDRtgSuqtO1cNVstuOSBfNqD8WOM68+adhm1Mtojq2B55zUf1ou7IIC8Cj6kQQy8uCyJ+G/iuaMHYhaVPasnhBPSTKlCuQNU+qcfzy+DlaB3/JJ9LbntlKIeccRBQ2bl97FpEOL+POwKlZ71acQEAAQA= runner@unknown
+2025-10-23T08:57:06.8582769Z INFO         |   androidboot.qemu.avd_name=test
+2025-10-23T08:57:06.8583087Z INFO         |   androidboot.qemu.camera_hq_edge_processing=0
+2025-10-23T08:57:06.8583530Z INFO         |   androidboot.qemu.camera_protocol_ver=1
+2025-10-23T08:57:06.8583857Z INFO         |   androidboot.qemu.cpuvulkan.version=4202496
+2025-10-23T08:57:06.8584231Z INFO         |   androidboot.qemu.gltransport.drawFlushInterval=800
+2025-10-23T08:57:06.8584590Z INFO         |   androidboot.qemu.gltransport.name=pipe
+2025-10-23T08:57:06.8584911Z INFO         |   androidboot.qemu.hwcodec.avcdec=2
+2025-10-23T08:57:06.8585219Z INFO         |   androidboot.qemu.hwcodec.hevcdec=2
+2025-10-23T08:57:06.8585525Z INFO         |   androidboot.qemu.hwcodec.vpxdec=2
+2025-10-23T08:57:06.8586038Z INFO         |   androidboot.qemu.settings.system.screen_off_timeout=2147483647
+2025-10-23T08:57:06.8586443Z INFO         |   androidboot.qemu.virtiowifi=1
+2025-10-23T08:57:06.8586730Z INFO         |   androidboot.qemu.vsync=60
+2025-10-23T08:57:06.8587021Z INFO         |   androidboot.serialno=EMULATOR36X2X12X0
+2025-10-23T08:57:06.8587485Z INFO         |   androidboot.vbmeta.digest=5b2b8e8100634f9df7a10bc101c9f04a2ad5b621bc7fcdec6019ab737183d2cc
+2025-10-23T08:57:06.8587944Z INFO         |   androidboot.vbmeta.hash_alg=sha256
+2025-10-23T08:57:06.8588239Z INFO         |   androidboot.vbmeta.size=6208
+2025-10-23T08:57:06.8588528Z INFO         |   androidboot.veritymode=enforcing
+2025-10-23T08:57:06.8820882Z WARNING: cannnot unmap ptr 0x7f8a52201000 as it is in the protected range from 0x7f89d2200000 to 0x7f8a52400000
+2025-10-23T08:57:06.9016121Z INFO         | Monitoring duration of emulator setup.
+2025-10-23T08:57:06.9224973Z INFO         | Setting display: 0 configuration to: 1080x2340, dpi: 440x440 
+2025-10-23T08:57:06.9225426Z INFO         | setDisplayActiveConfig 0
+2025-10-23T08:57:06.9293194Z USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.
+2025-10-23T08:57:06.9294232Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2025-10-23T08:57:07.6373226Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2025-10-23T08:57:09.8778769Z INFO         | Activated packet streamer for bluetooth emulation
+2025-10-23T08:57:16.1829952Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:16.1852160Z * daemon not running; starting now at tcp:5037
+2025-10-23T08:57:19.3887080Z * daemon started successfully
+2025-10-23T08:57:19.3889358Z adb: device offline
+2025-10-23T08:57:19.3898751Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2025-10-23T08:57:21.3947103Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:21.3977249Z adb: device offline
+2025-10-23T08:57:21.3984298Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2025-10-23T08:57:23.4022052Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:23.4064348Z adb: device offline
+2025-10-23T08:57:23.4071499Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2025-10-23T08:57:25.4096231Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:25.4557627Z 
+2025-10-23T08:57:27.4596923Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:27.4852835Z 
+2025-10-23T08:57:29.4908422Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:29.5159647Z 
+2025-10-23T08:57:31.5189801Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:31.5541144Z 
+2025-10-23T08:57:33.5583273Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:33.5817098Z 
+2025-10-23T08:57:35.5878003Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:35.6143573Z 
+2025-10-23T08:57:37.6204879Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:37.6419224Z 
+2025-10-23T08:57:39.6520792Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-10-23T08:57:39.7124586Z 1
+2025-10-23T08:57:39.7138436Z Emulator booted.
+2025-10-23T08:57:39.7196252Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+2025-10-23T08:57:39.8058033Z Disabling animations.
+2025-10-23T08:57:39.8066114Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+2025-10-23T08:57:39.9046600Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+2025-10-23T08:57:40.0887975Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+2025-10-23T08:57:40.2567062Z ##[endgroup]
+2025-10-23T08:57:40.2593492Z [command]/usr/bin/sh -c flutter doctor -v
+2025-10-23T08:57:40.6467584Z [✓] Flutter (Channel stable, 3.35.6, on Ubuntu 24.04.3 LTS 6.11.0-1018-azure, locale C.UTF-8) [71ms]
+2025-10-23T08:57:40.6470390Z     • Flutter version 3.35.6 on channel stable at /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T08:57:40.6471599Z     • Upstream repository https://github.com/flutter/flutter.git
+2025-10-23T08:57:40.6472789Z     • Framework revision 9f455d2486 (2 weeks ago), 2025-10-08 14:55:31 -0500
+2025-10-23T08:57:40.6474099Z     • Engine revision d2913632a4
+2025-10-23T08:57:40.6475208Z     • Dart version 3.9.2
+2025-10-23T08:57:40.6475703Z     • DevTools version 2.48.0
+2025-10-23T08:57:40.6477822Z     • Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-lldb-debugging
+2025-10-23T08:57:40.6479563Z 
+2025-10-23T08:57:42.1021208Z INFO         | Boot completed in 35888 ms
+2025-10-23T08:57:42.1024508Z INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+2025-10-23T08:57:43.1556909Z [✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0) [2.5s]
+2025-10-23T08:57:43.1566438Z     • Android SDK at /usr/local/lib/android/sdk
+2025-10-23T08:57:43.1573494Z     • Emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
+2025-10-23T08:57:43.1579005Z     • Platform android-36.1, build-tools 36.1.0
+2025-10-23T08:57:43.1596635Z     • ANDROID_HOME = /usr/local/lib/android/sdk
+2025-10-23T08:57:43.1598163Z     • ANDROID_SDK_ROOT = /usr/local/lib/android/sdk
+2025-10-23T08:57:43.1599944Z     • Java binary at: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64/bin/java
+2025-10-23T08:57:43.1601617Z       This JDK is specified by the JAVA_HOME environment variable.
+2025-10-23T08:57:43.1623062Z       To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+2025-10-23T08:57:43.1624521Z     • Java version OpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)
+2025-10-23T08:57:43.1625965Z     • All Android licenses accepted.
+2025-10-23T08:57:43.1626328Z 
+2025-10-23T08:57:43.1626618Z [✓] Chrome - develop for the web [15ms]
+2025-10-23T08:57:43.1627202Z     • Chrome at google-chrome
+2025-10-23T08:57:43.1627500Z 
+2025-10-23T08:57:43.8464448Z [✗] Linux toolchain - develop for Linux desktop [3.2s]
+2025-10-23T08:57:43.8471333Z     • Ubuntu clang version 18.1.3 (1ubuntu1)
+2025-10-23T08:57:43.8475832Z     • cmake version 3.31.6
+2025-10-23T08:57:43.8481345Z     • ninja version 1.13.1
+2025-10-23T08:57:43.8485595Z     • pkg-config version 1.8.1
+2025-10-23T08:57:43.8514283Z     ✗ GTK 3.0 development libraries are required for Linux development.
+2025-10-23T08:57:43.8515428Z       They are likely available from your distribution (e.g.: apt install libgtk-3-dev)
+2025-10-23T08:57:43.8516763Z     ! Unable to access driver information using 'eglinfo'.
+2025-10-23T08:57:43.8517661Z       It is likely available from your distribution (e.g.: apt install mesa-utils)
+2025-10-23T08:57:43.8518353Z 
+2025-10-23T08:57:43.8518661Z [!] Android Studio (not installed) [12ms]
+2025-10-23T08:57:43.8519801Z     • Android Studio not found; download from https://developer.android.com/studio/index.html
+2025-10-23T08:57:43.8520968Z       (or visit https://flutter.dev/to/linux-android-setup for detailed instructions).
+2025-10-23T08:57:43.8521660Z 
+2025-10-23T08:57:43.8522075Z [✓] Connected device (3 available) [1,663ms]
+2025-10-23T08:57:43.8523184Z     • Android SDK built for x86 64 (mobile) • emulator-5554 • android-x64    • Android 12 (API 31) (emulator)
+2025-10-23T08:57:43.8524546Z     • Linux (desktop)                       • linux         • linux-x64      • Ubuntu 24.04.3 LTS 6.11.0-1018-azure
+2025-10-23T08:57:43.8525643Z     • Chrome (web)                          • chrome        • web-javascript • Google Chrome 140.0.7339.207
+2025-10-23T08:57:43.8526442Z 
+2025-10-23T08:57:43.8526819Z [✓] Network resources [297ms]
+2025-10-23T08:57:43.8527553Z     • All expected network resources are available.
+2025-10-23T08:57:43.8528026Z 
+2025-10-23T08:57:43.8528335Z ! Doctor found issues in 2 categories.
+2025-10-23T08:57:43.8727600Z [command]/usr/bin/sh -c echo "📝 Running tests with verbose logging for better debugging"
+2025-10-23T08:57:43.8755198Z 📝 Running tests with verbose logging for better debugging
+2025-10-23T08:57:43.8791544Z [command]/usr/bin/sh -c echo "🔐 Passing credentials via --dart-define"
+2025-10-23T08:57:43.8812024Z 🔐 Passing credentials via --dart-define
+2025-10-23T08:57:43.8838833Z [command]/usr/bin/sh -c patrol test integration_test/ \
+2025-10-23T08:57:44.1456905Z 
+2025-10-23T08:57:44.1457678Z Completion files installed. To enable completion, run the following command in your shell:
+2025-10-23T08:57:44.1458381Z source /home/runner/.bash_profile
+2025-10-23T08:57:44.1458644Z 
+2025-10-23T08:57:44.9685305Z No device specified, using the first one (Android SDK built for x86 64)
+2025-10-23T09:05:36.9051021Z • Building apk with entrypoint test_bundle.dart...
+2025-10-23T09:08:58.0645296Z ✓ Completed building apk with entrypoint test_bundle.dart (201.2s)
+2025-10-23T09:08:58.5943705Z • Executing tests of apk with entrypoint test_bundle.dart on emulator-5554...
+2025-10-23T09:09:33.1110945Z 🧪 Check if virtual card can be frozen and unfrozen
+2025-10-23T09:09:35.0302313Z dlopen "libcuda.so" failed!
+2025-10-23T09:09:35.0325567Z dlopen "libcuda.so" failed!
+2025-10-23T09:09:35.0326433Z dlopen "libcuda.so" failed!
+2025-10-23T09:09:35.0337770Z Failed to call cuInit, cannot use nvidia cuvid decoder for h264 stream
+2025-10-23T09:09:35.0414105Z [h264 @ 0x55de49891600] no frame!
+2025-10-23T09:09:35.0418249Z [h264 @ 0x55de49891600] no frame!
+2025-10-23T09:09:37.7512543Z ❌ Check if virtual card can be frozen and unfrozen [90m(integration_test/cardCanBeFrozenOrUnfreeze_test.dart)[0m [90m(4s)[0m
+2025-10-23T09:09:37.7543164Z [31m══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════[0m
+2025-10-23T09:09:37.7544216Z [31mThe following _Exception was thrown running a test:[0m
+2025-10-23T09:09:37.7545119Z [31mException: ❌ Test credentials not loaded! Checked: --dart-define[0m
+2025-10-23T09:09:37.7966088Z [31mPATROL_EMAIL/PATROL_PASSWORD and .env file[0m
+2025-10-23T09:09:37.8024288Z [31m[0m
+2025-10-23T09:09:37.8097733Z [31mWhen the exception was thrown, this was the stack:[0m
+2025-10-23T09:09:37.8283305Z [31m#0      LoginToApp.login (file:///home/runner/work/Ivory/Ivory/integration_test/auth/loginToApp.dart:40:7)[0m
+2025-10-23T09:09:42.3493925Z 🧪 Repayment rate is saved correctly
+2025-10-23T09:09:43.6478052Z [h264 @ 0x55de64badb00] no frame!
+2025-10-23T09:09:43.6497766Z [h264 @ 0x55de64badb00] no frame!
+2025-10-23T09:09:44.4165037Z         ⏳   1. [33mtap[0m widgets with key [<'LoginButton'>].
+2025-10-23T09:09:46.0098987Z [A[K        ✅   1. [33mtap[0m widgets with key [<'LoginButton'>].
+2025-10-23T09:09:46.0401569Z         ⏳   2. [36mwaitUntilVisible[0m widgets with key [<'LoginTitle'>].
+2025-10-23T09:09:46.1071459Z [A[K        ✅   2. [36mwaitUntilVisible[0m widgets with key [<'LoginTitle'>].
+2025-10-23T09:09:46.1102939Z         ⏳   3. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Email address".
+2025-10-23T09:09:49.6944604Z [A[K        ✅   3. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Email address".
+2025-10-23T09:09:49.6948579Z         ⏳   4. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Password".
+2025-10-23T09:09:50.8130866Z [A[K        ✅   4. [35menterText[0m widgets with type "IvoryTextField" that are ancestors of widgets with text "Password".
+2025-10-23T09:09:50.8134217Z         ⏳   5. [33mtap[0m widgets with text "Continue".
+2025-10-23T09:10:01.1030892Z [A[K        ✅   5. [33mtap[0m widgets with text "Continue".
+2025-10-23T09:10:01.1084441Z         ⏳   6. [94misPermissionDialogVisible[0m [90m(native)[0m
+2025-10-23T09:10:02.5049693Z [A[K        ✅   6. [94misPermissionDialogVisible[0m [90m(native)[0m
+2025-10-23T09:10:02.5063775Z         ⏳   7. [36mwaitUntilVisible[0m widgets with text "Verify login".
+2025-10-23T09:10:12.5477046Z [A[K        ❌   7. [36mwaitUntilVisible[0m widgets with text "Verify login".
+2025-10-23T09:10:13.1632329Z ❌ Repayment rate is saved correctly [90m(integration_test/repaymentRateIsSaved_test.dart)[0m [90m(30s)[0m
+2025-10-23T09:10:13.1661908Z [31m══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════[0m
+2025-10-23T09:10:13.1665046Z [31mThe following WaitUntilVisibleTimeoutException was thrown running[0m
+2025-10-23T09:10:13.1677522Z [31ma test:[0m
+2025-10-23T09:10:13.1698046Z [31mTimeoutException after 0:00:10.000000: Finder "Found 0 widgets[0m
+2025-10-23T09:10:13.1706638Z [31mwith text "Verify login": []" did not find any visible (i.e.[0m
+2025-10-23T09:10:13.1718729Z [31mhit-testable) widgets[0m
+2025-10-23T09:10:13.1724871Z [31m[0m
+2025-10-23T09:10:13.1728827Z [31mWhen the exception was thrown, this was the stack:[0m
+2025-10-23T09:10:13.1739767Z [31m#0      PatrolTester.waitUntilVisible.<anonymous closure>.<anonymous closure> (package:patrol_finders/src/custom_finders/patrol_tester.dart:575:15)[0m
+2025-10-23T09:10:13.1740918Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1746655Z [31m#1      PatrolTester.wrapWithPatrolLog (package:patrol_finders/src/custom_finders/patrol_tester.dart:168:22)[0m
+2025-10-23T09:10:13.1747945Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1749943Z [31m#2      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)[0m
+2025-10-23T09:10:13.1756236Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1760559Z [31m#3      LoginToApp.login (file:///home/runner/work/Ivory/Ivory/integration_test/auth/loginToApp.dart:71:5)[0m
+2025-10-23T09:10:13.1776009Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1788807Z [31m#4      main.<anonymous closure> (file:///home/runner/work/Ivory/Ivory/integration_test/repaymentRateIsSaved_test.dart:122:9)[0m
+2025-10-23T09:10:13.1790580Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1850761Z [31m#5      patrolTest.<anonymous closure> (package:patrol/src/common.dart:149:7)[0m
+2025-10-23T09:10:13.1852104Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1854513Z [31m#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)[0m
+2025-10-23T09:10:13.1855308Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1856249Z [31m#7      PatrolBinding._wrapTestBodyWithExceptionGatherer (package:patrol/src/binding.dart:250:5)[0m
+2025-10-23T09:10:13.1857007Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1857916Z [31m#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)[0m
+2025-10-23T09:10:13.1858617Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1860026Z [31m#9      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:814:12)[0m
+2025-10-23T09:10:13.1861064Z [31m<asynchronous suspension>[0m
+2025-10-23T09:10:13.1861497Z [31m[0m
+2025-10-23T09:10:13.1861844Z [31mThe test description was:[0m
+2025-10-23T09:10:13.1862375Z [31m  Repayment rate is saved correctly[0m
+2025-10-23T09:10:13.1863133Z [31m═════════════════════════════════════════════════════════════════[0m
+2025-10-23T09:10:13.1863653Z [31m[0m
+2025-10-23T09:10:16.2343234Z 
+2025-10-23T09:10:16.2344261Z [1mTest summary:[0m
+2025-10-23T09:10:16.2344946Z 📝 Total: 2
+2025-10-23T09:10:16.2347636Z ✅ Successful: 0
+2025-10-23T09:10:16.2348049Z ❌ Failed: 2
+2025-10-23T09:10:16.2348962Z   - Check if virtual card can be frozen and unfrozen [90m(integration_test/cardCanBeFrozenOrUnfreeze_test.dart)[0m
+2025-10-23T09:10:16.2351819Z   - Repayment rate is saved correctly [90m(integration_test/repaymentRateIsSaved_test.dart)[0m
+2025-10-23T09:10:16.2352690Z ⏩ Skipped: 0
+2025-10-23T09:10:16.2353578Z 📊 Report: file:///home/runner/work/Ivory/Ivory/build/app/reports/androidTests/connected/index.html
+2025-10-23T09:10:16.2354486Z ⏱️  Duration: 1m 17s
+2025-10-23T09:10:16.2354718Z 
+2025-10-23T09:10:16.2355543Z ✗ Failed to execute tests of apk with entrypoint test_bundle.dart on emulator-5554 (Gradle test execution failed with code 1) (77.6s)
+2025-10-23T09:10:16.2373049Z Exception: Gradle test execution failed with code 1
+2025-10-23T09:10:16.2377530Z See the logs above to learn what happened. Also consider running with --verbose. If the logs still aren't useful, then it's a bug - please report it.
+2025-10-23T09:10:16.7943386Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+2025-10-23T09:10:16.7965821Z ##[group]Terminate Emulator
+2025-10-23T09:10:16.7966422Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2025-10-23T09:10:16.7976536Z OK: killing emulator, bye bye
+2025-10-23T09:10:16.7976977Z OK
+2025-10-23T09:10:16.7980647Z ##[endgroup]
+2025-10-23T09:10:16.8022090Z INFO         | Wait for emulator (pid 4850) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+2025-10-23T09:10:16.8023117Z 
+2025-10-23T09:10:16.8126448Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+2025-10-23T09:10:16.8130262Z INFO         | Saving snapshot 'default_boot' using 2 ms
+2025-10-23T09:10:17.1243315Z ERROR        | stop: Not implemented
+2025-10-23T09:10:17.1244465Z WARNING      | Emulator client has not yet been configured.. Call configure me first!

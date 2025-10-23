@@ -1,0 +1,211 @@
+﻿2025-10-23T08:58:37.4044810Z ##[group]Run flutter doctor -v
+2025-10-23T08:58:37.4045530Z [36;1mflutter doctor -v[0m
+2025-10-23T08:58:37.4046240Z [36;1mecho "🎯 Running all tests in: integration_test/"[0m
+2025-10-23T08:58:37.4049480Z [36;1mecho "📝 Using verbose mode for detailed error logs"[0m
+2025-10-23T08:58:37.4050260Z [36;1mecho "🔐 Passing credentials via --dart-define"[0m
+2025-10-23T08:58:37.4050930Z [36;1mpatrol test integration_test/ \[0m
+2025-10-23T08:58:37.4052030Z [36;1m  --dart-define=PATROL_EMAIL="***" \[0m
+2025-10-23T08:58:37.4052760Z [36;1m  --dart-define=PATROL_PASSWORD="***" \[0m
+2025-10-23T08:58:37.4053400Z [36;1m  --verbose[0m
+2025-10-23T08:58:37.4174260Z shell: /bin/bash -e {0}
+2025-10-23T08:58:37.4174470Z env:
+2025-10-23T08:58:37.4174740Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T08:58:37.4175040Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T08:58:37.4175320Z ##[endgroup]
+2025-10-23T08:58:49.3654490Z [✓] Flutter (Channel stable, 3.35.6, on macOS 14.7.6 23H626 darwin-arm64, locale en-US) [10.9s]
+2025-10-23T08:58:49.3689630Z     • Flutter version 3.35.6 on channel stable at /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T08:58:49.3694480Z     • Upstream repository https://github.com/flutter/flutter.git
+2025-10-23T08:58:49.3700090Z     • Framework revision 9f455d2486 (2 weeks ago), 2025-10-08 14:55:31 -0500
+2025-10-23T08:58:49.3700960Z     • Engine revision d2913632a4
+2025-10-23T08:58:49.3701690Z     • Dart version 3.9.2
+2025-10-23T08:58:49.3702140Z     • DevTools version 2.48.0
+2025-10-23T08:58:49.3703100Z     • Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-lldb-debugging
+2025-10-23T08:58:49.3703720Z 
+2025-10-23T08:58:57.2208720Z [!] Android toolchain - develop for Android devices (Android SDK version 36.1.0) [18.5s]
+2025-10-23T08:58:57.2313070Z     • Android SDK at /Users/runner/Library/Android/sdk
+2025-10-23T08:58:57.2415270Z     • Emulator version 36.2.11.0 (build_id 14212360) (CL:N/A)
+2025-10-23T08:58:57.2518770Z     • Platform android-36-ext19, build-tools 36.1.0
+2025-10-23T08:58:57.2633090Z     • ANDROID_HOME = /Users/runner/Library/Android/sdk
+2025-10-23T08:58:57.2736220Z     • ANDROID_SDK_ROOT = /Users/runner/Library/Android/sdk
+2025-10-23T08:58:57.2842350Z     • Java binary at: /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.8-9.0/arm64/Contents/Home/bin/java
+2025-10-23T08:58:57.2945950Z       This JDK is specified by the JAVA_HOME environment variable.
+2025-10-23T08:58:57.3045980Z       To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+2025-10-23T08:58:57.3048240Z     • Java version OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+2025-10-23T08:58:57.3049010Z     ! Some Android licenses not accepted. To resolve this, run: flutter doctor --android-licenses
+2025-10-23T08:58:57.3072300Z 
+2025-10-23T08:58:57.3075340Z [✓] Xcode - develop for iOS and macOS (Xcode 15.4) [18.0s]
+2025-10-23T08:58:57.3077640Z     • Xcode at /Applications/Xcode.app/Contents/Developer
+2025-10-23T08:58:57.3080160Z     • Build 15F31d
+2025-10-23T08:58:57.3084720Z     • CocoaPods version 1.16.2
+2025-10-23T08:58:57.3117420Z 
+2025-10-23T08:58:57.3118790Z [✓] Chrome - develop for the web [32ms]
+2025-10-23T08:58:57.3121560Z     • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+2025-10-23T08:58:57.3122500Z 
+2025-10-23T08:58:57.3123140Z [!] Android Studio (not installed) [28ms]
+2025-10-23T08:58:57.3127340Z     • Android Studio not found; download from https://developer.android.com/studio/index.html
+2025-10-23T08:58:57.3129470Z       (or visit https://flutter.dev/to/macos-android-setup for detailed instructions).
+2025-10-23T08:58:57.3130940Z 
+2025-10-23T08:59:06.5754280Z [✓] Connected device (3 available) [17.3s]
+2025-10-23T08:59:06.5862180Z     • iPhone 15 Pro (mobile) • 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E • ios            • com.apple.CoreSimulator.SimRuntime.iOS-17-4 (simulator)
+2025-10-23T08:59:06.5965930Z     • macOS (desktop)        • macos                                • darwin-arm64   • macOS 14.7.6 23H626 darwin-arm64
+2025-10-23T08:59:06.6088490Z     • Chrome (web)           • chrome                               • web-javascript • Google Chrome 141.0.7390.77
+2025-10-23T08:59:06.6090520Z 
+2025-10-23T08:59:06.6091450Z [✓] Network resources [376ms]
+2025-10-23T08:59:06.6093040Z     • All expected network resources are available.
+2025-10-23T08:59:06.6093510Z 
+2025-10-23T08:59:06.6094010Z ! Doctor found issues in 2 categories.
+2025-10-23T08:59:06.6095240Z 🎯 Running all tests in: integration_test/
+2025-10-23T08:59:06.6227210Z 📝 Using verbose mode for detailed error logs
+2025-10-23T08:59:06.6311800Z 🔐 Passing credentials via --dart-define
+2025-10-23T08:59:06.8640760Z Verbose mode enabled. More logs will be printed.
+2025-10-23T08:59:06.8890720Z 
+2025-10-23T08:59:06.9011680Z Completion files installed. To enable completion, run the following command in your shell:
+2025-10-23T08:59:06.9091180Z source /Users/runner/.bash_profile
+2025-10-23T08:59:06.9118750Z 
+2025-10-23T08:59:07.4025580Z Received 2 test target(s)
+2025-10-23T08:59:07.4164570Z Received test target: /Users/runner/work/Ivory/Ivory/integration_test/cardCanBeFrozenOrUnfreeze_test.dart
+2025-10-23T08:59:07.4276020Z Received test target: /Users/runner/work/Ivory/Ivory/integration_test/repaymentRateIsSaved_test.dart
+2025-10-23T08:59:07.4382170Z Generated entrypoint /Users/runner/work/Ivory/Ivory/integration_test/test_bundle.dart with 2 bundled test(s)
+2025-10-23T08:59:07.4505160Z $ flutter --no-version-check --suppress-analytics devices --machine
+2025-10-23T08:59:21.2410080Z No device specified, using the first one (iPhone 15 Pro)
+2025-10-23T08:59:21.2528490Z Received 1 device(s) to run on
+2025-10-23T08:59:21.2629690Z Received device: iPhone 15 Pro (08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E)
+2025-10-23T08:59:21.2729740Z $ flutter --suppress-analytics --no-version-check pub deps --style=list
+2025-10-23T08:59:24.0890170Z Received 11 --dart-define(s) (2 custom, 9 internal)
+2025-10-23T08:59:24.1003300Z Received custom --dart-define: PATROL_EMAIL
+2025-10-23T08:59:24.1038040Z Received custom --dart-define: PATROL_PASSWORD
+2025-10-23T08:59:24.1039890Z Received internal --dart-define: PATROL_APP_PACKAGE_NAME=com.thinslices.solarisdemo
+2025-10-23T08:59:24.1041640Z Received internal --dart-define: PATROL_APP_BUNDLE_ID=com.thinslices.solarisdemo
+2025-10-23T08:59:24.1042210Z Received internal --dart-define: PATROL_ANDROID_APP_NAME=Ivory
+2025-10-23T08:59:24.1042780Z Received internal --dart-define: PATROL_IOS_APP_NAME=Ivory
+2025-10-23T08:59:24.1043340Z Received internal --dart-define: INTEGRATION_TEST_SHOULD_REPORT_RESULTS_TO_NATIVE=false
+2025-10-23T08:59:24.1043950Z Received internal --dart-define: PATROL_TEST_LABEL_ENABLED=true
+2025-10-23T08:59:24.1044420Z Received internal --dart-define: PATROL_TEST_SERVER_PORT=8081
+2025-10-23T08:59:24.1049420Z Received internal --dart-define: PATROL_APP_SERVER_PORT=8082
+2025-10-23T08:59:24.1049780Z Received internal --dart-define: COVERAGE_ENABLED=false
+2025-10-23T08:59:24.1052470Z • Building app with entrypoint test_bundle.dart for iOS simulator (debug)...
+2025-10-23T08:59:24.1058670Z $ flutter build ios --no-version-check --suppress-analytics --config-only --no-codesign --debug --simulator --target /Users/runner/work/Ivory/Ivory/integration_test/test_bundle.dart --dart-define PATROL_EMAIL=*** --dart-define PATROL_PASSWORD=*** --dart-define PATROL_APP_PACKAGE_NAME=com.thinslices.solarisdemo --dart-define PATROL_APP_BUNDLE_ID=com.thinslices.solarisdemo --dart-define PATROL_ANDROID_APP_NAME=Ivory --dart-define PATROL_IOS_APP_NAME=Ivory --dart-define INTEGRATION_TEST_SHOULD_REPORT_RESULTS_TO_NATIVE=false --dart-define PATROL_TEST_LABEL_ENABLED=true --dart-define PATROL_TEST_SERVER_PORT=8081 --dart-define PATROL_APP_SERVER_PORT=8082 --dart-define COVERAGE_ENABLED=false
+2025-10-23T08:59:32.3026740Z 	Building com.thinslices.solarisdemo for simulator (ios)...
+2025-10-23T09:00:48.3416880Z 	Running pod install...                                             71.8s
+2025-10-23T09:00:48.4249550Z $ xcodebuild build-for-testing -workspace Runner.xcworkspace -scheme Runner -configuration Debug -sdk iphonesimulator -destination generic/platform=iOS Simulator -quiet -derivedDataPath ../build/ios_integ OTHER_SWIFT_FLAGS=$(inherited) -D PATROL_ENABLED
+2025-10-23T09:01:31.3489300Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:7:24: warning: main actor-isolated static method 'register(with:)' cannot be used to satisfy nonisolated protocol requirement
+2025-10-23T09:01:31.3497610Z 	    public static func register(with registrar: FlutterPluginRegistrar) {
+2025-10-23T09:01:31.3498420Z 	                       ^
+2025-10-23T09:01:31.3499500Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:7:24: note: add 'nonisolated' to 'register(with:)' to make this static method not isolated to the actor
+2025-10-23T09:01:31.3510110Z 	    public static func register(with registrar: FlutterPluginRegistrar) {
+2025-10-23T09:01:31.3517740Z 	                       ^
+2025-10-23T09:01:31.3519060Z 	    nonisolated 
+2025-10-23T09:01:31.3520100Z 	Flutter.FlutterPlugin:2:17: note: 'register(with:)' declared here
+2025-10-23T09:01:31.3520750Z 	    static func register(with registrar: any FlutterPluginRegistrar)
+2025-10-23T09:01:31.3521370Z 	                ^
+2025-10-23T09:01:31.3522590Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:13:17: warning: main actor-isolated instance method 'handle(_:result:)' cannot be used to satisfy nonisolated protocol requirement
+2025-10-23T09:01:31.3523610Z 	    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+2025-10-23T09:01:31.3524230Z 	                ^
+2025-10-23T09:01:31.3526390Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:13:17: note: add 'nonisolated' to 'handle(_:result:)' to make this instance method not isolated to the actor
+2025-10-23T09:01:31.3527400Z 	    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+2025-10-23T09:01:31.3527780Z 	                ^
+2025-10-23T09:01:31.3528970Z 	    nonisolated 
+2025-10-23T09:01:31.3529880Z 	Flutter.FlutterPlugin:6:19: note: 'handle(_:result:)' declared here
+2025-10-23T09:01:31.3532010Z 	    optional func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult)
+2025-10-23T09:01:31.3532490Z 	                  ^
+2025-10-23T09:01:31.3925010Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:7:24: warning: main actor-isolated static method 'register(with:)' cannot be used to satisfy nonisolated protocol requirement
+2025-10-23T09:01:31.4069030Z 	    public static func register(with registrar: FlutterPluginRegistrar) {
+2025-10-23T09:01:31.4175860Z 	                       ^
+2025-10-23T09:01:31.4281650Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:7:24: note: add 'nonisolated' to 'register(with:)' to make this static method not isolated to the actor
+2025-10-23T09:01:31.4410140Z 	    public static func register(with registrar: FlutterPluginRegistrar) {
+2025-10-23T09:01:31.4500490Z 	                       ^
+2025-10-23T09:01:31.4501520Z 	    nonisolated 
+2025-10-23T09:01:31.4521740Z 	Flutter.FlutterPlugin:2:17: note: 'register(with:)' declared here
+2025-10-23T09:01:31.4525000Z 	    static func register(with registrar: any FlutterPluginRegistrar)
+2025-10-23T09:01:31.4556840Z 	                ^
+2025-10-23T09:01:31.4563760Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:13:17: warning: main actor-isolated instance method 'handle(_:result:)' cannot be used to satisfy nonisolated protocol requirement
+2025-10-23T09:01:31.4576720Z 	    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+2025-10-23T09:01:31.4599910Z 	                ^
+2025-10-23T09:01:31.4603160Z 	/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/AppSettingsPlugin.swift:13:17: note: add 'nonisolated' to 'handle(_:result:)' to make this instance method not isolated to the actor
+2025-10-23T09:01:31.4609020Z 	    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+2025-10-23T09:01:31.4611340Z 	                ^
+2025-10-23T09:01:31.4611670Z 	    nonisolated 
+2025-10-23T09:01:31.4612980Z 	Flutter.FlutterPlugin:6:19: note: 'handle(_:result:)' declared here
+2025-10-23T09:01:31.4613740Z 	    optional func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult)
+2025-10-23T09:01:31.4618970Z 	                  ^
+2025-10-23T09:01:32.4178240Z 	/Users/runner/work/Ivory/Ivory/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Utilities/FIRAllocatedUnfairLock.swift:26:37: error: expected ',' separator
+2025-10-23T09:01:32.4204350Z 	  public init(initialState: sending State) {
+2025-10-23T09:01:32.4207890Z 	                                    ^
+2025-10-23T09:01:32.4210960Z 	                                   ,
+2025-10-23T09:01:32.4212610Z 	/Users/runner/work/Ivory/Ivory/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Utilities/FIRAllocatedUnfairLock.swift:26:37: error: unnamed parameters must be written with the empty name '_'
+2025-10-23T09:01:32.4215460Z 	  public init(initialState: sending State) {
+2025-10-23T09:01:32.4215940Z 	                                    ^
+2025-10-23T09:01:32.4219040Z 	                                    _: 
+2025-10-23T09:01:32.4220730Z 	/Users/runner/work/Ivory/Ivory/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Utilities/FIRAllocatedUnfairLock.swift:26:29: error: cannot find type 'sending' in scope
+2025-10-23T09:01:32.4223520Z 	  public init(initialState: sending State) {
+2025-10-23T09:01:32.4224060Z 	                            ^~~~~~~
+2025-10-23T09:01:32.4225280Z 	/Users/runner/work/Ivory/Ivory/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsPayload.swift:20:3: error: Access level on imports require '-enable-experimental-feature AccessLevelOnImport'
+2025-10-23T09:01:32.4227560Z 	  internal import GoogleUtilities
+2025-10-23T09:01:32.4228330Z 	  ^~~~~~~~~
+2025-10-23T09:01:32.4228590Z 	  
+2025-10-23T09:01:32.4230170Z 	/Users/runner/work/Ivory/Ivory/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift:57:44: error: argument passed to call that takes no arguments
+2025-10-23T09:01:32.4231110Z 	  > = FIRAllocatedUnfairLock(initialState: [:])
+2025-10-23T09:01:32.4231890Z 	                            ~~~~~~~~~~~~~~~^~~~
+2025-10-23T09:01:32.4234490Z 	/Users/runner/work/Ivory/Ivory/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift:57:7: error: cannot assign value of type 'FIRAllocatedUnfairLock<()>' to type 'FIRAllocatedUnfairLock<[String : WeakContainer<HeartbeatStorage>]>'
+2025-10-23T09:01:32.4236130Z 	  > = FIRAllocatedUnfairLock(initialState: [:])
+2025-10-23T09:01:32.4237060Z 	      ^
+2025-10-23T09:01:32.4239290Z 	/Users/runner/work/Ivory/Ivory/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/Utilities/FIRAllocatedUnfairLock.swift:22:43: note: arguments to generic parameter 'State' ('()' and '[String : WeakContainer<HeartbeatStorage>]') are expected to be equal
+2025-10-23T09:01:32.4241110Z 	public final class FIRAllocatedUnfairLock<State>: @unchecked Sendable {
+2025-10-23T09:01:32.4241890Z 	                                          ^
+2025-10-23T09:01:32.5100330Z 	warning: Run script build phase 'xcode_backend build' will be run during every build because it does not specify any outputs. To address this warning, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'RunnerUITests' from project 'Runner')
+2025-10-23T09:01:32.5104510Z 	warning: Run script build phase 'xcode_backend embed_and_thin' will be run during every build because it does not specify any outputs. To address this warning, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'RunnerUITests' from project 'Runner')
+2025-10-23T09:01:32.5203780Z 	** TEST BUILD FAILED **
+2025-10-23T09:01:32.5204900Z 	note: Run script build phase 'Run Script' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'Runner' from project 'Runner')
+2025-10-23T09:01:32.5307320Z 	
+2025-10-23T09:01:32.5308260Z 	note: Run script build phase 'Thin Binary' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'Runner' from project 'Runner')
+2025-10-23T09:01:32.5329870Z 	warning: no rule to process file '/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/PrivacyInfo.xcprivacy' of type 'text.xml' for architecture 'arm64' (in target 'app_settings' from project 'Pods')
+2025-10-23T09:01:32.5333270Z 	warning: no rule to process file '/Users/runner/.pub-cache/hosted/pub.dev/app_settings-6.1.1/ios/app_settings/Sources/app_settings/PrivacyInfo.xcprivacy' of type 'text.xml' for architecture 'x86_64' (in target 'app_settings' from project 'Pods')
+2025-10-23T09:01:32.5583240Z ✗ Failed to build app with entrypoint test_bundle.dart for iOS simulator (xcodebuild exited with code 65) (128.5s)
+2025-10-23T09:01:32.5584030Z Error: xcodebuild exited with code 65
+2025-10-23T09:01:32.5584820Z See the logs above to learn what happened. Also consider running with --verbose. If the logs still aren't useful, then it's a bug - please report it.
+2025-10-23T09:01:32.5585450Z Error: xcodebuild exited with code 65
+2025-10-23T09:01:32.5586050Z #0      throwToolExit (package:patrol_cli/src/base/exceptions.dart:7:3)
+2025-10-23T09:01:32.5586710Z #1      IOSTestBackend.build.<anonymous closure> (package:patrol_cli/src/ios/ios_test_backend.dart:142:9)
+2025-10-23T09:01:32.5587730Z <asynchronous suspension>
+2025-10-23T09:01:32.5588220Z #2      DisposeScope.run (package:dispose_scope/src/dispose_scope.dart:46:7)
+2025-10-23T09:01:32.5588810Z <asynchronous suspension>
+2025-10-23T09:01:32.5589210Z #3      IOSTestBackend.build (package:patrol_cli/src/ios/ios_test_backend.dart:80:5)
+2025-10-23T09:01:32.5589680Z <asynchronous suspension>
+2025-10-23T09:01:32.5590240Z #4      TestCommand._build (package:patrol_cli/src/commands/test.dart:335:7)
+2025-10-23T09:01:32.5590670Z <asynchronous suspension>
+2025-10-23T09:01:32.5591130Z #5      TestCommand.run (package:patrol_cli/src/commands/test.dart:250:5)
+2025-10-23T09:01:32.5591630Z <asynchronous suspension>
+2025-10-23T09:01:32.5592260Z #6      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2025-10-23T09:01:32.5592760Z <asynchronous suspension>
+2025-10-23T09:01:32.5593660Z #7      PatrolCommandRunner.runCommand (package:patrol_cli/src/runner/patrol_command_runner.dart:401:18)
+2025-10-23T09:01:32.5594280Z <asynchronous suspension>
+2025-10-23T09:01:32.5595530Z #8      PatrolCommandRunner.run (package:patrol_cli/src/runner/patrol_command_runner.dart:335:18)
+2025-10-23T09:01:32.5596090Z <asynchronous suspension>
+2025-10-23T09:01:32.5596460Z #9      patrolCommandRunner (package:patrol_cli/src/runner/patrol_command_runner.dart:79:20)
+2025-10-23T09:01:32.5597020Z <asynchronous suspension>
+2025-10-23T09:01:32.5598070Z #10     main (file:///Users/runner/.pub-cache/hosted/pub.dev/patrol_cli-3.10.0/bin/main.dart:6:20)
+2025-10-23T09:01:32.5598810Z <asynchronous suspension>
+2025-10-23T09:01:32.5598950Z 
+2025-10-23T09:01:32.5599290Z #0      throwToolExit (package:patrol_cli/src/base/exceptions.dart:7:3)
+2025-10-23T09:01:32.5600110Z #1      IOSTestBackend.build.<anonymous closure> (package:patrol_cli/src/ios/ios_test_backend.dart:142:9)
+2025-10-23T09:01:32.5600580Z <asynchronous suspension>
+2025-10-23T09:01:32.5601760Z #2      DisposeScope.run (package:dispose_scope/src/dispose_scope.dart:46:7)
+2025-10-23T09:01:32.5602280Z <asynchronous suspension>
+2025-10-23T09:01:32.5602710Z #3      IOSTestBackend.build (package:patrol_cli/src/ios/ios_test_backend.dart:80:5)
+2025-10-23T09:01:32.5603300Z <asynchronous suspension>
+2025-10-23T09:01:32.5603720Z #4      TestCommand._build (package:patrol_cli/src/commands/test.dart:335:7)
+2025-10-23T09:01:32.5604420Z <asynchronous suspension>
+2025-10-23T09:01:32.5604770Z #5      TestCommand.run (package:patrol_cli/src/commands/test.dart:250:5)
+2025-10-23T09:01:32.5605220Z <asynchronous suspension>
+2025-10-23T09:01:32.5605650Z #6      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2025-10-23T09:01:32.5606180Z <asynchronous suspension>
+2025-10-23T09:01:32.5606680Z #7      PatrolCommandRunner.runCommand (package:patrol_cli/src/runner/patrol_command_runner.dart:401:18)
+2025-10-23T09:01:32.5607250Z <asynchronous suspension>
+2025-10-23T09:01:32.5607680Z #8      PatrolCommandRunner.run (package:patrol_cli/src/runner/patrol_command_runner.dart:335:18)
+2025-10-23T09:01:32.5608430Z <asynchronous suspension>
+2025-10-23T09:01:32.5608840Z #9      patrolCommandRunner (package:patrol_cli/src/runner/patrol_command_runner.dart:79:20)
+2025-10-23T09:01:32.5609420Z <asynchronous suspension>
+2025-10-23T09:01:32.5609930Z #10     main (file:///Users/runner/.pub-cache/hosted/pub.dev/patrol_cli-3.10.0/bin/main.dart:6:20)
+2025-10-23T09:01:32.5610450Z <asynchronous suspension>
+2025-10-23T09:01:32.5610580Z 
+2025-10-23T09:01:32.5852530Z ##[error]Process completed with exit code 1.

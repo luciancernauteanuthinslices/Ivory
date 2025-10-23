@@ -1,3 +1,0 @@
-﻿2025-10-23T08:34:57.4445000Z Cleaning up orphan processes
-2025-10-23T08:34:58.3406870Z Terminate orphan process: pid (36762) (ibtoold)
-2025-10-23T08:34:58.5311620Z Terminate orphan process: pid (32484) (adb)

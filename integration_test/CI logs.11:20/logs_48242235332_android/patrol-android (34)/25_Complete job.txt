@@ -1,0 +1,5 @@
+﻿2025-10-23T09:15:10.8547601Z Cleaning up orphan processes
+2025-10-23T09:15:10.8987098Z Terminate orphan process: pid (4970) (adb)
+2025-10-23T09:15:10.9067719Z Terminate orphan process: pid (5727) (java)
+2025-10-23T09:15:10.9150355Z Terminate orphan process: pid (5876) (java)
+2025-10-23T09:15:10.9248162Z Terminate orphan process: pid (6423) (java)
