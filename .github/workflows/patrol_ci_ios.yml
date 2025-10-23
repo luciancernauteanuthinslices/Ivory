@@ -89,17 +89,6 @@ jobs:
           EOF
           echo "✅ Created .env with app configuration"
 
-      # Create .patrol.env with test credentials from GitHub secrets
-      - name: Create .patrol.env with test credentials
-        run: |
-          mkdir -p integration_test
-          cat > integration_test/.patrol.env << EOF
-          #login credentials
-          EMAIL=${{ secrets.PATROL_EMAIL }}
-          PASSWORD=${{ secrets.PATROL_PASSWORD }}
-          EOF
-          echo "✅ Created .patrol.env with test credentials"
-
       # Clean build artifacts to avoid stale cache issues (preserve Pods for caching)
       - name: Clean iOS build artifacts
         run: |
@@ -150,7 +139,11 @@ jobs:
           flutter doctor -v
           echo "🎯 Running all tests in: integration_test/"
           echo "📝 Using verbose mode for detailed error logs"
-          patrol test integration_test/${{ github.event.inputs.test_filter || '' }} --verbose
+          echo "🔐 Passing credentials via --dart-define"
+          patrol test integration_test/${{ github.event.inputs.test_filter || '' }} \
+            --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
+            --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
+            --verbose
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic

@@ -1,5 +1,0 @@
-2025-10-23T08:01:25.4770000Z Requested labels: macos-14
-2025-10-23T08:01:25.4770000Z Job defined at: luciancernauteanuthinslices/Ivory/.github/workflows/patrol_ci_ios.yml@refs/heads/test_playground
-2025-10-23T08:01:25.4770000Z Waiting for a runner to pick up this job...
-2025-10-23T08:01:25.4860000Z Job is about to start running on the hosted runner: GitHub Actions 1000000262
-2025-10-23T08:01:25.4850000Z Job is waiting for a hosted runner to come online.

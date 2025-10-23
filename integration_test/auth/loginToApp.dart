@@ -17,47 +17,27 @@ class LoginToApp {
       this.$, {
         String? email,
         String? password,
-      })  : email = email ?? (dotenv.env['EMAIL'] ?? ''),
-        password = password ?? (dotenv.env['PASSWORD'] ?? '');
-
-  /// Load test credentials from .patrol.env and override specific values
-  /// This keeps all main .env values and only overrides EMAIL and PASSWORD
-  static Future<void> loadPatrolEnv() async {
-    try {
-      final file = File('integration_test/.patrol.env');
-      
-  
-      final lines = await file.readAsLines();
-      
-      // Parse only EMAIL and PASSWORD from .patrol.env
-      for (final line in lines) {
-        final trimmed = line.trim();
-        if (trimmed.isEmpty || trimmed.startsWith('#')) continue;
-        
-        if (trimmed.contains('=')) {
-          final parts = trimmed.split('=');
-          final key = parts[0].trim();
-          final value = parts.sublist(1).join('=').trim();
-          
-          // Only override credentials, not app config
-          if (key == 'EMAIL' || key == 'PASSWORD') {
-            dotenv.env[key] = value;
-          }
-        }
-      }
-      
-      // ignore: avoid_print
-      print('✅ Loaded test credentials from .patrol.env (EMAIL: ${dotenv.env['EMAIL']})');
-    } catch (e) {
-      // ignore: avoid_print
-      print('⚠️  Error loading .patrol.env: $e');
-    }
-  }
+      })  : email = email ?? 
+               (const String.fromEnvironment('PATROL_EMAIL', defaultValue: '') != '' 
+                 ? const String.fromEnvironment('PATROL_EMAIL')
+                 : dotenv.env['EMAIL'] ?? ''),
+        password = password ?? 
+               (const String.fromEnvironment('PATROL_PASSWORD', defaultValue: '') != ''
+                 ? const String.fromEnvironment('PATROL_PASSWORD')
+                 : dotenv.env['PASSWORD'] ?? '');
   
   Future<void> login() async {
     // Validate credentials are loaded
     if (email.isEmpty || password.isEmpty) {
-      throw Exception('❌ Test credentials not loaded! Check .patrol.env file');
+      // ignore: avoid_print
+      print('❌ EMAIL: "$email" (length: ${email.length})');
+      // ignore: avoid_print
+      print('❌ PASSWORD: ${password.isEmpty ? "empty" : "***"} (length: ${password.length})');
+      // ignore: avoid_print
+      print('❌ PATROL_EMAIL env: "${const String.fromEnvironment('PATROL_EMAIL', defaultValue: 'NOT_SET')}"');
+      // ignore: avoid_print
+      print('❌ dotenv EMAIL: "${dotenv.env['EMAIL'] ?? 'NOT_SET'}"');
+      throw Exception('❌ Test credentials not loaded! Checked: --dart-define PATROL_EMAIL/PATROL_PASSWORD and .env file');
     }
     
     // Debug: Show which credentials are being used (safely)

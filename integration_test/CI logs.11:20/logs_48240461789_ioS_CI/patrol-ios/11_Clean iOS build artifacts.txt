@@ -1,0 +1,14 @@
+﻿2025-10-23T08:32:00.4034680Z ##[group]Run echo "🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)..."
+2025-10-23T08:32:00.4035320Z [36;1mecho "🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)..."[0m
+2025-10-23T08:32:00.4035690Z [36;1mrm -rf build[0m
+2025-10-23T08:32:00.4035890Z [36;1mrm -rf ios/build[0m
+2025-10-23T08:32:00.4036140Z [36;1mrm -rf ios/.symlinks[0m
+2025-10-23T08:32:00.4036500Z [36;1mrm -rf ~/Library/Developer/Xcode/DerivedData/*[0m
+2025-10-23T08:32:00.4062180Z [36;1mecho "✅ Cleaned iOS build artifacts (Pods preserved for caching)"[0m
+2025-10-23T08:32:00.4143530Z shell: /bin/bash -e {0}
+2025-10-23T08:32:00.4143720Z env:
+2025-10-23T08:32:00.4143960Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T08:32:00.4144250Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T08:32:00.4145010Z ##[endgroup]
+2025-10-23T08:32:00.4971050Z 🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)...
+2025-10-23T08:32:00.5560160Z ✅ Cleaned iOS build artifacts (Pods preserved for caching)

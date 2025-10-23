@@ -48,11 +48,8 @@ import 'pages/bottomActionBar/bottomActionButtons.dart';
 void main() {
   patrolTest('Repayment rate is saved correctly',
       framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive, ($) async {
-        // Load environment variables
+        // Load environment variables (API config from main .env)
         await dotenv.load();
-        
-        // Load test credentials from .patrol.env
-        await LoginToApp.loadPatrolEnv();
 
         // Get client configuration
         final clientConfig = ClientConfig.getClientConfig();

@@ -1,0 +1,46 @@
+﻿2025-10-23T08:28:00.6663100Z Current runner version: '2.329.0'
+2025-10-23T08:28:00.6691470Z ##[group]Runner Image Provisioner
+2025-10-23T08:28:00.6693180Z Hosted Compute Agent
+2025-10-23T08:28:00.6694190Z Version: 20251016.436
+2025-10-23T08:28:00.6695260Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-10-23T08:28:00.6697340Z Build Date: 2025-10-15T20:44:12Z
+2025-10-23T08:28:00.6698530Z ##[endgroup]
+2025-10-23T08:28:00.6699490Z ##[group]Operating System
+2025-10-23T08:28:00.6700790Z macOS
+2025-10-23T08:28:00.6701240Z 14.7.6
+2025-10-23T08:28:00.6701550Z 23H626
+2025-10-23T08:28:00.6701880Z ##[endgroup]
+2025-10-23T08:28:00.6702250Z ##[group]Runner Image
+2025-10-23T08:28:00.6702660Z Image: macos-14-arm64
+2025-10-23T08:28:00.6703040Z Version: 20251013.0032
+2025-10-23T08:28:00.6703820Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20251013.0032/images/macos/macos-14-arm64-Readme.md
+2025-10-23T08:28:00.6704890Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20251013.0032
+2025-10-23T08:28:00.6705960Z ##[endgroup]
+2025-10-23T08:28:00.6707710Z ##[group]GITHUB_TOKEN Permissions
+2025-10-23T08:28:00.6709840Z Actions: write
+2025-10-23T08:28:00.6710270Z Attestations: write
+2025-10-23T08:28:00.6710610Z Checks: write
+2025-10-23T08:28:00.6710940Z Contents: write
+2025-10-23T08:28:00.6711270Z Deployments: write
+2025-10-23T08:28:00.6711610Z Discussions: write
+2025-10-23T08:28:00.6711960Z Issues: write
+2025-10-23T08:28:00.6712290Z Metadata: read
+2025-10-23T08:28:00.6712610Z Models: read
+2025-10-23T08:28:00.6712940Z Packages: write
+2025-10-23T08:28:00.6713260Z Pages: write
+2025-10-23T08:28:00.6713600Z PullRequests: write
+2025-10-23T08:28:00.6713960Z RepositoryProjects: write
+2025-10-23T08:28:00.6714330Z SecurityEvents: write
+2025-10-23T08:28:00.6714760Z Statuses: write
+2025-10-23T08:28:00.6715110Z ##[endgroup]
+2025-10-23T08:28:00.6716820Z Secret source: Actions
+2025-10-23T08:28:00.6717280Z Prepare workflow directory
+2025-10-23T08:28:00.7105890Z Prepare all required actions
+2025-10-23T08:28:00.7136470Z Getting action download info
+2025-10-23T08:28:01.1903300Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-10-23T08:28:01.5704840Z Download action repository 'subosito/flutter-action@v2' (SHA:fd55f4c5af5b953cc57a2be44cb082c8f6635e8e)
+2025-10-23T08:28:02.6539470Z Download action repository 'futureware-tech/simulator-action@v3' (SHA:bfa03d93ec9de6dacb0c5553bbf8da8afc6c2ee9)
+2025-10-23T08:28:03.7812980Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-10-23T08:28:03.8751990Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-10-23T08:28:04.0772440Z Getting action download info
+2025-10-23T08:28:04.3393890Z Complete job name: patrol-ios

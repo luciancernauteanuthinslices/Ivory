@@ -49,11 +49,8 @@ import 'package:test/test.dart' hide expect;
 void main() {
   patrolTest('Check if virtual card can be frozen and unfrozen',
       framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive, ($) async {
-    // Load environment variables
+    // Load environment variables (API config from main .env)
     await dotenv.load();
-    
-    // Load test credentials from .patrol.env
-    await LoginToApp.loadPatrolEnv();
 
 
     // Get client configuration
