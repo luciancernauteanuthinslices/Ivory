@@ -1,0 +1,39 @@
+name: Local Quick Checks (No Emulator)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  quick_checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter manually
+        run: |
+          git clone https://github.com/flutter/flutter.git -b stable --depth 1
+          echo "$PWD/flutter/bin" >> $GITHUB_PATH
+          flutter --version
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "COGNITO_USER_POOL_ID=test" >> .env
+          echo "COGNITO_CLIENT_ID=test" >> .env
+          echo "GEONAMES_USERNAME=test" >> .env
+          echo "API_BASE_URL=jsxhc7emf3.execute-api.eu-west-1.amazonaws.com" >> .env
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check formatting
+        run: flutter/bin/dart format --output=none --set-exit-if-changed .
+        continue-on-error: true
+
+      - name: Run Flutter analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Run unit tests
+        run: flutter test --reporter compact
