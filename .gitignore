@@ -19,6 +19,9 @@ integration_test/.patrol.env
 !.env.example
 !integration_test/.patrol.env.example
 
+# Local shell setup (gcloud, etc.)
+exec -l /
+
 # IntelliJ related
 *.iml
 *.ipr
