@@ -107,10 +107,10 @@ jobs:
           rm -rf ~/Library/Developer/Xcode/DerivedData/*
           echo "✅ Cleaned iOS build artifacts"
 
-      - name: Build iOS test bundle with Patrol
+      - name: Build iOS app and test bundle with Patrol
         run: |
           flutter doctor -v
-          echo "🔨 Building iOS test bundle for Firebase Test Lab"
+          echo "🔨 Building iOS app (.ipa) and test bundle for Firebase Test Lab"
           
           # Build for each test file or all tests
           if [ -n "${{ github.event.inputs.test_filter }}" ]; then
@@ -133,24 +133,44 @@ jobs:
               --verbose
           fi
           
-          echo "✅ iOS test bundle built successfully"
+          echo "✅ iOS app and test bundle built successfully"
+          echo "📂 Build artifacts:"
+          find build/ios_integ/Build/Products/Release-iphoneos -type f \( -name "*.ipa" -o -name "*.xctestrun" \) -ls
           ls -lh build/ios_integ/Build/Products/Release-iphoneos/
 
-      - name: Package iOS test bundle
+      - name: Package iOS app and test bundle
         run: |
-          echo "📦 Packaging iOS test bundle for Firebase Test Lab"
-          cd build/ios_integ/Build/Products
+          echo "📦 Packaging iOS app (.ipa) and test bundle for Firebase Test Lab"
+          cd build/ios_integ/Build/Products/Release-iphoneos
+          
+          # Find the .ipa file (app bundle)
+          IPA_FILE=$(find . -name "*.ipa" | head -n 1)
+          if [ -z "$IPA_FILE" ]; then
+            echo "❌ Error: .ipa file not found"
+            ls -la
+            exit 1
+          fi
+          echo "✅ Found app bundle: $IPA_FILE"
           
           # Find the .xctestrun file
           XCTESTRUN_FILE=$(find . -name "*.xctestrun" | head -n 1)
-          echo "Found xctestrun file: $XCTESTRUN_FILE"
+          if [ -z "$XCTESTRUN_FILE" ]; then
+            echo "❌ Error: .xctestrun file not found"
+            ls -la
+            exit 1
+          fi
+          echo "✅ Found test bundle: $XCTESTRUN_FILE"
           
-          # Create zip archive with required files
-          zip -r ios_tests.zip Release-iphoneos "$XCTESTRUN_FILE"
+          # Create zip archive with test bundle and xctestrun
+          zip -r ../ios_tests.zip . -i "*.xctestrun" "*.app/*" "*.swiftmodule/*"
           
           echo "✅ iOS test bundle packaged"
-          ls -lh ios_tests.zip
-          cd ../../../..
+          ls -lh ../ios_tests.zip
+          
+          # Copy .ipa to build root for easy access
+          cp "$IPA_FILE" ../../..
+          echo "✅ App bundle copied to build root"
+          cd ../../../../../
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -166,13 +186,23 @@ jobs:
         run: |
           echo "🚀 Running tests on Firebase Test Lab"
           
+          # Find the .ipa file
+          IPA_FILE=$(find build -name "*.ipa" | head -n 1)
+          if [ -z "$IPA_FILE" ]; then
+            echo "❌ Error: .ipa file not found in build directory"
+            exit 1
+          fi
+          echo "✅ Using app bundle: $IPA_FILE"
+          
           gcloud firebase test ios run \
+            --type xctest \
+            --app "$IPA_FILE" \
             --test build/ios_integ/Build/Products/ios_tests.zip \
             --timeout 10m \
             --results-bucket=gs://${{ secrets.FIREBASE_PROJECT_ID }}_test_results \
             --results-dir=patrol-ios-$(date +%Y%m%d_%H%M%S) \
-            --device model=iphone13,version=16.6,locale=en_US,orientation=portrait \
-            --device model=iphone14pro,version=17.4,locale=en_US,orientation=portrait
+            --device model=iphone13,version=17,locale=en_US,orientation=portrait \
+            --device model=iphone15pro,version=18,locale=en_US,orientation=portrait
           
           echo "✅ Tests completed on Firebase Test Lab"
 

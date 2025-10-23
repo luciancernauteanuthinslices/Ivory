@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
     inputs:
       test_filter:
-        description: 'Test filter (e.g., cardCanBeFrozenOrUnfreeze_test.dart or leave empty for all)'
+        description: 'Test filter (e.g., my_test.dart or leave empty for all)'
         required: false
         default: ''
       max_retries:
@@ -123,16 +123,36 @@ jobs:
         run: |
           echo "🚀 Running tests on Firebase Test Lab"
           
+          # Validate APK files exist
+          APP_APK="build/app/outputs/apk/debug/app-debug.apk"
+          TEST_APK="build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+          
+          if [ ! -f "$APP_APK" ]; then
+            echo "❌ Error: App APK not found at $APP_APK"
+            ls -lh build/app/outputs/apk/debug/ || echo "Directory does not exist"
+            exit 1
+          fi
+          
+          if [ ! -f "$TEST_APK" ]; then
+            echo "❌ Error: Test APK not found at $TEST_APK"
+            ls -lh build/app/outputs/apk/androidTest/debug/ || echo "Directory does not exist"
+            exit 1
+          fi
+          
+          echo "✅ Found app APK: $APP_APK"
+          echo "✅ Found test APK: $TEST_APK"
+          
           gcloud firebase test android run \
+            --project=${{ secrets.FIREBASE_PROJECT_ID }} \
             --type instrumentation \
             --use-orchestrator \
-            --app build/app/outputs/apk/debug/app-debug.apk \
-            --test build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
+            --app "$APP_APK" \
+            --test "$TEST_APK" \
             --timeout 10m \
             --results-bucket=gs://${{ secrets.FIREBASE_PROJECT_ID }}_test_results \
             --results-dir=patrol-android-$(date +%Y%m%d_%H%M%S) \
-            --device model=Pixel2,version=31,locale=en,orientation=portrait \
-            --device model=Pixel2,version=34,locale=en,orientation=portrait \
+            --device model=MediumPhone.arm,version=31,locale=en,orientation=portrait \
+            --device model=e1q,version=34,locale=en,orientation=portrait \
             --environment-variables clearPackageData=true \
             --no-record-video \
             --no-performance-metrics

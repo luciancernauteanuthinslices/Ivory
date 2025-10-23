@@ -119,7 +119,7 @@ void main() {
         );
         final bottomActionButtons = BottomActionButtons($);
         //login to app
-        await LoginToApp($, email: 'lifebloom77@yahoo.com', password: 'TestPass1').login();
+        await LoginToApp($).login();
         // Tap the "Transactions" button
         await bottomActionButtons.tapTransactions();
 
