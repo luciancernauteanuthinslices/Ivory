@@ -55,9 +55,17 @@ class LoginToApp {
   }
   
   Future<void> login() async {
-    // Debug: Show which credentials are being used
+    // Validate credentials are loaded
+    if (email.isEmpty || password.isEmpty) {
+      throw Exception('❌ Test credentials not loaded! Check .patrol.env file');
+    }
+    
+    // Debug: Show which credentials are being used (safely)
     // ignore: avoid_print
-    print('🔐 Logging in with email: ${email.replaceRange(3, email.indexOf('@'), '***')}');
+    final maskedEmail = email.length > 3 && email.contains('@')
+        ? email.replaceRange(3, email.indexOf('@'), '***')
+        : '***@***';
+    print('🔐 Logging in with email: $maskedEmail');
 
     // expect login button to be displayed
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
@@ -79,8 +87,8 @@ class LoginToApp {
       await $.native.grantPermissionWhenInUse();
     }
 
-    // Verify login with OTP
-    // await $.waitUntilVisible($('Verify login'));
+    // Wait for OTP screen to appear
+    await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
     expect($('Verify login'), findsOneWidget);
 
     // Tap on the OTP input area to focus it

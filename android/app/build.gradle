@@ -81,6 +81,8 @@ android {
     namespace 'com.thinslices.solarisdemo'
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        // Configure report output directory to match Patrol CLI's expected path
+        reportDir = "${buildDir}/reports/androidTests/connected"
     }
 }
 
@@ -95,4 +97,31 @@ dependencies {
     }
     implementation("com.nimbusds:nimbus-jose-jwt:9.23")
     androidTestUtil("androidx.test:orchestrator:1.5.1")
+}
+
+// Task to ensure test reports are accessible at the expected path
+// Copies reports from variant-specific directories to the base connected directory
+tasks.whenTaskAdded { task ->
+    if (task.name.startsWith('connected') && task.name.endsWith('AndroidTest')) {
+        task.doLast {
+            def reportBaseDir = file("${buildDir}/reports/androidTests/connected")
+            def debugReportDir = file("${buildDir}/reports/androidTests/connected/debug")
+            
+            // If debug report exists but base report doesn't, copy it
+            if (debugReportDir.exists() && debugReportDir.isDirectory()) {
+                def debugIndex = new File(debugReportDir, 'index.html')
+                def baseIndex = new File(reportBaseDir, 'index.html')
+                
+                if (debugIndex.exists() && !baseIndex.exists()) {
+                    println "📊 Copying test report to expected location..."
+                    copy {
+                        from debugReportDir
+                        into reportBaseDir
+                        include '**/*'
+                    }
+                    println "✅ Report available at: ${reportBaseDir}/index.html"
+                }
+            }
+        }
+    }
 }

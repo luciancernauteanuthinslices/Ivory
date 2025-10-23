@@ -118,7 +118,10 @@ jobs:
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim -gpu swiftshader_indirect
-          script: flutter doctor -v && patrol test integration_test/${{ github.event.inputs.test_filter || '' }}
+          script: |
+            flutter doctor -v
+            echo "📝 Running tests with verbose logging for better debugging"
+            patrol test integration_test/${{ github.event.inputs.test_filter || '' }} --verbose
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic

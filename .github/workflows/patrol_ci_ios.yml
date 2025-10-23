@@ -66,6 +66,18 @@ jobs:
           dart pub global activate patrol_cli
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
+      # Cache CocoaPods to speed up iOS builds
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: |
+            ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
       # Create main .env file (required for app config)
       - name: Create .env file
         run: |
@@ -87,6 +99,16 @@ jobs:
           PASSWORD=${{ secrets.PATROL_PASSWORD }}
           EOF
           echo "✅ Created .patrol.env with test credentials"
+
+      # Clean build artifacts to avoid stale cache issues (preserve Pods for caching)
+      - name: Clean iOS build artifacts
+        run: |
+          echo "🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)..."
+          rm -rf build
+          rm -rf ios/build
+          rm -rf ios/.symlinks
+          rm -rf ~/Library/Developer/Xcode/DerivedData/*
+          echo "✅ Cleaned iOS build artifacts (Pods preserved for caching)"
 
       - name: Fix Xcode project file for Xcode 15.4 compatibility
         run: |
@@ -127,7 +149,8 @@ jobs:
         run: |
           flutter doctor -v
           echo "🎯 Running all tests in: integration_test/"
-          patrol test integration_test/${{ github.event.inputs.test_filter || '' }}
+          echo "📝 Using verbose mode for detailed error logs"
+          patrol test integration_test/${{ github.event.inputs.test_filter || '' }} --verbose
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic
