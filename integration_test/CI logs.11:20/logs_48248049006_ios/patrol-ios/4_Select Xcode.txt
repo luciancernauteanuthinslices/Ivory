@@ -1,0 +1,7 @@
+﻿2025-10-23T10:19:40.4043540Z ##[group]Run sudo xcode-select -s /Applications/Xcode.app
+2025-10-23T10:19:40.4044060Z [36;1msudo xcode-select -s /Applications/Xcode.app[0m
+2025-10-23T10:19:40.4154600Z shell: /bin/bash -e {0}
+2025-10-23T10:19:40.4155010Z env:
+2025-10-23T10:19:40.4155310Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:19:40.4155750Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:19:40.4156020Z ##[endgroup]

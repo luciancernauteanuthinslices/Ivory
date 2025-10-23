@@ -1,0 +1,2 @@
+﻿2025-10-23T10:22:05.2621540Z Cleaning up orphan processes
+2025-10-23T10:22:05.8599710Z Terminate orphan process: pid (8160) (adb)

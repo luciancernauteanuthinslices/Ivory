@@ -1,0 +1,723 @@
+﻿2025-10-23T10:18:38.4456100Z Current runner version: '2.329.0'
+2025-10-23T10:18:38.4472750Z ##[group]Runner Image Provisioner
+2025-10-23T10:18:38.4473280Z Hosted Compute Agent
+2025-10-23T10:18:38.4473650Z Version: 20251016.436
+2025-10-23T10:18:38.4474070Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-10-23T10:18:38.4474540Z Build Date: 2025-10-15T20:44:12Z
+2025-10-23T10:18:38.4475020Z ##[endgroup]
+2025-10-23T10:18:38.4475370Z ##[group]Operating System
+2025-10-23T10:18:38.4475740Z macOS
+2025-10-23T10:18:38.4476050Z 14.7.6
+2025-10-23T10:18:38.4476360Z 23H626
+2025-10-23T10:18:38.4476680Z ##[endgroup]
+2025-10-23T10:18:38.4477020Z ##[group]Runner Image
+2025-10-23T10:18:38.4477400Z Image: macos-14-arm64
+2025-10-23T10:18:38.4477760Z Version: 20251013.0032
+2025-10-23T10:18:38.4478490Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20251013.0032/images/macos/macos-14-arm64-Readme.md
+2025-10-23T10:18:38.4479570Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20251013.0032
+2025-10-23T10:18:38.4480230Z ##[endgroup]
+2025-10-23T10:18:38.4481820Z ##[group]GITHUB_TOKEN Permissions
+2025-10-23T10:18:38.4482930Z Actions: write
+2025-10-23T10:18:38.4483280Z Attestations: write
+2025-10-23T10:18:38.4483630Z Checks: write
+2025-10-23T10:18:38.4483960Z Contents: write
+2025-10-23T10:18:38.4484280Z Deployments: write
+2025-10-23T10:18:38.4484620Z Discussions: write
+2025-10-23T10:18:38.4484960Z Issues: write
+2025-10-23T10:18:38.4485280Z Metadata: read
+2025-10-23T10:18:38.4485600Z Models: read
+2025-10-23T10:18:38.4485930Z Packages: write
+2025-10-23T10:18:38.4486260Z Pages: write
+2025-10-23T10:18:38.4486590Z PullRequests: write
+2025-10-23T10:18:38.4486950Z RepositoryProjects: write
+2025-10-23T10:18:38.4487320Z SecurityEvents: write
+2025-10-23T10:18:38.4487710Z Statuses: write
+2025-10-23T10:18:38.4488040Z ##[endgroup]
+2025-10-23T10:18:38.4489960Z Secret source: Actions
+2025-10-23T10:18:38.4490430Z Prepare workflow directory
+2025-10-23T10:18:38.4734240Z Prepare all required actions
+2025-10-23T10:18:38.4762190Z Getting action download info
+2025-10-23T10:18:38.7677250Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-10-23T10:18:38.9763770Z Download action repository 'subosito/flutter-action@v2' (SHA:fd55f4c5af5b953cc57a2be44cb082c8f6635e8e)
+2025-10-23T10:18:40.1498840Z Download action repository 'futureware-tech/simulator-action@v3' (SHA:bfa03d93ec9de6dacb0c5553bbf8da8afc6c2ee9)
+2025-10-23T10:18:41.5417550Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-10-23T10:18:41.6198660Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-10-23T10:18:41.8090420Z Getting action download info
+2025-10-23T10:18:42.1308190Z Complete job name: patrol-ios
+2025-10-23T10:18:42.1824470Z ##[group]Run actions/checkout@v4
+2025-10-23T10:18:42.1825400Z with:
+2025-10-23T10:18:42.1825950Z   repository: luciancernauteanuthinslices/Ivory
+2025-10-23T10:18:42.1826920Z   token: ***
+2025-10-23T10:18:42.1827450Z   ssh-strict: true
+2025-10-23T10:18:42.1827900Z   ssh-user: git
+2025-10-23T10:18:42.1828380Z   persist-credentials: true
+2025-10-23T10:18:42.1828900Z   clean: true
+2025-10-23T10:18:42.1830170Z   sparse-checkout-cone-mode: true
+2025-10-23T10:18:42.1831340Z   fetch-depth: 1
+2025-10-23T10:18:42.1834600Z   fetch-tags: false
+2025-10-23T10:18:42.1835100Z   show-progress: true
+2025-10-23T10:18:42.1835590Z   lfs: false
+2025-10-23T10:18:42.1836030Z   submodules: false
+2025-10-23T10:18:42.1837310Z   set-safe-directory: true
+2025-10-23T10:18:42.1838410Z ##[endgroup]
+2025-10-23T10:18:42.3463460Z Syncing repository: luciancernauteanuthinslices/Ivory
+2025-10-23T10:18:42.3465270Z ##[group]Getting Git version info
+2025-10-23T10:18:42.3466040Z Working directory is '/Users/runner/work/Ivory/Ivory'
+2025-10-23T10:18:42.3467210Z [command]/opt/homebrew/bin/git version
+2025-10-23T10:18:42.3624510Z git version 2.50.1
+2025-10-23T10:18:42.3643050Z ##[endgroup]
+2025-10-23T10:18:42.3653070Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/3d73e7d7-5d9b-4f90-abcb-795923bdab19/.gitconfig'
+2025-10-23T10:18:42.3659290Z Temporarily overriding HOME='/Users/runner/work/_temp/3d73e7d7-5d9b-4f90-abcb-795923bdab19' before making global git config changes
+2025-10-23T10:18:42.3660700Z Adding repository directory to the temporary git global config as a safe directory
+2025-10-23T10:18:42.3662940Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Ivory/Ivory
+2025-10-23T10:18:42.3745040Z Deleting the contents of '/Users/runner/work/Ivory/Ivory'
+2025-10-23T10:18:42.3751310Z ##[group]Initializing the repository
+2025-10-23T10:18:42.3754880Z [command]/opt/homebrew/bin/git init /Users/runner/work/Ivory/Ivory
+2025-10-23T10:18:42.3930020Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-10-23T10:18:42.3931470Z hint: is subject to change. To configure the initial branch name to use in all
+2025-10-23T10:18:42.3932700Z hint: of your new repositories, which will suppress this warning, call:
+2025-10-23T10:18:42.3933590Z hint:
+2025-10-23T10:18:42.3934360Z hint: 	git config --global init.defaultBranch <name>
+2025-10-23T10:18:42.3935100Z hint:
+2025-10-23T10:18:42.3935830Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-10-23T10:18:42.3936890Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-10-23T10:18:42.3937780Z hint:
+2025-10-23T10:18:42.3938470Z hint: 	git branch -m <name>
+2025-10-23T10:18:42.3939180Z hint:
+2025-10-23T10:18:42.3939980Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-10-23T10:18:42.3941220Z Initialized empty Git repository in /Users/runner/work/Ivory/Ivory/.git/
+2025-10-23T10:18:42.3951920Z [command]/opt/homebrew/bin/git remote add origin https://github.com/luciancernauteanuthinslices/Ivory
+2025-10-23T10:18:42.4013380Z ##[endgroup]
+2025-10-23T10:18:42.4014220Z ##[group]Disabling automatic garbage collection
+2025-10-23T10:18:42.4015820Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2025-10-23T10:18:42.4059620Z ##[endgroup]
+2025-10-23T10:18:42.4060420Z ##[group]Setting up auth
+2025-10-23T10:18:42.4064740Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-10-23T10:18:42.4109870Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-10-23T10:18:42.4704710Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-10-23T10:18:42.4745090Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-10-23T10:18:42.5240390Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-10-23T10:18:42.5317620Z ##[endgroup]
+2025-10-23T10:18:42.5326830Z ##[group]Fetching the repository
+2025-10-23T10:18:42.5329390Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2ea2310e5b116d407e39688f13c881e69e285982:refs/remotes/origin/test_playground
+2025-10-23T10:18:44.5020560Z From https://github.com/luciancernauteanuthinslices/Ivory
+2025-10-23T10:18:44.5034660Z  * [new ref]         2ea2310e5b116d407e39688f13c881e69e285982 -> origin/test_playground
+2025-10-23T10:18:44.5088040Z ##[endgroup]
+2025-10-23T10:18:44.5088460Z ##[group]Determining the checkout info
+2025-10-23T10:18:44.5088910Z ##[endgroup]
+2025-10-23T10:18:44.5092160Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2025-10-23T10:18:44.5154590Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2025-10-23T10:18:44.5205680Z ##[group]Checking out the ref
+2025-10-23T10:18:44.5208260Z [command]/opt/homebrew/bin/git checkout --progress --force -B test_playground refs/remotes/origin/test_playground
+2025-10-23T10:18:44.6661360Z Switched to a new branch 'test_playground'
+2025-10-23T10:18:44.6668440Z branch 'test_playground' set up to track 'origin/test_playground'.
+2025-10-23T10:18:44.6677480Z ##[endgroup]
+2025-10-23T10:18:44.6745800Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2025-10-23T10:18:44.6788920Z 2ea2310e5b116d407e39688f13c881e69e285982
+2025-10-23T10:18:44.6977960Z ##[group]Run subosito/flutter-action@v2
+2025-10-23T10:18:44.6978170Z with:
+2025-10-23T10:18:44.6978300Z   channel: stable
+2025-10-23T10:18:44.6978440Z   architecture: ARM64
+2025-10-23T10:18:44.6978590Z   cache: false
+2025-10-23T10:18:44.6978730Z   pub-cache-path: default
+2025-10-23T10:18:44.6978890Z   dry-run: false
+2025-10-23T10:18:44.6979070Z   git-source: https://github.com/flutter/flutter.git
+2025-10-23T10:18:44.6979290Z ##[endgroup]
+2025-10-23T10:18:44.7058560Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2025-10-23T10:18:44.7058850Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2025-10-23T10:18:44.7109240Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2025-10-23T10:18:44.7109500Z ##[endgroup]
+2025-10-23T10:18:44.7590130Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2025-10-23T10:18:44.7590480Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2025-10-23T10:18:44.7590730Z [36;1m  -n '' \[0m
+2025-10-23T10:18:44.7590950Z [36;1m  -f '' \[0m
+2025-10-23T10:18:44.7591180Z [36;1m  -a 'ARM64' \[0m
+2025-10-23T10:18:44.7591350Z [36;1m  -k '' \[0m
+2025-10-23T10:18:44.7591510Z [36;1m  -c '' \[0m
+2025-10-23T10:18:44.7591690Z [36;1m  -l '' \[0m
+2025-10-23T10:18:44.7591910Z [36;1m  -d 'default' \[0m
+2025-10-23T10:18:44.7592200Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2025-10-23T10:18:44.7592440Z [36;1m  stable[0m
+2025-10-23T10:18:44.7638840Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2025-10-23T10:18:44.7639160Z ##[endgroup]
+2025-10-23T10:18:44.9781720Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2025-10-23T10:18:44.9782010Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2025-10-23T10:18:44.9782240Z [36;1m  -n '3.35.6' \[0m
+2025-10-23T10:18:44.9782400Z [36;1m  -a 'arm64' \[0m
+2025-10-23T10:18:44.9782670Z [36;1m  -c '/Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64' \[0m
+2025-10-23T10:18:44.9782980Z [36;1m  -d '/Users/runner/.pub-cache' \[0m
+2025-10-23T10:18:44.9783170Z [36;1m  stable[0m
+2025-10-23T10:18:44.9827510Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2025-10-23T10:18:44.9827770Z ##[endgroup]
+2025-10-23T10:18:45.1968760Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2025-10-23T10:18:45.1982290Z                                  Dload  Upload   Total   Spent    Left  Speed
+2025-10-23T10:18:45.1982770Z 
+2025-10-23T10:18:45.7125680Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-10-23T10:18:46.7124470Z   2 1991M    2 39.8M    0     0  77.3M      0  0:00:25 --:--:--  0:00:25 77.3M
+2025-10-23T10:18:47.7169050Z   6 1991M    6  135M    0     0  89.1M      0  0:00:22  0:00:01  0:00:21 89.0M
+2025-10-23T10:18:48.7145740Z  11 1991M   11  220M    0     0  87.5M      0  0:00:22  0:00:02  0:00:20 87.5M
+2025-10-23T10:18:49.7187580Z  15 1991M   15  316M    0     0  89.9M      0  0:00:22  0:00:03  0:00:19 89.9M
+2025-10-23T10:18:50.7128700Z  20 1991M   20  407M    0     0  90.1M      0  0:00:22  0:00:04  0:00:18 90.1M
+2025-10-23T10:18:51.7123120Z  24 1991M   24  482M    0     0  87.4M      0  0:00:22  0:00:05  0:00:17 88.4M
+2025-10-23T10:18:52.7128320Z  28 1991M   28  577M    0     0  88.6M      0  0:00:22  0:00:06  0:00:16 88.4M
+2025-10-23T10:18:53.7143920Z  33 1991M   33  675M    0     0  89.9M      0  0:00:22  0:00:07  0:00:15 91.1M
+2025-10-23T10:18:54.7132540Z  38 1991M   38  762M    0     0  89.4M      0  0:00:22  0:00:08  0:00:14 89.1M
+2025-10-23T10:18:55.7162730Z  42 1991M   42  839M    0     0  88.2M      0  0:00:22  0:00:09  0:00:13 86.5M
+2025-10-23T10:18:56.7126540Z  47 1991M   47  938M    0     0  89.2M      0  0:00:22  0:00:10  0:00:12 91.2M
+2025-10-23T10:18:57.7202900Z  51 1991M   51 1031M    0     0  89.5M      0  0:00:22  0:00:11  0:00:11 90.8M
+2025-10-23T10:18:58.7141950Z  56 1991M   56 1129M    0     0  90.2M      0  0:00:22  0:00:12  0:00:10 90.7M
+2025-10-23T10:18:59.7129250Z  61 1991M   61 1225M    0     0  90.6M      0  0:00:21  0:00:13  0:00:08 92.6M
+2025-10-23T10:19:00.7134680Z  66 1991M   66 1323M    0     0  91.1M      0  0:00:21  0:00:14  0:00:07 96.6M
+2025-10-23T10:19:01.7187640Z  71 1991M   71 1418M    0     0  91.4M      0  0:00:21  0:00:15  0:00:06 96.0M
+2025-10-23T10:19:02.7137080Z  75 1991M   75 1506M    0     0  91.2M      0  0:00:21  0:00:16  0:00:05 95.0M
+2025-10-23T10:19:03.7126310Z  80 1991M   80 1599M    0     0  91.3M      0  0:00:21  0:00:17  0:00:04 93.9M
+2025-10-23T10:19:04.7125490Z  84 1991M   84 1688M    0     0  91.2M      0  0:00:21  0:00:18  0:00:03 92.6M
+2025-10-23T10:19:05.7129530Z  89 1991M   89 1777M    0     0  91.1M      0  0:00:21  0:00:19  0:00:02 90.9M
+2025-10-23T10:19:06.7220430Z  92 1991M   92 1849M    0     0  90.1M      0  0:00:22  0:00:20  0:00:02 86.2M
+2025-10-23T10:19:07.0887190Z  98 1991M   98 1952M    0     0  90.7M      0  0:00:21  0:00:21 --:--:-- 89.2M
+2025-10-23T10:19:07.0889760Z 100 1991M  100 1991M    0     0  90.9M      0  0:00:21  0:00:21 --:--:-- 89.5M
+2025-10-23T10:19:40.4043560Z ##[group]Run sudo xcode-select -s /Applications/Xcode.app
+2025-10-23T10:19:40.4044070Z [36;1msudo xcode-select -s /Applications/Xcode.app[0m
+2025-10-23T10:19:40.4154620Z shell: /bin/bash -e {0}
+2025-10-23T10:19:40.4155010Z env:
+2025-10-23T10:19:40.4155320Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:19:40.4155750Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:19:40.4156030Z ##[endgroup]
+2025-10-23T10:19:40.5381800Z ##[group]Run futureware-tech/simulator-action@v3
+2025-10-23T10:19:40.5382910Z with:
+2025-10-23T10:19:40.5383570Z   model: iPhone 15 Pro
+2025-10-23T10:19:40.5384200Z   os_version: 17.4
+2025-10-23T10:19:40.5385310Z   erase_before_boot: true
+2025-10-23T10:19:40.5386240Z   shutdown_after_job: true
+2025-10-23T10:19:40.5387310Z env:
+2025-10-23T10:19:40.5388110Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:19:40.5389420Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:19:40.5390240Z ##[endgroup]
+2025-10-23T10:19:40.8375020Z $ xcrun simctl list --json devices available
+2025-10-23T10:19:50.1841810Z 23 runtimes found
+2025-10-23T10:19:50.2425790Z Picked a device: iPhone 15 Pro (iOS 17.4) [08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E] - Shutdown
+2025-10-23T10:19:50.2426240Z Erasing device...
+2025-10-23T10:19:50.2426450Z $ xcrun simctl erase 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E
+2025-10-23T10:19:51.2492960Z Booting device.
+2025-10-23T10:19:51.2493720Z $ xcrun simctl boot 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E
+2025-10-23T10:19:59.6899290Z ##[group]Run flutter pub get
+2025-10-23T10:19:59.6899880Z [36;1mflutter pub get[0m
+2025-10-23T10:20:00.9481600Z shell: /bin/bash -e {0}
+2025-10-23T10:20:00.9481850Z env:
+2025-10-23T10:20:00.9482410Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:20:00.9482810Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:20:00.9483010Z ##[endgroup]
+2025-10-23T10:21:10.6323520Z Resolving dependencies...
+2025-10-23T10:21:13.9365450Z Downloading packages...
+2025-10-23T10:21:30.2487550Z + _fe_analyzer_shared 85.0.0 (91.0.0 available)
+2025-10-23T10:21:30.2554120Z + _flutterfire_internals 1.3.59 (1.3.63 available)
+2025-10-23T10:21:30.2557660Z + amazon_cognito_identity_dart_2 3.8.1
+2025-10-23T10:21:30.2581320Z + analyzer 7.7.1 (8.4.0 available)
+2025-10-23T10:21:30.2582070Z + ansicolor 2.0.3
+2025-10-23T10:21:30.2582670Z + app_settings 6.1.1
+2025-10-23T10:21:30.2583440Z + archive 4.0.7
+2025-10-23T10:21:30.2583800Z + args 2.7.0
+2025-10-23T10:21:30.2585410Z + asn1lib 1.6.5
+2025-10-23T10:21:30.2616980Z + async 2.13.0
+2025-10-23T10:21:30.2698450Z + badges 3.1.2
+2025-10-23T10:21:30.2727060Z + bloc 8.1.4 (9.1.0 available)
+2025-10-23T10:21:30.2828430Z + boolean_selector 2.1.2
+2025-10-23T10:21:30.2948630Z + build 3.1.0 (4.0.2 available)
+2025-10-23T10:21:30.3001790Z + build_config 1.2.0
+2025-10-23T10:21:30.3007750Z + build_daemon 4.1.0
+2025-10-23T10:21:30.3061190Z + build_resolvers 3.0.3 (3.0.4 available)
+2025-10-23T10:21:30.3162830Z + build_runner 2.7.1 (2.10.0 available)
+2025-10-23T10:21:30.3290180Z + build_runner_core 9.3.1 (9.3.2 available)
+2025-10-23T10:21:30.3295550Z + built_collection 5.1.1
+2025-10-23T10:21:30.3297340Z + built_value 8.12.0
+2025-10-23T10:21:30.3307520Z + characters 1.4.0 (1.4.1 available)
+2025-10-23T10:21:30.3308170Z + checked_yaml 2.0.4
+2025-10-23T10:21:30.3308650Z + cli_config 0.2.0
+2025-10-23T10:21:30.3309350Z + clock 1.1.2
+2025-10-23T10:21:30.3309860Z + code_builder 4.11.0
+2025-10-23T10:21:30.3310190Z + collection 1.19.1
+2025-10-23T10:21:30.3310880Z + convert 3.1.2
+2025-10-23T10:21:30.3311800Z + coverage 1.15.0
+2025-10-23T10:21:30.3316500Z + cross_file 0.3.4+2
+2025-10-23T10:21:30.3316830Z + crypto 3.0.6
+2025-10-23T10:21:30.3317290Z + crypto_keys 0.3.0+1 (0.3.0+2 available)
+2025-10-23T10:21:30.3317750Z + csslib 1.0.2
+2025-10-23T10:21:30.3318380Z + cupertino_icons 1.0.8
+2025-10-23T10:21:30.3318990Z + dart_style 3.1.1 (3.1.2 available)
+2025-10-23T10:21:30.3319370Z + dbus 0.7.11
+2025-10-23T10:21:30.3320270Z + device_info_plus 11.5.0 (12.2.0 available)
+2025-10-23T10:21:30.3321540Z + device_info_plus_platform_interface 7.0.3
+2025-10-23T10:21:30.3322060Z + dio 5.9.0
+2025-10-23T10:21:30.3322370Z + dio_web_adapter 2.1.1
+2025-10-23T10:21:30.3323190Z + dispose_scope 2.1.0
+2025-10-23T10:21:30.3323590Z + dotted_border 2.1.0 (3.1.0 available)
+2025-10-23T10:21:30.3324020Z + equatable 2.0.7
+2025-10-23T10:21:30.3324420Z + fake_async 1.3.3
+2025-10-23T10:21:30.3325090Z + ffi 2.1.4
+2025-10-23T10:21:30.3325540Z + file 7.0.1
+2025-10-23T10:21:30.3325940Z + firebase_core 3.15.2 (4.2.0 available)
+2025-10-23T10:21:30.3326820Z + firebase_core_platform_interface 6.0.2
+2025-10-23T10:21:30.3330610Z + firebase_core_web 2.24.1 (3.2.0 available)
+2025-10-23T10:21:30.3331000Z + firebase_messaging 15.2.10 (16.0.3 available)
+2025-10-23T10:21:30.3331620Z + firebase_messaging_platform_interface 4.6.10 (4.7.3 available)
+2025-10-23T10:21:30.3332210Z + firebase_messaging_web 3.10.10 (4.0.3 available)
+2025-10-23T10:21:30.3332890Z + fixnum 1.1.1
+2025-10-23T10:21:30.3333360Z + fl_chart 0.69.2 (1.1.1 available)
+2025-10-23T10:21:30.3334200Z + flutter 0.0.0 from sdk flutter
+2025-10-23T10:21:30.3338440Z + flutter_bloc 8.1.6 (9.1.1 available)
+2025-10-23T10:21:30.3338880Z + flutter_dotenv 5.2.1 (6.0.0 available)
+2025-10-23T10:21:30.3339480Z + flutter_driver 0.0.0 from sdk flutter
+2025-10-23T10:21:30.3339930Z + flutter_lints 5.0.0 (6.0.0 available)
+2025-10-23T10:21:30.3340350Z + flutter_local_notifications 18.0.1 (19.5.0 available)
+2025-10-23T10:21:30.3345590Z + flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+2025-10-23T10:21:30.3347410Z + flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+2025-10-23T10:21:30.3347950Z + flutter_native_splash 2.4.7
+2025-10-23T10:21:30.3348370Z + flutter_platform_widgets 7.0.1 (9.0.0 available)
+2025-10-23T10:21:30.3348790Z + flutter_plugin_android_lifecycle 2.0.32
+2025-10-23T10:21:30.3349150Z + flutter_redux 0.10.0
+2025-10-23T10:21:30.3349980Z + flutter_svg 2.2.1
+2025-10-23T10:21:30.3350200Z + flutter_switch 0.3.2
+2025-10-23T10:21:30.3350550Z + flutter_test 0.0.0 from sdk flutter
+2025-10-23T10:21:30.3350840Z + flutter_web_plugins 0.0.0 from sdk flutter
+2025-10-23T10:21:30.3354890Z + frontend_server_client 4.0.0
+2025-10-23T10:21:30.3355640Z + fuchsia_remote_debug_protocol 0.0.0 from sdk flutter
+2025-10-23T10:21:30.3356070Z + glob 2.1.3
+2025-10-23T10:21:30.3356350Z + graphs 2.3.2
+2025-10-23T10:21:30.3356610Z + html 0.15.6
+2025-10-23T10:21:30.3357700Z + http 1.5.0
+2025-10-23T10:21:30.3358930Z + http_mock_adapter 0.6.1
+2025-10-23T10:21:30.3359280Z + http_multi_server 3.2.2
+2025-10-23T10:21:30.3359800Z + http_parser 4.1.2
+2025-10-23T10:21:30.3360110Z + image 4.5.4
+2025-10-23T10:21:30.3360420Z + integration_test 0.0.0 from sdk flutter
+2025-10-23T10:21:30.3361250Z + intl 0.19.0 (0.20.2 available)
+2025-10-23T10:21:30.3361480Z + io 1.0.5
+2025-10-23T10:21:30.3361890Z + jose 0.3.5
+2025-10-23T10:21:30.3362130Z + js 0.7.2
+2025-10-23T10:21:30.3362560Z + json_annotation 4.9.0
+2025-10-23T10:21:30.3362850Z + jwt_decoder 2.0.1
+2025-10-23T10:21:30.3363440Z + leak_tracker 11.0.2
+2025-10-23T10:21:30.3363910Z + leak_tracker_flutter_testing 3.0.10
+2025-10-23T10:21:30.3364210Z + leak_tracker_testing 3.0.2
+2025-10-23T10:21:30.3364920Z + lints 5.1.1 (6.0.0 available)
+2025-10-23T10:21:30.3365210Z + local_auth 2.3.0 (3.0.0 available)
+2025-10-23T10:21:30.3365710Z + local_auth_android 1.0.56 (2.0.0 available)
+2025-10-23T10:21:30.3366180Z + local_auth_darwin 1.6.1 (2.0.0 available)
+2025-10-23T10:21:30.3366520Z + local_auth_platform_interface 1.1.0
+2025-10-23T10:21:30.3367090Z + local_auth_windows 1.0.11 (2.0.0 available)
+2025-10-23T10:21:30.3367410Z + logger 2.6.2
+2025-10-23T10:21:30.3367680Z + logging 1.3.0
+2025-10-23T10:21:30.3367910Z + mask_text_input_formatter 2.9.0
+2025-10-23T10:21:30.3368260Z + matcher 0.12.17
+2025-10-23T10:21:30.3368520Z + material_color_utilities 0.11.1 (0.13.0 available)
+2025-10-23T10:21:30.3368920Z + meta 1.16.0 (1.17.0 available)
+2025-10-23T10:21:30.3369140Z + mime 2.0.0
+2025-10-23T10:21:30.3369540Z + mockito 5.5.0 (5.5.1 available)
+2025-10-23T10:21:30.3369830Z + nested 1.0.0
+2025-10-23T10:21:30.3370150Z + node_preamble 2.0.2
+2025-10-23T10:21:30.3370540Z + package_config 2.2.0
+2025-10-23T10:21:30.3370760Z + path 1.9.1
+2025-10-23T10:21:30.3370990Z + path_drawing 1.0.1
+2025-10-23T10:21:30.3371230Z + path_parsing 1.1.0
+2025-10-23T10:21:30.3371720Z + path_provider 2.1.5
+2025-10-23T10:21:30.3372190Z + path_provider_android 2.2.20
+2025-10-23T10:21:30.3372520Z + path_provider_foundation 2.4.3
+2025-10-23T10:21:30.3372800Z + path_provider_linux 2.2.1
+2025-10-23T10:21:30.3373250Z + path_provider_platform_interface 2.1.2
+2025-10-23T10:21:30.3373560Z + path_provider_windows 2.3.0
+2025-10-23T10:21:30.3373930Z + patrol 3.19.0
+2025-10-23T10:21:30.3374200Z + patrol_finders 2.9.0
+2025-10-23T10:21:30.3374430Z + patrol_log 0.5.0
+2025-10-23T10:21:30.3374850Z + percent_indicator 4.2.5
+2025-10-23T10:21:30.3375130Z + permission_handler 11.4.0 (12.0.1 available)
+2025-10-23T10:21:30.3375640Z + permission_handler_android 12.1.0 (13.0.1 available)
+2025-10-23T10:21:30.3375960Z + permission_handler_apple 9.4.7
+2025-10-23T10:21:30.3381310Z + permission_handler_html 0.1.3+5
+2025-10-23T10:21:30.3381770Z + permission_handler_platform_interface 4.3.0
+2025-10-23T10:21:30.3382230Z + permission_handler_windows 0.2.1
+2025-10-23T10:21:30.3382520Z + petitparser 7.0.1
+2025-10-23T10:21:30.3382950Z + pin_input_text_field 4.5.2
+2025-10-23T10:21:30.3383190Z + platform 3.1.6
+2025-10-23T10:21:30.3383540Z + plugin_platform_interface 2.1.8
+2025-10-23T10:21:30.3384840Z + pointycastle 3.9.1 (4.0.0 available)
+2025-10-23T10:21:30.3385680Z + pool 1.5.2
+2025-10-23T10:21:30.3385930Z + posix 6.0.3
+2025-10-23T10:21:30.3386180Z + process 5.0.5
+2025-10-23T10:21:30.3386460Z + provider 6.1.5+1
+2025-10-23T10:21:30.3386690Z + pub_semver 2.2.0
+2025-10-23T10:21:30.3387020Z + pubspec_parse 1.5.0
+2025-10-23T10:21:30.3387950Z + quiver 3.2.2
+2025-10-23T10:21:30.3388380Z + redux 5.0.0
+2025-10-23T10:21:30.3388620Z + share_plus 10.1.4 (12.0.1 available)
+2025-10-23T10:21:30.3389240Z + share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-10-23T10:21:30.3389560Z + shared_preferences 2.5.3
+2025-10-23T10:21:30.3389910Z + shared_preferences_android 2.4.15
+2025-10-23T10:21:30.3390240Z + shared_preferences_foundation 2.5.5
+2025-10-23T10:21:30.3390550Z + shared_preferences_linux 2.4.1
+2025-10-23T10:21:30.3391040Z + shared_preferences_platform_interface 2.4.1
+2025-10-23T10:21:30.3391520Z + shared_preferences_web 2.4.3
+2025-10-23T10:21:30.3391770Z + shared_preferences_windows 2.4.1
+2025-10-23T10:21:30.3392140Z + shelf 1.4.2
+2025-10-23T10:21:30.3392350Z + shelf_packages_handler 3.0.2
+2025-10-23T10:21:30.3392690Z + shelf_static 1.1.3
+2025-10-23T10:21:30.3393570Z + shelf_web_socket 3.0.0
+2025-10-23T10:21:30.3393880Z + shimmer 3.0.0
+2025-10-23T10:21:30.3394640Z + sky_engine 0.0.0 from sdk flutter
+2025-10-23T10:21:30.3395060Z + smooth_page_indicator 1.2.1
+2025-10-23T10:21:30.3395650Z + source_gen 3.1.0 (4.0.2 available)
+2025-10-23T10:21:30.3396070Z + source_map_stack_trace 2.1.2
+2025-10-23T10:21:30.3396500Z + source_maps 0.10.13
+2025-10-23T10:21:30.3397150Z + source_span 1.10.1
+2025-10-23T10:21:30.3397600Z + sprintf 7.0.0
+2025-10-23T10:21:30.3397880Z + stack_trace 1.12.1
+2025-10-23T10:21:30.3398300Z + stream_channel 2.1.4
+2025-10-23T10:21:30.3398520Z + stream_transform 2.1.1
+2025-10-23T10:21:30.3398780Z + string_scanner 1.4.1
+2025-10-23T10:21:30.3399120Z + sync_http 0.3.1
+2025-10-23T10:21:30.3399370Z + syncfusion_flutter_core 27.2.5 (31.2.3 available)
+2025-10-23T10:21:30.3403020Z + syncfusion_flutter_datepicker 27.2.5 (31.2.3 available)
+2025-10-23T10:21:30.3403320Z + term_glyph 1.2.2
+2025-10-23T10:21:30.3403630Z + test 1.26.2 (1.26.3 available)
+2025-10-23T10:21:30.3403850Z + test_api 0.7.6 (0.7.7 available)
+2025-10-23T10:21:30.3404150Z + test_core 0.6.11 (0.6.12 available)
+2025-10-23T10:21:30.3404500Z + timezone 0.10.1
+2025-10-23T10:21:30.3404770Z + timing 1.0.2
+2025-10-23T10:21:30.3404960Z + typed_data 1.4.0
+2025-10-23T10:21:30.3405310Z + universal_io 2.2.2
+2025-10-23T10:21:30.3405520Z + url_launcher 6.3.2
+2025-10-23T10:21:30.3405960Z + url_launcher_android 6.3.24
+2025-10-23T10:21:30.3416840Z + url_launcher_ios 6.3.5
+2025-10-23T10:21:30.3417120Z + url_launcher_linux 3.2.1
+2025-10-23T10:21:30.3417510Z + url_launcher_macos 3.2.4
+2025-10-23T10:21:30.3417890Z + url_launcher_platform_interface 2.3.2
+2025-10-23T10:21:30.3418150Z + url_launcher_web 2.4.1
+2025-10-23T10:21:30.3418940Z + url_launcher_windows 3.1.4
+2025-10-23T10:21:30.3421060Z + uuid 4.5.1
+2025-10-23T10:21:30.3421300Z + vector_graphics 1.1.19
+2025-10-23T10:21:30.3421550Z + vector_graphics_codec 1.1.13
+2025-10-23T10:21:30.3422030Z + vector_graphics_compiler 1.1.19
+2025-10-23T10:21:30.3422300Z + vector_math 2.2.0
+2025-10-23T10:21:30.3422630Z + video_player 2.10.0
+2025-10-23T10:21:30.3422970Z + video_player_android 2.8.17
+2025-10-23T10:21:30.3423400Z + video_player_avfoundation 2.8.5
+2025-10-23T10:21:30.3423750Z + video_player_platform_interface 6.5.0
+2025-10-23T10:21:30.3424100Z + video_player_web 2.4.0
+2025-10-23T10:21:30.3424330Z + vm_service 15.0.2
+2025-10-23T10:21:30.3424660Z + watcher 1.1.4
+2025-10-23T10:21:30.3425080Z + web 1.1.1
+2025-10-23T10:21:30.3425290Z + web_socket 1.0.1
+2025-10-23T10:21:30.3425670Z + web_socket_channel 3.0.3
+2025-10-23T10:21:30.3425990Z + webdriver 3.1.0
+2025-10-23T10:21:30.3426380Z + webkit_inspection_protocol 1.2.1
+2025-10-23T10:21:30.3426650Z + webview_flutter 4.13.0
+2025-10-23T10:21:30.3427130Z + webview_flutter_android 4.10.5
+2025-10-23T10:21:30.3427510Z + webview_flutter_platform_interface 2.14.0
+2025-10-23T10:21:30.3428390Z + webview_flutter_wkwebview 3.23.1
+2025-10-23T10:21:30.3434650Z + win32 5.15.0
+2025-10-23T10:21:30.3435300Z + win32_registry 2.1.0
+2025-10-23T10:21:30.3435650Z + x509 0.2.4+3
+2025-10-23T10:21:30.3435990Z + xdg_directories 1.1.0
+2025-10-23T10:21:30.3436320Z + xml 6.6.1
+2025-10-23T10:21:30.3436730Z + yaml 3.1.3
+2025-10-23T10:21:30.3437100Z Changed 210 dependencies!
+2025-10-23T10:21:30.3437600Z 46 packages have newer versions incompatible with dependency constraints.
+2025-10-23T10:21:30.3437990Z Try `flutter pub outdated` for more information.
+2025-10-23T10:21:31.7360480Z ##[group]Run dart pub global activate patrol_cli
+2025-10-23T10:21:31.7361100Z [36;1mdart pub global activate patrol_cli[0m
+2025-10-23T10:21:31.7361410Z [36;1mecho "$HOME/.pub-cache/bin" >> $GITHUB_PATH[0m
+2025-10-23T10:21:32.0071790Z shell: /bin/bash -e {0}
+2025-10-23T10:21:32.0072030Z env:
+2025-10-23T10:21:32.0072280Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:32.0072660Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:32.0072850Z ##[endgroup]
+2025-10-23T10:21:32.2416370Z Resolving dependencies...
+2025-10-23T10:21:33.0409720Z Downloading packages...
+2025-10-23T10:21:33.3516520Z + adb 0.5.0 (0.6.0 available)
+2025-10-23T10:21:33.3593000Z + ansi_styles 0.3.2+1
+2025-10-23T10:21:33.3645250Z + args 2.7.0
+2025-10-23T10:21:33.3747400Z + async 2.13.0
+2025-10-23T10:21:33.3812200Z + ci 0.1.0
+2025-10-23T10:21:33.3829470Z + cli_completion 0.4.0 (0.5.1 available)
+2025-10-23T10:21:33.3835760Z + cli_config 0.2.0
+2025-10-23T10:21:33.3851210Z + collection 1.19.1
+2025-10-23T10:21:33.3855990Z + coverage 1.15.0
+2025-10-23T10:21:33.3913050Z + crypto 3.0.6
+2025-10-23T10:21:33.3924360Z + dispose_scope 2.1.0
+2025-10-23T10:21:33.3938290Z + equatable 2.0.7
+2025-10-23T10:21:33.3950970Z + ffi 2.1.4
+2025-10-23T10:21:33.3957880Z + file 7.0.1
+2025-10-23T10:21:33.3966560Z + fixnum 1.1.1
+2025-10-23T10:21:33.3975750Z + glob 2.1.3
+2025-10-23T10:21:33.3978180Z + http 1.5.0
+2025-10-23T10:21:33.3978750Z + http_parser 4.1.2
+2025-10-23T10:21:33.3979020Z + io 1.0.5
+2025-10-23T10:21:33.3980020Z + json_annotation 4.9.0
+2025-10-23T10:21:33.3980220Z + logging 1.3.0
+2025-10-23T10:21:33.3980470Z + mason_logger 0.2.16 (0.3.3 available)
+2025-10-23T10:21:33.3980750Z + meta 1.17.0
+2025-10-23T10:21:33.3980930Z + package_config 2.2.0
+2025-10-23T10:21:33.3981100Z + path 1.9.1
+2025-10-23T10:21:33.3981240Z + patrol_cli 3.10.0
+2025-10-23T10:21:33.3981410Z + patrol_log 0.5.0
+2025-10-23T10:21:33.3981650Z + platform 3.1.6
+2025-10-23T10:21:33.3981930Z + process 5.0.5
+2025-10-23T10:21:33.3982180Z + pub_semver 2.2.0
+2025-10-23T10:21:33.3982360Z + pub_updater 0.4.0 (0.5.0 available)
+2025-10-23T10:21:33.3982620Z + source_maps 0.10.13
+2025-10-23T10:21:33.3982920Z + source_span 1.10.1
+2025-10-23T10:21:33.3983100Z + sprintf 7.0.0
+2025-10-23T10:21:33.3983270Z + stack_trace 1.12.1
+2025-10-23T10:21:33.3983430Z + string_scanner 1.4.1
+2025-10-23T10:21:33.3983630Z + term_glyph 1.2.2
+2025-10-23T10:21:33.3983800Z + typed_data 1.4.0
+2025-10-23T10:21:33.3983970Z + uuid 4.5.1
+2025-10-23T10:21:33.3984110Z + version 3.0.2
+2025-10-23T10:21:33.3984270Z + vm_service 15.0.2
+2025-10-23T10:21:33.3984410Z + web 1.1.1
+2025-10-23T10:21:33.3984560Z + win32 5.15.0
+2025-10-23T10:21:33.3984700Z + yaml 3.1.3
+2025-10-23T10:21:33.3984870Z Building package executables...
+2025-10-23T10:21:37.3937750Z Built patrol_cli:main.
+2025-10-23T10:21:37.4724660Z Installed executable patrol.
+2025-10-23T10:21:37.4860080Z Activated patrol_cli 3.10.0.
+2025-10-23T10:21:37.8251910Z ##[group]Run actions/cache@v4
+2025-10-23T10:21:37.8252290Z with:
+2025-10-23T10:21:37.8252540Z   path: ios/Pods
+~/Library/Caches/CocoaPods
+~/.cocoapods
+
+2025-10-23T10:21:37.8253290Z   key: macOS-pods-
+2025-10-23T10:21:37.8253510Z   restore-keys: macOS-pods-
+
+2025-10-23T10:21:37.8253850Z   enableCrossOsArchive: false
+2025-10-23T10:21:37.8254100Z   fail-on-cache-miss: false
+2025-10-23T10:21:37.8254370Z   lookup-only: false
+2025-10-23T10:21:37.8254600Z   save-always: false
+2025-10-23T10:21:37.8254880Z env:
+2025-10-23T10:21:37.8255190Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:37.8255560Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:37.8255830Z ##[endgroup]
+2025-10-23T10:21:38.1028750Z Cache not found for input keys: macOS-pods-, macOS-pods-
+2025-10-23T10:21:38.1153100Z ##[group]Run cat > .env << EOF
+2025-10-23T10:21:38.1153390Z [36;1mcat > .env << EOF[0m
+2025-10-23T10:21:38.1155040Z [36;1mCOGNITO_USER_POOL_ID=***[0m
+2025-10-23T10:21:38.1155400Z [36;1mCOGNITO_CLIENT_ID=***[0m
+2025-10-23T10:21:38.1155680Z [36;1mAPI_BASE_URL=***[0m
+2025-10-23T10:21:38.1155950Z [36;1mGEONAMES_USERNAME=***[0m
+2025-10-23T10:21:38.1156140Z [36;1mEOF[0m
+2025-10-23T10:21:38.1156350Z [36;1mecho "✅ Created .env with app configuration"[0m
+2025-10-23T10:21:38.1696130Z shell: /bin/bash -e {0}
+2025-10-23T10:21:38.1696700Z env:
+2025-10-23T10:21:38.1700260Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:38.1701350Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:38.1702480Z ##[endgroup]
+2025-10-23T10:21:38.2440920Z ✅ Created .env with app configuration
+2025-10-23T10:21:38.2492940Z ##[group]Run echo "🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)..."
+2025-10-23T10:21:38.2493450Z [36;1mecho "🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)..."[0m
+2025-10-23T10:21:38.2494060Z [36;1mrm -rf build[0m
+2025-10-23T10:21:38.2494300Z [36;1mrm -rf ios/build[0m
+2025-10-23T10:21:38.2494540Z [36;1mrm -rf ios/.symlinks[0m
+2025-10-23T10:21:38.2494830Z [36;1mrm -rf ~/Library/Developer/Xcode/DerivedData/*[0m
+2025-10-23T10:21:38.2495210Z [36;1mecho "✅ Cleaned iOS build artifacts (Pods preserved for caching)"[0m
+2025-10-23T10:21:38.2576960Z shell: /bin/bash -e {0}
+2025-10-23T10:21:38.2577170Z env:
+2025-10-23T10:21:38.2577450Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:38.2577860Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:38.2578090Z ##[endgroup]
+2025-10-23T10:21:38.3021110Z 🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)...
+2025-10-23T10:21:38.3416910Z ✅ Cleaned iOS build artifacts (Pods preserved for caching)
+2025-10-23T10:21:38.3769290Z ##[group]Run # Remove PBXFileSystemSynchronizedRootGroup objects that cause Xcode 15.4 to crash
+2025-10-23T10:21:38.3770130Z [36;1m# Remove PBXFileSystemSynchronizedRootGroup objects that cause Xcode 15.4 to crash[0m
+2025-10-23T10:21:38.3770580Z [36;1mPROJECT_FILE="ios/Runner.xcodeproj/project.pbxproj"[0m
+2025-10-23T10:21:38.3770850Z [36;1m[0m
+2025-10-23T10:21:38.3771050Z [36;1mif [ ! -f "$PROJECT_FILE" ]; then[0m
+2025-10-23T10:21:38.3771300Z [36;1m  echo "❌ ERROR: $PROJECT_FILE not found!"[0m
+2025-10-23T10:21:38.3773140Z [36;1m  exit 1[0m
+2025-10-23T10:21:38.3773990Z [36;1mfi[0m
+2025-10-23T10:21:38.3774490Z [36;1m[0m
+2025-10-23T10:21:38.3775110Z [36;1mecho "📝 Checking if Xcode project needs fixing..."[0m
+2025-10-23T10:21:38.3776440Z [36;1mif grep -q "PBXFileSystemSynchronizedRootGroup" "$PROJECT_FILE"; then[0m
+2025-10-23T10:21:38.3777590Z [36;1m  echo "🔧 Fixing Xcode project file..."[0m
+2025-10-23T10:21:38.3778250Z [36;1m  [0m
+2025-10-23T10:21:38.3778900Z [36;1m  # Use perl for reliable multi-line pattern removal[0m
+2025-10-23T10:21:38.3779660Z [36;1m  perl -i.backup -0pe '[0m
+2025-10-23T10:21:38.3780380Z [36;1m    # Remove PBXFileSystemSynchronizedRootGroup section[0m
+2025-10-23T10:21:38.3781710Z [36;1m    s!/\* Begin PBXFileSystemSynchronizedRootGroup section \*/.*?/\* End PBXFileSystemSynchronizedRootGroup section \*/!!gs;[0m
+2025-10-23T10:21:38.3782310Z [36;1m    # Remove fileSystemSynchronizedGroups array[0m
+2025-10-23T10:21:38.3782660Z [36;1m    s/\s*fileSystemSynchronizedGroups\s*=\s*\([^)]*\)\s*;\s*//gs;[0m
+2025-10-23T10:21:38.3782970Z [36;1m    # Remove the specific UUID reference[0m
+2025-10-23T10:21:38.3783230Z [36;1m    s/.*7DC899AD2EA221A300A0745F.*\n//g;[0m
+2025-10-23T10:21:38.3783450Z [36;1m  ' "$PROJECT_FILE"[0m
+2025-10-23T10:21:38.3783620Z [36;1m  [0m
+2025-10-23T10:21:38.3783800Z [36;1m  # Verify the fix worked[0m
+2025-10-23T10:21:38.3784120Z [36;1m  if grep -q "PBXFileSystemSynchronizedRootGroup" "$PROJECT_FILE"; then[0m
+2025-10-23T10:21:38.3784540Z [36;1m    echo "❌ ERROR: Failed to remove PBXFileSystemSynchronizedRootGroup"[0m
+2025-10-23T10:21:38.3784890Z [36;1m    exit 1[0m
+2025-10-23T10:21:38.3785050Z [36;1m  fi[0m
+2025-10-23T10:21:38.3785210Z [36;1m  [0m
+2025-10-23T10:21:38.3785460Z [36;1m  echo "✅ Fixed Xcode project file (removed Xcode 16 incompatible features)"[0m
+2025-10-23T10:21:38.3785780Z [36;1melse[0m
+2025-10-23T10:21:38.3786020Z [36;1m  echo "✅ Xcode project file is already compatible (no fix needed)"[0m
+2025-10-23T10:21:38.3786310Z [36;1mfi[0m
+2025-10-23T10:21:38.3899320Z shell: /bin/bash -e {0}
+2025-10-23T10:21:38.3899520Z env:
+2025-10-23T10:21:38.3899790Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:38.3900150Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:38.3900370Z ##[endgroup]
+2025-10-23T10:21:38.4312540Z 📝 Checking if Xcode project needs fixing...
+2025-10-23T10:21:38.4419350Z 🔧 Fixing Xcode project file...
+2025-10-23T10:21:38.4856050Z ✅ Fixed Xcode project file (removed Xcode 16 incompatible features)
+2025-10-23T10:21:38.4906510Z ##[group]Run flutter doctor -v
+2025-10-23T10:21:38.4907110Z [36;1mflutter doctor -v[0m
+2025-10-23T10:21:38.4907400Z [36;1mecho "🎯 Running all tests in: integration_test/"[0m
+2025-10-23T10:21:38.4907740Z [36;1mecho "📝 Using verbose mode for detailed error logs"[0m
+2025-10-23T10:21:38.4908050Z [36;1mecho "🔐 Passing credentials via --dart-define"[0m
+2025-10-23T10:21:38.4908900Z [36;1mpatrol build ios --dart-define=PATROL_EMAIL="***" --dart-define=PATROL_PASSWORD="***" --verbose[0m
+2025-10-23T10:21:38.4909330Z [36;1mpatrol test ios --no-build --verbose[0m
+2025-10-23T10:21:38.4975550Z shell: /bin/bash -e {0}
+2025-10-23T10:21:38.4975750Z env:
+2025-10-23T10:21:38.4976020Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:38.4976320Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:38.4976530Z ##[endgroup]
+2025-10-23T10:21:46.2582080Z [✓] Flutter (Channel stable, 3.35.6, on macOS 14.7.6 23H626 darwin-arm64, locale en-US) [6.9s]
+2025-10-23T10:21:46.2863080Z     • Flutter version 3.35.6 on channel stable at /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:46.2874530Z     • Upstream repository https://github.com/flutter/flutter.git
+2025-10-23T10:21:46.2988760Z     • Framework revision 9f455d2486 (2 weeks ago), 2025-10-08 14:55:31 -0500
+2025-10-23T10:21:46.3109330Z     • Engine revision d2913632a4
+2025-10-23T10:21:46.3228470Z     • Dart version 3.9.2
+2025-10-23T10:21:46.3331880Z     • DevTools version 2.48.0
+2025-10-23T10:21:46.3440720Z     • Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-lldb-debugging
+2025-10-23T10:21:46.3566300Z 
+2025-10-23T10:21:52.7228850Z [!] Android toolchain - develop for Android devices (Android SDK version 36.1.0) [13.3s]
+2025-10-23T10:21:52.7255760Z     • Android SDK at /Users/runner/Library/Android/sdk
+2025-10-23T10:21:52.7257020Z     • Emulator version 36.2.11.0 (build_id 14212360) (CL:N/A)
+2025-10-23T10:21:52.7264430Z     • Platform android-36-ext19, build-tools 36.1.0
+2025-10-23T10:21:52.7265430Z     • ANDROID_HOME = /Users/runner/Library/Android/sdk
+2025-10-23T10:21:52.7265980Z     • ANDROID_SDK_ROOT = /Users/runner/Library/Android/sdk
+2025-10-23T10:21:52.7267760Z     • Java binary at: /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.8-9.0/arm64/Contents/Home/bin/java
+2025-10-23T10:21:52.7268510Z       This JDK is specified by the JAVA_HOME environment variable.
+2025-10-23T10:21:52.7269310Z       To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+2025-10-23T10:21:52.7270060Z     • Java version OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+2025-10-23T10:21:52.7270980Z     ! Some Android licenses not accepted. To resolve this, run: flutter doctor --android-licenses
+2025-10-23T10:21:52.7271400Z 
+2025-10-23T10:21:52.7271840Z [✓] Xcode - develop for iOS and macOS (Xcode 15.4) [11.1s]
+2025-10-23T10:21:52.7272510Z     • Xcode at /Applications/Xcode.app/Contents/Developer
+2025-10-23T10:21:52.7273130Z     • Build 15F31d
+2025-10-23T10:21:52.7340220Z     • CocoaPods version 1.16.2
+2025-10-23T10:21:52.7340690Z 
+2025-10-23T10:21:52.7341180Z [✓] Chrome - develop for the web [57ms]
+2025-10-23T10:21:52.7341870Z     • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+2025-10-23T10:21:52.7342190Z 
+2025-10-23T10:21:52.7342500Z [!] Android Studio (not installed) [60ms]
+2025-10-23T10:21:52.7343470Z     • Android Studio not found; download from https://developer.android.com/studio/index.html
+2025-10-23T10:21:52.7344120Z       (or visit https://flutter.dev/to/macos-android-setup for detailed instructions).
+2025-10-23T10:21:52.7344770Z 
+2025-10-23T10:21:58.7805800Z [✓] Connected device (3 available) [12.6s]
+2025-10-23T10:21:58.7912830Z     • iPhone 15 Pro (mobile) • 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E • ios            • com.apple.CoreSimulator.SimRuntime.iOS-17-4 (simulator)
+2025-10-23T10:21:58.8014660Z     • macOS (desktop)        • macos                                • darwin-arm64   • macOS 14.7.6 23H626 darwin-arm64
+2025-10-23T10:21:58.8021710Z     • Chrome (web)           • chrome                               • web-javascript • Google Chrome 141.0.7390.77
+2025-10-23T10:21:58.8124130Z 
+2025-10-23T10:21:58.8225490Z [✓] Network resources [495ms]
+2025-10-23T10:21:58.8327020Z     • All expected network resources are available.
+2025-10-23T10:21:58.8367420Z 
+2025-10-23T10:21:58.8413130Z ! Doctor found issues in 2 categories.
+2025-10-23T10:21:58.8431220Z 🎯 Running all tests in: integration_test/
+2025-10-23T10:21:58.8432940Z 📝 Using verbose mode for detailed error logs
+2025-10-23T10:21:58.8440060Z 🔐 Passing credentials via --dart-define
+2025-10-23T10:21:59.0290460Z Verbose mode enabled. More logs will be printed.
+2025-10-23T10:21:59.0443330Z 
+2025-10-23T10:21:59.0464310Z Completion files installed. To enable completion, run the following command in your shell:
+2025-10-23T10:21:59.0470230Z source /Users/runner/.bash_profile
+2025-10-23T10:21:59.0486280Z 
+2025-10-23T10:21:59.4834440Z Received 2 test target(s)
+2025-10-23T10:21:59.4944150Z Error: Running on physical iOS devices is possible only in release mode
+2025-10-23T10:21:59.4944720Z Received test target: /Users/runner/work/Ivory/Ivory/integration_test/cardCanBeFrozenOrUnfreeze_test.dart
+2025-10-23T10:21:59.5049690Z See the logs above to learn what happened. Also consider running with --verbose. If the logs still aren't useful, then it's a bug - please report it.
+2025-10-23T10:21:59.5051020Z Received test target: /Users/runner/work/Ivory/Ivory/integration_test/repaymentRateIsSaved_test.dart
+2025-10-23T10:21:59.5152820Z Error: Running on physical iOS devices is possible only in release mode
+2025-10-23T10:21:59.5153770Z Generated entrypoint /Users/runner/work/Ivory/Ivory/integration_test/test_bundle.dart with 2 bundled test(s)
+2025-10-23T10:21:59.5253170Z #0      throwToolExit (package:patrol_cli/src/base/exceptions.dart:7:3)
+2025-10-23T10:21:59.5253640Z Received 9 --dart-define(s) (2 custom, 7 internal)
+2025-10-23T10:21:59.5323030Z #1      IOSTestBackend.build.<anonymous closure> (package:patrol_cli/src/ios/ios_test_backend.dart:91:9)
+2025-10-23T10:21:59.5323570Z Received custom --dart-define: PATROL_EMAIL
+2025-10-23T10:21:59.5325750Z #2      DisposeScope.run (package:dispose_scope/src/dispose_scope.dart:46:18)
+2025-10-23T10:21:59.5326670Z Received custom --dart-define: PATROL_PASSWORD
+2025-10-23T10:21:59.5389140Z #3      IOSTestBackend.build (package:patrol_cli/src/ios/ios_test_backend.dart:80:25)
+2025-10-23T10:21:59.5390240Z Received internal --dart-define: PATROL_WAIT=0
+2025-10-23T10:21:59.5415910Z #4      BuildIOSCommand.run (package:patrol_cli/src/commands/build_ios.dart:178:29)
+2025-10-23T10:21:59.5416520Z Received internal --dart-define: PATROL_APP_BUNDLE_ID=com.thinslices.solarisdemo
+2025-10-23T10:21:59.5418580Z <asynchronous suspension>
+2025-10-23T10:21:59.5419070Z Received internal --dart-define: PATROL_IOS_APP_NAME=Ivory
+2025-10-23T10:21:59.5420310Z #5      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2025-10-23T10:21:59.5420790Z Received internal --dart-define: PATROL_TEST_LABEL_ENABLED=true
+2025-10-23T10:21:59.5421440Z <asynchronous suspension>
+2025-10-23T10:21:59.5421870Z Received internal --dart-define: INTEGRATION_TEST_SHOULD_REPORT_RESULTS_TO_NATIVE=false
+2025-10-23T10:21:59.5422770Z Received internal --dart-define: PATROL_TEST_SERVER_PORT=8081
+2025-10-23T10:21:59.5423270Z Received internal --dart-define: PATROL_APP_SERVER_PORT=8082
+2025-10-23T10:21:59.5424210Z • Building app with entrypoint test_bundle.dart for iOS device (debug)...
+2025-10-23T10:21:59.5425060Z #0      throwToolExit (package:patrol_cli/src/base/exceptions.dart:7:3)
+2025-10-23T10:21:59.5425620Z #1      IOSTestBackend.build.<anonymous closure> (package:patrol_cli/src/ios/ios_test_backend.dart:91:9)
+2025-10-23T10:21:59.5426250Z #2      DisposeScope.run (package:dispose_scope/src/dispose_scope.dart:46:18)
+2025-10-23T10:21:59.5427170Z #3      IOSTestBackend.build (package:patrol_cli/src/ios/ios_test_backend.dart:80:25)
+2025-10-23T10:21:59.5427940Z #4      BuildIOSCommand.run (package:patrol_cli/src/commands/build_ios.dart:178:29)
+2025-10-23T10:21:59.5428340Z <asynchronous suspension>
+2025-10-23T10:21:59.5428780Z #5      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2025-10-23T10:21:59.5429160Z <asynchronous suspension>
+2025-10-23T10:21:59.5429570Z #6      PatrolCommandRunner.runCommand (package:patrol_cli/src/runner/patrol_command_runner.dart:401:18)
+2025-10-23T10:21:59.5430120Z <asynchronous suspension>
+2025-10-23T10:21:59.5430530Z #7      PatrolCommandRunner.run (package:patrol_cli/src/runner/patrol_command_runner.dart:335:18)
+2025-10-23T10:21:59.5430980Z <asynchronous suspension>
+2025-10-23T10:21:59.5431410Z #8      patrolCommandRunner (package:patrol_cli/src/runner/patrol_command_runner.dart:79:20)
+2025-10-23T10:21:59.5431850Z <asynchronous suspension>
+2025-10-23T10:21:59.5432330Z #9      main (file:///Users/runner/.pub-cache/hosted/pub.dev/patrol_cli-3.10.0/bin/main.dart:6:20)
+2025-10-23T10:21:59.5432790Z <asynchronous suspension>
+2025-10-23T10:21:59.5433010Z 
+2025-10-23T10:21:59.5433250Z #6      PatrolCommandRunner.runCommand (package:patrol_cli/src/runner/patrol_command_runner.dart:401:18)
+2025-10-23T10:21:59.5433730Z <asynchronous suspension>
+2025-10-23T10:21:59.5434100Z #7      PatrolCommandRunner.run (package:patrol_cli/src/runner/patrol_command_runner.dart:335:18)
+2025-10-23T10:21:59.5434610Z <asynchronous suspension>
+2025-10-23T10:21:59.5434960Z #8      patrolCommandRunner (package:patrol_cli/src/runner/patrol_command_runner.dart:79:20)
+2025-10-23T10:21:59.5435460Z <asynchronous suspension>
+2025-10-23T10:21:59.5435800Z #9      main (file:///Users/runner/.pub-cache/hosted/pub.dev/patrol_cli-3.10.0/bin/main.dart:6:20)
+2025-10-23T10:21:59.5436390Z <asynchronous suspension>
+2025-10-23T10:21:59.5436500Z 
+2025-10-23T10:21:59.5465690Z ##[error]Process completed with exit code 1.
+2025-10-23T10:21:59.5621980Z ##[group]Run actions/upload-artifact@v4
+2025-10-23T10:21:59.5622250Z with:
+2025-10-23T10:21:59.5622530Z   name: patrol-ios-results
+2025-10-23T10:21:59.5623160Z   path: build/**/reports/**
+**/test-results/**
+**/patrol_logs/**
+**/screenshots/**
+
+2025-10-23T10:21:59.5623630Z   if-no-files-found: ignore
+2025-10-23T10:21:59.5623990Z   compression-level: 6
+2025-10-23T10:21:59.5624210Z   overwrite: false
+2025-10-23T10:21:59.5624490Z   include-hidden-files: false
+2025-10-23T10:21:59.5624650Z env:
+2025-10-23T10:21:59.5624940Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:59.5625390Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:59.5625580Z ##[endgroup]
+2025-10-23T10:22:00.3269670Z No files were found with the provided path: build/**/reports/**
+2025-10-23T10:22:00.3340320Z **/test-results/**
+2025-10-23T10:22:00.3344470Z **/patrol_logs/**
+2025-10-23T10:22:00.3363140Z **/screenshots/**. No artifacts will be uploaded.
+2025-10-23T10:22:00.3475630Z Post job cleanup.
+2025-10-23T10:22:00.5037070Z Shutting down device 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E.
+2025-10-23T10:22:00.5158830Z $ xcrun simctl shutdown 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E
+2025-10-23T10:22:04.7450810Z Post job cleanup.
+2025-10-23T10:22:04.7530590Z Post job cleanup.
+2025-10-23T10:22:04.8997880Z [command]/opt/homebrew/bin/git version
+2025-10-23T10:22:04.9062860Z git version 2.50.1
+2025-10-23T10:22:04.9093210Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/60e864a5-fc0c-4688-be65-518881973fb8/.gitconfig'
+2025-10-23T10:22:04.9099430Z Temporarily overriding HOME='/Users/runner/work/_temp/60e864a5-fc0c-4688-be65-518881973fb8' before making global git config changes
+2025-10-23T10:22:04.9100320Z Adding repository directory to the temporary git global config as a safe directory
+2025-10-23T10:22:04.9110190Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Ivory/Ivory
+2025-10-23T10:22:04.9231840Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-10-23T10:22:04.9291340Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-10-23T10:22:05.0389360Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-10-23T10:22:05.0442720Z http.https://github.com/.extraheader
+2025-10-23T10:22:05.0452630Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-10-23T10:22:05.0541450Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-10-23T10:22:05.2621560Z Cleaning up orphan processes
+2025-10-23T10:22:05.8599780Z Terminate orphan process: pid (8160) (adb)

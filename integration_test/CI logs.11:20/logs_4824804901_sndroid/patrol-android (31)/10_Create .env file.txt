@@ -1,0 +1,16 @@
+﻿2025-10-23T10:20:41.2942786Z ##[group]Run cat > .env << EOF
+2025-10-23T10:20:41.2943088Z [36;1mcat > .env << EOF[0m
+2025-10-23T10:20:41.2943755Z [36;1mCOGNITO_USER_POOL_ID=***[0m
+2025-10-23T10:20:41.2944104Z [36;1mCOGNITO_CLIENT_ID=***[0m
+2025-10-23T10:20:41.2944464Z [36;1mAPI_BASE_URL=***[0m
+2025-10-23T10:20:41.2944712Z [36;1mGEONAMES_USERNAME=***[0m
+2025-10-23T10:20:41.2944935Z [36;1mEOF[0m
+2025-10-23T10:20:41.2945171Z [36;1mecho "✅ Created .env with app configuration"[0m
+2025-10-23T10:20:41.2978039Z shell: /usr/bin/bash -e {0}
+2025-10-23T10:20:41.2978460Z env:
+2025-10-23T10:20:41.2978750Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T10:20:41.2979215Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T10:20:41.2979657Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T10:20:41.2980036Z   PUB_CACHE: /home/runner/.pub-cache
+2025-10-23T10:20:41.2980289Z ##[endgroup]
+2025-10-23T10:20:41.3042102Z ✅ Created .env with app configuration

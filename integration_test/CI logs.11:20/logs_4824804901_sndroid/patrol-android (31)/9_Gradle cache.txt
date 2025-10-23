@@ -1,0 +1,19 @@
+﻿2025-10-23T10:20:41.0141718Z ##[group]Run actions/cache@v4
+2025-10-23T10:20:41.0141982Z with:
+2025-10-23T10:20:41.0142191Z   path: ~/.gradle/caches
+~/.gradle/wrapper
+
+2025-10-23T10:20:41.0142622Z   key: Linux-gradle-1d01a93442c0395402a8cc96bc7c828275e42f8fe97cd2f766374d01b35016ed
+2025-10-23T10:20:41.0143056Z   restore-keys: Linux-gradle-
+
+2025-10-23T10:20:41.0143302Z   enableCrossOsArchive: false
+2025-10-23T10:20:41.0143539Z   fail-on-cache-miss: false
+2025-10-23T10:20:41.0143759Z   lookup-only: false
+2025-10-23T10:20:41.0143957Z   save-always: false
+2025-10-23T10:20:41.0144140Z env:
+2025-10-23T10:20:41.0144417Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T10:20:41.0144869Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T10:20:41.0145286Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.6-x64
+2025-10-23T10:20:41.0145622Z   PUB_CACHE: /home/runner/.pub-cache
+2025-10-23T10:20:41.0145865Z ##[endgroup]
+2025-10-23T10:20:41.2870265Z Cache not found for input keys: Linux-gradle-1d01a93442c0395402a8cc96bc7c828275e42f8fe97cd2f766374d01b35016ed, Linux-gradle-

@@ -111,8 +111,7 @@ jobs:
             flutter doctor -v
             echo "📝 Running tests with verbose logging for better debugging"
             echo "🔐 Passing credentials via --dart-define"
-            patrol build android --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" --verbose
-            patrol test android --no-build --verbose
+            patrol test integration_test --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" --verbose
 
       # OPTIONAL: Serial retries for flaky tests
       # Uncomment to enable retry logic

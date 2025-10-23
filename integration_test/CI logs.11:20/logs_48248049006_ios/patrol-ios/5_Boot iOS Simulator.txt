@@ -1,0 +1,17 @@
+﻿2025-10-23T10:19:40.5381770Z ##[group]Run futureware-tech/simulator-action@v3
+2025-10-23T10:19:40.5382660Z with:
+2025-10-23T10:19:40.5383560Z   model: iPhone 15 Pro
+2025-10-23T10:19:40.5384190Z   os_version: 17.4
+2025-10-23T10:19:40.5385300Z   erase_before_boot: true
+2025-10-23T10:19:40.5386230Z   shutdown_after_job: true
+2025-10-23T10:19:40.5387300Z env:
+2025-10-23T10:19:40.5388100Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:19:40.5389410Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:19:40.5390230Z ##[endgroup]
+2025-10-23T10:19:40.8374920Z $ xcrun simctl list --json devices available
+2025-10-23T10:19:50.1841400Z 23 runtimes found
+2025-10-23T10:19:50.2425740Z Picked a device: iPhone 15 Pro (iOS 17.4) [08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E] - Shutdown
+2025-10-23T10:19:50.2426240Z Erasing device...
+2025-10-23T10:19:50.2426450Z $ xcrun simctl erase 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E
+2025-10-23T10:19:51.2492920Z Booting device.
+2025-10-23T10:19:51.2493570Z $ xcrun simctl boot 08B9CE8F-9E8E-4766-9609-B9B3BC8F9A0E

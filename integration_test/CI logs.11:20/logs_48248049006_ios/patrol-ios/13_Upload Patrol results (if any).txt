@@ -1,0 +1,20 @@
+﻿2025-10-23T10:21:59.5621970Z ##[group]Run actions/upload-artifact@v4
+2025-10-23T10:21:59.5622250Z with:
+2025-10-23T10:21:59.5622530Z   name: patrol-ios-results
+2025-10-23T10:21:59.5623150Z   path: build/**/reports/**
+**/test-results/**
+**/patrol_logs/**
+**/screenshots/**
+
+2025-10-23T10:21:59.5623630Z   if-no-files-found: ignore
+2025-10-23T10:21:59.5623910Z   compression-level: 6
+2025-10-23T10:21:59.5624210Z   overwrite: false
+2025-10-23T10:21:59.5624490Z   include-hidden-files: false
+2025-10-23T10:21:59.5624650Z env:
+2025-10-23T10:21:59.5624940Z   FLUTTER_ROOT: /Users/runner/hostedtoolcache/flutter/stable-3.35.6-arm64
+2025-10-23T10:21:59.5625390Z   PUB_CACHE: /Users/runner/.pub-cache
+2025-10-23T10:21:59.5625580Z ##[endgroup]
+2025-10-23T10:22:00.3269570Z No files were found with the provided path: build/**/reports/**
+2025-10-23T10:22:00.3340300Z **/test-results/**
+2025-10-23T10:22:00.3344460Z **/patrol_logs/**
+2025-10-23T10:22:00.3363120Z **/screenshots/**. No artifacts will be uploaded.
