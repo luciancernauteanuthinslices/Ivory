@@ -60,45 +60,16 @@ class LoginToApp {
     // Fill in email and password
     await $(IvoryTextField).containing('Email address').enterText(email);
     await $(IvoryTextField).containing('Password').enterText(password);
-    // ignore: avoid_print
-    print('🔘 Tapping Continue button...');
-    await $(TranslationsKeys.continueButton).tap();
-    // ignore: avoid_print
-    print('✅ Continue button tapped, waiting for navigation...');
-    
-    // Add a small delay to let navigation start
-    await Future.delayed(Duration(milliseconds: 500));
+    await $("Continue").tap();
 
-    // Check and handle potential permission dialogs
-    // ignore: avoid_print
-    print('🔍 Checking for permission dialogs...');
-    final isPermissionDialogVisible = await $.native.isPermissionDialogVisible(timeout: Duration(seconds: 1));
-    if (isPermissionDialogVisible) {
-      // ignore: avoid_print
-      print('✅ Permission dialog found, granting permission...');
+    // Handle permission dialog if it appears
+    if (await $.native.isPermissionDialogVisible()) {
       await $.native.grantPermissionWhenInUse();
-    } else {
-      // ignore: avoid_print
-      print('ℹ️  No permission dialog found');
     }
 
     // Wait for OTP screen to appear
-    // ignore: avoid_print
-    print('⏳ Waiting for "Verify login" screen (OTP)...');
-    try {
-      await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 15));
-      // ignore: avoid_print
-      print('✅ "Verify login" screen appeared!');
-      expect($('Verify login'), findsOneWidget);
-    } catch (e) {
-      // ignore: avoid_print
-      print('❌ Failed to find "Verify login" screen after 15 seconds');
-      // ignore: avoid_print
-      print('🔍 Dumping widget tree for debugging:');
-      // ignore: avoid_print
-      print($.tester.allWidgets.map((w) => w.runtimeType.toString()).toSet().toList());
-      rethrow;
-    }
+    await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
+    expect($('Verify login'), findsOneWidget);
 
     // Tap on the OTP input area to focus it
     final otpField = $(find.byType(EditableText)).first;
