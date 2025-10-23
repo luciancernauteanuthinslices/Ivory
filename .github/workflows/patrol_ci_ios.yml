@@ -92,19 +92,36 @@ jobs:
         run: |
           # Remove PBXFileSystemSynchronizedRootGroup objects that cause Xcode 15.4 to crash
           PROJECT_FILE="ios/Runner.xcodeproj/project.pbxproj"
-          echo "Fixing Xcode project file..."
           
-          # Use perl for reliable multi-line pattern removal
-          perl -i.backup -0pe '
-            # Remove PBXFileSystemSynchronizedRootGroup section
-            s!/\* Begin PBXFileSystemSynchronizedRootGroup section \*/.*?/\* End PBXFileSystemSynchronizedRootGroup section \*/!!gs;
-            # Remove fileSystemSynchronizedGroups array
-            s/\s*fileSystemSynchronizedGroups\s*=\s*\([^)]*\)\s*;\s*//gs;
-            # Remove the specific UUID reference
-            s/.*7DC899AD2EA221A300A0745F.*\n//g;
-          ' "$PROJECT_FILE"
+          if [ ! -f "$PROJECT_FILE" ]; then
+            echo "❌ ERROR: $PROJECT_FILE not found!"
+            exit 1
+          fi
           
-          echo "✅ Fixed Xcode project file"
+          echo "📝 Checking if Xcode project needs fixing..."
+          if grep -q "PBXFileSystemSynchronizedRootGroup" "$PROJECT_FILE"; then
+            echo "🔧 Fixing Xcode project file..."
+            
+            # Use perl for reliable multi-line pattern removal
+            perl -i.backup -0pe '
+              # Remove PBXFileSystemSynchronizedRootGroup section
+              s!/\* Begin PBXFileSystemSynchronizedRootGroup section \*/.*?/\* End PBXFileSystemSynchronizedRootGroup section \*/!!gs;
+              # Remove fileSystemSynchronizedGroups array
+              s/\s*fileSystemSynchronizedGroups\s*=\s*\([^)]*\)\s*;\s*//gs;
+              # Remove the specific UUID reference
+              s/.*7DC899AD2EA221A300A0745F.*\n//g;
+            ' "$PROJECT_FILE"
+            
+            # Verify the fix worked
+            if grep -q "PBXFileSystemSynchronizedRootGroup" "$PROJECT_FILE"; then
+              echo "❌ ERROR: Failed to remove PBXFileSystemSynchronizedRootGroup"
+              exit 1
+            fi
+            
+            echo "✅ Fixed Xcode project file (removed Xcode 16 incompatible features)"
+          else
+            echo "✅ Xcode project file is already compatible (no fix needed)"
+          fi
 
       - name: Run Patrol on iOS
         run: |
