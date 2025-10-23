@@ -1,0 +1,47 @@
+﻿2025-10-23T11:01:59.9037454Z Current runner version: '2.329.0'
+2025-10-23T11:01:59.9060843Z ##[group]Runner Image Provisioner
+2025-10-23T11:01:59.9061752Z Hosted Compute Agent
+2025-10-23T11:01:59.9062375Z Version: 20250912.392
+2025-10-23T11:01:59.9063050Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
+2025-10-23T11:01:59.9063839Z Build Date: 2025-09-12T15:23:14Z
+2025-10-23T11:01:59.9064464Z ##[endgroup]
+2025-10-23T11:01:59.9065179Z ##[group]Operating System
+2025-10-23T11:01:59.9065842Z Ubuntu
+2025-10-23T11:01:59.9066309Z 24.04.3
+2025-10-23T11:01:59.9066830Z LTS
+2025-10-23T11:01:59.9067423Z ##[endgroup]
+2025-10-23T11:01:59.9067972Z ##[group]Runner Image
+2025-10-23T11:01:59.9068586Z Image: ubuntu-24.04
+2025-10-23T11:01:59.9069160Z Version: 20250929.60.1
+2025-10-23T11:01:59.9070260Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250929.60/images/ubuntu/Ubuntu2404-Readme.md
+2025-10-23T11:01:59.9072152Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250929.60
+2025-10-23T11:01:59.9073684Z ##[endgroup]
+2025-10-23T11:01:59.9076518Z ##[group]GITHUB_TOKEN Permissions
+2025-10-23T11:01:59.9078943Z Actions: write
+2025-10-23T11:01:59.9079589Z Attestations: write
+2025-10-23T11:01:59.9080159Z Checks: write
+2025-10-23T11:01:59.9080765Z Contents: write
+2025-10-23T11:01:59.9081285Z Deployments: write
+2025-10-23T11:01:59.9081893Z Discussions: write
+2025-10-23T11:01:59.9082488Z Issues: write
+2025-10-23T11:01:59.9083017Z Metadata: read
+2025-10-23T11:01:59.9083531Z Models: read
+2025-10-23T11:01:59.9084131Z Packages: write
+2025-10-23T11:01:59.9084864Z Pages: write
+2025-10-23T11:01:59.9085451Z PullRequests: write
+2025-10-23T11:01:59.9086058Z RepositoryProjects: write
+2025-10-23T11:01:59.9086668Z SecurityEvents: write
+2025-10-23T11:01:59.9087381Z Statuses: write
+2025-10-23T11:01:59.9087972Z ##[endgroup]
+2025-10-23T11:01:59.9090407Z Secret source: Actions
+2025-10-23T11:01:59.9091620Z Prepare workflow directory
+2025-10-23T11:01:59.9463101Z Prepare all required actions
+2025-10-23T11:01:59.9519161Z Getting action download info
+2025-10-23T11:02:00.4191972Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-10-23T11:02:00.6121840Z Download action repository 'actions/setup-java@v4' (SHA:c5195efecf7bdfc987ee8bae7a71cb8b11521c00)
+2025-10-23T11:02:01.1018340Z Download action repository 'subosito/flutter-action@v2' (SHA:fd55f4c5af5b953cc57a2be44cb082c8f6635e8e)
+2025-10-23T11:02:01.3899008Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-10-23T11:02:01.4976474Z Download action repository 'reactivecircus/android-emulator-runner@v2' (SHA:1dcd0090116d15e7c562f8db72807de5e036a4ed)
+2025-10-23T11:02:02.0131779Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-10-23T11:02:02.3001485Z Getting action download info
+2025-10-23T11:02:02.5713096Z Complete job name: patrol-android (34)

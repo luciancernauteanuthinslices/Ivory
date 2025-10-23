@@ -67,6 +67,7 @@ jobs:
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
       # Cache CocoaPods to speed up iOS builds
+      # Key includes both Podfile and Podfile.lock for stricter cache invalidation
       - name: Cache CocoaPods
         uses: actions/cache@v4
         with:
@@ -74,7 +75,7 @@ jobs:
             ios/Pods
             ~/Library/Caches/CocoaPods
             ~/.cocoapods
-          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile','ios/Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pods-
 
@@ -89,15 +90,29 @@ jobs:
           EOF
           echo "✅ Created .env with app configuration"
 
-      # Clean build artifacts to avoid stale cache issues (preserve Pods for caching)
+      # Force fresh pod install to ensure compatibility with CI Swift toolchain
+      - name: Reinstall iOS pods cleanly
+        run: |
+          set -e
+          cd ios
+          echo "🔁 Removing Pods and Podfile.lock to force fresh pod install"
+          rm -rf Pods Podfile.lock
+          rm -rf ~/Library/Caches/CocoaPods
+          echo "📦 Running pod repo update..."
+          pod repo update
+          echo "📦 Installing pods with verbose output..."
+          pod install --verbose --repo-update
+          echo "✅ Fresh pod install complete"
+      
+      # Clean build artifacts to avoid stale cache issues
       - name: Clean iOS build artifacts
         run: |
-          echo "🧹 Cleaning iOS build artifacts (preserving CocoaPods cache)..."
+          echo "🧹 Cleaning iOS build artifacts..."
           rm -rf build
           rm -rf ios/build
           rm -rf ios/.symlinks
           rm -rf ~/Library/Developer/Xcode/DerivedData/*
-          echo "✅ Cleaned iOS build artifacts (Pods preserved for caching)"
+          echo "✅ Cleaned iOS build artifacts"
 
       - name: Fix Xcode project file for Xcode 15.4 compatibility
         run: |

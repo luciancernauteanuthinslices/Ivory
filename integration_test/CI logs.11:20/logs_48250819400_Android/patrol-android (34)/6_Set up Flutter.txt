@@ -1,0 +1,59 @@
+﻿2025-10-23T11:04:35.5711134Z ##[group]Run subosito/flutter-action@v2
+2025-10-23T11:04:35.5711443Z with:
+2025-10-23T11:04:35.5711627Z   channel: stable
+2025-10-23T11:04:35.5711821Z   architecture: X64
+2025-10-23T11:04:35.5712020Z   cache: false
+2025-10-23T11:04:35.5712221Z   pub-cache-path: default
+2025-10-23T11:04:35.5712437Z   dry-run: false
+2025-10-23T11:04:35.5712696Z   git-source: https://github.com/flutter/flutter.git
+2025-10-23T11:04:35.5712995Z env:
+2025-10-23T11:04:35.5713284Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5713762Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5714118Z ##[endgroup]
+2025-10-23T11:04:35.5787320Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2025-10-23T11:04:35.5787690Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2025-10-23T11:04:35.5820043Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-10-23T11:04:35.5820380Z env:
+2025-10-23T11:04:35.5820678Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5821182Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5821535Z ##[endgroup]
+2025-10-23T11:04:35.5907036Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2025-10-23T11:04:35.5907394Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2025-10-23T11:04:35.5907655Z [36;1m  -n '' \[0m
+2025-10-23T11:04:35.5907846Z [36;1m  -f '' \[0m
+2025-10-23T11:04:35.5908030Z [36;1m  -a 'X64' \[0m
+2025-10-23T11:04:35.5908222Z [36;1m  -k '' \[0m
+2025-10-23T11:04:35.5908397Z [36;1m  -c '' \[0m
+2025-10-23T11:04:35.5908574Z [36;1m  -l '' \[0m
+2025-10-23T11:04:35.5908762Z [36;1m  -d 'default' \[0m
+2025-10-23T11:04:35.5909049Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2025-10-23T11:04:35.5909352Z [36;1m  stable[0m
+2025-10-23T11:04:35.5937987Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-10-23T11:04:35.5938306Z env:
+2025-10-23T11:04:35.5938597Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5939066Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5939410Z ##[endgroup]
+2025-10-23T11:04:35.7511991Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2025-10-23T11:04:35.7512319Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2025-10-23T11:04:35.7512583Z [36;1m  -n '3.35.6' \[0m
+2025-10-23T11:04:35.7512807Z [36;1m  -a 'x64' \[0m
+2025-10-23T11:04:35.7513091Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.35.6-x64' \[0m
+2025-10-23T11:04:35.7513433Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2025-10-23T11:04:35.7513692Z [36;1m  stable[0m
+2025-10-23T11:04:35.7545274Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-10-23T11:04:35.7545624Z env:
+2025-10-23T11:04:35.7545926Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.7546414Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.7546790Z ##[endgroup]
+2025-10-23T11:04:35.9077937Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2025-10-23T11:04:35.9078682Z                                  Dload  Upload   Total   Spent    Left  Speed
+2025-10-23T11:04:35.9079058Z 
+2025-10-23T11:04:36.4385068Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-10-23T11:04:37.4383692Z   5 1372M    5 69.2M    0     0   130M      0  0:00:10 --:--:--  0:00:10  130M
+2025-10-23T11:04:38.4382334Z  18 1372M   18  256M    0     0   167M      0  0:00:08  0:00:01  0:00:07  167M
+2025-10-23T11:04:39.4385251Z  32 1372M   32  444M    0     0   175M      0  0:00:07  0:00:02  0:00:05  175M
+2025-10-23T11:04:40.4382364Z  46 1372M   46  636M    0     0   180M      0  0:00:07  0:00:03  0:00:04  180M
+2025-10-23T11:04:41.4409344Z  60 1372M   60  825M    0     0   182M      0  0:00:07  0:00:04  0:00:03  182M
+2025-10-23T11:04:42.4390908Z  73 1372M   73 1014M    0     0   183M      0  0:00:07  0:00:05  0:00:02  188M
+2025-10-23T11:04:43.4165473Z  86 1372M   86 1185M    0     0   181M      0  0:00:07  0:00:06  0:00:01  185M
+2025-10-23T11:04:43.4167997Z 100 1372M  100 1372M    0     0   182M      0  0:00:07  0:00:07 --:--:--  186M

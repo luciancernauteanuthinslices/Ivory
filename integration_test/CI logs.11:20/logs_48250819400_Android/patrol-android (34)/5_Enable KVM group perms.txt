@@ -1,0 +1,10 @@
+﻿2025-10-23T11:04:35.5159860Z ##[group]Run echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+2025-10-23T11:04:35.5160686Z [36;1mecho 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules[0m
+2025-10-23T11:04:35.5161249Z [36;1msudo udevadm control --reload-rules[0m
+2025-10-23T11:04:35.5161599Z [36;1msudo udevadm trigger --name-match=kvm[0m
+2025-10-23T11:04:35.5193845Z shell: /usr/bin/bash -e {0}
+2025-10-23T11:04:35.5194081Z env:
+2025-10-23T11:04:35.5194375Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5195133Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
+2025-10-23T11:04:35.5195492Z ##[endgroup]
+2025-10-23T11:04:35.5309796Z KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"
