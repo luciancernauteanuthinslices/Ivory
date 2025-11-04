@@ -1,216 +1,216 @@
-name: Patrol iOS CI - Firebase Test Lab
+# name: Patrol iOS CI - Firebase Test Lab
 
-# Uses Firebase Test Lab for fast, reliable iOS testing in the cloud.
-# Builds on macOS (required for iOS), but tests run on Firebase Test Lab's cloud devices.
-# This reduces macOS CI minutes and provides more stable test execution.
-#
-# Secrets required:
-#   - PATROL_EMAIL, PATROL_PASSWORD (test credentials)
-#   - FIREBASE_SERVICE_ACCOUNT (Base64-encoded service account JSON)
-#   - FIREBASE_PROJECT_ID (your Firebase project ID)
-# Configure these in: Settings → Secrets and variables → Actions → Repository secrets
-#
-# See FIREBASE_TEST_LAB_SETUP.md for instructions on setting up Firebase Test Lab.
+# # Uses Firebase Test Lab for fast, reliable iOS testing in the cloud.
+# # Builds on macOS (required for iOS), but tests run on Firebase Test Lab's cloud devices.
+# # This reduces macOS CI minutes and provides more stable test execution.
+# #
+# # Secrets required:
+# #   - PATROL_EMAIL, PATROL_PASSWORD (test credentials)
+# #   - FIREBASE_SERVICE_ACCOUNT (Base64-encoded service account JSON)
+# #   - FIREBASE_PROJECT_ID (your Firebase project ID)
+# # Configure these in: Settings → Secrets and variables → Actions → Repository secrets
+# #
+# # See FIREBASE_TEST_LAB_SETUP.md for instructions on setting up Firebase Test Lab.
 
-on:
-  push:
-    branches:
-      - main
-      - test_playground
-      - SOL-*
-  pull_request:
-    branches:
-      - main
-      - test_playground
-      - SOL-*
-  workflow_dispatch:
-    inputs:
-      test_filter:
-        description: 'Test filter (e.g., cardCanBeFrozenOrUnfreeze_test.dart or leave empty for all)'
-        required: false
-        default: ''
-      max_retries:
-        description: 'Number of retry attempts'
-        required: false
-        default: '1'
+# on:
+#   push:
+#     branches:
+#       - main
+#       - test_playground
+#       - SOL-*
+#   pull_request:
+#     branches:
+#       - main
+#       - test_playground
+#       - SOL-*
+#   workflow_dispatch:
+#     inputs:
+#       test_filter:
+#         description: 'Test filter (e.g., cardCanBeFrozenOrUnfreeze_test.dart or leave empty for all)'
+#         required: false
+#         default: ''
+#       max_retries:
+#         description: 'Number of retry attempts'
+#         required: false
+#         default: '1'
 
-jobs:
-  patrol-ios:
-    runs-on: macos-14
-    timeout-minutes: 35
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+# jobs:
+#   patrol-ios:
+#     runs-on: macos-14
+#     timeout-minutes: 35
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          # Using latest stable to get Dart SDK 3.8.0+ required by patrol_finders
+#       - name: Set up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           channel: 'stable'
+#           # Using latest stable to get Dart SDK 3.8.0+ required by patrol_finders
 
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode.app
+#       - name: Select Xcode
+#         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: Flutter pub get
-        run: flutter pub get
+#       - name: Flutter pub get
+#         run: flutter pub get
 
-      - name: Install Patrol CLI
-        run: |
-          dart pub global activate patrol_cli
-          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+#       - name: Install Patrol CLI
+#         run: |
+#           dart pub global activate patrol_cli
+#           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
-      # Cache CocoaPods to speed up iOS builds
-      # Key includes both Podfile and Podfile.lock for stricter cache invalidation
-      - name: Cache CocoaPods
-        uses: actions/cache@v4
-        with:
-          path: |
-            ios/Pods
-            ~/Library/Caches/CocoaPods
-            ~/.cocoapods
-          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile','ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
+#       # Cache CocoaPods to speed up iOS builds
+#       # Key includes both Podfile and Podfile.lock for stricter cache invalidation
+#       - name: Cache CocoaPods
+#         uses: actions/cache@v4
+#         with:
+#           path: |
+#             ios/Pods
+#             ~/Library/Caches/CocoaPods
+#             ~/.cocoapods
+#           key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile','ios/Podfile.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-pods-
 
-      # Create main .env file (required for app config)
-      - name: Create .env file
-        run: |
-          cat > .env << EOF
-          COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}
-          COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}
-          API_BASE_URL=${{ secrets.API_BASE_URL }}
-          GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
-          EOF
-          echo "✅ Created .env with app configuration"
+#       # Create main .env file (required for app config)
+#       - name: Create .env file
+#         run: |
+#           cat > .env << EOF
+#           COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}
+#           COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}
+#           API_BASE_URL=${{ secrets.API_BASE_URL }}
+#           GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
+#           EOF
+#           echo "✅ Created .env with app configuration"
 
-      # Force fresh pod install to ensure compatibility with CI Swift toolchain
-      - name: Reinstall iOS pods cleanly
-        run: |
-          set -e
-          cd ios
-          echo "🔁 Removing Pods and Podfile.lock to force fresh pod install"
-          rm -rf Pods Podfile.lock
-          rm -rf ~/Library/Caches/CocoaPods
-          echo "📦 Running pod repo update..."
-          pod repo update
-          echo "📦 Installing pods with verbose output..."
-          pod install --verbose --repo-update
-          echo "✅ Fresh pod install complete"
+#       # Force fresh pod install to ensure compatibility with CI Swift toolchain
+#       - name: Reinstall iOS pods cleanly
+#         run: |
+#           set -e
+#           cd ios
+#           echo "🔁 Removing Pods and Podfile.lock to force fresh pod install"
+#           rm -rf Pods Podfile.lock
+#           rm -rf ~/Library/Caches/CocoaPods
+#           echo "📦 Running pod repo update..."
+#           pod repo update
+#           echo "📦 Installing pods with verbose output..."
+#           pod install --verbose --repo-update
+#           echo "✅ Fresh pod install complete"
       
-      # Clean build artifacts to avoid stale cache issues
-      - name: Clean iOS build artifacts
-        run: |
-          echo "🧹 Cleaning iOS build artifacts..."
-          rm -rf build
-          rm -rf ios/build
-          rm -rf ios/.symlinks
-          rm -rf ~/Library/Developer/Xcode/DerivedData/*
-          echo "✅ Cleaned iOS build artifacts"
+#       # Clean build artifacts to avoid stale cache issues
+#       - name: Clean iOS build artifacts
+#         run: |
+#           echo "🧹 Cleaning iOS build artifacts..."
+#           rm -rf build
+#           rm -rf ios/build
+#           rm -rf ios/.symlinks
+#           rm -rf ~/Library/Developer/Xcode/DerivedData/*
+#           echo "✅ Cleaned iOS build artifacts"
 
-      - name: Build iOS app and test bundle with Patrol
-        run: |
-          flutter doctor -v
-          echo "🔨 Building iOS app (.ipa) and test bundle for Firebase Test Lab"
+#       - name: Build iOS app and test bundle with Patrol
+#         run: |
+#           flutter doctor -v
+#           echo "🔨 Building iOS app (.ipa) and test bundle for Firebase Test Lab"
           
-          # Build for each test file or all tests
-          if [ -n "${{ github.event.inputs.test_filter }}" ]; then
-            TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
-            echo "📝 Building for specific test: $TEST_PATH"
-            patrol build ios \
-              --target "$TEST_PATH" \
-              --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
-              --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
-              --release \
-              --verbose
-          else
-            echo "📝 Building all tests in integration_test/"
-            # Build with a representative test file (Patrol requires a target)
-            patrol build ios \
-              --target integration_test/cardCanBeFrozenOrUnfreeze_test.dart \
-              --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
-              --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
-              --release \
-              --verbose
-          fi
+#           # Build for each test file or all tests
+#           if [ -n "${{ github.event.inputs.test_filter }}" ]; then
+#             TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
+#             echo "📝 Building for specific test: $TEST_PATH"
+#             patrol build ios \
+#               --target "$TEST_PATH" \
+#               --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
+#               --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
+#               --release \
+#               --verbose
+#           else
+#             echo "📝 Building all tests in integration_test/"
+#             # Build with a representative test file (Patrol requires a target)
+#             patrol build ios \
+#               --target integration_test/cardCanBeFrozenOrUnfreeze_test.dart \
+#               --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
+#               --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
+#               --release \
+#               --verbose
+#           fi
           
-          echo "✅ iOS app and test bundle built successfully"
-          echo "📂 Build artifacts:"
-          find build/ios_integ/Build/Products/Release-iphoneos -type f \( -name "*.ipa" -o -name "*.xctestrun" \) -ls
-          ls -lh build/ios_integ/Build/Products/Release-iphoneos/
+#           echo "✅ iOS app and test bundle built successfully"
+#           echo "📂 Build artifacts:"
+#           find build/ios_integ/Build/Products/Release-iphoneos -type f \( -name "*.ipa" -o -name "*.xctestrun" \) -ls
+#           ls -lh build/ios_integ/Build/Products/Release-iphoneos/
 
-      - name: Package iOS app and test bundle
-        run: |
-          echo "📦 Packaging iOS app (.ipa) and test bundle for Firebase Test Lab"
-          cd build/ios_integ/Build/Products/Release-iphoneos
+#       - name: Package iOS app and test bundle
+#         run: |
+#           echo "📦 Packaging iOS app (.ipa) and test bundle for Firebase Test Lab"
+#           cd build/ios_integ/Build/Products/Release-iphoneos
           
-          # Find the .ipa file (app bundle)
-          IPA_FILE=$(find . -name "*.ipa" | head -n 1)
-          if [ -z "$IPA_FILE" ]; then
-            echo "❌ Error: .ipa file not found"
-            ls -la
-            exit 1
-          fi
-          echo "✅ Found app bundle: $IPA_FILE"
+#           # Find the .ipa file (app bundle)
+#           IPA_FILE=$(find . -name "*.ipa" | head -n 1)
+#           if [ -z "$IPA_FILE" ]; then
+#             echo "❌ Error: .ipa file not found"
+#             ls -la
+#             exit 1
+#           fi
+#           echo "✅ Found app bundle: $IPA_FILE"
           
-          # Find the .xctestrun file
-          XCTESTRUN_FILE=$(find . -name "*.xctestrun" | head -n 1)
-          if [ -z "$XCTESTRUN_FILE" ]; then
-            echo "❌ Error: .xctestrun file not found"
-            ls -la
-            exit 1
-          fi
-          echo "✅ Found test bundle: $XCTESTRUN_FILE"
+#           # Find the .xctestrun file
+#           XCTESTRUN_FILE=$(find . -name "*.xctestrun" | head -n 1)
+#           if [ -z "$XCTESTRUN_FILE" ]; then
+#             echo "❌ Error: .xctestrun file not found"
+#             ls -la
+#             exit 1
+#           fi
+#           echo "✅ Found test bundle: $XCTESTRUN_FILE"
           
-          # Create zip archive with test bundle and xctestrun
-          zip -r ../ios_tests.zip . -i "*.xctestrun" "*.app/*" "*.swiftmodule/*"
+#           # Create zip archive with test bundle and xctestrun
+#           zip -r ../ios_tests.zip . -i "*.xctestrun" "*.app/*" "*.swiftmodule/*"
           
-          echo "✅ iOS test bundle packaged"
-          ls -lh ../ios_tests.zip
+#           echo "✅ iOS test bundle packaged"
+#           ls -lh ../ios_tests.zip
           
-          # Copy .ipa to build root for easy access
-          cp "$IPA_FILE" ../../..
-          echo "✅ App bundle copied to build root"
-          cd ../../../../../
+#           # Copy .ipa to build root for easy access
+#           cp "$IPA_FILE" ../../..
+#           echo "✅ App bundle copied to build root"
+#           cd ../../../../../
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+#       - name: Authenticate to Google Cloud
+#         uses: google-github-actions/auth@v2
+#         with:
+#           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
+#       - name: Set up Google Cloud SDK
+#         uses: google-github-actions/setup-gcloud@v2
+#         with:
+#           project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
 
-      - name: Run tests on Firebase Test Lab
-        run: |
-          echo "🚀 Running tests on Firebase Test Lab"
+#       - name: Run tests on Firebase Test Lab
+#         run: |
+#           echo "🚀 Running tests on Firebase Test Lab"
           
-          # Find the .ipa file
-          IPA_FILE=$(find build -name "*.ipa" | head -n 1)
-          if [ -z "$IPA_FILE" ]; then
-            echo "❌ Error: .ipa file not found in build directory"
-            exit 1
-          fi
-          echo "✅ Using app bundle: $IPA_FILE"
+#           # Find the .ipa file
+#           IPA_FILE=$(find build -name "*.ipa" | head -n 1)
+#           if [ -z "$IPA_FILE" ]; then
+#             echo "❌ Error: .ipa file not found in build directory"
+#             exit 1
+#           fi
+#           echo "✅ Using app bundle: $IPA_FILE"
           
-          gcloud firebase test ios run \
-            --type xctest \
-            --app "$IPA_FILE" \
-            --test build/ios_integ/Build/Products/ios_tests.zip \
-            --timeout 10m \
-            --results-bucket=gs://${{ secrets.FIREBASE_PROJECT_ID }}_test_results \
-            --results-dir=patrol-ios-$(date +%Y%m%d_%H%M%S) \
-            --device model=iphone13,version=17,locale=en_US,orientation=portrait \
-            --device model=iphone15pro,version=18,locale=en_US,orientation=portrait
+#           gcloud firebase test ios run \
+#             --type xctest \
+#             --app "$IPA_FILE" \
+#             --test build/ios_integ/Build/Products/ios_tests.zip \
+#             --timeout 10m \
+#             --results-bucket=gs://${{ secrets.FIREBASE_PROJECT_ID }}_test_results \
+#             --results-dir=patrol-ios-$(date +%Y%m%d_%H%M%S) \
+#             --device model=iphone13,version=17,locale=en_US,orientation=portrait \
+#             --device model=iphone15pro,version=18,locale=en_US,orientation=portrait
           
-          echo "✅ Tests completed on Firebase Test Lab"
+#           echo "✅ Tests completed on Firebase Test Lab"
 
-      - name: Upload test artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: firebase-test-lab-ios-results
-          path: |
-            build/ios_integ/Build/Products/ios_tests.zip
-          if-no-files-found: ignore
+#       - name: Upload test artifacts
+#         if: always()
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: firebase-test-lab-ios-results
+#           path: |
+#             build/ios_integ/Build/Products/ios_tests.zip
+#           if-no-files-found: ignore

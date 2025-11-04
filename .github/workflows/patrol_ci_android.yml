@@ -24,8 +24,8 @@ on:
         default: '1'
 
 jobs:
-  patrol-android:
-    runs-on: ubuntu-latest
+  patrol-android-ci:
+    runs-on: macos-13
     timeout-minutes: 30
     steps:
       - name: Checkout
@@ -73,20 +73,34 @@ jobs:
           EOF
           echo "✅ Created .env with app configuration"
 
-      - name: Build APKs with Patrol
-        run: |
-          flutter doctor -v
-          echo "🔨 Building test APKs for Firebase Test Lab"
+      # - name: Build APKs with Patrol
+      #   run: |
+      #     flutter doctor -v
+      #     echo "🔨 Building test APKs"
           
-          # Build for each test file or all tests
-            echo "📝 Building all tests in integration_test/"
-            # Build with a representative test file (Patrol requires a target)
-            patrol build android \
+      #     # Build for each test file or all tests
+      #       echo "📝 Building all tests in integration_test/"
+      #       # Build with a representative test file (Patrol requires a target)
+      #       patrol build android \
+      #         --target integration_test/all_tests_test.dart \
+      #         --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
+      #         --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
+      #         --verbose
+          
+      #     echo "✅ APKs built successfully"
+      #     ls -lh build/app/outputs/apk/debug/
+      #     ls -lh build/app/outputs/apk/androidTest/debug/
+
+      - name: Start emulator & run Patrol
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          arch: x86_64
+          profile: pixel_7
+          script: |
+            flutter doctor -v
+            patrol test \
               --target integration_test/all_tests_test.dart \
               --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
               --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
-              --verbose
-          
-          echo "✅ APKs built successfully"
-          ls -lh build/app/outputs/apk/debug/
-          ls -lh build/app/outputs/apk/androidTest/debug/
+              -- -r expanded
