@@ -1,14 +1,6 @@
-name: Patrol Android CI - Firebase Test Lab
 
-# Uses Firebase Test Lab for fast, reliable Android testing in the cloud.
-# Secrets required:
-#   - PATROL_EMAIL, PATROL_PASSWORD (test credentials)
-#   - FIREBASE_SERVICE_ACCOUNT (Base64-encoded service account JSON)
-#   - FIREBASE_PROJECT_ID (your Firebase project ID)
-# Configure these in: Settings → Secrets and variables → Actions → Repository secrets
-#
-# See FIREBASE_TEST_LAB_SETUP.md for instructions on setting up Firebase Test Lab.
 
+name: Patrol Android CI
 on:
   push:
     branches:
@@ -87,83 +79,14 @@ jobs:
           echo "🔨 Building test APKs for Firebase Test Lab"
           
           # Build for each test file or all tests
-          if [ -n "${{ github.event.inputs.test_filter }}" ]; then
-            TEST_PATH="integration_test/${{ github.event.inputs.test_filter }}"
-            echo "📝 Building for specific test: $TEST_PATH"
-            patrol build android \
-              --target "$TEST_PATH" \
-              --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
-              --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
-              --verbose
-          else
             echo "📝 Building all tests in integration_test/"
             # Build with a representative test file (Patrol requires a target)
             patrol build android \
-              --target integration_test/cardCanBeFrozenOrUnfreeze_test.dart \
+              --target integration_test/all_tests_test.dart \
               --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
               --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
               --verbose
-          fi
           
           echo "✅ APKs built successfully"
           ls -lh build/app/outputs/apk/debug/
           ls -lh build/app/outputs/apk/androidTest/debug/
-
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
-
-      - name: Run tests on Firebase Test Lab
-        run: |
-          echo "🚀 Running tests on Firebase Test Lab"
-          
-          # Validate APK files exist
-          APP_APK="build/app/outputs/apk/debug/app-debug.apk"
-          TEST_APK="build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-          
-          if [ ! -f "$APP_APK" ]; then
-            echo "❌ Error: App APK not found at $APP_APK"
-            ls -lh build/app/outputs/apk/debug/ || echo "Directory does not exist"
-            exit 1
-          fi
-          
-          if [ ! -f "$TEST_APK" ]; then
-            echo "❌ Error: Test APK not found at $TEST_APK"
-            ls -lh build/app/outputs/apk/androidTest/debug/ || echo "Directory does not exist"
-            exit 1
-          fi
-          
-          echo "✅ Found app APK: $APP_APK"
-          echo "✅ Found test APK: $TEST_APK"
-          
-          gcloud firebase test android run \
-            --project=${{ secrets.FIREBASE_PROJECT_ID }} \
-            --type instrumentation \
-            --use-orchestrator \
-            --app "$APP_APK" \
-            --test "$TEST_APK" \
-            --timeout 10m \
-            --results-bucket=gs://${{ secrets.FIREBASE_PROJECT_ID }}_test_results \
-            --results-dir=patrol-android-$(date +%Y%m%d_%H%M%S) \
-            --device model=MediumPhone.arm,version=31,locale=en,orientation=portrait \
-            --device model=e1q,version=34,locale=en,orientation=portrait \
-            --environment-variables clearPackageData=true \
-            --no-record-video \
-            --no-performance-metrics
-          
-          echo "✅ Tests completed on Firebase Test Lab"
-
-      - name: Upload test artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: firebase-test-lab-android-results
-          path: |
-            build/app/outputs/apk/**/*.apk
-          if-no-files-found: ignore

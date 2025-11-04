@@ -7,6 +7,7 @@ import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+
 class LoginToApp {
 
   final PatrolIntegrationTester $;

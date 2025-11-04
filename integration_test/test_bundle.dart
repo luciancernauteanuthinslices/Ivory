@@ -9,6 +9,7 @@ import 'package:patrol/src/native/contracts/contracts.dart';
 import 'package:test_api/src/backend/invoker.dart';
 
 // START: GENERATED TEST IMPORTS
+import 'all_tests_test.dart' as all_tests_test;
 import 'cardCanBeFrozenOrUnfreeze_test.dart' as cardCanBeFrozenOrUnfreeze_test;
 import 'repaymentRateIsSaved_test.dart' as repaymentRateIsSaved_test;
 // END: GENERATED TEST IMPORTS
@@ -70,6 +71,7 @@ Future<void> main() async {
   });
 
   // START: GENERATED TEST GROUPS
+  group('all_tests_test', all_tests_test.main);
   group('cardCanBeFrozenOrUnfreeze_test', cardCanBeFrozenOrUnfreeze_test.main);
   group('repaymentRateIsSaved_test', repaymentRateIsSaved_test.main);
   // END: GENERATED TEST GROUPS

@@ -17,7 +17,7 @@
 integration_test/.patrol.env
 # Allow example env files to be committed
 !.env.example
-!integration_test/.patrol.env.example
+!integration_test/.patrol.env
 
 # Local shell setup (gcloud, etc.)
 exec -l /
