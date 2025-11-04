@@ -27,6 +27,12 @@ jobs:
   patrol-android-ci:
     runs-on: macos-13
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [31, 33]         # add more if desired, e.g. [30, 31, 33]
+        arch: [x86_64]
+        profile: [pixel_7]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,7 +47,6 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          # Using latest stable to get Dart SDK 3.8.0+ required by patrol_finders
 
       - name: Flutter pub get
         run: flutter pub get
@@ -94,9 +99,9 @@ jobs:
       - name: Start emulator & run Patrol
         uses: ReactiveCircus/android-emulator-runner@v2
         with:
-          api-level: 33
-          arch: x86_64
-          profile: pixel_7
+          api-level: ${{ matrix.api-level }}
+          arch: ${{ matrix.arch }}
+          profile: ${{ matrix.profile }}
           script: |
             flutter doctor -v
             patrol test \
