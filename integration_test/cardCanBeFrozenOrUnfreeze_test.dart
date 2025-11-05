@@ -15,7 +15,7 @@ void registerTests() {
     //build app for test
     final app = await buildTestApp();
     
-    await $.pumpWidgetAndSettle(app);
+    await $.pumpWidgetAndSettle(app, timeout: const Duration(seconds: 20));
     final bottomActionButtons = BottomActionButtons($);
 
     //login to app

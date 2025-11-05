@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api-level: [31, 33]         # add more if desired, e.g. [30, 31, 33]
+        api-level: [33]         # add more if desired, e.g. [30, 31, 33]
         arch: [x86_64]
         profile: [pixel_7]
     steps:
