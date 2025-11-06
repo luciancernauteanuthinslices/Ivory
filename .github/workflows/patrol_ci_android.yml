@@ -77,7 +77,11 @@ jobs:
           GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
           EOF
           echo "✅ Created .env with app configuration"
-
+         
+      # Make CI honor the lockfile
+      - name: Get deps (locked)
+        run: dart pub get --enforce-lockfile
+        
       # - name: Build APKs with Patrol
       #   run: |
       #     flutter doctor -v
@@ -102,10 +106,17 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: ${{ matrix.arch }}
           profile: ${{ matrix.profile }}
+          target: google_apis
+          emulator-boot-timeout: 900
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -no-metrics
           script: |
+            adb kill-server || true
+            adb start-server
+            adb wait-for-device
+            adb devices -l
             flutter doctor -v
             patrol test \
               --target integration_test/all_tests_test.dart \
-              --dart-define=PATROL_EMAIL="${{ secrets.PATROL_EMAIL }}" \
-              --dart-define=PATROL_PASSWORD="${{ secrets.PATROL_PASSWORD }}" \
-              -- -r expanded
+              --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" \
+              --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}" \
+              --verbose
