@@ -3,9 +3,11 @@ import 'package:solarisdemo/models/onboarding/onboarding_financial_details_attri
 import 'package:solarisdemo/models/onboarding/onboarding_financial_details_error_type.dart';
 import 'package:solarisdemo/models/user.dart';
 
-class FakeOnbordingFinancialDetailsService extends OnboardingFinancialDetailsService {
+class FakeOnbordingFinancialDetailsService
+    extends OnboardingFinancialDetailsService {
   @override
-  Future<FinancialDetailsServiceResponse> createTaxIdentification({required User user, required String taxId}) async {
+  Future<FinancialDetailsServiceResponse> createTaxIdentification(
+      {required User user, required String taxId}) async {
     return CreateTaxIdSuccesResponse();
   }
 
@@ -26,9 +28,11 @@ class FakeOnbordingFinancialDetailsService extends OnboardingFinancialDetailsSer
   }
 }
 
-class FakeFailingOnbordingFinancialDetailsService extends OnboardingFinancialDetailsService {
+class FakeFailingOnbordingFinancialDetailsService
+    extends OnboardingFinancialDetailsService {
   @override
-  Future<FinancialDetailsServiceResponse> createTaxIdentification({required User user, required String taxId}) async {
+  Future<FinancialDetailsServiceResponse> createTaxIdentification(
+      {required User user, required String taxId}) async {
     return const CreateTaxIdErrorResponse(
       errorType: FinancialDetailsErrorType.taxIdNotValid,
     );
@@ -52,4 +56,3 @@ class FakeFailingOnbordingFinancialDetailsService extends OnboardingFinancialDet
     );
   }
 }
-

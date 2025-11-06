@@ -4,7 +4,8 @@ import 'package:solarisdemo/models/onboarding/onboarding_identification_status.d
 import 'package:solarisdemo/models/onboarding/onboarding_identity_verification_error_type.dart';
 import 'package:solarisdemo/models/user.dart';
 
-class FakeOnbordingIdentityVerificationService extends OnbordingIdentityVerificationService {
+class FakeOnbordingIdentityVerificationService
+    extends OnbordingIdentityVerificationService {
   @override
   Future<IdentityVerificationServiceResponse> createIdentification({
     required User user,
@@ -12,7 +13,8 @@ class FakeOnbordingIdentityVerificationService extends OnbordingIdentityVerifica
     required String iban,
     required String termsAndCondsSignedAt,
   }) async {
-    return const CreateIdentificationSuccessResponse(urlForIntegration: 'https://url.com');
+    return const CreateIdentificationSuccessResponse(
+        urlForIntegration: 'https://url.com');
   }
 
   @override
@@ -20,7 +22,8 @@ class FakeOnbordingIdentityVerificationService extends OnbordingIdentityVerifica
     required User user,
   }) async {
     return const GetSignupIdentificationInfoSuccessResponse(
-      identificationStatus: OnboardingIdentificationStatus.authorizationRequired,
+      identificationStatus:
+          OnboardingIdentificationStatus.authorizationRequired,
       documents: [
         Document(
           id: 'documentId1',
@@ -39,12 +42,14 @@ class FakeOnbordingIdentityVerificationService extends OnbordingIdentityVerifica
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> authorizeIdentification({required User user}) async {
+  Future<IdentityVerificationServiceResponse> authorizeIdentification(
+      {required User user}) async {
     return AuthorizeIdentificationSuccessResponse();
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> signWithTan({required User user, required String tan}) async {
+  Future<IdentityVerificationServiceResponse> signWithTan(
+      {required User user, required String tan}) async {
     return SignWithTanSuccessResponse();
   }
 
@@ -63,7 +68,8 @@ class FakeOnbordingIdentityVerificationService extends OnbordingIdentityVerifica
   }
 }
 
-class FakeFailingOnbordingIdentityVerificationService extends OnbordingIdentityVerificationService {
+class FakeFailingOnbordingIdentityVerificationService
+    extends OnbordingIdentityVerificationService {
   @override
   Future<IdentityVerificationServiceResponse> createIdentification({
     required User user,
@@ -71,24 +77,30 @@ class FakeFailingOnbordingIdentityVerificationService extends OnbordingIdentityV
     required String iban,
     required String termsAndCondsSignedAt,
   }) async {
-    return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+    return const IdentityVerificationServiceErrorResponse(
+        errorType: OnboardingIdentityVerificationErrorType.unknown);
   }
 
   @override
   Future<IdentityVerificationServiceResponse> getSignupIdentificationInfo({
     required User user,
   }) async {
-    return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+    return const IdentityVerificationServiceErrorResponse(
+        errorType: OnboardingIdentityVerificationErrorType.unknown);
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> authorizeIdentification({required User user}) async {
-    return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+  Future<IdentityVerificationServiceResponse> authorizeIdentification(
+      {required User user}) async {
+    return const IdentityVerificationServiceErrorResponse(
+        errorType: OnboardingIdentityVerificationErrorType.unknown);
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> signWithTan({required User user, required String tan}) async {
-    return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+  Future<IdentityVerificationServiceResponse> signWithTan(
+      {required User user, required String tan}) async {
+    return const IdentityVerificationServiceErrorResponse(
+        errorType: OnboardingIdentityVerificationErrorType.unknown);
   }
 
   @override
@@ -105,7 +117,8 @@ class FakeFailingOnbordingIdentityVerificationService extends OnbordingIdentityV
     required User user,
   }) async {
     return const IdentityVerificationServiceErrorResponse(
-      errorType: OnboardingIdentityVerificationErrorType.finalizeIdentificationFailed,
+      errorType:
+          OnboardingIdentityVerificationErrorType.finalizeIdentificationFailed,
     );
   }
 }

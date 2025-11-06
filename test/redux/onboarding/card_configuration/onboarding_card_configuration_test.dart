@@ -11,166 +11,232 @@ import 'onboarding_card_configuration_mocks.dart';
 void main() {
   final authState = AuthStatePlaceholder.inOnboardingState();
 
-  test("When fetching the cardholder name is successful should return state with name", () async {
+  test(
+      "When fetching the cardholder name is successful should return state with name",
+      () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeOnboardingCardConfigurationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: OnboardingCardConfigurationInitialState(),
+          onboardingCardConfigurationState:
+              OnboardingCardConfigurationInitialState(),
           authState: authState,
         ));
 
-    final appState =
-        store.onChange.firstWhere((element) => element.onboardingCardConfigurationState is WithCardholderNameState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState is WithCardholderNameState);
     //when
     store.dispatch(GetCardPersonNameCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<WithCardholderNameState>());
-    expect(((await appState).onboardingCardConfigurationState as WithCardholderNameState).cardholderName, "Ivory TS");
-    expect(((await appState).onboardingCardConfigurationState as WithCardholderNameState).isLoading, false);
+    expect((await appState).onboardingCardConfigurationState,
+        isA<WithCardholderNameState>());
+    expect(
+        ((await appState).onboardingCardConfigurationState
+                as WithCardholderNameState)
+            .cardholderName,
+        "Ivory TS");
+    expect(
+        ((await appState).onboardingCardConfigurationState
+                as WithCardholderNameState)
+            .isLoading,
+        false);
   });
 
-  test("When fetching the cardholder name fails should return error state", () async {
+  test("When fetching the cardholder name fails should return error state",
+      () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeFailingOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeFailingOnboardingCardConfigurationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: OnboardingCardConfigurationInitialState(),
+          onboardingCardConfigurationState:
+              OnboardingCardConfigurationInitialState(),
           authState: authState,
         ));
 
-    final appState = store.onChange.firstWhere(
-        (element) => element.onboardingCardConfigurationState is OnboardingCardConfigurationGenericErrorState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState
+            is OnboardingCardConfigurationGenericErrorState);
     //when
     store.dispatch(GetCardPersonNameCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<OnboardingCardConfigurationGenericErrorState>());
+    expect((await appState).onboardingCardConfigurationState,
+        isA<OnboardingCardConfigurationGenericErrorState>());
   });
 
   test("When waiting to create a card should return loading", () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeOnboardingCardConfigurationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: WithCardholderNameState(cardholderName: "Ivory TS"),
+          onboardingCardConfigurationState:
+              WithCardholderNameState(cardholderName: "Ivory TS"),
           authState: authState,
         ));
 
     final appState = store.onChange.firstWhere((element) {
-      return element.onboardingCardConfigurationState is WithCardholderNameState &&
-          (element.onboardingCardConfigurationState as WithCardholderNameState).isLoading == true;
+      return element.onboardingCardConfigurationState
+              is WithCardholderNameState &&
+          (element.onboardingCardConfigurationState as WithCardholderNameState)
+                  .isLoading ==
+              true;
     });
     //when
     store.dispatch(OnboardingCreateCardCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<WithCardholderNameState>());
-    expect(((await appState).onboardingCardConfigurationState as WithCardholderNameState).isLoading, true);
+    expect((await appState).onboardingCardConfigurationState,
+        isA<WithCardholderNameState>());
+    expect(
+        ((await appState).onboardingCardConfigurationState
+                as WithCardholderNameState)
+            .isLoading,
+        true);
   });
 
   test("When creating a card fails should return error state", () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeFailingOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeFailingOnboardingCardConfigurationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: WithCardholderNameState(cardholderName: "Ivory TS"),
+          onboardingCardConfigurationState:
+              WithCardholderNameState(cardholderName: "Ivory TS"),
           authState: authState,
         ));
 
-    final appState = store.onChange.firstWhere(
-        (element) => element.onboardingCardConfigurationState is OnboardingCardConfigurationGenericErrorState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState
+            is OnboardingCardConfigurationGenericErrorState);
     //when
     store.dispatch(OnboardingCreateCardCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<OnboardingCardConfigurationGenericErrorState>());
+    expect((await appState).onboardingCardConfigurationState,
+        isA<OnboardingCardConfigurationGenericErrorState>());
   });
 
   test("When creating a card is successful should return success", () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeOnboardingCardConfigurationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: WithCardholderNameState(cardholderName: "Ivory TS"),
+          onboardingCardConfigurationState:
+              WithCardholderNameState(cardholderName: "Ivory TS"),
           authState: authState,
         ));
 
-    final appState = store.onChange.firstWhere(
-        (element) => element.onboardingCardConfigurationState is OnboardingCardConfigurationGenericSuccessState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState
+            is OnboardingCardConfigurationGenericSuccessState);
     //when
     store.dispatch(OnboardingCreateCardCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<OnboardingCardConfigurationGenericSuccessState>());
+    expect((await appState).onboardingCardConfigurationState,
+        isA<OnboardingCardConfigurationGenericSuccessState>());
   });
 
-  test("When getting the details of a card fails should return error state", () async {
+  test("When getting the details of a card fails should return error state",
+      () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeFailingOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeFailingOnboardingCardConfigurationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: WithCardholderNameState(cardholderName: "Ivory TS"),
+          onboardingCardConfigurationState:
+              WithCardholderNameState(cardholderName: "Ivory TS"),
           authState: authState,
         ));
 
-    final appState = store.onChange.firstWhere(
-        (element) => element.onboardingCardConfigurationState is OnboardingCardConfigurationGenericErrorState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState
+            is OnboardingCardConfigurationGenericErrorState);
     //when
     store.dispatch(GetOnboardingCardInfoCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<OnboardingCardConfigurationGenericErrorState>());
+    expect((await appState).onboardingCardConfigurationState,
+        isA<OnboardingCardConfigurationGenericErrorState>());
   });
 
-  test("When getting the details of a card is successful should return success", () async {
+  test("When getting the details of a card is successful should return success",
+      () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeOnboardingCardConfigurationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: WithCardholderNameState(cardholderName: "Ivory TS"),
+          onboardingCardConfigurationState:
+              WithCardholderNameState(cardholderName: "Ivory TS"),
           authState: authState,
         ));
 
-    final appState =
-        store.onChange.firstWhere((element) => element.onboardingCardConfigurationState is WithCardInfoState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState is WithCardInfoState);
     //when
     store.dispatch(GetOnboardingCardInfoCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<WithCardInfoState>());
-    expect(((await appState).onboardingCardConfigurationState as WithCardInfoState).cardholderName, "Ivory TS");
-    expect(((await appState).onboardingCardConfigurationState as WithCardInfoState).maskedPAN, "493441******6055");
-    expect(((await appState).onboardingCardConfigurationState as WithCardInfoState).expiryDate, "09/26");
+    expect((await appState).onboardingCardConfigurationState,
+        isA<WithCardInfoState>());
+    expect(
+        ((await appState).onboardingCardConfigurationState as WithCardInfoState)
+            .cardholderName,
+        "Ivory TS");
+    expect(
+        ((await appState).onboardingCardConfigurationState as WithCardInfoState)
+            .maskedPAN,
+        "493441******6055");
+    expect(
+        ((await appState).onboardingCardConfigurationState as WithCardInfoState)
+            .expiryDate,
+        "09/26");
   });
 
-  test("when getting card application is succesful should return succes", () async {
+  test("when getting card application is succesful should return succes",
+      () async {
     //given
     final store = createTestStore(
-        onboardingCardConfigurationService: FakeOnboardingCardConfigurationService(),
+        onboardingCardConfigurationService:
+            FakeOnboardingCardConfigurationService(),
         cardApplicationService: FakeCardApplicationService(),
         initialState: createAppState(
-          onboardingCardConfigurationState: OnboardingCardConfigurationInitialState(),
+          onboardingCardConfigurationState:
+              OnboardingCardConfigurationInitialState(),
           authState: authState,
         ));
 
-    final appState = store.onChange.firstWhere(
-        (element) => element.onboardingCardConfigurationState is OnboardingCreditCardApplicationFetchedState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState
+            is OnboardingCreditCardApplicationFetchedState);
     //when
     store.dispatch(OnboardingGetCreditCardApplicationCommandAction());
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<OnboardingCreditCardApplicationFetchedState>());
-    expect(((await appState).onboardingCardConfigurationState as OnboardingCreditCardApplicationFetchedState).isLoading,
+    expect((await appState).onboardingCardConfigurationState,
+        isA<OnboardingCreditCardApplicationFetchedState>());
+    expect(
+        ((await appState).onboardingCardConfigurationState
+                as OnboardingCreditCardApplicationFetchedState)
+            .isLoading,
         false);
   });
 
-  test("When updating card application is succesfull should return succes", () async {
+  test("When updating card application is succesfull should return succes",
+      () async {
     //given
     final store = createTestStore(
-      onboardingCardConfigurationService: FakeOnboardingCardConfigurationService(),
+      onboardingCardConfigurationService:
+          FakeOnboardingCardConfigurationService(),
       cardApplicationService: FakeCardApplicationService(),
       initialState: createAppState(
         onboardingCardConfigurationState:
-            OnboardingCreditCardApplicationFetchedState(cardApplication: mockCardApplication),
+            OnboardingCreditCardApplicationFetchedState(
+                cardApplication: mockCardApplication),
         authState: authState,
       ),
     );
-    final appState = store.onChange.firstWhere(
-        (element) => element.onboardingCardConfigurationState is OnboardingCreditCardApplicationUpdatedState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.onboardingCardConfigurationState
+            is OnboardingCreditCardApplicationUpdatedState);
 
     //when
     store.dispatch(
@@ -182,6 +248,7 @@ void main() {
     );
 
     //then
-    expect((await appState).onboardingCardConfigurationState, isA<OnboardingCreditCardApplicationUpdatedState>());
+    expect((await appState).onboardingCardConfigurationState,
+        isA<OnboardingCreditCardApplicationUpdatedState>());
   });
 }

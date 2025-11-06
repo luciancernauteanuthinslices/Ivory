@@ -82,40 +82,53 @@ Store<AppState> createTestStore({
 }) {
   return createStore(
     initialState: initialState,
-    pushNotificationService: pushNotificationService ?? NotImplementedPushNotificationService(),
-    transactionService: transactionService ?? NotImplementedTransactionService(),
+    pushNotificationService:
+        pushNotificationService ?? NotImplementedPushNotificationService(),
+    transactionService:
+        transactionService ?? NotImplementedTransactionService(),
     creditLineService: creditLineService ?? NotImplementedCreditLineService(),
-    repaymentReminderService: repaymentReminderService ?? NotImplementedRepaymentReminderService(),
-    cardApplicationService: cardApplicationService ?? NotImplementedCardApplicationService(),
+    repaymentReminderService:
+        repaymentReminderService ?? NotImplementedRepaymentReminderService(),
+    cardApplicationService:
+        cardApplicationService ?? NotImplementedCardApplicationService(),
     billService: billService ?? NotImplementedBillService(),
     moreCreditService: moreCreditService ?? NotImplementedMoreCreditService(),
     bankCardService: bankCardService ?? NotImplementedBankCardService(),
     categoriesService: categoriesService ?? NotImplementedCategoriesService(),
     personService: personService ?? NotImplementedPersonService(),
     transferService: transferService ?? NotImplementedTransferService(),
-    changeRequestService: changeRequestService ?? NotImplementedChangeRequestService(),
-    deviceBindingService: deviceBindingService ?? NotImplementedDeviceBindingService(),
+    changeRequestService:
+        changeRequestService ?? NotImplementedChangeRequestService(),
+    deviceBindingService:
+        deviceBindingService ?? NotImplementedDeviceBindingService(),
     deviceService: deviceService ?? NotImplementedDeviceService(),
     biometricsService: biometricsService ?? NotImplementedBiometricsService(),
     deviceInfoService: deviceInfoService ?? NotImplementedDeviceInfoService(),
-    accountSummaryService: accountSummaryService ?? NotImplementedAccountSummaryService(),
-    deviceFingerprintService: deviceFingerprintService ?? NotImplementedDeviceFingerprintService(),
+    accountSummaryService:
+        accountSummaryService ?? NotImplementedAccountSummaryService(),
+    deviceFingerprintService:
+        deviceFingerprintService ?? NotImplementedDeviceFingerprintService(),
     authService: authService ?? NotImplementedAuthService(),
     onboardingService: onboardingService ?? NotImplementedOnboardingService(),
-    onboardingSignupService: onboardingSignupService ?? NotImplementedOnboardingSignupService(),
-    citySuggestionsService: citySuggestionsService ?? NotImplementedCitySuggestionsService(),
-    addressSuggestionsService: addressSuggestionsService ?? NotImplementedAddressSuggestionsService(),
-    onboardingFinancialDetailsService:
-        onboardingFinancialDetailsService ?? NotImplementedOnboardingFinancialDetailsService(),
-    onboardingPersonalDetailsService:
-        onboardingPersonalDetailsService ?? NotImplementedOnboardingPersonalDetailsService(),
-    mobileNumberService: mobileNumberService ?? NotImplementedMobileNumberService(),
+    onboardingSignupService:
+        onboardingSignupService ?? NotImplementedOnboardingSignupService(),
+    citySuggestionsService:
+        citySuggestionsService ?? NotImplementedCitySuggestionsService(),
+    addressSuggestionsService:
+        addressSuggestionsService ?? NotImplementedAddressSuggestionsService(),
+    onboardingFinancialDetailsService: onboardingFinancialDetailsService ??
+        NotImplementedOnboardingFinancialDetailsService(),
+    onboardingPersonalDetailsService: onboardingPersonalDetailsService ??
+        NotImplementedOnboardingPersonalDetailsService(),
+    mobileNumberService:
+        mobileNumberService ?? NotImplementedMobileNumberService(),
     documentsService: documentsService ?? NotImplementedDocumentsService(),
     fileSaverService: fileSaverService ?? NotImplementedFileSaverService(),
     onboardingIdentityVerificationService:
-        onboardingIdentityVerificationService ?? NotImplementedOnbordingIdentityVerificationService(),
-    onboardingCardConfigurationService:
-        onboardingCardConfigurationService ?? NotImplementedOnboardingCardConfigurationService(),
+        onboardingIdentityVerificationService ??
+            NotImplementedOnbordingIdentityVerificationService(),
+    onboardingCardConfigurationService: onboardingCardConfigurationService ??
+        NotImplementedOnboardingCardConfigurationService(),
   );
 }
 
@@ -163,7 +176,8 @@ class NotImplementedPushNotificationService extends PushNotificationService {
 
 class NotImplementedTransactionService extends TransactionService {
   @override
-  Future<TransactionsServiceResponse> getTransactions({TransactionListFilter? filter, User? user}) {
+  Future<TransactionsServiceResponse> getTransactions(
+      {TransactionListFilter? filter, User? user}) {
     throw UnimplementedError();
   }
 }
@@ -190,7 +204,10 @@ class NotImplementedCardApplicationService extends CardApplicationService {
 
   @override
   Future<ChangeRepaymentResponse> updateChangeRepayment(
-      {User? user, required double fixedRate, required int percentageRate, required String id}) {
+      {User? user,
+      required double fixedRate,
+      required int percentageRate,
+      required String id}) {
     throw UnimplementedError();
   }
 }
@@ -225,12 +242,14 @@ class NotImplementedMoreCreditService extends MoreCreditService {
 
 class NotImplementedBankCardService extends BankCardService {
   @override
-  Future<BankCardServiceResponse> getBankCardById({User? user, String? cardId}) {
+  Future<BankCardServiceResponse> getBankCardById(
+      {User? user, String? cardId}) {
     throw UnimplementedError();
   }
 
   @override
-  Future<BankCardServiceResponse> activateBankCard({User? user, String? cardId}) {
+  Future<BankCardServiceResponse> activateBankCard(
+      {User? user, String? cardId}) {
     throw UnimplementedError();
   }
 
@@ -332,7 +351,10 @@ class NotImplementedDeviceBindingService extends DeviceBindingService {
 
   @override
   Future<DeviceBindingServiceResponse> verifyDeviceBindingSignature(
-      {required User user, required String deviceId, required String deviceFingerPrint, required String signature}) {
+      {required User user,
+      required String deviceId,
+      required String deviceFingerPrint,
+      required String signature}) {
     throw UnimplementedError();
   }
 
@@ -350,7 +372,8 @@ class NotImplementedDeviceBindingService extends DeviceBindingService {
   }
 
   @override
-  Future<DeviceBindingServiceResponse> deleteDeviceBinding({required User user, required String deviceId}) {
+  Future<DeviceBindingServiceResponse> deleteDeviceBinding(
+      {required User user, required String deviceId}) {
     throw UnimplementedError();
   }
 }
@@ -395,7 +418,8 @@ class NotImplementedDeviceService extends DeviceService {
   }
 
   @override
-  String? generateSignature({required String privateKey, required String stringToSign}) {
+  String? generateSignature(
+      {required String privateKey, required String stringToSign}) {
     throw UnimplementedError();
   }
 }
@@ -455,7 +479,8 @@ class NotImplementedAuthService extends AuthService {
 
 class NotImplementedOnboardingService extends OnboardingService {
   @override
-  Future<OnboardingServiceResponse> getOnboardingProgress({required User user}) {
+  Future<OnboardingServiceResponse> getOnboardingProgress(
+      {required User user}) {
     throw UnimplementedError();
   }
 }
@@ -471,7 +496,8 @@ class NotImplementedOnboardingSignupService extends OnboardingSignupService {
   }
 }
 
-class NotImplementedOnboardingFinancialDetailsService extends OnboardingFinancialDetailsService {
+class NotImplementedOnboardingFinancialDetailsService
+    extends OnboardingFinancialDetailsService {
   @override
   Future<FinancialDetailsServiceResponse> createTaxIdentification({
     required User user,
@@ -499,19 +525,23 @@ class NotImplementedOnboardingFinancialDetailsService extends OnboardingFinancia
 
 class NotImplementedCitySuggestionsService extends CitySuggestionsService {
   @override
-  Future<CitySuggestionsServiceResponse> fetchCities({required String countryCode, String? searchTerm}) {
+  Future<CitySuggestionsServiceResponse> fetchCities(
+      {required String countryCode, String? searchTerm}) {
     throw UnimplementedError();
   }
 }
 
-class NotImplementedAddressSuggestionsService extends AddressSuggestionsService {
+class NotImplementedAddressSuggestionsService
+    extends AddressSuggestionsService {
   @override
-  Future<AddressSuggestionsServiceResponse> getAddressSuggestions({required User user, required String query}) {
+  Future<AddressSuggestionsServiceResponse> getAddressSuggestions(
+      {required User user, required String query}) {
     throw UnimplementedError();
   }
 }
 
-class NotImplementedOnboardingPersonalDetailsService extends OnboardingPersonalDetailsService {
+class NotImplementedOnboardingPersonalDetailsService
+    extends OnboardingPersonalDetailsService {
   @override
   Future<OnboardingPersonalDetailsServiceResponse> createPerson({
     required User user,
@@ -539,7 +569,8 @@ class NotImplementedMobileNumberService extends MobileNumberService {
 
 class NotImplementedDocumentsService extends DocumentsService {
   @override
-  Future<DocumentsServiceResponse> getPostboxDocuments({required User user}) async {
+  Future<DocumentsServiceResponse> getPostboxDocuments(
+      {required User user}) async {
     throw UnimplementedError();
   }
 
@@ -563,12 +594,17 @@ class NotImplementedDocumentsService extends DocumentsService {
 
 class NotImplementedFileSaverService extends FileSaverService {
   @override
-  Future<void> saveFile({required String name, String? ext, required Uint8List bytes, String? mimeType}) async {
+  Future<void> saveFile(
+      {required String name,
+      String? ext,
+      required Uint8List bytes,
+      String? mimeType}) async {
     throw UnimplementedError();
   }
 }
 
-class NotImplementedOnbordingIdentityVerificationService extends OnbordingIdentityVerificationService {
+class NotImplementedOnbordingIdentityVerificationService
+    extends OnbordingIdentityVerificationService {
   @override
   Future<IdentityVerificationServiceResponse> createIdentification({
     required User user,
@@ -580,7 +616,8 @@ class NotImplementedOnbordingIdentityVerificationService extends OnbordingIdenti
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> signWithTan({required User user, required String tan}) async {
+  Future<IdentityVerificationServiceResponse> signWithTan(
+      {required User user, required String tan}) async {
     throw UnimplementedError();
   }
 
@@ -592,14 +629,17 @@ class NotImplementedOnbordingIdentityVerificationService extends OnbordingIdenti
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> authorizeIdentification({required User user}) async {
+  Future<IdentityVerificationServiceResponse> authorizeIdentification(
+      {required User user}) async {
     throw UnimplementedError();
   }
 }
 
-class NotImplementedOnboardingCardConfigurationService extends OnboardingCardConfigurationService {
+class NotImplementedOnboardingCardConfigurationService
+    extends OnboardingCardConfigurationService {
   @override
-  Future<OnboardingCardConfigurationResponse> getCardholderName({required User user}) {
+  Future<OnboardingCardConfigurationResponse> getCardholderName(
+      {required User user}) {
     throw UnimplementedError();
   }
 }

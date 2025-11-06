@@ -22,7 +22,8 @@ class CitySuggestionsMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is FetchCitySuggestionsSuccessResponse) {
-        store.dispatch(CitySuggestionsFetchedEventAction(cities: response.cities, searchTerm: action.searchTerm));
+        store.dispatch(CitySuggestionsFetchedEventAction(
+            cities: response.cities, searchTerm: action.searchTerm));
       } else if (response is FetchCitySuggestionsErrorResponse) {
         store.dispatch(FetchCitySuggestionsFailedEventAction(
           errorType: response.errorType,

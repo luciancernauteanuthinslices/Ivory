@@ -17,7 +17,9 @@ void main() {
     ];
 
     for (var i = 0; i < inputs.length; i++) {
-      test("when input is '${inputs[i]}' then it should return ${expectedOutputs[i]}", () {
+      test(
+          "when input is '${inputs[i]}' then it should return ${expectedOutputs[i]}",
+          () {
         // given
         final input = inputs[i];
 
@@ -65,7 +67,9 @@ void main() {
     ];
 
     for (var i = 0; i < inputDocuments.length; i++) {
-      test("when document type is '${inputDocuments[i].documentType}' then it should return ${expectedOutputs[i]}", () {
+      test(
+          "when document type is '${inputDocuments[i].documentType}' then it should return ${expectedOutputs[i]}",
+          () {
         // given
         final input = inputDocuments[i];
 

@@ -19,15 +19,19 @@ class SettingsDevicePairingTemporaryRestrictionScreen extends StatelessWidget {
     return ScreenScaffold(
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         AppToolbar(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           onBackButtonPressed: () {
-            Navigator.popUntil(context, ModalRoute.withName(SettingsDevicePairingScreen.routeName));
-            StoreProvider.of<AppState>(context).dispatch(FetchBoundDevicesCommandAction());
+            Navigator.popUntil(context,
+                ModalRoute.withName(SettingsDevicePairingScreen.routeName));
+            StoreProvider.of<AppState>(context)
+                .dispatch(FetchBoundDevicesCommandAction());
           },
         ),
         Expanded(
           child: Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+            padding:
+                ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,7 +57,8 @@ class SettingsDevicePairingTemporaryRestrictionScreen extends StatelessWidget {
                       ),
                       TextSpan(
                         text: 'come back in approximately 5 minutes ',
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                        style: ClientConfig.getTextStyleScheme()
+                            .bodyLargeRegularBold,
                       ),
                       const TextSpan(
                         text: 'to try pairing your device again.',
@@ -79,8 +84,12 @@ class SettingsDevicePairingTemporaryRestrictionScreen extends StatelessWidget {
                   child: PrimaryButton(
                     text: 'Try again later',
                     onPressed: () {
-                      Navigator.popUntil(context, ModalRoute.withName(SettingsDevicePairingScreen.routeName));
-                      StoreProvider.of<AppState>(context).dispatch(FetchBoundDevicesCommandAction());
+                      Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(
+                              SettingsDevicePairingScreen.routeName));
+                      StoreProvider.of<AppState>(context)
+                          .dispatch(FetchBoundDevicesCommandAction());
                     },
                   ),
                 ),

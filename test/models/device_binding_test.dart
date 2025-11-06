@@ -18,7 +18,10 @@ void main() {
 
       // Test fromJson
       final request = CreateDeviceBindingRequest(
-          deviceData: 'device123', key: 'publickey', name: 'Device Name', personId: 'person123');
+          deviceData: 'device123',
+          key: 'publickey',
+          name: 'Device Name',
+          personId: 'person123');
 
       expect(request.personId, "person123");
       expect(request.keyType, "ecdsa-p256");
@@ -53,8 +56,10 @@ void main() {
       expect(response.id, "bind_123");
       expect(response.challenge.id, "chal_123");
       expect(response.challenge.type, "SMS");
-      expect(response.challenge.createdAt, DateTime.parse("2023-05-12T14:20:00.000Z"));
-      expect(response.challenge.expiresAt, DateTime.parse("2023-05-12T14:30:00.000Z"));
+      expect(response.challenge.createdAt,
+          DateTime.parse("2023-05-12T14:20:00.000Z"));
+      expect(response.challenge.expiresAt,
+          DateTime.parse("2023-05-12T14:30:00.000Z"));
     });
     test('fromJson with invalid date format - Edge Case', () {
       final Map<String, dynamic> jsonData = {
@@ -68,7 +73,8 @@ void main() {
         },
       };
 
-      expect(() => CreateDeviceBindingChallenge.fromJson(jsonData), throwsFormatException);
+      expect(() => CreateDeviceBindingChallenge.fromJson(jsonData),
+          throwsFormatException);
     });
   });
 

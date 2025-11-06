@@ -18,7 +18,8 @@ class OnboardingIdentityVerificationPresenter {
       isTanConfirmed: identityVerificationState.isTanConfirmed,
       creditLimit: identityVerificationState.creditLimit,
       isScoringSuccessful: getScoringSuccessState(notificationState),
-      isIdentificationSuccessful: identityVerificationState.isIdentificationSuccessful,
+      isIdentificationSuccessful:
+          identityVerificationState.isIdentificationSuccessful,
     );
   }
 

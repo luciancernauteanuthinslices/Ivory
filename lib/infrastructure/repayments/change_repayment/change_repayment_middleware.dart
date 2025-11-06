@@ -15,7 +15,7 @@ class CardApplicationMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     final authState = store.state.authState;
-    if(authState is! AuthenticatedState) {
+    if (authState is! AuthenticatedState) {
       return;
     }
 
@@ -30,7 +30,8 @@ class CardApplicationMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is UpdateCardApplicationSuccessResponse) {
-        store.dispatch(UpdateCardApplicationEventAction(creditCardApplication: response.creditCardApplication));
+        store.dispatch(UpdateCardApplicationEventAction(
+            creditCardApplication: response.creditCardApplication));
       } else {
         store.dispatch(CardApplicationFailedEventAction());
       }
@@ -42,7 +43,8 @@ class CardApplicationMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is GetCardApplicationSuccessResponse) {
-        store.dispatch(CardApplicationFetchedEventAction(creditCardApplication: response.creditCardApplication));
+        store.dispatch(CardApplicationFetchedEventAction(
+            creditCardApplication: response.creditCardApplication));
       } else {
         store.dispatch(CardApplicationFailedEventAction());
       }

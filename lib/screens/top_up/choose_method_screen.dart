@@ -133,7 +133,9 @@ class CustomBox extends StatelessWidget {
               ),
             ],
             borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(color: isSelected ? Colors.orange : Colors.transparent, width: 2),
+            border: Border.all(
+                color: isSelected ? Colors.orange : Colors.transparent,
+                width: 2),
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -143,7 +145,8 @@ class CustomBox extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
-                Icon(icon, color: icon == Icons.apple ? Colors.black : Colors.orange),
+                Icon(icon,
+                    color: icon == Icons.apple ? Colors.black : Colors.orange),
                 const SizedBox(width: 16.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,4 +182,3 @@ class CustomBox extends StatelessWidget {
     );
   }
 }
-

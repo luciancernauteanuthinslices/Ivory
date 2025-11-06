@@ -120,7 +120,8 @@ class BankCardService extends ApiService {
     this.user = user;
 
     try {
-      await post('/account/cards/$cardId/change_card_pin', body: reqBody.toJson());
+      await post('/account/cards/$cardId/change_card_pin',
+          body: reqBody.toJson());
       return ChangePinSuccessResponse();
     } catch (e) {
       return BankCardErrorResponse();

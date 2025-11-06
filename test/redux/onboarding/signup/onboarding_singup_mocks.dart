@@ -20,17 +20,20 @@ class FakeFailingOnboardingSignupService extends OnboardingSignupService {
     required String deviceToken,
     required String tsAndCsSignedAt,
   }) async {
-    return const CreatePersonErrorResponse(errorType: OnboardingSignupErrorType.unknown);
+    return const CreatePersonErrorResponse(
+        errorType: OnboardingSignupErrorType.unknown);
   }
 }
 
-class FakeFailingOnboardingSignupServiceWithDuplicateEmail extends OnboardingSignupService {
+class FakeFailingOnboardingSignupServiceWithDuplicateEmail
+    extends OnboardingSignupService {
   @override
   Future<OnboardingSignupServiceResponse> createPerson({
     required OnboardingSignupAttributes signupAttributes,
     required String deviceToken,
     required String tsAndCsSignedAt,
   }) async {
-    return const CreatePersonErrorResponse(errorType: OnboardingSignupErrorType.emailAlreadyExists);
+    return const CreatePersonErrorResponse(
+        errorType: OnboardingSignupErrorType.emailAlreadyExists);
   }
 }

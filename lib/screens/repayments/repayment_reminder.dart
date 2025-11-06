@@ -24,7 +24,8 @@ class RepaymentReminderScreen extends StatefulWidget {
   const RepaymentReminderScreen({Key? key}) : super(key: key);
 
   @override
-  State<RepaymentReminderScreen> createState() => _RepaymentReminderScreenState();
+  State<RepaymentReminderScreen> createState() =>
+      _RepaymentReminderScreenState();
 }
 
 class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
@@ -54,8 +55,10 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
             const SizedBox(height: 24),
             Expanded(
               child: StoreConnector<AppState, RepaymentReminderViewModel>(
-                onInit: (store) => store.dispatch(GetRepaymentRemindersCommandAction()),
-                converter: (store) => RepaymentReminderPresenter.presentRepaymentReminder(
+                onInit: (store) =>
+                    store.dispatch(GetRepaymentRemindersCommandAction()),
+                converter: (store) =>
+                    RepaymentReminderPresenter.presentRepaymentReminder(
                   repaymentReminderState: store.state.repaymentReminderState,
                   creditLineState: store.state.creditLineState,
                 ),
@@ -72,13 +75,16 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                 distinct: true,
                 builder: (context, viewModel) {
                   if (viewModel is RepaymentReminderLoadingViewModel) {
-                    return const Align(alignment: Alignment.topCenter, child: CircularProgressIndicator());
+                    return const Align(
+                        alignment: Alignment.topCenter,
+                        child: CircularProgressIndicator());
                   }
 
                   if (viewModel is RepaymentReminderErrorViewModel) {
                     return const Align(
                       alignment: Alignment.topCenter,
-                      child: IvoryErrorWidget('Error loading repayment reminders'),
+                      child:
+                          IvoryErrorWidget('Error loading repayment reminders'),
                     );
                   }
 
@@ -91,18 +97,23 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                               .map(
                                 (reminder) => ListTile(
                                   minLeadingWidth: 0,
-                                  leading: Icon(Icons.notifications_none_rounded,
-                                      color: ClientConfig.getColorScheme().secondary),
+                                  leading: Icon(
+                                      Icons.notifications_none_rounded,
+                                      color: ClientConfig.getColorScheme()
+                                          .secondary),
                                   title: Text(
                                     reminder.description,
-                                    style: ClientConfig.getTextStyleScheme().heading4,
+                                    style: ClientConfig.getTextStyleScheme()
+                                        .heading4,
                                   ),
                                   trailing: IconButton(
-                                    icon: const Icon(Icons.delete_outline, color: Color(0xFFCC0000)),
+                                    icon: const Icon(Icons.delete_outline,
+                                        color: Color(0xFFCC0000)),
                                     onPressed: () async {
                                       final value = await showBottomModal(
                                         context: context,
-                                        title: 'Are you sure you want to remove the reminder?',
+                                        title:
+                                            'Are you sure you want to remove the reminder?',
                                         content: const _RemoveReminderPopUp(),
                                       );
                                       if (value == true) {
@@ -125,7 +136,8 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                           dashPattern: const [5, 5],
                           child: TextButton.icon(
                             style: TextButton.styleFrom(
-                              foregroundColor: ClientConfig.getColorScheme().secondary,
+                              foregroundColor:
+                                  ClientConfig.getColorScheme().secondary,
                               minimumSize: const Size(double.infinity, 0),
                               padding: const EdgeInsets.symmetric(
                                 vertical: 22,
@@ -140,7 +152,9 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                               'Add reminder',
                               style: ClientConfig.getTextStyleScheme()
                                   .bodyLargeRegularBold
-                                  .copyWith(color: ClientConfig.getColorScheme().secondary),
+                                  .copyWith(
+                                      color: ClientConfig.getColorScheme()
+                                          .secondary),
                             ),
                             onPressed: () async {
                               final value = await showBottomModal(
@@ -148,15 +162,20 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                                 title: 'Add reminder',
                                 content: _PopUpContent(
                                   reminders: _reminders,
-                                  repaymentDueDate: (viewModel as RepaymentReminderFetchedViewModel).repaymentDueDate,
+                                  repaymentDueDate: (viewModel
+                                          as RepaymentReminderFetchedViewModel)
+                                      .repaymentDueDate,
                                 ),
                               );
 
                               if (value is TimePeriod) {
-                                final reminderDate = viewModel.repaymentDueDate.subtract(value.duration);
+                                final reminderDate = viewModel.repaymentDueDate
+                                    .subtract(value.duration);
                                 final description = value.description(1);
                                 setState(() {
-                                  _reminders.add(RepaymentReminder(datetime: reminderDate, description: description));
+                                  _reminders.add(RepaymentReminder(
+                                      datetime: reminderDate,
+                                      description: description));
                                 });
                               } else if (value is RepaymentReminder) {
                                 setState(() => _reminders.add(value));
@@ -189,12 +208,15 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
 
   void _onDeleteReminder(RepaymentReminder reminder) {
     if (reminder.id != null) {
-      StoreProvider.of<AppState>(context).dispatch(DeleteRepaymentReminderCommandAction(reminder: reminder));
+      StoreProvider.of<AppState>(context)
+          .dispatch(DeleteRepaymentReminderCommandAction(reminder: reminder));
     }
   }
 
   void _onSaveTap() {
-    final remindersToAdd = _reminders.where((reminder) => !_initialReminders.contains(reminder)).toList();
+    final remindersToAdd = _reminders
+        .where((reminder) => !_initialReminders.contains(reminder))
+        .toList();
 
     if (remindersToAdd.isNotEmpty) {
       StoreProvider.of<AppState>(context).dispatch(
@@ -212,7 +234,8 @@ class _PopUpContent extends StatelessWidget {
   final List<RepaymentReminder> reminders;
   final DateTime repaymentDueDate;
 
-  const _PopUpContent({required this.repaymentDueDate, required this.reminders});
+  const _PopUpContent(
+      {required this.repaymentDueDate, required this.reminders});
 
   bool _isReminderSelected(TimePeriod value) {
     final existingReminder = reminders.firstWhereOrNull((reminder) {
@@ -229,20 +252,29 @@ class _PopUpContent extends StatelessWidget {
         _ReminderListTile(
           title: '1 hour before',
           value: TimePeriod.hours,
-          groupValue: _isReminderSelected(TimePeriod.hours) ? TimePeriod.hours : null,
-          onChanged: !_isReminderSelected(TimePeriod.hours) ? (value) => Navigator.pop(context, value) : null,
+          groupValue:
+              _isReminderSelected(TimePeriod.hours) ? TimePeriod.hours : null,
+          onChanged: !_isReminderSelected(TimePeriod.hours)
+              ? (value) => Navigator.pop(context, value)
+              : null,
         ),
         _ReminderListTile(
           title: '1 day before',
           value: TimePeriod.days,
-          groupValue: _isReminderSelected(TimePeriod.days) ? TimePeriod.days : null,
-          onChanged: !_isReminderSelected(TimePeriod.days) ? (value) => Navigator.pop(context, value) : null,
+          groupValue:
+              _isReminderSelected(TimePeriod.days) ? TimePeriod.days : null,
+          onChanged: !_isReminderSelected(TimePeriod.days)
+              ? (value) => Navigator.pop(context, value)
+              : null,
         ),
         _ReminderListTile(
           title: '1 week before',
           value: TimePeriod.weeks,
-          groupValue: _isReminderSelected(TimePeriod.weeks) ? TimePeriod.weeks : null,
-          onChanged: !_isReminderSelected(TimePeriod.weeks) ? (value) => Navigator.pop(context, value) : null,
+          groupValue:
+              _isReminderSelected(TimePeriod.weeks) ? TimePeriod.weeks : null,
+          onChanged: !_isReminderSelected(TimePeriod.weeks)
+              ? (value) => Navigator.pop(context, value)
+              : null,
         ),
         _ReminderListTile(
           title: 'Custom',
@@ -253,7 +285,8 @@ class _PopUpContent extends StatelessWidget {
               content: const _CustomReminderPopUpContent(),
             ).then((value) {
               if (value is (int, TimePeriod)) {
-                final reminderDate = repaymentDueDate.subtract(value.$2.duration * value.$1);
+                final reminderDate =
+                    repaymentDueDate.subtract(value.$2.duration * value.$1);
                 final reminder = RepaymentReminder(
                   datetime: reminderDate,
                   description: value.$2.description(value.$1),
@@ -273,10 +306,12 @@ class _CustomReminderPopUpContent extends StatefulWidget {
   const _CustomReminderPopUpContent();
 
   @override
-  State<_CustomReminderPopUpContent> createState() => _CustomReminderPopUpContentState();
+  State<_CustomReminderPopUpContent> createState() =>
+      _CustomReminderPopUpContentState();
 }
 
-class _CustomReminderPopUpContentState extends State<_CustomReminderPopUpContent> {
+class _CustomReminderPopUpContentState
+    extends State<_CustomReminderPopUpContent> {
   final _textController = IvoryTextFieldController(text: '1');
   TimePeriod _timePeriod = TimePeriod.hours;
 
@@ -288,7 +323,8 @@ class _CustomReminderPopUpContentState extends State<_CustomReminderPopUpContent
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IvoryTextField(controller: _textController, keyboardType: TextInputType.number),
+        IvoryTextField(
+            controller: _textController, keyboardType: TextInputType.number),
         const SizedBox(height: 16),
         _ReminderListTile(
           title: 'Hours',
@@ -316,7 +352,8 @@ class _CustomReminderPopUpContentState extends State<_CustomReminderPopUpContent
             color: ClientConfig.getColorScheme().tertiary,
             textColor: ClientConfig.getColorScheme().surface,
             onPressed: () {
-              Navigator.of(context).pop((int.parse(_textController.text), _timePeriod));
+              Navigator.of(context)
+                  .pop((int.parse(_textController.text), _timePeriod));
             },
           ),
         ),
@@ -334,7 +371,9 @@ class _RemoveReminderPopUp extends StatelessWidget {
       children: [
         SizedBox(
           width: double.infinity,
-          child: SecondaryButton(text: 'No, go back', onPressed: () => Navigator.of(context).pop()),
+          child: SecondaryButton(
+              text: 'No, go back',
+              onPressed: () => Navigator.of(context).pop()),
         ),
         const SizedBox(height: 16),
         SizedBox(

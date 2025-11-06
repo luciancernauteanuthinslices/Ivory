@@ -21,9 +21,11 @@ class AuthService {
         username: username,
         password: passcode,
       );
-      CognitoUserSession? session = await cognitoUser.authenticateUser(authDetails);
+      CognitoUserSession? session =
+          await cognitoUser.authenticateUser(authDetails);
 
-      List<CognitoUserAttribute>? attributes = await cognitoUser.getUserAttributes();
+      List<CognitoUserAttribute>? attributes =
+          await cognitoUser.getUserAttributes();
 
       // debug only
       log("access_token: ${session!.getAccessToken().getJwtToken()}");
@@ -37,7 +39,8 @@ class AuthService {
       return LoginSuccessResponse(user: user);
     } catch (e) {
       //additional error handling needed here
-      return AuthServiceErrorResponse(errorType: AuthErrorType.invalidCredentials);
+      return AuthServiceErrorResponse(
+          errorType: AuthErrorType.invalidCredentials);
     }
   }
 }

@@ -14,7 +14,8 @@ void main() {
   final authState = AuthStatePlaceholder.loggedInState();
 
   group("Fetching bank card", () {
-    test("When fetching bank card successfully should update with bank card", () async {
+    test("When fetching bank card successfully should update with bank card",
+        () async {
       // given
       final store = createTestStore(
         bankCardService: FakeBankCardService(),
@@ -24,8 +25,10 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardFetchedState);
+      final loadingState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardLoadingState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardFetchedState);
 
       // when
       store.dispatch(
@@ -40,7 +43,8 @@ void main() {
       expect((await appState).bankCardState, isA<BankCardFetchedState>());
     });
 
-    test("When fetching bank card is failing should update with error", () async {
+    test("When fetching bank card is failing should update with error",
+        () async {
       // given
       final store = createTestStore(
         bankCardService: FakeFailingBankCardService(),
@@ -49,8 +53,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardErrorState);
+      final loadingState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardLoadingState);
+      final appState = store.onChange
+          .firstWhere((element) => element.bankCardState is BankCardErrorState);
 
       // when
       store.dispatch(
@@ -67,7 +73,8 @@ void main() {
   });
 
   group("Activate bank card", () {
-    test("When activating bank card successfully should update with bank card", () async {
+    test("When activating bank card successfully should update with bank card",
+        () async {
       // given
       final store = createTestStore(
         bankCardService: FakeBankCardService(),
@@ -77,8 +84,10 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardActivatedState);
+      final loadingState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardLoadingState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardActivatedState);
 
       // when
       store.dispatch(
@@ -92,7 +101,8 @@ void main() {
       expect((await appState).bankCardState, isA<BankCardActivatedState>());
     });
 
-    test("When activating bank card is failing should update with error", () async {
+    test("When activating bank card is failing should update with error",
+        () async {
       // given
       final Map<String, Object> values = <String, Object>{'deviceId': 'test'};
       SharedPreferences.setMockInitialValues(values);
@@ -104,8 +114,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardErrorState);
+      final loadingState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardLoadingState);
+      final appState = store.onChange
+          .firstWhere((element) => element.bankCardState is BankCardErrorState);
 
       // when
       store.dispatch(
@@ -135,7 +147,8 @@ void main() {
       );
 
       TestWidgetsFlutterBinding.ensureInitialized();
-      const MethodChannel channel = MethodChannel('com.thinslices.solarisdemo/native');
+      const MethodChannel channel =
+          MethodChannel('com.thinslices.solarisdemo/native');
       channel.setMockMethodCallHandler((MethodCall methodCall) async {
         if (methodCall.method == 'getDeviceFingerprint') {
           return 'mockDeviceFingerPrint';
@@ -146,7 +159,9 @@ void main() {
         return null;
       });
     });
-    test("When viewing card details successfully should update with card details", () async {
+    test(
+        "When viewing card details successfully should update with card details",
+        () async {
       // given
       final store = createTestStore(
         bankCardService: FakeBankCardService(),
@@ -159,8 +174,10 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardDetailsFetchedState);
+      final loadingState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardLoadingState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardDetailsFetchedState);
 
       // when
       store.dispatch(
@@ -182,10 +199,12 @@ void main() {
 
       // then
       expect((await loadingState).bankCardState, isA<BankCardLoadingState>());
-      expect((await appState).bankCardState, isA<BankCardDetailsFetchedState>());
+      expect(
+          (await appState).bankCardState, isA<BankCardDetailsFetchedState>());
     });
 
-    test("When viewing card details is failing should update with error", () async {
+    test("When viewing card details is failing should update with error",
+        () async {
       // given
       final store = createTestStore(
         bankCardService: FakeFailingBankCardService(),
@@ -197,8 +216,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardErrorState);
+      final loadingState = store.onChange.firstWhere(
+          (element) => element.bankCardState is BankCardLoadingState);
+      final appState = store.onChange
+          .firstWhere((element) => element.bankCardState is BankCardErrorState);
 
       // when
       store.dispatch(
@@ -241,7 +262,8 @@ void main() {
         );
 
         TestWidgetsFlutterBinding.ensureInitialized();
-        const MethodChannel channel = MethodChannel('com.thinslices.solarisdemo/native');
+        const MethodChannel channel =
+            MethodChannel('com.thinslices.solarisdemo/native');
         channel.setMockMethodCallHandler((MethodCall methodCall) async {
           if (methodCall.method == 'getDeviceFingerprint') {
             return 'mockDeviceFingerPrint';
@@ -266,8 +288,10 @@ void main() {
               authState: authState,
             ),
           );
-          final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-          final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardPinConfirmedState);
+          final loadingState = store.onChange.firstWhere(
+              (element) => element.bankCardState is BankCardLoadingState);
+          final appState = store.onChange.firstWhere(
+              (element) => element.bankCardState is BankCardPinConfirmedState);
 
           //when
           store.dispatch(
@@ -289,8 +313,10 @@ void main() {
           );
 
           //then
-          expect((await loadingState).bankCardState, isA<BankCardLoadingState>());
-          expect((await appState).bankCardState, isA<BankCardPinConfirmedState>());
+          expect(
+              (await loadingState).bankCardState, isA<BankCardLoadingState>());
+          expect(
+              (await appState).bankCardState, isA<BankCardPinConfirmedState>());
         },
       );
 
@@ -309,8 +335,10 @@ void main() {
             ),
           );
 
-          final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-          final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardErrorState);
+          final loadingState = store.onChange.firstWhere(
+              (element) => element.bankCardState is BankCardLoadingState);
+          final appState = store.onChange.firstWhere(
+              (element) => element.bankCardState is BankCardErrorState);
 
           //when
           store.dispatch(
@@ -332,7 +360,8 @@ void main() {
           );
 
           //then
-          expect((await loadingState).bankCardState, isA<BankCardLoadingState>());
+          expect(
+              (await loadingState).bankCardState, isA<BankCardLoadingState>());
           expect((await appState).bankCardState, isA<BankCardErrorState>());
         },
       );
@@ -342,7 +371,8 @@ void main() {
   group(
     "Freeze/unfreeze card",
     () {
-      test("When freezing card successfully should update with bank card", () async {
+      test("When freezing card successfully should update with bank card",
+          () async {
         // given
         final store = createTestStore(
           bankCardService: FakeBankCardService(),
@@ -352,8 +382,10 @@ void main() {
           ),
         );
 
-        final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-        final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardFetchedState);
+        final loadingState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardLoadingState);
+        final appState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardFetchedState);
 
         // when
         store.dispatch(
@@ -400,8 +432,10 @@ void main() {
             authState: authState,
           ),
         );
-        final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-        final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardErrorState);
+        final loadingState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardLoadingState);
+        final appState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardErrorState);
 
         // when
         store.dispatch(
@@ -439,7 +473,8 @@ void main() {
         expect((await appState).bankCardState, isA<BankCardErrorState>());
       });
 
-      test("  When unfreezing card successfully should update with bank card", () async {
+      test("  When unfreezing card successfully should update with bank card",
+          () async {
         // given
         final store = createTestStore(
           bankCardService: FakeBankCardService(),
@@ -465,8 +500,10 @@ void main() {
           ),
         );
 
-        final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-        final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardFetchedState);
+        final loadingState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardLoadingState);
+        final appState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardFetchedState);
 
         // when
         store.dispatch(
@@ -505,7 +542,8 @@ void main() {
         expect((await appState).bankCardState, isA<BankCardFetchedState>());
       });
 
-      test("When unfreezing card is failing should update with error", () async {
+      test("When unfreezing card is failing should update with error",
+          () async {
         // given
         final store = createTestStore(
           bankCardService: FakeFailingBankCardService(),
@@ -530,8 +568,10 @@ void main() {
             ),
           ),
         );
-        final loadingState = store.onChange.firstWhere((element) => element.bankCardState is BankCardLoadingState);
-        final appState = store.onChange.firstWhere((element) => element.bankCardState is BankCardErrorState);
+        final loadingState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardLoadingState);
+        final appState = store.onChange.firstWhere(
+            (element) => element.bankCardState is BankCardErrorState);
 
         // when
         store.dispatch(
@@ -570,7 +610,8 @@ void main() {
         expect((await appState).bankCardState, isA<BankCardErrorState>());
       });
 
-      test("When creating a card is succesfull should update with bank card", () async {
+      test("When creating a card is succesfull should update with bank card",
+          () async {
         // given
         List<BankCard> bankCards = [];
         final store = createTestStore(
@@ -599,11 +640,13 @@ void main() {
         );
 
         // then
-        expect((await loadingState).bankCardsState, isA<BankCardsLoadingState>());
+        expect(
+            (await loadingState).bankCardsState, isA<BankCardsLoadingState>());
         expect((await appState).bankCardsState, isA<BankCardsFetchedState>());
       });
 
-      test("When creating a card is failing should update with error", () async {
+      test("When creating a card is failing should update with error",
+          () async {
         // given
         List<BankCard> bankCards = [];
         final store = createTestStore(
@@ -613,8 +656,10 @@ void main() {
             authState: authState,
           ),
         );
-        final loadingState = store.onChange.firstWhere((element) => element.bankCardsState is BankCardsLoadingState);
-        final appState = store.onChange.firstWhere((element) => element.bankCardsState is BankCardsErrorState);
+        final loadingState = store.onChange.firstWhere(
+            (element) => element.bankCardsState is BankCardsLoadingState);
+        final appState = store.onChange.firstWhere(
+            (element) => element.bankCardsState is BankCardsErrorState);
 
         // when
         store.dispatch(
@@ -627,7 +672,8 @@ void main() {
         );
 
         // then
-        expect((await loadingState).bankCardsState, isA<BankCardsLoadingState>());
+        expect(
+            (await loadingState).bankCardsState, isA<BankCardsLoadingState>());
         expect((await appState).bankCardsState, isA<BankCardsErrorState>());
       });
     },

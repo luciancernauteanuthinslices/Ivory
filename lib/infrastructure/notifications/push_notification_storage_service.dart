@@ -8,8 +8,10 @@ abstract class PushNotificationStorageService {
   Future<String?> find();
 }
 
-class PushNotificationSharedPreferencesStorageService extends PushNotificationStorageService {
-  final Future<SharedPreferences> _sharedPreferences = SharedPreferences.getInstance();
+class PushNotificationSharedPreferencesStorageService
+    extends PushNotificationStorageService {
+  final Future<SharedPreferences> _sharedPreferences =
+      SharedPreferences.getInstance();
   final String _key = "notificationMessage";
 
   @override

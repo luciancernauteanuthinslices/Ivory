@@ -15,12 +15,13 @@ class PersonAccountMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     final authState = store.state.authState;
-    if(authState is! AuthenticatedState) {
+    if (authState is! AuthenticatedState) {
       return;
     }
 
     if (action is GetPersonAccountCommandAction) {
-      final response = await _personService.getPersonAccount(user: authState.authenticatedUser.cognito);
+      final response = await _personService.getPersonAccount(
+          user: authState.authenticatedUser.cognito);
 
       if (response is GetPersonAccountSuccessResponse) {
         store.dispatch(PersonAccountFetchedEventAction(response.personAccount));

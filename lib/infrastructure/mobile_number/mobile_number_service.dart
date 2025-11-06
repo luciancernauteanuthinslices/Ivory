@@ -28,7 +28,8 @@ class MobileNumberService extends ApiService {
       );
       return CreateMobileNumberSuccessResponse();
     } catch (e) {
-      return MobileNumberServiceErrorResponse(errorType: MobileNumberErrorType.cantCreateMobileNumber);
+      return MobileNumberServiceErrorResponse(
+          errorType: MobileNumberErrorType.cantCreateMobileNumber);
     }
   }
 
@@ -55,7 +56,8 @@ class MobileNumberService extends ApiService {
       );
       return ConfirmMobileNumberSuccessResponse();
     } catch (e) {
-      return MobileNumberServiceErrorResponse(errorType: MobileNumberErrorType.cantConfirmMobileNumber);
+      return MobileNumberServiceErrorResponse(
+          errorType: MobileNumberErrorType.cantConfirmMobileNumber);
     }
   }
 
@@ -80,7 +82,8 @@ class MobileNumberService extends ApiService {
       );
       return VerifyMobileNumberSuccessResponse();
     } catch (e) {
-      return MobileNumberServiceErrorResponse(errorType: MobileNumberErrorType.cantVerifyMobileNumber);
+      return MobileNumberServiceErrorResponse(
+          errorType: MobileNumberErrorType.cantVerifyMobileNumber);
     }
   }
 }

@@ -1,10 +1,8 @@
-import 'package:patrol/patrol.dart';           // Patrol ($, patrolTest, PatrolFinder)
+import 'package:patrol/patrol.dart'; // Patrol ($, patrolTest, PatrolFinder)
 import 'package:flutter_test/flutter_test.dart'; // Keys, matchers, pump*, etc.
-import 'package:flutter/material.dart';          // Icons, if you use byIcon
-
+import 'package:flutter/material.dart'; // Icons, if you use byIcon
 
 class BottomActionButtons {
-
   final PatrolIntegrationTester $;
   BottomActionButtons(this.$);
 
@@ -13,10 +11,19 @@ class BottomActionButtons {
   PatrolFinder get transactions => $(Icons.payments_outlined);
   PatrolFinder get settings => $(Icons.settings_outlined);
 
+  Future<void> tapHome() async {
+    await home.tap();
+  }
 
-  Future<void> tapHome() async {await home.tap();}
-  Future<void> tapCards() async {await cards.tap();}
-  Future<void> tapTransactions() async {await transactions.tap();}
-  Future<void> tapSettings() async {await settings.tap();}
+  Future<void> tapCards() async {
+    await cards.tap();
+  }
 
+  Future<void> tapTransactions() async {
+    await transactions.tap();
+  }
+
+  Future<void> tapSettings() async {
+    await settings.tap();
+  }
 }

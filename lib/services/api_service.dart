@@ -32,7 +32,9 @@ class ApiService<T> {
 
       final response = await _client.get(
         ApiService.url(path, queryParameters: queryParameters),
-        headers: authNeeded && accessToken != null ? {"Authorization": "Bearer $accessToken"} : {},
+        headers: authNeeded && accessToken != null
+            ? {"Authorization": "Bearer $accessToken"}
+            : {},
       );
 
       log(response.body, name: "GET $path $queryParameters RESPONSE");
@@ -65,13 +67,18 @@ class ApiService<T> {
       log(requestBody, name: "POST $path $queryParameters REQUEST");
       final response = await _client.post(
         ApiService.url(path, queryParameters: queryParameters),
-        headers: authNeeded && accessToken != null ? {"Authorization": "Bearer $accessToken"} : {},
+        headers: authNeeded && accessToken != null
+            ? {"Authorization": "Bearer $accessToken"}
+            : {},
         body: requestBody,
       );
 
       log(response.body, name: "POST $path $queryParameters RESPONSE");
       if (response.statusCode != 200 && response.statusCode != 201) {
-        throw HttpException(method: "POST", statusCode: response.statusCode, responseBody: requestBody);
+        throw HttpException(
+            method: "POST",
+            statusCode: response.statusCode,
+            responseBody: requestBody);
       }
 
       return jsonDecode(response.body);
@@ -99,13 +106,18 @@ class ApiService<T> {
       log(requestBody, name: "PATCH $path $queryParameters REQUEST");
       final response = await _client.patch(
         ApiService.url(path, queryParameters: queryParameters),
-        headers: authNeeded && accessToken != null ? {"Authorization": "Bearer $accessToken"} : {},
+        headers: authNeeded && accessToken != null
+            ? {"Authorization": "Bearer $accessToken"}
+            : {},
         body: requestBody,
       );
 
       log(response.body, name: "PATCH $path $queryParameters RESPONSE");
       if (response.statusCode != 200 && response.statusCode != 201) {
-        throw HttpException(method: "PATCH", statusCode: response.statusCode, responseBody: response.body);
+        throw HttpException(
+            method: "PATCH",
+            statusCode: response.statusCode,
+            responseBody: response.body);
       }
 
       return jsonDecode(response.body);
@@ -133,13 +145,20 @@ class ApiService<T> {
       log(requestBody, name: "DELETE $path $queryParameters REQUEST");
       final response = await _client.delete(
         ApiService.url(path, queryParameters: queryParameters),
-        headers: authNeeded && accessToken != null ? {"Authorization": "Bearer $accessToken"} : {},
+        headers: authNeeded && accessToken != null
+            ? {"Authorization": "Bearer $accessToken"}
+            : {},
         body: requestBody,
       );
 
       log(response.body, name: "DELETE $path $queryParameters RESPONSE");
-      if (response.statusCode != 200 && response.statusCode != 201 && response.statusCode != 204) {
-        throw HttpException(method: "DELETE", statusCode: response.statusCode, responseBody: requestBody);
+      if (response.statusCode != 200 &&
+          response.statusCode != 201 &&
+          response.statusCode != 204) {
+        throw HttpException(
+            method: "DELETE",
+            statusCode: response.statusCode,
+            responseBody: requestBody);
       }
 
       return response.body.isNotEmpty ? jsonDecode(response.body) : {};
@@ -164,7 +183,9 @@ class ApiService<T> {
 
       final response = await _client.get(
         ApiService.url(path, queryParameters: queryParameters),
-        headers: authNeeded && accessToken != null ? {"Authorization": "Bearer $accessToken"} : {},
+        headers: authNeeded && accessToken != null
+            ? {"Authorization": "Bearer $accessToken"}
+            : {},
       );
 
       log("BODY BYTES", name: "GET $path $queryParameters RESPONSE");
@@ -176,7 +197,8 @@ class ApiService<T> {
       return response.bodyBytes;
     } catch (e, s) {
       debugPrint(e.toString());
-      debugPrintStack(stackTrace: s, label: "downloadFile $path $queryParameters");
+      debugPrintStack(
+          stackTrace: s, label: "downloadFile $path $queryParameters");
       rethrow;
     }
   }

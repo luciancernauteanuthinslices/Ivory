@@ -56,19 +56,27 @@ class TanInputState extends State<TanInput> {
                   ),
                   hintText: List.filled(widget.length, '#').join(),
                   textStyle: widget.isLoading != null && widget.isLoading!
-                      ? ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(
+                      ? ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegular
+                          .copyWith(
                             color: ClientConfig.getCustomColors().neutral500,
                           )
-                      : ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(
+                      : ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegular
+                          .copyWith(
                             color: ClientConfig.getCustomColors().neutral900,
                           ),
-                  hintTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(
+                  hintTextStyle: ClientConfig.getTextStyleScheme()
+                      .bodyLargeRegular
+                      .copyWith(
                         color: ClientConfig.getCustomColors().neutral500,
                       ),
                 ),
                 controller: widget.controller,
                 focusNode: widget.focusNode,
-                enabled: widget.isLoading != null && !widget.isLoading! ? !widget.isLoading! : true,
+                enabled: widget.isLoading != null && !widget.isLoading!
+                    ? !widget.isLoading!
+                    : true,
                 keyboardType: TextInputType.number,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,

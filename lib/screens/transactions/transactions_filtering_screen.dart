@@ -27,10 +27,12 @@ class TransactionsFilteringScreen extends StatefulWidget {
   });
 
   @override
-  State<TransactionsFilteringScreen> createState() => _TransactionsFilteringScreenState();
+  State<TransactionsFilteringScreen> createState() =>
+      _TransactionsFilteringScreenState();
 }
 
-class _TransactionsFilteringScreenState extends State<TransactionsFilteringScreen> {
+class _TransactionsFilteringScreenState
+    extends State<TransactionsFilteringScreen> {
   TransactionListFilter? transactionListFilter;
 
   @override
@@ -41,8 +43,8 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
 
   @override
   Widget build(BuildContext context) {
-    bool isFilterSelected =
-        transactionListFilter?.bookingDateMin != null || transactionListFilter?.bookingDateMax != null;
+    bool isFilterSelected = transactionListFilter?.bookingDateMin != null ||
+        transactionListFilter?.bookingDateMax != null;
 
     return ScreenScaffold(
       body: Padding(
@@ -80,8 +82,9 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
                           color: ClientConfig.getColorScheme().secondary,
                         ),
                         PillButton(
-                          active: transactionListFilter?.bookingDateMin != null ||
-                              transactionListFilter?.bookingDateMax != null,
+                          active:
+                              transactionListFilter?.bookingDateMin != null ||
+                                  transactionListFilter?.bookingDateMax != null,
                           buttonText:
                               '${getFormattedDate(date: transactionListFilter?.bookingDateMin, text: "Start date")} - ${getFormattedDate(date: transactionListFilter?.bookingDateMax, text: "End date")}',
                           buttonCallback: () {
@@ -91,12 +94,15 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
                               content: TransactionDatePickerPopup(
                                 initialSelectedRange: isFilterSelected
                                     ? DateTimeRange(
-                                        start: transactionListFilter!.bookingDateMin!,
-                                        end: transactionListFilter!.bookingDateMax!)
+                                        start: transactionListFilter!
+                                            .bookingDateMin!,
+                                        end: transactionListFilter!
+                                            .bookingDateMax!)
                                     : null,
                                 onDateRangeSelected: (DateTimeRange range) {
                                   setState(() {
-                                    transactionListFilter = TransactionListFilter(
+                                    transactionListFilter =
+                                        TransactionListFilter(
                                       bookingDateMin: range.start,
                                       bookingDateMax: range.end,
                                     );
@@ -105,7 +111,8 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
                               ),
                             );
                           },
-                          icon: (transactionListFilter?.bookingDateMin != null ||
+                          icon: (transactionListFilter?.bookingDateMin !=
+                                      null ||
                                   transactionListFilter?.bookingDateMax != null)
                               ? const Icon(
                                   Icons.close,
@@ -114,7 +121,8 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
                               : null,
                           closeButton: () {
                             setState(() {
-                              transactionListFilter = const TransactionListFilter(
+                              transactionListFilter =
+                                  const TransactionListFilter(
                                 bookingDateMin: null,
                                 bookingDateMax: null,
                               );
@@ -138,11 +146,15 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
                         store.dispatch(GetCategoriesCommandAction());
                       },
                       converter: (store) =>
-                          CategoriesPresenter.presentCategories(categoriesState: store.state.categoriesState),
+                          CategoriesPresenter.presentCategories(
+                              categoriesState: store.state.categoriesState),
                       builder: (context, viewModel) {
                         return Column(
-                          children: _buildFiltersListList(viewModel, transactionListFilter, (category, selected) {
-                            final List<Category> categories = transactionListFilter?.categories ?? [];
+                          children: _buildFiltersListList(
+                              viewModel, transactionListFilter,
+                              (category, selected) {
+                            final List<Category> categories =
+                                transactionListFilter?.categories ?? [];
                             if (selected == true) {
                               categories.add(category);
                             } else {
@@ -150,9 +162,12 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
                             }
                             setState(() {
                               transactionListFilter = TransactionListFilter(
-                                bookingDateMin: transactionListFilter?.bookingDateMin,
-                                bookingDateMax: transactionListFilter?.bookingDateMax,
-                                searchString: transactionListFilter?.searchString,
+                                bookingDateMin:
+                                    transactionListFilter?.bookingDateMin,
+                                bookingDateMax:
+                                    transactionListFilter?.bookingDateMax,
+                                searchString:
+                                    transactionListFilter?.searchString,
                                 categories: categories,
                               );
                             });
@@ -175,12 +190,14 @@ class _TransactionsFilteringScreenState extends State<TransactionsFilteringScree
                   backgroundColor: MaterialStateProperty.resolveWith((states) {
                     return ClientConfig.getColorScheme().tertiary;
                   }),
-                  shape: MaterialStateProperty.all(
-                      const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4)))),
+                  shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)))),
                 ),
                 onPressed: () {
-                  StoreProvider.of<AppState>(context)
-                      .dispatch(GetTransactionsCommandAction(filter: transactionListFilter, forceReloadTransactions: true));
+                  StoreProvider.of<AppState>(context).dispatch(
+                      GetTransactionsCommandAction(
+                          filter: transactionListFilter,
+                          forceReloadTransactions: true));
 
                   Navigator.pop(context);
                 },
@@ -211,11 +228,17 @@ String getFormattedDate({
 }
 
 List<Widget> _buildFiltersListList(
-    CategoriesViewModel viewModel, TransactionListFilter? filter, final Function(Category, bool) onSelectionChanged) {
+    CategoriesViewModel viewModel,
+    TransactionListFilter? filter,
+    final Function(Category, bool) onSelectionChanged) {
   final List<Widget> widgetsList = [];
 
   if (viewModel is CategoriesErrorViewModel) {
-    return [const Center(child: Text("An error appeared while getting the available categories"))];
+    return [
+      const Center(
+          child:
+              Text("An error appeared while getting the available categories"))
+    ];
   }
 
   if (viewModel is WithCategoriesViewModel) {
@@ -242,7 +265,11 @@ class _CategoryRow extends StatefulWidget {
   final TransactionListFilter? filter;
   final Function(Category, bool) onSelectionChanged;
 
-  const _CategoryRow({Key? key, required this.category, required this.filter, required this.onSelectionChanged})
+  const _CategoryRow(
+      {Key? key,
+      required this.category,
+      required this.filter,
+      required this.onSelectionChanged})
       : super(key: key);
 
   @override
@@ -254,7 +281,9 @@ class _CategoryRowState extends State<_CategoryRow> {
 
   @override
   void initState() {
-    isSelected = (widget.filter?.categories == null) ? false : (widget.filter!.categories!.contains(widget.category));
+    isSelected = (widget.filter?.categories == null)
+        ? false
+        : (widget.filter!.categories!.contains(widget.category));
     super.initState();
   }
 

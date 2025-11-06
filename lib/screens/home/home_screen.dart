@@ -38,7 +38,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return Screen(
       title: 'Welcome ${user.cognito.firstName}!',
@@ -62,7 +64,9 @@ class HomeScreen extends StatelessWidget {
           onPressed: () {},
         )
       ],
-      titleTextStyle: ClientConfig.getTextStyleScheme().heading3.copyWith(color: Colors.white),
+      titleTextStyle: ClientConfig.getTextStyleScheme()
+          .heading3
+          .copyWith(color: Colors.white),
       centerTitle: false,
       child: const HomePageContent(),
     );
@@ -86,7 +90,8 @@ class HomePageContent extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: const TransactionListTitle(
                   displayShowAllButton: true,
                 ),
@@ -115,23 +120,28 @@ class HomePageContent extends StatelessWidget {
                       children: [
                         if (transactions.isEmpty)
                           Padding(
-                            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                            padding: ClientConfig.getCustomClientUiSettings()
+                                .defaultScreenHorizontalPadding,
                             child: Text(
                               "No transactions yet. When you make payments & transactions, they will be displayed here.",
-                              style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegular,
                             ),
                           ),
-                        for (var transaction in transactions) TransactionListItem(transaction: transaction),
+                        for (var transaction in transactions)
+                          TransactionListItem(transaction: transaction),
                         const SizedBox(height: 32),
                         Padding(
-                          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                          padding: ClientConfig.getCustomClientUiSettings()
+                              .defaultScreenHorizontalPadding,
                           child: Analytics(
                             transactions: viewModel.transactions!,
                           ),
                         ),
                         const SizedBox(height: 32),
                         Padding(
-                          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                          padding: ClientConfig.getCustomClientUiSettings()
+                              .defaultScreenHorizontalPadding,
                           child: const Rewards(),
                         )
                       ],
@@ -140,10 +150,13 @@ class HomePageContent extends StatelessWidget {
 
                   return SkeletonContainer(
                     child: Padding(
-                      padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                      padding: ClientConfig.getCustomClientUiSettings()
+                          .defaultScreenHorizontalPadding,
                       child: Column(
                         children: [
-                          for (var i = 0; i < _defaultCountTransactionsDisplayed; i++)
+                          for (var i = 0;
+                              i < _defaultCountTransactionsDisplayed;
+                              i++)
                             TransactionListItem.loadingSkeleton()
                         ],
                       ),
@@ -168,13 +181,15 @@ class HomePageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AccountSummaryViewModel>(
       onInit: (store) {
-        store.dispatch(GetAccountSummaryCommandAction(forceAccountSummaryReload: false));
+        store.dispatch(
+            GetAccountSummaryCommandAction(forceAccountSummaryReload: false));
       },
-      converter: (store) =>
-          AccountSummaryPresenter.presentAccountSummary(accountSummaryState: store.state.accountSummaryState),
+      converter: (store) => AccountSummaryPresenter.presentAccountSummary(
+          accountSummaryState: store.state.accountSummaryState),
       builder: (context, viewModel) {
         return Container(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -191,7 +206,8 @@ class HomePageHeader extends StatelessWidget {
                     )
                   : Center(child: AccountSummary.loadingSkeleton()),
               Divider(
-                color: ClientConfig.getCustomColors().neutral100.withOpacity(0.15),
+                color:
+                    ClientConfig.getCustomColors().neutral100.withOpacity(0.15),
                 thickness: 1,
               ),
               const AccountOptions(),
@@ -270,7 +286,8 @@ class AccountBalance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final creditLimitPercent =
-        ((viewModel.accountSummary?.outstandingAmount ?? 0) / (viewModel.accountSummary?.creditLimit ?? 0.01));
+        ((viewModel.accountSummary?.outstandingAmount ?? 0) /
+            (viewModel.accountSummary?.creditLimit ?? 0.01));
 
     return Column(
       children: [
@@ -279,7 +296,9 @@ class AccountBalance extends StatelessWidget {
           children: [
             Text(
               "Available Balance",
-              style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.white),
+              style: ClientConfig.getTextStyleScheme()
+                  .labelSmall
+                  .copyWith(color: Colors.white),
             ),
             const SizedBox(width: 4),
             InkWell(
@@ -289,7 +308,9 @@ class AccountBalance extends StatelessWidget {
                 size: 24,
               ),
               onTap: () {
-                Navigator.of(context).pushNamed(AvailableBalanceScreen.routeName, arguments: viewModel);
+                Navigator.of(context).pushNamed(
+                    AvailableBalanceScreen.routeName,
+                    arguments: viewModel);
               },
             )
           ],
@@ -298,7 +319,9 @@ class AccountBalance extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: AccountBalanceText(
             value: viewModel.accountSummary?.availableBalance?.value ?? 0,
-            numberStyle: ClientConfig.getTextStyleScheme().display.copyWith(color: Colors.white),
+            numberStyle: ClientConfig.getTextStyleScheme()
+                .display
+                .copyWith(color: Colors.white),
             centsStyle: const TextStyle(color: Colors.white, fontSize: 24),
           ),
         ),
@@ -336,13 +359,19 @@ class AccountStats extends StatelessWidget {
             children: [
               Text(
                 "Outstanding balance",
-                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.white),
+                style: ClientConfig.getTextStyleScheme()
+                    .labelSmall
+                    .copyWith(color: Colors.white),
               ),
               const SizedBox(width: 5),
               AccountBalanceText(
                 value: viewModel.accountSummary?.outstandingAmount ?? 0,
-                numberStyle: ClientConfig.getTextStyleScheme().labelLarge.copyWith(color: Colors.white),
-                centsStyle: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.white),
+                numberStyle: ClientConfig.getTextStyleScheme()
+                    .labelLarge
+                    .copyWith(color: Colors.white),
+                centsStyle: ClientConfig.getTextStyleScheme()
+                    .labelSmall
+                    .copyWith(color: Colors.white),
               ),
             ],
           ),
@@ -351,13 +380,19 @@ class AccountStats extends StatelessWidget {
             children: [
               Text(
                 "Credit limit",
-                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.white),
+                style: ClientConfig.getTextStyleScheme()
+                    .labelSmall
+                    .copyWith(color: Colors.white),
               ),
               const SizedBox(width: 5),
               AccountBalanceText(
                 value: viewModel.accountSummary?.creditLimit ?? 0.01,
-                numberStyle: ClientConfig.getTextStyleScheme().labelLarge.copyWith(color: Colors.white),
-                centsStyle: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.white),
+                numberStyle: ClientConfig.getTextStyleScheme()
+                    .labelLarge
+                    .copyWith(color: Colors.white),
+                centsStyle: ClientConfig.getTextStyleScheme()
+                    .labelSmall
+                    .copyWith(color: Colors.white),
               ),
             ],
           ),
@@ -386,7 +421,8 @@ class AccountOptions extends StatelessWidget {
               AssetImage('assets/icons/compare_arrows.png'),
               size: 24,
             ),
-            onPressed: () => Navigator.pushNamed(context, TransferScreen.routeName),
+            onPressed: () =>
+                Navigator.pushNamed(context, TransferScreen.routeName),
           ),
           AccountOptionsButton(
             textLabel: "Repayments",
@@ -394,7 +430,8 @@ class AccountOptions extends StatelessWidget {
               AssetImage('assets/icons/currency_exchange_euro_repay.png'),
               size: 24,
             ),
-            onPressed: () => Navigator.pushNamed(context, RepaymentsScreen.routeName),
+            onPressed: () =>
+                Navigator.pushNamed(context, RepaymentsScreen.routeName),
           ),
           AccountOptionsButton(
             textLabel: "Account",
@@ -402,7 +439,8 @@ class AccountOptions extends StatelessWidget {
               AssetImage('assets/icons/info.png'),
               size: 24,
             ),
-            onPressed: () => Navigator.pushNamed(context, AccountDetailsScreen.routeName),
+            onPressed: () =>
+                Navigator.pushNamed(context, AccountDetailsScreen.routeName),
           ),
         ],
       ),
@@ -415,7 +453,11 @@ class AccountOptionsButton extends StatelessWidget {
   final Widget icon;
   final Function onPressed;
 
-  const AccountOptionsButton({super.key, required this.textLabel, required this.icon, required this.onPressed});
+  const AccountOptionsButton(
+      {super.key,
+      required this.textLabel,
+      required this.icon,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -443,7 +485,9 @@ class AccountOptionsButton extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10),
           child: Text(
             textLabel,
-            style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.white),
+            style: ClientConfig.getTextStyleScheme()
+                .labelSmall
+                .copyWith(color: Colors.white),
           ),
         )
       ],

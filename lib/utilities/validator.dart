@@ -38,7 +38,8 @@ class Validator {
       return false;
     }
 
-    if (dateTime.year < minYear || (maxYear != null && dateTime.year > maxYear)) {
+    if (dateTime.year < minYear ||
+        (maxYear != null && dateTime.year > maxYear)) {
       return false;
     }
 
@@ -74,7 +75,9 @@ class PinValidator {
     String birthMonth = birthDate.toIso8601String().substring(5, 7);
     String birthDay = birthDate.toIso8601String().substring(8, 10);
 
-    return pin != birthYear && pin != birthMonth + birthDay && pin != birthDay + birthMonth;
+    return pin != birthYear &&
+        pin != birthMonth + birthDay &&
+        pin != birthDay + birthMonth;
   }
 
   static bool checkIfPinIsNotSequence(String pin) {

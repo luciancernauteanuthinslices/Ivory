@@ -24,7 +24,8 @@ class SettingsSecurityScreen extends StatelessWidget {
         AppToolbar(
           title: "Security",
           scrollController: scrollController,
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
         ),
         Expanded(
           child: ScrollableScreenContainer(
@@ -33,7 +34,8 @@ class SettingsSecurityScreen extends StatelessWidget {
               children: [
                 ScreenTitle(
                   "Security",
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenHorizontalPadding,
                 ),
                 const SizedBox(
                   height: 24,
@@ -42,7 +44,8 @@ class SettingsSecurityScreen extends StatelessWidget {
                   leftIcon: Icons.phonelink_ring,
                   title: 'Device pairing',
                   rightIcon: Icons.arrow_forward_ios,
-                  onTap: () => Navigator.pushNamed(context, SettingsDevicePairingScreen.routeName),
+                  onTap: () => Navigator.pushNamed(
+                      context, SettingsDevicePairingScreen.routeName),
                 ),
                 const IvoryListTile(
                   leftIcon: Icons.lock_outline,

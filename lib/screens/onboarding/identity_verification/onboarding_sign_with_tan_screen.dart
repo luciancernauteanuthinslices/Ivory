@@ -22,13 +22,16 @@ class OnboardingSignWithTanScreen extends StatefulWidget {
   const OnboardingSignWithTanScreen({super.key});
 
   @override
-  State<OnboardingSignWithTanScreen> createState() => _OnboardingSignWithTanScreenState();
+  State<OnboardingSignWithTanScreen> createState() =>
+      _OnboardingSignWithTanScreenState();
 }
 
-class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScreen> {
+class _OnboardingSignWithTanScreenState
+    extends State<OnboardingSignWithTanScreen> {
   final TextEditingController _tanController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
   final CountdownTimerController _countdownTimerController =
       CountdownTimerController(duration: const Duration(minutes: 5));
   final CountdownTimerController _newCodeCountdownController =
@@ -66,11 +69,13 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingIdentityVerificationViewModel>(
       converter: (store) => OnboardingIdentityVerificationPresenter.present(
-        identityVerificationState: store.state.onboardingIdentityVerificationState,
+        identityVerificationState:
+            store.state.onboardingIdentityVerificationState,
       ),
       onWillChange: (previousViewModel, newViewModel) {
         if (previousViewModel?.errorType == null &&
-            newViewModel.errorType == OnboardingIdentityVerificationErrorType.invalidTan) {
+            newViewModel.errorType ==
+                OnboardingIdentityVerificationErrorType.invalidTan) {
           showBottomModal(
             context: context,
             showCloseButton: false,
@@ -89,7 +94,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
                     _newCodeCountdownController.restart();
                     Navigator.pop(context);
 
-                    StoreProvider.of<AppState>(context).dispatch(AuthorizeIdentificationSigningCommandAction());
+                    StoreProvider.of<AppState>(context).dispatch(
+                        AuthorizeIdentificationSigningCommandAction());
                   },
                 ),
                 const SizedBox(height: 16),
@@ -99,7 +105,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
         }
 
         if (newViewModel.isTanConfirmed == true) {
-          Navigator.pushNamedAndRemoveUntil(context, OnboardingScoringWaitingScreen.routeName, (_) => false);
+          Navigator.pushNamedAndRemoveUntil(
+              context, OnboardingScoringWaitingScreen.routeName, (_) => false);
         }
       },
       distinct: true,
@@ -108,7 +115,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
           body: Column(
             children: [
               AppToolbar(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 richTextTitle: StepRichTextTitle(step: 5, totalSteps: 7),
                 actions: const [AppbarLogo()],
                 backButtonEnabled: false,
@@ -116,7 +124,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
               AnimatedLinearProgressIndicator.step(current: 5, totalSteps: 7),
               Expanded(
                 child: ScrollableScreenContainer(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenHorizontalPadding,
                   child: Column(
                     children: [
                       const SizedBox(height: 16),
@@ -124,7 +133,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
                         children: [
                           Expanded(
                               child: Text('Sign the contracts with a TAN code',
-                                  style: ClientConfig.getTextStyleScheme().heading2)),
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .heading2)),
                           const SizedBox(width: 24),
                           SizedBox(
                             width: 70,
@@ -139,7 +149,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
                                   title: 'Time has expired',
                                   textWidget: Text(
                                     'Please try again. After tapping the button below, we will send you a new code.',
-                                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                                    style: ClientConfig.getTextStyleScheme()
+                                        .bodyLargeRegular,
                                   ),
                                   content: Column(
                                     children: [
@@ -153,7 +164,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
                                           Navigator.pop(context);
 
                                           StoreProvider.of<AppState>(context)
-                                              .dispatch(AuthorizeIdentificationSigningCommandAction());
+                                              .dispatch(
+                                                  AuthorizeIdentificationSigningCommandAction());
                                         },
                                       ),
                                       const SizedBox(height: 16),
@@ -167,18 +179,25 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
                       ),
                       const SizedBox(height: 24),
                       Text.rich(
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
                         TextSpan(
                           text: 'Please enter below the ',
                           children: [
                             TextSpan(
-                                text: '6-digit code', style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                text: '6-digit code',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                             const TextSpan(text: ' we sent to '),
                             TextSpan(
                                 text: '+49 (30) 4587 8734',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                             const TextSpan(text: '. You have '),
-                            TextSpan(text: '5 minutes', style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                            TextSpan(
+                                text: '5 minutes',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                             const TextSpan(
                                 text:
                                     ' to complete this step. If you are unable to enter the code within this time, you can retry and you will receive a new TAN code. The timer will be reset.'),
@@ -204,23 +223,30 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
                           width: double.infinity,
                           height: 48,
                           alignment: Alignment.center,
-                          child: (_newCodeCountdownController.remainingDuration.inSeconds > 0)
-                              ? Text('Request new code in 0:${_newCodeCountdownController.formattedRemainingSeconds}',
+                          child: (_newCodeCountdownController
+                                      .remainingDuration.inSeconds >
+                                  0)
+                              ? Text(
+                                  'Request new code in 0:${_newCodeCountdownController.formattedRemainingSeconds}',
                                   style: ClientConfig.getTextStyleScheme()
                                       .labelMedium
-                                      .copyWith(color: ClientConfig.getCustomColors().neutral500))
+                                      .copyWith(
+                                          color: ClientConfig.getCustomColors()
+                                              .neutral500))
                               : Text.rich(TextSpan(
                                   text: 'Request new code',
                                   style: ClientConfig.getTextStyleScheme()
                                       .labelMedium
-                                      .copyWith(color: ClientConfig.getColorScheme().secondary),
+                                      .copyWith(
+                                          color: ClientConfig.getColorScheme()
+                                              .secondary),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       _tanController.clear();
                                       _newCodeCountdownController.restart();
 
-                                      StoreProvider.of<AppState>(context)
-                                          .dispatch(AuthorizeIdentificationSigningCommandAction());
+                                      StoreProvider.of<AppState>(context).dispatch(
+                                          AuthorizeIdentificationSigningCommandAction());
                                     })),
                         ),
                       ),
@@ -233,7 +259,8 @@ class _OnboardingSignWithTanScreenState extends State<OnboardingSignWithTanScree
                             onPressed: _continueButtonController.isEnabled
                                 ? () {
                                     StoreProvider.of<AppState>(context)
-                                        .dispatch(SignWithTanCommandAction(tan: _tanController.text));
+                                        .dispatch(SignWithTanCommandAction(
+                                            tan: _tanController.text));
                                   }
                                 : null),
                       ),

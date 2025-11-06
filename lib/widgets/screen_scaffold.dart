@@ -53,7 +53,9 @@ class ScreenScaffold extends StatelessWidget {
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: statusBarColor ?? Colors.transparent,
           statusBarIconBrightness: statusBarIconBrightness,
-          statusBarBrightness: statusBarIconBrightness == Brightness.dark ? Brightness.light : Brightness.dark,
+          statusBarBrightness: statusBarIconBrightness == Brightness.dark
+              ? Brightness.light
+              : Brightness.dark,
         ),
       ),
       body: SafeArea(top: false, child: body),
@@ -92,7 +94,9 @@ class MainNavigationScreenScaffold extends StatelessWidget {
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: statusBarColor ?? Colors.transparent,
           statusBarIconBrightness: statusBarIconBrightness,
-          statusBarBrightness: statusBarIconBrightness == Brightness.dark ? Brightness.light : Brightness.dark,
+          statusBarBrightness: statusBarIconBrightness == Brightness.dark
+              ? Brightness.light
+              : Brightness.dark,
         ),
       ),
       bottomNavigationBar: bottomNavigationBar,
@@ -113,7 +117,8 @@ class GenericLoadingScreen extends StatelessWidget {
         children: [
           AppToolbar(
             title: title,
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           const Expanded(
             child: Center(
@@ -164,13 +169,15 @@ class GenericErrorScreenBody extends StatelessWidget {
     return Column(
       children: [
         AppToolbar(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           actions: const [AppbarLogo()],
           backButtonEnabled: false,
         ),
         Expanded(
           child: Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -186,30 +193,37 @@ class GenericErrorScreenBody extends StatelessWidget {
                       TextSpan(
                         text:
                             '1. Try closing the app and reopening it.\n\n2. Check your internet connection and try again.\n\n3. If the issue persists, reach out ',
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                        style: ClientConfig.getTextStyleScheme()
+                            .bodyLargeRegularBold,
                       ),
                       const TextSpan(text: 'to our friendly support team at '),
                       TextSpan(
                         text: '+49 (0)123 456789',
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
-                            color: isLoading
-                                ? ClientConfig.getCustomColors().neutral500
-                                : ClientConfig.getColorScheme().secondary),
+                        style: ClientConfig.getTextStyleScheme()
+                            .bodyLargeRegularBold
+                            .copyWith(
+                                color: isLoading
+                                    ? ClientConfig.getCustomColors().neutral500
+                                    : ClientConfig.getColorScheme().secondary),
                       ),
                       const TextSpan(text: ' or '),
                       TextSpan(
                         text: 'support@ivory.com',
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
-                            color: isLoading
-                                ? ClientConfig.getCustomColors().neutral500
-                                : ClientConfig.getColorScheme().secondary),
+                        style: ClientConfig.getTextStyleScheme()
+                            .bodyLargeRegularBold
+                            .copyWith(
+                                color: isLoading
+                                    ? ClientConfig.getCustomColors().neutral500
+                                    : ClientConfig.getColorScheme().secondary),
                       ),
                       const TextSpan(text: '. We\'re here to help.'),
                     ],
                   ),
                 ),
                 Expanded(
-                  child: Center(child: SvgPicture.asset('assets/images/general_error.svg')),
+                  child: Center(
+                      child:
+                          SvgPicture.asset('assets/images/general_error.svg')),
                 ),
                 SizedBox(
                   width: double.infinity,

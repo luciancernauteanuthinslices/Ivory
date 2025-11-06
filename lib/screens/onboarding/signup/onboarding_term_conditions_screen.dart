@@ -15,28 +15,33 @@ class OnboardingTermConditionsScreen extends StatefulWidget {
   const OnboardingTermConditionsScreen({super.key});
 
   @override
-  State<OnboardingTermConditionsScreen> createState() => _OnboardingTermConditionsScreenState();
+  State<OnboardingTermConditionsScreen> createState() =>
+      _OnboardingTermConditionsScreenState();
 }
 
-class _OnboardingTermConditionsScreenState extends State<OnboardingTermConditionsScreen> {
+class _OnboardingTermConditionsScreenState
+    extends State<OnboardingTermConditionsScreen> {
   bool _termsAccepted = false;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingSignupViewModel>(
-      converter: (store) => OnboardingSignupPresenter.present(signupState: store.state.onboardingSignupState),
+      converter: (store) => OnboardingSignupPresenter.present(
+          signupState: store.state.onboardingSignupState),
       builder: (context, viewModel) => ScreenScaffold(
         body: Column(
           children: [
             AppToolbar(
               richTextTitle: StepRichTextTitle(step: 5, totalSteps: 5),
               actions: const [AppbarLogo()],
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
             ),
             AnimatedLinearProgressIndicator.step(current: 5, totalSteps: 5),
             Expanded(
               child: ScrollableScreenContainer(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -73,7 +78,8 @@ class _OnboardingTermConditionsScreenState extends State<OnboardingTermCondition
                             "Your use of our service is also governed by our Privacy Policy. Please review our Privacy Policy, which also governs the service and informs users of our data collection practices.\n\n"
                             "6. Modifications\n"
                             "We may revise these terms of service at any time without notice. By using this service you are agreeing to be bound by the then current version of these terms of service.",
-                            style: ClientConfig.getTextStyleScheme().bodySmallRegular,
+                            style: ClientConfig.getTextStyleScheme()
+                                .bodySmallRegular,
                           ),
                         ),
                       ),
@@ -92,7 +98,8 @@ class _OnboardingTermConditionsScreenState extends State<OnboardingTermCondition
                         Expanded(
                           child: Text(
                             "I have read and accept the terms and conditions",
-                            style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                            style: ClientConfig.getTextStyleScheme()
+                                .bodyLargeRegular,
                           ),
                         ),
                       ],

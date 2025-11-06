@@ -4,7 +4,8 @@ import 'package:solarisdemo/models/onboarding/onboarding_personal_details_error_
 import 'package:solarisdemo/models/suggestions/address_suggestion.dart';
 import 'package:solarisdemo/models/user.dart';
 
-class FakeOnboardingPersonalDetailsService extends OnboardingPersonalDetailsService {
+class FakeOnboardingPersonalDetailsService
+    extends OnboardingPersonalDetailsService {
   @override
   Future<OnboardingPersonalDetailsServiceResponse> createPerson({
     required User user,
@@ -19,7 +20,8 @@ class FakeOnboardingPersonalDetailsService extends OnboardingPersonalDetailsServ
   }
 }
 
-class FakeFailingOnboardingPersonalDetailsService extends OnboardingPersonalDetailsService {
+class FakeFailingOnboardingPersonalDetailsService
+    extends OnboardingPersonalDetailsService {
   @override
   Future<OnboardingPersonalDetailsServiceResponse> createPerson({
     required User user,
@@ -30,7 +32,8 @@ class FakeFailingOnboardingPersonalDetailsService extends OnboardingPersonalDeta
     required String nationality,
     required String addressLine,
   }) async {
-    return OnboardingPersonalDetailsServiceErrorResponse(errorType: OnboardingPersonalDetailsErrorType.unknown);
+    return OnboardingPersonalDetailsServiceErrorResponse(
+        errorType: OnboardingPersonalDetailsErrorType.unknown);
   }
 }
 

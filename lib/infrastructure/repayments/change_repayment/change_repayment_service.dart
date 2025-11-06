@@ -26,13 +26,15 @@ class CardApplicationService extends ApiService {
     try {
       final data = await patch(url, body: body);
 
-      return UpdateCardApplicationSuccessResponse(creditCardApplication: CreditCardApplication.fromJson(data));
+      return UpdateCardApplicationSuccessResponse(
+          creditCardApplication: CreditCardApplication.fromJson(data));
     } catch (e) {
       return ChangeRepaymentErrorResponse();
     }
   }
 
-  Future<ChangeRepaymentResponse> getCardApplication({required User user}) async {
+  Future<ChangeRepaymentResponse> getCardApplication(
+      {required User user}) async {
     this.user = user;
 
     String url = '/credit_card_applications';
@@ -40,7 +42,8 @@ class CardApplicationService extends ApiService {
     try {
       final data = await get(url);
 
-      return GetCardApplicationSuccessResponse(creditCardApplication: CreditCardApplication.fromJson(data));
+      return GetCardApplicationSuccessResponse(
+          creditCardApplication: CreditCardApplication.fromJson(data));
     } catch (e) {
       return ChangeRepaymentErrorResponse();
     }

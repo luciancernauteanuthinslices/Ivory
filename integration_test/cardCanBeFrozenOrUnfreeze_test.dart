@@ -6,15 +6,14 @@ import 'package:test/test.dart' hide expect;
 import 'build_app/test_app.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
-
 void registerTests() {
-  patrolTest('Check if virtual card can be frozen and unfrozen', tags: ['smoke'],
-      framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive, ($) async {
-
+  patrolTest('Check if virtual card can be frozen and unfrozen',
+      tags: ['smoke'],
+      framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive,
+      ($) async {
     //build app for test
     final app = await buildTestApp();
-    
+
     await $.pumpWidgetAndSettle(app, timeout: const Duration(seconds: 20));
     final bottomActionButtons = BottomActionButtons($);
 
@@ -27,8 +26,9 @@ void registerTests() {
     // Give some time for navigation but don't wait indefinitely
     await $.pump(Duration(milliseconds: 500));
 
-    //expect we are on Cards page  
-    await $.waitUntilVisible($(keys.cardsPage.cardsPageTitle), timeout: Duration(seconds: 10));
+    //expect we are on Cards page
+    await $.waitUntilVisible($(keys.cardsPage.cardsPageTitle),
+        timeout: Duration(seconds: 10));
 
     //freezeCard
     await $(keys.cardActions.freezeCardButton).tap();

@@ -49,7 +49,8 @@ class CreditCardApplication {
     this.qesAt,
   });
 
-  factory CreditCardApplication.fromJson(Map<String, dynamic> json) => CreditCardApplication(
+  factory CreditCardApplication.fromJson(Map<String, dynamic> json) =>
+      CreditCardApplication(
         id: json["id"] ?? '',
         externalCustomerId: json["external_customer_id"] ?? '',
         customerId: json["customer_id"] ?? '',
@@ -60,23 +61,36 @@ class CreditCardApplication {
         productType: json["product_type"] ?? '',
         billingStartDate: DateTime.parse(json["billing_start_date"]),
         billingEndDate: DateTime.parse(json["billing_end_date"]),
-        approvedLimit: json["approved_limit"] != null ? ApprovedLimit.fromJson(json["approved_limit"]) : null,
-        requestedLimit: json["requested_limit"] != null ? ApprovedLimit.fromJson(json["requested_limit"]) : null,
-        currentLimit: json["current_limit"] != null ? ApprovedLimit.fromJson(json["current_limit"]) : null,
-        declineReasons: json["decline_reasons"] != null ? List<String>.from(json["decline_reasons"].map((x) => x)) : [],
-        repaymentOptions:
-            json["repayment_options"] != null ? RepaymentOptions.fromJson(json["repayment_options"]) : null,
+        approvedLimit: json["approved_limit"] != null
+            ? ApprovedLimit.fromJson(json["approved_limit"])
+            : null,
+        requestedLimit: json["requested_limit"] != null
+            ? ApprovedLimit.fromJson(json["requested_limit"])
+            : null,
+        currentLimit: json["current_limit"] != null
+            ? ApprovedLimit.fromJson(json["current_limit"])
+            : null,
+        declineReasons: json["decline_reasons"] != null
+            ? List<String>.from(json["decline_reasons"].map((x) => x))
+            : [],
+        repaymentOptions: json["repayment_options"] != null
+            ? RepaymentOptions.fromJson(json["repayment_options"])
+            : null,
         statementWithDetails: json["statement_with_details"] ?? false,
         inDunning: json["in_dunning"] ?? false,
-        repaymentTypeSwitchAvailableDate: json["repayment_type_switch_available_date"] != null
-            ? DateTime.parse(json["repayment_type_switch_available_date"])
+        repaymentTypeSwitchAvailableDate:
+            json["repayment_type_switch_available_date"] != null
+                ? DateTime.parse(json["repayment_type_switch_available_date"])
+                : null,
+        createdAt: json["created_at"] != null
+            ? DateTime.parse(json["created_at"])
             : null,
-        createdAt: json["created_at"] != null ? DateTime.parse(json["created_at"]) : null,
         defaultInterestAccountId: json["default_interest_account_id"] ?? '',
         interestStoringAccountId: json["interest_storing_account_id"] ?? '',
-        latestRepaymentTypeSwitchDate: json["latest_repayment_type_switch_date"] != null
-            ? DateTime.parse(json["latest_repayment_type_switch_date"])
-            : null,
+        latestRepaymentTypeSwitchDate:
+            json["latest_repayment_type_switch_date"] != null
+                ? DateTime.parse(json["latest_repayment_type_switch_date"])
+                : null,
         qesAt: json["qes_at"] != null ? DateTime.parse(json["qes_at"]) : null,
       );
 
@@ -172,7 +186,8 @@ class RepaymentOptions {
     required this.minimumPercentageUpperThreshold,
   });
 
-  factory RepaymentOptions.fromJson(Map<String, dynamic> json) => RepaymentOptions(
+  factory RepaymentOptions.fromJson(Map<String, dynamic> json) =>
+      RepaymentOptions(
         upcomingType: json["upcoming_type"] ?? '',
         minimumAmount: ApprovedLimit.fromJson(json["minimum_amount"]),
         minimumPercentage: json["minimum_percentage"] ?? 0,
@@ -180,10 +195,14 @@ class RepaymentOptions {
         upcomingBillingCycle: json["upcoming_billing_cycle"] ?? '',
         currentBillingCycle: json["current_billing_cycle"] ?? '',
         gracePeriodInDays: json["grace_period_in_days"] ?? 0,
-        minimumAmountLowerThreshold: ApprovedLimit.fromJson(json["minimum_amount_lower_threshold"]),
-        minimumAmountUpperThreshold: ApprovedLimit.fromJson(json["minimum_amount_upper_threshold"]),
-        minimumPercentageLowerThreshold: json["minimum_percentage_lower_threshold"] ?? 0,
-        minimumPercentageUpperThreshold: json["minimum_percentage_upper_threshold"] ?? 0,
+        minimumAmountLowerThreshold:
+            ApprovedLimit.fromJson(json["minimum_amount_lower_threshold"]),
+        minimumAmountUpperThreshold:
+            ApprovedLimit.fromJson(json["minimum_amount_upper_threshold"]),
+        minimumPercentageLowerThreshold:
+            json["minimum_percentage_lower_threshold"] ?? 0,
+        minimumPercentageUpperThreshold:
+            json["minimum_percentage_upper_threshold"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {

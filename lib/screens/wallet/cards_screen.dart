@@ -24,8 +24,9 @@ class BankCardsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
     ScrollController scrollController = ScrollController();
 
     return StoreConnector<AppState, BankCardsViewModel>(
@@ -52,7 +53,8 @@ class BankCardsScreen extends StatelessWidget {
                   key: const Key("cardsPageTitle"),
                   title: "Cards",
                   scrollController: scrollController,
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenHorizontalPadding,
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -86,7 +88,8 @@ class _Content extends StatelessWidget {
       children: [
         ScreenTitle(
           "Cards",
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
         ),
         const SizedBox(height: 16),
         _CardSlider(cards: cards),
@@ -131,16 +134,21 @@ class _CardSlider extends StatelessWidget {
             controller: pageController,
             clipBehavior: Clip.none,
             itemCount: cards.length,
-            onPageChanged: (cardIndex) => StoreProvider.of<AppState>(context).dispatch(GetBankCardCommandAction(
+            onPageChanged: (cardIndex) => StoreProvider.of<AppState>(context)
+                .dispatch(GetBankCardCommandAction(
               cardId: cards[cardIndex].id,
               forceReloadCardData: false,
             )),
             itemBuilder: (context, cardIndex) {
               BankCard card = cards[cardIndex];
 
-              String cardNumber = card.representation?.maskedPan ?? emptyStringValue;
-              String cardHolder = card.representation?.line2 ?? emptyStringValue;
-              String cardExpiry = card.representation?.formattedExpirationDate ?? emptyStringValue;
+              String cardNumber =
+                  card.representation?.maskedPan ?? emptyStringValue;
+              String cardHolder =
+                  card.representation?.line2 ?? emptyStringValue;
+              String cardExpiry =
+                  card.representation?.formattedExpirationDate ??
+                      emptyStringValue;
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -171,7 +179,8 @@ class _CardSlider extends StatelessWidget {
               dotWidth: 8,
               dotHeight: 4,
               activeDotColor: ClientConfig.getColorScheme().secondary,
-              dotColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.23),
+              dotColor:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.23),
             ),
           ),
         ),
@@ -199,8 +208,9 @@ class _OrderCardButton extends StatelessWidget {
 }
 
 void addNewCard(BuildContext context) {
-  final user =
-      (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+  final user = (StoreProvider.of<AppState>(context).state.authState
+          as AuthenticatedState)
+      .authenticatedUser;
   StoreProvider.of<AppState>(context).dispatch(
     CreateCardCommandAction(
       firstName: user.person.firstName!,

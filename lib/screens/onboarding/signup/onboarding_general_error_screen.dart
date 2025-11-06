@@ -20,11 +20,14 @@ class OnboardingGeneralErrorScreen extends StatefulWidget {
   const OnboardingGeneralErrorScreen({super.key});
 
   @override
-  State<OnboardingGeneralErrorScreen> createState() => _OnboardingGeneralErrorScreenState();
+  State<OnboardingGeneralErrorScreen> createState() =>
+      _OnboardingGeneralErrorScreenState();
 }
 
-class _OnboardingGeneralErrorScreenState extends State<OnboardingGeneralErrorScreen> {
-  final ContinueButtonController _continueButtonController = ContinueButtonController(isEnabled: true);
+class _OnboardingGeneralErrorScreenState
+    extends State<OnboardingGeneralErrorScreen> {
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController(isEnabled: true);
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +45,10 @@ class _OnboardingGeneralErrorScreenState extends State<OnboardingGeneralErrorScr
             (route) => false,
           );
         } else if (newViewModel.isSuccessful == false &&
-            newViewModel.errorType == OnboardingSignupErrorType.emailAlreadyExists) {
-          Navigator.pushReplacementNamed(context, OnboardingErrorEmailScreen.routeName);
+            newViewModel.errorType ==
+                OnboardingSignupErrorType.emailAlreadyExists) {
+          Navigator.pushReplacementNamed(
+              context, OnboardingErrorEmailScreen.routeName);
         } else if (newViewModel.isLoading) {
           _continueButtonController.setLoading();
         } else if (newViewModel.errorType != null) {
@@ -56,12 +61,14 @@ class _OnboardingGeneralErrorScreenState extends State<OnboardingGeneralErrorScr
           body: Column(
             children: [
               AppToolbar(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 backButtonEnabled: false,
               ),
               Expanded(
                 child: ScrollableScreenContainer(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   child: Column(
                     children: [
                       Align(
@@ -76,7 +83,8 @@ class _OnboardingGeneralErrorScreenState extends State<OnboardingGeneralErrorScr
                         listenable: _continueButtonController,
                         builder: (context, child) => Text.rich(
                           TextSpan(
-                            style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                            style: ClientConfig.getTextStyleScheme()
+                                .bodyLargeRegular,
                             children: [
                               const TextSpan(
                                   text:
@@ -84,24 +92,38 @@ class _OnboardingGeneralErrorScreenState extends State<OnboardingGeneralErrorScr
                               TextSpan(
                                 text:
                                     '1. Try closing the app and reopening it.\n\n2. Check your internet connection and try again.\n\n3. If the issue persists, reach out ',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold,
                               ),
-                              const TextSpan(text: 'to our friendly support team at '),
+                              const TextSpan(
+                                  text: 'to our friendly support team at '),
                               TextSpan(
                                 text: '+49 (0)123 456789',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
-                                      color: (_continueButtonController.isLoading == false)
-                                          ? ClientConfig.getColorScheme().secondary
-                                          : ClientConfig.getCustomColors().neutral500,
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold
+                                    .copyWith(
+                                      color: (_continueButtonController
+                                                  .isLoading ==
+                                              false)
+                                          ? ClientConfig.getColorScheme()
+                                              .secondary
+                                          : ClientConfig.getCustomColors()
+                                              .neutral500,
                                     ),
                               ),
                               const TextSpan(text: ' or '),
                               TextSpan(
                                 text: 'support@ivory.com',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
-                                      color: (_continueButtonController.isLoading == false)
-                                          ? ClientConfig.getColorScheme().secondary
-                                          : ClientConfig.getCustomColors().neutral500,
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold
+                                    .copyWith(
+                                      color: (_continueButtonController
+                                                  .isLoading ==
+                                              false)
+                                          ? ClientConfig.getColorScheme()
+                                              .secondary
+                                          : ClientConfig.getCustomColors()
+                                              .neutral500,
                                     ),
                               ),
                               const TextSpan(text: '. We\'re here to help.'),
@@ -110,7 +132,8 @@ class _OnboardingGeneralErrorScreenState extends State<OnboardingGeneralErrorScr
                         ),
                       ),
                       Expanded(
-                        child: SvgPicture.asset('assets/images/general_error.svg'),
+                        child:
+                            SvgPicture.asset('assets/images/general_error.svg'),
                       ),
                       ListenableBuilder(
                         listenable: _continueButtonController,
@@ -120,7 +143,8 @@ class _OnboardingGeneralErrorScreenState extends State<OnboardingGeneralErrorScr
                             text: "Try again",
                             isLoading: _continueButtonController.isLoading,
                             onPressed: _continueButtonController.isEnabled
-                                ? () => StoreProvider.of<AppState>(context).dispatch(CreateAccountCommandAction())
+                                ? () => StoreProvider.of<AppState>(context)
+                                    .dispatch(CreateAccountCommandAction())
                                 : null,
                           ),
                         ),

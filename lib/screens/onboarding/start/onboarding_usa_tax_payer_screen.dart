@@ -25,12 +25,14 @@ class OnboardingUsaTaxPayerScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             actions: const [AppbarLogo()],
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,17 +41,23 @@ class OnboardingUsaTaxPayerScreen extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        const TextSpan(text: "If you as the account holder are "),
+                        const TextSpan(
+                            text: "If you as the account holder are "),
                         TextSpan(
                           text: "established in the USA",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: ", have been in the past or have "),
+                        const TextSpan(
+                            text: ", have been in the past or have "),
                         TextSpan(
                           text: "tax residency in the USA",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: ", we will not be able to open your credit account."),
+                        const TextSpan(
+                            text:
+                                ", we will not be able to open your credit account."),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -63,7 +71,9 @@ class OnboardingUsaTaxPayerScreen extends StatelessWidget {
                     ),
                     child: Text(
                       "Why am I being asked this?",
-                      style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
+                      style: ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegularBold
+                          .copyWith(
                             color: ClientConfig.getColorScheme().secondary,
                           ),
                     ),
@@ -85,7 +95,8 @@ class OnboardingUsaTaxPayerScreen extends StatelessWidget {
                     child: SecondaryButton(
                       borderWidth: 2,
                       text: "Yes, I am a USA taxpayer",
-                      onPressed: () => Navigator.pushNamed(context, OnboardingUsaTaxPayerErrorScreen.routeName),
+                      onPressed: () => Navigator.pushNamed(
+                          context, OnboardingUsaTaxPayerErrorScreen.routeName),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -148,7 +159,9 @@ class _TaxpayerBottomSheetContent extends StatelessWidget {
                       Uri.parse("https://www.irs.gov"),
                     );
                   },
-                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
+                style: ClientConfig.getTextStyleScheme()
+                    .bodyLargeRegularBold
+                    .copyWith(
                       color: ClientConfig.getColorScheme().secondary,
                     ),
               ),

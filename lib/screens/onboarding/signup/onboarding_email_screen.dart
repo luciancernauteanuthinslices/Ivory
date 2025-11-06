@@ -23,7 +23,8 @@ class OnboardingEmailScreen extends StatefulWidget {
 
 class _OnboardingEmailScreenState extends State<OnboardingEmailScreen> {
   final IvoryTextFieldController _emailController = IvoryTextFieldController();
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
 
   @override
   void initState() {
@@ -31,7 +32,9 @@ class _OnboardingEmailScreenState extends State<OnboardingEmailScreen> {
 
     _emailController.addListener(() {
       final email = _emailController.text;
-      email.isNotEmpty ? _continueButtonController.setEnabled() : _continueButtonController.setDisabled();
+      email.isNotEmpty
+          ? _continueButtonController.setEnabled()
+          : _continueButtonController.setDisabled();
 
       if (isValidEmail(email) && _emailController.hasError) {
         _emailController.setError(false);
@@ -57,24 +60,29 @@ class _OnboardingEmailScreenState extends State<OnboardingEmailScreen> {
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             richTextTitle: StepRichTextTitle(step: 2, totalSteps: 5),
             actions: const [AppbarLogo()],
           ),
           AnimatedLinearProgressIndicator.step(current: 2, totalSteps: 5),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Email address', style: ClientConfig.getTextStyleScheme().heading2),
+                    child: Text('Email address',
+                        style: ClientConfig.getTextStyleScheme().heading2),
                   ),
                   const SizedBox(height: 16),
-                  Text('Enter your email address below.', style: ClientConfig.getTextStyleScheme().bodyLargeRegular),
+                  Text('Enter your email address below.',
+                      style:
+                          ClientConfig.getTextStyleScheme().bodyLargeRegular),
                   const SizedBox(height: 24),
                   IvoryTextField(
                     label: 'Email address',
@@ -94,13 +102,15 @@ class _OnboardingEmailScreenState extends State<OnboardingEmailScreen> {
                             ? () {
                                 if (isValidEmail(_emailController.text)) {
                                   StoreProvider.of<AppState>(context).dispatch(
-                                    SubmitOnboardingEmailCommandAction(email: _emailController.text),
+                                    SubmitOnboardingEmailCommandAction(
+                                        email: _emailController.text),
                                   );
 
-                                  Navigator.pushNamed(context, OnboardingPasswordScreen.routeName);
+                                  Navigator.pushNamed(context,
+                                      OnboardingPasswordScreen.routeName);
                                 } else {
-                                  _emailController
-                                      .setErrorText('Please input a valid email address (e.g. name@domain.com).');
+                                  _emailController.setErrorText(
+                                      'Please input a valid email address (e.g. name@domain.com).');
                                 }
                               }
                             : null,

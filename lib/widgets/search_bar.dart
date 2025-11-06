@@ -48,13 +48,14 @@ class CustomSearchBar extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
                 border: Border.all(
-                  color:  ClientConfig.getColorScheme().primary,
+                  color: ClientConfig.getColorScheme().primary,
                 ),
               ),
               child: PlatformIconButton(
                 icon: SvgPicture.asset(
                   "assets/icons/filter_icon.svg",
-                  colorFilter: ColorFilter.mode(ClientConfig.getColorScheme().primary, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(
+                      ClientConfig.getColorScheme().primary, BlendMode.srcIn),
                   height: 16,
                   width: 16,
                 ),

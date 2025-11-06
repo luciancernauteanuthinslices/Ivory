@@ -64,7 +64,8 @@ class _AppToolbarState extends State<AppToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.scrollController == null) return _buildAppToolbar(context, titleOpacity: 1.0);
+    if (widget.scrollController == null)
+      return _buildAppToolbar(context, titleOpacity: 1.0);
 
     if (widget.scrollController!.hasClients == false) {
       return _buildAppToolbar(context, titleOpacity: 0.0);
@@ -74,7 +75,9 @@ class _AppToolbarState extends State<AppToolbar> {
       animation: widget.scrollController!,
       builder: (controller, child) {
         final offset = widget.scrollController!.offset;
-        final titleOpacity = max(0, min(1, offset / widget.titleMaxOpacityScrollOffset)).toDouble();
+        final titleOpacity =
+            max(0, min(1, offset / widget.titleMaxOpacityScrollOffset))
+                .toDouble();
 
         return _buildAppToolbar(context, titleOpacity: titleOpacity);
       },
@@ -111,14 +114,21 @@ class _AppToolbarState extends State<AppToolbar> {
             toolbarHeight: widget.toolbarHeight,
             elevation: 0,
             leadingWidth: 25,
-            leading: (widget.backButtonEnabled && (widget.onBackButtonPressed != null || Navigator.canPop(context)))
+            leading: (widget.backButtonEnabled &&
+                    (widget.onBackButtonPressed != null ||
+                        Navigator.canPop(context)))
                 ? InkWell(
                     onTap: widget.backButtonAppearanceDisabled
                         ? null
-                        : widget.onBackButtonPressed ?? () => Navigator.canPop(context) ? Navigator.pop(context) : null,
+                        : widget.onBackButtonPressed ??
+                            () => Navigator.canPop(context)
+                                ? Navigator.pop(context)
+                                : null,
                     child: Icon(
                       widget.backIcon.icon,
-                      color: widget.backButtonAppearanceDisabled ? ClientConfig.getCustomColors().neutral500 : null,
+                      color: widget.backButtonAppearanceDisabled
+                          ? ClientConfig.getCustomColors().neutral500
+                          : null,
                     ),
                   )
                 : null,
@@ -131,7 +141,8 @@ class _AppToolbarState extends State<AppToolbar> {
           if (widget.includeBottomScreenTitle)
             Opacity(
               opacity: 1 - titleOpacity,
-              child: ScreenTitle(widget.title, padding: EdgeInsets.zero, scale: 1 - titleOpacity),
+              child: ScreenTitle(widget.title,
+                  padding: EdgeInsets.zero, scale: 1 - titleOpacity),
             ),
           if (widget.children != null) SizedBox(height: 8 * (1 - titleOpacity)),
           if (widget.children != null) ...widget.children!,

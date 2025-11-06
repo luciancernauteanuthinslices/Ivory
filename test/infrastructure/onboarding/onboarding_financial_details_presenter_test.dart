@@ -7,59 +7,73 @@ import 'package:solarisdemo/redux/onboarding/financial_details/onboarding_financ
 void main() {
   test('when screen is in default state should return initial viewModel', () {
     //given
-    const OnboardingFinancialDetailsState onboardingFinancialDetailsState = OnboardingFinancialDetailsState(
+    const OnboardingFinancialDetailsState onboardingFinancialDetailsState =
+        OnboardingFinancialDetailsState(
       financialDetailsAttributes: OnboardingFinancialDetailsAttributes(
         taxId: '',
       ),
       isLoading: false,
     );
     //when
-    final viewModel = OnboardingFinancialDetailsPresenter.present(financialState: onboardingFinancialDetailsState);
+    final viewModel = OnboardingFinancialDetailsPresenter.present(
+        financialState: onboardingFinancialDetailsState);
     //then
     expect(
       viewModel,
       const OnboardingFinancialDetailsViewModel(
-          financialDetailsAttributes: OnboardingFinancialDetailsAttributes(taxId: ''), isLoading: false),
+          financialDetailsAttributes:
+              OnboardingFinancialDetailsAttributes(taxId: ''),
+          isLoading: false),
     );
   });
 
   test('when screen has correct taxId number should return viewModel', () {
     //given
-    const OnboardingFinancialDetailsState onboardingFinancialDetailsState = OnboardingFinancialDetailsState(
+    const OnboardingFinancialDetailsState onboardingFinancialDetailsState =
+        OnboardingFinancialDetailsState(
       financialDetailsAttributes: OnboardingFinancialDetailsAttributes(
         taxId: '48954371207',
       ),
       isLoading: false,
     );
     //when
-    final viewModel = OnboardingFinancialDetailsPresenter.present(financialState: onboardingFinancialDetailsState);
+    final viewModel = OnboardingFinancialDetailsPresenter.present(
+        financialState: onboardingFinancialDetailsState);
     //then
     expect(
       viewModel,
       const OnboardingFinancialDetailsViewModel(
-          financialDetailsAttributes: OnboardingFinancialDetailsAttributes(taxId: '48954371207'), isLoading: false),
+          financialDetailsAttributes:
+              OnboardingFinancialDetailsAttributes(taxId: '48954371207'),
+          isLoading: false),
     );
   });
 
-  test('when screen sent the taxId number should return a loading viewModel', () {
+  test('when screen sent the taxId number should return a loading viewModel',
+      () {
     //given
-    const OnboardingFinancialDetailsState onboardingFinancialDetailsState = OnboardingFinancialDetailsState(
+    const OnboardingFinancialDetailsState onboardingFinancialDetailsState =
+        OnboardingFinancialDetailsState(
       financialDetailsAttributes: OnboardingFinancialDetailsAttributes(),
       isLoading: true,
     );
     //when
-    final viewModel = OnboardingFinancialDetailsPresenter.present(financialState: onboardingFinancialDetailsState);
+    final viewModel = OnboardingFinancialDetailsPresenter.present(
+        financialState: onboardingFinancialDetailsState);
     //then
     expect(
       viewModel,
       const OnboardingFinancialDetailsViewModel(
-          financialDetailsAttributes: OnboardingFinancialDetailsAttributes(), isLoading: true),
+          financialDetailsAttributes: OnboardingFinancialDetailsAttributes(),
+          isLoading: true),
     );
   });
 
-  test('when screen has incorrect taxId number should retun a error viewModel', () {
+  test('when screen has incorrect taxId number should retun a error viewModel',
+      () {
     //given
-    const OnboardingFinancialDetailsState onboardingFinancialDetailsState = OnboardingFinancialDetailsState(
+    const OnboardingFinancialDetailsState onboardingFinancialDetailsState =
+        OnboardingFinancialDetailsState(
       financialDetailsAttributes: OnboardingFinancialDetailsAttributes(
         taxId: '123',
       ),
@@ -67,12 +81,14 @@ void main() {
       errorType: FinancialDetailsErrorType.taxIdNotValid,
     );
     //when
-    final viewModel = OnboardingFinancialDetailsPresenter.present(financialState: onboardingFinancialDetailsState);
+    final viewModel = OnboardingFinancialDetailsPresenter.present(
+        financialState: onboardingFinancialDetailsState);
     //then
     expect(
       viewModel,
       const OnboardingFinancialDetailsViewModel(
-          financialDetailsAttributes: OnboardingFinancialDetailsAttributes(taxId: '123'),
+          financialDetailsAttributes:
+              OnboardingFinancialDetailsAttributes(taxId: '123'),
           isLoading: false,
           errorType: FinancialDetailsErrorType.taxIdNotValid),
     );

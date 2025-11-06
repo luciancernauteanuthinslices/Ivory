@@ -77,11 +77,13 @@ class _InputCurrencyFieldState extends State<InputCurrencyField> {
                 builder: ((context, child) => Row(
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 11),
                           decoration: BoxDecoration(
                               color: ClientConfig.getCustomColors().neutral100,
-                              borderRadius:
-                                  const BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)),
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8)),
                               border: Border(
                                 top: BorderSide(
                                   width: 1,
@@ -135,7 +137,8 @@ class _InputCurrencyFieldState extends State<InputCurrencyField> {
                   style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                   controller: _currencyController,
                   focusNode: _focusNode,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [
                     ThousandsSeparatorInputFormatter(),
                   ],
@@ -144,12 +147,16 @@ class _InputCurrencyFieldState extends State<InputCurrencyField> {
                     hintText: widget.placeHolder,
                     hintStyle: ClientConfig.getTextStyleScheme()
                         .bodyLargeRegular
-                        .copyWith(color: ClientConfig.getCustomColors().neutral400),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    border: const OutlineInputBorder(borderSide: BorderSide.none),
+                        .copyWith(
+                            color: ClientConfig.getCustomColors().neutral400),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
+                    border:
+                        const OutlineInputBorder(borderSide: BorderSide.none),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius:
-                          const BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8)),
+                      borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8)),
                       borderSide: BorderSide(
                         width: 1,
                         color: ClientConfig.getColorScheme().primary,
@@ -168,17 +175,20 @@ class _InputCurrencyFieldState extends State<InputCurrencyField> {
 
 class ThousandsSeparatorInputFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     if (newValue.text.isEmpty) {
       return newValue.copyWith(text: '');
     } else if (newValue.text.compareTo(oldValue.text) != 0) {
-      final int selectionIndexFromTheRight = newValue.text.length - newValue.selection.end;
+      final int selectionIndexFromTheRight =
+          newValue.text.length - newValue.selection.end;
 
       final formattedValue = _formatInput(newValue.text);
 
       return TextEditingValue(
         text: formattedValue,
-        selection: TextSelection.collapsed(offset: formattedValue.length - selectionIndexFromTheRight),
+        selection: TextSelection.collapsed(
+            offset: formattedValue.length - selectionIndexFromTheRight),
       );
     } else {
       return newValue;
@@ -188,7 +198,8 @@ class ThousandsSeparatorInputFormatter extends TextInputFormatter {
   String _formatInput(String input) {
     final onlyNumbers = input.replaceAll(RegExp(r'[^0-9.]'), '');
     final integerAndDecimalValues = onlyNumbers.split('.');
-    final integerValueFormatted = _formatIntegerPart(integerAndDecimalValues[0]);
+    final integerValueFormatted =
+        _formatIntegerPart(integerAndDecimalValues[0]);
 
     final wholeNumberFormatted = integerAndDecimalValues.length == 1
         ? integerValueFormatted
@@ -198,6 +209,8 @@ class ThousandsSeparatorInputFormatter extends TextInputFormatter {
   }
 
   String _formatIntegerPart(String integerValueOfNumber) {
-    return integerValueOfNumber.isNotEmpty ? NumberFormat('#,###').format(double.parse(integerValueOfNumber)) : '';
+    return integerValueOfNumber.isNotEmpty
+        ? NumberFormat('#,###').format(double.parse(integerValueOfNumber))
+        : '';
   }
 }

@@ -55,13 +55,15 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   PushNotificationServiceProvider.init(FirebasePushNotificationService(
     storageService: PushNotificationSharedPreferencesStorageService(),
   ));
 
-  final pushNotificationService = PushNotificationServiceProvider.instance.service;
+  final pushNotificationService =
+      PushNotificationServiceProvider.instance.service;
 
   final store = _buildStore(pushNotificationService);
 
@@ -102,7 +104,8 @@ Store<AppState> _buildStore(PushNotificationService pushNotificationService) {
     mobileNumberService: MobileNumberService(),
     documentsService: DocumentsService(),
     fileSaverService: FileSaverService(),
-    onboardingIdentityVerificationService: OnbordingIdentityVerificationService(),
+    onboardingIdentityVerificationService:
+        OnbordingIdentityVerificationService(),
     onboardingCardConfigurationService: OnboardingCardConfigurationService(),
   );
 

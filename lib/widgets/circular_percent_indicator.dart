@@ -7,10 +7,12 @@ class CircularPercentIndicator extends StatefulWidget {
   const CircularPercentIndicator({super.key, required this.percent});
 
   @override
-  State<CircularPercentIndicator> createState() => _CircularPercentIndicatorState();
+  State<CircularPercentIndicator> createState() =>
+      _CircularPercentIndicatorState();
 }
 
-class _CircularPercentIndicatorState extends State<CircularPercentIndicator> with TickerProviderStateMixin {
+class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
+    with TickerProviderStateMixin {
   late AnimationController controller;
 
   @override
@@ -43,7 +45,8 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
                 value: controller.value * widget.percent,
                 strokeWidth: 5,
                 backgroundColor: ClientConfig.getCustomColors().neutral200,
-                valueColor: AlwaysStoppedAnimation<Color>(ClientConfig.getColorScheme().secondary),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    ClientConfig.getColorScheme().secondary),
               ),
             ),
             Center(

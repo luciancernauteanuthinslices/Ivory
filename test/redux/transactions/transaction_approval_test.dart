@@ -12,7 +12,9 @@ void main() {
   final authState = AuthStatePlaceholder.loggedInState();
 
   group("Authorization", () {
-    test("When requesting transaction approval challenge the state should change to loading", () async {
+    test(
+        "When requesting transaction approval challenge the state should change to loading",
+        () async {
       // given
       final store = createTestStore(
         deviceService: FakeDeviceService(),
@@ -24,8 +26,8 @@ void main() {
           authState: authState,
         ),
       );
-      final appState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
 
       // when
       store.dispatch(
@@ -35,10 +37,12 @@ void main() {
       );
 
       // then
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
     });
 
-    test("When transaction approval challenge is successfully authorized", () async {
+    test("When transaction approval challenge is successfully authorized",
+        () async {
       // given
       final store = createTestStore(
         deviceService: FakeDeviceService(),
@@ -50,10 +54,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
-      final appState = store.onChange
-          .firstWhere((element) => element.transactionApprovalState is TransactionApprovalAuthorizedState);
+      final loadingState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) => element
+          .transactionApprovalState is TransactionApprovalAuthorizedState);
 
       // when
       store.dispatch(
@@ -63,8 +67,10 @@ void main() {
       );
 
       // then
-      expect((await loadingState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalAuthorizedState>());
+      expect((await loadingState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalAuthorizedState>());
     });
 
     test("When transaction approval challenge failed authorization", () async {
@@ -79,10 +85,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
-      final appState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalFailedState);
+      final loadingState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalFailedState);
 
       // when
       store.dispatch(
@@ -92,11 +98,14 @@ void main() {
       );
 
       // then
-      expect((await loadingState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalFailedState>());
+      expect((await loadingState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalFailedState>());
     });
 
-    test("When requesting for transaction approval and device is not bounded", () async {
+    test("When requesting for transaction approval and device is not bounded",
+        () async {
       // given
       final store = createTestStore(
         changeRequestService: FakeChangeRequestService(),
@@ -107,10 +116,11 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
-      final appState = store.onChange
-          .firstWhere((element) => element.transactionApprovalState is TransactionApprovalDeviceNotBoundedState);
+      final loadingState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState
+              is TransactionApprovalDeviceNotBoundedState);
 
       // when
       store.dispatch(
@@ -120,12 +130,16 @@ void main() {
       );
 
       // then
-      expect((await loadingState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalDeviceNotBoundedState>());
+      expect((await loadingState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalDeviceNotBoundedState>());
     });
   });
   group("Confirmation", () {
-    test("When requesting for transaction challenge confirmation the state should change to loading first", () async {
+    test(
+        "When requesting for transaction challenge confirmation the state should change to loading first",
+        () async {
       // given
       final store = createTestStore(
         deviceService: FakeDeviceService(),
@@ -137,8 +151,8 @@ void main() {
           authState: authState,
         ),
       );
-      final appState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
 
       // when
       store.dispatch(ConfirmTransactionCommandAction(
@@ -149,7 +163,8 @@ void main() {
       ));
 
       // then
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
     });
 
     test("When transaction challenge is confirmed successfully", () async {
@@ -164,10 +179,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
-      final appState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalSucceededState);
+      final loadingState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) => element
+          .transactionApprovalState is TransactionApprovalSucceededState);
 
       // when
       store.dispatch(ConfirmTransactionCommandAction(
@@ -178,17 +193,20 @@ void main() {
       ));
 
       // then
-      expect((await loadingState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalSucceededState>());
+      expect((await loadingState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalSucceededState>());
     });
 
     test("When transaction challenge failed confirmation", () async {
       // given
-      final transactionApprovalAuthorizedState = TransactionApprovalAuthorizedState(
-          changeRequestId: "changeRequestId",
-          deviceData: "deviceData",
-          deviceId: "deviceId",
-          stringToSign: "stringToSign");
+      final transactionApprovalAuthorizedState =
+          TransactionApprovalAuthorizedState(
+              changeRequestId: "changeRequestId",
+              deviceData: "deviceData",
+              deviceId: "deviceId",
+              stringToSign: "stringToSign");
 
       final store = createTestStore(
         deviceService: FakeDeviceService(),
@@ -200,10 +218,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
-      final appState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalFailedState);
+      final loadingState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalFailedState);
 
       // when
       store.dispatch(ConfirmTransactionCommandAction(
@@ -214,8 +232,10 @@ void main() {
       ));
 
       // then
-      expect((await loadingState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalFailedState>());
+      expect((await loadingState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalFailedState>());
     });
   });
 
@@ -232,10 +252,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
-      final appState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalRejectedState);
+      final loadingState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalRejectedState);
 
       // when
       store.dispatch(RejectTransactionCommandAction(
@@ -246,8 +266,10 @@ void main() {
       ));
 
       // then
-      expect((await loadingState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalRejectedState>());
+      expect((await loadingState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalRejectedState>());
     });
 
     test("When failed declining transaction challenge", () async {
@@ -262,10 +284,10 @@ void main() {
           authState: authState,
         ),
       );
-      final loadingState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalLoadingState);
-      final appState =
-          store.onChange.firstWhere((element) => element.transactionApprovalState is TransactionApprovalFailedState);
+      final loadingState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.transactionApprovalState is TransactionApprovalFailedState);
 
       // when
       store.dispatch(RejectTransactionCommandAction(
@@ -276,8 +298,10 @@ void main() {
       ));
 
       // then
-      expect((await loadingState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
-      expect((await appState).transactionApprovalState, isA<TransactionApprovalFailedState>());
+      expect((await loadingState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
+      expect((await appState).transactionApprovalState,
+          isA<TransactionApprovalFailedState>());
     });
   });
 }

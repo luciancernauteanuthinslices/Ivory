@@ -35,7 +35,8 @@ class CreditLine {
         currentBillAmount: AmountValue.fromJson(json['current_bill_amount']),
         outstandingAmount: AmountValue.fromJson(json['outstanding_amount']),
         spentAmount: json['amount_spent'],
-        accumulatedInterestAmount: AmountValue.fromJson(json['accumulated_interest_amount']),
+        accumulatedInterestAmount:
+            AmountValue.fromJson(json['accumulated_interest_amount']),
         interestRate: json['interest_rate'],
         fixedRate: AmountValue.fromJson(json['fixed_repayment_rate']),
         referenceAccount: AccountData.fromJson(json['reference_account']),

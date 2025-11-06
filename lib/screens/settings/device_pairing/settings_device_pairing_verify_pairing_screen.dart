@@ -17,10 +17,12 @@ class SettingsDevicePairingVerifyPairingScreen extends StatefulWidget {
   const SettingsDevicePairingVerifyPairingScreen({super.key});
 
   @override
-  State<SettingsDevicePairingVerifyPairingScreen> createState() => _SettingsDevicePairingVerifyPairingScreenState();
+  State<SettingsDevicePairingVerifyPairingScreen> createState() =>
+      _SettingsDevicePairingVerifyPairingScreenState();
 }
 
-class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevicePairingVerifyPairingScreen> {
+class _SettingsDevicePairingVerifyPairingScreenState
+    extends State<SettingsDevicePairingVerifyPairingScreen> {
   final TextEditingController _tanInputController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   bool _isInputComplete = false;
@@ -49,7 +51,8 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
         onDidChange: (previousViewModel, viewModel) {
           if (previousViewModel is DeviceBindingLoadingViewModel &&
               viewModel is DeviceBindingChallengeVerifiedViewModel) {
-            Navigator.pushNamed(context, SettingsDevicePairingSuccessScreen.routeName);
+            Navigator.pushNamed(
+                context, SettingsDevicePairingSuccessScreen.routeName);
           }
           if (previousViewModel is DeviceBindingLoadingViewModel &&
               viewModel is DeviceBindingVerificationErrorViewModel) {
@@ -71,7 +74,8 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
                     ),
                     TextSpan(
                       text: 'try again in approximately 5 minutes.',
-                      style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                      style: ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegularBold,
                     ),
                   ],
                 ),
@@ -84,8 +88,12 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
                     child: PrimaryButton(
                       text: 'Try again later',
                       onPressed: () async {
-                        StoreProvider.of<AppState>(context).dispatch(DeleteIncompleteDeviceBindingCommandAction());
-                        Navigator.popUntil(context, ModalRoute.withName(SettingsDevicePairingScreen.routeName));
+                        StoreProvider.of<AppState>(context).dispatch(
+                            DeleteIncompleteDeviceBindingCommandAction());
+                        Navigator.popUntil(
+                            context,
+                            ModalRoute.withName(
+                                SettingsDevicePairingScreen.routeName));
                       },
                     ),
                   ),
@@ -108,15 +116,16 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
             children: [
               AppToolbar(
                 backButtonEnabled: viewModel is! DeviceBindingLoadingViewModel,
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 onBackButtonPressed: () {
                   showBottomModal(
                     context: context,
                     isDismissible: false,
                     showCloseButton: true,
                     title: 'Are you sure you want to leave device pairing?',
-                    textWidget:
-                        const Text('You will need to wait for 5 minutes to pair your device again if you leave now.'),
+                    textWidget: const Text(
+                        'You will need to wait for 5 minutes to pair your device again if you leave now.'),
                     content: Column(
                       children: [
                         const SizedBox(height: 24),
@@ -136,7 +145,10 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
                             color: ClientConfig.getColorScheme().error,
                             text: 'Yes, leave',
                             onPressed: () async {
-                              Navigator.popUntil(context, ModalRoute.withName(SettingsDevicePairingScreen.routeName));
+                              Navigator.popUntil(
+                                  context,
+                                  ModalRoute.withName(
+                                      SettingsDevicePairingScreen.routeName));
                               StoreProvider.of<AppState>(context).dispatch(
                                 DeleteIncompleteDeviceBindingCommandAction(),
                               );
@@ -150,7 +162,8 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
               ),
               Expanded(
                 child: Padding(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -164,15 +177,19 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
                       ),
                       RichText(
                         text: TextSpan(
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                           children: [
                             const TextSpan(text: 'Please enter below the '),
                             TextSpan(
-                                text: '6-digit code ', style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                text: '6-digit code ',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                             const TextSpan(text: 'we sent to '),
                             TextSpan(
                                 text: '+49 (30) 4587 8734.',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                           ],
                         ),
                       ),
@@ -192,14 +209,15 @@ class _SettingsDevicePairingVerifyPairingScreenState extends State<SettingsDevic
                         height: 48,
                         child: Button(
                           text: 'Confirm',
-                          disabledColor: ClientConfig.getCustomColors().neutral300,
+                          disabledColor:
+                              ClientConfig.getCustomColors().neutral300,
                           color: ClientConfig.getColorScheme().tertiary,
                           textColor: ClientConfig.getColorScheme().surface,
                           isLoading: viewModel is DeviceBindingLoadingViewModel,
                           onPressed: _isInputComplete
                               ? () {
-                                  StoreProvider.of<AppState>(context)
-                                      .dispatch(VerifyDeviceBindingSignatureCommandAction(
+                                  StoreProvider.of<AppState>(context).dispatch(
+                                    VerifyDeviceBindingSignatureCommandAction(
                                       tan: _tanInputController.text,
                                     ),
                                   );

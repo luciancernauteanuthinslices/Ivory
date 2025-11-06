@@ -27,8 +27,9 @@ class CardActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
       onInit: (store) {
@@ -36,7 +37,8 @@ class CardActions extends StatelessWidget {
           GetBankCardCommandAction(
             cardId: initialCardId,
             forceReloadCardData: false,
-          ),);
+          ),
+        );
       },
       converter: (store) {
         return BankCardPresenter.presentBankCard(
@@ -91,7 +93,8 @@ class InactiveCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+      padding: ClientConfig.getCustomClientUiSettings()
+          .defaultScreenHorizontalPadding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +149,8 @@ class ActiveCard extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -178,8 +182,10 @@ class ActiveCard extends StatelessWidget {
                 onPressed: () {
                   StoreProvider.of<AppState>(context).dispatch(
                     BankCardFreezeCommandAction(
-                      bankCards:
-                          (StoreProvider.of<AppState>(context).state.bankCardsState as BankCardsFetchedState).bankCards,
+                      bankCards: (StoreProvider.of<AppState>(context)
+                              .state
+                              .bankCardsState as BankCardsFetchedState)
+                          .bankCards,
                       bankCard: viewModel.bankCard!,
                     ),
                   );
@@ -278,8 +284,10 @@ class FrozenCard extends StatelessWidget {
                 StoreProvider.of<AppState>(context).dispatch(
                   BankCardUnfreezeCommandAction(
                     bankCard: viewModel.bankCard!,
-                    bankCards:
-                        (StoreProvider.of<AppState>(context).state.bankCardsState as BankCardsFetchedState).bankCards,
+                    bankCards: (StoreProvider.of<AppState>(context)
+                            .state
+                            .bankCardsState as BankCardsFetchedState)
+                        .bankCards,
                   ),
                 );
               },
@@ -291,7 +299,8 @@ class FrozenCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const IvoryListTitle(title: 'If your card is compromised'),
-            if (viewModel.bankCard!.type.toString().contains('virtual')) const SizedBox(height: 28),
+            if (viewModel.bankCard!.type.toString().contains('virtual'))
+              const SizedBox(height: 28),
             if (viewModel.bankCard!.type.toString().contains('virtual'))
               const IvoryListTile(
                 leftIcon: Icons.credit_card,
@@ -317,7 +326,11 @@ class CardOptionsButton extends StatelessWidget {
   final String textLabel;
   final Function onPressed;
 
-  const CardOptionsButton({super.key, required this.icon, required this.textLabel, required this.onPressed});
+  const CardOptionsButton(
+      {super.key,
+      required this.icon,
+      required this.textLabel,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -342,7 +355,9 @@ class CardOptionsButton extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10),
           child: Text(
             textLabel,
-            style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: ClientConfig.getCustomColors().neutral900),
+            style: ClientConfig.getTextStyleScheme()
+                .labelSmall
+                .copyWith(color: ClientConfig.getCustomColors().neutral900),
           ),
         )
       ],

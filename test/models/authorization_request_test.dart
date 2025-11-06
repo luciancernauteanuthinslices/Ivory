@@ -101,7 +101,8 @@ void main() {
       updatedAt: DateTime.parse('2023-05-09T12:00:00.000Z'),
     );
 
-    test('fromJson() creates an AuthorizationRequestClass object from JSON', () {
+    test('fromJson() creates an AuthorizationRequestClass object from JSON',
+        () {
       final authRequestFromJson =
           AuthorizationRequestClass.fromJson(authRequestJson);
       expect(authRequestFromJson, isA<AuthorizationRequestClass>());

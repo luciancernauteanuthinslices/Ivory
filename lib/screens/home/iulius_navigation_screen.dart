@@ -15,7 +15,6 @@ final List<IuliusNavigationScreens> iuliusNavigationScreens = [
   IuliusNavigationScreens.parkingScreen,
 ];
 
-
 class IuliusNavigationScreen extends StatefulWidget {
   final IuliusNavigationScreens initialScreen;
   final dynamic screenParams;
@@ -61,7 +60,7 @@ class _IuliusNavigationScreenState extends State<IuliusNavigationScreen> {
       case IuliusNavigationScreens.discountsScreen:
         return const TransactionsScreen();
       case IuliusNavigationScreens.parkingScreen:
-        return const TransactionsScreen();    
+        return const TransactionsScreen();
     }
   }
 
@@ -78,7 +77,9 @@ class _IuliusNavigationScreenState extends State<IuliusNavigationScreen> {
           currentPageIndex = index;
         });
       },
-      items: iuliusNavigationScreens.map((screen) => _getBottomNavbarItem(screen)).toList(),
+      items: iuliusNavigationScreens
+          .map((screen) => _getBottomNavbarItem(screen))
+          .toList(),
     );
   }
 
@@ -121,7 +122,7 @@ class _IuliusNavigationScreenState extends State<IuliusNavigationScreen> {
         return const BottomNavigationBarItem(
           icon: Icon(Icons.local_parking),
           label: 'Parking',
-        );    
+        );
     }
   }
 

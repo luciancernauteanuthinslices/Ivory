@@ -1,1 +1,5 @@
-enum FinancialDetailsErrorType { taxIdNotValid, cantCreateCreditCardApplication, unknown }
+enum FinancialDetailsErrorType {
+  taxIdNotValid,
+  cantCreateCreditCardApplication,
+  unknown
+}

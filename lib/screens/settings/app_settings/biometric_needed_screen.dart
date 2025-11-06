@@ -15,10 +15,12 @@ class AppSettingsBiometricNeededScreen extends StatefulWidget {
   const AppSettingsBiometricNeededScreen({super.key});
 
   @override
-  State<AppSettingsBiometricNeededScreen> createState() => _AppSettingsBiometricNeededScreenState();
+  State<AppSettingsBiometricNeededScreen> createState() =>
+      _AppSettingsBiometricNeededScreenState();
 }
 
-class _AppSettingsBiometricNeededScreenState extends State<AppSettingsBiometricNeededScreen>
+class _AppSettingsBiometricNeededScreenState
+    extends State<AppSettingsBiometricNeededScreen>
     with WidgetsBindingObserver {
   @override
   void initState() {
@@ -36,10 +38,12 @@ class _AppSettingsBiometricNeededScreenState extends State<AppSettingsBiometricN
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.resumed) {
-      final bool isBiometricEnabled = await BiometricsService.areBiometricsAvailable();
+      final bool isBiometricEnabled =
+          await BiometricsService.areBiometricsAvailable();
       if (isBiometricEnabled) {
         // ignore: use_build_context_synchronously
-        Navigator.popAndPushNamed(context, AppSettingsBiometricEnabledScreen.routeName);
+        Navigator.popAndPushNamed(
+            context, AppSettingsBiometricEnabledScreen.routeName);
       }
     }
   }
@@ -51,14 +55,16 @@ class _AppSettingsBiometricNeededScreenState extends State<AppSettingsBiometricN
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             onBackButtonPressed: () {
               Navigator.pop(context);
             },
           ),
           Expanded(
             child: Padding(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,14 +82,19 @@ class _AppSettingsBiometricNeededScreenState extends State<AppSettingsBiometricN
                       children: [
                         TextSpan(
                           text: 'Enable biometrics ',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: 'in your device\'s Security settings to '),
+                        const TextSpan(
+                            text: 'in your device\'s Security settings to '),
                         TextSpan(
-                          text: 'log in without a password, authorise payments ',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          text:
+                              'log in without a password, authorise payments ',
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: 'and do multiple other operations.'),
+                        const TextSpan(
+                            text: 'and do multiple other operations.'),
                       ],
                     ),
                   ),
@@ -111,7 +122,8 @@ class _AppSettingsBiometricNeededScreenState extends State<AppSettingsBiometricN
                       color: ClientConfig.getColorScheme().tertiary,
                       textColor: ClientConfig.getColorScheme().surface,
                       onPressed: () {
-                        AppSettings.openAppSettings(type: AppSettingsType.security);
+                        AppSettings.openAppSettings(
+                            type: AppSettingsType.security);
                       },
                     ),
                   ),

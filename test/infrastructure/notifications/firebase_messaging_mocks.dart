@@ -25,24 +25,25 @@ void setupFirebaseMessagingMocks() {
   setupFirebaseCoreMocks();
   TestWidgetsFlutterBinding.ensureInitialized();
 
-
-
   // Mock Platform Interface Methods
-  when(mockMessagingPlatform.delegateFor(app: anyNamed('app'))).thenReturn(mockMessagingPlatform);
+  when(mockMessagingPlatform.delegateFor(app: anyNamed('app')))
+      .thenReturn(mockMessagingPlatform);
   when(mockMessagingPlatform.setInitialValues(
     isAutoInitEnabled: anyNamed('isAutoInitEnabled'),
   )).thenReturn(mockMessagingPlatform);
 }
 
-class MockFirebaseMessaging extends Mock with MockPlatformInterfaceMixin implements FirebaseMessagingPlatform {
+class MockFirebaseMessaging extends Mock
+    with MockPlatformInterfaceMixin
+    implements FirebaseMessagingPlatform {
   MockFirebaseMessaging() {
     TestFirebaseMessagingPlatform();
   }
 
   @override
   bool get isAutoInitEnabled {
-    return super
-        .noSuchMethod(Invocation.getter(#isAutoInitEnabled), returnValue: true, returnValueForMissingStub: true);
+    return super.noSuchMethod(Invocation.getter(#isAutoInitEnabled),
+        returnValue: true, returnValueForMissingStub: true);
   }
 
   @override
@@ -57,7 +58,8 @@ class MockFirebaseMessaging extends Mock with MockPlatformInterfaceMixin impleme
   @override
   FirebaseMessagingPlatform setInitialValues({bool? isAutoInitEnabled}) {
     return super.noSuchMethod(
-      Invocation.method(#setInitialValues, [], {#isAutoInitEnabled: isAutoInitEnabled}),
+      Invocation.method(
+          #setInitialValues, [], {#isAutoInitEnabled: isAutoInitEnabled}),
       returnValue: TestFirebaseMessagingPlatform(),
       returnValueForMissingStub: TestFirebaseMessagingPlatform(),
     );
@@ -75,25 +77,30 @@ class MockFirebaseMessaging extends Mock with MockPlatformInterfaceMixin impleme
   @override
   Future<void> deleteToken() {
     return super.noSuchMethod(Invocation.method(#deleteToken, []),
-        returnValue: Future<void>.value(), returnValueForMissingStub: Future<void>.value());
+        returnValue: Future<void>.value(),
+        returnValueForMissingStub: Future<void>.value());
   }
 
   @override
   Future<String?> getAPNSToken() {
     return super.noSuchMethod(Invocation.method(#getAPNSToken, []),
-        returnValue: Future<String>.value(''), returnValueForMissingStub: Future<String>.value(''));
+        returnValue: Future<String>.value(''),
+        returnValueForMissingStub: Future<String>.value(''));
   }
 
   @override
   Future<String> getToken({String? vapidKey}) {
-    return super.noSuchMethod(Invocation.method(#getToken, [], {#vapidKey: vapidKey}),
-        returnValue: Future<String>.value(''), returnValueForMissingStub: Future<String>.value(''));
+    return super.noSuchMethod(
+        Invocation.method(#getToken, [], {#vapidKey: vapidKey}),
+        returnValue: Future<String>.value(''),
+        returnValueForMissingStub: Future<String>.value(''));
   }
 
   @override
   Future<void> setAutoInitEnabled(bool? enabled) {
     return super.noSuchMethod(Invocation.method(#setAutoInitEnabled, [enabled]),
-        returnValue: Future<void>.value(), returnValueForMissingStub: Future<void>.value());
+        returnValue: Future<void>.value(),
+        returnValueForMissingStub: Future<void>.value());
   }
 
   @override
@@ -132,13 +139,15 @@ class MockFirebaseMessaging extends Mock with MockPlatformInterfaceMixin impleme
   @override
   Future<void> subscribeToTopic(String? topic) {
     return super.noSuchMethod(Invocation.method(#subscribeToTopic, [topic]),
-        returnValue: Future<void>.value(), returnValueForMissingStub: Future<void>.value());
+        returnValue: Future<void>.value(),
+        returnValueForMissingStub: Future<void>.value());
   }
 
   @override
   Future<void> unsubscribeFromTopic(String? topic) {
     return super.noSuchMethod(Invocation.method(#unsubscribeFromTopic, [topic]),
-        returnValue: Future<void>.value(), returnValueForMissingStub: Future<void>.value());
+        returnValue: Future<void>.value(),
+        returnValueForMissingStub: Future<void>.value());
   }
 
   @override
@@ -176,7 +185,8 @@ const NotificationSettings deniedNotificationSettings = NotificationSettings(
   criticalAlert: AppleNotificationSetting.notSupported,
 );
 
-const NotificationSettings authorizedNotificationSettings = NotificationSettings(
+const NotificationSettings authorizedNotificationSettings =
+    NotificationSettings(
   authorizationStatus: AuthorizationStatus.authorized,
   alert: AppleNotificationSetting.enabled,
   announcement: AppleNotificationSetting.enabled,

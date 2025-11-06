@@ -196,7 +196,8 @@ class BankCardFetchedDetails {
   });
 }
 
-String createCardToJson(CreateBankCardReqBody data) => json.encode(data.toJson());
+String createCardToJson(CreateBankCardReqBody data) =>
+    json.encode(data.toJson());
 
 class CreateBankCardReqBody {
   late String line1;
@@ -271,28 +272,29 @@ class GetCardDetailsResponse {
       );
 }
 
-String changePinRequestBodyToJson(ChangePinRequestBody data) => json.encode(data.toJson());
+String changePinRequestBodyToJson(ChangePinRequestBody data) =>
+    json.encode(data.toJson());
 
 class ChangePinRequestBody {
-    String encryptedPin;
-    String keyId;
-    String deviceId;
-    String deviceData;
-    String signature;
+  String encryptedPin;
+  String keyId;
+  String deviceId;
+  String deviceData;
+  String signature;
 
-    ChangePinRequestBody({
-        required this.encryptedPin,
-        required this.keyId,
-        required this.deviceId,
-        required this.deviceData,
-        required this.signature,
-    });
+  ChangePinRequestBody({
+    required this.encryptedPin,
+    required this.keyId,
+    required this.deviceId,
+    required this.deviceData,
+    required this.signature,
+  });
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "encrypted_pin": encryptedPin,
         "key_id": keyId,
         "device_id": deviceId,
         "device_data": deviceData,
         "signature": signature,
-    };
+      };
 }

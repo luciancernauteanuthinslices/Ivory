@@ -20,11 +20,13 @@ class OnboardingVideoIdentificationNotAvailableScreen extends StatelessWidget {
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,7 +41,8 @@ class OnboardingVideoIdentificationNotAvailableScreen extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: 'Video identification is supported ',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
                         const TextSpan(
                           text:
@@ -50,9 +53,11 @@ class OnboardingVideoIdentificationNotAvailableScreen extends StatelessWidget {
                         ),
                         TextSpan(
                           text: '“Bank identification”',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: '. Thank you for your understanding!'),
+                        const TextSpan(
+                            text: '. Thank you for your understanding!'),
                       ],
                     ),
                   ),

@@ -128,12 +128,15 @@ class _IvoryTextFieldState extends State<IvoryTextField> {
                     Flexible(
                       child: Text(
                         widget.label!,
-                        style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
-                            color: isEnabled == false
-                                ? ClientConfig.getCustomColors().neutral500
-                                : hasError
-                                    ? ClientConfig.getColorScheme().error
-                                    : ClientConfig.getCustomColors().neutral700),
+                        style: ClientConfig.getTextStyleScheme()
+                            .labelSmall
+                            .copyWith(
+                                color: isEnabled == false
+                                    ? ClientConfig.getCustomColors().neutral500
+                                    : hasError
+                                        ? ClientConfig.getColorScheme().error
+                                        : ClientConfig.getCustomColors()
+                                            .neutral700),
                       ),
                     ),
                     if (widget.labelSuffix != null) ...[
@@ -177,20 +180,25 @@ class _IvoryTextFieldState extends State<IvoryTextField> {
                 keyboardType: keyboardType,
                 minLines: widget.minLines,
                 maxLines: widget.maxLines ?? widget.minLines ?? 1,
-                style: ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(
-                    fontWeight: FontWeight.w400,
-                    color: _controller.isEnabled
-                        ? ClientConfig.getCustomColors().neutral900
-                        : ClientConfig.getCustomColors().neutral500),
+                style: ClientConfig.getTextStyleScheme()
+                    .bodyLargeRegular
+                    .copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: _controller.isEnabled
+                            ? ClientConfig.getCustomColors().neutral900
+                            : ClientConfig.getCustomColors().neutral500),
                 placeholderStyle: ClientConfig.getTextStyleScheme()
                     .bodyLargeRegular
                     .copyWith(color: ClientConfig.getCustomColors().neutral500),
               ),
-              if (_controller.errorText != null || widget.errorText != null) ...[
+              if (_controller.errorText != null ||
+                  widget.errorText != null) ...[
                 const SizedBox(height: 8),
                 Text(
                   _controller.errorText ?? widget.errorText!,
-                  style: ClientConfig.getTextStyleScheme().bodySmallRegular.copyWith(
+                  style: ClientConfig.getTextStyleScheme()
+                      .bodySmallRegular
+                      .copyWith(
                         color: ClientConfig.getColorScheme().error,
                       ),
                 ),
@@ -285,7 +293,9 @@ class _IvoryTextFieldState extends State<IvoryTextField> {
         onTap: () {
           final currentDate = widget.currentDate ?? DateTime.now();
           final initialDate = _controller.text.isNotEmpty
-              ? Format.tryParseDate(_controller.text, pattern: textFieldDatePattern) ?? currentDate
+              ? Format.tryParseDate(_controller.text,
+                      pattern: textFieldDatePattern) ??
+                  currentDate
               : currentDate;
 
           showBottomModal(
@@ -427,11 +437,14 @@ class _DatePickerContentState extends State<_DatePickerContent> {
   void initState() {
     super.initState();
 
-    _formattedDate = Format.date(_initialDateTime, pattern: textFieldDatePattern);
+    _formattedDate =
+        Format.date(_initialDateTime, pattern: textFieldDatePattern);
   }
 
   DateTime get _initialDateTime =>
-      widget.initialDate.isAfter(widget.maximumDate) ? widget.maximumDate : widget.initialDate;
+      widget.initialDate.isAfter(widget.maximumDate)
+          ? widget.maximumDate
+          : widget.initialDate;
 
   @override
   Widget build(BuildContext context) {
@@ -444,10 +457,11 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             child: CupertinoTheme(
               data: CupertinoThemeData(
                 textTheme: CupertinoTextThemeData(
-                  dateTimePickerTextStyle: ClientConfig.getTextStyleScheme().heading2.copyWith(
-                        color: ClientConfig.getCustomColors().neutral900,
-                        fontWeight: FontWeight.w400,
-                      ),
+                  dateTimePickerTextStyle:
+                      ClientConfig.getTextStyleScheme().heading2.copyWith(
+                            color: ClientConfig.getCustomColors().neutral900,
+                            fontWeight: FontWeight.w400,
+                          ),
                 ),
               ),
               child: CupertinoDatePicker(
@@ -458,7 +472,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 initialDateTime: _initialDateTime,
                 onDateTimeChanged: (DateTime newDate) {
                   setState(() {
-                    _formattedDate = Format.date(newDate, pattern: textFieldDatePattern);
+                    _formattedDate =
+                        Format.date(newDate, pattern: textFieldDatePattern);
                   });
                 },
                 dateOrder: DatePickerDateOrder.dmy,

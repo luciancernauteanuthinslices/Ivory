@@ -22,10 +22,12 @@ class OnboardingVerifyMobileNumberScreen extends StatefulWidget {
   const OnboardingVerifyMobileNumberScreen({super.key});
 
   @override
-  State<OnboardingVerifyMobileNumberScreen> createState() => _OnboardingVerifyMobileNumberScreenState();
+  State<OnboardingVerifyMobileNumberScreen> createState() =>
+      _OnboardingVerifyMobileNumberScreenState();
 }
 
-class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMobileNumberScreen> {
+class _OnboardingVerifyMobileNumberScreenState
+    extends State<OnboardingVerifyMobileNumberScreen> {
   late TextEditingController _tanInputController;
   late ContinueButtonController _continueButtonController;
   late FocusNode _tanInputFocusNode;
@@ -67,7 +69,8 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
     _continueButtonController.setDisabled();
   }
 
-  String get timerText => _currentDuration.toString().split('.').first.padLeft(8, "0").substring(3);
+  String get timerText =>
+      _currentDuration.toString().split('.').first.padLeft(8, "0").substring(3);
 
   @override
   void dispose() {
@@ -80,8 +83,10 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingPersonalDetailsViewModel>(
-      converter: (store) => OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
-        onboardingPersonalDetailsState: store.state.onboardingPersonalDetailsState,
+      converter: (store) =>
+          OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
+        onboardingPersonalDetailsState:
+            store.state.onboardingPersonalDetailsState,
       ),
       distinct: true,
       onWillChange: (previousViewModel, newViewModel) {
@@ -89,7 +94,8 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
           _continueButtonController.setLoading();
         }
         if (previousViewModel!.errorType == null &&
-            newViewModel.errorType == OnboardingPersonalDetailsErrorType.invalidTan) {
+            newViewModel.errorType ==
+                OnboardingPersonalDetailsErrorType.invalidTan) {
           showBottomModal(
             context: context,
             showCloseButton: true,
@@ -122,7 +128,8 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
           );
         }
         if (newViewModel.isMobileConfirmed == true) {
-          Navigator.pushNamedAndRemoveUntil(context, OnboardingStepperScreen.routeName, (route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+              context, OnboardingStepperScreen.routeName, (route) => false);
         }
       },
       builder: (context, viewModel) {
@@ -136,7 +143,8 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
                   AppbarLogo(),
                 ],
                 backButtonEnabled: false,
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
               ),
               AnimatedLinearProgressIndicator.step(
                 current: 4,
@@ -144,7 +152,8 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
               ),
               Expanded(
                 child: Padding(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -158,15 +167,19 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
                       const SizedBox(height: 16),
                       RichText(
                         text: TextSpan(
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                           children: [
                             const TextSpan(text: 'Please enter below the '),
                             TextSpan(
-                                text: '6-digit code ', style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                text: '6-digit code ',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                             const TextSpan(text: 'we sent to '),
                             TextSpan(
                                 text: '${viewModel.attributes.mobileNumber}',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                           ],
                         ),
                       ),
@@ -186,12 +199,14 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
                       ListenableBuilder(
                         listenable: _continueButtonController,
                         builder: (context, child) => InkWell(
-                          onTap: _currentDuration.inSeconds > 0 || _continueButtonController.isEnabled
+                          onTap: _currentDuration.inSeconds > 0 ||
+                                  _continueButtonController.isEnabled
                               ? null
                               : () {
                                   StoreProvider.of<AppState>(context).dispatch(
                                     VerifyMobileNumberCommandAction(
-                                      mobileNumber: viewModel.attributes.mobileNumber!,
+                                      mobileNumber:
+                                          viewModel.attributes.mobileNumber!,
                                     ),
                                   );
                                   _tanInputController.clear();
@@ -202,13 +217,21 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
                             width: double.infinity,
                             alignment: Alignment.center,
                             child: Text(
-                              _currentDuration.inSeconds > 0 ? "Request new code in $timerText" : "Request new code",
-                              style: _currentDuration.inSeconds > 0 || _continueButtonController.isEnabled
+                              _currentDuration.inSeconds > 0
+                                  ? "Request new code in $timerText"
+                                  : "Request new code",
+                              style: _currentDuration.inSeconds > 0 ||
+                                      _continueButtonController.isEnabled
                                   ? ClientConfig.getTextStyleScheme()
                                       .bodyLargeRegularBold
-                                      .copyWith(color: ClientConfig.getCustomColors().neutral500)
-                                  : ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
-                                        color: ClientConfig.getColorScheme().tertiary,
+                                      .copyWith(
+                                          color: ClientConfig.getCustomColors()
+                                              .neutral500)
+                                  : ClientConfig.getTextStyleScheme()
+                                      .bodyLargeRegularBold
+                                      .copyWith(
+                                        color: ClientConfig.getColorScheme()
+                                            .tertiary,
                                       ),
                             ),
                           ),
@@ -226,9 +249,11 @@ class _OnboardingVerifyMobileNumberScreenState extends State<OnboardingVerifyMob
                             isLoading: _continueButtonController.isLoading,
                             onPressed: _continueButtonController.isEnabled
                                 ? () {
-                                    StoreProvider.of<AppState>(context).dispatch(
+                                    StoreProvider.of<AppState>(context)
+                                        .dispatch(
                                       ConfirmMobileNumberCommandAction(
-                                        mobileNumber: viewModel.attributes.mobileNumber!,
+                                        mobileNumber:
+                                            viewModel.attributes.mobileNumber!,
                                         token: _tanInputController.text,
                                       ),
                                     );

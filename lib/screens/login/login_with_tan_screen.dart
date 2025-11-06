@@ -47,7 +47,8 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
   void _checkInputComplete() {
     final isComplete = _tanInputController.text.length == 6;
     if (_isInputComplete != isComplete) {
-      debugPrint('OTP Input Complete: $isComplete (length: ${_tanInputController.text.length})');
+      debugPrint(
+          'OTP Input Complete: $isComplete (length: ${_tanInputController.text.length})');
       setState(() {
         _isInputComplete = isComplete;
         if (isComplete) {
@@ -62,7 +63,7 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
       _isInputComplete = isComplete;
     });
   }
-  
+
   void onTanChanged(String tan) {
     setState(() {
       if (_tanInputController.text.length == 6) {
@@ -92,11 +93,13 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                 actions: const [
                   AppbarLogo(),
                 ],
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
               ),
               Expanded(
                 child: Padding(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -109,15 +112,19 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                       ),
                       RichText(
                         text: TextSpan(
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                           children: [
                             const TextSpan(text: 'Please enter below the '),
                             TextSpan(
-                                text: '6-digit code ', style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                text: '6-digit code ',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                             const TextSpan(text: 'we sent to '),
                             TextSpan(
                                 text: '+49 (30) 4587 8734.',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold),
                           ],
                         ),
                       ),
@@ -148,13 +155,18 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                                   StoreProvider.of<AppState>(context).dispatch(
                                     AuthenticateUserCommandAction(
                                       authType: AuthType.withTan,
-                                      cognitoUser: (StoreProvider.of<AppState>(context).state.authState
+                                      cognitoUser: (StoreProvider.of<AppState>(
+                                                      context)
+                                                  .state
+                                                  .authState
                                               as AuthenticationInitializedState)
                                           .cognitoUser,
                                       tan: _tanInputController.text,
                                       onSuccess: () {
                                         Navigator.of(context)
-                                            .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+                                            .pushNamedAndRemoveUntil(
+                                                HomeScreen.routeName,
+                                                (route) => false);
                                       },
                                     ),
                                   );
@@ -170,7 +182,8 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
           ),
         );
       },
-      converter: (store) => AuthPresenter.presentAuth(authState: store.state.authState),
+      converter: (store) =>
+          AuthPresenter.presentAuth(authState: store.state.authState),
     );
   }
 }

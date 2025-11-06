@@ -17,18 +17,21 @@ class BankCardDetailsConfirmPinScreen extends StatefulWidget {
   const BankCardDetailsConfirmPinScreen({super.key});
 
   @override
-  State<BankCardDetailsConfirmPinScreen> createState() => _BankCardDetailsConfirmPinScreenState();
+  State<BankCardDetailsConfirmPinScreen> createState() =>
+      _BankCardDetailsConfirmPinScreenState();
 }
 
-class _BankCardDetailsConfirmPinScreenState extends State<BankCardDetailsConfirmPinScreen> {
+class _BankCardDetailsConfirmPinScreenState
+    extends State<BankCardDetailsConfirmPinScreen> {
   late bool twoPinsMatch = true;
   late bool completed = false;
   GlobalKey<FourDigitPinCodeInputState> fourDigitPinKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
     return StoreConnector<AppState, BankCardViewModel>(
       converter: (store) => BankCardPresenter.presentBankCard(
         user: user,
@@ -49,11 +52,13 @@ class _BankCardDetailsConfirmPinScreenState extends State<BankCardDetailsConfirm
                     ),
                     TextSpan(
                       text: 'out of 4',
-                      style: TextStyle(color: ClientConfig.getCustomColors().neutral700),
+                      style: TextStyle(
+                          color: ClientConfig.getCustomColors().neutral700),
                     ),
                   ],
                 )),
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 backButtonEnabled: true,
                 onBackButtonPressed: () {
                   Navigator.pop(
@@ -70,7 +75,8 @@ class _BankCardDetailsConfirmPinScreenState extends State<BankCardDetailsConfirm
                 height: 16,
               ),
               Padding(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: Column(
                   children: [
                     Column(
@@ -93,7 +99,8 @@ class _BankCardDetailsConfirmPinScreenState extends State<BankCardDetailsConfirm
                           children: [
                             Text(
                               'Confirm your PIN by typing it again.',
-                              style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegular,
                             ),
                           ],
                         ),
@@ -144,14 +151,17 @@ class _BankCardDetailsConfirmPinScreenState extends State<BankCardDetailsConfirm
               ),
               const Spacer(),
               Padding(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: Column(
                   children: [
                     PinValidityRule(
                       isValid: twoPinsMatch,
                       text: 'Your PIN should match',
                       icon: Icons.check,
-                      validColor: completed ? ClientConfig.getCustomColors().success : ClientConfig.getCustomColors().neutral900,
+                      validColor: completed
+                          ? ClientConfig.getCustomColors().success
+                          : ClientConfig.getCustomColors().neutral900,
                       invalidColor: const Color(0xFFE61F27),
                     ),
                     const SizedBox(

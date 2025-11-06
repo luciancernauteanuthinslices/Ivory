@@ -19,8 +19,9 @@ class BankCardDetailsInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
         converter: (store) => BankCardPresenter.presentBankCard(
@@ -43,15 +44,18 @@ class BankCardDetailsInfoScreen extends StatelessWidget {
                       ),
                       TextSpan(
                         text: 'out of 4',
-                        style: TextStyle(color: ClientConfig.getCustomColors().neutral700),
+                        style: TextStyle(
+                            color: ClientConfig.getCustomColors().neutral700),
                       ),
                     ],
                   )),
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenHorizontalPadding,
                   backButtonEnabled: true,
                   onBackButtonPressed: () {
                     Navigator.pop(context);
-                    StoreProvider.of<AppState>(context).dispatch(GetBankCardCommandAction(
+                    StoreProvider.of<AppState>(context)
+                        .dispatch(GetBankCardCommandAction(
                       cardId: viewModel.bankCard!.id,
                       forceReloadCardData: false,
                     ));
@@ -67,7 +71,8 @@ class BankCardDetailsInfoScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                    padding: ClientConfig.getCustomClientUiSettings()
+                        .defaultScreenPadding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -80,7 +85,8 @@ class BankCardDetailsInfoScreen extends StatelessWidget {
                         ),
                         Text(
                           'In order to activate your physical card you will have to choose a PIN and confirm it. You can also add it to your Apple Wallet. \n\nIt\'ll take only 1 minute.',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                         ),
                         Expanded(
                           child: Center(
@@ -88,7 +94,8 @@ class BankCardDetailsInfoScreen extends StatelessWidget {
                               SvgAssetLoader(
                                 'assets/images/choose_pin.svg',
                                 colorMapper: IvoryColorMapper(
-                                  baseColor: ClientConfig.getColorScheme().secondary,
+                                  baseColor:
+                                      ClientConfig.getColorScheme().secondary,
                                 ),
                               ),
                             ),
@@ -98,7 +105,8 @@ class BankCardDetailsInfoScreen extends StatelessWidget {
                           width: double.infinity,
                           child: Button(
                             text: "Choose PIN",
-                            disabledColor: ClientConfig.getCustomColors().neutral300,
+                            disabledColor:
+                                ClientConfig.getCustomColors().neutral300,
                             color: ClientConfig.getColorScheme().tertiary,
                             textColor: ClientConfig.getColorScheme().surface,
                             onPressed: () {

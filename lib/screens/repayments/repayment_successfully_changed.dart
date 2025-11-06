@@ -57,10 +57,12 @@ class RepaymentSuccessfullyChangedScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text: '${params.interestRate}%',
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
-                    text: '. The 5% interest rate will be calculated and added to this amount.',
+                    text:
+                        '. The 5% interest rate will be calculated and added to this amount.',
                   ),
                 ],
               ),
@@ -76,10 +78,12 @@ class RepaymentSuccessfullyChangedScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text: '€${params.fixedRate.toStringAsFixed(2)}',
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
-                    text: '. The 5% interest rate will be calculated and added to this amount.',
+                    text:
+                        '. The 5% interest rate will be calculated and added to this amount.',
                   ),
                 ],
               ),
@@ -109,7 +113,8 @@ class RepaymentSuccessfullyChangedScreen extends StatelessWidget {
               color: ClientConfig.getColorScheme().tertiary,
               textColor: ClientConfig.getColorScheme().surface,
               onPressed: () {
-                StoreProvider.of<AppState>(context).dispatch(GetCreditLineCommandAction());
+                StoreProvider.of<AppState>(context)
+                    .dispatch(GetCreditLineCommandAction());
                 Navigator.popUntil(
                   context,
                   ModalRoute.withName(RepaymentsScreen.routeName),

@@ -24,13 +24,16 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingIdentityVerificationViewModel>(
-      onInit: (store) => store.dispatch(GetSignupIdentificationInfoCommandAction()),
+      onInit: (store) =>
+          store.dispatch(GetSignupIdentificationInfoCommandAction()),
       converter: (store) => OnboardingIdentityVerificationPresenter.present(
-        identityVerificationState: store.state.onboardingIdentityVerificationState,
+        identityVerificationState:
+            store.state.onboardingIdentityVerificationState,
       ),
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel.isAuthorized == true) {
-          Navigator.pushNamedAndRemoveUntil(context, OnboardingSignWithTanScreen.routeName, (_) => false);
+          Navigator.pushNamedAndRemoveUntil(
+              context, OnboardingSignWithTanScreen.routeName, (_) => false);
         } else if (newViewModel.errorType != null) {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -47,11 +50,13 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
               AppToolbar(
                 richTextTitle: StepRichTextTitle(step: 4, totalSteps: 7),
                 actions: const [AppbarLogo()],
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
               ),
               AnimatedLinearProgressIndicator.step(current: 4, totalSteps: 7),
               const SizedBox(height: 16),
-              viewModel.isLoading == true && viewModel.identificationStatus == null
+              viewModel.isLoading == true &&
+                      viewModel.identificationStatus == null
                   ? _buildLoadingContent()
                   : _buildPageContent(context, viewModel),
               const SizedBox(height: 16),
@@ -65,11 +70,13 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
   Widget _buildLoadingContent() {
     return Expanded(
       child: Padding(
-        padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Review updated contract", style: ClientConfig.getTextStyleScheme().heading2),
+            Text("Review updated contract",
+                style: ClientConfig.getTextStyleScheme().heading2),
             const SizedBox(height: 24),
             Text(
               "Please bear with us a couple of seconds while we update your contract...",
@@ -96,7 +103,10 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Skeleton(width: 24, height: 24, borderRadius: BorderRadius.circular(100)),
+                Skeleton(
+                    width: 24,
+                    height: 24,
+                    borderRadius: BorderRadius.circular(100)),
                 const SizedBox(width: 16),
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,12 +135,15 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
-            child: Text("Review updated contract", style: ClientConfig.getTextStyleScheme().heading2),
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
+            child: Text("Review updated contract",
+                style: ClientConfig.getTextStyleScheme().heading2),
           ),
           const SizedBox(height: 24),
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: Text.rich(
               TextSpan(
                 style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
@@ -138,7 +151,8 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
                   const TextSpan(text: "We've made "),
                   TextSpan(
                     text: "important updates ",
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
                       text:
@@ -146,7 +160,8 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
                   const TextSpan(text: "We've also prepared your "),
                   TextSpan(
                     text: "“Qualified Electronic Signature (QES)” ",
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
                       text:
@@ -165,7 +180,9 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
               if (viewModel is DocumentsFetchedViewModel) {
                 return DocumentsListView(
                   documents: viewModel.documents,
-                  downloadingDocument: viewModel is DocumentDownloadingViewModel ? viewModel.downloadingDocument : null,
+                  downloadingDocument: viewModel is DocumentDownloadingViewModel
+                      ? viewModel.downloadingDocument
+                      : null,
                   enabled: identityVerificationViewModel.isLoading != true,
                   onTapDownload: (document) {
                     StoreProvider.of<AppState>(context).dispatch(
@@ -183,11 +200,13 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
           ),
           const Spacer(),
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: PrimaryButton(
               isLoading: identityVerificationViewModel.isLoading,
               onPressed: () {
-                StoreProvider.of<AppState>(context).dispatch(AuthorizeIdentificationSigningCommandAction());
+                StoreProvider.of<AppState>(context)
+                    .dispatch(AuthorizeIdentificationSigningCommandAction());
               },
               text: "Continue to signing",
             ),

@@ -23,12 +23,14 @@ class OnboardingGermanResidencyScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             actions: const [AppbarLogo()],
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -37,12 +39,16 @@ class OnboardingGermanResidencyScreen extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        const TextSpan(text: "We currently support users residing in "),
+                        const TextSpan(
+                            text: "We currently support users residing in "),
                         TextSpan(
                           text: "Germany only",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: ". If you do not, unfortunately, your application will be rejected.")
+                        const TextSpan(
+                            text:
+                                ". If you do not, unfortunately, your application will be rejected.")
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -64,14 +70,16 @@ class OnboardingGermanResidencyScreen extends StatelessWidget {
                     child: SecondaryButton(
                         borderWidth: 2,
                         text: "No, I don't live in Germany",
-                        onPressed: () => Navigator.pushNamed(context, OnboardingGermanResidencyErrorScreen.routeName)),
+                        onPressed: () => Navigator.pushNamed(context,
+                            OnboardingGermanResidencyErrorScreen.routeName)),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: PrimaryButton(
                         text: "Yes, I live in Germany",
-                        onPressed: () => Navigator.pushNamed(context, OnboardingUsaTaxPayerScreen.routeName)),
+                        onPressed: () => Navigator.pushNamed(
+                            context, OnboardingUsaTaxPayerScreen.routeName)),
                   ),
                   const SizedBox(height: 16)
                 ],

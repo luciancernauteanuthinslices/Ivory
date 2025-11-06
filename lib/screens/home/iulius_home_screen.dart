@@ -14,7 +14,6 @@ import '../../config.dart';
 import '../../redux/app_state.dart';
 import '../../redux/person/account_summary/account_summay_action.dart';
 
-
 class IuliusHomeScreen extends StatelessWidget {
   static const routeName = "/homeScreen";
 
@@ -22,7 +21,9 @@ class IuliusHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return Screen(
       title: 'Welcome ${user.cognito.firstName}!',
@@ -37,7 +38,9 @@ class IuliusHomeScreen extends StatelessWidget {
           onPressed: () {},
         )
       ],
-      titleTextStyle: ClientConfig.getTextStyleScheme().heading3.copyWith(color: Colors.white),
+      titleTextStyle: ClientConfig.getTextStyleScheme()
+          .heading3
+          .copyWith(color: Colors.white),
       centerTitle: false,
       child: const HomePageContent(),
     );
@@ -59,7 +62,8 @@ class HomePageContent extends StatelessWidget {
           const HomePageHeader(),
           const SizedBox(height: 32),
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: const Rewards(),
           ),
         ],
@@ -77,13 +81,15 @@ class HomePageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AccountSummaryViewModel>(
       onInit: (store) {
-        store.dispatch(GetAccountSummaryCommandAction(forceAccountSummaryReload: false));
+        store.dispatch(
+            GetAccountSummaryCommandAction(forceAccountSummaryReload: false));
       },
-      converter: (store) =>
-          AccountSummaryPresenter.presentAccountSummary(accountSummaryState: store.state.accountSummaryState),
+      converter: (store) => AccountSummaryPresenter.presentAccountSummary(
+          accountSummaryState: store.state.accountSummaryState),
       builder: (context, viewModel) {
         return Container(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -92,15 +98,15 @@ class HomePageHeader extends StatelessWidget {
             ),
             color: ClientConfig.getColorScheme().primary,
           ),
-            child: Row(
-              children: [
-                viewModel is AccountSummaryFetchedViewModel
-                    ? AccountSummary(
-                        viewModel: viewModel,
-                      )
-                    : Center(child: AccountSummary.loadingSkeleton()),
-                const SizedBox(height: 8),
-              ],
+          child: Row(
+            children: [
+              viewModel is AccountSummaryFetchedViewModel
+                  ? AccountSummary(
+                      viewModel: viewModel,
+                    )
+                  : Center(child: AccountSummary.loadingSkeleton()),
+              const SizedBox(height: 8),
+            ],
           ),
         );
       },
@@ -148,7 +154,7 @@ class AccountSummary extends StatelessWidget {
                   Skeleton(height: 40, width: 192),
                 ],
               ),
-              SizedBox(width: 40), 
+              SizedBox(width: 40),
               SizedBox(height: 12),
               Skeleton(height: 40, width: 104),
             ],
@@ -170,7 +176,7 @@ class AccountSummary extends StatelessWidget {
             ],
           ),
           SizedBox(height: 28),
-          ],
+        ],
       ),
     );
   }
@@ -180,14 +186,15 @@ class AccountBalance extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
 
   const AccountBalance({
-    Key? key, 
+    Key? key,
     required this.viewModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final creditLimitPercent =
-        ((viewModel.accountSummary?.outstandingAmount ?? 0) / (viewModel.accountSummary?.creditLimit ?? 0.01));
+        ((viewModel.accountSummary?.outstandingAmount ?? 0) /
+            (viewModel.accountSummary?.creditLimit ?? 0.01));
 
     return Padding(
       padding: const EdgeInsets.only(top: 16, bottom: 16),
@@ -198,29 +205,34 @@ class AccountBalance extends StatelessWidget {
             children: [
               Text(
                 "Available Balance",
-                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: ClientConfig.getCustomColors().neutral400),
+                style: ClientConfig.getTextStyleScheme()
+                    .labelSmall
+                    .copyWith(color: ClientConfig.getCustomColors().neutral400),
               ),
-              const SizedBox(height: 8), 
+              const SizedBox(height: 8),
               Text.rich(
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: Format.currencyWithSymbol(viewModel.accountSummary?.availableBalance?.value ?? 0),
-                      style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.white, fontSize: 32),
+                      text: Format.currencyWithSymbol(
+                          viewModel.accountSummary?.availableBalance?.value ??
+                              0),
+                      style: ClientConfig.getTextStyleScheme()
+                          .labelSmall
+                          .copyWith(color: Colors.white, fontSize: 32),
                     ),
                   ],
                 ),
               ),
             ],
           ),
-          const SizedBox(width: 40), 
-          const AccountOptions(), 
+          const SizedBox(width: 40),
+          const AccountOptions(),
         ],
       ),
     );
   }
 }
-
 
 class AccountStats extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
@@ -242,7 +254,9 @@ class AccountStats extends StatelessWidget {
             children: [
               Text(
                 "Cashback available",
-                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: Colors.grey),
+                style: ClientConfig.getTextStyleScheme()
+                    .labelSmall
+                    .copyWith(color: Colors.grey),
               ),
               const SizedBox(width: 5),
               const SizedBox(height: 4),
@@ -250,8 +264,13 @@ class AccountStats extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: Format.currencyWithSymbol(viewModel.accountSummary?.outstandingAmount ?? 0),
-                      style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: ClientConfig.getCustomColors().neutral400, fontSize: 18),
+                      text: Format.currencyWithSymbol(
+                          viewModel.accountSummary?.outstandingAmount ?? 0),
+                      style: ClientConfig.getTextStyleScheme()
+                          .labelSmall
+                          .copyWith(
+                              color: ClientConfig.getCustomColors().neutral400,
+                              fontSize: 18),
                     ),
                   ],
                 ),
@@ -278,9 +297,10 @@ class AccountOptions extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w400,
               color: Colors.white,
-            ),        
+            ),
             borderRadius: BorderRadius.circular(5),
-            onPressed: () => Navigator.pushNamed(context, ChooseMethodScreen.routeName),
+            onPressed: () =>
+                Navigator.pushNamed(context, ChooseMethodScreen.routeName),
             iconWidget: const Icon(
               Icons.add,
               color: Colors.white,
@@ -294,4 +314,3 @@ class AccountOptions extends StatelessWidget {
     );
   }
 }
-

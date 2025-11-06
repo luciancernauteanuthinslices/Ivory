@@ -5,7 +5,8 @@ import 'package:solarisdemo/redux/device/device_state.dart';
 import '../../models/device.dart';
 
 class DeviceBindingPresenter {
-  static DeviceBindingViewModel presentDeviceBinding({required DeviceBindingState deviceBindingState}) {
+  static DeviceBindingViewModel presentDeviceBinding(
+      {required DeviceBindingState deviceBindingState}) {
     if (deviceBindingState is DeviceBindingInitialState) {
       return DeviceBindingInitialViewModel();
     } else if (deviceBindingState is DeviceBindingLoadingState) {
@@ -50,10 +51,16 @@ class DeviceBindingViewModel extends Equatable {
   final DeviceBindingNotPossibleReason? reason;
 
   const DeviceBindingViewModel(
-      {this.devices, this.thisDevice, this.deviceId, this.isBoundDevice, this.reason, this.isBindingPossible});
+      {this.devices,
+      this.thisDevice,
+      this.deviceId,
+      this.isBoundDevice,
+      this.reason,
+      this.isBindingPossible});
 
   @override
-  List<Object?> get props => [devices, thisDevice, deviceId, isBoundDevice, reason, isBindingPossible];
+  List<Object?> get props =>
+      [devices, thisDevice, deviceId, isBoundDevice, reason, isBindingPossible];
 }
 
 class DeviceBindingInitialViewModel extends DeviceBindingViewModel {}
@@ -104,7 +111,8 @@ class DeviceBindingFetchedViewModel extends DeviceBindingViewModel {
             isBindingPossible: isBindingPossible);
 
   @override
-  List<Object?> get props => [devices, thisDevice, isBoundDevice, isBindingPossible];
+  List<Object?> get props =>
+      [devices, thisDevice, isBoundDevice, isBindingPossible];
 }
 
 class DeviceBindingDeletedViewModel extends DeviceBindingViewModel {}

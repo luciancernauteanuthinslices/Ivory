@@ -28,8 +28,9 @@ class TransactionDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final argument = ModalRoute.of(context)!.settings.arguments;
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
     final scrollController = ScrollController();
 
     AmountValue amountValue;
@@ -54,7 +55,8 @@ class TransactionDetailScreen extends StatelessWidget {
 
       status = 'Completed';
       category = argument.bookingType == 'AUTOMATIC_REPAYMENT'
-          ? const Category(id: 'automaticRepayment', name: 'Automatic repayment')
+          ? const Category(
+              id: 'automaticRepayment', name: 'Automatic repayment')
           : argument.category!;
       accountOwner = user.person.firstName;
       iban = argument.recipientIban;
@@ -99,7 +101,8 @@ class TransactionDetailScreen extends StatelessWidget {
           text: '* ',
           children: [
             TextSpan(
-              text: 'This is an automatic repayment and does not include the 5% interest rate. ',
+              text:
+                  'This is an automatic repayment and does not include the 5% interest rate. ',
               style: ClientConfig.getTextStyleScheme().bodySmallBold,
             ),
             TextSpan(
@@ -108,11 +111,15 @@ class TransactionDetailScreen extends StatelessWidget {
                   .bodySmallBold
                   .copyWith(color: ClientConfig.getColorScheme().secondary),
               recognizer: TapGestureRecognizer()
-                ..onTap = () => Navigator.of(context).pushNamed(RepaymentsScreen.routeName),
+                ..onTap = () =>
+                    Navigator.of(context).pushNamed(RepaymentsScreen.routeName),
             ),
             TextSpan(
-              text: 'to view the repayment to be debited from your reference account.',
-              style: ClientConfig.getTextStyleScheme().bodySmallRegular.copyWith(color: ClientConfig.getCustomColors().neutral900),
+              text:
+                  'to view the repayment to be debited from your reference account.',
+              style: ClientConfig.getTextStyleScheme()
+                  .bodySmallRegular
+                  .copyWith(color: ClientConfig.getCustomColors().neutral900),
             ),
           ],
           style: ClientConfig.getTextStyleScheme()
@@ -122,7 +129,8 @@ class TransactionDetailScreen extends StatelessWidget {
       );
 
       status = 'Upcoming';
-      category = const Category(id: 'automaticRepayment', name: 'Automatic repayment');
+      category =
+          const Category(id: 'automaticRepayment', name: 'Automatic repayment');
       accountOwner = user.person.firstName;
       iban = user.personAccount.iban;
 
@@ -131,7 +139,8 @@ class TransactionDetailScreen extends StatelessWidget {
           title: 'Manage repayment settings',
           subtitle: "Go to 'Repayments'",
           leftIcon: Icons.settings_outlined,
-          onTap: () => Navigator.of(context).pushNamed(RepaymentsScreen.routeName),
+          onTap: () =>
+              Navigator.of(context).pushNamed(RepaymentsScreen.routeName),
         ),
       ];
     } else {
@@ -144,7 +153,8 @@ class TransactionDetailScreen extends StatelessWidget {
           AppToolbar(
             title: "Transaction details",
             scrollController: scrollController,
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -205,7 +215,8 @@ class _Content extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           child: Column(
             children: [
               Material(
@@ -227,14 +238,19 @@ class _Content extends StatelessWidget {
                             children: [
                               AccountBalanceText(
                                 value: amountValue.value,
-                                numberStyle: ClientConfig.getTextStyleScheme().heading1,
-                                centsStyle: ClientConfig.getTextStyleScheme().heading3,
+                                numberStyle:
+                                    ClientConfig.getTextStyleScheme().heading1,
+                                centsStyle:
+                                    ClientConfig.getTextStyleScheme().heading3,
                               ),
                               if (amountExplainerWidget != null)
                                 Padding(
                                   padding: const EdgeInsets.only(left: 2),
                                   child: Text('*',
-                                      style: TextStyle(color: ClientConfig.getColorScheme().secondary, fontSize: 34)),
+                                      style: TextStyle(
+                                          color: ClientConfig.getColorScheme()
+                                              .secondary,
+                                          fontSize: 34)),
                                 ),
                               const Spacer(),
                               Container(
@@ -245,14 +261,18 @@ class _Content extends StatelessWidget {
                                 ),
                                 child: (mainIcon != null)
                                     ? Icon(mainIcon, size: 26)
-                                    : SvgPicture.asset("assets/images/currency_exchange_euro.svg"),
+                                    : SvgPicture.asset(
+                                        "assets/images/currency_exchange_euro.svg"),
                               ),
                             ],
                           ),
-                          Text(subtitle, style: ClientConfig.getTextStyleScheme().bodySmallBold),
+                          Text(subtitle,
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodySmallBold),
                           Text(
                             Format.date(dateTime, pattern: 'MMM dd, HH:mm'),
-                            style: ClientConfig.getTextStyleScheme().bodySmallRegular,
+                            style: ClientConfig.getTextStyleScheme()
+                                .bodySmallRegular,
                           ),
                         ],
                       ),
@@ -272,7 +292,8 @@ class _Content extends StatelessWidget {
                 space: 8,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Details', style: ClientConfig.getTextStyleScheme().heading4),
+                  Text('Details',
+                      style: ClientConfig.getTextStyleScheme().heading4),
                   ExpandedDetailsRow(title: 'Status', trailing: status),
                   ExpandedDetailsRow(
                     title: 'Category',
@@ -287,7 +308,9 @@ class _Content extends StatelessWidget {
                                 height: 16,
                               ),
                         const SizedBox(width: 8),
-                        Text(category.name, style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
+                        Text(category.name,
+                            style: ClientConfig.getTextStyleScheme()
+                                .bodyLargeRegularBold),
                       ],
                     ),
                   ),
@@ -297,17 +320,21 @@ class _Content extends StatelessWidget {
                       children: [
                         Text(
                           'Reference account owner',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                         ),
                         const SizedBox(width: 8),
                         Text(
                           accountOwner!,
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
                       ],
                     ),
                   if (note != null) ...[
-                    Text('Note', style: ClientConfig.getTextStyleScheme().bodyLargeRegular),
+                    Text('Note',
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
@@ -326,8 +353,10 @@ class _Content extends StatelessWidget {
         ),
         if (actions != null) ...[
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
-            child: Text('Actions', style: ClientConfig.getTextStyleScheme().heading4),
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
+            child: Text('Actions',
+                style: ClientConfig.getTextStyleScheme().heading4),
           ),
           const SizedBox(height: 8),
           ...actions!,

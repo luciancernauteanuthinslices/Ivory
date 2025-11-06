@@ -37,8 +37,9 @@ class _IvoryOptionPickerState extends State<IvoryOptionPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final initialText =
-        widget.searchFieldInitialText.isEmpty ? widget.controller.searchText : widget.searchFieldInitialText;
+    final initialText = widget.searchFieldInitialText.isEmpty
+        ? widget.controller.searchText
+        : widget.searchFieldInitialText;
 
     return CustomBuilder(
       builder: (BuildContext context, child) {
@@ -52,11 +53,13 @@ class _IvoryOptionPickerState extends State<IvoryOptionPicker> {
         children: [
           if (widget.enabledSearch) ...[
             Padding(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: IvoryTextField(
                 placeholder: widget.searchFieldPlaceholder,
                 initialText: initialText,
-                suffix: Icon(Icons.search, color: ClientConfig.getCustomColors().neutral700, size: 20),
+                suffix: Icon(Icons.search,
+                    color: ClientConfig.getCustomColors().neutral700, size: 20),
                 onChanged: (value) {
                   widget.onSearchChanged?.call(value);
 
@@ -204,7 +207,8 @@ class _BottomSheetOptionState extends State<_BottomSheetOption> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            if (_isSelected) Icon(Icons.check, color: ClientConfig.getCustomColors().success),
+            if (_isSelected)
+              Icon(Icons.check, color: ClientConfig.getCustomColors().success),
           ],
         ),
       ),

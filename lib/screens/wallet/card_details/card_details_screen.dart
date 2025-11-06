@@ -33,7 +33,9 @@ class BankCardDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return ScreenScaffold(
       body: Padding(
@@ -44,7 +46,8 @@ class BankCardDetailsScreen extends StatelessWidget {
             AppToolbar(
               title: 'View card details',
               onBackButtonPressed: () async {
-                Navigator.popUntil(context, ModalRoute.withName(HomeScreen.routeName));
+                Navigator.popUntil(
+                    context, ModalRoute.withName(HomeScreen.routeName));
                 StoreProvider.of<AppState>(context).dispatch(
                   GetBankCardCommandAction(
                     cardId: params.card.id,
@@ -59,7 +62,8 @@ class BankCardDetailsScreen extends StatelessWidget {
                 user: user,
               ),
               onDidChange: (previousViewModel, viewModel) async => {
-                if (previousViewModel is BankCardLoadingViewModel && viewModel is BankCardNoBoundedDevicesViewModel)
+                if (previousViewModel is BankCardLoadingViewModel &&
+                    viewModel is BankCardNoBoundedDevicesViewModel)
                   _showDevicePairingMissingModal(
                     context: context,
                     user: user,
@@ -98,7 +102,10 @@ class BankCardDetailsScreen extends StatelessWidget {
                         BankCardShowDetailsWidget(
                           cardDetails: viewModel.cardDetails!,
                           cardType: viewModel.bankCard?.type,
-                          cardTypeLabel: viewModel.bankCard!.type.toString().toLowerCase().contains('virtual')
+                          cardTypeLabel: viewModel.bankCard!.type
+                                  .toString()
+                                  .toLowerCase()
+                                  .contains('virtual')
                               ? 'Virtual card'
                               : 'Physical card',
                         ),
@@ -110,7 +117,8 @@ class BankCardDetailsScreen extends StatelessWidget {
                             Flexible(
                               child: Text(
                                 'This information will be displayed for 60 seconds.',
-                                style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegular,
                               ),
                             ),
                             const SizedBox(width: 16),
@@ -120,7 +128,8 @@ class BankCardDetailsScreen extends StatelessWidget {
                               alignment: Alignment.center,
                               padding: const EdgeInsets.all(0.0),
                               child: CircularCountdownProgress(
-                                controller: CountdownTimerController(duration: const Duration(seconds: 60)),
+                                controller: CountdownTimerController(
+                                    duration: const Duration(seconds: 60)),
                                 onCompleted: () {
                                   Navigator.pop(context);
                                   StoreProvider.of<AppState>(context).dispatch(
@@ -141,7 +150,8 @@ class BankCardDetailsScreen extends StatelessWidget {
                           width: double.infinity,
                           height: 48,
                           child: Button(
-                            disabledColor: ClientConfig.getCustomColors().neutral300,
+                            disabledColor:
+                                ClientConfig.getCustomColors().neutral300,
                             color: ClientConfig.getColorScheme().tertiary,
                             textColor: ClientConfig.getColorScheme().surface,
                             text: 'Back to "Card"',
@@ -206,7 +216,8 @@ class BankCardDetailsScreen extends StatelessWidget {
               text: 'Go to “Device pairing”',
               onPressed: () async {
                 devicePairedBottomSheetConfirmed = true;
-                Navigator.pushNamed(context, SettingsDevicePairingScreen.routeName);
+                Navigator.pushNamed(
+                    context, SettingsDevicePairingScreen.routeName);
               },
             ),
           ),

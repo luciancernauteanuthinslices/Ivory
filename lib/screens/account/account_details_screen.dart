@@ -63,7 +63,8 @@ class AccountDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenScaffold(
       body: Padding(
-        padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -87,76 +88,76 @@ class AccountDetailsScreen extends StatelessWidget {
                 ),
               ),
               child: StoreConnector<AppState, AccountSummaryViewModel>(
-                onInit: (store) {
-                  store.dispatch(GetAccountSummaryCommandAction(forceAccountSummaryReload: false));
-                },
-                converter: (store) =>
-                    AccountSummaryPresenter.presentAccountSummary(accountSummaryState: store.state.accountSummaryState),
-                builder: (context, viewModel) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'IBAN',
-                                  style:
-                                  ClientConfig
-                                      .getTextStyleScheme()
-                                      .labelSmall,
-                                ),
-                                const SizedBox(height: 4),
-                               ibanFromViewModel(viewModel),
-                              ],
-                            ),
-                            CopyContentButton(
-                              onPressed: () {
-                                inspect(viewModel.accountSummary?.iban ?? '');
-                                showAlertDialog(context, viewModel.accountSummary?.iban ?? '');
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'BIC',
-                                  style:
-                                  ClientConfig
-                                      .getTextStyleScheme()
-                                      .labelSmall,
-                                ),
-                                const SizedBox(height: 4),
-                               bicFromViewModel(viewModel),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            CopyContentButton(
-                              onPressed: () {
-                                inspect(viewModel.accountSummary?.bic ?? '');
-                                showAlertDialog(context, viewModel.accountSummary?.bic ?? '');
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                }),
+                  onInit: (store) {
+                    store.dispatch(GetAccountSummaryCommandAction(
+                        forceAccountSummaryReload: false));
+                  },
+                  converter: (store) =>
+                      AccountSummaryPresenter.presentAccountSummary(
+                          accountSummaryState: store.state.accountSummaryState),
+                  builder: (context, viewModel) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'IBAN',
+                                    style: ClientConfig.getTextStyleScheme()
+                                        .labelSmall,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  ibanFromViewModel(viewModel),
+                                ],
+                              ),
+                              CopyContentButton(
+                                onPressed: () {
+                                  inspect(viewModel.accountSummary?.iban ?? '');
+                                  showAlertDialog(context,
+                                      viewModel.accountSummary?.iban ?? '');
+                                },
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'BIC',
+                                    style: ClientConfig.getTextStyleScheme()
+                                        .labelSmall,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  bicFromViewModel(viewModel),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              CopyContentButton(
+                                onPressed: () {
+                                  inspect(viewModel.accountSummary?.bic ?? '');
+                                  showAlertDialog(context,
+                                      viewModel.accountSummary?.bic ?? '');
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
             ),
           ],
         ),
@@ -165,29 +166,25 @@ class AccountDetailsScreen extends StatelessWidget {
   }
 
   Widget ibanFromViewModel(AccountSummaryViewModel viewModel) {
-    if(viewModel is AccountSummaryFetchedViewModel) {
+    if (viewModel is AccountSummaryFetchedViewModel) {
       String iban = viewModel.accountSummary?.iban ?? '';
       iban = Format.iban(iban);
 
       return Text(
         iban,
-        style: ClientConfig
-            .getTextStyleScheme()
-            .bodyLargeRegular,
+        style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
       );
     }
     return const Text(' ');
   }
 
   Widget bicFromViewModel(AccountSummaryViewModel viewModel) {
-    if(viewModel is AccountSummaryFetchedViewModel) {
+    if (viewModel is AccountSummaryFetchedViewModel) {
       String bic = viewModel.accountSummary?.bic ?? '';
 
       return Text(
         bic,
-        style: ClientConfig
-            .getTextStyleScheme()
-            .bodyLargeRegular,
+        style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
       );
     }
     return const Text(' ');

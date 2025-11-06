@@ -46,12 +46,14 @@ class TransferSuccessfulScreen extends StatelessWidget {
         children: [
           AppToolbar(
             backButtonEnabled: false,
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           Expanded(
             child: ScrollableScreenContainer(
               child: Padding(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -61,33 +63,42 @@ class TransferSuccessfulScreen extends StatelessWidget {
                       converter: (store) => TransferPresenter.presentTransfer(
                         transferState: store.state.transferState,
                         personAccountState: store.state.personAccountState,
-                        referenceAccountState: store.state.referenceAccountState,
+                        referenceAccountState:
+                            store.state.referenceAccountState,
                       ),
-                      builder: (context, viewModel) => viewModel is TransferConfirmedViewModel
-                          ? RichText(
-                              text: TextSpan(
-                                text: "You have successfully transferred ",
-                                style: regularFont,
-                                children: [
-                                  TextSpan(
-                                    text: Format.euro(viewModel.amount, digits: 2),
-                                    style: boldFont,
-                                  ),
-                                  TextSpan(
-                                    text: " from your ",
+                      builder: (context, viewModel) =>
+                          viewModel is TransferConfirmedViewModel
+                              ? RichText(
+                                  text: TextSpan(
+                                    text: "You have successfully transferred ",
                                     style: regularFont,
+                                    children: [
+                                      TextSpan(
+                                        text: Format.euro(viewModel.amount,
+                                            digits: 2),
+                                        style: boldFont,
+                                      ),
+                                      TextSpan(
+                                        text: " from your ",
+                                        style: regularFont,
+                                      ),
+                                      TextSpan(
+                                          text: "Ivory account",
+                                          style: boldFont),
+                                      TextSpan(
+                                          text: " to your ",
+                                          style: regularFont),
+                                      TextSpan(
+                                          text: "Reference account",
+                                          style: boldFont),
+                                      TextSpan(
+                                        text: ".",
+                                        style: regularFont,
+                                      ),
+                                    ],
                                   ),
-                                  TextSpan(text: "Ivory account", style: boldFont),
-                                  TextSpan(text: " to your ", style: regularFont),
-                                  TextSpan(text: "Reference account", style: boldFont),
-                                  TextSpan(
-                                    text: ".",
-                                    style: regularFont,
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Container(),
+                                )
+                              : Container(),
                     ),
                     const SizedBox(height: 16),
                     RichText(
@@ -97,7 +108,8 @@ class TransferSuccessfulScreen extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: "Transactions ",
-                            style: boldFont.copyWith(color: ClientConfig.getColorScheme().secondary),
+                            style: boldFont.copyWith(
+                                color: ClientConfig.getColorScheme().secondary),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Navigator.pushNamedAndRemoveUntil(
                                     context,
@@ -135,12 +147,14 @@ class TransferSuccessfulScreen extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+            padding:
+                ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
             child: Button(
               color: ClientConfig.getColorScheme().tertiary,
               text: "Back to \"Home\"",
               textColor: ClientConfig.getColorScheme().surface,
-              onPressed: () => Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false),
+              onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                  context, HomeScreen.routeName, (route) => false),
             ),
           ),
           const SizedBox(height: 16),

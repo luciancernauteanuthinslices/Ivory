@@ -22,7 +22,8 @@ class OnboardingScoringWaitingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingIdentityVerificationViewModel>(
       converter: (store) => OnboardingIdentityVerificationPresenter.present(
-        identityVerificationState: store.state.onboardingIdentityVerificationState,
+        identityVerificationState:
+            store.state.onboardingIdentityVerificationState,
         notificationState: store.state.notificationState,
       ),
       onWillChange: (previousViewModel, newViewModel) {
@@ -52,13 +53,15 @@ class OnboardingScoringWaitingScreen extends StatelessWidget {
             AppToolbar(
               richTextTitle: StepRichTextTitle(step: 6, totalSteps: 7),
               actions: const [AppbarLogo()],
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
             ),
             AnimatedLinearProgressIndicator.step(current: 6, totalSteps: 7),
             const SizedBox(height: 16),
             Expanded(
               child: ScrollableScreenContainer(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

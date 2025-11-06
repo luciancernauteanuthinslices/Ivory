@@ -18,10 +18,12 @@ class BankCardDetailsChoosePinScreen extends StatefulWidget {
   const BankCardDetailsChoosePinScreen({super.key});
 
   @override
-  State<BankCardDetailsChoosePinScreen> createState() => _BankCardDetailsChoosePinScreenState();
+  State<BankCardDetailsChoosePinScreen> createState() =>
+      _BankCardDetailsChoosePinScreenState();
 }
 
-class _BankCardDetailsChoosePinScreenState extends State<BankCardDetailsChoosePinScreen> {
+class _BankCardDetailsChoosePinScreenState
+    extends State<BankCardDetailsChoosePinScreen> {
   late bool pinDiffersBirthDate = true;
   late bool pinDiffersPostalCode = true;
   late bool pinIsNotASequence = true;
@@ -31,8 +33,9 @@ class _BankCardDetailsChoosePinScreenState extends State<BankCardDetailsChoosePi
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
       converter: (store) => BankCardPresenter.presentBankCard(
@@ -53,11 +56,13 @@ class _BankCardDetailsChoosePinScreenState extends State<BankCardDetailsChoosePi
                     ),
                     TextSpan(
                       text: 'out of 4',
-                      style: TextStyle(color: ClientConfig.getCustomColors().neutral700),
+                      style: TextStyle(
+                          color: ClientConfig.getCustomColors().neutral700),
                     ),
                   ],
                 )),
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 backButtonEnabled: true,
                 onBackButtonPressed: () {
                   Navigator.pop(context);
@@ -72,7 +77,8 @@ class _BankCardDetailsChoosePinScreenState extends State<BankCardDetailsChoosePi
                 height: 16,
               ),
               Padding(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -121,14 +127,16 @@ class _BankCardDetailsChoosePinScreenState extends State<BankCardDetailsChoosePi
               if (!completed) const Spacer(),
               if (!completed)
                 Padding(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenHorizontalPadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Your PIN should not contain:',
                         textAlign: TextAlign.left,
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                        style: ClientConfig.getTextStyleScheme()
+                            .bodyLargeRegularBold,
                       ),
                       const SizedBox(height: 10),
                       PinValidityRule(
@@ -305,8 +313,9 @@ class PinValidityRule extends StatelessWidget {
         ),
         Text(
           text,
-          style:
-              ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(color: isValid ? validColor : invalidColor),
+          style: ClientConfig.getTextStyleScheme()
+              .bodyLargeRegular
+              .copyWith(color: isValid ? validColor : invalidColor),
         ),
       ],
     );

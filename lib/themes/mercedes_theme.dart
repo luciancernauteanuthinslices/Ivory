@@ -11,7 +11,8 @@ class MercedesTheme {
     outline: Colors.black, //ALSO USED TO CALCULATE GRADIENT,
   );
 
-  static ClientUiSettings clientUiSettings = DefaultTheme.clientUiSettings.copyWith(
+  static ClientUiSettings clientUiSettings =
+      DefaultTheme.clientUiSettings.copyWith(
     colorscheme: colorScheme,
     cardType: CardType.mastercard,
     welcomeVideoPath: "assets/videos/mercedes_welcome_video.mp4",

@@ -9,7 +9,8 @@ void main() {
     final state = CitySuggestionsInitialState();
 
     // when
-    final viewModel = CitySuggestionsPresenter.present(citySuggestionsState: state);
+    final viewModel =
+        CitySuggestionsPresenter.present(citySuggestionsState: state);
 
     // then
     expect(viewModel, isA<CitySuggestionsInitialViewModel>());
@@ -20,7 +21,8 @@ void main() {
     final state = CitySuggestionsLoadingState();
 
     // when
-    final viewModel = CitySuggestionsPresenter.present(citySuggestionsState: state);
+    final viewModel =
+        CitySuggestionsPresenter.present(citySuggestionsState: state);
 
     // then
     expect(viewModel, isA<CitySuggestionsLoadingViewModel>());
@@ -31,41 +33,53 @@ void main() {
     final state = CitySuggestionsFetchedState(cities: const ["city1", "city2"]);
 
     // when
-    final viewModel = CitySuggestionsPresenter.present(citySuggestionsState: state);
+    final viewModel =
+        CitySuggestionsPresenter.present(citySuggestionsState: state);
 
     // then
     expect(viewModel, isA<CitySuggestionsFetchedViewModel>());
   });
 
-  test("When state is fetched and searchTerm is not null it should return fetched view model with searchTerm", () {
+  test(
+      "When state is fetched and searchTerm is not null it should return fetched view model with searchTerm",
+      () {
     // given
-    final state = CitySuggestionsFetchedState(cities: const ["city1", "city2"], searchTerm: "searchTerm");
+    final state = CitySuggestionsFetchedState(
+        cities: const ["city1", "city2"], searchTerm: "searchTerm");
 
     // when
-    final viewModel = CitySuggestionsPresenter.present(citySuggestionsState: state);
+    final viewModel =
+        CitySuggestionsPresenter.present(citySuggestionsState: state);
 
     // then
     expect(viewModel, isA<CitySuggestionsFetchedViewModel>());
-    expect((viewModel as CitySuggestionsFetchedViewModel).searchTerm, "searchTerm");
+    expect((viewModel as CitySuggestionsFetchedViewModel).searchTerm,
+        "searchTerm");
   });
 
   test("when state is error it should return error view model", () {
     // given
-    final state = CitySuggestionsErrorState(errorType: CitySuggestionsErrorType.unknown);
+    final state =
+        CitySuggestionsErrorState(errorType: CitySuggestionsErrorType.unknown);
 
     // when
-    final viewModel = CitySuggestionsPresenter.present(citySuggestionsState: state);
+    final viewModel =
+        CitySuggestionsPresenter.present(citySuggestionsState: state);
 
     // then
     expect(viewModel, isA<CitySuggestionsErrorViewModel>());
   });
 
-  test("When state is error and searchTerm is not null it should return error view model with searchTerm", () {
+  test(
+      "When state is error and searchTerm is not null it should return error view model with searchTerm",
+      () {
     // given
-    final state = CitySuggestionsErrorState(errorType: CitySuggestionsErrorType.unknown, searchTerm: "search");
+    final state = CitySuggestionsErrorState(
+        errorType: CitySuggestionsErrorType.unknown, searchTerm: "search");
 
     // when
-    final viewModel = CitySuggestionsPresenter.present(citySuggestionsState: state);
+    final viewModel =
+        CitySuggestionsPresenter.present(citySuggestionsState: state);
 
     // then
     expect(viewModel, isA<CitySuggestionsErrorViewModel>());

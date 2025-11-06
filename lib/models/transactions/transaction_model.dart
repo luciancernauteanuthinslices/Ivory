@@ -43,7 +43,8 @@ class Transaction {
   Transaction.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     bookingType = json['booking_type'];
-    amount = json['amount'] != null ? AmountValue.fromJson(json['amount']) : null;
+    amount =
+        json['amount'] != null ? AmountValue.fromJson(json['amount']) : null;
     description = json['description'];
     endToEndId = json['end_to_end_id'] ?? "ID";
     recipientBic = json['recipient_bic'];
@@ -56,7 +57,8 @@ class Transaction {
     recordedAt = DateTime.parse(json['recorded_at']).toLocal();
     senderIban = json['sender_iban'];
     senderName = json['sender_name'] ?? "Bank account";
-    category = json['category'] != null ? Category.fromJson(json['category']) : null;
+    category =
+        json['category'] != null ? Category.fromJson(json['category']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -145,7 +147,8 @@ class TransactionListFilter {
 
     if (categories != null) {
       if (categories!.isNotEmpty) {
-        List<String> categoryIds = categories!.map((category) => category.id).toList();
+        List<String> categoryIds =
+            categories!.map((category) => category.id).toList();
         map["filter[category_id]"] = '[${categoryIds.join(",")}]';
       }
     }

@@ -69,7 +69,8 @@ class FakeDeviceBindingService extends DeviceBindingService {
     required User user,
     required CreateDeviceBindingRequest reqBody,
   }) async {
-    return const CreateDeviceBindingSuccessResponse(deviceId: 'deviceId', deviceName: 'deviceName');
+    return const CreateDeviceBindingSuccessResponse(
+        deviceId: 'deviceId', deviceName: 'deviceName');
   }
 
   @override
@@ -117,14 +118,16 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required User user,
     required CreateDeviceBindingRequest reqBody,
   }) async {
-    return const DeviceBindingServiceErrorResponse(errorType: DeviceBindingServiceErrorType.deviceBindingFailed);
+    return const DeviceBindingServiceErrorResponse(
+        errorType: DeviceBindingServiceErrorType.deviceBindingFailed);
   }
 
   @override
   Future<DeviceBindingServiceResponse> getDeviceBinding({
     required User user,
   }) async {
-    return const DeviceBindingServiceErrorResponse(errorType: DeviceBindingServiceErrorType.getDeviceBindingFailed);
+    return const DeviceBindingServiceErrorResponse(
+        errorType: DeviceBindingServiceErrorType.getDeviceBindingFailed);
   }
 
   @override
@@ -135,7 +138,8 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required String signature,
   }) async {
     return const DeviceBindingServiceErrorResponse(
-        errorType: DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed);
+        errorType:
+            DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed);
   }
 
   @override
@@ -143,7 +147,8 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required User user,
     required CreateRestrictedKeyRequest reqBody,
   }) async {
-    return const DeviceBindingServiceErrorResponse(errorType: DeviceBindingServiceErrorType.createRestrictedKeyFailed);
+    return const DeviceBindingServiceErrorResponse(
+        errorType: DeviceBindingServiceErrorType.createRestrictedKeyFailed);
   }
 
   @override
@@ -187,11 +192,14 @@ class FakeDeviceService extends DeviceService {
 
   @override
   Future<int?> getDevicePairingTriedAt() async {
-    return DateTime.now().subtract(const Duration(minutes: 10)).millisecondsSinceEpoch;
+    return DateTime.now()
+        .subtract(const Duration(minutes: 10))
+        .millisecondsSinceEpoch;
   }
 
   @override
-  String? generateSignature({required String privateKey, required String stringToSign}) {
+  String? generateSignature(
+      {required String privateKey, required String stringToSign}) {
     return 'signature';
   }
 
@@ -269,7 +277,8 @@ class FakeFailingDeviceService extends DeviceService {
   }
 
   @override
-  String? generateSignature({required String privateKey, required String stringToSign}) {
+  String? generateSignature(
+      {required String privateKey, required String stringToSign}) {
     return null;
   }
 

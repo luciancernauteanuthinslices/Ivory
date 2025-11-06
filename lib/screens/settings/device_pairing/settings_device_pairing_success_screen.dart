@@ -32,11 +32,13 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
               children: [
                 AppToolbar(
                   backButtonEnabled: false,
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenHorizontalPadding,
                 ),
                 Expanded(
                   child: Padding(
-                    padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                    padding: ClientConfig.getCustomClientUiSettings()
+                        .defaultScreenPadding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -50,14 +52,17 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
                         ),
                         RichText(
                           text: TextSpan(
-                            style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                            style: ClientConfig.getTextStyleScheme()
+                                .bodyLargeRegular,
                             children: [
                               const TextSpan(text: 'Your '),
                               TextSpan(
                                   text:
                                       '${viewModel.thisDevice!.deviceName} (ID: ${viewModel.thisDevice!.deviceId.substring(0, 13)}) ',
-                                  style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold),
-                              const TextSpan(text: 'has been successfully paired.'),
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .bodyLargeRegularBold),
+                              const TextSpan(
+                                  text: 'has been successfully paired.'),
                             ],
                           ),
                         ),
@@ -70,11 +75,13 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
                               SvgAssetLoader(
                                 'assets/images/device_pairing.svg',
                                 colorMapper: IvoryColorMapper(
-                                  baseColor: ClientConfig.getColorScheme().secondary,
+                                  baseColor:
+                                      ClientConfig.getColorScheme().secondary,
                                 ),
                               ),
                             ),
-                            childPosition: BadgePosition.topEnd(top: -32, end: 16),
+                            childPosition:
+                                BadgePosition.topEnd(top: -32, end: 16),
                             isSuccess: true,
                           ),
                         ),
@@ -86,17 +93,19 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
                           height: 48,
                           child: Button(
                             text: 'Back to “Device pairing”',
-                            disabledColor: ClientConfig.getCustomColors().neutral300,
+                            disabledColor:
+                                ClientConfig.getCustomColors().neutral300,
                             color: ClientConfig.getColorScheme().tertiary,
                             textColor: ClientConfig.getColorScheme().surface,
                             onPressed: () {
                               Navigator.popUntil(
-                                  context,
-                                  ModalRoute.withName(
-                                    SettingsDevicePairingScreen.routeName,
+                                context,
+                                ModalRoute.withName(
+                                  SettingsDevicePairingScreen.routeName,
                                 ),
                               );
-                              StoreProvider.of<AppState>(context).dispatch(FetchBoundDevicesCommandAction());
+                              StoreProvider.of<AppState>(context)
+                                  .dispatch(FetchBoundDevicesCommandAction());
                             },
                           ),
                         ),

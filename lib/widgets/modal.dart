@@ -32,7 +32,8 @@ Future<dynamic> showBottomModal({
       if (!useScrollableChild) {
         return SizedBox(
           height: (useSafeArea && statusbarVisibilityForTallModal)
-              ? MediaQuery.of(context).size.height - MediaQuery.of(context).viewPadding.top
+              ? MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).viewPadding.top
               : null,
           child: _BottomModalSheetContent(
             content: content,
@@ -47,14 +48,17 @@ Future<dynamic> showBottomModal({
 
       return SizedBox(
         height: (useSafeArea && statusbarVisibilityForTallModal)
-            ? MediaQuery.of(context).size.height - MediaQuery.of(context).viewPadding.top
+            ? MediaQuery.of(context).size.height -
+                MediaQuery.of(context).viewPadding.top
             : null,
         child: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(
             addContentPadding ? 24 : 0,
             0,
             addContentPadding ? 24 : 0,
-            MediaQuery.of(context).padding.bottom + MediaQuery.of(context).viewInsets.bottom + 16,
+            MediaQuery.of(context).padding.bottom +
+                MediaQuery.of(context).viewInsets.bottom +
+                16,
           ),
           child: _BottomModalSheetContent(
             content: content,
@@ -106,7 +110,9 @@ class _BottomModalSheetContent extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Padding(
-          padding: addContentPadding ? EdgeInsets.zero : const EdgeInsets.symmetric(horizontal: 24),
+          padding: addContentPadding
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(horizontal: 24),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

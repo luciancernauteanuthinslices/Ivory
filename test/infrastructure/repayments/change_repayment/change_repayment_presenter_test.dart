@@ -55,7 +55,8 @@ void main() {
 
       // then
       expect(viewModel, isA<CardApplicationFetchedViewModel>());
-      expect((viewModel as CardApplicationFetchedViewModel).cardApplication, cardApplication);
+      expect((viewModel as CardApplicationFetchedViewModel).cardApplication,
+          cardApplication);
     });
 
     test('presents updated view model when state is updated', () {
@@ -69,7 +70,8 @@ void main() {
 
       // then
       expect(viewModel, isA<CardApplicationUpdatedViewModel>());
-      expect((viewModel as CardApplicationUpdatedViewModel).cardApplication, cardApplication);
+      expect((viewModel as CardApplicationUpdatedViewModel).cardApplication,
+          cardApplication);
     });
   });
 }

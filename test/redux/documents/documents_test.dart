@@ -17,7 +17,8 @@ import 'documents_mocks.dart';
 
 void main() {
   final user = MockUser();
-  final authentionInitializedState = AuthenticationInitializedState(user, AuthType.onboarding);
+  final authentionInitializedState =
+      AuthenticationInitializedState(user, AuthType.onboarding);
 
   const document1 = Document(
     id: "documentId1",
@@ -34,7 +35,9 @@ void main() {
   );
 
   group("Fetching documents", () {
-    test("When documents are fetched with succes then the state should change to fetched", () async {
+    test(
+        "When documents are fetched with succes then the state should change to fetched",
+        () async {
       // given
       final store = createTestStore(
         documentsService: FakeDocumentsService(),
@@ -43,7 +46,8 @@ void main() {
           documentsState: DocumentsInitialLoadingState(),
         ),
       );
-      final appState = store.onChange.firstWhere((element) => element.documentsState is DocumentsFetchedState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.documentsState is DocumentsFetchedState);
 
       // when
       store.dispatch(GetDocumentsCommandAction());
@@ -52,7 +56,9 @@ void main() {
       expect((await appState).documentsState, isA<DocumentsFetchedState>());
     });
 
-    test("When documents are fetched with error then the state should change to error", () async {
+    test(
+        "When documents are fetched with error then the state should change to error",
+        () async {
       // given
       final store = createTestStore(
         documentsService: FakeFailingDocumentsService(),
@@ -61,7 +67,8 @@ void main() {
           documentsState: DocumentsInitialLoadingState(),
         ),
       );
-      final appState = store.onChange.firstWhere((element) => element.documentsState is DocumentsErrorState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.documentsState is DocumentsErrorState);
 
       // when
       store.dispatch(GetDocumentsCommandAction());
@@ -70,7 +77,8 @@ void main() {
       expect((await appState).documentsState, isA<DocumentsErrorState>());
     });
 
-    test("When documents are fetched but the list is empty it should retry", () async {
+    test("When documents are fetched but the list is empty it should retry",
+        () async {
       // given
       int getDocumentsAttempts = 0;
       final documentsService = MockDocumentsService();
@@ -82,15 +90,18 @@ void main() {
           documentsState: DocumentsInitialLoadingState(),
         ),
       );
-      final appState = store.onChange.firstWhere((element) => element.documentsState is DocumentsFetchedState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.documentsState is DocumentsFetchedState);
 
-      when(documentsService.getPostboxDocuments(user: anyNamed('user'))).thenAnswer(
+      when(documentsService.getPostboxDocuments(user: anyNamed('user')))
+          .thenAnswer(
         (_) async {
           getDocumentsAttempts++;
           if (getDocumentsAttempts == 1) {
             return GetDocumentsSuccessResponse(documents: const []);
           } else {
-            return GetDocumentsSuccessResponse(documents: const [document1, document2]);
+            return GetDocumentsSuccessResponse(
+                documents: const [document1, document2]);
           }
         },
       );
@@ -103,7 +114,9 @@ void main() {
       expect(getDocumentsAttempts, 2);
     });
 
-    test("When documents are fetched but the list is empty it should retry and fail", () async {
+    test(
+        "When documents are fetched but the list is empty it should retry and fail",
+        () async {
       // given
       int getDocumentsAttempts = 0;
       final documentsService = MockDocumentsService();
@@ -115,9 +128,11 @@ void main() {
           documentsState: DocumentsInitialLoadingState(),
         ),
       );
-      final appState = store.onChange.firstWhere((element) => element.documentsState is DocumentsErrorState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.documentsState is DocumentsErrorState);
 
-      when(documentsService.getPostboxDocuments(user: anyNamed('user'))).thenAnswer(
+      when(documentsService.getPostboxDocuments(user: anyNamed('user')))
+          .thenAnswer(
         (_) async {
           getDocumentsAttempts++;
           return GetDocumentsSuccessResponse(documents: const []);
@@ -125,15 +140,19 @@ void main() {
       );
 
       // when
-      store.dispatch(GetDocumentsCommandAction(retryDelay: const Duration(milliseconds: 1)));
+      store.dispatch(GetDocumentsCommandAction(
+          retryDelay: const Duration(milliseconds: 1)));
 
       // then
       expect((await appState).documentsState, isA<DocumentsErrorState>());
-      expect(((await appState).documentsState as DocumentsErrorState).errorType, DocumentsErrorType.emptyList);
+      expect(((await appState).documentsState as DocumentsErrorState).errorType,
+          DocumentsErrorType.emptyList);
       expect(getDocumentsAttempts, 51);
     });
 
-    test("When less than two documents are fetched, retry until two or more are fetched", () async {
+    test(
+        "When less than two documents are fetched, retry until two or more are fetched",
+        () async {
       // given
       int getDocumentsAttempts = 0;
       final documentsService = MockDocumentsService();
@@ -145,9 +164,11 @@ void main() {
           documentsState: DocumentsInitialLoadingState(),
         ),
       );
-      final appState = store.onChange.firstWhere((element) => element.documentsState is DocumentsFetchedState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.documentsState is DocumentsFetchedState);
 
-      when(documentsService.getPostboxDocuments(user: anyNamed('user'))).thenAnswer(
+      when(documentsService.getPostboxDocuments(user: anyNamed('user')))
+          .thenAnswer(
         (_) async {
           getDocumentsAttempts++;
           if (getDocumentsAttempts == 1) {
@@ -155,7 +176,8 @@ void main() {
           } else if (getDocumentsAttempts == 2) {
             return GetDocumentsSuccessResponse(documents: const [document1]);
           } else {
-            return GetDocumentsSuccessResponse(documents: const [document1, document2]);
+            return GetDocumentsSuccessResponse(
+                documents: const [document1, document2]);
           }
         },
       );
@@ -170,7 +192,9 @@ void main() {
   });
 
   group("Downloading documents", () {
-    test("When a document has started downloading, the state should change to loading", () async {
+    test(
+        "When a document has started downloading, the state should change to loading",
+        () async {
       // given
       final store = createTestStore(
         fileSaverService: FakeFileSaverService(),
@@ -180,8 +204,8 @@ void main() {
           downloadDocumentState: DownloadDocumentInitialState(),
         ),
       );
-      final appState =
-          store.onChange.firstWhere((element) => element.downloadDocumentState is DocumentDownloadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.downloadDocumentState is DocumentDownloadingState);
 
       // when
       store.dispatch(DownloadDocumentCommandAction(
@@ -190,10 +214,13 @@ void main() {
       ));
 
       // then
-      expect((await appState).downloadDocumentState, isA<DocumentDownloadingState>());
+      expect((await appState).downloadDocumentState,
+          isA<DocumentDownloadingState>());
     });
 
-    test("When a document has been downloaded, the state should change to downloaded", () async {
+    test(
+        "When a document has been downloaded, the state should change to downloaded",
+        () async {
       // given
       final store = createTestStore(
         fileSaverService: FakeFileSaverService(),
@@ -203,7 +230,8 @@ void main() {
           downloadDocumentState: DownloadDocumentInitialState(),
         ),
       );
-      final appState = store.onChange.firstWhere((element) => element.downloadDocumentState is DocumentDownloadedState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.downloadDocumentState is DocumentDownloadedState);
 
       // when
       store.dispatch(DownloadDocumentCommandAction(
@@ -212,10 +240,13 @@ void main() {
       ));
 
       // then
-      expect((await appState).downloadDocumentState, isA<DocumentDownloadedState>());
+      expect((await appState).downloadDocumentState,
+          isA<DocumentDownloadedState>());
     });
 
-    test("When a document has failed downloading, the state should change to failed", () async {
+    test(
+        "When a document has failed downloading, the state should change to failed",
+        () async {
       // given
       final store = createTestStore(
         fileSaverService: FakeFileSaverService(),
@@ -225,8 +256,8 @@ void main() {
           downloadDocumentState: DownloadDocumentInitialState(),
         ),
       );
-      final appState =
-          store.onChange.firstWhere((element) => element.downloadDocumentState is DocumentDownloadErrorState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.downloadDocumentState is DocumentDownloadErrorState);
 
       // when
       store.dispatch(DownloadDocumentCommandAction(
@@ -235,12 +266,14 @@ void main() {
       ));
 
       // then
-      expect((await appState).downloadDocumentState, isA<DocumentDownloadErrorState>());
+      expect((await appState).downloadDocumentState,
+          isA<DocumentDownloadErrorState>());
     });
   });
 
   group("Confirming documents", () {
-    test("When confirming documents, the state should change loading", () async {
+    test("When confirming documents, the state should change loading",
+        () async {
       // given
       final store = createTestStore(
         documentsService: FakeDocumentsService(),
@@ -249,17 +282,21 @@ void main() {
           confirmDocumentsState: ConfirmDocumentsInitialState(),
         ),
       );
-      final appState =
-          store.onChange.firstWhere((element) => element.confirmDocumentsState is ConfirmDocumentsLoadingState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.confirmDocumentsState is ConfirmDocumentsLoadingState);
 
       // when
-      store.dispatch(ConfirmDocumentsCommandAction(documents: [document1, document2]));
+      store.dispatch(
+          ConfirmDocumentsCommandAction(documents: [document1, document2]));
 
       // then
-      expect((await appState).confirmDocumentsState, isA<ConfirmDocumentsLoadingState>());
+      expect((await appState).confirmDocumentsState,
+          isA<ConfirmDocumentsLoadingState>());
     });
 
-    test("When documents are confirmed then the state should change to confirmed", () async {
+    test(
+        "When documents are confirmed then the state should change to confirmed",
+        () async {
       // given
       final store = createTestStore(
         documentsService: FakeDocumentsService(),
@@ -268,16 +305,21 @@ void main() {
           confirmDocumentsState: ConfirmDocumentsInitialState(),
         ),
       );
-      final appState = store.onChange.firstWhere((element) => element.confirmDocumentsState is ConfirmedDocumentsState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.confirmDocumentsState is ConfirmedDocumentsState);
 
       // when
-      store.dispatch(ConfirmDocumentsCommandAction(documents: [document1, document2]));
+      store.dispatch(
+          ConfirmDocumentsCommandAction(documents: [document1, document2]));
 
       // then
-      expect((await appState).confirmDocumentsState, isA<ConfirmedDocumentsState>());
+      expect((await appState).confirmDocumentsState,
+          isA<ConfirmedDocumentsState>());
     });
 
-    test("When documents failed confirming then the state should change to error", () async {
+    test(
+        "When documents failed confirming then the state should change to error",
+        () async {
       // given
       final store = createTestStore(
         documentsService: FakeFailingDocumentsService(),
@@ -286,14 +328,16 @@ void main() {
           confirmDocumentsState: ConfirmDocumentsInitialState(),
         ),
       );
-      final appState =
-          store.onChange.firstWhere((element) => element.confirmDocumentsState is ConfirmDocumentsErrorState);
+      final appState = store.onChange.firstWhere((element) =>
+          element.confirmDocumentsState is ConfirmDocumentsErrorState);
 
       // when
-      store.dispatch(ConfirmDocumentsCommandAction(documents: [document1, document2]));
+      store.dispatch(
+          ConfirmDocumentsCommandAction(documents: [document1, document2]));
 
       // then
-      expect((await appState).confirmDocumentsState, isA<ConfirmDocumentsErrorState>());
+      expect((await appState).confirmDocumentsState,
+          isA<ConfirmDocumentsErrorState>());
     });
   });
 }

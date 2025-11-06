@@ -23,10 +23,12 @@ class OnboardingAllowNotificationsScreen extends StatefulWidget {
   const OnboardingAllowNotificationsScreen({super.key});
 
   @override
-  State<OnboardingAllowNotificationsScreen> createState() => _OnboardingAllowNotificationsScreenState();
+  State<OnboardingAllowNotificationsScreen> createState() =>
+      _OnboardingAllowNotificationsScreenState();
 }
 
-class _OnboardingAllowNotificationsScreenState extends State<OnboardingAllowNotificationsScreen>
+class _OnboardingAllowNotificationsScreenState
+    extends State<OnboardingAllowNotificationsScreen>
     with WidgetsBindingObserver {
   @override
   void initState() {
@@ -44,27 +46,33 @@ class _OnboardingAllowNotificationsScreenState extends State<OnboardingAllowNoti
   void didChangeAppLifecycleState(AppLifecycleState state) {
     final currentRoute = IvoryApp.generalRouteObserver.routeStack.lastOrNull;
 
-    if (mounted && state == AppLifecycleState.resumed && currentRoute == OnboardingAllowNotificationsScreen.routeName) {
-      StoreProvider.of<AppState>(context).dispatch(CheckPushNotificationPermissionCommandAction());
+    if (mounted &&
+        state == AppLifecycleState.resumed &&
+        currentRoute == OnboardingAllowNotificationsScreen.routeName) {
+      StoreProvider.of<AppState>(context)
+          .dispatch(CheckPushNotificationPermissionCommandAction());
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingSignupViewModel>(
-      converter: (store) => OnboardingSignupPresenter.present(signupState: store.state.onboardingSignupState),
+      converter: (store) => OnboardingSignupPresenter.present(
+          signupState: store.state.onboardingSignupState),
       builder: (context, viewModel) => ScreenScaffold(
         body: Column(
           children: [
             AppToolbar(
               richTextTitle: StepRichTextTitle(step: 4, totalSteps: 5),
               actions: const [AppbarLogo()],
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
             ),
             AnimatedLinearProgressIndicator.step(current: 4, totalSteps: 5),
             Expanded(
               child: ScrollableScreenContainer(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: viewModel.signupAttributes.notificationsAllowed == true
                     ? const _AllowedPermissionContent()
                     : _RequestNotificationPermissionContent(viewModel),
@@ -98,7 +106,8 @@ class _RequestNotificationPermissionContent extends StatelessWidget {
             children: [
               const TextSpan(text: "We send "),
               TextSpan(
-                text: "push notifications for every transaction and account activity ",
+                text:
+                    "push notifications for every transaction and account activity ",
                 style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
               ),
               const TextSpan(
@@ -130,7 +139,8 @@ class _RequestNotificationPermissionContent extends StatelessWidget {
           text: "Not right now",
           borderWidth: 2,
           onPressed: () {
-            Navigator.pushNamed(context, OnboardingTermConditionsScreen.routeName);
+            Navigator.pushNamed(
+                context, OnboardingTermConditionsScreen.routeName);
           },
         ),
         const SizedBox(height: 16),
@@ -138,13 +148,15 @@ class _RequestNotificationPermissionContent extends StatelessWidget {
             ? PrimaryButton(
                 text: "Go to notification settings",
                 onPressed: () async {
-                  await AppSettings.openAppSettings(type: AppSettingsType.notification);
+                  await AppSettings.openAppSettings(
+                      type: AppSettingsType.notification);
                 },
               )
             : PrimaryButton(
                 text: "Allow notifications",
                 onPressed: () {
-                  StoreProvider.of<AppState>(context).dispatch(RequestPushNotificationsPermissionCommandAction());
+                  StoreProvider.of<AppState>(context).dispatch(
+                      RequestPushNotificationsPermissionCommandAction());
                 },
               ),
         const SizedBox(height: 16)
@@ -186,7 +198,8 @@ class _AllowedPermissionContent extends StatelessWidget {
         PrimaryButton(
           text: "Continue",
           onPressed: () {
-            Navigator.pushNamed(context, OnboardingTermConditionsScreen.routeName);
+            Navigator.pushNamed(
+                context, OnboardingTermConditionsScreen.routeName);
           },
         ),
         const SizedBox(height: 16)

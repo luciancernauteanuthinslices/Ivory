@@ -49,7 +49,9 @@ class _TransactionDatePickerPopupState
             }
           },
         ),
-        const SizedBox(height: 24,),
+        const SizedBox(
+          height: 24,
+        ),
         SizedBox(
           height: 48,
           width: double.infinity,

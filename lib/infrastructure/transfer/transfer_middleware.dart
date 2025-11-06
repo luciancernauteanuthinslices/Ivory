@@ -17,10 +17,9 @@ class TransferMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     final authState = store.state.authState;
-    if(authState is! AuthenticatedState) {
+    if (authState is! AuthenticatedState) {
       return;
     }
-
 
     if (action is TransferCommandAction) {
       final response = await _transferService.createPayoutTransfer(
@@ -50,7 +49,7 @@ class TransferMiddleware extends MiddlewareClass<AppState> {
             transfer: response.transferConfirmation.transfer,
           ),
         );
-      } else if(response is ChangeRequestServiceErrorResponse) {
+      } else if (response is ChangeRequestServiceErrorResponse) {
         store.dispatch(ConfirmTransferFailedEventAction(response.errorType));
       }
     }

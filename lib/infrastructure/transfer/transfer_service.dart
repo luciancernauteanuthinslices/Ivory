@@ -21,7 +21,9 @@ class TransferService extends ApiService {
       var data = await post(
         '/transactions/reference_account_payouts',
         body: {
-          "description": transfer.description.isNotEmpty ? transfer.description : _noDescriptionProvidedText,
+          "description": transfer.description.isNotEmpty
+              ? transfer.description
+              : _noDescriptionProvidedText,
           "amount": {
             "value": transfer.amount.value,
             "currency": transfer.amount.currency.nameString,

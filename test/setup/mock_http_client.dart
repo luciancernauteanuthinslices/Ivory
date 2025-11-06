@@ -14,27 +14,33 @@ class MockHttpClient extends Mock implements Client {
   }
 
   @override
-  Future<Response> post(Uri? url, {Map<String, String>? headers, Object? body, Encoding? encoding}) {
+  Future<Response> post(Uri? url,
+      {Map<String, String>? headers, Object? body, Encoding? encoding}) {
     return super.noSuchMethod(
-      Invocation.method(#post, [url], {#headers: headers, #body: body, #encoding: encoding}),
+      Invocation.method(
+          #post, [url], {#headers: headers, #body: body, #encoding: encoding}),
       returnValue: Future.value(Response("{}", 200)),
       returnValueForMissingStub: Future.value(Response("{}", 200)),
     );
   }
 
   @override
-  Future<Response> patch(Uri? url, {Map<String, String>? headers, Object? body, Encoding? encoding}) {
+  Future<Response> patch(Uri? url,
+      {Map<String, String>? headers, Object? body, Encoding? encoding}) {
     return super.noSuchMethod(
-      Invocation.method(#patch, [url], {#headers: headers, #body: body, #encoding: encoding}),
+      Invocation.method(
+          #patch, [url], {#headers: headers, #body: body, #encoding: encoding}),
       returnValue: Future.value(Response("{}", 200)),
       returnValueForMissingStub: Future.value(Response("{}", 200)),
     );
   }
 
   @override
-  Future<Response> delete(Uri url, {Map<String, String>? headers, Object? body, Encoding? encoding}) {
+  Future<Response> delete(Uri url,
+      {Map<String, String>? headers, Object? body, Encoding? encoding}) {
     return super.noSuchMethod(
-      Invocation.method(#delete, [url], {#headers: headers, #body: body, #encoding: encoding}),
+      Invocation.method(#delete, [url],
+          {#headers: headers, #body: body, #encoding: encoding}),
       returnValue: Future.value(Response("{}", 200)),
       returnValueForMissingStub: Future.value(Response("{}", 200)),
     );

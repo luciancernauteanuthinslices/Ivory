@@ -5,7 +5,6 @@ import '../../models/device.dart';
 import '../../models/user.dart';
 
 class DeviceBindingService extends ApiService {
-
   DeviceBindingService({super.user});
 
   Future<DeviceBindingServiceResponse> createDeviceBinding({
@@ -25,16 +24,16 @@ class DeviceBindingService extends ApiService {
         deviceName: reqBody.name,
       );
     } catch (e) {
-      return const DeviceBindingServiceErrorResponse(errorType: DeviceBindingServiceErrorType.deviceBindingFailed);
+      return const DeviceBindingServiceErrorResponse(
+          errorType: DeviceBindingServiceErrorType.deviceBindingFailed);
     }
   }
 
-  Future<DeviceBindingServiceResponse> verifyDeviceBindingSignature({
-    required User user,
-    required String deviceId,
-    required String deviceFingerPrint,
-    required String signature
-  }) async {
+  Future<DeviceBindingServiceResponse> verifyDeviceBindingSignature(
+      {required User user,
+      required String deviceId,
+      required String deviceFingerPrint,
+      required String signature}) async {
     this.user = user;
 
     try {
@@ -49,7 +48,8 @@ class DeviceBindingService extends ApiService {
       return VerifyDeviceBindingSignatureSuccessResponse();
     } catch (e) {
       return const DeviceBindingServiceErrorResponse(
-          errorType: DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed);
+          errorType:
+              DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed);
     }
   }
 
@@ -71,7 +71,8 @@ class DeviceBindingService extends ApiService {
     }
   }
 
-  Future<DeviceBindingServiceResponse> deleteDeviceBinding({required User user, required String deviceId}) async {
+  Future<DeviceBindingServiceResponse> deleteDeviceBinding(
+      {required User user, required String deviceId}) async {
     this.user = user;
     try {
       await delete(
@@ -85,14 +86,16 @@ class DeviceBindingService extends ApiService {
     }
   }
 
-  Future<DeviceBindingServiceResponse> getDeviceBinding({required User user}) async {
+  Future<DeviceBindingServiceResponse> getDeviceBinding(
+      {required User user}) async {
     this.user = user;
     try {
       var data = await get(
         'person/device',
       );
 
-      List<Device> devices = (data as List).map((device) => Device.fromJson(device)).toList();
+      List<Device> devices =
+          (data as List).map((device) => Device.fromJson(device)).toList();
 
       return GetDeviceBindingSuccessResponse(
         devices: devices,
@@ -136,7 +139,8 @@ class GetDeviceBindingSuccessResponse extends DeviceBindingServiceResponse {
   List<Object> get props => [devices];
 }
 
-class VerifyDeviceBindingSignatureSuccessResponse extends DeviceBindingServiceResponse {}
+class VerifyDeviceBindingSignatureSuccessResponse
+    extends DeviceBindingServiceResponse {}
 
 class CreateRestrictedKeySuccessResponse extends DeviceBindingServiceResponse {}
 

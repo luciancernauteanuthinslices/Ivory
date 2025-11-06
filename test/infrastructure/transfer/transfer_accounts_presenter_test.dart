@@ -10,7 +10,9 @@ void main() {
   const referenceAccount = PersonReferenceAccount(name: "Name", iban: "iban");
   final personAccount = PersonAccount();
 
-  test("When fetching is in progress for person account it should return loading", () {
+  test(
+      "When fetching is in progress for person account it should return loading",
+      () {
     //given
     final referenceAccountState = ReferenceAccountInitialState();
     final personAccountState = PersonAccountLoadingState();
@@ -25,7 +27,9 @@ void main() {
     expect(viewModel, TransferAccountsLoadingViewModel());
   });
 
-  test("When fetching is in progress for reference account it should return loading", () {
+  test(
+      "When fetching is in progress for reference account it should return loading",
+      () {
     //given
     final referenceAccountState = ReferenceAccountLoadingState();
     final personAccountState = PersonAccountInitialState();
@@ -57,7 +61,8 @@ void main() {
 
   test("When fetching failed for reference account it should return error", () {
     //given
-    final referenceAccountState = ReferenceAccountErrorState(errorType: PersonServiceErrorType.unknown);
+    final referenceAccountState =
+        ReferenceAccountErrorState(errorType: PersonServiceErrorType.unknown);
     final personAccountState = PersonAccountInitialState();
 
     //when
@@ -70,9 +75,12 @@ void main() {
     expect(viewModel, const TransferAccountsErrorViewModel());
   });
 
-  test("When fetching succeeded for person account and reference account it should return fetched accounts", () {
+  test(
+      "When fetching succeeded for person account and reference account it should return fetched accounts",
+      () {
     //given
-    final referenceAccountState = ReferenceAccountFetchedState(referenceAccount);
+    final referenceAccountState =
+        ReferenceAccountFetchedState(referenceAccount);
     final personAccountState = PersonAccountFetchedState(personAccount);
 
     //when
@@ -84,7 +92,8 @@ void main() {
     //then
     expect(
       viewModel,
-      TransferAccountsFetchedViewModel(personAccount: personAccount, referenceAccount: referenceAccount),
+      TransferAccountsFetchedViewModel(
+          personAccount: personAccount, referenceAccount: referenceAccount),
     );
   });
 

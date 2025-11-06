@@ -32,9 +32,8 @@ class CircularCountdownProgress extends StatelessWidget {
               child: Center(
                 child: Text(
                   controller.formattedRemainingDuration.toString(),
-                  style: ClientConfig.getTextStyleScheme()
-                      .labelSmall
-                      .copyWith(color: ClientConfig.getCustomColors().neutral900),
+                  style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                      color: ClientConfig.getCustomColors().neutral900),
                 ),
               ),
             ),
@@ -43,7 +42,8 @@ class CircularCountdownProgress extends StatelessWidget {
                 strokeWidth: 7,
                 value: controller.remainingPercent,
                 backgroundColor: ClientConfig.getCustomColors().neutral200,
-                valueColor: AlwaysStoppedAnimation<Color>(ClientConfig.getColorScheme().secondary),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    ClientConfig.getColorScheme().secondary),
               ),
             ),
           ],
@@ -70,9 +70,12 @@ class CountdownTimerController extends ValueNotifier<Duration> {
   int get remainingMinutes => value.inMinutes;
   double get remainingPercent => value.inSeconds / duration.inSeconds;
 
-  String get formattedRemainingSeconds => remainingSeconds.toString().padLeft(2, '0');
-  String get formattedRemainingMinutes => remainingMinutes.toString().padLeft(2, '0');
-  String get formattedRemainingDuration => '$formattedRemainingMinutes:$formattedRemainingSeconds';
+  String get formattedRemainingSeconds =>
+      remainingSeconds.toString().padLeft(2, '0');
+  String get formattedRemainingMinutes =>
+      remainingMinutes.toString().padLeft(2, '0');
+  String get formattedRemainingDuration =>
+      '$formattedRemainingMinutes:$formattedRemainingSeconds';
 
   void start() {
     stop();

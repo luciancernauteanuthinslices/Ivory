@@ -17,20 +17,20 @@ class Screen extends StatelessWidget {
   final Function? customBackButtonCallback;
   final BottomStickyWidget? bottomStickyWidget;
 
-  const Screen(
-      {super.key,
-      this.onRefresh,
-      this.appBarColor,
-      this.backButtonIcon,
-      required this.child,
-      this.title,
-      this.titleTextStyle,
-      this.trailingActions,
-      this.hideAppBar = false,
-      this.centerTitle = true,
-      this.bottomStickyWidget,
-      this.hideBackButton = false,
-      this.hideBottomNavbar = false,
+  const Screen({
+    super.key,
+    this.onRefresh,
+    this.appBarColor,
+    this.backButtonIcon,
+    required this.child,
+    this.title,
+    this.titleTextStyle,
+    this.trailingActions,
+    this.hideAppBar = false,
+    this.centerTitle = true,
+    this.bottomStickyWidget,
+    this.hideBackButton = false,
+    this.hideBottomNavbar = false,
     this.customBackButtonCallback,
   });
 
@@ -154,8 +154,7 @@ AppBar createAppBar(
   IconButton backButton = IconButton(
     icon: backButtonIcon ?? defaultBackButtonIcon,
     padding: EdgeInsets.only(
-      left: ClientConfig.getCustomClientUiSettings()
-          .defaultScreenLeftPadding,
+      left: ClientConfig.getCustomClientUiSettings().defaultScreenLeftPadding,
     ),
     alignment: Alignment.centerLeft,
     onPressed: () {
@@ -177,8 +176,8 @@ AppBar createAppBar(
     actions: [
       if (trailingActions != null) ...trailingActions,
       SizedBox(
-        width: ClientConfig.getCustomClientUiSettings()
-            .defaultScreenLeftPadding,
+        width:
+            ClientConfig.getCustomClientUiSettings().defaultScreenLeftPadding,
       )
     ],
     automaticallyImplyLeading: hideBackButton == true ? false : true,

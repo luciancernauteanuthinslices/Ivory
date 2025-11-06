@@ -24,31 +24,31 @@ class Format {
     return formatter.format(number);
   }
 
-static String currencyWithSymbol(
-  num number, {
-  int digits = 2,
-  int maxDigits = 2,
-}) {
-  NumberFormat formatter = NumberFormat.currency(
-    locale: 'eu',
-    symbol: 'RON',
-    decimalDigits: digits,
-  );
+  static String currencyWithSymbol(
+    num number, {
+    int digits = 2,
+    int maxDigits = 2,
+  }) {
+    NumberFormat formatter = NumberFormat.currency(
+      locale: 'eu',
+      symbol: 'RON',
+      decimalDigits: digits,
+    );
 
-  if (digits == 0 && number.toInt() == 0 && number < 0) {
-    return "-${formatter.format(number.abs())}";
+    if (digits == 0 && number.toInt() == 0 && number < 0) {
+      return "-${formatter.format(number.abs())}";
+    }
+
+    if (digits == 0 && number > 0) {
+      return formatter.format(number.toInt());
+    }
+
+    if (digits == 0 && maxDigits > 0 && number % 1 != 0) {
+      return currency(number, digits: maxDigits);
+    }
+
+    return formatter.format(number);
   }
-
-  if (digits == 0 && number > 0) {
-    return formatter.format(number.toInt());
-  }
-
-  if (digits == 0 && maxDigits > 0 && number % 1 != 0) {
-    return currency(number, digits: maxDigits);
-  }
-
-  return formatter.format(number);
-}
 
   static String euro(
     num value, {
@@ -112,7 +112,7 @@ static String currencyWithSymbol(
       case "GBP":
         return "£";
       case 'RON':
-        return "RON";  
+        return "RON";
       default:
         throw Exception("currency not supported: $currency");
     }
@@ -166,7 +166,8 @@ class InputFormatter {
     },
   );
 
-  static MaskTextInputFormatter taxId(String initialText) => MaskTextInputFormatter(
+  static MaskTextInputFormatter taxId(String initialText) =>
+      MaskTextInputFormatter(
         initialText: initialText,
         mask: "000 000 000 000 000 000",
         filter: {
@@ -174,7 +175,8 @@ class InputFormatter {
         },
       );
 
-  static MaskTextInputFormatter createPhoneNumberFormatter(String phoneNumberFormat) {
+  static MaskTextInputFormatter createPhoneNumberFormatter(
+      String phoneNumberFormat) {
     return MaskTextInputFormatter(
       type: MaskAutoCompletionType.eager,
       mask: phoneNumberFormat,
@@ -184,7 +186,8 @@ class InputFormatter {
     );
   }
 
-  static MaskTextInputFormatter date({String? initialText}) => MaskTextInputFormatter(
+  static MaskTextInputFormatter date({String? initialText}) =>
+      MaskTextInputFormatter(
         mask: "##/##/####",
         initialText: initialText,
         type: MaskAutoCompletionType.eager,
@@ -193,11 +196,12 @@ class InputFormatter {
         },
       );
 
-  static MaskTextInputFormatter cardNumber(String initialText) => MaskTextInputFormatter(
-      initialText: initialText,
-      mask: "0000 0000 0000 0000",
-      filter: {
-        "0": RegExp(r"[0-9]"),
-      },
-  );
+  static MaskTextInputFormatter cardNumber(String initialText) =>
+      MaskTextInputFormatter(
+        initialText: initialText,
+        mask: "0000 0000 0000 0000",
+        filter: {
+          "0": RegExp(r"[0-9]"),
+        },
+      );
 }

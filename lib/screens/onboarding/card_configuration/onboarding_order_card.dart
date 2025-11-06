@@ -20,7 +20,8 @@ class OnboardingOrderCardScreen extends StatefulWidget {
   const OnboardingOrderCardScreen({Key? key}) : super(key: key);
 
   @override
-  State<OnboardingOrderCardScreen> createState() => _OnboardingOrderCardScreenState();
+  State<OnboardingOrderCardScreen> createState() =>
+      _OnboardingOrderCardScreenState();
 }
 
 class _OnboardingOrderCardScreenState extends State<OnboardingOrderCardScreen> {
@@ -33,14 +34,16 @@ class _OnboardingOrderCardScreenState extends State<OnboardingOrderCardScreen> {
           AppToolbar(
             richTextTitle: StepRichTextTitle(step: 1, totalSteps: 3),
             actions: const [AppbarLogo()],
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           AnimatedLinearProgressIndicator.step(current: 1, totalSteps: 3),
           const SizedBox(
             height: 16,
           ),
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+            padding:
+                ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
             child: Text(
               "Order your Ivory credit card",
               style: ClientConfig.getTextStyleScheme().heading2,
@@ -51,14 +54,17 @@ class _OnboardingOrderCardScreenState extends State<OnboardingOrderCardScreen> {
               store.dispatch(GetCardPersonNameCommandAction());
             },
             onDidChange: (oldViewModel, newViewModel) {
-              if (newViewModel is OnboardingCardConfigurationGenericSuccessViewModel &&
+              if (newViewModel
+                      is OnboardingCardConfigurationGenericSuccessViewModel &&
                   ModalRoute.of(context)?.isCurrent == true) {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(OnboardingConfigureCardScreen.routeName, (route) => false);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    OnboardingConfigureCardScreen.routeName, (route) => false);
               }
             },
-            converter: (store) => OnboardingCardConfigurationPresenter.presentCardConfiguration(
-              cardConfigurationState: store.state.onboardingCardConfigurationState,
+            converter: (store) =>
+                OnboardingCardConfigurationPresenter.presentCardConfiguration(
+              cardConfigurationState:
+                  store.state.onboardingCardConfigurationState,
             ),
             builder: (context, viewModel) {
               return _buildFrom(viewModel, context);
@@ -70,11 +76,13 @@ class _OnboardingOrderCardScreenState extends State<OnboardingOrderCardScreen> {
   }
 }
 
-Widget _buildFrom(OnboardingCardConfigurationViewModel viewModel, BuildContext context) {
+Widget _buildFrom(
+    OnboardingCardConfigurationViewModel viewModel, BuildContext context) {
   if (viewModel is WithCardholderNameViewModel) {
     return Expanded(
       child: Padding(
-        padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
         child: Column(
           children: [
             Text.rich(
@@ -109,7 +117,8 @@ Widget _buildFrom(OnboardingCardConfigurationViewModel viewModel, BuildContext c
             PrimaryButton(
               text: "Order my card",
               onPressed: () {
-                StoreProvider.of<AppState>(context).dispatch(OnboardingCreateCardCommandAction());
+                StoreProvider.of<AppState>(context)
+                    .dispatch(OnboardingCreateCardCommandAction());
               },
               isLoading: viewModel.isLoading,
             ),
@@ -185,7 +194,8 @@ Widget _buildFrom(OnboardingCardConfigurationViewModel viewModel, BuildContext c
 
   return Expanded(
     child: Padding(
-      padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+      padding: ClientConfig.getCustomClientUiSettings()
+          .defaultScreenHorizontalPadding,
       child: Column(
         children: [
           Text(

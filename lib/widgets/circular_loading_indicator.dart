@@ -18,10 +18,12 @@ class CircularLoadingIndicator extends StatefulWidget {
   });
 
   @override
-  State<CircularLoadingIndicator> createState() => _CircularLoadingIndicatorState();
+  State<CircularLoadingIndicator> createState() =>
+      _CircularLoadingIndicatorState();
 }
 
-class _CircularLoadingIndicatorState extends State<CircularLoadingIndicator> with TickerProviderStateMixin {
+class _CircularLoadingIndicatorState extends State<CircularLoadingIndicator>
+    with TickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
@@ -48,7 +50,8 @@ class _CircularLoadingIndicatorState extends State<CircularLoadingIndicator> wit
         size: Size.fromRadius(widget.width / 2),
         painter: CircularLoadingIndicatorPainter(
           radius: widget.width / 2,
-          gradientColors: widget.gradientColors ?? [ClientConfig.getColorScheme().secondary, Colors.white],
+          gradientColors: widget.gradientColors ??
+              [ClientConfig.getColorScheme().secondary, Colors.white],
           strokeWidth: widget.strokeWidth,
         ),
       ),
@@ -78,7 +81,8 @@ class CircularLoadingIndicatorPainter extends CustomPainter {
     size = Size.fromRadius(radius);
     double offset = strokeWidth / 2;
 
-    Rect rect = Offset(offset, offset) & Size(size.width - strokeWidth, size.height - strokeWidth);
+    Rect rect = Offset(offset, offset) &
+        Size(size.width - strokeWidth, size.height - strokeWidth);
 
     var paint = Paint()
       ..style = PaintingStyle.stroke

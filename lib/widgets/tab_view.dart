@@ -46,9 +46,13 @@ class _TabViewState extends State<TabView> {
                   text: widget.tabs[tabIndex].text,
                   textStyle: ClientConfig.getTextStyleScheme().labelSmall,
                   borderRadius: tabIndex == 0
-                      ? const BorderRadius.only(topLeft: Radius.circular(8.0), bottomLeft: Radius.circular(8.0))
+                      ? const BorderRadius.only(
+                          topLeft: Radius.circular(8.0),
+                          bottomLeft: Radius.circular(8.0))
                       : tabIndex == widget.tabs.length - 1
-                          ? const BorderRadius.only(topRight: Radius.circular(8.0), bottomRight: Radius.circular(8.0))
+                          ? const BorderRadius.only(
+                              topRight: Radius.circular(8.0),
+                              bottomRight: Radius.circular(8.0))
                           : BorderRadius.zero,
                   onPressed: () {
                     setState(() {

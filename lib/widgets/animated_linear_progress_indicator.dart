@@ -29,7 +29,8 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
       builder: (context, value, _) => LinearProgressIndicator(
         value: value,
         color: color ?? ClientConfig.getColorScheme().secondary,
-        backgroundColor: backgroundColor ?? ClientConfig.getCustomColors().neutral200,
+        backgroundColor:
+            backgroundColor ?? ClientConfig.getCustomColors().neutral200,
       ),
     );
   }

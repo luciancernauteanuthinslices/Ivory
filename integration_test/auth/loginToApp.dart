@@ -7,30 +7,32 @@ import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
 class LoginToApp {
-
   final PatrolIntegrationTester $;
   final String email;
   final String password;
 
   LoginToApp(
-      this.$, {
-        String? email,
-        String? password,
-      })  : email = email ?? 
-               (const String.fromEnvironment('PATROL_EMAIL', defaultValue: '') != '' 
-                 ? const String.fromEnvironment('PATROL_EMAIL')
-                 : dotenv.env['EMAIL'] ?? ''),
-        password = password ?? 
-               (const String.fromEnvironment('PATROL_PASSWORD', defaultValue: '') != ''
-                 ? const String.fromEnvironment('PATROL_PASSWORD')
-                 : dotenv.env['PASSWORD'] ?? '');
-  
+    this.$, {
+    String? email,
+    String? password,
+  })  : email = email ??
+            (const String.fromEnvironment('PATROL_EMAIL', defaultValue: '') !=
+                    ''
+                ? const String.fromEnvironment('PATROL_EMAIL')
+                : dotenv.env['EMAIL'] ?? ''),
+        password = password ??
+            (const String.fromEnvironment('PATROL_PASSWORD',
+                        defaultValue: '') !=
+                    ''
+                ? const String.fromEnvironment('PATROL_PASSWORD')
+                : dotenv.env['PASSWORD'] ?? '');
+
   Future<void> login() async {
     // expect login button to be displayed
 
-    await $.waitUntilVisible($(keys.welcomeScreen.logInButton), timeout: Duration(seconds: 10));
+    await $.waitUntilVisible($(keys.welcomeScreen.logInButton),
+        timeout: Duration(seconds: 10));
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
 
     // Tap on the "Log in" button
@@ -61,10 +63,10 @@ class LoginToApp {
 
     // Enter OTP code - controller listener will enable button
     await otpField.enterText('212212');
-    
+
     // Wait for state to update after text entry
     await $.pumpAndSettle();
-    
+
     await $(keys.loginPage.otpConfirmButton).tap();
 
     // Assert we are on Home Page

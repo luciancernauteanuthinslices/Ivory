@@ -24,11 +24,13 @@ class OnboardingNationalityNotSupportedScreen extends StatelessWidget {
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 children: [
                   Align(
@@ -49,10 +51,13 @@ class OnboardingNationalityNotSupportedScreen extends StatelessWidget {
                         ),
                         TextSpan(
                           text: 'contact us',
-                          recognizer: TapGestureRecognizer()..onTap = () => log('tap contact us'),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => log('tap contact us'),
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegular
-                              .copyWith(color: ClientConfig.getColorScheme().secondary),
+                              .copyWith(
+                                  color:
+                                      ClientConfig.getColorScheme().secondary),
                         ),
                         const TextSpan(text: '.'),
                       ],
@@ -74,8 +79,8 @@ class OnboardingNationalityNotSupportedScreen extends StatelessWidget {
                   ),
                   PrimaryButton(
                     text: "Return to \"Login Screen\"",
-                    onPressed: () =>
-                        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false),
+                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                        context, LoginScreen.routeName, (route) => false),
                   ),
                   const SizedBox(height: 16),
                 ],

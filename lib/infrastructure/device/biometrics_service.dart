@@ -27,9 +27,10 @@ class BiometricsService {
     }
   }
 
-static Future<bool> areBiometricsAvailable() async {
+  static Future<bool> areBiometricsAvailable() async {
     try {
-      final List<BiometricType> availableBiometrics = await auth.getAvailableBiometrics();
+      final List<BiometricType> availableBiometrics =
+          await auth.getAvailableBiometrics();
       return availableBiometrics.isNotEmpty;
     } catch (e) {
       print("Error checking biometrics: $e");

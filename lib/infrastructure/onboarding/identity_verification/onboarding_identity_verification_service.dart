@@ -26,9 +26,11 @@ class OnbordingIdentityVerificationService extends ApiService {
     try {
       final response = await post(path, body: body);
 
-      return CreateIdentificationSuccessResponse(urlForIntegration: response['url']);
+      return CreateIdentificationSuccessResponse(
+          urlForIntegration: response['url']);
     } catch (err) {
-      return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+      return const IdentityVerificationServiceErrorResponse(
+          errorType: OnboardingIdentityVerificationErrorType.unknown);
     }
   }
 
@@ -40,11 +42,13 @@ class OnbordingIdentityVerificationService extends ApiService {
     try {
       final response = await get('/signup/identification');
 
-      final identificationStatus = _parseIdentificationStatus(response['status'] ?? "");
+      final identificationStatus =
+          _parseIdentificationStatus(response['status'] ?? "");
 
       if (identificationStatus == OnboardingIdentificationStatus.pending) {
         return const IdentityVerificationServiceErrorResponse(
-          errorType: OnboardingIdentityVerificationErrorType.pendingIdentification,
+          errorType:
+              OnboardingIdentityVerificationErrorType.pendingIdentification,
         );
       }
 
@@ -54,7 +58,8 @@ class OnbordingIdentityVerificationService extends ApiService {
             .map(
               (document) => Document(
                 id: document['id'],
-                documentType: DocumentTypeParser.parse(document['document_type']),
+                documentType:
+                    DocumentTypeParser.parse(document['document_type']),
                 fileType: document['content_type'],
                 fileSize: document['size'] ?? 0,
               ),
@@ -62,11 +67,13 @@ class OnbordingIdentityVerificationService extends ApiService {
             .toList(),
       );
     } catch (err) {
-      return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+      return const IdentityVerificationServiceErrorResponse(
+          errorType: OnboardingIdentityVerificationErrorType.unknown);
     }
   }
 
-  Future<IdentityVerificationServiceResponse> authorizeIdentification({required User user}) async {
+  Future<IdentityVerificationServiceResponse> authorizeIdentification(
+      {required User user}) async {
     this.user = user;
 
     try {
@@ -76,9 +83,11 @@ class OnbordingIdentityVerificationService extends ApiService {
         return AuthorizeIdentificationSuccessResponse();
       }
 
-      return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+      return const IdentityVerificationServiceErrorResponse(
+          errorType: OnboardingIdentityVerificationErrorType.unknown);
     } catch (error) {
-      return const IdentityVerificationServiceErrorResponse(errorType: OnboardingIdentityVerificationErrorType.unknown);
+      return const IdentityVerificationServiceErrorResponse(
+          errorType: OnboardingIdentityVerificationErrorType.unknown);
     }
   }
 
@@ -103,7 +112,8 @@ class OnbordingIdentityVerificationService extends ApiService {
     }
   }
 
-  Future<IdentityVerificationServiceResponse> getCreditLimit({required User user}) async {
+  Future<IdentityVerificationServiceResponse> getCreditLimit(
+      {required User user}) async {
     this.user = user;
 
     String url = '/credit_card_applications';
@@ -116,12 +126,14 @@ class OnbordingIdentityVerificationService extends ApiService {
       return GetCreditLimitSuccessResponse(creditLimit: valueApprovedLimit);
     } catch (err) {
       return const IdentityVerificationServiceErrorResponse(
-        errorType: OnboardingIdentityVerificationErrorType.fetchCreditLimitFailed,
+        errorType:
+            OnboardingIdentityVerificationErrorType.fetchCreditLimitFailed,
       );
     }
   }
 
-  Future<IdentityVerificationServiceResponse> finalizeIdentification({required User user}) async {
+  Future<IdentityVerificationServiceResponse> finalizeIdentification(
+      {required User user}) async {
     this.user = user;
 
     String url = '/signup/identification/finalize';
@@ -135,7 +147,8 @@ class OnbordingIdentityVerificationService extends ApiService {
       return FinalizeIdentificationSuccessResponse();
     } catch (err) {
       return const IdentityVerificationServiceErrorResponse(
-        errorType: OnboardingIdentityVerificationErrorType.finalizeIdentificationFailed,
+        errorType: OnboardingIdentityVerificationErrorType
+            .finalizeIdentificationFailed,
       );
     }
   }
@@ -161,7 +174,8 @@ abstract class IdentityVerificationServiceResponse extends Equatable {
   List<Object?> get props => [];
 }
 
-class CreateIdentificationSuccessResponse extends IdentityVerificationServiceResponse {
+class CreateIdentificationSuccessResponse
+    extends IdentityVerificationServiceResponse {
   final String urlForIntegration;
 
   const CreateIdentificationSuccessResponse({required this.urlForIntegration});
@@ -170,19 +184,23 @@ class CreateIdentificationSuccessResponse extends IdentityVerificationServiceRes
   List<Object?> get props => [urlForIntegration];
 }
 
-class GetSignupIdentificationInfoSuccessResponse extends IdentityVerificationServiceResponse {
+class GetSignupIdentificationInfoSuccessResponse
+    extends IdentityVerificationServiceResponse {
   final OnboardingIdentificationStatus identificationStatus;
   final List<Document> documents;
 
-  const GetSignupIdentificationInfoSuccessResponse({required this.identificationStatus, required this.documents});
+  const GetSignupIdentificationInfoSuccessResponse(
+      {required this.identificationStatus, required this.documents});
 
   @override
   List<Object?> get props => [identificationStatus, documents];
 }
 
-class AuthorizeIdentificationSuccessResponse extends IdentityVerificationServiceResponse {}
+class AuthorizeIdentificationSuccessResponse
+    extends IdentityVerificationServiceResponse {}
 
-class IdentityVerificationServiceErrorResponse extends IdentityVerificationServiceResponse {
+class IdentityVerificationServiceErrorResponse
+    extends IdentityVerificationServiceResponse {
   final OnboardingIdentityVerificationErrorType errorType;
 
   const IdentityVerificationServiceErrorResponse({required this.errorType});
@@ -193,7 +211,8 @@ class IdentityVerificationServiceErrorResponse extends IdentityVerificationServi
 
 class SignWithTanSuccessResponse extends IdentityVerificationServiceResponse {}
 
-class GetCreditLimitSuccessResponse extends IdentityVerificationServiceResponse {
+class GetCreditLimitSuccessResponse
+    extends IdentityVerificationServiceResponse {
   final int creditLimit;
 
   const GetCreditLimitSuccessResponse({required this.creditLimit});
@@ -202,4 +221,5 @@ class GetCreditLimitSuccessResponse extends IdentityVerificationServiceResponse 
   List<Object?> get props => [creditLimit];
 }
 
-class FinalizeIdentificationSuccessResponse extends IdentityVerificationServiceResponse {}
+class FinalizeIdentificationSuccessResponse
+    extends IdentityVerificationServiceResponse {}

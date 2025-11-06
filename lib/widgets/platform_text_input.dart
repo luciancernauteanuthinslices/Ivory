@@ -92,7 +92,6 @@ class PlatformTextInput extends StatelessWidget {
                 ),
               Expanded(
                 child: TextFormField(
-                  
                   textAlign: textAlign!,
                   controller: controller,
                   obscureText: obscureText!,
@@ -106,7 +105,7 @@ class PlatformTextInput extends StatelessWidget {
                     if (onChanged != null) onChanged!(value),
                   },
                   onFieldSubmitted: (value) => {
-                    if(onSubmit != null) onSubmit!(value),
+                    if (onSubmit != null) onSubmit!(value),
                   },
                   validator: (value) {
                     return validator(value);

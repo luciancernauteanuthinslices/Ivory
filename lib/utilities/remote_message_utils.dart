@@ -16,7 +16,8 @@ class RemoteMessageUtils {
     return notificationTypeMap[type] ?? NotificationType.unknown;
   }
 
-  static NotificationTransactionMessage getNotificationTransactionMessage(RemoteMessage message) {
+  static NotificationTransactionMessage getNotificationTransactionMessage(
+      RemoteMessage message) {
     return NotificationTransactionMessage(
       cardId: message.data["card_id"] as String,
       amountUnit: message.data["amount_unit"] as String,
@@ -24,8 +25,10 @@ class RemoteMessageUtils {
       merchantName: message.data["merchant_name"] as String,
       amountCurrency: message.data["amount_currency"] as String,
       changeRequestId: message.data["change_request_id"] as String,
-      declineChangeRequestId: message.data["decline_change_request_id"] as String,
-      dateTime: DateTime.parse(message.data["challenged_at"] as String).toLocal(),
+      declineChangeRequestId:
+          message.data["decline_change_request_id"] as String,
+      dateTime:
+          DateTime.parse(message.data["challenged_at"] as String).toLocal(),
     );
   }
 }

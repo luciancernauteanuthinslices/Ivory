@@ -76,7 +76,8 @@ abstract class BankCardViewModel extends Equatable {
   final AuthenticatedUser? user;
   final BankCardFetchedDetails? cardDetails;
 
-  const BankCardViewModel({this.user, this.pin, this.bankCard, this.cardDetails, this.bankCards});
+  const BankCardViewModel(
+      {this.user, this.pin, this.bankCard, this.cardDetails, this.bankCards});
 
   @override
   List<Object?> get props => [pin];
@@ -148,7 +149,6 @@ class BankCardDetailsFetchedViewModel extends BankCardViewModel {
 }
 
 class BankCardPinChangedViewModel extends BankCardViewModel {}
-
 
 abstract class BankCardsViewModel extends Equatable {
   final List<BankCard>? bankCards;

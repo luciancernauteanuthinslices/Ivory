@@ -51,12 +51,14 @@ class _TransferReviewScreenState extends State<TransferReviewScreen> {
           children: [
             AppToolbar(
               title: "Review transfer",
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
             ),
             _buildBody(),
             Container(
               width: double.infinity,
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: viewModel is TransferLoadingViewModel
                   ? const Center(child: CircularProgressIndicator())
                   : Button(
@@ -89,7 +91,8 @@ class _TransferReviewScreenState extends State<TransferReviewScreen> {
     return Expanded(
       child: SingleChildScrollView(
         child: Padding(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           child: Column(
             children: [
               IvoryCard(
@@ -105,7 +108,8 @@ class _TransferReviewScreenState extends State<TransferReviewScreen> {
                     const SizedBox(height: 4),
                     Text(
                       Format.euro(widget.params.transferAmountValue, digits: 2),
-                      style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                      style: ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegularBold,
                     ),
                     const SizedBox(height: 16),
                     Text(
@@ -115,7 +119,8 @@ class _TransferReviewScreenState extends State<TransferReviewScreen> {
                     const SizedBox(height: 4),
                     Text(
                       "Ivory account",
-                      style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                      style: ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegularBold,
                     ),
                     const SizedBox(height: 16),
                     Text(
@@ -125,7 +130,8 @@ class _TransferReviewScreenState extends State<TransferReviewScreen> {
                     const SizedBox(height: 4),
                     Text(
                       "Reference account",
-                      style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                      style: ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegularBold,
                     ),
                   ],
                 ),

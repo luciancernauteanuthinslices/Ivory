@@ -130,8 +130,10 @@ class FourDigitPinCodeInput extends StatefulWidget {
 
 class FourDigitPinCodeInputState extends State<FourDigitPinCodeInput> {
   FocusNode focusNode = FocusNode();
-  final List<TextEditingController> _controllers = List.generate(4, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List<FocusNode>.generate(4, (index) => FocusNode());
+  final List<TextEditingController> _controllers =
+      List.generate(4, (_) => TextEditingController());
+  final List<FocusNode> _focusNodes =
+      List<FocusNode>.generate(4, (index) => FocusNode());
 
   List<GlobalKey<PinFieldState>> pinFieldKeys = List.generate(
     4,

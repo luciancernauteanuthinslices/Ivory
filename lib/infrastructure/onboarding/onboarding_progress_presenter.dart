@@ -15,7 +15,14 @@ import 'package:solarisdemo/screens/onboarding/signup/onboarding_basic_info_scre
 
 import '../../models/onboarding/onboarding_progress.dart';
 
-enum StepperItemType { signUp, personalDetails, financialDetails, identityVerification, cardConfiguration, unknown }
+enum StepperItemType {
+  signUp,
+  personalDetails,
+  financialDetails,
+  identityVerification,
+  cardConfiguration,
+  unknown
+}
 
 class OnboardingProgressPresenter {
   static OnboardingProgressViewModel presentOnboardingProgress({
@@ -33,9 +40,11 @@ class OnboardingProgressPresenter {
           OnboardingProgressFetchedViewModel(
             progress: _onboardingProgressMapper(onboardingProgressState.step),
           );
-    } else if (onboardingProgressState is OnboardingFinalizedState && authState is AuthenticatedState) {
+    } else if (onboardingProgressState is OnboardingFinalizedState &&
+        authState is AuthenticatedState) {
       return RedirectToHomeViewModel();
-    } else if (onboardingProgressState is OnboardingProgressErrorState || authState is AuthErrorState) {
+    } else if (onboardingProgressState is OnboardingProgressErrorState ||
+        authState is AuthErrorState) {
       return OnboardingProgressErrorViewModel();
     }
 

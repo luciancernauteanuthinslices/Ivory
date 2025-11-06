@@ -14,7 +14,8 @@ class IvoryColorMapper implements ColorMapper {
   final Color? accentColor;
 
   @override
-  Color substitute(String? id, String elementName, String attributeName, Color color) {
+  Color substitute(
+      String? id, String elementName, String attributeName, Color color) {
     if (color == _rawBaseColor) return baseColor;
 
     final accentColor = this.accentColor;

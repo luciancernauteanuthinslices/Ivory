@@ -8,7 +8,8 @@ import 'package:solarisdemo/models/bank_card.dart';
 import 'package:solarisdemo/models/user.dart';
 import 'package:solarisdemo/utilities/crypto/crypto_key_generator.dart';
 
-class MockGetCardDetailsRequestBody extends Mock implements GetCardDetailsRequestBody {}
+class MockGetCardDetailsRequestBody extends Mock
+    implements GetCardDetailsRequestBody {}
 
 class MockRSAKeyPair extends Mock implements RSAKeyPair {
   @override
@@ -247,7 +248,8 @@ class FakeDeviceService extends DeviceService {
   }
 
   @override
-  String? generateSignature({required String privateKey, required String stringToSign}) {
+  String? generateSignature(
+      {required String privateKey, required String stringToSign}) {
     return "signature";
   }
 

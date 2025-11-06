@@ -56,11 +56,14 @@ void main() {
 
   group('PushNotificationService', () {
     group("init", () {
-      test("When the user denied the permission, isInitialized should be false", () async {
+      test("When the user denied the permission, isInitialized should be false",
+          () async {
         // given
-        when(mockMessagingPlatform.requestPermission()).thenAnswer((_) async => deniedNotificationSettings);
+        when(mockMessagingPlatform.requestPermission())
+            .thenAnswer((_) async => deniedNotificationSettings);
 
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
         final store = createTestStore(initialState: createAppState());
 
         // when
@@ -70,15 +73,20 @@ void main() {
         expect(pushNotificationService.isInitialized, false);
       });
 
-      test("When the user granted the permission from iOS platform, isInitialized should be true", () async {
+      test(
+          "When the user granted the permission from iOS platform, isInitialized should be true",
+          () async {
         // given
         setPlatformOverride(TargetPlatform.iOS);
 
-        when(mockMessagingPlatform.requestPermission()).thenAnswer((_) async => authorizedNotificationSettings);
-        when(mockMessagingPlatform.setForegroundNotificationPresentationOptions(alert: true, sound: true))
+        when(mockMessagingPlatform.requestPermission())
+            .thenAnswer((_) async => authorizedNotificationSettings);
+        when(mockMessagingPlatform.setForegroundNotificationPresentationOptions(
+                alert: true, sound: true))
             .thenAnswer((_) async => {});
 
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
         final store = createTestStore(initialState: createAppState());
 
         // when
@@ -88,13 +96,17 @@ void main() {
         expect(pushNotificationService.isInitialized, true);
       });
 
-      test('When the user granted the permission from android platform, isInitialized should be true', () async {
+      test(
+          'When the user granted the permission from android platform, isInitialized should be true',
+          () async {
         // given
         setPlatformOverride(TargetPlatform.android);
 
-        when(mockMessagingPlatform.requestPermission()).thenAnswer((_) async => authorizedNotificationSettings);
+        when(mockMessagingPlatform.requestPermission())
+            .thenAnswer((_) async => authorizedNotificationSettings);
 
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
         final store = createTestStore(initialState: createAppState());
 
         // when
@@ -106,11 +118,13 @@ void main() {
     });
 
     group("handleSavedNotification", () {
-      test("When there is no saved notification, nothing should happen", () async {
+      test("When there is no saved notification, nothing should happen",
+          () async {
         // given
         when(storageService.find()).thenAnswer((_) async => null);
 
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
 
         // when
         await pushNotificationService.handleSavedNotification();
@@ -120,11 +134,14 @@ void main() {
         verifyNever(mockStore.dispatch(any));
       });
 
-      test('When the service is not initialized, nothing should happen', () async {
+      test('When the service is not initialized, nothing should happen',
+          () async {
         // given
-        when(storageService.find()).thenAnswer((_) async => jsonEncode(MockRemoteMessages.scoringSuccessfulMessage));
+        when(storageService.find()).thenAnswer((_) async =>
+            jsonEncode(MockRemoteMessages.scoringSuccessfulMessage));
 
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
 
         // when
         await pushNotificationService.handleSavedNotification();
@@ -134,24 +151,33 @@ void main() {
         verifyNever(mockStore.dispatch(any));
       });
 
-      testWidgets("When the notification type is unknown, it should only delete it", (tester) async {
+      testWidgets(
+          "When the notification type is unknown, it should only delete it",
+          (tester) async {
         // given
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
 
         final navigatorKey = GlobalKey<NavigatorState>();
         final navigationObserver = NavigationGeneralObserver();
 
         pushNotificationService.user = MockUser();
         pushNotificationService.navigatorKey = navigatorKey;
-        pushNotificationService.flutterLocalNotificationsPlugin = flutterLocalNotificationsPlugin;
+        pushNotificationService.flutterLocalNotificationsPlugin =
+            flutterLocalNotificationsPlugin;
 
-        when(mockMessagingPlatform.requestPermission()).thenAnswer((_) async => authorizedNotificationSettings);
-        when(storageService.find()).thenAnswer((_) async => jsonEncode(MockRemoteMessages.unknownMessageType.toMap()));
+        when(mockMessagingPlatform.requestPermission())
+            .thenAnswer((_) async => authorizedNotificationSettings);
+        when(storageService.find()).thenAnswer((_) async =>
+            jsonEncode(MockRemoteMessages.unknownMessageType.toMap()));
 
         await pushNotificationService.init(mockStore);
 
         await tester.pumpWidget(
-          MaterialApp(navigatorObservers: [navigationObserver], navigatorKey: navigatorKey, home: Container()),
+          MaterialApp(
+              navigatorObservers: [navigationObserver],
+              navigatorKey: navigatorKey,
+              home: Container()),
         );
 
         // when
@@ -168,17 +194,21 @@ void main() {
           "When NotificationType.scaChallenge is saved, the store should dispatch the correct action and redirect to the correct screen",
           (tester) async {
         // given
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
 
         final navigatorKey = GlobalKey<NavigatorState>();
         final navigationObserver = NavigationGeneralObserver();
 
         pushNotificationService.user = MockUser();
         pushNotificationService.navigatorKey = navigatorKey;
-        pushNotificationService.flutterLocalNotificationsPlugin = flutterLocalNotificationsPlugin;
+        pushNotificationService.flutterLocalNotificationsPlugin =
+            flutterLocalNotificationsPlugin;
 
-        when(mockMessagingPlatform.requestPermission()).thenAnswer((_) async => authorizedNotificationSettings);
-        when(storageService.find()).thenAnswer((_) async => jsonEncode(MockRemoteMessages.scaChallengeMessage.toMap()));
+        when(mockMessagingPlatform.requestPermission())
+            .thenAnswer((_) async => authorizedNotificationSettings);
+        when(storageService.find()).thenAnswer((_) async =>
+            jsonEncode(MockRemoteMessages.scaChallengeMessage.toMap()));
 
         await pushNotificationService.init(mockStore);
 
@@ -187,7 +217,8 @@ void main() {
           navigatorKey: navigatorKey,
           home: Container(),
           routes: {
-            TransactionApprovalPendingScreen.routeName: (context) => Container(),
+            TransactionApprovalPendingScreen.routeName: (context) =>
+                Container(),
           },
         ));
 
@@ -199,24 +230,30 @@ void main() {
 
         verify(storageService.delete()).called(1);
 
-        expect(dispatch.single, isA<ReceivedTransactionApprovalNotificationEventAction>());
-        expect(navigationObserver.routeStack.lastOrNull, TransactionApprovalPendingScreen.routeName);
+        expect(dispatch.single,
+            isA<ReceivedTransactionApprovalNotificationEventAction>());
+        expect(navigationObserver.routeStack.lastOrNull,
+            TransactionApprovalPendingScreen.routeName);
       });
 
-      testWidgets("When NotificationType.scoringSuccessful is saved, the store should dispatch the correct action",
+      testWidgets(
+          "When NotificationType.scoringSuccessful is saved, the store should dispatch the correct action",
           (tester) async {
         // given
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
 
         final navigatorKey = GlobalKey<NavigatorState>();
         final navigationObserver = NavigationGeneralObserver();
 
         pushNotificationService.user = MockUser();
         pushNotificationService.navigatorKey = navigatorKey;
-        pushNotificationService.flutterLocalNotificationsPlugin = flutterLocalNotificationsPlugin;
+        pushNotificationService.flutterLocalNotificationsPlugin =
+            flutterLocalNotificationsPlugin;
 
         when(storageService.find()).thenAnswer(
-          (_) async => jsonEncode(MockRemoteMessages.scoringSuccessfulMessage.toMap()),
+          (_) async =>
+              jsonEncode(MockRemoteMessages.scoringSuccessfulMessage.toMap()),
         );
 
         await pushNotificationService.init(mockStore);
@@ -236,23 +273,28 @@ void main() {
         final dispatch = verify(mockStore.dispatch(captureAny)).captured;
 
         verify(storageService.delete()).called(1);
-        expect(dispatch.single, isA<ReceivedScoringSuccessfulNotificationEventAction>());
+        expect(dispatch.single,
+            isA<ReceivedScoringSuccessfulNotificationEventAction>());
       });
 
-      testWidgets("When NotificationType.scoringFailed is saved, the store should dispatch the correct action",
+      testWidgets(
+          "When NotificationType.scoringFailed is saved, the store should dispatch the correct action",
           (tester) async {
         // given
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
 
         final navigatorKey = GlobalKey<NavigatorState>();
         final navigationObserver = NavigationGeneralObserver();
 
         pushNotificationService.user = MockUser();
         pushNotificationService.navigatorKey = navigatorKey;
-        pushNotificationService.flutterLocalNotificationsPlugin = flutterLocalNotificationsPlugin;
+        pushNotificationService.flutterLocalNotificationsPlugin =
+            flutterLocalNotificationsPlugin;
 
         when(storageService.find()).thenAnswer(
-          (_) async => jsonEncode(MockRemoteMessages.scoringFailedMessage.toMap()),
+          (_) async =>
+              jsonEncode(MockRemoteMessages.scoringFailedMessage.toMap()),
         );
 
         await pushNotificationService.init(mockStore);
@@ -272,23 +314,28 @@ void main() {
         final dispatch = verify(mockStore.dispatch(captureAny)).captured;
 
         verify(storageService.delete()).called(1);
-        expect(dispatch.single, isA<ReceivedScoringFailedNotificationEventAction>());
+        expect(dispatch.single,
+            isA<ReceivedScoringFailedNotificationEventAction>());
       });
 
-      testWidgets("When NotificationType.scoringInProgress is saved, the store should dispatch the correct action",
+      testWidgets(
+          "When NotificationType.scoringInProgress is saved, the store should dispatch the correct action",
           (tester) async {
         // given
-        final pushNotificationService = FirebasePushNotificationService(storageService: storageService);
+        final pushNotificationService =
+            FirebasePushNotificationService(storageService: storageService);
 
         final navigatorKey = GlobalKey<NavigatorState>();
         final navigationObserver = NavigationGeneralObserver();
 
         pushNotificationService.user = MockUser();
         pushNotificationService.navigatorKey = navigatorKey;
-        pushNotificationService.flutterLocalNotificationsPlugin = flutterLocalNotificationsPlugin;
+        pushNotificationService.flutterLocalNotificationsPlugin =
+            flutterLocalNotificationsPlugin;
 
         when(storageService.find()).thenAnswer(
-          (_) async => jsonEncode(MockRemoteMessages.scoringInProgressMessage.toMap()),
+          (_) async =>
+              jsonEncode(MockRemoteMessages.scoringInProgressMessage.toMap()),
         );
 
         await pushNotificationService.init(mockStore);
@@ -308,7 +355,8 @@ void main() {
         final dispatch = verify(mockStore.dispatch(captureAny)).captured;
 
         verify(storageService.delete()).called(1);
-        expect(dispatch.single, isA<ReceivedScoringInProgressNotificationEventAction>());
+        expect(dispatch.single,
+            isA<ReceivedScoringInProgressNotificationEventAction>());
       });
     });
   });

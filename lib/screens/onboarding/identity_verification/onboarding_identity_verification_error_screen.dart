@@ -33,18 +33,22 @@ class OnboardingIdentityVerificationErrorScreen extends StatelessWidget {
                   const TextSpan(text: 'We regret to inform you that your '),
                   TextSpan(
                     text: 'identity verification ',
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(text: 'has not been successful due to a '),
                   TextSpan(
                     text: 'technical issue',
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(text: '.\n\n'),
-                  const TextSpan(text: 'Please get in touch with us by tapping on the '),
+                  const TextSpan(
+                      text: 'Please get in touch with us by tapping on the '),
                   TextSpan(
                     text: 'button below',
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(text: '.'),
                 ],

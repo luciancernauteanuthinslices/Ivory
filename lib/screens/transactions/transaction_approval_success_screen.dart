@@ -22,7 +22,8 @@ class TransactionApprovalSuccessScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const AppToolbar(),
-            Text("Payment Authorized!\nOne more step left...", style: ClientConfig.getTextStyleScheme().heading1),
+            Text("Payment Authorized!\nOne more step left...",
+                style: ClientConfig.getTextStyleScheme().heading1),
             const SizedBox(height: 16),
             RichText(
               text: TextSpan(
@@ -31,26 +32,33 @@ class TransactionApprovalSuccessScreen extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: "return to the merchant's app or website",
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
-                  const TextSpan(text: " you ordered from and complete the checkout.")
+                  const TextSpan(
+                      text: " you ordered from and complete the checkout.")
                 ],
               ),
             ),
             const Spacer(),
-            Align(child: SvgPicture(
-              SvgAssetLoader(
-                "assets/images/transaction_approved_illustration.svg",
-                colorMapper: IvoryColorMapper(baseColor: ClientConfig.getColorScheme().secondary,),
+            Align(
+              child: SvgPicture(
+                SvgAssetLoader(
+                  "assets/images/transaction_approved_illustration.svg",
+                  colorMapper: IvoryColorMapper(
+                    baseColor: ClientConfig.getColorScheme().secondary,
+                  ),
+                ),
               ),
-            ),),
+            ),
             const Spacer(),
             SizedBox(
               width: double.infinity,
               child: PrimaryButton(
                 text: "OK, I understand",
                 onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, HomeScreen.routeName, (route) => false);
                 },
               ),
             ),

@@ -63,14 +63,16 @@ class BankCardFreezeCommandAction {
   final BankCard bankCard;
   final List<BankCard> bankCards;
 
-  BankCardFreezeCommandAction({required this.bankCard, required this.bankCards});
+  BankCardFreezeCommandAction(
+      {required this.bankCard, required this.bankCards});
 }
 
 class BankCardUnfreezeCommandAction {
   final BankCard bankCard;
   final List<BankCard> bankCards;
 
-  BankCardUnfreezeCommandAction({required this.bankCard, required this.bankCards});
+  BankCardUnfreezeCommandAction(
+      {required this.bankCard, required this.bankCards});
 }
 
 class BankCardInitiatePinChangeCommandAction {
@@ -97,14 +99,16 @@ class BankCardPinChoosenEventAction {
   final String pin;
   final BankCard bankcard;
   final AuthenticatedUser user;
-  BankCardPinChoosenEventAction({required this.pin, required this.user, required this.bankcard});
+  BankCardPinChoosenEventAction(
+      {required this.pin, required this.user, required this.bankcard});
 }
 
 class BankCardPinConfirmedEventAction {
   final String pin;
   final BankCard bankcard;
   final AuthenticatedUser user;
-  BankCardPinConfirmedEventAction({required this.pin, required this.user, required this.bankcard});
+  BankCardPinConfirmedEventAction(
+      {required this.pin, required this.user, required this.bankcard});
 }
 
 class BankCardPinChangedEventAction {}
@@ -144,5 +148,6 @@ class BankCardDetailsFetchedEventAction {
   final BankCard bankCard;
   final BankCardFetchedDetails cardDetails;
 
-  BankCardDetailsFetchedEventAction({required this.cardDetails, required this.bankCard});
+  BankCardDetailsFetchedEventAction(
+      {required this.cardDetails, required this.bankCard});
 }

@@ -16,7 +16,8 @@ class OnboardingProgressMiddleware extends MiddlewareClass<AppState> {
   final AuthService _authService;
   final DeviceService _deviceService;
 
-  OnboardingProgressMiddleware(this._onboardingService, this._authService, this._deviceService);
+  OnboardingProgressMiddleware(
+      this._onboardingService, this._authService, this._deviceService);
 
   @override
   call(Store<AppState> store, action, NextDispatcher next) async {
@@ -24,20 +25,26 @@ class OnboardingProgressMiddleware extends MiddlewareClass<AppState> {
 
     User? cognitoUser;
     if (store.state.authState is AuthenticationInitializedState) {
-      cognitoUser = (store.state.authState as AuthenticationInitializedState).cognitoUser;
+      cognitoUser =
+          (store.state.authState as AuthenticationInitializedState).cognitoUser;
     }
 
     if (action is GetOnboardingProgressCommandAction) {
       if (cognitoUser == null) {
-        store.dispatch(OnboardingProgressFetchedEvendAction(step: OnboardingStep.start));
+        store.dispatch(
+            OnboardingProgressFetchedEvendAction(step: OnboardingStep.start));
       } else {
         store.dispatch(OnboardingProgressLoadingEventAction());
 
-        final response = await _onboardingService.getOnboardingProgress(user: cognitoUser);
+        final response =
+            await _onboardingService.getOnboardingProgress(user: cognitoUser);
         if (response is OnboardingProgressSuccessResponse) {
-          store.dispatch(OnboardingProgressFetchedEvendAction(step: response.step));
-          if (response.mobileNumber.isNotEmpty && response.creditCardApplicationId.isEmpty) {
-            store.dispatch(MobileNumberCreatedEventAction(mobileNumber: response.mobileNumber));
+          store.dispatch(
+              OnboardingProgressFetchedEvendAction(step: response.step));
+          if (response.mobileNumber.isNotEmpty &&
+              response.creditCardApplicationId.isEmpty) {
+            store.dispatch(MobileNumberCreatedEventAction(
+                mobileNumber: response.mobileNumber));
           }
         } else {
           store.dispatch(OnboardingProgressFailedEventAction());
@@ -49,10 +56,13 @@ class OnboardingProgressMiddleware extends MiddlewareClass<AppState> {
       if (cognitoUser != null) {
         store.dispatch(OnboardingProgressLoadingEventAction());
 
-        final response = await _onboardingService.finalizeOnboarding(user: cognitoUser);
+        final response =
+            await _onboardingService.finalizeOnboarding(user: cognitoUser);
         if (response is OnboardingFinalizeSuccessResponse) {
           final credentials = await _deviceService.getCredentialsFromCache();
-          if (credentials == null || credentials.email == null || credentials.password == null) {
+          if (credentials == null ||
+              credentials.email == null ||
+              credentials.password == null) {
             store.dispatch(OnboardingProgressFailedEventAction());
             return;
           }

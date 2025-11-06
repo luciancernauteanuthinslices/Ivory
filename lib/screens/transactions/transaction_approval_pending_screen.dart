@@ -30,13 +30,18 @@ class TransactionApprovalPendingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenScaffold(
       body: Padding(
-        padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
         child: StoreConnector<AppState, TransactionApprovalViewModel>(
             onInit: (store) {
-              if (store.state.notificationState is NotificationTransactionApprovalState) {
+              if (store.state.notificationState
+                  is NotificationTransactionApprovalState) {
                 store.dispatch(
                   GetBankCardCommandAction(
-                    cardId: (store.state.notificationState as NotificationTransactionApprovalState).message.cardId,
+                    cardId: (store.state.notificationState
+                            as NotificationTransactionApprovalState)
+                        .message
+                        .cardId,
                     forceReloadCardData: true,
                   ),
                 );
@@ -45,25 +50,34 @@ class TransactionApprovalPendingScreen extends StatelessWidget {
             converter: (store) => TransactionApprovalPresenter.present(
                   bankCardState: store.state.bankCardState,
                   notificationState: store.state.notificationState,
-                  transactionApprovalState: store.state.transactionApprovalState,
+                  transactionApprovalState:
+                      store.state.transactionApprovalState,
                 ),
             distinct: true,
             onWillChange: (previousViewModel, newViewModel) {
               if (newViewModel is TransactionApprovalSucceededViewModel) {
-                Navigator.pushReplacementNamed(context, TransactionApprovalSuccessScreen.routeName);
+                Navigator.pushReplacementNamed(
+                    context, TransactionApprovalSuccessScreen.routeName);
               } else if (newViewModel is TransactionApprovalFailedViewModel) {
-                Navigator.pushReplacementNamed(context, TransactionApprovalFailedScreen.routeName);
+                Navigator.pushReplacementNamed(
+                    context, TransactionApprovalFailedScreen.routeName);
               } else if (newViewModel is TransactionApprovalRejectedViewModel) {
-                Navigator.pushReplacementNamed(context, TransactionApprovalRejectedScreen.routeName);
+                Navigator.pushReplacementNamed(
+                    context, TransactionApprovalRejectedScreen.routeName);
               }
             },
             builder: (context, viewModel) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const _Appbar(),
-                    ...(viewModel is WithApprovalChallengeViewModel && !viewModel.isLoading)
+                    ...(viewModel is WithApprovalChallengeViewModel &&
+                            !viewModel.isLoading)
                         ? _buildPageContent(context, viewModel)
-                        : [const Expanded(child: Center(child: CircularProgressIndicator()))],
+                        : [
+                            const Expanded(
+                                child:
+                                    Center(child: CircularProgressIndicator()))
+                          ],
                     const SizedBox(height: 16),
                   ],
                 )),
@@ -93,7 +107,8 @@ class TransactionApprovalPendingScreen extends StatelessWidget {
               content: _RejectPopUp(
                 onConfirm: () => StoreProvider.of<AppState>(context).dispatch(
                   RejectTransactionCommandAction(
-                    declineChangeRequestId: viewModel.message.declineChangeRequestId,
+                    declineChangeRequestId:
+                        viewModel.message.declineChangeRequestId,
                     deviceData: viewModel.deviceData,
                     deviceId: viewModel.deviceId,
                     stringToSign: viewModel.stringToSign,
@@ -138,20 +153,23 @@ class TransactionApprovalPendingScreen extends StatelessWidget {
             const SizedBox(height: 24),
             Row(children: [
               Expanded(
-                child: Text("Authorize your online payment", style: ClientConfig.getTextStyleScheme().heading2),
+                child: Text("Authorize your online payment",
+                    style: ClientConfig.getTextStyleScheme().heading2),
               ),
               SizedBox(
                 height: 70,
                 width: 70,
                 child: CircularCountdownProgress(
-                  controller: CountdownTimerController(duration: const Duration(minutes: 4)),
+                  controller: CountdownTimerController(
+                      duration: const Duration(minutes: 4)),
                   onCompleted: () async {
                     final bottomSheet = await showBottomModal(
                       context: context,
                       title: "Payment confirmation timed out",
                       textWidget: Text(
                         "The payment has been automatically rejected.",
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
                       ),
                       content: const _TimeoutPopUp(),
                     );
@@ -160,14 +178,16 @@ class TransactionApprovalPendingScreen extends StatelessWidget {
 
                     if (isDismissed) {
                       // ignore: use_build_context_synchronously
-                      Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, HomeScreen.routeName, (route) => false);
                     }
                   },
                 ),
               )
             ]),
             const SizedBox(height: 24),
-            Text("Payment details", style: ClientConfig.getTextStyleScheme().labelLarge),
+            Text("Payment details",
+                style: ClientConfig.getTextStyleScheme().labelLarge),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: TransactionListItem(
@@ -176,22 +196,30 @@ class TransactionApprovalPendingScreen extends StatelessWidget {
                   recipientName: viewModel.message.merchantName,
                   description: "",
                   amount: AmountValue(
-                    value: (double.tryParse(viewModel.message.amountValue) ?? 0) / 100 * -1,
+                    value:
+                        (double.tryParse(viewModel.message.amountValue) ?? 0) /
+                            100 *
+                            -1,
                     currency: "EUR",
                     unit: "cents",
                   ),
-                  category: const Category(id: "transactionApproval", name: "Transaction Approval"),
+                  category: const Category(
+                      id: "transactionApproval", name: "Transaction Approval"),
                   recordedAt: viewModel.message.dateTime,
                 ),
               ),
             ),
             const SizedBox(height: 24),
-            Text("Card details", style: ClientConfig.getTextStyleScheme().labelLarge),
+            Text("Card details",
+                style: ClientConfig.getTextStyleScheme().labelLarge),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: CardListItem(
-                cardNumber: "\u2217\u2217\u2217\u2217 ${cardMaskedPan.substring(cardMaskedPan.length - 4)}",
-                expiryDate: viewModel.bankCard.representation?.formattedExpirationDate ?? "",
+                cardNumber:
+                    "\u2217\u2217\u2217\u2217 ${cardMaskedPan.substring(cardMaskedPan.length - 4)}",
+                expiryDate: viewModel
+                        .bankCard.representation?.formattedExpirationDate ??
+                    "",
               ),
             ),
           ],

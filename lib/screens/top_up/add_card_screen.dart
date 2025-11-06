@@ -16,7 +16,6 @@ const defaultCardNumberFormat = '0000 0000 0000 0000';
 const defaultCardHolderFormat = 'Name Surname';
 const defaultExpiryDateFormat = '00/00';
 
-
 class AddCardScreen extends StatefulWidget {
   static const routeName = "/addCardScreen";
 
@@ -26,22 +25,28 @@ class AddCardScreen extends StatefulWidget {
   State<AddCardScreen> createState() => _AddCardScreenState();
 }
 
-
 class _AddCardScreenState extends State<AddCardScreen> {
-  final IvoryTextFieldController _nameOnCardController = IvoryTextFieldController();
-  final IvoryTextFieldController _cardNumberController = IvoryTextFieldController();
-  final IvoryTextFieldController _monthCardNumberController = IvoryTextFieldController();
-  final IvoryTextFieldController _yearCardNumberController = IvoryTextFieldController();
+  final IvoryTextFieldController _nameOnCardController =
+      IvoryTextFieldController();
+  final IvoryTextFieldController _cardNumberController =
+      IvoryTextFieldController();
+  final IvoryTextFieldController _monthCardNumberController =
+      IvoryTextFieldController();
+  final IvoryTextFieldController _yearCardNumberController =
+      IvoryTextFieldController();
   final IvoryTextFieldController _cvvController = IvoryTextFieldController();
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
 
-void updateExpiryDate() {
-  setState(() {
-    expiryDate = _monthCardNumberController.text.isNotEmpty && _yearCardNumberController.text.isNotEmpty
-        ? '${_monthCardNumberController.text}/${_yearCardNumberController.text}'
-        : defaultExpiryDateFormat;
-  });
-}
+  void updateExpiryDate() {
+    setState(() {
+      expiryDate = _monthCardNumberController.text.isNotEmpty &&
+              _yearCardNumberController.text.isNotEmpty
+          ? '${_monthCardNumberController.text}/${_yearCardNumberController.text}'
+          : defaultExpiryDateFormat;
+    });
+  }
+
   String cardNumber = defaultCardNumberFormat;
   String cardHolderName = defaultCardHolderFormat;
   String expiryDate = defaultExpiryDateFormat;
@@ -56,30 +61,39 @@ void updateExpiryDate() {
     _cvvController.addListener(onChange);
   }
 
-void onChange() {
-  setState(() {
-    String nameOnCard = _nameOnCardController.text;
-    String cardNumber = _cardNumberController.text;
-    String month = _monthCardNumberController.text;
-    String year = _yearCardNumberController.text;
-    String cvv = _cvvController.text;
+  void onChange() {
+    setState(() {
+      String nameOnCard = _nameOnCardController.text;
+      String cardNumber = _cardNumberController.text;
+      String month = _monthCardNumberController.text;
+      String year = _yearCardNumberController.text;
+      String cvv = _cvvController.text;
 
-    bool isNameValid = nameOnCard.isNotEmpty;
-    bool isCardNumberValid = cardNumber.isNotEmpty;
-    bool isMonthValid = month.isNotEmpty && RegExp(r'^0[1-9]|1[0-2]$').hasMatch(month);
-    bool isYearValid = year.isNotEmpty && RegExp(r'^\d{2}$').hasMatch(year);
-    bool isCvvValid = cvv.isNotEmpty && RegExp(r'^\d{3}$').hasMatch(cvv);
+      bool isNameValid = nameOnCard.isNotEmpty;
+      bool isCardNumberValid = cardNumber.isNotEmpty;
+      bool isMonthValid =
+          month.isNotEmpty && RegExp(r'^0[1-9]|1[0-2]$').hasMatch(month);
+      bool isYearValid = year.isNotEmpty && RegExp(r'^\d{2}$').hasMatch(year);
+      bool isCvvValid = cvv.isNotEmpty && RegExp(r'^\d{3}$').hasMatch(cvv);
 
-    if (isNameValid && isCardNumberValid && isMonthValid && isYearValid && isCvvValid) {
-      _continueButtonController.setEnabled();
-    } else {
-      _continueButtonController.setDisabled();
-    }
+      if (isNameValid &&
+          isCardNumberValid &&
+          isMonthValid &&
+          isYearValid &&
+          isCvvValid) {
+        _continueButtonController.setEnabled();
+      } else {
+        _continueButtonController.setDisabled();
+      }
 
-    this.cardNumber = isCardNumberValid ? cardNumber : defaultCardNumberFormat;
-    this.cardHolderName = isNameValid ? nameOnCard : defaultCardHolderFormat;
-    this.expiryDate = (isMonthValid && isYearValid) ? '$month/$year' : defaultExpiryDateFormat;
-});}
+      this.cardNumber =
+          isCardNumberValid ? cardNumber : defaultCardNumberFormat;
+      this.cardHolderName = isNameValid ? nameOnCard : defaultCardHolderFormat;
+      this.expiryDate = (isMonthValid && isYearValid)
+          ? '$month/$year'
+          : defaultExpiryDateFormat;
+    });
+  }
 
   @override
   void dispose() {
@@ -92,67 +106,70 @@ void onChange() {
     super.dispose();
   }
 
- @override
-Widget build(BuildContext context) {
-  return ScreenScaffold(
-    body: Padding(
-      padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AppToolbar(),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Add a card',
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
+  @override
+  Widget build(BuildContext context) {
+    return ScreenScaffold(
+      body: Padding(
+        padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AppToolbar(),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Add a card',
+                  style: TextStyle(
+                    fontSize: 32.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            VisaCard(
-              cardNumber: cardNumber,
-              cardHolderName: cardHolderName,
-              expiryDate: expiryDate,
-            ),
-            const SizedBox(height: 16),
-            CreditCardForm( 
-              nameOnCardController: _nameOnCardController,
-              cardNumberController: _cardNumberController,
-              monthCardNumberController: _monthCardNumberController,
-              yearCardNumberController: _yearCardNumberController,
-              cvvController: _cvvController,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ListenableBuilder(
-                listenable: _continueButtonController,
-                builder: (context, _) => PrimaryButton(
-                  text: "Add card",
-                  onPressed: _continueButtonController.isEnabled ? () {
-                    StoreProvider.of<AppState>(context).dispatch(
-                      SubmitCardInformationCommandAction(
-                        cardHolder: _nameOnCardController.text,
-                        cardNumber: _cardNumberController.text,
-                        month: _monthCardNumberController.text,
-                        year: _yearCardNumberController.text,
-                        cvv: _cvvController.text,
-                      ),
-                    );
-                    Navigator.pushNamed(context, AddMoneyScreen.routeName);
-                  } : null,
+              const SizedBox(height: 16),
+              VisaCard(
+                cardNumber: cardNumber,
+                cardHolderName: cardHolderName,
+                expiryDate: expiryDate,
+              ),
+              const SizedBox(height: 16),
+              CreditCardForm(
+                nameOnCardController: _nameOnCardController,
+                cardNumberController: _cardNumberController,
+                monthCardNumberController: _monthCardNumberController,
+                yearCardNumberController: _yearCardNumberController,
+                cvvController: _cvvController,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ListenableBuilder(
+                  listenable: _continueButtonController,
+                  builder: (context, _) => PrimaryButton(
+                    text: "Add card",
+                    onPressed: _continueButtonController.isEnabled
+                        ? () {
+                            StoreProvider.of<AppState>(context).dispatch(
+                              SubmitCardInformationCommandAction(
+                                cardHolder: _nameOnCardController.text,
+                                cardNumber: _cardNumberController.text,
+                                month: _monthCardNumberController.text,
+                                year: _yearCardNumberController.text,
+                                cvv: _cvvController.text,
+                              ),
+                            );
+                            Navigator.pushNamed(
+                                context, AddMoneyScreen.routeName);
+                          }
+                        : null,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-          ],
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
   }
 }
 
@@ -171,16 +188,17 @@ class VisaCard extends StatelessWidget {
     this.height = 200,
   });
 
-
   @override
   Widget build(BuildContext context) {
     final bool isDefaultCardNumber = cardNumber == defaultCardNumberFormat;
-    final bool isDefaultCardHolderName = cardHolderName == defaultCardHolderFormat;
+    final bool isDefaultCardHolderName =
+        cardHolderName == defaultCardHolderFormat;
     final bool isDefaultExpiryDate = expiryDate == defaultExpiryDateFormat;
 
-    final Color textColor = isDefaultCardNumber || isDefaultCardHolderName || isDefaultExpiryDate
-        ? ClientConfig.getCustomColors().neutral600 
-        : Colors.black; 
+    final Color textColor =
+        isDefaultCardNumber || isDefaultCardHolderName || isDefaultExpiryDate
+            ? ClientConfig.getCustomColors().neutral600
+            : Colors.black;
     return Center(
       child: Container(
         width: width,
@@ -199,7 +217,7 @@ class VisaCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                'assets/images/card_logo.png', 
+                'assets/images/card_logo.png',
                 width: 60,
                 height: 40,
               ),
@@ -306,25 +324,28 @@ class CreditCardForm extends StatelessWidget {
             placeholder: 'Card number',
             inputType: TextFieldInputType.number,
             keyboardType: TextInputType.number,
-            inputFormatters: [InputFormatter.cardNumber(cardNumberController.text)],
+            inputFormatters: [
+              InputFormatter.cardNumber(cardNumberController.text)
+            ],
             controller: cardNumberController,
           ),
         ),
         const SizedBox(height: 12),
         Row(
           children: [
-             SizedBox(
-                height: 80, 
-                width: MediaQuery.of(context).size.width / 2.5,
-                child:  IvoryTextField(
+            SizedBox(
+              height: 80,
+              width: MediaQuery.of(context).size.width / 2.5,
+              child: IvoryTextField(
                 label: 'Month',
                 placeholder: '00',
                 inputType: TextFieldInputType.number,
                 keyboardType: TextInputType.number,
                 controller: monthCardNumberController,
                 inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(2),],
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(2),
+                ],
                 onChanged: (value) {
                   final validMonthPattern = RegExp(r'^0[1-9]|1[0-2]$');
                   if (!validMonthPattern.hasMatch(value)) {
@@ -333,31 +354,31 @@ class CreditCardForm extends StatelessWidget {
                     monthCardNumberController.setError(false);
                   }
                 },
-                ),
-              ), 
+              ),
+            ),
             Spacer(),
             SizedBox(
-                height: 80, 
-                width: MediaQuery.of(context).size.width / 2.5,
-                child:  IvoryTextField(
-                  label: 'Year',
-                  placeholder: '00',
-                  inputType: TextFieldInputType.number,
-                  keyboardType: TextInputType.number,
-                  controller: yearCardNumberController,
-                  inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,  
+              height: 80,
+              width: MediaQuery.of(context).size.width / 2.5,
+              child: IvoryTextField(
+                label: 'Year',
+                placeholder: '00',
+                inputType: TextFieldInputType.number,
+                keyboardType: TextInputType.number,
+                controller: yearCardNumberController,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(2)
-                  ],
-                  onChanged: (value) {
-                    final currentYear = DateTime.now().year;
-                    final lastTwoDigitsOfCurrentYear = currentYear % 100;
-                    final enteredYear = int.tryParse(value) ?? 0;
-                    if (enteredYear < lastTwoDigitsOfCurrentYear) {
-                      yearCardNumberController.setError(true);
-                    } else {
-                      yearCardNumberController.setError(false);
-                    }
+                ],
+                onChanged: (value) {
+                  final currentYear = DateTime.now().year;
+                  final lastTwoDigitsOfCurrentYear = currentYear % 100;
+                  final enteredYear = int.tryParse(value) ?? 0;
+                  if (enteredYear < lastTwoDigitsOfCurrentYear) {
+                    yearCardNumberController.setError(true);
+                  } else {
+                    yearCardNumberController.setError(false);
+                  }
                 },
               ),
             ),
@@ -367,21 +388,18 @@ class CreditCardForm extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width / 2.5,
           child: IvoryTextField(
-            label: 'CVV',
-            placeholder: 'CVV',
-            inputType: TextFieldInputType.number,
-            keyboardType: TextInputType.number,
-            controller: cvvController,
-            inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly, 
+              label: 'CVV',
+              placeholder: 'CVV',
+              inputType: TextFieldInputType.number,
+              keyboardType: TextInputType.number,
+              controller: cvvController,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(3)
-              ]
-          ),
+              ]),
         ),
         const SizedBox(height: 24),
       ],
     );
   }
 }
-
-

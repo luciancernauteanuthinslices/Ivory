@@ -22,8 +22,10 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
       if (store.state.authState is AuthenticationInitializedState) {
         store.dispatch(OnboardingPersonalDetailsLoadingEventAction());
 
-        final user = (store.state.authState as AuthenticationInitializedState).cognitoUser;
-        final personalDetailsAttributes = store.state.onboardingPersonalDetailsState.attributes;
+        final user = (store.state.authState as AuthenticationInitializedState)
+            .cognitoUser;
+        final personalDetailsAttributes =
+            store.state.onboardingPersonalDetailsState.attributes;
 
         final birthCountry = personalDetailsAttributes.country;
         final nationality = personalDetailsAttributes.nationality;
@@ -39,9 +41,11 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         );
 
         if (response is OnboardingCreatePersonSuccessResponse) {
-          store.dispatch(CreatePersonAccountSuccessEventAction(personId: response.personId));
+          store.dispatch(CreatePersonAccountSuccessEventAction(
+              personId: response.personId));
         } else if (response is OnboardingPersonalDetailsServiceErrorResponse) {
-          store.dispatch(CreatePersonAccountFailedEventAction(errorType: response.errorType));
+          store.dispatch(CreatePersonAccountFailedEventAction(
+              errorType: response.errorType));
         }
       }
     }
@@ -50,7 +54,8 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
       if (store.state.authState is AuthenticationInitializedState) {
         store.dispatch(OnboardingPersonalDetailsLoadingEventAction());
 
-        final user = (store.state.authState as AuthenticationInitializedState).cognitoUser;
+        final user = (store.state.authState as AuthenticationInitializedState)
+            .cognitoUser;
 
         final response = await _mobileNumberService.createMobileNumber(
           mobileNumber: action.mobileNumber,
@@ -58,9 +63,11 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         );
 
         if (response is CreateMobileNumberSuccessResponse) {
-          store.dispatch(MobileNumberCreatedEventAction(mobileNumber: action.mobileNumber));
+          store.dispatch(MobileNumberCreatedEventAction(
+              mobileNumber: action.mobileNumber));
         } else if (response is MobileNumberServiceErrorResponse) {
-          store.dispatch(MobileNumberCreateFailedEventAction(errorType: response.errorType));
+          store.dispatch(MobileNumberCreateFailedEventAction(
+              errorType: response.errorType));
         }
       }
     }
@@ -69,7 +76,8 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
       if (store.state.authState is AuthenticationInitializedState) {
         store.dispatch(OnboardingPersonalDetailsLoadingEventAction());
 
-        final user = (store.state.authState as AuthenticationInitializedState).cognitoUser;
+        final user = (store.state.authState as AuthenticationInitializedState)
+            .cognitoUser;
 
         final response = await _mobileNumberService.confirmMobileNumber(
           mobileNumber: action.mobileNumber,
@@ -80,14 +88,16 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         if (response is ConfirmMobileNumberSuccessResponse) {
           store.dispatch(MobileNumberConfirmedEventAction());
         } else if (response is MobileNumberServiceErrorResponse) {
-          store.dispatch(MobileNumberConfirmationFailedEventAction(errorType: response.errorType));
+          store.dispatch(MobileNumberConfirmationFailedEventAction(
+              errorType: response.errorType));
         }
       }
     }
 
     if (action is VerifyMobileNumberCommandAction) {
       if (store.state.authState is AuthenticationInitializedState) {
-        final user = (store.state.authState as AuthenticationInitializedState).cognitoUser;
+        final user = (store.state.authState as AuthenticationInitializedState)
+            .cognitoUser;
 
         final response = await _mobileNumberService.verifyMobileNumber(
           mobileNumber: action.mobileNumber,
@@ -97,7 +107,8 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         if (response is VerifyMobileNumberSuccessResponse) {
           store.dispatch(MobileNumberVerifiedEventAction());
         } else if (response is MobileNumberServiceErrorResponse) {
-          store.dispatch(MobileNumberCreateFailedEventAction(errorType: response.errorType));
+          store.dispatch(MobileNumberCreateFailedEventAction(
+              errorType: response.errorType));
         }
       }
     }

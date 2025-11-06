@@ -7,7 +7,8 @@ import 'package:solarisdemo/models/device_consent.dart';
 import 'package:solarisdemo/models/user.dart';
 import 'package:solarisdemo/services/api_service.dart';
 
-MethodChannel _platform = const MethodChannel('com.thinslices.solarisdemo/native');
+MethodChannel _platform =
+    const MethodChannel('com.thinslices.solarisdemo/native');
 const getDeviceFingerprintMethod = 'getDeviceFingerprint';
 const getIosDeviceFingerprintMethod = 'getIosDeviceFingerprint';
 
@@ -33,7 +34,8 @@ class DeviceFingerprintService extends ApiService {
       );
       return CreateDeviceConsentResponse(consentId: data['id']);
     } catch (e) {
-      return DeviceFingerprintServiceErrorResponse(errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+      return DeviceFingerprintServiceErrorResponse(
+          errorType: DeviceFingerprintErrorType.unableToCreateActivity);
     }
   }
 
@@ -56,7 +58,8 @@ class DeviceFingerprintService extends ApiService {
       );
       return CreateDeviceActivityResponse();
     } catch (e) {
-      return DeviceFingerprintServiceErrorResponse(errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+      return DeviceFingerprintServiceErrorResponse(
+          errorType: DeviceFingerprintErrorType.unableToCreateActivity);
     }
   }
 
@@ -101,7 +104,8 @@ class CreateDeviceConsentResponse extends DeviceFingerprintServiceResponse {
 
 class CreateDeviceActivityResponse extends DeviceFingerprintServiceResponse {}
 
-class DeviceFingerprintServiceErrorResponse extends DeviceFingerprintServiceResponse {
+class DeviceFingerprintServiceErrorResponse
+    extends DeviceFingerprintServiceResponse {
   final DeviceFingerprintErrorType errorType;
 
   DeviceFingerprintServiceErrorResponse({required this.errorType});

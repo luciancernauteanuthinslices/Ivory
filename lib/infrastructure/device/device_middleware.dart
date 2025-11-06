@@ -35,23 +35,30 @@ class DeviceBindingMiddleware extends MiddlewareClass<AppState> {
     final authState = store.state.authState;
 
     if (action is DeviceBindingCheckIfPossibleCommandAction) {
-      final deviceBindingState = store.state.deviceBindingState as DeviceBindingFetchedState;
+      final deviceBindingState =
+          store.state.deviceBindingState as DeviceBindingFetchedState;
 
-      int? devicePairingTriedAt = await _deviceService.getDevicePairingTriedAt();
+      int? devicePairingTriedAt =
+          await _deviceService.getDevicePairingTriedAt();
       final alreadyTriedInLast5Minutes = devicePairingTriedAt != null &&
-          DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(devicePairingTriedAt)).inMinutes <= 5;
+          DateTime.now()
+                  .difference(
+                      DateTime.fromMillisecondsSinceEpoch(devicePairingTriedAt))
+                  .inMinutes <=
+              5;
 
       if (alreadyTriedInLast5Minutes) {
-        store.dispatch(
-            DeviceBindingNotPossibleEventAction(reason: DeviceBindingNotPossibleReason.alreadyTriedInLast5Minutes));
+        store.dispatch(DeviceBindingNotPossibleEventAction(
+            reason: DeviceBindingNotPossibleReason.alreadyTriedInLast5Minutes));
         return;
       }
 
-      final isBiometricsAvailable = await _biometricsService.biometricsAvailable();
+      final isBiometricsAvailable =
+          await _biometricsService.biometricsAvailable();
 
       if (!isBiometricsAvailable) {
-        store.dispatch(
-            DeviceBindingNotPossibleEventAction(reason: DeviceBindingNotPossibleReason.noBiometricsAvailable));
+        store.dispatch(DeviceBindingNotPossibleEventAction(
+            reason: DeviceBindingNotPossibleReason.noBiometricsAvailable));
         return;
       }
 
@@ -72,14 +79,16 @@ class DeviceBindingMiddleware extends MiddlewareClass<AppState> {
 
       store.dispatch(DeviceBindingLoadingEventAction());
 
-      String? consentId = await _deviceService.getConsentId(authState.authenticatedUser.cognito.personId!);
+      String? consentId = await _deviceService
+          .getConsentId(authState.authenticatedUser.cognito.personId!);
 
       if (consentId == null) {
         store.dispatch(DeviceBindingFailedEventAction());
         return null;
       }
 
-      String? deviceFingerPrint = await _deviceFingerprintService.getDeviceFingerprint(consentId);
+      String? deviceFingerPrint =
+          await _deviceFingerprintService.getDeviceFingerprint(consentId);
       if (deviceFingerPrint == null || deviceFingerPrint.isEmpty) {
         store.dispatch(DeviceBindingFailedEventAction());
         return null;
@@ -101,16 +110,18 @@ class DeviceBindingMiddleware extends MiddlewareClass<AppState> {
         store.dispatch(DeviceBindingFailedEventAction());
         return null;
       }
-      final createBindingResponse = await _deviceBindingService.createDeviceBinding(
-          user: authState.authenticatedUser.cognito,
-          reqBody: CreateDeviceBindingRequest(
-            personId: authState.authenticatedUser.cognito.personId!,
-            key: newKeypair.publicKey,
-            name: deviceName,
-            deviceData: deviceFingerPrint,
-          ));
+      final createBindingResponse =
+          await _deviceBindingService.createDeviceBinding(
+              user: authState.authenticatedUser.cognito,
+              reqBody: CreateDeviceBindingRequest(
+                personId: authState.authenticatedUser.cognito.personId!,
+                key: newKeypair.publicKey,
+                name: deviceName,
+                deviceData: deviceFingerPrint,
+              ));
       if (createBindingResponse is CreateDeviceBindingSuccessResponse) {
-        await _deviceService.saveDeviceIdIntoCache(createBindingResponse.deviceId);
+        await _deviceService
+            .saveDeviceIdIntoCache(createBindingResponse.deviceId);
         store.dispatch(DeviceBindingCreatedEventAction());
       } else {
         store.dispatch(DeviceBindingFailedEventAction());
@@ -125,20 +136,23 @@ class DeviceBindingMiddleware extends MiddlewareClass<AppState> {
       store.dispatch(DeviceBindingLoadingEventAction());
 
       final deviceId = await _deviceService.getDeviceId();
-      String? consentId = await _deviceService.getConsentId(authState.authenticatedUser.cognito.personId!);
+      String? consentId = await _deviceService
+          .getConsentId(authState.authenticatedUser.cognito.personId!);
 
       if (consentId == null) {
         store.dispatch(DeviceBindingFailedEventAction());
         return null;
       }
 
-      String? deviceFingerPrint = await _deviceFingerprintService.getDeviceFingerprint(consentId);
+      String? deviceFingerPrint =
+          await _deviceFingerprintService.getDeviceFingerprint(consentId);
       if (deviceFingerPrint == null || deviceFingerPrint.isEmpty) {
         store.dispatch(DeviceBindingFailedEventAction());
         return null;
       }
 
-      final existingUnrestrictedKeyPair = await _deviceService.getDeviceKeyPairs();
+      final existingUnrestrictedKeyPair =
+          await _deviceService.getDeviceKeyPairs();
 
       if (existingUnrestrictedKeyPair == null) {
         store.dispatch(DeviceBindingFailedEventAction());
@@ -155,14 +169,17 @@ class DeviceBindingMiddleware extends MiddlewareClass<AppState> {
         return null;
       }
 
-      final verifyDeviceBindingChallenegeResponse = await _deviceBindingService.verifyDeviceBindingSignature(
+      final verifyDeviceBindingChallenegeResponse =
+          await _deviceBindingService.verifyDeviceBindingSignature(
         user: authState.authenticatedUser.cognito,
         deviceId: deviceId!,
         deviceFingerPrint: deviceFingerPrint,
         signature: signature,
       );
-      if (verifyDeviceBindingChallenegeResponse is DeviceBindingServiceErrorResponse) {
-        store.dispatch(DeviceBindingChallengeVerificationFailedEventAction(deviceId));
+      if (verifyDeviceBindingChallenegeResponse
+          is DeviceBindingServiceErrorResponse) {
+        store.dispatch(
+            DeviceBindingChallengeVerificationFailedEventAction(deviceId));
         return null;
       }
 
@@ -191,7 +208,8 @@ class DeviceBindingMiddleware extends MiddlewareClass<AppState> {
         key: newKeypair.publicKey,
       );
 
-      final createRestrictedKeyResponse = await _deviceBindingService.createRestrictedKey(
+      final createRestrictedKeyResponse =
+          await _deviceBindingService.createRestrictedKey(
         user: authState.authenticatedUser.cognito,
         reqBody: reqBody,
       );
@@ -258,7 +276,8 @@ class DeviceBindingMiddleware extends MiddlewareClass<AppState> {
       }
 
       store.dispatch(DeviceBindingLoadingEventAction());
-      final unpairDeviceResponse = await _deviceBindingService.deleteDeviceBinding(
+      final unpairDeviceResponse =
+          await _deviceBindingService.deleteDeviceBinding(
         user: authState.authenticatedUser.cognito,
         deviceId: action.deviceId,
       );

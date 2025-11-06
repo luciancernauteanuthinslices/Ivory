@@ -66,7 +66,8 @@ void main() {
     );
 
     // then
-    expect(viewModel, WithMessageViewModel(message: notificationMessage, isLoading: true));
+    expect(viewModel,
+        WithMessageViewModel(message: notificationMessage, isLoading: true));
   });
 
   test("when bank card state is loading should return loading", () {
@@ -85,10 +86,12 @@ void main() {
     );
 
     // then
-    expect(viewModel, WithMessageViewModel(message: notificationMessage, isLoading: true));
+    expect(viewModel,
+        WithMessageViewModel(message: notificationMessage, isLoading: true));
   });
 
-  test("when transaction approval state is rejected should return rejected", () {
+  test("when transaction approval state is rejected should return rejected",
+      () {
     // given
     final notificationState = NotificationTransactionApprovalState(
       message: notificationMessage,
@@ -125,7 +128,8 @@ void main() {
     // then
     expect(
       viewModel,
-      TransactionApprovalFailedViewModel(errorType: TransactionApprovalErrorType.unboundedDeviceError),
+      TransactionApprovalFailedViewModel(
+          errorType: TransactionApprovalErrorType.unboundedDeviceError),
     );
   });
 
@@ -147,7 +151,8 @@ void main() {
     // then
     expect(
       viewModel,
-      TransactionApprovalFailedViewModel(errorType: TransactionApprovalErrorType.unknownError),
+      TransactionApprovalFailedViewModel(
+          errorType: TransactionApprovalErrorType.unknownError),
     );
   });
 
@@ -169,7 +174,8 @@ void main() {
     // then
     expect(
       viewModel,
-      TransactionApprovalFailedViewModel(errorType: TransactionApprovalErrorType.unknownError),
+      TransactionApprovalFailedViewModel(
+          errorType: TransactionApprovalErrorType.unknownError),
     );
   });
 
@@ -184,7 +190,8 @@ void main() {
       deviceData: "deviceData",
       changeRequestId: "changeRequestId",
     );
-    final bankCardState = BankCardFetchedState(bankCard, MockAuthenticatedUser());
+    final bankCardState =
+        BankCardFetchedState(bankCard, MockAuthenticatedUser());
 
     // when
     final viewModel = TransactionApprovalPresenter.present(

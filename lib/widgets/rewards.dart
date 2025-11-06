@@ -50,7 +50,9 @@ class Rewards extends StatelessWidget {
               child: Text(
                 "See all",
                 textAlign: TextAlign.right,
-                style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(color:ClientConfig.getColorScheme().secondary,),
+                style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(
+                      color: ClientConfig.getColorScheme().secondary,
+                    ),
               ),
               onPressed: () {},
             )
@@ -122,14 +124,18 @@ class RewardCard extends StatelessWidget {
                   ),
                   Text(
                     reward.provider,
-                    style: ClientConfig.getTextStyleScheme().labelXSmall.copyWith(color: Colors.white),
+                    style: ClientConfig.getTextStyleScheme()
+                        .labelXSmall
+                        .copyWith(color: Colors.white),
                   ),
                   const SizedBox(
                     height: 8,
                   ),
                   Text(
                     reward.description,
-                    style:  ClientConfig.getTextStyleScheme().heading2.copyWith(color: Colors.white),
+                    style: ClientConfig.getTextStyleScheme()
+                        .heading2
+                        .copyWith(color: Colors.white),
                   )
                 ],
               ),

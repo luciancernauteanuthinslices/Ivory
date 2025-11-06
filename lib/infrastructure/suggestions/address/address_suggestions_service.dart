@@ -7,7 +7,8 @@ import 'package:solarisdemo/services/api_service.dart';
 class AddressSuggestionsService extends ApiService {
   AddressSuggestionsService({super.user});
 
-  Future<AddressSuggestionsServiceResponse> getAddressSuggestions({required User user, required String query}) async {
+  Future<AddressSuggestionsServiceResponse> getAddressSuggestions(
+      {required User user, required String query}) async {
     this.user = user;
 
     try {
@@ -28,7 +29,8 @@ class AddressSuggestionsService extends ApiService {
             .toList(),
       );
     } catch (error) {
-      return GetAddressSuggestionsErrorResponse(errorType: AddressSuggestionsErrorType.unknown);
+      return GetAddressSuggestionsErrorResponse(
+          errorType: AddressSuggestionsErrorType.unknown);
     }
   }
 }
@@ -38,7 +40,8 @@ abstract class AddressSuggestionsServiceResponse extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetAddressSuggestionsSuccessResponse extends AddressSuggestionsServiceResponse {
+class GetAddressSuggestionsSuccessResponse
+    extends AddressSuggestionsServiceResponse {
   final List<AddressSuggestion> suggestions;
 
   GetAddressSuggestionsSuccessResponse({required this.suggestions});
@@ -47,7 +50,8 @@ class GetAddressSuggestionsSuccessResponse extends AddressSuggestionsServiceResp
   List<Object?> get props => [suggestions];
 }
 
-class GetAddressSuggestionsErrorResponse extends AddressSuggestionsServiceResponse {
+class GetAddressSuggestionsErrorResponse
+    extends AddressSuggestionsServiceResponse {
   final AddressSuggestionsErrorType errorType;
 
   GetAddressSuggestionsErrorResponse({required this.errorType});

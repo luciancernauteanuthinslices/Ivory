@@ -62,7 +62,8 @@ class DefaultTheme {
       defaultScreenBottomPadding: 16,
       defaultScreenLeftPadding: 24,
       defaultScreenRightPadding: 24,
-      defaultScreenHorizontalPadding: const EdgeInsets.symmetric(horizontal: 24),
+      defaultScreenHorizontalPadding:
+          const EdgeInsets.symmetric(horizontal: 24),
       defaultScreenVerticalPadding: const EdgeInsets.only(top: 0, bottom: 16),
       defaultScreenPadding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
     ),
@@ -171,7 +172,8 @@ class PorscheTheme {
     outline: Colors.black, //ALSO USED TO CALCULATE GRADIENT,
   );
 
-  static ClientUiSettings clientUiSettings = DefaultTheme.clientUiSettings.copyWith(
+  static ClientUiSettings clientUiSettings =
+      DefaultTheme.clientUiSettings.copyWith(
     colorscheme: colorScheme,
     cardType: CardType.mastercard,
     welcomeVideoPath: "assets/videos/porsche_welcome_video.mp4",
@@ -188,7 +190,8 @@ class SolarisTheme {
     outline: const Color(0xFF9D2801), //ALSO USED TO CALCULATE GRADIENT,
   );
 
-  static ClientUiSettings clientUiSettings = DefaultTheme.clientUiSettings.copyWith(colorscheme: colorScheme);
+  static ClientUiSettings clientUiSettings =
+      DefaultTheme.clientUiSettings.copyWith(colorscheme: colorScheme);
 }
 
 class IuliusTheme {
@@ -201,7 +204,8 @@ class IuliusTheme {
     outline: const Color(0xFF9D2801), //ALSO USED TO CALCULATE GRADIENT,
   );
 
-  static ClientUiSettings clientUiSettings = DefaultTheme.clientUiSettings.copyWith(colorscheme: colorScheme);
+  static ClientUiSettings clientUiSettings =
+      DefaultTheme.clientUiSettings.copyWith(colorscheme: colorScheme);
 }
 
 class CustomColors {

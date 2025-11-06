@@ -75,7 +75,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           currentPageIndex = index;
         });
       },
-      items: mainNavigationScreens.map((screen) => _getBottomNavbarItem(screen)).toList(),
+      items: mainNavigationScreens
+          .map((screen) => _getBottomNavbarItem(screen))
+          .toList(),
     );
   }
 

@@ -11,8 +11,10 @@ class TransferAccountsPresenter {
     required PersonAccountState personAccountState,
   }) {
     if (referenceAccountState is ReferenceAccountErrorState) {
-      if (referenceAccountState.errorType == PersonServiceErrorType.referenceAccountUnavailable) {
-        return const TransferAccountsErrorViewModel(errorType: TransferAccountsErrorType.referenceAccountUnavailable);
+      if (referenceAccountState.errorType ==
+          PersonServiceErrorType.referenceAccountUnavailable) {
+        return const TransferAccountsErrorViewModel(
+            errorType: TransferAccountsErrorType.referenceAccountUnavailable);
       }
       return const TransferAccountsErrorViewModel();
     } else if (personAccountState is PersonAccountErrorState) {

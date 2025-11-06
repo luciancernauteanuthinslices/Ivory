@@ -5,12 +5,16 @@ import 'package:solarisdemo/redux/repayments/reminder/repayment_reminder_state.d
 
 class RepaymentReminderPresenter {
   static RepaymentReminderViewModel presentRepaymentReminder(
-      {required RepaymentReminderState repaymentReminderState, required CreditLineState creditLineState}) {
-    if (repaymentReminderState is RepaymentReminderLoadingState || creditLineState is CreditLineLoadingState) {
+      {required RepaymentReminderState repaymentReminderState,
+      required CreditLineState creditLineState}) {
+    if (repaymentReminderState is RepaymentReminderLoadingState ||
+        creditLineState is CreditLineLoadingState) {
       return RepaymentReminderLoadingViewModel();
-    } else if (repaymentReminderState is RepaymentReminderErrorState || creditLineState is CreditLineErrorState) {
+    } else if (repaymentReminderState is RepaymentReminderErrorState ||
+        creditLineState is CreditLineErrorState) {
       return RepaymentReminderErrorViewModel();
-    } else if (repaymentReminderState is RepaymentReminderFetchedState && creditLineState is CreditLineFetchedState) {
+    } else if (repaymentReminderState is RepaymentReminderFetchedState &&
+        creditLineState is CreditLineFetchedState) {
       return RepaymentReminderFetchedViewModel(
         repaymentReminders: repaymentReminderState.repaymentReminders,
         repaymentDueDate: creditLineState.creditLine.dueDate,

@@ -19,15 +19,22 @@ class OnboardingMonthlyIncomeScreen extends StatefulWidget {
   const OnboardingMonthlyIncomeScreen({super.key});
 
   @override
-  State<OnboardingMonthlyIncomeScreen> createState() => _OnboardingMonthlyIncomeScreenState();
+  State<OnboardingMonthlyIncomeScreen> createState() =>
+      _OnboardingMonthlyIncomeScreenState();
 }
 
-class _OnboardingMonthlyIncomeScreenState extends State<OnboardingMonthlyIncomeScreen> {
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
-  final TextEditingController _monthlyIncomeController = TextEditingController();
-  final TextEditingController _monthlyExpenseController = TextEditingController();
-  final TextEditingController _totalCurrentDebtController = TextEditingController();
-  final TextEditingController _totalCreditLimitController = TextEditingController();
+class _OnboardingMonthlyIncomeScreenState
+    extends State<OnboardingMonthlyIncomeScreen> {
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
+  final TextEditingController _monthlyIncomeController =
+      TextEditingController();
+  final TextEditingController _monthlyExpenseController =
+      TextEditingController();
+  final TextEditingController _totalCurrentDebtController =
+      TextEditingController();
+  final TextEditingController _totalCreditLimitController =
+      TextEditingController();
 
   void onChange() {
     final hasValues = _monthlyIncomeController.text.isNotEmpty &&
@@ -70,8 +77,10 @@ class _OnboardingMonthlyIncomeScreenState extends State<OnboardingMonthlyIncomeS
         if (newViewModel.isLoading) {
           _continueButtonController.setLoading();
         }
-        if (!previousViewModel!.isCreditCardApplicationCreated && newViewModel.isCreditCardApplicationCreated) {
-          Navigator.pushNamedAndRemoveUntil(context, OnboardingStepperScreen.routeName, (route) => false);
+        if (!previousViewModel!.isCreditCardApplicationCreated &&
+            newViewModel.isCreditCardApplicationCreated) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, OnboardingStepperScreen.routeName, (route) => false);
         }
       },
       builder: (context, viewModel) {
@@ -79,7 +88,8 @@ class _OnboardingMonthlyIncomeScreenState extends State<OnboardingMonthlyIncomeS
           body: Column(
             children: [
               AppToolbar(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 richTextTitle: StepRichTextTitle(
                   step: 5,
                   totalSteps: 5,
@@ -96,14 +106,15 @@ class _OnboardingMonthlyIncomeScreenState extends State<OnboardingMonthlyIncomeS
               ),
               Expanded(
                 child: ScrollableScreenContainer(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   child: Column(
                     children: [
                       const SizedBox(height: 16),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child:
-                            Text('Income, expenses & other\ncredit', style: ClientConfig.getTextStyleScheme().heading2),
+                        child: Text('Income, expenses & other\ncredit',
+                            style: ClientConfig.getTextStyleScheme().heading2),
                       ),
                       const SizedBox(height: 24),
                       InputCurrencyField(
@@ -117,7 +128,7 @@ class _OnboardingMonthlyIncomeScreenState extends State<OnboardingMonthlyIncomeS
                         maxLength: 17,
                         controller: _monthlyExpenseController,
                         currencyPathIcon: 'assets/icons/euro_icon.svg',
-                        label: 'Monthly expenses',                     
+                        label: 'Monthly expenses',
                       ),
                       const SizedBox(height: 24),
                       InputCurrencyField(
@@ -161,16 +172,20 @@ class _OnboardingMonthlyIncomeScreenState extends State<OnboardingMonthlyIncomeS
                                   StoreProvider.of<AppState>(context).dispatch(
                                     CreateCreditCardApplicationCommandAction(
                                       monthlyExpense: num.parse(
-                                        _monthlyExpenseController.text.replaceAll(',', ''),
+                                        _monthlyExpenseController.text
+                                            .replaceAll(',', ''),
                                       ),
                                       monthlyIncome: num.parse(
-                                        _monthlyIncomeController.text.replaceAll(',', ''),
+                                        _monthlyIncomeController.text
+                                            .replaceAll(',', ''),
                                       ),
                                       totalCreditLimit: num.parse(
-                                        _totalCreditLimitController.text.replaceAll(',', ''),
+                                        _totalCreditLimitController.text
+                                            .replaceAll(',', ''),
                                       ),
                                       totalCurrentDebt: num.parse(
-                                        _totalCurrentDebtController.text.replaceAll(',', ''),
+                                        _totalCurrentDebtController.text
+                                            .replaceAll(',', ''),
                                       ),
                                     ),
                                   );

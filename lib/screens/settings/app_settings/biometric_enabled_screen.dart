@@ -23,14 +23,16 @@ class AppSettingsBiometricEnabledScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             onBackButtonPressed: () {
               Navigator.pop(context);
             },
           ),
           Expanded(
             child: Padding(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -53,7 +55,8 @@ class AppSettingsBiometricEnabledScreen extends StatelessWidget {
                           SvgAssetLoader(
                             'assets/images/enable_biometrics.svg',
                             colorMapper: IvoryColorMapper(
-                              baseColor: ClientConfig.getColorScheme().secondary,
+                              baseColor:
+                                  ClientConfig.getColorScheme().secondary,
                             ),
                           ),
                         ),
@@ -72,7 +75,8 @@ class AppSettingsBiometricEnabledScreen extends StatelessWidget {
                       textColor: ClientConfig.getColorScheme().surface,
                       onPressed: () {
                         Navigator.pop(context);
-                        StoreProvider.of<AppState>(context).dispatch(FetchBoundDevicesCommandAction());
+                        StoreProvider.of<AppState>(context)
+                            .dispatch(FetchBoundDevicesCommandAction());
                       },
                     ),
                   ),

@@ -25,12 +25,14 @@ class OnboardingGermanResidencyErrorScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             actions: const [AppbarLogo()],
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -42,9 +44,12 @@ class OnboardingGermanResidencyErrorScreen extends StatelessWidget {
                         const TextSpan(text: "At the moment, "),
                         TextSpan(
                           text: "German residency is required ",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: "to proceed with your credit account application.")
+                        const TextSpan(
+                            text:
+                                "to proceed with your credit account application.")
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -53,10 +58,14 @@ class OnboardingGermanResidencyErrorScreen extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        const TextSpan(text: "For any questions or concerns you may have, please don't hesitate to "),
+                        const TextSpan(
+                            text:
+                                "For any questions or concerns you may have, please don't hesitate to "),
                         TextSpan(
                           text: "contact us",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold
+                              .copyWith(
                                 color: ClientConfig.getColorScheme().secondary,
                               ),
                           recognizer: TapGestureRecognizer()
@@ -87,7 +96,8 @@ class OnboardingGermanResidencyErrorScreen extends StatelessWidget {
                     width: double.infinity,
                     child: PrimaryButton(
                       text: "Return to \"Welcome Screen\"",
-                      onPressed: () => Navigator.popUntil(context, ModalRoute.withName(WelcomeScreen.routeName)),
+                      onPressed: () => Navigator.popUntil(context,
+                          ModalRoute.withName(WelcomeScreen.routeName)),
                     ),
                   ),
                   const SizedBox(height: 16)

@@ -24,16 +24,21 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             onBackButtonPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName(SettingsDevicePairingScreen.routeName));
-              StoreProvider.of<AppState>(context).dispatch(FetchBoundDevicesCommandAction());
+              Navigator.popUntil(context,
+                  ModalRoute.withName(SettingsDevicePairingScreen.routeName));
+              StoreProvider.of<AppState>(context)
+                  .dispatch(FetchBoundDevicesCommandAction());
             },
           ),
           StoreConnector<AppState, DeviceBindingViewModel>(
             onWillChange: ((previousViewModel, viewModel) {
-              if (previousViewModel is DeviceBindingLoadingViewModel && viewModel is DeviceBindingCreatedViewModel) {
-                Navigator.pushNamed(context, SettingsDevicePairingVerifyPairingScreen.routeName);
+              if (previousViewModel is DeviceBindingLoadingViewModel &&
+                  viewModel is DeviceBindingCreatedViewModel) {
+                Navigator.pushNamed(context,
+                    SettingsDevicePairingVerifyPairingScreen.routeName);
               }
             }),
             converter: (store) => DeviceBindingPresenter.presentDeviceBinding(
@@ -54,7 +59,8 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
               }
               return Expanded(
                 child: Padding(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -68,14 +74,20 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                       ),
                       RichText(
                         text: TextSpan(
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                           children: [
-                            const TextSpan(text: 'Device pairing is necessary for '),
+                            const TextSpan(
+                                text: 'Device pairing is necessary for '),
                             TextSpan(
-                              text: 'actions like viewing card details and changing your PIN, ',
-                              style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                              text:
+                                  'actions like viewing card details and changing your PIN, ',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
                             ),
-                            const TextSpan(text: 'increasing app security with your safety in mind.'),
+                            const TextSpan(
+                                text:
+                                    'increasing app security with your safety in mind.'),
                           ],
                         ),
                       ),
@@ -88,7 +100,8 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                             SvgAssetLoader(
                               'assets/images/device_pairing.svg',
                               colorMapper: IvoryColorMapper(
-                                baseColor: ClientConfig.getColorScheme().secondary,
+                                baseColor:
+                                    ClientConfig.getColorScheme().secondary,
                               ),
                             ),
                           ),
@@ -99,7 +112,8 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                         height: 48,
                         child: Button(
                           text: 'Not now',
-                          disabledColor: ClientConfig.getCustomColors().neutral300,
+                          disabledColor:
+                              ClientConfig.getCustomColors().neutral300,
                           color: ClientConfig.getColorScheme().surface,
                           textColor: ClientConfig.getColorScheme().tertiary,
                           onPressed: () {
@@ -115,11 +129,13 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                         height: 48,
                         child: Button(
                           text: 'Pair device',
-                          disabledColor: ClientConfig.getCustomColors().neutral300,
+                          disabledColor:
+                              ClientConfig.getCustomColors().neutral300,
                           color: ClientConfig.getColorScheme().tertiary,
                           textColor: ClientConfig.getColorScheme().surface,
                           onPressed: () {
-                            StoreProvider.of<AppState>(context).dispatch(CreateDeviceBindingCommandAction());
+                            StoreProvider.of<AppState>(context)
+                                .dispatch(CreateDeviceBindingCommandAction());
                           },
                         ),
                       ),

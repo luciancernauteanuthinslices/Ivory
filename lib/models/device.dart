@@ -13,10 +13,12 @@ enum DeviceBindingLanguageType {
 
 const String _defaultKeyType = 'ecdsa-p256';
 const String _defaultChallengeType = 'sms';
-const DeviceBindingLanguageType _defaultLanguageType = DeviceBindingLanguageType.en;
+const DeviceBindingLanguageType _defaultLanguageType =
+    DeviceBindingLanguageType.en;
 SmsChallenge _defaultSmsChallenge = SmsChallenge(appSignature: 'e2e-e2e-e2e');
 
-String addRestrictedKeyRequestToJson(CreateRestrictedKeyRequest data) => json.encode(data.toJson());
+String addRestrictedKeyRequestToJson(CreateRestrictedKeyRequest data) =>
+    json.encode(data.toJson());
 
 class CreateRestrictedKeyRequest {
   String deviceId;
@@ -70,7 +72,8 @@ DeviceBindingKeyPurposeType getKeyPurposeType(String type) {
   }
 }
 
-String createDeviceBindingRequestToJson(CreateDeviceBindingRequest data) => json.encode(data.toJson());
+String createDeviceBindingRequestToJson(CreateDeviceBindingRequest data) =>
+    json.encode(data.toJson());
 
 class CreateDeviceBindingRequest {
   String personId;
@@ -144,7 +147,8 @@ class CreateDeviceBindingChallenge {
     required this.challenge,
   });
 
-  factory CreateDeviceBindingChallenge.fromJson(Map<String, dynamic> json) => CreateDeviceBindingChallenge(
+  factory CreateDeviceBindingChallenge.fromJson(Map<String, dynamic> json) =>
+      CreateDeviceBindingChallenge(
         id: json["id"],
         // keyId: json["key_id"],
         challenge: Challenge.fromJson(json["challenge"]),
@@ -179,7 +183,8 @@ class Challenge {
       };
 }
 
-String verifyDeviceSignatureChallengeRequestToJson(VerifyDeviceSignatureChallengeRequest data) =>
+String verifyDeviceSignatureChallengeRequestToJson(
+        VerifyDeviceSignatureChallengeRequest data) =>
     json.encode(data.toJson());
 
 class VerifyDeviceSignatureChallengeRequest {

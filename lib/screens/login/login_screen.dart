@@ -55,7 +55,8 @@ class LoginScreen extends StatelessWidget {
           );
         }
       },
-      converter: (store) => AuthPresenter.presentAuth(authState: store.state.authState),
+      converter: (store) =>
+          AuthPresenter.presentAuth(authState: store.state.authState),
       builder: (context, viewModel) {
         return ScreenScaffold(
           body: Column(
@@ -67,14 +68,16 @@ class LoginScreen extends StatelessWidget {
                 backButtonEnabled: viewModel is! AuthLoadingViewModel,
                 onBackButtonPressed: () => Navigator.pop(context),
                 scrollController: scrollController,
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 actions: const [
                   AppbarLogo(),
                 ],
               ),
               Expanded(
                 child: ScrollableScreenContainer(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   scrollController: scrollController,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +158,8 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
     } else if (phoneIsValid && _phoneInputController.hasError) {
       _phoneInputController.setError(false);
     }
-    if ((_phoneInputController.hasError || _passwordInputController.hasError) && _continueButtonController.isEnabled) {
+    if ((_phoneInputController.hasError || _passwordInputController.hasError) &&
+        _continueButtonController.isEnabled) {
       _continueButtonController.setDisabled();
     }
 
@@ -171,11 +175,13 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
     final passwordIsValid = _passwordInputController.text.length >= 6;
 
     if (!passwordIsValid && !_passwordInputController.hasError) {
-      _passwordInputController.setErrorText('Please input a valid password with at least 6 characters');
+      _passwordInputController.setErrorText(
+          'Please input a valid password with at least 6 characters');
     } else if (passwordIsValid && _passwordInputController.hasError) {
       _passwordInputController.setError(false);
     }
-    if ((_phoneInputController.hasError || _passwordInputController.hasError) && _continueButtonController.isEnabled) {
+    if ((_phoneInputController.hasError || _passwordInputController.hasError) &&
+        _continueButtonController.isEnabled) {
       _continueButtonController.setDisabled();
     }
 
@@ -190,7 +196,8 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AuthViewModel>(
-      converter: (store) => AuthPresenter.presentAuth(authState: store.state.authState),
+      converter: (store) =>
+          AuthPresenter.presentAuth(authState: store.state.authState),
       builder: (context, viewModel) {
         return Expanded(
           child: Padding(
@@ -211,7 +218,6 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                           focusNode: _phoneInputFocusNode,
                           inputFormatters: [_phoneNumberFormatter],
                           prefix: GestureDetector(
-
                             onTap: () {
                               showBottomModal(
                                 context: context,
@@ -225,17 +231,21 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                                   controller: _selectCountryController,
                                   filterOptions: true,
                                   enabledSearch: true,
-                                  searchFieldPlaceholder: 'Search prefix or country...',
+                                  searchFieldPlaceholder:
+                                      'Search prefix or country...',
                                   onSearchChanged: (value) {},
                                   expanded: true,
                                   onOptionSelected: (option) {
-                                    final phoneCode = option.getPhoneCode() ?? "";
-                                    final phoneNumberFormat = option.getPhoneNumberFormat() ?? "";
+                                    final phoneCode =
+                                        option.getPhoneCode() ?? "";
+                                    final phoneNumberFormat =
+                                        option.getPhoneNumberFormat() ?? "";
 
                                     _phoneInputController.text = phoneCode;
 
                                     setState(() {
-                                      _phoneNumberFormatter = InputFormatter.createPhoneNumberFormatter(
+                                      _phoneNumberFormatter = InputFormatter
+                                          .createPhoneNumberFormatter(
                                         phoneNumberFormat,
                                       );
                                     });
@@ -250,18 +260,23 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                               width: 80,
                               child: Row(
                                 children: [
-                                  _selectCountryController.selectedOptions.isNotEmpty
-                                      ? _selectCountryController.selectedOptions.first.prefix!
+                                  _selectCountryController
+                                          .selectedOptions.isNotEmpty
+                                      ? _selectCountryController
+                                          .selectedOptions.first.prefix!
                                       : const SizedBox(),
                                   const SizedBox(width: 4),
                                   Icon(
                                     Icons.expand_more,
-                                    color: ClientConfig.getCustomColors().neutral700,
+                                    color: ClientConfig.getCustomColors()
+                                        .neutral700,
                                   ),
                                   VerticalDivider(
                                     color: _phoneInputFocusNode.hasFocus
-                                        ? ClientConfig.getCustomColors().neutral900
-                                        : ClientConfig.getCustomColors().neutral400,
+                                        ? ClientConfig.getCustomColors()
+                                            .neutral900
+                                        : ClientConfig.getCustomColors()
+                                            .neutral400,
                                     thickness: 1,
                                     width: 20,
                                   ),
@@ -307,7 +322,9 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                     Text(
                       "Forgot your password?",
                       key: const Key("ForgotPasswordButton"),
-                      style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(
+                      style: ClientConfig.getTextStyleScheme()
+                          .labelMedium
+                          .copyWith(
                             color: viewModel is AuthLoadingViewModel
                                 ? ClientConfig.getCustomColors().neutral500
                                 : ClientConfig.getColorScheme().secondary,
@@ -324,7 +341,8 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                           return Button(
                             key: const Key("ContinueButton"),
                             text: 'Continue',
-                            disabledColor: ClientConfig.getCustomColors().neutral300,
+                            disabledColor:
+                                ClientConfig.getCustomColors().neutral300,
                             color: ClientConfig.getColorScheme().tertiary,
                             textColor: ClientConfig.getColorScheme().surface,
                             isLoading: viewModel is AuthLoadingViewModel,
@@ -357,7 +375,8 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
     _selectCountryController.setOptions(options);
     _selectCountryController.toggleOptionSelection(preselectedOption, 0);
     _phoneInputController.text = phoneCode;
-    _phoneNumberFormatter = InputFormatter.createPhoneNumberFormatter(phoneNumberFormat);
+    _phoneNumberFormatter =
+        InputFormatter.createPhoneNumberFormatter(phoneNumberFormat);
   }
 }
 
@@ -399,7 +418,8 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
   }
 
   void onFocus() {
-    if ((_emailFocusNode.hasFocus || _passwordFocusNode.hasFocus) && hasAuthError) {
+    if ((_emailFocusNode.hasFocus || _passwordFocusNode.hasFocus) &&
+        hasAuthError) {
       _emailInputController.setError(false);
       _passwordInputController.setError(false);
       setState(() {
@@ -423,7 +443,8 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
   }
 
   void onChange() {
-    if (_emailInputController.text.isNotEmpty && _passwordInputController.text.isNotEmpty) {
+    if (_emailInputController.text.isNotEmpty &&
+        _passwordInputController.text.isNotEmpty) {
       _continueButtonController.setEnabled();
     } else {
       _continueButtonController.setDisabled();
@@ -444,11 +465,13 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AuthViewModel>(
       onDidChange: (previousViewModel, newViewModel) {
-        if (previousViewModel is AuthLoadingViewModel && newViewModel is AuthErrorViewModel) {
+        if (previousViewModel is AuthLoadingViewModel &&
+            newViewModel is AuthErrorViewModel) {
           handleAuthError();
         }
       },
-      converter: (store) => AuthPresenter.presentAuth(authState: store.state.authState),
+      converter: (store) =>
+          AuthPresenter.presentAuth(authState: store.state.authState),
       builder: (context, viewModel) {
         if (viewModel is AuthCredentialsLoadedViewModel) {
           _emailInputController.text = viewModel.email ?? '';
@@ -511,7 +534,8 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                           onChanged: viewModel is AuthLoadingViewModel
                               ? null
                               : (bool value) {
-                                  _passwordInputController.setObscureText(!value);
+                                  _passwordInputController
+                                      .setObscureText(!value);
                                 },
                         ),
                         const SizedBox(width: 8),
@@ -529,7 +553,9 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                   children: [
                     Text(
                       "Forgot your password?",
-                      style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(
+                      style: ClientConfig.getTextStyleScheme()
+                          .labelMedium
+                          .copyWith(
                             color: viewModel is AuthLoadingViewModel
                                 ? ClientConfig.getCustomColors().neutral500
                                 : ClientConfig.getColorScheme().secondary,
@@ -544,9 +570,11 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                       child: ListenableBuilder(
                         listenable: _continueButtonController,
                         builder: (context, child) {
-                          return Button(key: const Key("ContinueButton"),
+                          return Button(
+                            key: const Key("ContinueButton"),
                             text: 'Continue',
-                            disabledColor: ClientConfig.getCustomColors().neutral300,
+                            disabledColor:
+                                ClientConfig.getCustomColors().neutral300,
                             color: ClientConfig.getColorScheme().tertiary,
                             textColor: ClientConfig.getColorScheme().surface,
                             isLoading: viewModel is AuthLoadingViewModel,
@@ -555,24 +583,32 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                                     _continueButtonController.setDisabled();
                                     _emailFocusNode.unfocus();
                                     _passwordFocusNode.unfocus();
-                                    if (isEmailValid(_emailInputController.text) &&
-                                        isPasswordValid(_passwordInputController.text)) {
+                                    if (isEmailValid(
+                                            _emailInputController.text) &&
+                                        isPasswordValid(
+                                            _passwordInputController.text)) {
                                       _emailInputController.setEnabled(false);
-                                      _passwordInputController.setEnabled(false);
-                                      StoreProvider.of<AppState>(context).dispatch(
+                                      _passwordInputController
+                                          .setEnabled(false);
+                                      StoreProvider.of<AppState>(context)
+                                          .dispatch(
                                         InitUserAuthenticationCommandAction(
-                                          email: _emailInputController.text.toLowerCase(),
-                                          password: _passwordInputController.text,
+                                          email: _emailInputController.text
+                                              .toLowerCase(),
+                                          password:
+                                              _passwordInputController.text,
                                         ),
                                       );
                                     } else {
-                                      if (!isEmailValid(_emailInputController.text)) {
-                                        _emailInputController
-                                            .setErrorText('Please input a valid email address: example@gmail.com');
+                                      if (!isEmailValid(
+                                          _emailInputController.text)) {
+                                        _emailInputController.setErrorText(
+                                            'Please input a valid email address: example@gmail.com');
                                       }
-                                      if (!isPasswordValid(_passwordInputController.text)) {
-                                        _passwordInputController
-                                            .setErrorText('Please input a valid password with at least 6 characters');
+                                      if (!isPasswordValid(
+                                          _passwordInputController.text)) {
+                                        _passwordInputController.setErrorText(
+                                            'Please input a valid password with at least 6 characters');
                                       }
                                     }
                                   }

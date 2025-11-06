@@ -28,7 +28,8 @@ void main() {
   );
 
   group("Creating the transfer", () {
-    test("When is sending a transfer the state should change to loading", () async {
+    test("When is sending a transfer the state should change to loading",
+        () async {
       //given
       final store = createTestStore(
         transferService: FakeTransferService(),
@@ -39,7 +40,8 @@ void main() {
         ),
       );
 
-      final appState = store.onChange.firstWhere((state) => state.transferState is TransferLoadingState);
+      final appState = store.onChange
+          .firstWhere((state) => state.transferState is TransferLoadingState);
 
       //when
       store.dispatch(TransferCommandAction(transfer: transfer));
@@ -48,7 +50,9 @@ void main() {
       expect((await appState).transferState, isA<TransferLoadingState>());
     });
 
-    test("When sending a transfer successfully the state should change to need confirmation state", () async {
+    test(
+        "When sending a transfer successfully the state should change to need confirmation state",
+        () async {
       //given
       final store = createTestStore(
         transferService: FakeTransferService(),
@@ -59,16 +63,19 @@ void main() {
         ),
       );
 
-      final appState = store.onChange.firstWhere((state) => state.transferState is TransferNeedConfirmationState);
+      final appState = store.onChange.firstWhere(
+          (state) => state.transferState is TransferNeedConfirmationState);
 
       //when
       store.dispatch(TransferCommandAction(transfer: transfer));
 
       //then
-      expect((await appState).transferState, isA<TransferNeedConfirmationState>());
+      expect(
+          (await appState).transferState, isA<TransferNeedConfirmationState>());
     });
 
-    test("When failed sending a transfer the state should change to failed", () async {
+    test("When failed sending a transfer the state should change to failed",
+        () async {
       //given
       final store = createTestStore(
         transferService: FakeFailingTransferService(),
@@ -79,7 +86,8 @@ void main() {
         ),
       );
 
-      final appState = store.onChange.firstWhere((state) => state.transferState is TransferFailedState);
+      final appState = store.onChange
+          .firstWhere((state) => state.transferState is TransferFailedState);
 
       //when
       store.dispatch(TransferCommandAction(transfer: transfer));
@@ -90,13 +98,15 @@ void main() {
   });
 
   group("Confirming the transfer", () {
-    test("When is confirming a transfer the state should change to loading", () {
+    test("When is confirming a transfer the state should change to loading",
+        () {
       //given
       final store = createTestStore(
         transferService: FakeTransferService(),
         changeRequestService: FakeChangeRequestService(),
         initialState: createAppState(
-          transferState: TransferNeedConfirmationState(transferAuthorizationRequest: transferAuthorizationRequest),
+          transferState: TransferNeedConfirmationState(
+              transferAuthorizationRequest: transferAuthorizationRequest),
           authState: authState,
         ),
       );
@@ -111,18 +121,22 @@ void main() {
       expect(store.state.transferState, isA<TransferLoadingState>());
     });
 
-    test("When is confirming a transfer successfully the state should change to confirmed", () async {
+    test(
+        "When is confirming a transfer successfully the state should change to confirmed",
+        () async {
       //given
       final store = createTestStore(
         transferService: FakeTransferService(),
         changeRequestService: FakeChangeRequestService(),
         initialState: createAppState(
-          transferState: TransferNeedConfirmationState(transferAuthorizationRequest: transferAuthorizationRequest),
+          transferState: TransferNeedConfirmationState(
+              transferAuthorizationRequest: transferAuthorizationRequest),
           authState: authState,
         ),
       );
 
-      final appState = store.onChange.firstWhere((state) => state.transferState is TransferConfirmedState);
+      final appState = store.onChange
+          .firstWhere((state) => state.transferState is TransferConfirmedState);
 
       //when
       store.dispatch(ConfirmTransferCommandAction(
@@ -134,7 +148,9 @@ void main() {
       expect((await appState).transferState, isA<TransferConfirmedState>());
     });
 
-    test("When is failed confirming a transfer the state should change to failed", () async {
+    test(
+        "When is failed confirming a transfer the state should change to failed",
+        () async {
       //given
       final store = createTestStore(
         transferService: FakeTransferService(),
@@ -147,7 +163,8 @@ void main() {
         ),
       );
 
-      final appState = store.onChange.firstWhere((state) => state.transferState is TransferFailedState);
+      final appState = store.onChange
+          .firstWhere((state) => state.transferState is TransferFailedState);
 
       //when
       store.dispatch(ConfirmTransferCommandAction(

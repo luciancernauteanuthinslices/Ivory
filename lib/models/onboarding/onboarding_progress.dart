@@ -24,9 +24,11 @@ extension OnboardingStepExtension on OnboardingStep {
       "phoneNumberVerified": OnboardingStep.phoneNumberVerified,
       "phoneNumberConfirmed": OnboardingStep.phoneNumberConfirmed,
       "taxIdAdded": OnboardingStep.taxIdAdded,
-      "creditCardApplicationCreated": OnboardingStep.creditCardApplicationCreated,
+      "creditCardApplicationCreated":
+          OnboardingStep.creditCardApplicationCreated,
       "postboxItemsConfirmed": OnboardingStep.postboxItemsConfirmed,
-      "identificationContractsSigned": OnboardingStep.identificationContractsSigned,
+      "identificationContractsSigned":
+          OnboardingStep.identificationContractsSigned,
       "scoringSuccessful": OnboardingStep.scoringSuccessful,
       "scoringFailed": OnboardingStep.scoringFailed,
       "identificationFinished": OnboardingStep.identificationFinished,

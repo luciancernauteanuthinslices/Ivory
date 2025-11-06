@@ -21,7 +21,9 @@ void main() {
   final personAccountState = PersonAccountFetchedState(personAccount);
   final referenceAccountState = ReferenceAccountFetchedState(referenceAccount);
 
-  test("When person account and reference account are not set it should return failed view model", () {
+  test(
+      "When person account and reference account are not set it should return failed view model",
+      () {
     //given
     final referenceAccountState = ReferenceAccountInitialState();
     final personAccountState = PersonAccountInitialState();
@@ -37,7 +39,8 @@ void main() {
     expect(viewModel, isA<TransferFailedViewModel>());
   });
 
-  test("When transfer state is initial it should return initial view model", () {
+  test("When transfer state is initial it should return initial view model",
+      () {
     //given
     final transferState = TransferInitialState();
 
@@ -52,7 +55,8 @@ void main() {
     expect(viewModel, isA<TransferInitialViewModel>());
   });
 
-  test("When transfer state is loading it should return loading view model", () {
+  test("When transfer state is loading it should return loading view model",
+      () {
     //given
     final transferState = TransferLoadingState();
 
@@ -82,9 +86,12 @@ void main() {
     expect(viewModel, isA<TransferFailedViewModel>());
   });
 
-  test("When transfer state is need confirmation state it should return confirmation view model", () {
+  test(
+      "When transfer state is need confirmation state it should return confirmation view model",
+      () {
     // given
-    final transferState = TransferNeedConfirmationState(transferAuthorizationRequest: transferAuthorizationRequest);
+    final transferState = TransferNeedConfirmationState(
+        transferAuthorizationRequest: transferAuthorizationRequest);
 
     // when
     final viewModel = TransferPresenter.presentTransfer(
@@ -97,7 +104,8 @@ void main() {
     expect(viewModel, isA<TransferConfirmationViewModel>());
   });
 
-  test("When transfer state is confirmed it should return confirmed view model", () {
+  test("When transfer state is confirmed it should return confirmed view model",
+      () {
     // given
     final transferState = TransferConfirmedState(amount: 100);
 

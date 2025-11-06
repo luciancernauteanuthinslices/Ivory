@@ -3,7 +3,8 @@ import 'package:solarisdemo/redux/onboarding/financial_details/onboarding_financ
 
 OnboardingFinancialDetailsState onboardingFinancialDetailsReducer(
     OnboardingFinancialDetailsState state, dynamic action) {
-  if (action is CreateTaxIdLoadingEventAction || action is CreateCreditCardApplicationLoadingEventAction) {
+  if (action is CreateTaxIdLoadingEventAction ||
+      action is CreateCreditCardApplicationLoadingEventAction) {
     return OnboardingFinancialDetailsState(
       isLoading: true,
       isCreditCardApplicationCreated: state.isCreditCardApplicationCreated,

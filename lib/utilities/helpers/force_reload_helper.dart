@@ -9,7 +9,9 @@ import '../../redux/transactions/transactions_state.dart';
 
 void forceReloadAppStates(Store<AppState> store) {
   final transactionsState = store.state.transactionsState;
-  final filter = (transactionsState is TransactionsFetchedState) ? transactionsState.transactionListFilter:null;
+  final filter = (transactionsState is TransactionsFetchedState)
+      ? transactionsState.transactionListFilter
+      : null;
 
   store.dispatch(
     GetTransactionsCommandAction(filter: filter, forceReloadTransactions: true),
@@ -26,5 +28,6 @@ void forceReloadAppStates(Store<AppState> store) {
 
   store.dispatch(GetBankCardsCommandAction(forceCardsReload: true));
 
-  store.dispatch(GetAccountSummaryCommandAction(forceAccountSummaryReload: true));
+  store.dispatch(
+      GetAccountSummaryCommandAction(forceAccountSummaryReload: true));
 }

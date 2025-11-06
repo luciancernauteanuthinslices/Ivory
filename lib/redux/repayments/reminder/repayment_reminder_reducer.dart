@@ -1,7 +1,8 @@
 import 'repayment_reminder_action.dart';
 import 'repayment_reminder_state.dart';
 
-RepaymentReminderState repaymentReminderReducer(RepaymentReminderState currentState, dynamic action) {
+RepaymentReminderState repaymentReminderReducer(
+    RepaymentReminderState currentState, dynamic action) {
   if (action is RepaymentReminderLoadingEventAction) {
     return RepaymentReminderLoadingState();
   } else if (action is RepaymentReminderFailedEventAction) {

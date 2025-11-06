@@ -1,1 +1,6 @@
-enum MobileNumberErrorType { unknown, cantCreateMobileNumber, cantConfirmMobileNumber, cantVerifyMobileNumber }
+enum MobileNumberErrorType {
+  unknown,
+  cantCreateMobileNumber,
+  cantConfirmMobileNumber,
+  cantVerifyMobileNumber
+}

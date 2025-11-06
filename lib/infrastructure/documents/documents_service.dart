@@ -9,7 +9,8 @@ import 'package:solarisdemo/services/api_service.dart';
 class DocumentsService extends ApiService {
   DocumentsService({super.user});
 
-  Future<DocumentsServiceResponse> getPostboxDocuments({required User user}) async {
+  Future<DocumentsServiceResponse> getPostboxDocuments(
+      {required User user}) async {
     this.user = user;
 
     try {
@@ -28,7 +29,8 @@ class DocumentsService extends ApiService {
 
       return GetDocumentsSuccessResponse(documents: documents);
     } catch (error) {
-      return DocumentsServiceErrorResponse(errorType: DocumentsErrorType.unknown);
+      return DocumentsServiceErrorResponse(
+          errorType: DocumentsErrorType.unknown);
     }
   }
 
@@ -47,9 +49,11 @@ class DocumentsService extends ApiService {
 
       final response = await downloadFile(downloadLocations[downloadLocation]!);
 
-      return DownloadDocumentSuccessResponse(document: document, file: response);
+      return DownloadDocumentSuccessResponse(
+          document: document, file: response);
     } catch (error) {
-      return DocumentsServiceErrorResponse(errorType: DocumentsErrorType.unknown);
+      return DocumentsServiceErrorResponse(
+          errorType: DocumentsErrorType.unknown);
     }
   }
 
@@ -65,12 +69,14 @@ class DocumentsService extends ApiService {
       });
 
       if (response['success'] != true) {
-        return DocumentsServiceErrorResponse(errorType: DocumentsErrorType.unknown);
+        return DocumentsServiceErrorResponse(
+            errorType: DocumentsErrorType.unknown);
       }
 
       return ConfirmDocumentsSuccessResponse();
     } catch (error) {
-      return DocumentsServiceErrorResponse(errorType: DocumentsErrorType.unknown);
+      return DocumentsServiceErrorResponse(
+          errorType: DocumentsErrorType.unknown);
     }
   }
 }

@@ -16,22 +16,22 @@ class AddMoneyScreen extends StatefulWidget {
 }
 
 class _AddMoneyScreenState extends State<AddMoneyScreen> {
-  bool _canContinue = false; 
+  bool _canContinue = false;
   final amountController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     amountController.addListener(_updateContinueStatus);
-    _updateContinueStatus(); 
+    _updateContinueStatus();
   }
 
   void _updateContinueStatus() {
     setState(() {
       final value = double.tryParse(amountController.text) ?? 0;
-      if(value > 0){
+      if (value > 0) {
         _canContinue = true;
-      }else{
+      } else {
         _canContinue = false;
       }
     });
@@ -39,51 +39,51 @@ class _AddMoneyScreenState extends State<AddMoneyScreen> {
 
   @override
   Widget build(BuildContext context) {
-        return ScreenScaffold(
-          body: Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const AppToolbar(),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Add money',
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+    return ScreenScaffold(
+      body: Padding(
+        padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const AppToolbar(),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Add money',
+                style: TextStyle(
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 16),
-                Center(
-                  child: CustomContainer(),
-                ),
-                AmountTransfer(amountController: amountController),
-                const Spacer(),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: PrimaryButton(
-                    text: "Next",
-                    onPressed: _canContinue
-                        ? () {
-                            FocusScope.of(context).unfocus();
-                            Navigator.pushNamed(
-                              context,
-                              SignAndConfirmScreen.routeName,
-                            );
-                          }
-                        : null,
-                  ),
-                ),
-                const SizedBox(height: 16),
-              ],
+              ),
             ),
-          ),
-        );
-      }
+            const SizedBox(height: 16),
+            Center(
+              child: CustomContainer(),
+            ),
+            AmountTransfer(amountController: amountController),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: PrimaryButton(
+                text: "Next",
+                onPressed: _canContinue
+                    ? () {
+                        FocusScope.of(context).unfocus();
+                        Navigator.pushNamed(
+                          context,
+                          SignAndConfirmScreen.routeName,
+                        );
+                      }
+                    : null,
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class CustomContainer extends StatelessWidget {
@@ -98,7 +98,7 @@ class CustomContainer extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
@@ -111,32 +111,33 @@ class CustomContainer extends StatelessWidget {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(24)),
-                        border: Border.all(color: ClientConfig.getCustomColors().neutral200, width: 1),
+                        border: Border.all(
+                            color: ClientConfig.getCustomColors().neutral200,
+                            width: 1),
                         color: Colors.white,
                       ),
                       child: Icon(Icons.credit_card),
                     ),
                     const SizedBox(width: 8.0),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[
-                        Text(
-                          'ING BANK',
-                          style: TextStyle(
-                            color: ClientConfig.getCustomColors().neutral900,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'ING BANK',
+                            style: TextStyle(
+                              color: ClientConfig.getCustomColors().neutral900,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'Visa *9482',
-                          style: TextStyle(
-                            color: ClientConfig.getCustomColors().neutral700,
-                            fontSize: 14.0,
+                          Text(
+                            'Visa *9482',
+                            style: TextStyle(
+                              color: ClientConfig.getCustomColors().neutral700,
+                              fontSize: 14.0,
+                            ),
                           ),
-                        ),
-                      ]
-                    ),
+                        ]),
                   ],
                 ),
               ],
@@ -144,8 +145,8 @@ class CustomContainer extends StatelessWidget {
             const SizedBox(width: 8.0),
             OutlinedButton(
               onPressed: () {
-                 Navigator.pop(context);
-                },
+                Navigator.pop(context);
+              },
               child: Text(
                 'Change',
                 style: TextStyle(
@@ -169,7 +170,8 @@ class CustomContainer extends StatelessWidget {
 class AmountTransfer extends StatelessWidget {
   final TextEditingController amountController;
 
-  const AmountTransfer({Key? key, required this.amountController}) : super(key: key);
+  const AmountTransfer({Key? key, required this.amountController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

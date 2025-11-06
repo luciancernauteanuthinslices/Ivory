@@ -28,7 +28,8 @@ void main() {
     //given
     final accountSummaryState = AccountSummaryLoadingState();
     //when
-    final viewModel = AccountSummaryPresenter.presentAccountSummary(accountSummaryState: accountSummaryState);
+    final viewModel = AccountSummaryPresenter.presentAccountSummary(
+        accountSummaryState: accountSummaryState);
     //then
     expect(viewModel, AccountSummaryLoadingViewModel());
   });
@@ -37,16 +38,19 @@ void main() {
     //given
     final accountSummaryState = WithAccountSummaryState(accountSummary);
     //when
-    final viewModel = AccountSummaryPresenter.presentAccountSummary(accountSummaryState: accountSummaryState);
+    final viewModel = AccountSummaryPresenter.presentAccountSummary(
+        accountSummaryState: accountSummaryState);
     //then
-    expect(viewModel, AccountSummaryFetchedViewModel(accountSummary: accountSummary));
+    expect(viewModel,
+        AccountSummaryFetchedViewModel(accountSummary: accountSummary));
   });
 
   test("When fetching fails should return error", () {
     //given
     final accountSummaryState = AccountSummaryErrorState();
     //when
-    final viewModel = AccountSummaryPresenter.presentAccountSummary(accountSummaryState: accountSummaryState);
+    final viewModel = AccountSummaryPresenter.presentAccountSummary(
+        accountSummaryState: accountSummaryState);
     //then
     expect(viewModel, AccountSummaryErrorViewModel());
   });

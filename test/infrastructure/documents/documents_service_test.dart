@@ -27,13 +27,15 @@ void main() {
       );
 
       // when
-      final response = await documentsService.getPostboxDocuments(user: mockUser);
+      final response =
+          await documentsService.getPostboxDocuments(user: mockUser);
 
       // then
       expect(response, isA<GetDocumentsSuccessResponse>());
     });
 
-    test('When response is a list of documents it should return success', () async {
+    test('When response is a list of documents it should return success',
+        () async {
       // given
       final documentsService = DocumentsService();
       final httpClient = MockHttpClient();
@@ -45,7 +47,8 @@ void main() {
       );
 
       // when
-      final response = await documentsService.getPostboxDocuments(user: mockUser);
+      final response =
+          await documentsService.getPostboxDocuments(user: mockUser);
 
       // then
       expect(response, isA<GetDocumentsSuccessResponse>());
@@ -62,7 +65,9 @@ void main() {
       );
     });
 
-    test("When document type is unknown it should return succes with unknown document type", () async {
+    test(
+        "When document type is unknown it should return succes with unknown document type",
+        () async {
       // given
       final documentsService = DocumentsService();
       final httpClient = MockHttpClient();
@@ -74,7 +79,8 @@ void main() {
       );
 
       // when
-      final response = await documentsService.getPostboxDocuments(user: mockUser);
+      final response =
+          await documentsService.getPostboxDocuments(user: mockUser);
 
       // then
       expect(response, isA<GetDocumentsSuccessResponse>());
@@ -100,7 +106,8 @@ void main() {
       );
 
       // when
-      final response = await documentsService.getPostboxDocuments(user: mockUser);
+      final response =
+          await documentsService.getPostboxDocuments(user: mockUser);
 
       // then
       expect(response, isA<DocumentsServiceErrorResponse>());
@@ -112,17 +119,20 @@ void main() {
       );
     });
 
-    test("When the request is throwing an error it should return error", () async {
+    test("When the request is throwing an error it should return error",
+        () async {
       // given
       final documentsService = DocumentsService();
       final httpClient = MockHttpClient();
 
       documentsService.client = httpClient;
 
-      when(httpClient.get(any, headers: anyNamed("headers"))).thenThrow(Exception("error"));
+      when(httpClient.get(any, headers: anyNamed("headers")))
+          .thenThrow(Exception("error"));
 
       // when
-      final response = await documentsService.getPostboxDocuments(user: mockUser);
+      final response =
+          await documentsService.getPostboxDocuments(user: mockUser);
 
       // then
       expect(response, isA<DocumentsServiceErrorResponse>());

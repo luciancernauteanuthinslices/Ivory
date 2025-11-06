@@ -4,7 +4,8 @@ class FetchCitySuggestionsCommandAction {
   final String countryCode;
   final String? searchTerm;
 
-  FetchCitySuggestionsCommandAction({required this.countryCode, this.searchTerm});
+  FetchCitySuggestionsCommandAction(
+      {required this.countryCode, this.searchTerm});
 }
 
 class CitySuggestionsFetchedEventAction {
@@ -20,5 +21,6 @@ class FetchCitySuggestionsFailedEventAction {
   final CitySuggestionsErrorType errorType;
   final String? searchTerm;
 
-  FetchCitySuggestionsFailedEventAction({required this.errorType, this.searchTerm});
+  FetchCitySuggestionsFailedEventAction(
+      {required this.errorType, this.searchTerm});
 }

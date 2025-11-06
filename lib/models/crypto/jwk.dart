@@ -43,8 +43,11 @@ class Jwk {
       'e': e,
     };
 
-    final sortedMap = Map.fromEntries(jwkMap.entries.toList()..sort((e1, e2) => e1.key.compareTo(e2.key)));
-    final compactString = sortedMap.entries.map((entry) => "${entry.key}:${entry.value}").join(";");
+    final sortedMap = Map.fromEntries(
+        jwkMap.entries.toList()..sort((e1, e2) => e1.key.compareTo(e2.key)));
+    final compactString = sortedMap.entries
+        .map((entry) => "${entry.key}:${entry.value}")
+        .join(";");
 
     return compactString;
   }

@@ -37,8 +37,10 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
     return ScreenScaffold(
       body: StoreConnector<AppState, DeviceBindingViewModel>(
         onDidChange: (previousViewModel, newViewModel) {
-          if (previousViewModel is DeviceBindingLoadingViewModel && newViewModel is DeviceBindingDeletedViewModel) {
-            Navigator.popUntil(context, ModalRoute.withName(SettingsDevicePairingScreen.routeName));
+          if (previousViewModel is DeviceBindingLoadingViewModel &&
+              newViewModel is DeviceBindingDeletedViewModel) {
+            Navigator.popUntil(context,
+                ModalRoute.withName(SettingsDevicePairingScreen.routeName));
             StoreProvider.of<AppState>(context).dispatch(
               FetchBoundDevicesCommandAction(),
             );
@@ -75,7 +77,8 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
               AppToolbar(
                 backButtonEnabled: viewModel is! DeviceBindingLoadingViewModel,
                 title: '',
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
               ),
               Expanded(
                 child: ScrollableScreenContainer(
@@ -83,7 +86,8 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                        margin: ClientConfig.getCustomClientUiSettings()
+                            .defaultScreenHorizontalPadding,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(
                             Radius.circular(16),
@@ -97,20 +101,25 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Text(
                                         params.device.deviceName,
-                                        style: ClientConfig.getTextStyleScheme().heading2,
+                                        style: ClientConfig.getTextStyleScheme()
+                                            .heading2,
                                       ),
                                       Container(
                                         width: 48,
                                         height: 48,
                                         padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
-                                          color: ClientConfig.getColorScheme().surface,
-                                          borderRadius: BorderRadius.circular(1000),
+                                          color: ClientConfig.getColorScheme()
+                                              .surface,
+                                          borderRadius:
+                                              BorderRadius.circular(1000),
                                         ),
                                         child: const Icon(
                                           Icons.phone_iphone,
@@ -121,15 +130,21 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 4.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           'ID',
-                                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                                          style:
+                                              ClientConfig.getTextStyleScheme()
+                                                  .bodyLargeRegular,
                                         ),
                                         Text(
-                                          params.device.deviceId.substring(0, 13),
-                                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                                          params.device.deviceId
+                                              .substring(0, 13),
+                                          style:
+                                              ClientConfig.getTextStyleScheme()
+                                                  .bodyLargeRegularBold,
                                         ),
                                       ],
                                     ),
@@ -146,10 +161,16 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                       const IvoryListTitle(title: 'Actions'),
                       IvoryListTile(
                         leftIcon: Icons.mobile_off,
-                        leftIconColor: ClientConfig.getClientConfig().uiSettings.colorscheme.error,
+                        leftIconColor: ClientConfig.getClientConfig()
+                            .uiSettings
+                            .colorscheme
+                            .error,
                         title: 'Unpair device',
                         rightIcon: Icons.arrow_forward_ios,
-                        rightIconColor: ClientConfig.getClientConfig().uiSettings.colorscheme.error,
+                        rightIconColor: ClientConfig.getClientConfig()
+                            .uiSettings
+                            .colorscheme
+                            .error,
                         onTap: () {
                           _showUnpairModal(
                             context: context,

@@ -36,10 +36,13 @@ class TransactionListItem extends StatelessWidget {
 
     return InkWell(
       onTap: isClickable
-          ? () => Navigator.pushNamed(context, TransactionDetailScreen.routeName, arguments: transaction)
+          ? () => Navigator.pushNamed(
+              context, TransactionDetailScreen.routeName,
+              arguments: transaction)
           : null,
       child: Padding(
-        padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
         child: TransactionCard(
           formattedDate: formattedDate,
           amount: amount,
@@ -72,7 +75,8 @@ class TransactionListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
-          Skeleton(height: 24, width: 24, borderRadius: BorderRadius.circular(100)),
+          Skeleton(
+              height: 24, width: 24, borderRadius: BorderRadius.circular(100)),
           const SizedBox(width: 16),
           const Expanded(
             child: Column(
@@ -115,12 +119,15 @@ class UpcomingTransactionListItem extends StatelessWidget {
 
     return InkWell(
       onTap: isClickable!
-          ? () => Navigator.pushNamed(context, TransactionDetailScreen.routeName, arguments: upcomingTransaction)
+          ? () => Navigator.pushNamed(
+              context, TransactionDetailScreen.routeName,
+              arguments: upcomingTransaction)
           : null,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Padding(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+          padding: ClientConfig.getCustomClientUiSettings()
+              .defaultScreenHorizontalPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -130,21 +137,26 @@ class UpcomingTransactionListItem extends StatelessWidget {
                     "assets/images/currency_exchange_euro.svg",
                     width: 20,
                     height: 20,
-                    colorFilter: ColorFilter.mode(ClientConfig.getColorScheme().secondary, BlendMode.srcIn),
+                    colorFilter: ColorFilter.mode(
+                        ClientConfig.getColorScheme().secondary,
+                        BlendMode.srcIn),
                   ),
                   const SizedBox(
                     width: 16,
                   ),
-                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(
-                      'Automatic repayment',
-                      style: ClientConfig.getTextStyleScheme().heading4,
-                    ),
-                    Text(
-                      formattedDate,
-                      style: ClientConfig.getTextStyleScheme().bodySmallRegular,
-                    )
-                  ]),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Automatic repayment',
+                          style: ClientConfig.getTextStyleScheme().heading4,
+                        ),
+                        Text(
+                          formattedDate,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodySmallRegular,
+                        )
+                      ]),
                 ],
               ),
               Text(
@@ -204,7 +216,9 @@ class TransactionCard extends StatelessWidget {
               ),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(
-                  recipientName.isNotEmpty ? recipientName : defaultTransactionRecipientName,
+                  recipientName.isNotEmpty
+                      ? recipientName
+                      : defaultTransactionRecipientName,
                   style: ClientConfig.getTextStyleScheme().heading4,
                 ),
                 Text(

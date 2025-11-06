@@ -21,7 +21,8 @@ class OnboardingFinancialDetailsMiddleware extends MiddlewareClass<AppState> {
     if (action is CreateTaxIdCommandAction) {
       store.dispatch(CreateTaxIdLoadingEventAction());
 
-      final response = await _onboardingFinancialDetailsService.createTaxIdentification(
+      final response =
+          await _onboardingFinancialDetailsService.createTaxIdentification(
         user: authState.cognitoUser,
         taxId: action.taxId,
       );
@@ -29,16 +30,19 @@ class OnboardingFinancialDetailsMiddleware extends MiddlewareClass<AppState> {
       if (response is CreateTaxIdSuccesResponse) {
         store.dispatch(CreateTaxIdSuccessEventAction(taxId: action.taxId));
       } else if (response is CreateTaxIdErrorResponse) {
-        store.dispatch(CreateTaxIdFailedEventAction(errorType: response.errorType));
+        store.dispatch(
+            CreateTaxIdFailedEventAction(errorType: response.errorType));
       }
     }
 
     if (action is CreateCreditCardApplicationCommandAction) {
       store.dispatch(CreateCreditCardApplicationLoadingEventAction());
 
-      final financialDetails = store.state.onboardingFinancialDetailsState.financialDetailsAttributes;
+      final financialDetails = store
+          .state.onboardingFinancialDetailsState.financialDetailsAttributes;
 
-      final response = await _onboardingFinancialDetailsService.createCreditCardApplication(
+      final response =
+          await _onboardingFinancialDetailsService.createCreditCardApplication(
         user: authState.cognitoUser,
         maritalStatus: financialDetails.maritalStatus!,
         livingSituation: financialDetails.livingSituation!,
@@ -54,7 +58,8 @@ class OnboardingFinancialDetailsMiddleware extends MiddlewareClass<AppState> {
       if (response is CreateCreditCardApplicationSuccesResponse) {
         store.dispatch(CreateCreditCardApplicationSuccessEventAction());
       } else if (response is CreateCreditCardApplicationErrorResponse) {
-        store.dispatch(CreateCreditCardApplicationFailedEventAction(errorType: response.errorType));
+        store.dispatch(CreateCreditCardApplicationFailedEventAction(
+            errorType: response.errorType));
       }
     }
   }

@@ -21,14 +21,16 @@ void main() {
     declineChangeRequestId: "declineChangeRequestId",
   );
 
-  test("When using the reset command the state should reset to initial", () async {
+  test("When using the reset command the state should reset to initial",
+      () async {
     // given
     final store = createTestStore(
       deviceService: FakeDeviceService(),
       biometricsService: FakeBiometricsService(),
       changeRequestService: FakeChangeRequestService(),
       initialState: createAppState(
-        notificationState: NotificationTransactionApprovalState(message: message),
+        notificationState:
+            NotificationTransactionApprovalState(message: message),
       ),
     );
     final appState = store.onChange.firstWhere(
@@ -59,21 +61,28 @@ void main() {
       );
 
       final appState = store.onChange.firstWhere(
-        (element) => element.notificationState is NotificationTransactionApprovalState,
+        (element) =>
+            element.notificationState is NotificationTransactionApprovalState,
       );
       final transactionApprovalState = store.onChange.firstWhere(
-        (element) => element.transactionApprovalState is TransactionApprovalLoadingState,
+        (element) =>
+            element.transactionApprovalState is TransactionApprovalLoadingState,
       );
 
       // when
-      store.dispatch(ReceivedTransactionApprovalNotificationEventAction(user: MockUser(), message: message));
+      store.dispatch(ReceivedTransactionApprovalNotificationEventAction(
+          user: MockUser(), message: message));
 
       // then
-      expect((await appState).notificationState, isA<NotificationTransactionApprovalState>());
-      expect((await transactionApprovalState).transactionApprovalState, isA<TransactionApprovalLoadingState>());
+      expect((await appState).notificationState,
+          isA<NotificationTransactionApprovalState>());
+      expect((await transactionApprovalState).transactionApprovalState,
+          isA<TransactionApprovalLoadingState>());
     });
 
-    test("When a scoring successful notification is received, the state should change", () async {
+    test(
+        "When a scoring successful notification is received, the state should change",
+        () async {
       // given
       final store = createTestStore(
         initialState: createAppState(
@@ -81,17 +90,21 @@ void main() {
         ),
       );
       final appState = store.onChange.firstWhere(
-        (element) => element.notificationState is NotificationScoringSuccessfulState,
+        (element) =>
+            element.notificationState is NotificationScoringSuccessfulState,
       );
 
       // when
       store.dispatch(ReceivedScoringSuccessfulNotificationEventAction());
 
       // then
-      expect((await appState).notificationState, isA<NotificationScoringSuccessfulState>());
+      expect((await appState).notificationState,
+          isA<NotificationScoringSuccessfulState>());
     });
 
-    test("When a scoring failed notification is received, the state should change", () async {
+    test(
+        "When a scoring failed notification is received, the state should change",
+        () async {
       // given
       final store = createTestStore(
         initialState: createAppState(
@@ -99,17 +112,21 @@ void main() {
         ),
       );
       final appState = store.onChange.firstWhere(
-        (element) => element.notificationState is NotificationScoringFailedState,
+        (element) =>
+            element.notificationState is NotificationScoringFailedState,
       );
 
       // when
       store.dispatch(ReceivedScoringFailedNotificationEventAction());
 
       // then
-      expect((await appState).notificationState, isA<NotificationScoringFailedState>());
+      expect((await appState).notificationState,
+          isA<NotificationScoringFailedState>());
     });
 
-    test("When a scoring in progress notification is received, the state should change", () async {
+    test(
+        "When a scoring in progress notification is received, the state should change",
+        () async {
       // given
       final store = createTestStore(
         initialState: createAppState(
@@ -117,14 +134,16 @@ void main() {
         ),
       );
       final appState = store.onChange.firstWhere(
-        (element) => element.notificationState is NotificationScoringInProgressState,
+        (element) =>
+            element.notificationState is NotificationScoringInProgressState,
       );
 
       // when
       store.dispatch(ReceivedScoringInProgressNotificationEventAction());
 
       // then
-      expect((await appState).notificationState, isA<NotificationScoringInProgressState>());
+      expect((await appState).notificationState,
+          isA<NotificationScoringInProgressState>());
     });
   });
 }

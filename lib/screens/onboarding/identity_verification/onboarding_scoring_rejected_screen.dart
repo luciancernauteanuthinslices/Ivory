@@ -22,11 +22,13 @@ class OnboardingScoringRejectedScreen extends StatelessWidget {
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -44,7 +46,8 @@ class OnboardingScoringRejectedScreen extends StatelessWidget {
                               "We regret to inform you that your scoring application has been rejected. We understand this may be disappointing, and we're here to assist you. \n\n",
                         ),
                         const TextSpan(
-                          text: "For any questions or concerns you may have, please don't hesitate to ",
+                          text:
+                              "For any questions or concerns you may have, please don't hesitate to ",
                         ),
                         TextSpan(
                           text: 'contact us',
@@ -54,7 +57,9 @@ class OnboardingScoringRejectedScreen extends StatelessWidget {
                             },
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegularBold
-                              .copyWith(color: ClientConfig.getColorScheme().secondary),
+                              .copyWith(
+                                  color:
+                                      ClientConfig.getColorScheme().secondary),
                         ),
                         const TextSpan(text: '.'),
                       ],
@@ -77,7 +82,8 @@ class OnboardingScoringRejectedScreen extends StatelessWidget {
                   PrimaryButton(
                     text: "Return to “Welcome Screen”",
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(context, WelcomeScreen.routeName, (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, WelcomeScreen.routeName, (route) => false);
                     },
                   ),
                   const SizedBox(height: 16),

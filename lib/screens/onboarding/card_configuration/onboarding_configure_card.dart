@@ -22,80 +22,93 @@ class OnboardingConfigureCardScreen extends StatefulWidget {
   const OnboardingConfigureCardScreen({Key? key}) : super(key: key);
 
   @override
-  State<OnboardingConfigureCardScreen> createState() => _OnboardingConfigureCardScreenState();
+  State<OnboardingConfigureCardScreen> createState() =>
+      _OnboardingConfigureCardScreenState();
 }
 
-class _OnboardingConfigureCardScreenState extends State<OnboardingConfigureCardScreen> {
+class _OnboardingConfigureCardScreenState
+    extends State<OnboardingConfigureCardScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenScaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppToolbar(
-              richTextTitle: StepRichTextTitle(step: 2, totalSteps: 3),
-              actions: const [AppbarLogo()],
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppToolbar(
+            richTextTitle: StepRichTextTitle(step: 2, totalSteps: 3),
+            actions: const [AppbarLogo()],
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
+          ),
+          AnimatedLinearProgressIndicator.step(current: 2, totalSteps: 3),
+          const SizedBox(
+            height: 16,
+          ),
+          Padding(
+            padding:
+                ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+            child: Text(
+              "Credit card ordered",
+              style: ClientConfig.getTextStyleScheme().heading2,
             ),
-            AnimatedLinearProgressIndicator.step(current: 2, totalSteps: 3),
-            const SizedBox(height: 16,),
-            Padding(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
-              child: Text(
-                "Credit card ordered",
-                style: ClientConfig.getTextStyleScheme().heading2,
+          ),
+          Padding(
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: "Now ",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                  ),
+                  TextSpan(
+                    text: "let’s begin the configuration process ",
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                  ),
+                  TextSpan(
+                    text:
+                        "and tailor your card to fit your lifestyle and financial needs.",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
-              child: Text.rich(
-                TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Now ",
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-                      ),
-                      TextSpan(
-                        text: "let’s begin the configuration process ",
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
-                      ),
-                      TextSpan(
-                        text: "and tailor your card to fit your lifestyle and financial needs.",
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-                      ),
-                    ],),
-              ),
-            ),
-            StoreConnector<AppState, OnboardingCardConfigurationViewModel>(
-              onInit: (store) {
-                store.dispatch(GetOnboardingCardInfoCommandAction());
-              },
+          ),
+          StoreConnector<AppState, OnboardingCardConfigurationViewModel>(
+            onInit: (store) {
+              store.dispatch(GetOnboardingCardInfoCommandAction());
+            },
             onWillChange: (oldViewModel, newViewModel) {
               if (oldViewModel is WithCardInfoViewModel &&
                   oldViewModel.isLoading &&
-                  newViewModel is OnboardingCreditCardApplicationFetchedViewModel) {
+                  newViewModel
+                      is OnboardingCreditCardApplicationFetchedViewModel) {
                 Navigator.of(context).pushNamed(
                   OnboardingRepaymentOptionScreen.routeName,
                 );
               }
-              },
-              converter: (store) => OnboardingCardConfigurationPresenter.presentCardConfiguration(
-                cardConfigurationState: store.state.onboardingCardConfigurationState,
-              ),
-              builder: (context, viewModel) {
-                return _buildFrom(viewModel);
-              },
+            },
+            converter: (store) =>
+                OnboardingCardConfigurationPresenter.presentCardConfiguration(
+              cardConfigurationState:
+                  store.state.onboardingCardConfigurationState,
             ),
-          ],),
+            builder: (context, viewModel) {
+              return _buildFrom(viewModel);
+            },
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildFrom(OnboardingCardConfigurationViewModel viewModel) {
-    if(viewModel is WithCardInfoViewModel) {
+    if (viewModel is WithCardInfoViewModel) {
       return Expanded(
         child: Padding(
-          padding: ClientConfig
-              .getCustomClientUiSettings()
+          padding: ClientConfig.getCustomClientUiSettings()
               .defaultScreenHorizontalPadding,
           child: Column(
             children: [
@@ -124,7 +137,9 @@ class _OnboardingConfigureCardScreenState extends State<OnboardingConfigureCardS
                   );
                 },
               ),
-              const SizedBox(height: 16,),
+              const SizedBox(
+                height: 16,
+              ),
             ],
           ),
         ),
@@ -132,18 +147,21 @@ class _OnboardingConfigureCardScreenState extends State<OnboardingConfigureCardS
     }
 
     return Expanded(
-        child: Padding(
-          padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
-          child: const Column(
-            children: [
-              Spacer(),
-              CircularLoadingIndicator(),
-              Spacer(),
-              PrimaryButton(text: "Configure my card"),
-              SizedBox(height: 16,),
-            ],
-          ),
+      child: Padding(
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
+        child: const Column(
+          children: [
+            Spacer(),
+            CircularLoadingIndicator(),
+            Spacer(),
+            PrimaryButton(text: "Configure my card"),
+            SizedBox(
+              height: 16,
+            ),
+          ],
         ),
+      ),
     );
   }
 }

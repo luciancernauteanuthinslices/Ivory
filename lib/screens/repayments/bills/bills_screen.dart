@@ -32,7 +32,8 @@ class BillsScreen extends StatelessWidget {
             scrollController: scrollController,
             titleMaxOpacityScrollOffset: 40,
             includeBottomScreenTitle: true,
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             children: const [
               IvoryTextField(
                 placeholder: 'Search by date',
@@ -45,10 +46,12 @@ class BillsScreen extends StatelessWidget {
             onInit: (store) {
               store.dispatch(GetBillsCommandAction());
             },
-            converter: (store) => BillsPresenter.presentBills(billState: store.state.billsState),
+            converter: (store) =>
+                BillsPresenter.presentBills(billState: store.state.billsState),
             distinct: true,
             builder: (context, viewModel) {
-              if (viewModel is BillsLoadingViewModel || viewModel is BillsInitialViewModel) {
+              if (viewModel is BillsLoadingViewModel ||
+                  viewModel is BillsInitialViewModel) {
                 return Expanded(
                   child: _BillsScrollView.loadingSkeleton(),
                 );
@@ -67,7 +70,8 @@ class BillsScreen extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('No bills yet', style: ClientConfig.getTextStyleScheme().heading4),
+                    Text('No bills yet',
+                        style: ClientConfig.getTextStyleScheme().heading4),
                     const SizedBox(height: 16),
                     Text(
                       'Your future bills will be displayed here after your automatic repayments go through.',
@@ -119,7 +123,8 @@ class _BillsScrollView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Text(
                 year,
                 style: ClientConfig.getTextStyleScheme().heading4,
@@ -140,7 +145,8 @@ class _BillsScrollView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: const Skeleton(height: 18, width: 160),
           ),
           const SizedBox(height: 8),
@@ -191,7 +197,8 @@ class _BillItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Row(
         children: [
-          Skeleton(height: 24, width: 24, borderRadius: BorderRadius.circular(100)),
+          Skeleton(
+              height: 24, width: 24, borderRadius: BorderRadius.circular(100)),
           const SizedBox(width: 16),
           const Skeleton(height: 16, width: 128),
         ],

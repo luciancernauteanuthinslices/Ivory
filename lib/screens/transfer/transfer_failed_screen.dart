@@ -13,7 +13,8 @@ class TransferFailedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ChangeRequestErrorType error = ModalRoute.of(context)!.settings.arguments as ChangeRequestErrorType;
+    final ChangeRequestErrorType error =
+        ModalRoute.of(context)!.settings.arguments as ChangeRequestErrorType;
 
     return ScreenScaffold(
       shouldPop: false,
@@ -22,7 +23,8 @@ class TransferFailedScreen extends StatelessWidget {
           Expanded(
             child: ScrollableScreenContainer(
               child: Padding(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -37,8 +39,9 @@ class TransferFailedScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      (error == ChangeRequestErrorType.insufficientFunds) ?
-                      "Insufficient funds. You can only transfer the topped-up amount":"The transfer could not be completed.",
+                      (error == ChangeRequestErrorType.insufficientFunds)
+                          ? "Insufficient funds. You can only transfer the topped-up amount"
+                          : "The transfer could not be completed.",
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
                     const Spacer(),
@@ -49,12 +52,14 @@ class TransferFailedScreen extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: Button(
               color: ClientConfig.getColorScheme().tertiary,
               text: "Back to \"Home\"",
               textColor: ClientConfig.getColorScheme().surface,
-              onPressed: () => Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false),
+              onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                  context, HomeScreen.routeName, (route) => false),
             ),
           ),
           const SizedBox(height: 16),

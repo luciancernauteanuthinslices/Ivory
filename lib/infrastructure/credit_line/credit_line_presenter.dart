@@ -10,11 +10,14 @@ class RepaymentsPresenter {
     required MoreCreditState moreCreditState,
     required AuthenticatedUser user,
   }) {
-    if (creditLineState is CreditLineLoadingState || moreCreditState is MoreCreditLoadingState) {
+    if (creditLineState is CreditLineLoadingState ||
+        moreCreditState is MoreCreditLoadingState) {
       return CreditLineLoadingViewModel();
-    } else if (creditLineState is CreditLineErrorState || moreCreditState is MoreCreditErrorState) {
+    } else if (creditLineState is CreditLineErrorState ||
+        moreCreditState is MoreCreditErrorState) {
       return CreditLineErrorViewModel();
-    } else if (creditLineState is CreditLineFetchedState && moreCreditState is MoreCreditFetchedState) {
+    } else if (creditLineState is CreditLineFetchedState &&
+        moreCreditState is MoreCreditFetchedState) {
       return CreditLineFetchedViewModel(
         creditLine: creditLineState.creditLine,
         waitlist: moreCreditState.waitlist,

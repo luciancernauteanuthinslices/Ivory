@@ -37,7 +37,8 @@ class WelcomeScreen extends StatelessWidget {
             store.dispatch(LoadCredentialsCommandAction());
           },
           distinct: true,
-          converter: (store) => AuthPresenter.presentAuth(authState: store.state.authState),
+          converter: (store) =>
+              AuthPresenter.presentAuth(authState: store.state.authState),
           onWillChange: (previousViewModel, newViewModel) {
             if (previousViewModel is AuthLoadingViewModel &&
                 newViewModel is AuthCredentialsLoadedViewModel &&
@@ -62,14 +63,16 @@ class WelcomeScreen extends StatelessWidget {
             if (previousViewModel is AuthLoadingViewModel &&
                 newViewModel is AuthInitializedViewModel &&
                 newViewModel.authType == AuthType.withBiometrics) {
-              Navigator.pushNamedAndRemoveUntil(context, LoginWithBiometricsScreen.routeName, (route) => false);
+              Navigator.pushNamedAndRemoveUntil(context,
+                  LoginWithBiometricsScreen.routeName, (route) => false);
               FlutterNativeSplash.remove();
             }
           },
           builder: (context, viewModel) {
             if (viewModel is AuthLoadingViewModel) {
               return const Center(child: CircularProgressIndicator());
-            } else if (viewModel is AuthInitializedViewModel && viewModel.authType == AuthType.withBiometrics) {
+            } else if (viewModel is AuthInitializedViewModel &&
+                viewModel.authType == AuthType.withBiometrics) {
               return const SizedBox();
             }
 
@@ -93,7 +96,8 @@ class HeroVideo extends StatefulWidget {
   State<HeroVideo> createState() => _HeroVideoState();
 }
 
-class _HeroVideoState extends State<HeroVideo> with WidgetsBindingObserver, RouteAware {
+class _HeroVideoState extends State<HeroVideo>
+    with WidgetsBindingObserver, RouteAware {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
 
@@ -103,15 +107,17 @@ class _HeroVideoState extends State<HeroVideo> with WidgetsBindingObserver, Rout
 
     WidgetsBinding.instance.addObserver(this);
 
-    final videoPath = ClientConfig.getClientConfig().uiSettings.welcomeVideoPath;
-    _controller =
-        VideoPlayerController.asset(videoPath, videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: false));
+    final videoPath =
+        ClientConfig.getClientConfig().uiSettings.welcomeVideoPath;
+    _controller = VideoPlayerController.asset(videoPath,
+        videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: false));
 
     _initializeVideoPlayerFuture = _controller.initialize().then((_) {
       // Remove splash screen after video is loaded
       FlutterNativeSplash.remove();
 
-      if (IvoryApp.generalRouteObserver.routeStack.last == WelcomeScreen.routeName) {
+      if (IvoryApp.generalRouteObserver.routeStack.last ==
+          WelcomeScreen.routeName) {
         _controller.play();
         log("Playing video", name: "initState");
       }
@@ -130,14 +136,16 @@ class _HeroVideoState extends State<HeroVideo> with WidgetsBindingObserver, Rout
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (IvoryApp.generalRouteObserver.routeStack.last != WelcomeScreen.routeName) {
+    if (IvoryApp.generalRouteObserver.routeStack.last !=
+        WelcomeScreen.routeName) {
       return;
     }
 
     if (state == AppLifecycleState.paused && _controller.value.isPlaying) {
       log("Pausing video", name: "didChangeAppLifecycleState: paused");
       _controller.pause();
-    } else if (state == AppLifecycleState.resumed && !_controller.value.isPlaying) {
+    } else if (state == AppLifecycleState.resumed &&
+        !_controller.value.isPlaying) {
       log("Playing video", name: "didChangeAppLifecycleState: resumed");
       _controller.play();
     }
@@ -186,14 +194,17 @@ class _HeroVideoState extends State<HeroVideo> with WidgetsBindingObserver, Rout
             return Center(
               child: Text(
                 "Error loading video",
-                style: ClientConfig.getTextStyleScheme()
-                    .heading4
-                    .copyWith(color: ClientConfig.getClientConfig().uiSettings.colorscheme.primary),
+                style: ClientConfig.getTextStyleScheme().heading4.copyWith(
+                    color: ClientConfig.getClientConfig()
+                        .uiSettings
+                        .colorscheme
+                        .primary),
               ),
             );
           }
 
-          if (snapshot.connectionState == ConnectionState.done && _controller.value.isInitialized) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              _controller.value.isInitialized) {
             return FittedBox(
               fit: BoxFit.cover,
               child: SizedBox(
@@ -229,7 +240,8 @@ class WelcomeScreenContent extends StatelessWidget {
                 key: keys.welcomeScreen.logInButton,
                 borderWidth: 2,
                 text: "Log in",
-                onPressed: () => Navigator.pushNamed(context, LoginScreen.routeName),
+                onPressed: () =>
+                    Navigator.pushNamed(context, LoginScreen.routeName),
               ),
             ),
             const SizedBox(height: 16),
@@ -238,7 +250,8 @@ class WelcomeScreenContent extends StatelessWidget {
               child: PrimaryButton(
                 key: keys.welcomeScreen.signUpButton,
                 text: "Sign up",
-                onPressed: () => Navigator.pushNamed(context, OnboardingStartScreen.routeName),
+                onPressed: () => Navigator.pushNamed(
+                    context, OnboardingStartScreen.routeName),
               ),
             ),
           ],
@@ -290,7 +303,8 @@ class _Carousel extends StatelessWidget {
             dotWidth: 8,
             dotHeight: 4,
             activeDotColor: ClientConfig.getColorScheme().secondary,
-            dotColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.23),
+            dotColor:
+                Theme.of(context).colorScheme.onBackground.withOpacity(0.23),
           ),
         )
       ],

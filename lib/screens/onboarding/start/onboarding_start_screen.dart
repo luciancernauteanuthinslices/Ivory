@@ -22,12 +22,14 @@ class OnboardingStartScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             actions: const [AppbarLogo()],
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -36,10 +38,12 @@ class OnboardingStartScreen extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        const TextSpan(text: "Get your credit card instantly in just "),
+                        const TextSpan(
+                            text: "Get your credit card instantly in just "),
                         TextSpan(
                           text: "25 minutes!",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
@@ -49,15 +53,18 @@ class OnboardingStartScreen extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        const TextSpan(text: "Please make sure your information is "),
+                        const TextSpan(
+                            text: "Please make sure your information is "),
                         TextSpan(
                           text: "accurate, ",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
                         const TextSpan(text: "as you "),
                         TextSpan(
                           text: "won't be able to modify it later.",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
@@ -70,9 +77,12 @@ class OnboardingStartScreen extends StatelessWidget {
                         const TextSpan(text: "First we'll ask you "),
                         TextSpan(
                           text: "two quick questions ",
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
                         ),
-                        const TextSpan(text: "to ensure our services are tailored to your needs.")
+                        const TextSpan(
+                            text:
+                                "to ensure our services are tailored to your needs.")
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -93,7 +103,8 @@ class OnboardingStartScreen extends StatelessWidget {
                     width: double.infinity,
                     child: PrimaryButton(
                         text: "Let's start",
-                        onPressed: () => Navigator.pushNamed(context, OnboardingGermanResidencyScreen.routeName)),
+                        onPressed: () => Navigator.pushNamed(context,
+                            OnboardingGermanResidencyScreen.routeName)),
                   ),
                   const SizedBox(height: 16)
                 ],

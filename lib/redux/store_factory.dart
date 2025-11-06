@@ -89,8 +89,10 @@ Store<AppState> createStore({
   required MobileNumberService mobileNumberService,
   required DocumentsService documentsService,
   required FileSaverService fileSaverService,
-  required OnbordingIdentityVerificationService onboardingIdentityVerificationService,
-  required OnboardingCardConfigurationService onboardingCardConfigurationService,
+  required OnbordingIdentityVerificationService
+      onboardingIdentityVerificationService,
+  required OnboardingCardConfigurationService
+      onboardingCardConfigurationService,
 }) {
   return Store<AppState>(
     appReducer,
@@ -103,27 +105,40 @@ Store<AppState> createStore({
       CardApplicationMiddleware(cardApplicationService),
       GetBillsMiddleware(billService, fileSaverService),
       GetMoreCreditMiddleware(moreCreditService),
-      BankCardMiddleware(bankCardService, deviceService, biometricsService, deviceFingerprintService),
+      BankCardMiddleware(bankCardService, deviceService, biometricsService,
+          deviceFingerprintService),
       GetCategoriesMiddleware(categoriesService),
       ReferenceAccountMiddleware(personService),
       PersonAccountMiddleware(personService),
       TransferMiddleware(transferService, changeRequestService),
-      DeviceBindingMiddleware(
-          deviceBindingService, deviceService, deviceInfoService, deviceFingerprintService, biometricsService),
-      TransactionApprovalMiddleware(changeRequestService, deviceService, deviceFingerprintService, biometricsService),
+      DeviceBindingMiddleware(deviceBindingService, deviceService,
+          deviceInfoService, deviceFingerprintService, biometricsService),
+      TransactionApprovalMiddleware(changeRequestService, deviceService,
+          deviceFingerprintService, biometricsService),
       GetAccountSummaryMiddleware(accountSummaryService),
-      AuthMiddleware(authService, deviceService, deviceBindingService, deviceFingerprintService, deviceInfoService,
-          personService, biometricsService),
-      OnboardingSignupMiddleware(pushNotificationService, onboardingSignupService),
-      OnboardingProgressMiddleware(onboardingService, authService, deviceService),
-      OnboardingPersonalDetailsMiddleware(onboardingPersonalDetailsService, mobileNumberService),
+      AuthMiddleware(
+          authService,
+          deviceService,
+          deviceBindingService,
+          deviceFingerprintService,
+          deviceInfoService,
+          personService,
+          biometricsService),
+      OnboardingSignupMiddleware(
+          pushNotificationService, onboardingSignupService),
+      OnboardingProgressMiddleware(
+          onboardingService, authService, deviceService),
+      OnboardingPersonalDetailsMiddleware(
+          onboardingPersonalDetailsService, mobileNumberService),
       ActionLoggerMiddleware(),
       CitySuggestionsMiddleware(citySuggestionsService),
       AddressSuggestionsMiddleware(addressSuggestionsService),
       OnboardingFinancialDetailsMiddleware(onboardingFinancialDetailsService),
       DocumentsMiddleware(documentsService, fileSaverService),
-      OnboardingIdentityVerificationMiddleware(onboardingIdentityVerificationService),
-      OnboardingCardConfigurationMiddleware(onboardingCardConfigurationService, cardApplicationService),
+      OnboardingIdentityVerificationMiddleware(
+          onboardingIdentityVerificationService),
+      OnboardingCardConfigurationMiddleware(
+          onboardingCardConfigurationService, cardApplicationService),
     ],
   );
 }

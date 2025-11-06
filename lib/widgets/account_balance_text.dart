@@ -8,8 +8,10 @@ class AccountBalanceText extends StatelessWidget {
   final TextStyle? centsStyle;
   final num value;
 
-  final TextStyle defaultNumberStyle =  ClientConfig.getTextStyleScheme().heading4;
-  final TextStyle defaultCentsStyle = ClientConfig.getTextStyleScheme().heading4;
+  final TextStyle defaultNumberStyle =
+      ClientConfig.getTextStyleScheme().heading4;
+  final TextStyle defaultCentsStyle =
+      ClientConfig.getTextStyleScheme().heading4;
 
   AccountBalanceText({
     super.key,

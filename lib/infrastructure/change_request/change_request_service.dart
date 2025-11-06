@@ -21,13 +21,16 @@ class ChangeRequestService extends ApiService {
 
       final data = await post(
         path,
-        body: {"delivery_method": "mobile_number" ,"tan": tan},
+        body: {"delivery_method": "mobile_number", "tan": tan},
       );
 
       if (data['success'] == false) {
-        return ChangeRequestServiceErrorResponse(errorType: ChangeRequestErrorType.confirmationFailed);
-      } else if(data['response']['response_body']['decline_reason'] == 'insufficient_balance') {
-        return ChangeRequestServiceErrorResponse(errorType: ChangeRequestErrorType.insufficientFunds);
+        return ChangeRequestServiceErrorResponse(
+            errorType: ChangeRequestErrorType.confirmationFailed);
+      } else if (data['response']['response_body']['decline_reason'] ==
+          'insufficient_balance') {
+        return ChangeRequestServiceErrorResponse(
+            errorType: ChangeRequestErrorType.insufficientFunds);
       }
 
       return ConfirmTransferChangeRequestSuccessResponse(
@@ -36,7 +39,9 @@ class ChangeRequestService extends ApiService {
           transfer: ReferenceAccountTransfer(
             description: data['response']['response_body']['description'],
             amount: ReferenceAccountTransferAmount(
-              value: (data['response']['response_body']['amount']['value'] as int) / 100,
+              value: (data['response']['response_body']['amount']['value']
+                      as int) /
+                  100,
             ),
           ),
         ),
@@ -66,12 +71,15 @@ class ChangeRequestService extends ApiService {
       );
 
       if (data['status'] != "CONFIRMATION_REQUIRED") {
-        return ChangeRequestServiceErrorResponse(errorType: ChangeRequestErrorType.authorizationFailed);
+        return ChangeRequestServiceErrorResponse(
+            errorType: ChangeRequestErrorType.authorizationFailed);
       }
 
-      return AuthorizeChangeRequestSuccessResponse(stringToSign: data['string_to_sign'] as String);
+      return AuthorizeChangeRequestSuccessResponse(
+          stringToSign: data['string_to_sign'] as String);
     } catch (e) {
-      return ChangeRequestServiceErrorResponse(errorType: ChangeRequestErrorType.authorizationFailed);
+      return ChangeRequestServiceErrorResponse(
+          errorType: ChangeRequestErrorType.authorizationFailed);
     }
   }
 
@@ -98,12 +106,14 @@ class ChangeRequestService extends ApiService {
       );
 
       if (data['success'] == false) {
-        return ChangeRequestServiceErrorResponse(errorType: ChangeRequestErrorType.confirmationFailed);
+        return ChangeRequestServiceErrorResponse(
+            errorType: ChangeRequestErrorType.confirmationFailed);
       }
 
       return ConfirmChangeRequestSuccessResponse();
     } catch (e) {
-      return ChangeRequestServiceErrorResponse(errorType: ChangeRequestErrorType.confirmationFailed);
+      return ChangeRequestServiceErrorResponse(
+          errorType: ChangeRequestErrorType.confirmationFailed);
     }
   }
 }
@@ -113,7 +123,8 @@ abstract class ChangeRequestServiceResponse extends Equatable {
   List<Object> get props => [];
 }
 
-class ConfirmTransferChangeRequestSuccessResponse extends ChangeRequestServiceResponse {
+class ConfirmTransferChangeRequestSuccessResponse
+    extends ChangeRequestServiceResponse {
   final TransferConfirmation transferConfirmation;
 
   ConfirmTransferChangeRequestSuccessResponse({
@@ -124,7 +135,8 @@ class ConfirmTransferChangeRequestSuccessResponse extends ChangeRequestServiceRe
   List<Object> get props => [transferConfirmation];
 }
 
-class AuthorizeChangeRequestSuccessResponse extends ChangeRequestServiceResponse {
+class AuthorizeChangeRequestSuccessResponse
+    extends ChangeRequestServiceResponse {
   final String stringToSign;
 
   AuthorizeChangeRequestSuccessResponse({
@@ -135,7 +147,8 @@ class AuthorizeChangeRequestSuccessResponse extends ChangeRequestServiceResponse
   List<Object> get props => [stringToSign];
 }
 
-class ConfirmChangeRequestSuccessResponse extends ChangeRequestServiceResponse {}
+class ConfirmChangeRequestSuccessResponse
+    extends ChangeRequestServiceResponse {}
 
 class ChangeRequestServiceErrorResponse extends ChangeRequestServiceResponse {
   final ChangeRequestErrorType errorType;

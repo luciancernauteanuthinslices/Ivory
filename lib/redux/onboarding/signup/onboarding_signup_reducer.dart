@@ -1,7 +1,8 @@
 import 'package:solarisdemo/redux/onboarding/signup/onboarding_signup_action.dart';
 import 'package:solarisdemo/redux/onboarding/signup/onboarding_signup_state.dart';
 
-OnboardingSignupState onboardingSignupReducer(OnboardingSignupState state, dynamic action) {
+OnboardingSignupState onboardingSignupReducer(
+    OnboardingSignupState state, dynamic action) {
   if (action is SubmitOnboardingBasicInfoCommandAction) {
     return OnboardingSignupState(
       signupAttributes: state.signupAttributes.copyWith(

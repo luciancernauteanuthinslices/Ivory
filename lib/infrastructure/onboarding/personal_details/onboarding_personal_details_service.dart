@@ -35,9 +35,11 @@ class OnboardingPersonalDetailsService extends ApiService {
         'nationality': nationality,
       });
 
-      return OnboardingCreatePersonSuccessResponse(personId: response['person_id'] as String);
+      return OnboardingCreatePersonSuccessResponse(
+          personId: response['person_id'] as String);
     } catch (error) {
-      return OnboardingPersonalDetailsServiceErrorResponse(errorType: OnboardingPersonalDetailsErrorType.unknown);
+      return OnboardingPersonalDetailsServiceErrorResponse(
+          errorType: OnboardingPersonalDetailsErrorType.unknown);
     }
   }
 }
@@ -47,7 +49,8 @@ abstract class OnboardingPersonalDetailsServiceResponse extends Equatable {
   List<Object?> get props => [];
 }
 
-class OnboardingCreatePersonSuccessResponse extends OnboardingPersonalDetailsServiceResponse {
+class OnboardingCreatePersonSuccessResponse
+    extends OnboardingPersonalDetailsServiceResponse {
   final String personId;
 
   OnboardingCreatePersonSuccessResponse({required this.personId});
@@ -56,7 +59,8 @@ class OnboardingCreatePersonSuccessResponse extends OnboardingPersonalDetailsSer
   List<Object?> get props => [personId];
 }
 
-class OnboardingPersonalDetailsServiceErrorResponse extends OnboardingPersonalDetailsServiceResponse {
+class OnboardingPersonalDetailsServiceErrorResponse
+    extends OnboardingPersonalDetailsServiceResponse {
   final OnboardingPersonalDetailsErrorType errorType;
 
   OnboardingPersonalDetailsServiceErrorResponse({required this.errorType});
@@ -66,7 +70,8 @@ class OnboardingPersonalDetailsServiceErrorResponse extends OnboardingPersonalDe
 }
 
 Future<String> _isoCodeFromCountryName(String countryName) async {
-  final countriesJson = await rootBundle.loadString('assets/data/countries.json');
+  final countriesJson =
+      await rootBundle.loadString('assets/data/countries.json');
   final countries = jsonDecode(countriesJson);
 
   for (var country in countries) {

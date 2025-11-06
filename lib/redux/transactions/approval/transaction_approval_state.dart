@@ -23,7 +23,8 @@ class TransactionApprovalAuthorizedState extends TransactionApprovalState {
   });
 
   @override
-  List<Object> get props => [stringToSign, deviceId, deviceData, changeRequestId];
+  List<Object> get props =>
+      [stringToSign, deviceId, deviceData, changeRequestId];
 }
 
 class TransactionApprovalSucceededState extends TransactionApprovalState {}
@@ -32,4 +33,5 @@ class TransactionApprovalRejectedState extends TransactionApprovalState {}
 
 class TransactionApprovalFailedState extends TransactionApprovalState {}
 
-class TransactionApprovalDeviceNotBoundedState extends TransactionApprovalState {}
+class TransactionApprovalDeviceNotBoundedState
+    extends TransactionApprovalState {}

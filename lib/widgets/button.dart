@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:solarisdemo/config.dart';
 
 const double _defaultFontSize = 16;
-const BorderRadiusGeometry _defaultBorderRadius = BorderRadius.all(Radius.circular(4));
+const BorderRadiusGeometry _defaultBorderRadius =
+    BorderRadius.all(Radius.circular(4));
 
 class Button extends StatelessWidget {
   final String text;
@@ -53,7 +54,9 @@ class Button extends StatelessWidget {
         Text(
           text,
           textAlign: TextAlign.center,
-          style: textStyle != null ? defaultTextStyle.merge(textStyle) : defaultTextStyle,
+          style: textStyle != null
+              ? defaultTextStyle.merge(textStyle)
+              : defaultTextStyle,
         ),
         ...(isLoading
             ? [

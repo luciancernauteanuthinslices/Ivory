@@ -31,7 +31,8 @@ class RepaymentReminderService extends ApiService {
     required RepaymentReminder reminder,
   }) async {
     try {
-      final datetime = "${reminder.datetime.toIso8601String().replaceAll("Z", "")}Z"; // TODO: Fix this hack
+      final datetime =
+          "${reminder.datetime.toIso8601String().replaceAll("Z", "")}Z"; // TODO: Fix this hack
       final data = await post('notifications/scheduled', body: {
         "datetime": datetime,
         "title": "Repayment Reminder",
@@ -94,7 +95,8 @@ abstract class RepaymentReminderServiceResponse extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetRepaymentReminderSuccessResponse extends RepaymentReminderServiceResponse {
+class GetRepaymentReminderSuccessResponse
+    extends RepaymentReminderServiceResponse {
   final List<RepaymentReminder> repaymentReminders;
 
   GetRepaymentReminderSuccessResponse({required this.repaymentReminders});
@@ -103,7 +105,8 @@ class GetRepaymentReminderSuccessResponse extends RepaymentReminderServiceRespon
   List<Object?> get props => [repaymentReminders];
 }
 
-class AddRepaymentReminderSuccessResponse extends RepaymentReminderServiceResponse {
+class AddRepaymentReminderSuccessResponse
+    extends RepaymentReminderServiceResponse {
   final RepaymentReminder repaymentReminder;
 
   AddRepaymentReminderSuccessResponse({required this.repaymentReminder});
@@ -112,7 +115,8 @@ class AddRepaymentReminderSuccessResponse extends RepaymentReminderServiceRespon
   List<Object?> get props => [repaymentReminder];
 }
 
-class BatchAddRepaymentReminderSuccessResponse extends RepaymentReminderServiceResponse {
+class BatchAddRepaymentReminderSuccessResponse
+    extends RepaymentReminderServiceResponse {
   final List<RepaymentReminder> repaymentReminders;
 
   BatchAddRepaymentReminderSuccessResponse({required this.repaymentReminders});
@@ -121,6 +125,8 @@ class BatchAddRepaymentReminderSuccessResponse extends RepaymentReminderServiceR
   List<Object?> get props => [repaymentReminders];
 }
 
-class DeleteRepaymentReminderSuccessResponse extends RepaymentReminderServiceResponse {}
+class DeleteRepaymentReminderSuccessResponse
+    extends RepaymentReminderServiceResponse {}
 
-class RepaymentReminderServiceErrorResponse extends RepaymentReminderServiceResponse {}
+class RepaymentReminderServiceErrorResponse
+    extends RepaymentReminderServiceResponse {}

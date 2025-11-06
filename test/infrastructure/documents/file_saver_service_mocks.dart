@@ -6,7 +6,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:share_plus_platform_interface/share_plus_platform_interface.dart';
 
-class MockFlutterLocalNotificationsPlugin extends Mock implements FlutterLocalNotificationsPlugin {
+class MockFlutterLocalNotificationsPlugin extends Mock
+    implements FlutterLocalNotificationsPlugin {
   @override
   Future<void> show(
     int? id,
@@ -45,7 +46,8 @@ class MockDirectory extends Mock implements Directory {
 
 class MockFile extends Mock implements File {
   @override
-  Future<File> writeAsBytes(List<int>? bytes, {FileMode? mode = FileMode.write, bool? flush = false}) {
+  Future<File> writeAsBytes(List<int>? bytes,
+      {FileMode? mode = FileMode.write, bool? flush = false}) {
     return super.noSuchMethod(
       Invocation.method(#writeAsBytes, [bytes], {#mode: mode, #flush: flush}),
       returnValue: Future<File>.value(File('')),
@@ -65,7 +67,8 @@ class MockFile extends Mock implements File {
 
 class FakeFile extends Fake implements File {
   @override
-  Future<File> writeAsBytes(List<int>? bytes, {FileMode? mode = FileMode.write, bool? flush = false}) async {
+  Future<File> writeAsBytes(List<int>? bytes,
+      {FileMode? mode = FileMode.write, bool? flush = false}) async {
     return this;
   }
 
@@ -77,7 +80,8 @@ class FakeFile extends Fake implements File {
 
 class FakeInexistentFile extends Fake implements File {
   @override
-  Future<File> writeAsBytes(List<int>? bytes, {FileMode? mode = FileMode.write, bool? flush = false}) async {
+  Future<File> writeAsBytes(List<int>? bytes,
+      {FileMode? mode = FileMode.write, bool? flush = false}) async {
     return this;
   }
 
@@ -99,7 +103,9 @@ class FakeDownloadDirectory extends Fake implements Directory {
   }
 }
 
-class MockSharePlatform extends Mock with MockPlatformInterfaceMixin implements SharePlatform {
+class MockSharePlatform extends Mock
+    with MockPlatformInterfaceMixin
+    implements SharePlatform {
   @override
   Future<ShareResult> shareXFiles(
     List<XFile?>? files, {
@@ -112,10 +118,16 @@ class MockSharePlatform extends Mock with MockPlatformInterfaceMixin implements 
       Invocation.method(
         #shareXFiles,
         [files],
-        {#subject: subject, #text: text, #sharePositionOrigin: sharePositionOrigin},
+        {
+          #subject: subject,
+          #text: text,
+          #sharePositionOrigin: sharePositionOrigin
+        },
       ),
-      returnValue: Future.value(const ShareResult("", ShareResultStatus.success)),
-      returnValueForMissingStub: Future.value(const ShareResult("", ShareResultStatus.success)),
+      returnValue:
+          Future.value(const ShareResult("", ShareResultStatus.success)),
+      returnValueForMissingStub:
+          Future.value(const ShareResult("", ShareResultStatus.success)),
     );
   }
 }

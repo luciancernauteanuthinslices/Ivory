@@ -31,7 +31,9 @@ class PillButton extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: active ? ClientConfig.getCustomColors().neutral100 : Colors.white,
+            color: active
+                ? ClientConfig.getCustomColors().neutral100
+                : Colors.white,
             border: active
                 ? Border.all(
                     width: 1,
@@ -46,9 +48,8 @@ class PillButton extends StatelessWidget {
                 buttonText,
                 style: active
                     ? ClientConfig.getTextStyleScheme().labelSmall
-                    : ClientConfig.getTextStyleScheme()
-                        .labelSmall
-                        .copyWith(color: ClientConfig.getColorScheme().tertiary),
+                    : ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                        color: ClientConfig.getColorScheme().tertiary),
               ),
               if (icon != null)
                 GestureDetector(

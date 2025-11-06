@@ -2,7 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:solarisdemo/utilities/retry.dart';
 
 void main() {
-  test('retry function should return the result if no exception is thrown', () async {
+  test('retry function should return the result if no exception is thrown',
+      () async {
     // given
     int attempt = 0;
     int callback() {
@@ -83,7 +84,8 @@ void main() {
     expect(result, 1);
   });
 
-  test("retry function should retry if retryIf is a Future and returns true", () async {
+  test("retry function should retry if retryIf is a Future and returns true",
+      () async {
     // given
     int attempt = 0;
     // when
@@ -100,7 +102,9 @@ void main() {
     expect(result, 3);
   });
 
-  test('retry function should retry if retryIf returns true and maxAttempts is greater than 0', () async {
+  test(
+      'retry function should retry if retryIf returns true and maxAttempts is greater than 0',
+      () async {
     // given
     int attempt = 0;
     // when

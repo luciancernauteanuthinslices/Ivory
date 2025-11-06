@@ -20,8 +20,9 @@ class BankCardDetailsAppleWalletScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return ScreenScaffold(
       body: Column(
@@ -37,12 +38,14 @@ class BankCardDetailsAppleWalletScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text: 'out of 4',
-                    style: TextStyle(color: ClientConfig.getCustomColors().neutral700),
+                    style: TextStyle(
+                        color: ClientConfig.getCustomColors().neutral700),
                   ),
                 ],
               ),
             ),
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             backButtonEnabled: false,
             onBackButtonPressed: () {
               Navigator.pop(context);
@@ -84,7 +87,8 @@ class BankCardDetailsAppleWalletScreen extends StatelessWidget {
                 }
                 return Expanded(
                   child: Padding(
-                    padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                    padding: ClientConfig.getCustomClientUiSettings()
+                        .defaultScreenPadding,
                     child: Column(
                       children: [
                         Text(
@@ -96,7 +100,8 @@ class BankCardDetailsAppleWalletScreen extends StatelessWidget {
                         ),
                         Text(
                           'Add your Porsche credit card to Apple Wallet to start making seamless POS purchases.',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                         ),
                         const SizedBox(
                           height: 160,
@@ -118,21 +123,29 @@ class BankCardDetailsAppleWalletScreen extends StatelessWidget {
                               width: double.infinity,
                               child: Button(
                                 color: Colors.white,
-                                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 23.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0, vertical: 23.0),
                                 text: 'Maybe later',
                                 textStyle: ClientConfig.getTextStyleScheme()
                                     .bodyLargeRegular
-                                    .copyWith(color: ClientConfig.getColorScheme().tertiary),
+                                    .copyWith(
+                                        color: ClientConfig.getColorScheme()
+                                            .tertiary),
                                 onPressed: () {
-                                  StoreProvider.of<AppState>(context).dispatch(BankCardActivateCommandAction(
-                                    cardId: (viewModel as BankCardPinChoosenViewModel).bankCard!.id,
+                                  StoreProvider.of<AppState>(context)
+                                      .dispatch(BankCardActivateCommandAction(
+                                    cardId: (viewModel
+                                            as BankCardPinChoosenViewModel)
+                                        .bankCard!
+                                        .id,
                                   ));
                                 },
                               ),
                             ),
                             const SizedBox(height: 16),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               child: ButtonWithIcon(
                                 text: 'Add to Apple Wallet',
                                 textStyle: const TextStyle(
@@ -144,7 +157,8 @@ class BankCardDetailsAppleWalletScreen extends StatelessWidget {
                                 onPressed: () {
                                   //TODO: Add to apple wallet flow
                                 },
-                                iconWidget: Image.asset('assets/icons/apple_wallet_logo.png'),
+                                iconWidget: Image.asset(
+                                    'assets/icons/apple_wallet_logo.png'),
                               ),
                             ),
                           ],

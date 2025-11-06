@@ -67,7 +67,8 @@ class DocumentListItem extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: 16,
-          horizontal: ClientConfig.getCustomClientUiSettings().defaultScreenLeftPadding,
+          horizontal:
+              ClientConfig.getCustomClientUiSettings().defaultScreenLeftPadding,
         ),
         child: Row(
           children: [
@@ -82,15 +83,15 @@ class DocumentListItem extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: ClientConfig.getTextStyleScheme()
-                        .heading4
-                        .copyWith(color: ClientConfig.getCustomColors().neutral900),
+                    style: ClientConfig.getTextStyleScheme().heading4.copyWith(
+                        color: ClientConfig.getCustomColors().neutral900),
                   ),
                   Text(
                     "$fileSize, $fileType",
                     style: ClientConfig.getTextStyleScheme()
                         .bodySmallRegular
-                        .copyWith(color: ClientConfig.getCustomColors().neutral700),
+                        .copyWith(
+                            color: ClientConfig.getCustomColors().neutral700),
                   ),
                 ],
               ),

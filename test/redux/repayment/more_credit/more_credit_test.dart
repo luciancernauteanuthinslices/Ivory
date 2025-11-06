@@ -16,11 +16,10 @@ void main() {
     //given
     final store = createTestStore(
         moreCreditService: FakeMoreCreditService(),
-        initialState:
-            createAppState(
-              moreCreditState: MoreCreditInitialState(),
-              authState: authState,
-            ));
+        initialState: createAppState(
+          moreCreditState: MoreCreditInitialState(),
+          authState: authState,
+        ));
 
     final appState = store.onChange.isEmpty;
 
@@ -35,11 +34,10 @@ void main() {
     //given
     final store = createTestStore(
         moreCreditService: FakeFailingMoreCreditService(),
-        initialState:
-            createAppState(
-              moreCreditState: MoreCreditInitialState(),
-              authState: authState,
-            ));
+        initialState: createAppState(
+          moreCreditState: MoreCreditInitialState(),
+          authState: authState,
+        ));
 
     final appState = store.onChange.firstWhere(
         (element) => element.moreCreditState is MoreCreditErrorState);
@@ -56,11 +54,10 @@ void main() {
     //given
     final store = createTestStore(
         moreCreditService: FakeMoreCreditService(),
-        initialState:
-            createAppState(
-              moreCreditState: MoreCreditInitialState(),
-              authState: authState,
-            ));
+        initialState: createAppState(
+          moreCreditState: MoreCreditInitialState(),
+          authState: authState,
+        ));
 
     final appState = store.onChange.isEmpty;
 
@@ -76,11 +73,10 @@ void main() {
     //given
     final store = createTestStore(
         moreCreditService: FakeMoreCreditService(),
-        initialState:
-            createAppState(
-              moreCreditState: MoreCreditInitialState(),
-              authState: authState,
-            ));
+        initialState: createAppState(
+          moreCreditState: MoreCreditInitialState(),
+          authState: authState,
+        ));
 
     final appState = store.onChange.firstWhere(
         (element) => element.moreCreditState is MoreCreditFetchedState);

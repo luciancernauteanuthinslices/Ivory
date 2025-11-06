@@ -15,8 +15,7 @@ class AuthPresenter {
         deviceId: authState.deviceId ?? authState.deviceId,
       );
     } else if (authState is AuthLoadingState) {
-      return AuthLoadingViewModel(
-      );
+      return AuthLoadingViewModel();
     } else if (authState is AuthErrorState) {
       return AuthErrorViewModel(
         authState.errorType,

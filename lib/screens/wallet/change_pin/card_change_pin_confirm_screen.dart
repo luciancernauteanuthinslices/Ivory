@@ -17,15 +17,18 @@ class BankCardConfirmPinConfirmScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
-    final GlobalKey<_ConfirmPinBodyState> confirmPinBodyKey = GlobalKey<_ConfirmPinBodyState>();
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
+    final GlobalKey<_ConfirmPinBodyState> confirmPinBodyKey =
+        GlobalKey<_ConfirmPinBodyState>();
 
     ValueNotifier<bool> matchingPinErrorNotifier = ValueNotifier<bool>(false);
 
     return StoreConnector<AppState, BankCardViewModel>(
       onDidChange: (previousViewModel, viewModel) {
-        if (previousViewModel is BankCardLoadingViewModel && viewModel is BankCardPinConfirmedViewModel) {
+        if (previousViewModel is BankCardLoadingViewModel &&
+            viewModel is BankCardPinConfirmedViewModel) {
           Navigator.of(context).pushNamed(
             BankCardChangePinSuccessScreen.routeName,
           );
@@ -63,7 +66,11 @@ class BankCardConfirmPinConfirmScreen extends StatelessWidget {
                           ),
                           TextSpan(
                             text: " out of 2",
-                            style: ClientConfig.getTextStyleScheme().heading4.copyWith(color: ClientConfig.getCustomColors().neutral700),
+                            style: ClientConfig.getTextStyleScheme()
+                                .heading4
+                                .copyWith(
+                                    color: ClientConfig.getCustomColors()
+                                        .neutral700),
                           ),
                         ],
                       ),
@@ -292,15 +299,21 @@ class ConfirmPinChecks extends StatelessWidget {
                     Icon(
                       Icons.check,
                       size: 24,
-                      color: matchingPinErrorNotifier.value ? const Color(0xffE61F27) : ClientConfig.getCustomColors().neutral700,
+                      color: matchingPinErrorNotifier.value
+                          ? const Color(0xffE61F27)
+                          : ClientConfig.getCustomColors().neutral700,
                     ),
                     const SizedBox(
                       width: 4,
                     ),
                     Text(
                       "Your PIN should match",
-                      style: ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(
-                          color: matchingPinErrorNotifier.value ? const Color(0xffE61F27) : ClientConfig.getCustomColors().neutral700),
+                      style: ClientConfig.getTextStyleScheme()
+                          .bodyLargeRegular
+                          .copyWith(
+                              color: matchingPinErrorNotifier.value
+                                  ? const Color(0xffE61F27)
+                                  : ClientConfig.getCustomColors().neutral700),
                     ),
                   ],
                 );

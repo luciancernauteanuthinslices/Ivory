@@ -16,14 +16,19 @@ class CryptoMessageSigner {
     final bigIntPrivateKey = BigInt.parse(encodedPrivateKey, radix: 16);
     final privateKey = ECPrivateKey(bigIntPrivateKey, ECCurve_secp256r1());
 
-    final ecSignature = _signUtf8MessageWithEcPrivateKey(privateKey, utf8EncodedMessage);
+    final ecSignature =
+        _signUtf8MessageWithEcPrivateKey(privateKey, utf8EncodedMessage);
     return _convertSignatureToAsn1String(ecSignature);
   }
 
-  static ECSignature _signUtf8MessageWithEcPrivateKey(ECPrivateKey privateKey, List<int> utf8EncodedMessage) {
+  static ECSignature _signUtf8MessageWithEcPrivateKey(
+      ECPrivateKey privateKey, List<int> utf8EncodedMessage) {
     final signer = ECDSASigner(SHA256Digest());
-    signer.init(true, ParametersWithRandom(PrivateKeyParameter(privateKey), _secureRandom()));
-    final signedMessage = signer.generateSignature(Uint8List.fromList(utf8EncodedMessage)) as ECSignature;
+    signer.init(true,
+        ParametersWithRandom(PrivateKeyParameter(privateKey), _secureRandom()));
+    final signedMessage =
+        signer.generateSignature(Uint8List.fromList(utf8EncodedMessage))
+            as ECSignature;
     return signedMessage;
   }
 

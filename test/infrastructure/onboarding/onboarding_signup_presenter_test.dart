@@ -17,17 +17,21 @@ void main() {
     title: "title",
   );
 
-  test("When signing up and authState is null, the signup attributes should match the state", () {
+  test(
+      "When signing up and authState is null, the signup attributes should match the state",
+      () {
     //given
     const signupState = OnboardingSignupState(
       signupAttributes: signupAttributes,
     );
 
     //when
-    final viewModel = OnboardingSignupPresenter.present(signupState: signupState);
+    final viewModel =
+        OnboardingSignupPresenter.present(signupState: signupState);
 
     //then
-    expect(viewModel, const OnboardingSignupViewModel(signupAttributes: signupAttributes));
+    expect(viewModel,
+        const OnboardingSignupViewModel(signupAttributes: signupAttributes));
   });
 
   test("When both auth and signup are loading, isLoading should be true", () {
@@ -39,10 +43,14 @@ void main() {
     );
 
     //when
-    final viewModel = OnboardingSignupPresenter.present(signupState: signupState, authState: authState);
+    final viewModel = OnboardingSignupPresenter.present(
+        signupState: signupState, authState: authState);
 
     //then
-    expect(viewModel, const OnboardingSignupViewModel(signupAttributes: signupAttributes, isLoading: true));
+    expect(
+        viewModel,
+        const OnboardingSignupViewModel(
+            signupAttributes: signupAttributes, isLoading: true));
   });
 
   test("When auth is loading and signup is not, isLoading should be true", () {
@@ -53,42 +61,58 @@ void main() {
     );
 
     //when
-    final viewModel = OnboardingSignupPresenter.present(signupState: signupState, authState: authState);
+    final viewModel = OnboardingSignupPresenter.present(
+        signupState: signupState, authState: authState);
 
     //then
-    expect(viewModel, const OnboardingSignupViewModel(signupAttributes: signupAttributes, isLoading: true));
+    expect(
+        viewModel,
+        const OnboardingSignupViewModel(
+            signupAttributes: signupAttributes, isLoading: true));
   });
 
   test("When signup is loading and auth is not, isLoading should be true", () {
     //given
-    final authState = AuthenticationInitializedState(MockUser(), AuthType.onboarding);
+    final authState =
+        AuthenticationInitializedState(MockUser(), AuthType.onboarding);
     const signupState = OnboardingSignupState(
       signupAttributes: signupAttributes,
       isLoading: true,
     );
 
     //when
-    final viewModel = OnboardingSignupPresenter.present(signupState: signupState, authState: authState);
+    final viewModel = OnboardingSignupPresenter.present(
+        signupState: signupState, authState: authState);
 
     //then
-    expect(viewModel, const OnboardingSignupViewModel(signupAttributes: signupAttributes, isLoading: true));
+    expect(
+        viewModel,
+        const OnboardingSignupViewModel(
+            signupAttributes: signupAttributes, isLoading: true));
   });
 
-  test("When both auth is initialized and signup is successful, isSuccessful should be true", () {
+  test(
+      "When both auth is initialized and signup is successful, isSuccessful should be true",
+      () {
     // given
-    final authState = AuthenticationInitializedState(MockUser(), AuthType.onboarding);
+    final authState =
+        AuthenticationInitializedState(MockUser(), AuthType.onboarding);
     const signupState = OnboardingSignupState(
       signupAttributes: signupAttributes,
       isSuccessful: true,
     );
 
     // when
-    final viewModel = OnboardingSignupPresenter.present(signupState: signupState, authState: authState);
+    final viewModel = OnboardingSignupPresenter.present(
+        signupState: signupState, authState: authState);
 
     // then
     expect(
       viewModel,
-      const OnboardingSignupViewModel(signupAttributes: signupAttributes, isLoading: false, isSuccessful: true),
+      const OnboardingSignupViewModel(
+          signupAttributes: signupAttributes,
+          isLoading: false,
+          isSuccessful: true),
     );
   });
 }

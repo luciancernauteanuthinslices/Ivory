@@ -2,13 +2,12 @@ import 'package:solarisdemo/redux/person/account_summary/account_summay_action.d
 import 'package:solarisdemo/redux/person/account_summary/account_summay_state.dart';
 
 AccountSummaryState accountSummaryReducer(
-    AccountSummaryState currentState,
-    dynamic action ) {
-  if(action is AccountSummaryLoadingEventAction) {
+    AccountSummaryState currentState, dynamic action) {
+  if (action is AccountSummaryLoadingEventAction) {
     return AccountSummaryLoadingState();
-  } else if(action is AccountSummaryFailedEventAction) {
+  } else if (action is AccountSummaryFailedEventAction) {
     return AccountSummaryErrorState();
-  } else if(action is AccountSummaryFetchedEventAction) {
+  } else if (action is AccountSummaryFetchedEventAction) {
     return WithAccountSummaryState(action.accountSummary);
   }
   return currentState;

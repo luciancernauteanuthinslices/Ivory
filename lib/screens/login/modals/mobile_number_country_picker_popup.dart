@@ -43,7 +43,9 @@ class _CountryPrefixPickerState extends State<CountryPrefixPicker> {
   filterCountries() {
     setState(() {
       _filteredCountries = _countries
-          .where((country) => country.name.toLowerCase().contains(_searchController.text.toLowerCase()))
+          .where((country) => country.name
+              .toLowerCase()
+              .contains(_searchController.text.toLowerCase()))
           .toList();
     });
   }
@@ -58,7 +60,8 @@ class _CountryPrefixPickerState extends State<CountryPrefixPicker> {
             child: IvoryTextField(
               controller: _searchController,
               placeholder: 'Search prefix or country...',
-              suffix: Icon(Icons.search, color: ClientConfig.getCustomColors().neutral700),
+              suffix: Icon(Icons.search,
+                  color: ClientConfig.getCustomColors().neutral700),
             ),
           ),
           const SizedBox(height: 16),
@@ -68,10 +71,13 @@ class _CountryPrefixPickerState extends State<CountryPrefixPicker> {
               itemCount: _filteredCountries.length,
               itemBuilder: (context, index) {
                 final country = _filteredCountries[index];
-                final bool isSelected = widget.selectedCountry?.name == country.name;
+                final bool isSelected =
+                    widget.selectedCountry?.name == country.name;
                 return Container(
                   decoration: BoxDecoration(
-                    color: isSelected ? ClientConfig.getCustomColors().neutral100 : Colors.transparent,
+                    color: isSelected
+                        ? ClientConfig.getCustomColors().neutral100
+                        : Colors.transparent,
                     border: isSelected
                         ? Border(
                             bottom: BorderSide(
@@ -92,18 +98,21 @@ class _CountryPrefixPickerState extends State<CountryPrefixPicker> {
                         Navigator.of(context).pop();
                       },
                       child: LayoutBuilder(
-                        builder: (BuildContext context, BoxConstraints constraints) {
+                        builder:
+                            (BuildContext context, BoxConstraints constraints) {
                           return Row(
                             children: [
                               Text(
                                 country.flag,
-                                style: const TextStyle(fontSize: 20, height: 24 / 20),
+                                style: const TextStyle(
+                                    fontSize: 20, height: 24 / 20),
                               ),
                               const SizedBox(width: 16),
                               Expanded(
                                 child: Text(
                                   '${country.phoneCode} (${country.name})',
-                                  style: ClientConfig.getTextStyleScheme().heading4,
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .heading4,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -129,7 +138,8 @@ class _CountryPrefixPickerState extends State<CountryPrefixPicker> {
   }
 
   Future<void> _loadCountries() async {
-    final String countriesJson = await rootBundle.loadString('assets/data/countries.json');
+    final String countriesJson =
+        await rootBundle.loadString('assets/data/countries.json');
     final List<dynamic> countriesData = jsonDecode(countriesJson);
     final List<CountryPrefixItem> options = countriesData.map((country) {
       return CountryPrefixItem(

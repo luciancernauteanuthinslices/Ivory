@@ -14,102 +14,127 @@ import 'onboarding_identity_verification_mocks.dart';
 
 void main() {
   final mockUser = MockUser();
-  final authInitializedState = AuthenticationInitializedState(mockUser, AuthType.onboarding);
+  final authInitializedState =
+      AuthenticationInitializedState(mockUser, AuthType.onboarding);
 
   const accountName = 'accountName';
   const iban = 'iban';
   const urlForIntegration = 'https://url.com';
 
-  test('when creating urlForIntegration it should display loading state', () async {
+  test('when creating urlForIntegration it should display loading state',
+      () async {
     //given
     final store = createTestStore(
-      onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+      onboardingIdentityVerificationService:
+          FakeOnbordingIdentityVerificationService(),
       initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: null,
             isLoading: false,
           )),
     );
 
-    final appState = store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isLoading == true);
+    final appState = store.onChange.firstWhere(
+        (state) => state.onboardingIdentityVerificationState.isLoading == true);
     //when
-    store.dispatch(CreateIdentificationCommandAction(accountName: accountName, iban: iban));
+    store.dispatch(CreateIdentificationCommandAction(
+        accountName: accountName, iban: iban));
     //then
-    final identityVerificationState = (await appState).onboardingIdentityVerificationState;
+    final identityVerificationState =
+        (await appState).onboardingIdentityVerificationState;
 
     expect(identityVerificationState.isLoading, true);
   });
 
-  test('when created urlForIntegration successful should update with success', () async {
+  test('when created urlForIntegration successful should update with success',
+      () async {
     //given
     final store = createTestStore(
-      onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+      onboardingIdentityVerificationService:
+          FakeOnbordingIdentityVerificationService(),
       initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: null,
             isLoading: false,
           )),
     );
 
-    final appState = store.onChange
-        .firstWhere((state) => state.onboardingIdentityVerificationState.urlForIntegration == urlForIntegration);
+    final appState = store.onChange.firstWhere((state) =>
+        state.onboardingIdentityVerificationState.urlForIntegration ==
+        urlForIntegration);
     //when
-    store.dispatch(CreateIdentificationCommandAction(accountName: accountName, iban: iban));
+    store.dispatch(CreateIdentificationCommandAction(
+        accountName: accountName, iban: iban));
     //then
-    final identityVerificationState = (await appState).onboardingIdentityVerificationState;
+    final identityVerificationState =
+        (await appState).onboardingIdentityVerificationState;
 
     expect(identityVerificationState.isLoading, false);
     expect(identityVerificationState.errorType, null);
     expect(identityVerificationState.urlForIntegration, urlForIntegration);
   });
 
-  test('when created urlForIntegration unsuccessful should update with error', () async {
+  test('when created urlForIntegration unsuccessful should update with error',
+      () async {
     //given
     final store = createTestStore(
-      onboardingIdentityVerificationService: FakeFailingOnbordingIdentityVerificationService(),
+      onboardingIdentityVerificationService:
+          FakeFailingOnbordingIdentityVerificationService(),
       initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: null,
             isLoading: false,
           )),
     );
 
-    final appState = store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.errorType != null);
+    final appState = store.onChange.firstWhere(
+        (state) => state.onboardingIdentityVerificationState.errorType != null);
     //when
-    store.dispatch(CreateIdentificationCommandAction(accountName: accountName, iban: iban));
+    store.dispatch(CreateIdentificationCommandAction(
+        accountName: accountName, iban: iban));
     //then
-    final identityVerificationState = (await appState).onboardingIdentityVerificationState;
+    final identityVerificationState =
+        (await appState).onboardingIdentityVerificationState;
 
     expect(identityVerificationState.isLoading, false);
-    expect(identityVerificationState.errorType, OnboardingIdentityVerificationErrorType.unknown);
+    expect(identityVerificationState.errorType,
+        OnboardingIdentityVerificationErrorType.unknown);
     expect(identityVerificationState.urlForIntegration, null);
   });
 
   group("Bank identification", () {
-    test("When fetching the bank identification, the state should change to loading", () async {
+    test(
+        "When fetching the bank identification, the state should change to loading",
+        () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: "https://example.com",
             isLoading: false,
           ),
         ),
       );
 
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isLoading == true);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.isLoading == true);
 
       // when
       store.dispatch(GetSignupIdentificationInfoCommandAction());
 
       // then
-      final identityVerificationState = (await appState).onboardingIdentityVerificationState;
+      final identityVerificationState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(identityVerificationState.isLoading, true);
     });
@@ -119,11 +144,13 @@ void main() {
         () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
           documentsState: DocumentsFetchedState(documents: const []),
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: "https://example.com",
             isLoading: false,
             status: null,
@@ -131,9 +158,10 @@ void main() {
         ),
       );
 
-      final appState = store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.status != null);
-      final identityVerificationLoadingState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isLoading);
+      final appState = store.onChange.firstWhere(
+          (state) => state.onboardingIdentityVerificationState.status != null);
+      final identityVerificationLoadingState = store.onChange.firstWhere(
+          (state) => state.onboardingIdentityVerificationState.isLoading);
       final documentsFetchedState = store.onChange.firstWhere((state) =>
           state.documentsState is DocumentsFetchedState &&
           (state.documentsState as DocumentsFetchedState).documents.isNotEmpty);
@@ -142,53 +170,66 @@ void main() {
       store.dispatch(GetSignupIdentificationInfoCommandAction());
 
       // then
-      final identityVerificationState = (await appState).onboardingIdentityVerificationState;
-      final loadingState = (await identityVerificationLoadingState).onboardingIdentityVerificationState;
-      final documentsState = (await documentsFetchedState).documentsState as DocumentsFetchedState;
+      final identityVerificationState =
+          (await appState).onboardingIdentityVerificationState;
+      final loadingState = (await identityVerificationLoadingState)
+          .onboardingIdentityVerificationState;
+      final documentsState =
+          (await documentsFetchedState).documentsState as DocumentsFetchedState;
 
       expect(loadingState.isLoading, true);
       expect(identityVerificationState.isLoading, false);
-      expect(identityVerificationState.status, OnboardingIdentificationStatus.authorizationRequired);
+      expect(identityVerificationState.status,
+          OnboardingIdentificationStatus.authorizationRequired);
       expect(documentsState.documents.isNotEmpty, true);
     });
 
-    test("When fetching the bank identification has failed, the state errorType should change", () async {
+    test(
+        "When fetching the bank identification has failed, the state errorType should change",
+        () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeFailingOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeFailingOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
           documentsState: DocumentsFetchedState(documents: const []),
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: "https://example.com",
             isLoading: false,
             status: null,
           ),
         ),
       );
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.errorType != null);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.errorType != null);
 
       // when
       store.dispatch(GetSignupIdentificationInfoCommandAction());
 
       // then
-      final identityVerificationState = (await appState).onboardingIdentityVerificationState;
+      final identityVerificationState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(identityVerificationState.isLoading, false);
-      expect(identityVerificationState.errorType, OnboardingIdentityVerificationErrorType.unknown);
+      expect(identityVerificationState.errorType,
+          OnboardingIdentityVerificationErrorType.unknown);
     });
   });
 
   group("Bank identification authorization", () {
-    test("When authorizing the bank identification, the state isLoading should be true and status should exist",
+    test(
+        "When authorizing the bank identification, the state isLoading should be true and status should exist",
         () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: "https://example.com",
             isLoading: false,
             status: OnboardingIdentificationStatus.authorizationRequired,
@@ -196,17 +237,19 @@ void main() {
         ),
       );
 
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isLoading == true);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.isLoading == true);
 
       // when
       store.dispatch(AuthorizeIdentificationSigningCommandAction());
 
       // then
-      final identityVerificationState = (await appState).onboardingIdentityVerificationState;
+      final identityVerificationState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(identityVerificationState.isLoading, true);
-      expect(identityVerificationState.status, OnboardingIdentificationStatus.authorizationRequired);
+      expect(identityVerificationState.status,
+          OnboardingIdentificationStatus.authorizationRequired);
     });
 
     test(
@@ -214,10 +257,12 @@ void main() {
         () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: "https://example.com",
             isLoading: false,
             status: OnboardingIdentificationStatus.authorizationRequired,
@@ -225,48 +270,57 @@ void main() {
         ),
       );
 
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isAuthorized == true);
-      final identityVerificationLoadingState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isLoading);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.isAuthorized == true);
+      final identityVerificationLoadingState = store.onChange.firstWhere(
+          (state) => state.onboardingIdentityVerificationState.isLoading);
 
       // when
       store.dispatch(AuthorizeIdentificationSigningCommandAction());
 
       // then
-      final identityVerificationState = (await appState).onboardingIdentityVerificationState;
-      final loadingState = (await identityVerificationLoadingState).onboardingIdentityVerificationState;
+      final identityVerificationState =
+          (await appState).onboardingIdentityVerificationState;
+      final loadingState = (await identityVerificationLoadingState)
+          .onboardingIdentityVerificationState;
 
       expect(loadingState.isLoading, true);
       expect(identityVerificationState.isLoading, false);
       expect(identityVerificationState.isAuthorized, true);
-      expect(identityVerificationState.status, OnboardingIdentificationStatus.authorizationRequired);
+      expect(identityVerificationState.status,
+          OnboardingIdentificationStatus.authorizationRequired);
     });
 
-    test("When authorizing the bank identification has failed, the state errorType should change", () async {
+    test(
+        "When authorizing the bank identification has failed, the state errorType should change",
+        () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeFailingOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeFailingOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             urlForIntegration: "https://example.com",
             isLoading: false,
             status: OnboardingIdentificationStatus.authorizationRequired,
           ),
         ),
       );
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.errorType != null);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.errorType != null);
 
       // when
       store.dispatch(AuthorizeIdentificationSigningCommandAction());
 
       // then
-      final identityVerificationState = (await appState).onboardingIdentityVerificationState;
+      final identityVerificationState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(identityVerificationState.isLoading, false);
-      expect(identityVerificationState.errorType, OnboardingIdentityVerificationErrorType.unknown);
+      expect(identityVerificationState.errorType,
+          OnboardingIdentityVerificationErrorType.unknown);
     });
   });
 
@@ -274,22 +328,25 @@ void main() {
     test('when tan was sent it should display loading state', () async {
       //given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             isTanConfirmed: true,
           ),
         ),
       );
 
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isLoading == true);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.isLoading == true);
       //when
       store.dispatch(SignWithTanCommandAction(tan: '212212'));
       //then
-      final signWithTanState = (await appState).onboardingIdentityVerificationState;
+      final signWithTanState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(signWithTanState.isLoading, true);
       expect(signWithTanState.errorType, null);
@@ -299,10 +356,12 @@ void main() {
     test('when tan successful sent it should update with success', () async {
       //given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             isTanConfirmed: null,
           ),
@@ -315,7 +374,8 @@ void main() {
       //when
       store.dispatch(SignWithTanCommandAction(tan: '212212'));
       //then
-      final signWithTanState = (await appState).onboardingIdentityVerificationState;
+      final signWithTanState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(signWithTanState.isLoading, false);
       expect(signWithTanState.errorType, null);
@@ -325,10 +385,12 @@ void main() {
     test('when tan unsuccessful sent it should update with error', () async {
       //given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeFailingOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeFailingOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             errorType: null,
             isTanConfirmed: null,
@@ -336,15 +398,17 @@ void main() {
         ),
       );
 
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.errorType != null);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.errorType != null);
       //when
       store.dispatch(SignWithTanCommandAction(tan: '212212'));
       //then
-      final signWithTanState = (await appState).onboardingIdentityVerificationState;
+      final signWithTanState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(signWithTanState.isLoading, false);
-      expect(signWithTanState.errorType, OnboardingIdentityVerificationErrorType.unknown);
+      expect(signWithTanState.errorType,
+          OnboardingIdentityVerificationErrorType.unknown);
       expect(signWithTanState.isTanConfirmed, null);
     });
   });
@@ -352,37 +416,44 @@ void main() {
   group('fetching credit limit', () {
     const mockCreditLimit = 1000;
 
-    test('when credit limit was ordered it should display loading state', () async {
+    test('when credit limit was ordered it should display loading state',
+        () async {
       //given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             creditLimit: null,
           ),
         ),
       );
 
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.isLoading == true);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.isLoading == true);
       //when
       store.dispatch(GetCreditLimitCommandAction());
       //then
-      final creditLimitState = (await appState).onboardingIdentityVerificationState;
+      final creditLimitState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(creditLimitState.isLoading, true);
       expect(creditLimitState.creditLimit, null);
     });
 
-    test('when credit limit is successful fetched it should be displayed', () async {
+    test('when credit limit is successful fetched it should be displayed',
+        () async {
       //given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             creditLimit: null,
           ),
@@ -395,47 +466,57 @@ void main() {
       //when
       store.dispatch(GetCreditLimitCommandAction());
       //then
-      final creditLimitState = (await appState).onboardingIdentityVerificationState;
+      final creditLimitState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(creditLimitState.isLoading, false);
       expect(creditLimitState.creditLimit, mockCreditLimit ~/ 100);
     });
 
-    test("when fetch credit limit has failed it should update with error", () async {
+    test("when fetch credit limit has failed it should update with error",
+        () async {
       //given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeFailingOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeFailingOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             creditLimit: null,
           ),
         ),
       );
 
-      final appState =
-          store.onChange.firstWhere((state) => state.onboardingIdentityVerificationState.errorType != null);
+      final appState = store.onChange.firstWhere((state) =>
+          state.onboardingIdentityVerificationState.errorType != null);
       //when
       store.dispatch(GetCreditLimitCommandAction());
       //then
-      final creditLimitState = (await appState).onboardingIdentityVerificationState;
+      final creditLimitState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(creditLimitState.isLoading, false);
-      expect(creditLimitState.errorType, OnboardingIdentityVerificationErrorType.fetchCreditLimitFailed);
+      expect(creditLimitState.errorType,
+          OnboardingIdentityVerificationErrorType.fetchCreditLimitFailed);
       expect(creditLimitState.creditLimit, null);
     });
   });
 
   group("finalize identification", () {
     const mockCreditLimit = 1000;
-    test('when requesting the finalizing step, it should display the credit limit and loading state', () async {
+    test(
+        'when requesting the finalizing step, it should display the credit limit and loading state',
+        () async {
       //given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             creditLimit: mockCreditLimit,
           ),
@@ -444,12 +525,14 @@ void main() {
 
       final appState = store.onChange.firstWhere((state) =>
           state.onboardingIdentityVerificationState.isLoading == true &&
-          state.onboardingIdentityVerificationState.creditLimit == mockCreditLimit);
+          state.onboardingIdentityVerificationState.creditLimit ==
+              mockCreditLimit);
 
       //when
       store.dispatch(FinalizeIdentificationCommandAction());
       //then
-      final creditLimitState = (await appState).onboardingIdentityVerificationState;
+      final creditLimitState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(creditLimitState.isLoading, true);
       expect(creditLimitState.creditLimit, mockCreditLimit);
@@ -460,10 +543,12 @@ void main() {
         () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             creditLimit: mockCreditLimit,
             isIdentificationSuccessful: null,
@@ -473,13 +558,16 @@ void main() {
 
       final appState = store.onChange.firstWhere((state) =>
           state.onboardingIdentityVerificationState.isLoading == false &&
-          state.onboardingIdentityVerificationState.isIdentificationSuccessful == true);
+          state.onboardingIdentityVerificationState
+                  .isIdentificationSuccessful ==
+              true);
 
       // when
       store.dispatch(FinalizeIdentificationCommandAction());
 
       // then
-      final creditLimitState = (await appState).onboardingIdentityVerificationState;
+      final creditLimitState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(creditLimitState.isLoading, false);
       expect(creditLimitState.isIdentificationSuccessful, true);
@@ -491,10 +579,12 @@ void main() {
         () async {
       // given
       final store = createTestStore(
-        onboardingIdentityVerificationService: FakeFailingOnbordingIdentityVerificationService(),
+        onboardingIdentityVerificationService:
+            FakeFailingOnbordingIdentityVerificationService(),
         initialState: createAppState(
           authState: authInitializedState,
-          onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(
+          onboardingIdentityVerificationState:
+              const OnboardingIdentityVerificationState(
             isLoading: false,
             creditLimit: mockCreditLimit,
             isIdentificationSuccessful: null,
@@ -506,16 +596,20 @@ void main() {
           state.onboardingIdentityVerificationState.isLoading == false &&
           state.onboardingIdentityVerificationState.errorType != null &&
           state.onboardingIdentityVerificationState.creditLimit != null &&
-          state.onboardingIdentityVerificationState.isIdentificationSuccessful == false);
+          state.onboardingIdentityVerificationState
+                  .isIdentificationSuccessful ==
+              false);
 
       // when
       store.dispatch(FinalizeIdentificationCommandAction());
 
       // then
-      final creditLimitState = (await appState).onboardingIdentityVerificationState;
+      final creditLimitState =
+          (await appState).onboardingIdentityVerificationState;
 
       expect(creditLimitState.isLoading, false);
-      expect(creditLimitState.errorType, OnboardingIdentityVerificationErrorType.finalizeIdentificationFailed);
+      expect(creditLimitState.errorType,
+          OnboardingIdentityVerificationErrorType.finalizeIdentificationFailed);
       expect(creditLimitState.creditLimit, mockCreditLimit);
       expect(creditLimitState.isIdentificationSuccessful, false);
     });

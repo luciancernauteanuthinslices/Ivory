@@ -19,7 +19,8 @@ class LoginWithBiometricsScreen extends StatefulWidget {
   });
 
   @override
-  State<LoginWithBiometricsScreen> createState() => _LoginWithBiometricsScreenState();
+  State<LoginWithBiometricsScreen> createState() =>
+      _LoginWithBiometricsScreenState();
 }
 
 class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
@@ -29,9 +30,13 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
     return StoreConnector<AppState, AuthViewModel>(
       onInit: (store) {
         if (store.state.authState is AuthenticationInitializedState &&
-            (store.state.authState as AuthenticationInitializedState).authType == AuthType.withBiometrics) {
-          final cognitoUser =
-              (StoreProvider.of<AppState>(context).state.authState as AuthenticationInitializedState).cognitoUser;
+            (store.state.authState as AuthenticationInitializedState)
+                    .authType ==
+                AuthType.withBiometrics) {
+          final cognitoUser = (StoreProvider.of<AppState>(context)
+                  .state
+                  .authState as AuthenticationInitializedState)
+              .cognitoUser;
           firstName = cognitoUser.firstName ?? '';
           store.dispatch(
             AuthenticateUserCommandAction(
@@ -41,7 +46,8 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
               onSuccess: () {
                 Navigator.of(
                   navigatorKey.currentContext as BuildContext,
-                ).pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+                ).pushNamedAndRemoveUntil(
+                    HomeScreen.routeName, (route) => false);
               },
             ),
           );
@@ -56,12 +62,14 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
                 actions: const [
                   AppbarLogo(),
                 ],
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 backButtonEnabled: false,
               ),
               Expanded(
                 child: Padding(
-                  padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -73,15 +81,16 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
                         height: 16,
                       ),
                       Text('Unlock your account with biometrics.',
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular),
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular),
                       const SizedBox(
                         height: 24,
                       ),
                       const Spacer(),
                       if (viewModel is AuthLoadingViewModel)
                         const Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                          child: CircularProgressIndicator(),
+                        ),
                       const Spacer(),
                     ],
                   ),
@@ -91,7 +100,8 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
           ),
         );
       },
-      converter: (store) => AuthPresenter.presentAuth(authState: store.state.authState),
+      converter: (store) =>
+          AuthPresenter.presentAuth(authState: store.state.authState),
     );
   }
 }

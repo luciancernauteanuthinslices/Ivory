@@ -25,14 +25,16 @@ class PersonService extends ApiService {
     }
   }
 
-  Future<PersonServiceResponse> getReferenceAccount({required User user}) async {
+  Future<PersonServiceResponse> getReferenceAccount(
+      {required User user}) async {
     this.user = user;
 
     try {
       final data = await get('person/reference_accounts');
 
       if (data is List && data.isEmpty) {
-        return PersonServiceErrorResponse(errorType: PersonServiceErrorType.referenceAccountUnavailable);
+        return PersonServiceErrorResponse(
+            errorType: PersonServiceErrorType.referenceAccountUnavailable);
       }
 
       return GetReferenceAccountSuccessResponse(

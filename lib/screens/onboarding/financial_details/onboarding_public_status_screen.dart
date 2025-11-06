@@ -23,14 +23,20 @@ class OnboardingPublicStatusScreen extends StatefulWidget {
   const OnboardingPublicStatusScreen({super.key});
 
   @override
-  State<OnboardingPublicStatusScreen> createState() => _OnboardingPublicStatusScreenState();
+  State<OnboardingPublicStatusScreen> createState() =>
+      _OnboardingPublicStatusScreenState();
 }
 
-class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScreen> {
-  final IvorySelectOptionController _selectMaritalController = IvorySelectOptionController();
-  final IvorySelectOptionController _selectLivingController = IvorySelectOptionController();
-  final IvoryTextFieldController _dependentsController = IvoryTextFieldController();
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+class _OnboardingPublicStatusScreenState
+    extends State<OnboardingPublicStatusScreen> {
+  final IvorySelectOptionController _selectMaritalController =
+      IvorySelectOptionController();
+  final IvorySelectOptionController _selectLivingController =
+      IvorySelectOptionController();
+  final IvoryTextFieldController _dependentsController =
+      IvoryTextFieldController();
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
 
   @override
   void initState() {
@@ -57,7 +63,8 @@ class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScr
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             richTextTitle: StepRichTextTitle(step: 3, totalSteps: 5),
             actions: const [
               AppbarLogo(),
@@ -67,7 +74,8 @@ class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScr
           AnimatedLinearProgressIndicator.step(current: 3, totalSteps: 5),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 children: [
                   const SizedBox(height: 16),
@@ -84,11 +92,21 @@ class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScr
                     onBottomSheetOpened: () => FocusScope.of(context).unfocus(),
                     placeholder: 'Select marital status',
                     options: [
-                      SelectOption(textLabel: 'Not married', value: OnboardingMaritalStatus.notMarried.name),
-                      SelectOption(textLabel: 'Married', value: OnboardingMaritalStatus.married.name),
-                      SelectOption(textLabel: 'Divorced', value: OnboardingMaritalStatus.divorced.name),
-                      SelectOption(textLabel: 'Widowed', value: OnboardingMaritalStatus.widowed.name),
-                      SelectOption(textLabel: 'Prefer not to say', value: OnboardingMaritalStatus.preferNotToSay.name),
+                      SelectOption(
+                          textLabel: 'Not married',
+                          value: OnboardingMaritalStatus.notMarried.name),
+                      SelectOption(
+                          textLabel: 'Married',
+                          value: OnboardingMaritalStatus.married.name),
+                      SelectOption(
+                          textLabel: 'Divorced',
+                          value: OnboardingMaritalStatus.divorced.name),
+                      SelectOption(
+                          textLabel: 'Widowed',
+                          value: OnboardingMaritalStatus.widowed.name),
+                      SelectOption(
+                          textLabel: 'Prefer not to say',
+                          value: OnboardingMaritalStatus.preferNotToSay.name),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -98,9 +116,15 @@ class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScr
                     controller: _selectLivingController,
                     placeholder: 'Select living situation',
                     options: [
-                      SelectOption(textLabel: 'I live in my own home', value: OnboardingLivingSituation.own.name),
-                      SelectOption(textLabel: 'I live in a rented home', value: OnboardingLivingSituation.rent.name),
-                      SelectOption(textLabel: 'I live with my parents', value: OnboardingLivingSituation.parents.name),
+                      SelectOption(
+                          textLabel: 'I live in my own home',
+                          value: OnboardingLivingSituation.own.name),
+                      SelectOption(
+                          textLabel: 'I live in a rented home',
+                          value: OnboardingLivingSituation.rent.name),
+                      SelectOption(
+                          textLabel: 'I live with my parents',
+                          value: OnboardingLivingSituation.parents.name),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -113,7 +137,8 @@ class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScr
                           title: 'Number of dependents',
                           content: Text.rich(
                             TextSpan(
-                              style: ClientConfig.getTextStyleScheme().mixedStyles,
+                              style:
+                                  ClientConfig.getTextStyleScheme().mixedStyles,
                               children: [
                                 const TextSpan(text: 'Dependents are '),
                                 TextSpan(
@@ -126,17 +151,22 @@ class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScr
                                     text:
                                         ' By providing this information, you help us understand your financial responsibilities, which can be important for determining your credit card limit and eligibility.\n\n'),
                                 TextSpan(
-                                    text: 'If you do not have any dependents, simply enter \'0\'',
+                                    text:
+                                        'If you do not have any dependents, simply enter \'0\'',
                                     style: ClientConfig.getTextStyleScheme()
                                         .mixedStyles
                                         .copyWith(fontWeight: FontWeight.w600)),
-                                const TextSpan(text: ' to indicate that you are financially independent.'),
+                                const TextSpan(
+                                    text:
+                                        ' to indicate that you are financially independent.'),
                               ],
                             ),
                           ),
                         );
                       },
-                      child: Icon(Icons.info_outline, color: ClientConfig.getColorScheme().primary, size: 16),
+                      child: Icon(Icons.info_outline,
+                          color: ClientConfig.getColorScheme().primary,
+                          size: 16),
                     ),
                     controller: _dependentsController,
                     keyboardType: TextInputType.number,
@@ -152,14 +182,26 @@ class _OnboardingPublicStatusScreenState extends State<OnboardingPublicStatusScr
                         isLoading: _continueButtonController.isLoading,
                         onPressed: _continueButtonController.isEnabled
                             ? () {
-                                StoreProvider.of<AppState>(context).dispatch(CreatePublicStatusCommandAction(
-                                  maritalAttributes: OnboardingMaritalStatus.values.firstWhere((element) =>
-                                      element.name == _selectMaritalController.selectedOptions.first.value),
-                                  livingAttributes: OnboardingLivingSituation.values.firstWhere(
-                                      (element) => element.name == _selectLivingController.selectedOptions.first.value),
-                                  numberOfDependents: int.parse(_dependentsController.text),
+                                StoreProvider.of<AppState>(context)
+                                    .dispatch(CreatePublicStatusCommandAction(
+                                  maritalAttributes: OnboardingMaritalStatus
+                                      .values
+                                      .firstWhere((element) =>
+                                          element.name ==
+                                          _selectMaritalController
+                                              .selectedOptions.first.value),
+                                  livingAttributes: OnboardingLivingSituation
+                                      .values
+                                      .firstWhere((element) =>
+                                          element.name ==
+                                          _selectLivingController
+                                              .selectedOptions.first.value),
+                                  numberOfDependents:
+                                      int.parse(_dependentsController.text),
                                 ));
-                                Navigator.of(context).pushNamed(OnboardingOccupationalStatusScreen.routeName);
+                                Navigator.of(context).pushNamed(
+                                    OnboardingOccupationalStatusScreen
+                                        .routeName);
                               }
                             : null,
                       );

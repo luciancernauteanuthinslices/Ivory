@@ -6,17 +6,20 @@ import '../../../models/user.dart';
 class OnboardingCardConfigurationService extends ApiService {
   OnboardingCardConfigurationService({super.user});
 
-  Future<OnboardingCardConfigurationResponse> getCardholderName({required User user}) async {
+  Future<OnboardingCardConfigurationResponse> getCardholderName(
+      {required User user}) async {
     this.user = user;
     try {
       final response = await get("/signup/card_line_2");
-      return GetCardholderNameSuccessResponse(cardholderName: response["line_2"]);
+      return GetCardholderNameSuccessResponse(
+          cardholderName: response["line_2"]);
     } catch (e) {
       return OnboardingCardConfigurationErrorResponse();
     }
   }
 
-  Future<OnboardingCardConfigurationResponse> onboardingCreateCard({required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingCreateCard(
+      {required User user}) async {
     this.user = user;
     try {
       await post("/account/cards");
@@ -26,7 +29,8 @@ class OnboardingCardConfigurationService extends ApiService {
     }
   }
 
-  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo({required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo(
+      {required User user}) async {
     this.user = user;
     try {
       final response = await get("/account/cards");
@@ -47,7 +51,8 @@ abstract class OnboardingCardConfigurationResponse extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetCardholderNameSuccessResponse extends OnboardingCardConfigurationResponse {
+class GetCardholderNameSuccessResponse
+    extends OnboardingCardConfigurationResponse {
   final String cardholderName;
 
   GetCardholderNameSuccessResponse({required this.cardholderName});
@@ -71,6 +76,8 @@ class GetCardInfoSuccessResponse extends OnboardingCardConfigurationResponse {
   List<Object?> get props => [cardholderName, maskedPAN, expiryDate];
 }
 
-class OnboardingCardConfigurationSuccessResponse extends OnboardingCardConfigurationResponse {}
+class OnboardingCardConfigurationSuccessResponse
+    extends OnboardingCardConfigurationResponse {}
 
-class OnboardingCardConfigurationErrorResponse extends OnboardingCardConfigurationResponse {}
+class OnboardingCardConfigurationErrorResponse
+    extends OnboardingCardConfigurationResponse {}

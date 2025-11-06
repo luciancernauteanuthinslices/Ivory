@@ -22,8 +22,9 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
     return StoreConnector<AppState, BankCardViewModel>(
       converter: (store) {
         return BankCardPresenter.presentBankCard(
@@ -34,7 +35,8 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
       builder: (context, viewModel) {
         return ScreenScaffold(
           body: Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+            padding:
+                ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,16 +61,17 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
                           SvgAssetLoader(
                             'assets/images/choose_pin.svg',
                             colorMapper: IvoryColorMapper(
-                              baseColor: ClientConfig.getColorScheme().secondary,
+                              baseColor:
+                                  ClientConfig.getColorScheme().secondary,
                             ),
                           ),
                         ),
                         childPosition: BadgePosition.topEnd(
                           top: -32,
                           end: -32,
-                      ),
+                        ),
                         isSuccess: true,
-                    ),
+                      ),
                     ],
                   ),
                 ),
@@ -84,7 +87,8 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
                         context,
                         ModalRoute.withName(HomeScreen.routeName),
                       );
-                      StoreProvider.of<AppState>(context).dispatch(GetBankCardCommandAction(
+                      StoreProvider.of<AppState>(context)
+                          .dispatch(GetBankCardCommandAction(
                         cardId: viewModel.bankCard!.id,
                         forceReloadCardData: true,
                       ));

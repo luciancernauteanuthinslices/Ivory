@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-String createDeviceToJson(CreateVerifyMobileNumberRequestBody data) => json.encode(data.toJson());
+String createDeviceToJson(CreateVerifyMobileNumberRequestBody data) =>
+    json.encode(data.toJson());
 
 class CreateVerifyMobileNumberRequestBody {
   String number;
@@ -17,7 +18,8 @@ class CreateVerifyMobileNumberRequestBody {
       };
 }
 
-String confirmDeviceToJson(ConfirmMobileNumberRequestBody data) => json.encode(data.toJson());
+String confirmDeviceToJson(ConfirmMobileNumberRequestBody data) =>
+    json.encode(data.toJson());
 
 class ConfirmMobileNumberRequestBody {
   String token;

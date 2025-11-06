@@ -58,23 +58,39 @@ class UpcomingTransaction {
     statementDate = DateTime.parse(json['statement_date']);
     dueDate = DateTime.parse(json['due_date']);
     sddCollectionDate = DateTime.parse(json['sdd_collection_date']);
-    previousBillAmount =
-        json['previous_bill_amount'] != null ? AmountValue.fromJson(json['previous_bill_amount']) : null;
-    currentBillAmount = json['current_bill_amount'] != null ? AmountValue.fromJson(json['current_bill_amount']) : null;
-    totalOutstandingAmount =
-        json['total_outstanding_amount'] != null ? AmountValue.fromJson(json['total_outstanding_amount']) : null;
-    minimumDueAmount = json['minimum_due_amount'] != null ? AmountValue.fromJson(json['minimum_due_amount']) : null;
-    outstandingSddrAmount =
-        json['outstanding_sddr_amount'] != null ? AmountValue.fromJson(json['outstanding_sddr_amount']) : null;
-    outstandingAmount = json['outstanding_amount'] != null ? AmountValue.fromJson(json['outstanding_amount']) : null;
+    previousBillAmount = json['previous_bill_amount'] != null
+        ? AmountValue.fromJson(json['previous_bill_amount'])
+        : null;
+    currentBillAmount = json['current_bill_amount'] != null
+        ? AmountValue.fromJson(json['current_bill_amount'])
+        : null;
+    totalOutstandingAmount = json['total_outstanding_amount'] != null
+        ? AmountValue.fromJson(json['total_outstanding_amount'])
+        : null;
+    minimumDueAmount = json['minimum_due_amount'] != null
+        ? AmountValue.fromJson(json['minimum_due_amount'])
+        : null;
+    outstandingSddrAmount = json['outstanding_sddr_amount'] != null
+        ? AmountValue.fromJson(json['outstanding_sddr_amount'])
+        : null;
+    outstandingAmount = json['outstanding_amount'] != null
+        ? AmountValue.fromJson(json['outstanding_amount'])
+        : null;
     repaymentType = json['repayment_type'];
-    minimumAmount = json['minimum_amount'] != null ? AmountValue.fromJson(json['minimum_amount']) : null;
+    minimumAmount = json['minimum_amount'] != null
+        ? AmountValue.fromJson(json['minimum_amount'])
+        : null;
     minimumPercentage = json['minimum_percentage'];
     gracePeriodInDays = json['grace_period_in_days'];
-    dunningFees = json['dunning_fees'] != null ? AmountValue.fromJson(json['dunning_fees']) : null;
-    otherFees = json['other_fees'] != null ? AmountValue.fromJson(json['other_fees']) : null;
-    accumulatedInterestAmount =
-        json['accumulated_interest_amount'] != null ? AmountValue.fromJson(json['accumulated_interest_amount']) : null;
+    dunningFees = json['dunning_fees'] != null
+        ? AmountValue.fromJson(json['dunning_fees'])
+        : null;
+    otherFees = json['other_fees'] != null
+        ? AmountValue.fromJson(json['other_fees'])
+        : null;
+    accumulatedInterestAmount = json['accumulated_interest_amount'] != null
+        ? AmountValue.fromJson(json['accumulated_interest_amount'])
+        : null;
     postboxItemId = json['postbox_item_id'];
   }
 

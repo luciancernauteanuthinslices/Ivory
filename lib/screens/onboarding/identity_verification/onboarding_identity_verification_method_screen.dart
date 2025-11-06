@@ -15,10 +15,12 @@ class OnboardingIdentityVerificationMethodScreen extends StatefulWidget {
   const OnboardingIdentityVerificationMethodScreen({super.key});
 
   @override
-  State<OnboardingIdentityVerificationMethodScreen> createState() => _OnboardingIdentityVerificationMethodScreenState();
+  State<OnboardingIdentityVerificationMethodScreen> createState() =>
+      _OnboardingIdentityVerificationMethodScreenState();
 }
 
-class _OnboardingIdentityVerificationMethodScreenState extends State<OnboardingIdentityVerificationMethodScreen> {
+class _OnboardingIdentityVerificationMethodScreenState
+    extends State<OnboardingIdentityVerificationMethodScreen> {
   final _selectedIdentificationMethod = ValueNotifier<RadioSelectItem?>(null);
 
   @override
@@ -29,12 +31,14 @@ class _OnboardingIdentityVerificationMethodScreenState extends State<OnboardingI
           AppToolbar(
             richTextTitle: StepRichTextTitle(step: 1, totalSteps: 7),
             actions: const [AppbarLogo()],
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           AnimatedLinearProgressIndicator.step(current: 1, totalSteps: 7),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 children: [
                   const SizedBox(height: 16),
@@ -72,14 +76,21 @@ class _OnboardingIdentityVerificationMethodScreenState extends State<OnboardingI
                       text: "Continue",
                       onPressed: _selectedIdentificationMethod.value != null
                           ? () {
-                              final identificationMethod = _selectedIdentificationMethod.value?.value;
+                              final identificationMethod =
+                                  _selectedIdentificationMethod.value?.value;
 
-                              if (identificationMethod == "bankIdentification") {
-                                Navigator.pushNamed(context, OnboardingContractsConfirmScreen.routeName);
+                              if (identificationMethod ==
+                                  "bankIdentification") {
+                                Navigator.pushNamed(context,
+                                    OnboardingContractsConfirmScreen.routeName);
                               }
 
-                              if (identificationMethod == "videoIdentification") {
-                                Navigator.pushNamed(context, OnboardingVideoIdentificationNotAvailableScreen.routeName);
+                              if (identificationMethod ==
+                                  "videoIdentification") {
+                                Navigator.pushNamed(
+                                    context,
+                                    OnboardingVideoIdentificationNotAvailableScreen
+                                        .routeName);
                               }
                             }
                           : null,

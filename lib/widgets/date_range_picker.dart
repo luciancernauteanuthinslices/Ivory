@@ -34,7 +34,7 @@ class DateRangePicker extends StatelessWidget {
         todayTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
         cellDecoration: BoxDecoration(
           color: Colors.white,
-         borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
             width: 1,
             color: ClientConfig.getCustomColors().neutral300,
@@ -52,7 +52,7 @@ class DateRangePicker extends StatelessWidget {
           fontSize: 15,
           color: Color(0xFFD6D8E1),
         ),
-        todayTextStyle:  ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+        todayTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
         todayCellDecoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
@@ -70,7 +70,9 @@ class DateRangePicker extends StatelessWidget {
         dayFormat: 'EEE',
         viewHeaderHeight: 30,
         viewHeaderStyle: DateRangePickerViewHeaderStyle(
-          textStyle:ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(color: const Color(0xFF9B9EB2)),
+          textStyle: ClientConfig.getTextStyleScheme()
+              .bodyLargeRegularBold
+              .copyWith(color: const Color(0xFF9B9EB2)),
         ),
       ),
       headerStyle: const DateRangePickerHeaderStyle(
@@ -90,7 +92,9 @@ class DateRangePicker extends StatelessWidget {
       startRangeSelectionColor: ClientConfig.getColorScheme().secondary,
       selectionMode: DateRangePickerSelectionMode.range,
       selectionShape: DateRangePickerSelectionShape.circle,
-      selectionTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(color: Colors.white),
+      selectionTextStyle: ClientConfig.getTextStyleScheme()
+          .bodyLargeRegularBold
+          .copyWith(color: Colors.white),
       initialSelectedRange: selectedRange,
       rangeTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
       onSelectionChanged: onSelectionChanged,

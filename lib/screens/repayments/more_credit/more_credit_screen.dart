@@ -77,7 +77,9 @@ class _MoreCreditScreenState extends State<MoreCreditScreen> {
                 child: SvgPicture(
                   SvgAssetLoader(
                     'assets/images/repayment_more_credit.svg',
-                    colorMapper: IvoryColorMapper(baseColor: ClientConfig.getColorScheme().secondary,),
+                    colorMapper: IvoryColorMapper(
+                      baseColor: ClientConfig.getColorScheme().secondary,
+                    ),
                   ),
                 ),
               ),
@@ -94,7 +96,7 @@ class _MoreCreditScreenState extends State<MoreCreditScreen> {
                 builder: (context, viewModel) => Button(
                   text: 'Get on the waitlist',
                   disabledColor: ClientConfig.getCustomColors().neutral300,
-                  color:ClientConfig.getColorScheme().tertiary,
+                  color: ClientConfig.getColorScheme().tertiary,
                   textColor: ClientConfig.getColorScheme().surface,
                   onPressed: () {
                     StoreProvider.of<AppState>(context).dispatch(

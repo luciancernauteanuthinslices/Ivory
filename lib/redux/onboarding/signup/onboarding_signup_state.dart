@@ -16,5 +16,6 @@ class OnboardingSignupState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [signupAttributes, isLoading, errorType, isSuccessful];
+  List<Object?> get props =>
+      [signupAttributes, isLoading, errorType, isSuccessful];
 }

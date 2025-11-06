@@ -8,20 +8,20 @@ import '../../../setup/create_store.dart';
 import 'account_summary_mocks.dart';
 
 void main() {
-
   final authState = AuthStatePlaceholder.loggedInState();
 
-  test("When asking to fetch account summary it should have a loading state", () async {
+  test("When asking to fetch account summary it should have a loading state",
+      () async {
     //given
     final store = createTestStore(
         accountSummaryService: FakeAccountSummaryService(),
         initialState: createAppState(
           accountSummaryState: AccountSummaryInitialState(),
           authState: authState,
-        )
-    );
+        ));
 
-    final appState = store.onChange.firstWhere((element) => element.accountSummaryState is AccountSummaryLoadingState);
+    final appState = store.onChange.firstWhere(
+        (element) => element.accountSummaryState is AccountSummaryLoadingState);
     //when
     store.dispatch(
       GetAccountSummaryCommandAction(
@@ -29,20 +29,23 @@ void main() {
       ),
     );
     //then
-    expect((await appState).accountSummaryState, isA<AccountSummaryLoadingState>());
+    expect((await appState).accountSummaryState,
+        isA<AccountSummaryLoadingState>());
   });
 
-  test("When fetching account summary successful it should update with account summary data", () async{
+  test(
+      "When fetching account summary successful it should update with account summary data",
+      () async {
     //given
     final store = createTestStore(
         accountSummaryService: FakeAccountSummaryService(),
         initialState: createAppState(
           accountSummaryState: AccountSummaryInitialState(),
           authState: authState,
-        )
-    );
+        ));
 
-    final appState = store.onChange.firstWhere((element) => element.accountSummaryState is WithAccountSummaryState);
+    final appState = store.onChange.firstWhere(
+        (element) => element.accountSummaryState is WithAccountSummaryState);
     //when
     store.dispatch(
       GetAccountSummaryCommandAction(
@@ -50,21 +53,23 @@ void main() {
       ),
     );
     //then
-    final WithAccountSummaryState accountSummaryState = (await appState).accountSummaryState as WithAccountSummaryState;
+    final WithAccountSummaryState accountSummaryState =
+        (await appState).accountSummaryState as WithAccountSummaryState;
     expect(accountSummaryState.accountSummary.id, "id-123445");
   });
 
-  test("When fetching account summary fails it should update with error", () async{
+  test("When fetching account summary fails it should update with error",
+      () async {
     //given
     final store = createTestStore(
         accountSummaryService: FakeFailingAccountSummaryService(),
         initialState: createAppState(
           accountSummaryState: AccountSummaryInitialState(),
           authState: authState,
-        )
-    );
+        ));
 
-    final appState = store.onChange.firstWhere((element) => element.accountSummaryState is AccountSummaryErrorState);
+    final appState = store.onChange.firstWhere(
+        (element) => element.accountSummaryState is AccountSummaryErrorState);
     //when
     store.dispatch(
       GetAccountSummaryCommandAction(
@@ -72,6 +77,7 @@ void main() {
       ),
     );
     //then
-    expect((await appState).accountSummaryState, isA<AccountSummaryErrorState>());
+    expect(
+        (await appState).accountSummaryState, isA<AccountSummaryErrorState>());
   });
 }

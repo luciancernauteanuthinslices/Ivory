@@ -15,17 +15,20 @@ class ReferenceAccountMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     final authState = store.state.authState;
-    if(authState is! AuthenticatedState) {
+    if (authState is! AuthenticatedState) {
       return;
     }
 
     if (action is GetReferenceAccountCommandAction) {
-      final response = await _personService.getReferenceAccount(user: authState.authenticatedUser.cognito);
+      final response = await _personService.getReferenceAccount(
+          user: authState.authenticatedUser.cognito);
 
       if (response is GetReferenceAccountSuccessResponse) {
-        store.dispatch(ReferenceAccountFetchedEventAction(response.referenceAccount));
+        store.dispatch(
+            ReferenceAccountFetchedEventAction(response.referenceAccount));
       } else if (response is PersonServiceErrorResponse) {
-        store.dispatch(GetReferenceAccountFailedEventAction(errorType: response.errorType));
+        store.dispatch(GetReferenceAccountFailedEventAction(
+            errorType: response.errorType));
       }
     }
   }

@@ -123,8 +123,10 @@ class AppState extends Equatable {
       documentsState: DocumentsInitialLoadingState(),
       downloadDocumentState: DownloadDocumentInitialState(),
       confirmDocumentsState: ConfirmDocumentsInitialState(),
-      onboardingIdentityVerificationState: const OnboardingIdentityVerificationState(),
-      onboardingCardConfigurationState: OnboardingCardConfigurationInitialState(),
+      onboardingIdentityVerificationState:
+          const OnboardingIdentityVerificationState(),
+      onboardingCardConfigurationState:
+          OnboardingCardConfigurationInitialState(),
     );
   }
 

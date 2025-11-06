@@ -2,7 +2,8 @@ import 'package:solarisdemo/redux/onboarding/onboarding_progress_action.dart';
 
 import 'onboarding_progress_state.dart';
 
-OnboardingProgressState onboardingProgressReducer(OnboardingProgressState currentState, dynamic action) {
+OnboardingProgressState onboardingProgressReducer(
+    OnboardingProgressState currentState, dynamic action) {
   if (action is OnboardingProgressLoadingEventAction) {
     return OnboardingProgressInitialLoadingState();
   } else if (action is OnboardingProgressFetchedEvendAction) {

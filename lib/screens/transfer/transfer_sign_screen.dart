@@ -40,20 +40,24 @@ class _TransferSignScreenState extends State<TransferSignScreen> {
       ),
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel is TransferConfirmedViewModel) {
-          Navigator.popAndPushNamed(context, TransferSuccessfulScreen.routeName);
+          Navigator.popAndPushNamed(
+              context, TransferSuccessfulScreen.routeName);
         } else if (newViewModel is TransferFailedViewModel) {
-          Navigator.popAndPushNamed(context, TransferFailedScreen.routeName, arguments: newViewModel.errorType);
+          Navigator.popAndPushNamed(context, TransferFailedScreen.routeName,
+              arguments: newViewModel.errorType);
         }
       },
       builder: (context, viewModel) => ScreenScaffold(
         body: Column(
           children: [
             AppToolbar(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
             ),
             Expanded(
               child: Padding(
-                padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +75,8 @@ class _TransferSignScreenState extends State<TransferSignScreen> {
                       const SizedBox(height: 16),
                       Text(
                         "Please enter the OTP sent to your registered mobile number",
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
                         textAlign: TextAlign.left,
                       ),
                       const SizedBox(height: 16),

@@ -45,7 +45,10 @@ class AnalyticsState extends State<Analytics> {
                   child: Text(
                     "See all expenses",
                     textAlign: TextAlign.right,
-                    style:ClientConfig.getTextStyleScheme().labelMedium.copyWith(color:ClientConfig.getColorScheme().secondary,),
+                    style:
+                        ClientConfig.getTextStyleScheme().labelMedium.copyWith(
+                              color: ClientConfig.getColorScheme().secondary,
+                            ),
                   ),
                   onPressed: () {},
                 )
@@ -53,7 +56,9 @@ class AnalyticsState extends State<Analytics> {
             ),
             Text(
               "No analytics available. Start spending and you will see your analytics displayed here.",
-              style: ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(color: ClientConfig.getCustomColors().neutral700),
+              style: ClientConfig.getTextStyleScheme()
+                  .bodyLargeRegular
+                  .copyWith(color: ClientConfig.getCustomColors().neutral700),
             ),
           ],
         );
@@ -80,7 +85,11 @@ class AnalyticsState extends State<Analytics> {
                       child: Text(
                         "See all expenses",
                         textAlign: TextAlign.right,
-                        style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(color:ClientConfig.getColorScheme().secondary,),
+                        style: ClientConfig.getTextStyleScheme()
+                            .labelMedium
+                            .copyWith(
+                              color: ClientConfig.getColorScheme().secondary,
+                            ),
                       ),
                       onPressed: () {},
                     )
@@ -129,7 +138,11 @@ class AnalyticsState extends State<Analytics> {
                       )
                     : Text(
                         "No analytics available. Start spending and you will see your analytics displayed here.",
-                        style: ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(color: ClientConfig.getCustomColors().neutral700),
+                        style: ClientConfig.getTextStyleScheme()
+                            .bodyLargeRegular
+                            .copyWith(
+                                color:
+                                    ClientConfig.getCustomColors().neutral700),
                       ),
               ],
             );

@@ -49,7 +49,6 @@ class BoundDevicesFetchedEventAction {
     required this.thisDevice,
     required this.isBoundDevice,
     this.isBindingPossible,
-
   });
 }
 

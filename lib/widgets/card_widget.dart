@@ -83,7 +83,8 @@ class BankCardWidget extends StatelessWidget {
                 padding: EdgeInsets.only(left: 16),
                 child: CardTypeIcon(),
               ),
-              if (showCardDetails && cardType != null) CardTypeLabel(cardType: cardType!),
+              if (showCardDetails && cardType != null)
+                CardTypeLabel(cardType: cardType!),
             ],
           ),
           const Spacer(),
@@ -97,7 +98,9 @@ class BankCardWidget extends StatelessWidget {
                   ...cardNumberParts.map((cardNumberPart) {
                     Text textContent = Text(
                       cardNumberPart,
-                      style: ClientConfig.getTextStyleScheme().heading2.copyWith(color: Colors.white),
+                      style: ClientConfig.getTextStyleScheme()
+                          .heading2
+                          .copyWith(color: Colors.white),
                     );
                     if (cardNumberPart == "****") {
                       return SizedBox(height: 29, child: textContent);
@@ -121,12 +124,16 @@ class BankCardWidget extends StatelessWidget {
                       if (cardHolder != null && cardHolder!.isNotEmpty)
                         Text(
                           "CARD HOLDER",
-                          style: ClientConfig.getTextStyleScheme().labelCaps.copyWith(color: Colors.white),
+                          style: ClientConfig.getTextStyleScheme()
+                              .labelCaps
+                              .copyWith(color: Colors.white),
                         ),
                       if (cardHolder != null) const SizedBox(height: 3),
                       Text(
                         cardHolder ?? '',
-                        style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(color: Colors.white),
+                        style: ClientConfig.getTextStyleScheme()
+                            .labelMedium
+                            .copyWith(color: Colors.white),
                       )
                     ],
                   ),
@@ -136,12 +143,16 @@ class BankCardWidget extends StatelessWidget {
                       if (cardExpiry != null && cardExpiry!.isNotEmpty)
                         Text(
                           "EXPIRY DATE",
-                          style: ClientConfig.getTextStyleScheme().labelCaps.copyWith(color: Colors.white),
+                          style: ClientConfig.getTextStyleScheme()
+                              .labelCaps
+                              .copyWith(color: Colors.white),
                         ),
                       if (cardExpiry != null) const SizedBox(height: 3),
                       Text(
                         cardExpiry ?? '',
-                        style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(color: Colors.white),
+                        style: ClientConfig.getTextStyleScheme()
+                            .labelMedium
+                            .copyWith(color: Colors.white),
                       ),
                     ],
                   ),
@@ -247,8 +258,12 @@ class CardTypeLabel extends StatelessWidget {
         ),
       ),
       child: Text(
-        cardType.toString().toLowerCase().contains('virtual') ? 'Virtual card' : 'Physical card',
-        style: ClientConfig.getTextStyleScheme().labelXSmall.copyWith(color: Colors.black, height: 1.2),
+        cardType.toString().toLowerCase().contains('virtual')
+            ? 'Virtual card'
+            : 'Physical card',
+        style: ClientConfig.getTextStyleScheme()
+            .labelXSmall
+            .copyWith(color: Colors.black, height: 1.2),
       ),
     );
   }

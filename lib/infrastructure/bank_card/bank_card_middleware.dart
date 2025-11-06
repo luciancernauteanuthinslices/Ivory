@@ -17,8 +17,8 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
   final DeviceFingerprintService _deviceFingerprintService;
   final BiometricsService _biometricsService;
 
-  BankCardMiddleware(
-      this._bankCardService, this._deviceService, this._biometricsService, this._deviceFingerprintService);
+  BankCardMiddleware(this._bankCardService, this._deviceService,
+      this._biometricsService, this._deviceFingerprintService);
 
   @override
   call(Store<AppState> store, action, NextDispatcher next) async {
@@ -53,8 +53,10 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
 
     if (action is GetBankCardCommandAction) {
       if (store.state.bankCardState is BankCardFetchedState) {
-        final BankCardFetchedState state = store.state.bankCardState as BankCardFetchedState;
-        if ((state.bankCard.id == action.cardId) && (action.forceReloadCardData == false)) {
+        final BankCardFetchedState state =
+            store.state.bankCardState as BankCardFetchedState;
+        if ((state.bankCard.id == action.cardId) &&
+            (action.forceReloadCardData == false)) {
           return;
         }
       }
@@ -76,7 +78,8 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
     }
 
     if (action is GetBankCardsCommandAction) {
-      if ((store.state.bankCardsState is BankCardsFetchedState) && (action.forceCardsReload == false)) {
+      if ((store.state.bankCardsState is BankCardsFetchedState) &&
+          (action.forceCardsReload == false)) {
         return;
       }
       store.dispatch(BankCardsLoadingEventAction());
@@ -99,16 +102,20 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
 
       final deviceId = await _deviceService.getDeviceId();
       if (deviceId == '') {
-        store.dispatch(BankCardNoBoundedDevicesEventAction(bankCard: action.bankCard));
+        store.dispatch(
+            BankCardNoBoundedDevicesEventAction(bankCard: action.bankCard));
         return null;
       }
 
-      store.dispatch(BankCardFetchedEventAction(bankCard: action.bankCard, user: authState.authenticatedUser));
+      store.dispatch(BankCardFetchedEventAction(
+          bankCard: action.bankCard, user: authState.authenticatedUser));
     }
 
     if (action is BankCardChoosePinCommandAction) {
-      store.dispatch(
-          BankCardPinChoosenEventAction(pin: action.pin, user: authState.authenticatedUser, bankcard: action.bankCard));
+      store.dispatch(BankCardPinChoosenEventAction(
+          pin: action.pin,
+          user: authState.authenticatedUser,
+          bankcard: action.bankCard));
     }
 
     if (action is BankCardConfirmPinCommandAction) {
@@ -118,8 +125,10 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
         store.dispatch(BankCardFailedEventAction());
         return null;
       }
-      final consentId = await _deviceService.getConsentId(authState.authenticatedUser.cognito.personId!);
-      final deviceFingerprint = await _deviceFingerprintService.getDeviceFingerprint(consentId);
+      final consentId = await _deviceService
+          .getConsentId(authState.authenticatedUser.cognito.personId!);
+      final deviceFingerprint =
+          await _deviceFingerprintService.getDeviceFingerprint(consentId);
       if (deviceFingerprint == null) {
         store.dispatch(BankCardFailedEventAction());
         return null;
@@ -136,15 +145,18 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
       }
 
       final pinToEncrypt = '{"pin": "${action.pin}"}';
-      final jwkJson = (getLatestPinKeyResponse as GetLatestPinKeySuccessResponse).jwkJson;
+      final jwkJson =
+          (getLatestPinKeyResponse as GetLatestPinKeySuccessResponse).jwkJson;
 
-      final encryptedPin = await _deviceService.encryptPin(pinToEncrypt: pinToEncrypt, pinKey: jwkJson);
+      final encryptedPin = await _deviceService.encryptPin(
+          pinToEncrypt: pinToEncrypt, pinKey: jwkJson);
       if (encryptedPin is! String) {
         store.dispatch(BankCardFailedEventAction());
         return null;
       }
 
-      final restrictedKeypair = await _deviceService.getDeviceKeyPairs(restricted: true);
+      final restrictedKeypair =
+          await _deviceService.getDeviceKeyPairs(restricted: true);
       if (restrictedKeypair == null) {
         store.dispatch(BankCardFailedEventAction());
         return null;
@@ -180,7 +192,9 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
       }
 
       store.dispatch(BankCardPinConfirmedEventAction(
-          pin: action.pin, user: authState.authenticatedUser, bankcard: action.bankCard));
+          pin: action.pin,
+          user: authState.authenticatedUser,
+          bankcard: action.bankCard));
     }
 
     if (action is BankCardActivateCommandAction) {
@@ -205,12 +219,15 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
 
       final deviceId = await _deviceService.getDeviceId();
       if (deviceId == '') {
-        store.dispatch(BankCardNoBoundedDevicesEventAction(bankCard: action.bankCard));
+        store.dispatch(
+            BankCardNoBoundedDevicesEventAction(bankCard: action.bankCard));
         return null;
       }
 
-      final isBiometricsAuthenticated = await _biometricsService.authenticateWithBiometrics(
-          message: "'Please use biometric authentication to view card details.'");
+      final isBiometricsAuthenticated =
+          await _biometricsService.authenticateWithBiometrics(
+              message:
+                  "'Please use biometric authentication to view card details.'");
 
       if (!isBiometricsAuthenticated) {
         store.dispatch(BankCardFailedEventAction());
@@ -224,27 +241,31 @@ class BankCardMiddleware extends MiddlewareClass<AppState> {
         return null;
       }
 
-      final jwk = _deviceService.convertRSAPublicKeyToJWK(rsaPublicKey: rsaKeyPair.publicKey);
+      final jwk = _deviceService.convertRSAPublicKeyToJWK(
+          rsaPublicKey: rsaKeyPair.publicKey);
       if (jwk == null) {
         store.dispatch(BankCardFailedEventAction());
         return null;
       }
 
-      String? consentId = await _deviceService.getConsentId(authState.authenticatedUser.cognito.personId!);
+      String? consentId = await _deviceService
+          .getConsentId(authState.authenticatedUser.cognito.personId!);
 
       if (consentId == null) {
         store.dispatch(BankCardFailedEventAction());
         return null;
       }
 
-      String? deviceFingerPrint = await _deviceFingerprintService.getDeviceFingerprint(consentId);
+      String? deviceFingerPrint =
+          await _deviceFingerprintService.getDeviceFingerprint(consentId);
 
       if (deviceFingerPrint == null || deviceFingerPrint.isEmpty) {
         store.dispatch(BankCardFailedEventAction());
         return null;
       }
 
-      final existingUnrestrictedKeyPair = await _deviceService.getDeviceKeyPairs(restricted: false);
+      final existingUnrestrictedKeyPair =
+          await _deviceService.getDeviceKeyPairs(restricted: false);
 
       if (existingUnrestrictedKeyPair == null) {
         store.dispatch(BankCardFailedEventAction());

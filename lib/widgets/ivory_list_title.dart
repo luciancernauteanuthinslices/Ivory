@@ -9,7 +9,8 @@ class IvoryListTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+      padding: ClientConfig.getCustomClientUiSettings()
+          .defaultScreenHorizontalPadding,
       margin: const EdgeInsets.only(bottom: 8),
       child: Text(
         title,

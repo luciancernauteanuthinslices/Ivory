@@ -11,10 +11,12 @@ void main() {
     city: "Berlin",
     country: "DE",
     nationality: "DE",
-    selectedAddress: AddressSuggestion(address: "Berlin Strasse", city: "Berlin", country: "DE"),
+    selectedAddress: AddressSuggestion(
+        address: "Berlin Strasse", city: "Berlin", country: "DE"),
   );
 
-  test("When OnboardingPersonalDetailsState have data, it should return the correct OnboardingPersonalDetailsViewModel",
+  test(
+      "When OnboardingPersonalDetailsState have data, it should return the correct OnboardingPersonalDetailsViewModel",
       () {
     // given
     final currentDate = DateTime.now();
@@ -28,7 +30,8 @@ void main() {
     );
 
     // when
-    final viewModel = OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
+    final viewModel =
+        OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
       onboardingPersonalDetailsState: state,
     );
 

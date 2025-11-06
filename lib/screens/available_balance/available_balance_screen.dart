@@ -16,15 +16,21 @@ class AvailableBalanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AccountSummaryFetchedViewModel viewModel = ModalRoute.of(context)!.settings.arguments as AccountSummaryFetchedViewModel ;
+    final AccountSummaryFetchedViewModel viewModel = ModalRoute.of(context)!
+        .settings
+        .arguments as AccountSummaryFetchedViewModel;
 
     return ScreenScaffold(
       body: Padding(
-        padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: ClientConfig.getCustomClientUiSettings().defaultScreenTopPadding,),
+            SizedBox(
+              height: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenTopPadding,
+            ),
             const AppToolbar(),
             Text(
               "Available balance",
@@ -39,19 +45,24 @@ class AvailableBalanceScreen extends StatelessWidget {
             InkWell(
               child: Text(
                 "How to top up your Ivory account?",
-                style:  ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
-                    color: ClientConfig.getColorScheme().secondary,
-                ),
+                style: ClientConfig.getTextStyleScheme()
+                    .bodyLargeRegularBold
+                    .copyWith(
+                      color: ClientConfig.getColorScheme().secondary,
+                    ),
               ),
               onTap: () {
                 showBottomModal(
                   context: context,
                   title: "How to top up your Ivory account?",
-                  content: TopUpBottomSheetContent(iban: viewModel.accountSummary?.iban ?? ""),
+                  content: TopUpBottomSheetContent(
+                      iban: viewModel.accountSummary?.iban ?? ""),
                 );
               },
             ),
-            const SizedBox(height: 24,),
+            const SizedBox(
+              height: 24,
+            ),
             Container(
               height: 150,
               width: double.infinity,
@@ -66,53 +77,70 @@ class AvailableBalanceScreen extends StatelessWidget {
                   children: [
                     Text(
                       "Full available balance",
-                      style:  ClientConfig.getTextStyleScheme().labelSmall,
+                      style: ClientConfig.getTextStyleScheme().labelSmall,
                     ),
-                    const SizedBox(height: 4,),
+                    const SizedBox(
+                      height: 4,
+                    ),
                     AccountBalanceText(
-                      value: viewModel.accountSummary?.availableBalance?.value ?? 0,
+                      value:
+                          viewModel.accountSummary?.availableBalance?.value ??
+                              0,
                       numberStyle: ClientConfig.getTextStyleScheme().heading2,
                       centsStyle: ClientConfig.getTextStyleScheme().heading3,
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     GradientProgressIndicator(
                       percent: _percentageFromViewModel(viewModel),
                       gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: const Alignment(-0.9, 0),
-                          stops: const [0.0, 0.5, 0.5, 1],
-                          colors: [
-                            ClientConfig.getCustomColors().neutral400,
-                            ClientConfig.getCustomColors().neutral400,
-                            ClientConfig.getColorScheme().primary,
-                            ClientConfig.getColorScheme().primary,
-                          ],
+                        begin: Alignment.topLeft,
+                        end: const Alignment(-0.9, 0),
+                        stops: const [0.0, 0.5, 0.5, 1],
+                        colors: [
+                          ClientConfig.getCustomColors().neutral400,
+                          ClientConfig.getCustomColors().neutral400,
+                          ClientConfig.getColorScheme().primary,
+                          ClientConfig.getColorScheme().primary,
+                        ],
                         tileMode: TileMode.repeated,
-                        ),
+                      ),
                       fillColor: ClientConfig.getColorScheme().secondary,
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       children: [
                         Column(
                           children: [
-                            _colorBoxText("Credit", ClientConfig.getColorScheme().secondary, false),
-                            const SizedBox(height: 4,),
+                            _colorBoxText("Credit",
+                                ClientConfig.getColorScheme().secondary, false),
+                            const SizedBox(
+                              height: 4,
+                            ),
                             Text(
                               "€${(viewModel.accountSummary!.availableBalance!.value! - viewModel.accountSummary!.balance!.value!)}",
-                              style: ClientConfig.getTextStyleScheme().labelSmall,
+                              style:
+                                  ClientConfig.getTextStyleScheme().labelSmall,
                             ),
                           ],
                         ),
-                        const SizedBox(width: 32,),
+                        const SizedBox(
+                          width: 32,
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _colorBoxText("Topped-up", null, true),
-                            const SizedBox(height: 4,),
+                            const SizedBox(
+                              height: 4,
+                            ),
                             Text(
                               "€${viewModel.accountSummary!.balance!.value!}",
-                              style: ClientConfig.getTextStyleScheme().labelSmall,
+                              style:
+                                  ClientConfig.getTextStyleScheme().labelSmall,
                             ),
                           ],
                         )
@@ -121,19 +149,23 @@ class AvailableBalanceScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),],
+            ),
+          ],
         ),
       ),
     );
   }
 
   int _percentageFromViewModel(AccountSummaryFetchedViewModel viewModel) {
-    num creditBalance = viewModel.accountSummary!.availableBalance!.value! - viewModel.accountSummary!.balance!.value!;
+    num creditBalance = viewModel.accountSummary!.availableBalance!.value! -
+        viewModel.accountSummary!.balance!.value!;
     if (creditBalance == 0) {
       return 100;
     }
 
-    double percentage = (creditBalance / viewModel.accountSummary!.availableBalance!.value!) * 100;
+    double percentage =
+        (creditBalance / viewModel.accountSummary!.availableBalance!.value!) *
+            100;
     return percentage.round();
   }
 
@@ -162,10 +194,14 @@ class AvailableBalanceScreen extends StatelessWidget {
             gradient: useGradient ? gradient : null,
           ),
         ),
-        const SizedBox(width: 3,),
+        const SizedBox(
+          width: 3,
+        ),
         Text(
           text,
-          style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: ClientConfig.getCustomColors().neutral900),
+          style: ClientConfig.getTextStyleScheme()
+              .labelSmall
+              .copyWith(color: ClientConfig.getCustomColors().neutral900),
         )
       ],
     );

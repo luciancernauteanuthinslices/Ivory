@@ -4,7 +4,8 @@ import 'package:solarisdemo/config.dart';
 void showSnackbar(
   BuildContext context, {
   required String text,
-  BorderRadiusGeometry borderRadius = const BorderRadius.all(Radius.circular(30)),
+  BorderRadiusGeometry borderRadius =
+      const BorderRadius.all(Radius.circular(30)),
   required Color backgroundColor,
   Duration duration = const Duration(seconds: 2),
   EdgeInsets margin = const EdgeInsets.only(bottom: 24),
@@ -28,7 +29,9 @@ void showSnackbar(
               Text(
                 text,
                 style: textStyle ??
-                    ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
+                    ClientConfig.getTextStyleScheme()
+                        .bodyLargeRegularBold
+                        .copyWith(
                           color: Colors.white,
                           height: 1.375,
                         ),

@@ -22,13 +22,18 @@ class OnboardingOccupationalStatusScreen extends StatefulWidget {
   const OnboardingOccupationalStatusScreen({super.key});
 
   @override
-  State<OnboardingOccupationalStatusScreen> createState() => _OnboardingOccupationalStatusScreenState();
+  State<OnboardingOccupationalStatusScreen> createState() =>
+      _OnboardingOccupationalStatusScreenState();
 }
 
-class _OnboardingOccupationalStatusScreenState extends State<OnboardingOccupationalStatusScreen> {
-  final IvorySelectOptionController _occupationController = IvorySelectOptionController();
-  final IvoryTextFieldController _dateOfEmploymentController = IvoryTextFieldController();
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+class _OnboardingOccupationalStatusScreenState
+    extends State<OnboardingOccupationalStatusScreen> {
+  final IvorySelectOptionController _occupationController =
+      IvorySelectOptionController();
+  final IvoryTextFieldController _dateOfEmploymentController =
+      IvoryTextFieldController();
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
 
   @override
   void initState() {
@@ -43,9 +48,11 @@ class _OnboardingOccupationalStatusScreenState extends State<OnboardingOccupatio
       _continueButtonController.setDisabled();
     }
 
-    final selectedValue = _occupationController.selectedOptions.firstOrNull?.value;
+    final selectedValue =
+        _occupationController.selectedOptions.firstOrNull?.value;
 
-    if (['unemployed', 'apprentice', 'retired', 'student'].contains(selectedValue)) {
+    if (['unemployed', 'apprentice', 'retired', 'student']
+        .contains(selectedValue)) {
       _continueButtonController.setEnabled();
     }
 
@@ -72,7 +79,8 @@ class _OnboardingOccupationalStatusScreenState extends State<OnboardingOccupatio
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             richTextTitle: StepRichTextTitle(step: 4, totalSteps: 5),
             actions: const [AppbarLogo()],
             backButtonEnabled: true,
@@ -81,14 +89,16 @@ class _OnboardingOccupationalStatusScreenState extends State<OnboardingOccupatio
           AnimatedLinearProgressIndicator.step(current: 4, totalSteps: 5),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Occupation', style: ClientConfig.getTextStyleScheme().heading2),
+                    child: Text('Occupation',
+                        style: ClientConfig.getTextStyleScheme().heading2),
                   ),
                   const SizedBox(height: 24),
                   IvorySelectOption(
@@ -98,17 +108,29 @@ class _OnboardingOccupationalStatusScreenState extends State<OnboardingOccupatio
                     controller: _occupationController,
                     onBottomSheetOpened: () => FocusScope.of(context).unfocus(),
                     options: [
-                      SelectOption(textLabel: 'Employed', value: OnboardingOccupationalStatus.employed.name),
-                      SelectOption(textLabel: 'Unemployed', value: OnboardingOccupationalStatus.unemployed.name),
-                      SelectOption(textLabel: 'Apprentice', value: OnboardingOccupationalStatus.apprentice.name),
-                      SelectOption(textLabel: 'Retired', value: OnboardingOccupationalStatus.retired.name),
-                      SelectOption(textLabel: 'Student', value: OnboardingOccupationalStatus.student.name),
+                      SelectOption(
+                          textLabel: 'Employed',
+                          value: OnboardingOccupationalStatus.employed.name),
+                      SelectOption(
+                          textLabel: 'Unemployed',
+                          value: OnboardingOccupationalStatus.unemployed.name),
+                      SelectOption(
+                          textLabel: 'Apprentice',
+                          value: OnboardingOccupationalStatus.apprentice.name),
+                      SelectOption(
+                          textLabel: 'Retired',
+                          value: OnboardingOccupationalStatus.retired.name),
+                      SelectOption(
+                          textLabel: 'Student',
+                          value: OnboardingOccupationalStatus.student.name),
                     ],
                   ),
                   ListenableBuilder(
                     listenable: _occupationController,
                     builder: (context, child) {
-                      if (_occupationController.selectedOptions.firstOrNull?.value == 'employed') {
+                      if (_occupationController
+                              .selectedOptions.firstOrNull?.value ==
+                          'employed') {
                         return _buildEmployedStatus();
                       }
 
@@ -125,29 +147,41 @@ class _OnboardingOccupationalStatusScreenState extends State<OnboardingOccupatio
                             ? () {
                                 _dateOfEmploymentController.setError(false);
 
-                                if (_occupationController.selectedOptions.firstOrNull?.value == 'employed') {
+                                if (_occupationController
+                                        .selectedOptions.firstOrNull?.value ==
+                                    'employed') {
                                   if (!Validator.isValidDate(
                                     _dateOfEmploymentController.text,
                                     pattern: textFieldDatePattern,
                                   )) {
-                                    _dateOfEmploymentController.setErrorText("Invalid date of employment");
+                                    _dateOfEmploymentController.setErrorText(
+                                        "Invalid date of employment");
                                     _continueButtonController.setDisabled();
                                     return;
                                   }
-                                  StoreProvider.of<AppState>(context)
-                                      .dispatch(CreateEmployedOccupationalStatusCommandAction(
-                                    occupationalStatus: OnboardingOccupationalStatus.employed,
-                                    dateOfEmployment: _dateOfEmploymentController.text,
+                                  StoreProvider.of<AppState>(context).dispatch(
+                                      CreateEmployedOccupationalStatusCommandAction(
+                                    occupationalStatus:
+                                        OnboardingOccupationalStatus.employed,
+                                    dateOfEmployment:
+                                        _dateOfEmploymentController.text,
                                   ));
                                 } else {
                                   StoreProvider.of<AppState>(context).dispatch(
                                     CreateOthersOccupationalStatusCommandAction(
-                                      occupationalStatus: OnboardingOccupationalStatus.values.firstWhere((element) =>
-                                          element.name == _occupationController.selectedOptions.first.value),
+                                      occupationalStatus:
+                                          OnboardingOccupationalStatus.values
+                                              .firstWhere((element) =>
+                                                  element.name ==
+                                                  _occupationController
+                                                      .selectedOptions
+                                                      .first
+                                                      .value),
                                     ),
                                   );
                                 }
-                                Navigator.of(context).pushNamed(OnboardingMonthlyIncomeScreen.routeName);
+                                Navigator.of(context).pushNamed(
+                                    OnboardingMonthlyIncomeScreen.routeName);
                               }
                             : null),
                   ),

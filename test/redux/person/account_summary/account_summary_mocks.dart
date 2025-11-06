@@ -4,8 +4,10 @@ import 'package:solarisdemo/models/user.dart';
 
 class FakeAccountSummaryService extends AccountSummaryService {
   @override
-  Future<AccountSummaryServiceResponse> getPersonAccountSummary({User? user}) async{
-    return GetAccountSummarySuccessResponse(accountSummary: PersonAccountSummary(
+  Future<AccountSummaryServiceResponse> getPersonAccountSummary(
+      {User? user}) async {
+    return GetAccountSummarySuccessResponse(
+        accountSummary: PersonAccountSummary(
       id: "id-123445",
       income: 123.45,
       spending: 678.9,
@@ -29,7 +31,8 @@ class FakeAccountSummaryService extends AccountSummaryService {
 
 class FakeFailingAccountSummaryService extends AccountSummaryService {
   @override
-  Future<AccountSummaryServiceResponse> getPersonAccountSummary({User? user}) async{
+  Future<AccountSummaryServiceResponse> getPersonAccountSummary(
+      {User? user}) async {
     return AccountSummaryServiceErrorResponse();
   }
 }

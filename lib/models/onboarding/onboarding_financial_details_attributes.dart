@@ -36,15 +36,33 @@ class OnboardingFinancialDetailsAttributes extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [taxId, maritalStatus, livingSituation, numberOfDependents, occupationalStatus, dateOfEmployment];
+  List<Object?> get props => [
+        taxId,
+        maritalStatus,
+        livingSituation,
+        numberOfDependents,
+        occupationalStatus,
+        dateOfEmployment
+      ];
 }
 
-enum OnboardingMaritalStatus { notMarried, married, divorced, widowed, preferNotToSay }
+enum OnboardingMaritalStatus {
+  notMarried,
+  married,
+  divorced,
+  widowed,
+  preferNotToSay
+}
 
 enum OnboardingLivingSituation { own, rent, parents }
 
-enum OnboardingOccupationalStatus { employed, unemployed, apprentice, retired, student }
+enum OnboardingOccupationalStatus {
+  employed,
+  unemployed,
+  apprentice,
+  retired,
+  student
+}
 
 String getOnboardingMaritalStatusValue(OnboardingMaritalStatus maritalStatus) {
   switch (maritalStatus) {
@@ -61,7 +79,8 @@ String getOnboardingMaritalStatusValue(OnboardingMaritalStatus maritalStatus) {
   }
 }
 
-String getOnboardingLivingSituationValue(OnboardingLivingSituation livingSituation) {
+String getOnboardingLivingSituationValue(
+    OnboardingLivingSituation livingSituation) {
   switch (livingSituation) {
     case OnboardingLivingSituation.own:
       return 'LIVING_IN_OWN_HOUSE';
@@ -72,7 +91,8 @@ String getOnboardingLivingSituationValue(OnboardingLivingSituation livingSituati
   }
 }
 
-String getOnboardingOccupationalStatusValue(OnboardingOccupationalStatus occupationalStatus) {
+String getOnboardingOccupationalStatusValue(
+    OnboardingOccupationalStatus occupationalStatus) {
   switch (occupationalStatus) {
     case OnboardingOccupationalStatus.employed:
       return 'EMPLOYED';

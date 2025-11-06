@@ -3,7 +3,8 @@ import 'package:solarisdemo/models/suggestions/city_suggestions_error_type.dart'
 import 'package:solarisdemo/redux/suggestions/city/city_suggestions_state.dart';
 
 class CitySuggestionsPresenter {
-  static CitySuggestionsViewModel present({required CitySuggestionsState citySuggestionsState}) {
+  static CitySuggestionsViewModel present(
+      {required CitySuggestionsState citySuggestionsState}) {
     if (citySuggestionsState is CitySuggestionsLoadingState) {
       return CitySuggestionsLoadingViewModel();
     } else if (citySuggestionsState is CitySuggestionsFetchedState) {

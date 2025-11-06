@@ -24,10 +24,12 @@ void main() {
         setPlatformOverride(TargetPlatform.android);
       });
 
-      test('when the file is saved it should show a success notification', () async {
+      test('when the file is saved it should show a success notification',
+          () async {
         // given
         final fileSaverService = FileSaverService();
-        fileSaverService.flutterLocalNotificationsPlugin = mockFlutterLocalNotificationsPlugin;
+        fileSaverService.flutterLocalNotificationsPlugin =
+            mockFlutterLocalNotificationsPlugin;
 
         const name = 'document';
         const ext = 'pdf';
@@ -42,7 +44,9 @@ void main() {
           existsCallCount++;
           return existsCallCount > 1;
         });
-        when(mockFile.writeAsBytes(any, mode: anyNamed('mode'), flush: anyNamed('flush'))).thenAnswer(
+        when(mockFile.writeAsBytes(any,
+                mode: anyNamed('mode'), flush: anyNamed('flush')))
+            .thenAnswer(
           (_) async => mockFile,
         );
 
@@ -53,7 +57,10 @@ void main() {
 
             // then
             expect(
-              verify(mockFile.writeAsBytes(captureAny, mode: FileMode.write, flush: false)).captured.first,
+              verify(mockFile.writeAsBytes(captureAny,
+                      mode: FileMode.write, flush: false))
+                  .captured
+                  .first,
               equals(bytes),
             );
 
@@ -69,10 +76,12 @@ void main() {
         );
       });
 
-      test("when the file can't be saved it should show a failure notification", () async {
+      test("when the file can't be saved it should show a failure notification",
+          () async {
         // given
         final fileSaverService = FileSaverService();
-        fileSaverService.flutterLocalNotificationsPlugin = mockFlutterLocalNotificationsPlugin;
+        fileSaverService.flutterLocalNotificationsPlugin =
+            mockFlutterLocalNotificationsPlugin;
 
         const name = 'document';
         const ext = 'pdf';
@@ -96,10 +105,12 @@ void main() {
         );
       });
 
-      test("when the file already exists it should show a failure notification", () async {
+      test("when the file already exists it should show a failure notification",
+          () async {
         // given
         final fileSaverService = FileSaverService();
-        fileSaverService.flutterLocalNotificationsPlugin = mockFlutterLocalNotificationsPlugin;
+        fileSaverService.flutterLocalNotificationsPlugin =
+            mockFlutterLocalNotificationsPlugin;
 
         const name = 'document';
         const ext = 'pdf';

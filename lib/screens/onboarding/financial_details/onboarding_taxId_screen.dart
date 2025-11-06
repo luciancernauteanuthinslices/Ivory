@@ -24,8 +24,10 @@ class OnboardingTaxIdScreen extends StatefulWidget {
 }
 
 class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
-  final IvoryTextFieldController _taxIdController = IvoryTextFieldController(text: '489 543 712 07');
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+  final IvoryTextFieldController _taxIdController =
+      IvoryTextFieldController(text: '489 543 712 07');
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
 
   @override
   void initState() {
@@ -42,7 +44,9 @@ class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
 
   isValidTaxId(String text) {
     text = text.replaceAll(' ', '');
-    text.isNotEmpty ? _continueButtonController.setEnabled() : _continueButtonController.setDisabled();
+    text.isNotEmpty
+        ? _continueButtonController.setEnabled()
+        : _continueButtonController.setDisabled();
   }
 
   @override
@@ -51,41 +55,53 @@ class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             richTextTitle: StepRichTextTitle(step: 2, totalSteps: 5),
             actions: const [AppbarLogo()],
           ),
           AnimatedLinearProgressIndicator.step(current: 2, totalSteps: 5),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 children: [
                   const SizedBox(height: 16),
                   Align(
                       alignment: Alignment.centerLeft,
-                      child: Text('Tax ID', style: ClientConfig.getTextStyleScheme().heading2)),
+                      child: Text('Tax ID',
+                          style: ClientConfig.getTextStyleScheme().heading2)),
                   const SizedBox(height: 16),
                   IvoryTextField(
                     label: 'Tax ID number',
                     placeholder: 'E.g. 489 543 712 07',
                     controller: _taxIdController,
-                    inputFormatters: [InputFormatter.taxId(_taxIdController.text)],
+                    inputFormatters: [
+                      InputFormatter.taxId(_taxIdController.text)
+                    ],
                     inputType: TextFieldInputType.number,
                     keyboardType: TextInputType.number,
                   ),
                   const Spacer(),
                   StoreConnector<AppState, OnboardingFinancialDetailsViewModel>(
-                    converter: (store) => OnboardingFinancialDetailsPresenter.present(
-                        financialState: store.state.onboardingFinancialDetailsState),
+                    converter: (store) =>
+                        OnboardingFinancialDetailsPresenter.present(
+                            financialState:
+                                store.state.onboardingFinancialDetailsState),
                     onWillChange: (previousViewModel, newViewModel) {
                       if (newViewModel.isLoading) {
                         _continueButtonController.setLoading();
-                      } else if (previousViewModel!.financialDetailsAttributes.taxId == null &&
-                          newViewModel.financialDetailsAttributes.taxId != null) {
-                        Navigator.pushNamed(context, OnboardingPublicStatusScreen.routeName);
+                      } else if (previousViewModel!
+                                  .financialDetailsAttributes.taxId ==
+                              null &&
+                          newViewModel.financialDetailsAttributes.taxId !=
+                              null) {
+                        Navigator.pushNamed(
+                            context, OnboardingPublicStatusScreen.routeName);
                       } else if (newViewModel.errorType != null) {
-                        _taxIdController.setErrorText('This Tax ID is invalid for Germany. Please try another.');
+                        _taxIdController.setErrorText(
+                            'This Tax ID is invalid for Germany. Please try another.');
                       }
                     },
                     distinct: true,
@@ -97,7 +113,9 @@ class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
                           isLoading: _continueButtonController.isLoading,
                           onPressed: _continueButtonController.isEnabled
                               ? () => StoreProvider.of<AppState>(context)
-                                  .dispatch(CreateTaxIdCommandAction(taxId: _taxIdController.text.replaceAll(' ', '')))
+                                  .dispatch(CreateTaxIdCommandAction(
+                                      taxId: _taxIdController.text
+                                          .replaceAll(' ', '')))
                               : null,
                         ),
                       );

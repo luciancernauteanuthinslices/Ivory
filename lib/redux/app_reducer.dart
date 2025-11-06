@@ -31,37 +31,55 @@ import 'app_state.dart';
 
 AppState appReducer(AppState currentState, dynamic action) {
   return AppState(
-    transactionsState: transactionsReducer(currentState.transactionsState, action),
+    transactionsState:
+        transactionsReducer(currentState.transactionsState, action),
     creditLineState: creditLineReducer(currentState.creditLineState, action),
-    repaymentReminderState: repaymentReminderReducer(currentState.repaymentReminderState, action),
-    cardApplicationState: cardApplicationReducer(currentState.cardApplicationState, action),
+    repaymentReminderState:
+        repaymentReminderReducer(currentState.repaymentReminderState, action),
+    cardApplicationState:
+        cardApplicationReducer(currentState.cardApplicationState, action),
     billsState: billsReducer(currentState.billsState, action),
     moreCreditState: moreCreditReducer(currentState.moreCreditState, action),
     bankCardState: bankCardReducer(currentState.bankCardState, action),
     bankCardsState: bankCardsReducer(currentState.bankCardsState, action),
     categoriesState: categoriesReducer(currentState.categoriesState, action),
-    referenceAccountState: referenceAccountReducer(currentState.referenceAccountState, action),
-    personAccountState: personAccountReducer(currentState.personAccountState, action),
+    referenceAccountState:
+        referenceAccountReducer(currentState.referenceAccountState, action),
+    personAccountState:
+        personAccountReducer(currentState.personAccountState, action),
     addCardInfoState: addCardInfoReducer(currentState.addCardInfoState, action),
     transferState: transferReducer(currentState.transferState, action),
-    deviceBindingState: deviceBindingState(currentState.deviceBindingState, action),
-    notificationState: notificationReducer(currentState.notificationState, action),
-    transactionApprovalState: transactionApprovalReducer(currentState.transactionApprovalState, action),
-    accountSummaryState: accountSummaryReducer(currentState.accountSummaryState, action),
+    deviceBindingState:
+        deviceBindingState(currentState.deviceBindingState, action),
+    notificationState:
+        notificationReducer(currentState.notificationState, action),
+    transactionApprovalState: transactionApprovalReducer(
+        currentState.transactionApprovalState, action),
+    accountSummaryState:
+        accountSummaryReducer(currentState.accountSummaryState, action),
     authState: authReducer(currentState.authState, action),
-    homePageTransactionsState: homeTransactionsReducer(currentState.homePageTransactionsState, action),
-    onboardingSignupState: onboardingSignupReducer(currentState.onboardingSignupState, action),
-    onboardingProgressState: onboardingProgressReducer(currentState.onboardingProgressState, action),
-    onboardingPersonalDetailsState: onboardingPersonDetailsReducer(currentState.onboardingPersonalDetailsState, action),
-    citySuggestionsState: citySuggestionsReducer(currentState.citySuggestionsState, action),
-    addressSuggestionsState: addressSuggestionsReducer(currentState.addressSuggestionsState, action),
-    onboardingFinancialDetailsState:
-        onboardingFinancialDetailsReducer(currentState.onboardingFinancialDetailsState, action),
+    homePageTransactionsState:
+        homeTransactionsReducer(currentState.homePageTransactionsState, action),
+    onboardingSignupState:
+        onboardingSignupReducer(currentState.onboardingSignupState, action),
+    onboardingProgressState:
+        onboardingProgressReducer(currentState.onboardingProgressState, action),
+    onboardingPersonalDetailsState: onboardingPersonDetailsReducer(
+        currentState.onboardingPersonalDetailsState, action),
+    citySuggestionsState:
+        citySuggestionsReducer(currentState.citySuggestionsState, action),
+    addressSuggestionsState:
+        addressSuggestionsReducer(currentState.addressSuggestionsState, action),
+    onboardingFinancialDetailsState: onboardingFinancialDetailsReducer(
+        currentState.onboardingFinancialDetailsState, action),
     documentsState: documentsReducer(currentState.documentsState, action),
-    downloadDocumentState: downloadDocumentReducer(currentState.downloadDocumentState, action),
-    confirmDocumentsState: confirmDocumentsReducer(currentState.confirmDocumentsState, action),
-    onboardingIdentityVerificationState:
-        identityVerificationReducer(currentState.onboardingIdentityVerificationState, action),
-    onboardingCardConfigurationState: onboardingCardConfigurationReducer(currentState.onboardingCardConfigurationState, action),
+    downloadDocumentState:
+        downloadDocumentReducer(currentState.downloadDocumentState, action),
+    confirmDocumentsState:
+        confirmDocumentsReducer(currentState.confirmDocumentsState, action),
+    onboardingIdentityVerificationState: identityVerificationReducer(
+        currentState.onboardingIdentityVerificationState, action),
+    onboardingCardConfigurationState: onboardingCardConfigurationReducer(
+        currentState.onboardingCardConfigurationState, action),
   );
 }

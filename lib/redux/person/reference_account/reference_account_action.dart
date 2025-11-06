@@ -14,5 +14,6 @@ class ReferenceAccountFetchedEventAction {
 class GetReferenceAccountFailedEventAction {
   PersonServiceErrorType errorType;
 
-  GetReferenceAccountFailedEventAction({this.errorType = PersonServiceErrorType.unknown});
+  GetReferenceAccountFailedEventAction(
+      {this.errorType = PersonServiceErrorType.unknown});
 }

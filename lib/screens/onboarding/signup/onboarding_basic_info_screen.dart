@@ -20,14 +20,19 @@ class OnboardingBasicInfoScreen extends StatefulWidget {
   const OnboardingBasicInfoScreen({super.key});
 
   @override
-  State<OnboardingBasicInfoScreen> createState() => _OnboardingBasicInfoScreenState();
+  State<OnboardingBasicInfoScreen> createState() =>
+      _OnboardingBasicInfoScreenState();
 }
 
 class _OnboardingBasicInfoScreenState extends State<OnboardingBasicInfoScreen> {
-  final IvorySelectOptionController _selectTitleController = IvorySelectOptionController();
-  final IvoryTextFieldController _firstNameController = IvoryTextFieldController();
-  final IvoryTextFieldController _lastNameController = IvoryTextFieldController();
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+  final IvorySelectOptionController _selectTitleController =
+      IvorySelectOptionController();
+  final IvoryTextFieldController _firstNameController =
+      IvoryTextFieldController();
+  final IvoryTextFieldController _lastNameController =
+      IvoryTextFieldController();
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
 
   @override
   void initState() {
@@ -56,17 +61,20 @@ class _OnboardingBasicInfoScreenState extends State<OnboardingBasicInfoScreen> {
           AppToolbar(
             richTextTitle: StepRichTextTitle(step: 1, totalSteps: 5),
             actions: const [AppbarLogo()],
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           AnimatedLinearProgressIndicator.step(current: 1, totalSteps: 5),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 16),
-                  Text("Preferred title, first & last name", style: ClientConfig.getTextStyleScheme().heading2),
+                  Text("Preferred title, first & last name",
+                      style: ClientConfig.getTextStyleScheme().heading2),
                   const SizedBox(height: 16),
                   Text(
                     "Select your title and fill in your first and last name. Include all names if you have multiple.",
@@ -112,13 +120,15 @@ class _OnboardingBasicInfoScreenState extends State<OnboardingBasicInfoScreen> {
                             ? () {
                                 StoreProvider.of<AppState>(context).dispatch(
                                   SubmitOnboardingBasicInfoCommandAction(
-                                    title: _selectTitleController.selectedOptions.first.value,
+                                    title: _selectTitleController
+                                        .selectedOptions.first.value,
                                     firstName: _firstNameController.text,
                                     lastName: _lastNameController.text,
                                   ),
                                 );
 
-                                Navigator.pushNamed(context, OnboardingEmailScreen.routeName);
+                                Navigator.pushNamed(
+                                    context, OnboardingEmailScreen.routeName);
                               }
                             : null,
                       ),

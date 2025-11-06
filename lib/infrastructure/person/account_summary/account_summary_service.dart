@@ -9,7 +9,8 @@ class AccountSummaryService extends ApiService {
     super.user,
   });
 
-  Future<AccountSummaryServiceResponse> getPersonAccountSummary({required User user}) async {
+  Future<AccountSummaryServiceResponse> getPersonAccountSummary(
+      {required User user}) async {
     this.user = user;
     try {
       String path = 'account/summary';
@@ -37,4 +38,5 @@ class GetAccountSummarySuccessResponse extends AccountSummaryServiceResponse {
   List<Object?> get props => [accountSummary];
 }
 
-class AccountSummaryServiceErrorResponse extends AccountSummaryServiceResponse {}
+class AccountSummaryServiceErrorResponse
+    extends AccountSummaryServiceResponse {}

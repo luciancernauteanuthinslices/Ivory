@@ -20,7 +20,8 @@ class BankCardShowDetailsWidget extends StatelessWidget {
     this.cardType,
   });
 
-  void showAlertDialog(BuildContext context, String stringToCopy, String typeOfString) async {
+  void showAlertDialog(
+      BuildContext context, String stringToCopy, String typeOfString) async {
     copyToClipboard(stringToCopy);
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -46,7 +47,8 @@ class BankCardShowDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> cardNumberParts = Format.iban(cardDetails.cardNumber).split(" ");
+    List<String> cardNumberParts =
+        Format.iban(cardDetails.cardNumber).split(" ");
 
     return SizedBox(
       width: 310,
@@ -71,7 +73,8 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                 ],
               ),
               image: DecorationImage(
-                image: AssetImage(ClientConfig.getAssetImagePath('card_logo.png')),
+                image:
+                    AssetImage(ClientConfig.getAssetImagePath('card_logo.png')),
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -93,7 +96,8 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if (cardTypeLabel != null) CardTypeLabel(cardType: cardTypeLabel!),
+                      if (cardTypeLabel != null)
+                        CardTypeLabel(cardType: cardTypeLabel!),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -107,17 +111,21 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                           children: [
                             Text(
                               "CARD NUMBER",
-                              style: ClientConfig.getTextStyleScheme().labelCaps.copyWith(color: Colors.white),
+                              style: ClientConfig.getTextStyleScheme()
+                                  .labelCaps
+                                  .copyWith(color: Colors.white),
                             ),
                             Row(
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       cardNumberParts.join(' '),
-                                      style:
-                                          ClientConfig.getTextStyleScheme().labelMedium.copyWith(color: Colors.white),
+                                      style: ClientConfig.getTextStyleScheme()
+                                          .labelMedium
+                                          .copyWith(color: Colors.white),
                                     )
                                   ],
                                 ),
@@ -136,8 +144,11 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                                       showSnackbar(
                                         context,
                                         text: "Copied to clipboard",
-                                        icon: const Icon(Icons.copy, color: Colors.white),
-                                        backgroundColor: ClientConfig.getCustomColors().neutral900,
+                                        icon: const Icon(Icons.copy,
+                                            color: Colors.white),
+                                        backgroundColor:
+                                            ClientConfig.getCustomColors()
+                                                .neutral900,
                                       );
                                     },
                                   ),
@@ -156,11 +167,15 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                               children: [
                                 Text(
                                   "EXPIRY DATE",
-                                  style: ClientConfig.getTextStyleScheme().labelCaps.copyWith(color: Colors.white),
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .labelCaps
+                                      .copyWith(color: Colors.white),
                                 ),
                                 Text(
                                   cardDetails.cardExpiry,
-                                  style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(color: Colors.white),
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .labelMedium
+                                      .copyWith(color: Colors.white),
                                 ),
                               ],
                             ),
@@ -170,15 +185,18 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                               children: [
                                 Text(
                                   "CVV",
-                                  style: ClientConfig.getTextStyleScheme().labelCaps.copyWith(color: Colors.white),
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .labelCaps
+                                      .copyWith(color: Colors.white),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
                                       cardDetails.cvv,
-                                      style:
-                                          ClientConfig.getTextStyleScheme().labelMedium.copyWith(color: Colors.white),
+                                      style: ClientConfig.getTextStyleScheme()
+                                          .labelMedium
+                                          .copyWith(color: Colors.white),
                                     ),
                                     const SizedBox(width: 8),
                                     SizedBox(
@@ -195,8 +213,11 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                                           showSnackbar(
                                             context,
                                             text: "Copied to clipboard",
-                                            icon: const Icon(Icons.copy, color: Colors.white),
-                                            backgroundColor: ClientConfig.getCustomColors().neutral900,
+                                            icon: const Icon(Icons.copy,
+                                                color: Colors.white),
+                                            backgroundColor:
+                                                ClientConfig.getCustomColors()
+                                                    .neutral900,
                                           );
                                         },
                                       ),
@@ -278,7 +299,9 @@ class CardTypeLabel extends StatelessWidget {
       ),
       child: Text(
         cardType,
-        style: ClientConfig.getTextStyleScheme().labelXSmall.copyWith(color: Colors.black, height: 1.2),
+        style: ClientConfig.getTextStyleScheme()
+            .labelXSmall
+            .copyWith(color: Colors.black, height: 1.2),
       ),
     );
   }

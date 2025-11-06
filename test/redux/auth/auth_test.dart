@@ -25,7 +25,8 @@ void main() {
     SharedPreferences.setMockInitialValues(values);
 
     TestWidgetsFlutterBinding.ensureInitialized();
-    const MethodChannel channel = MethodChannel('com.thinslices.solarisdemo/native');
+    const MethodChannel channel =
+        MethodChannel('com.thinslices.solarisdemo/native');
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
       if (methodCall.method == 'getDeviceFingerprint') {
         return 'mockDeviceFingerPrint';
@@ -46,8 +47,10 @@ void main() {
           ),
         );
 
-        final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
-        final appState = store.onChange.firstWhere((element) => element.authState is AuthCredentialsLoadedState);
+        final loadingState = store.onChange
+            .firstWhere((element) => element.authState is AuthLoadingState);
+        final appState = store.onChange.firstWhere(
+            (element) => element.authState is AuthCredentialsLoadedState);
 
         //when
         store.dispatch(LoadCredentialsCommandAction());
@@ -69,8 +72,10 @@ void main() {
           ),
         );
 
-        final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
-        final appState = store.onChange.firstWhere((element) => element.authState is AuthInitialState);
+        final loadingState = store.onChange
+            .firstWhere((element) => element.authState is AuthLoadingState);
+        final appState = store.onChange
+            .firstWhere((element) => element.authState is AuthInitialState);
 
         //when
         store.dispatch(LoadCredentialsCommandAction());
@@ -82,7 +87,8 @@ void main() {
     );
   });
   group("Init Authentication", () {
-    test("Should authenticate the user without bound device succesfully", () async {
+    test("Should authenticate the user without bound device succesfully",
+        () async {
       final Map<String, Object> values = <String, Object>{
         'deviceId': '',
         'email': 'email',
@@ -106,21 +112,28 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.authState is AuthenticationInitializedState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.authState is AuthenticationInitializedState);
 
       //when
       store.dispatch(
-        InitUserAuthenticationCommandAction(email: "email", password: "password"),
+        InitUserAuthenticationCommandAction(
+            email: "email", password: "password"),
       );
 
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthenticationInitializedState>());
-      expect(((await appState).authState as AuthenticationInitializedState).authType, equals(AuthType.withTan));
+      expect(
+          ((await appState).authState as AuthenticationInitializedState)
+              .authType,
+          equals(AuthType.withTan));
     });
 
-    test("Should authenticate the user with bound device succesfully", () async {
+    test("Should authenticate the user with bound device succesfully",
+        () async {
       final Map<String, Object> values = <String, Object>{
         'deviceId': 'deviceId',
         'email': 'email',
@@ -144,21 +157,29 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.authState is AuthenticationInitializedState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.authState is AuthenticationInitializedState);
 
       //when
       store.dispatch(
-        InitUserAuthenticationCommandAction(email: "email", password: "password"),
+        InitUserAuthenticationCommandAction(
+            email: "email", password: "password"),
       );
 
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthenticationInitializedState>());
-      expect(((await appState).authState as AuthenticationInitializedState).authType, equals(AuthType.withBiometrics));
+      expect(
+          ((await appState).authState as AuthenticationInitializedState)
+              .authType,
+          equals(AuthType.withBiometrics));
     });
 
-    test("If credentials are invalid should fail with AuthErrorType.invalidCredentials", () async {
+    test(
+        "If credentials are invalid should fail with AuthErrorType.invalidCredentials",
+        () async {
       //given
       final store = createTestStore(
         deviceService: FakeDeviceService(),
@@ -169,10 +190,12 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
       final appState = store.onChange.firstWhere((element) =>
           element.authState is AuthErrorState &&
-          (element.authState as AuthErrorState).errorType == AuthErrorType.invalidCredentials);
+          (element.authState as AuthErrorState).errorType ==
+              AuthErrorType.invalidCredentials);
 
       //when
       store.dispatch(
@@ -182,10 +205,12 @@ void main() {
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthErrorState>());
-      expect(((await appState).authState as AuthErrorState).errorType, equals(AuthErrorType.invalidCredentials));
+      expect(((await appState).authState as AuthErrorState).errorType,
+          equals(AuthErrorType.invalidCredentials));
     });
 
-    test("When user group is onboarding it should return AuthenticationInitializedState with authType onboarding",
+    test(
+        "When user group is onboarding it should return AuthenticationInitializedState with authType onboarding",
         () async {
       //given
       final store = createTestStore(
@@ -200,23 +225,30 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.authState is AuthenticationInitializedState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
+      final appState = store.onChange.firstWhere(
+          (element) => element.authState is AuthenticationInitializedState);
 
       //when
       store.dispatch(
-        InitUserAuthenticationCommandAction(email: "email@example.com", password: "123456"),
+        InitUserAuthenticationCommandAction(
+            email: "email@example.com", password: "123456"),
       );
 
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthenticationInitializedState>());
-      expect(((await appState).authState as AuthenticationInitializedState).authType, AuthType.onboarding);
+      expect(
+          ((await appState).authState as AuthenticationInitializedState)
+              .authType,
+          AuthType.onboarding);
     });
   });
 
   group("Authenticate", () {
-    test("Succesfully confirm authentication with a bound device (with biometrics), should return AuthenticatedState",
+    test(
+        "Succesfully confirm authentication with a bound device (with biometrics), should return AuthenticatedState",
         () async {
       //given
       final store = createTestStore(
@@ -227,8 +259,10 @@ void main() {
           authState: AuthInitialState(),
         ),
       );
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.authState is AuthenticatedState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
+      final appState = store.onChange
+          .firstWhere((element) => element.authState is AuthenticatedState);
 
       //when
       store.dispatch(AuthenticateUserCommandAction(
@@ -241,9 +275,12 @@ void main() {
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthenticatedState>());
-      expect(((await appState).authState as AuthenticatedState).authType, equals(AuthType.withBiometrics));
+      expect(((await appState).authState as AuthenticatedState).authType,
+          equals(AuthType.withBiometrics));
     });
-    test("If biometrics are not confirmed, should fail with AuthErrorType.biometricAuthFailed ", () async {
+    test(
+        "If biometrics are not confirmed, should fail with AuthErrorType.biometricAuthFailed ",
+        () async {
       //given
       final store = createTestStore(
         personService: FakePersonService(),
@@ -253,10 +290,12 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
       final appState = store.onChange.firstWhere((element) =>
           element.authState is AuthErrorState &&
-          (element.authState as AuthErrorState).errorType == AuthErrorType.biometricAuthFailed);
+          (element.authState as AuthErrorState).errorType ==
+              AuthErrorType.biometricAuthFailed);
 
       //when
       store.dispatch(AuthenticateUserCommandAction(
@@ -269,10 +308,12 @@ void main() {
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthErrorState>());
-      expect(((await appState).authState as AuthErrorState).errorType, equals(AuthErrorType.biometricAuthFailed));
+      expect(((await appState).authState as AuthErrorState).errorType,
+          equals(AuthErrorType.biometricAuthFailed));
     });
 
-    test("Succesfully confirm authentication without a bound device (only with OTP), should return AuthenticatedState",
+    test(
+        "Succesfully confirm authentication without a bound device (only with OTP), should return AuthenticatedState",
         () async {
       //given
       final store = createTestStore(
@@ -282,8 +323,10 @@ void main() {
           authState: AuthInitialState(),
         ),
       );
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
-      final appState = store.onChange.firstWhere((element) => element.authState is AuthenticatedState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
+      final appState = store.onChange
+          .firstWhere((element) => element.authState is AuthenticatedState);
 
       //when
       store.dispatch(AuthenticateUserCommandAction(
@@ -296,10 +339,13 @@ void main() {
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthenticatedState>());
-      expect(((await appState).authState as AuthenticatedState).authType, equals(AuthType.withTan));
+      expect(((await appState).authState as AuthenticatedState).authType,
+          equals(AuthType.withTan));
     });
 
-    test("If getPerson is not responding with data, should fail with AuthErrorType.cantGetPersonData", () async {
+    test(
+        "If getPerson is not responding with data, should fail with AuthErrorType.cantGetPersonData",
+        () async {
       //given
       final store = createTestStore(
         personService: FakeFailingPersonService(),
@@ -307,10 +353,12 @@ void main() {
           authState: AuthInitialState(),
         ),
       );
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
       final appState = store.onChange.firstWhere((element) =>
           element.authState is AuthErrorState &&
-          (element.authState as AuthErrorState).errorType == AuthErrorType.cantGetPersonData);
+          (element.authState as AuthErrorState).errorType ==
+              AuthErrorType.cantGetPersonData);
 
       //when
       store.dispatch(AuthenticateUserCommandAction(
@@ -323,9 +371,11 @@ void main() {
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthErrorState>());
-      expect(((await appState).authState as AuthErrorState).errorType, equals(AuthErrorType.cantGetPersonData));
+      expect(((await appState).authState as AuthErrorState).errorType,
+          equals(AuthErrorType.cantGetPersonData));
     });
-    test("If getPersonAccount is not responding with data, should fail with AuthErrorType.cantGetPersonAccountData",
+    test(
+        "If getPersonAccount is not responding with data, should fail with AuthErrorType.cantGetPersonAccountData",
         () async {
       //given
       final store = createTestStore(
@@ -335,10 +385,12 @@ void main() {
         ),
       );
 
-      final loadingState = store.onChange.firstWhere((element) => element.authState is AuthLoadingState);
+      final loadingState = store.onChange
+          .firstWhere((element) => element.authState is AuthLoadingState);
       final appState = store.onChange.firstWhere((element) =>
           element.authState is AuthErrorState &&
-          (element.authState as AuthErrorState).errorType == AuthErrorType.cantGetPersonAccountData);
+          (element.authState as AuthErrorState).errorType ==
+              AuthErrorType.cantGetPersonAccountData);
 
       //when
       store.dispatch(AuthenticateUserCommandAction(
@@ -351,7 +403,8 @@ void main() {
       //then
       expect((await loadingState).authState, isA<AuthLoadingState>());
       expect((await appState).authState, isA<AuthErrorState>());
-      expect(((await appState).authState as AuthErrorState).errorType, equals(AuthErrorType.cantGetPersonAccountData));
+      expect(((await appState).authState as AuthErrorState).errorType,
+          equals(AuthErrorType.cantGetPersonAccountData));
     });
   });
 }

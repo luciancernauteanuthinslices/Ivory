@@ -20,10 +20,12 @@ class OnboardingContractsConfirmScreen extends StatefulWidget {
   const OnboardingContractsConfirmScreen({super.key});
 
   @override
-  State<OnboardingContractsConfirmScreen> createState() => _OnboardingContractsConfirmScreenState();
+  State<OnboardingContractsConfirmScreen> createState() =>
+      _OnboardingContractsConfirmScreenState();
 }
 
-class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsConfirmScreen> {
+class _OnboardingContractsConfirmScreenState
+    extends State<OnboardingContractsConfirmScreen> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, DocumentsViewModel>(
@@ -35,8 +37,10 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
       ),
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel is DocumentsConfirmedViewModel) {
-          Navigator.pushNamedAndRemoveUntil(context, OnboardingReferenceAccountIbanScreen.routeName, (route) => false);
-        } else if (newViewModel is DocumentsErrorViewModel || newViewModel is DocumentsConfirmErrorViewModel) {
+          Navigator.pushNamedAndRemoveUntil(context,
+              OnboardingReferenceAccountIbanScreen.routeName, (route) => false);
+        } else if (newViewModel is DocumentsErrorViewModel ||
+            newViewModel is DocumentsConfirmErrorViewModel) {
           Navigator.pushNamedAndRemoveUntil(
             context,
             OnboardingIdentityVerificationErrorScreen.routeName,
@@ -53,8 +57,10 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
             AppToolbar(
               richTextTitle: StepRichTextTitle(step: 2, totalSteps: 7),
               actions: const [AppbarLogo()],
-              backButtonAppearanceDisabled: viewModel is DocumentsConfirmingViewModel,
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              backButtonAppearanceDisabled:
+                  viewModel is DocumentsConfirmingViewModel,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
             ),
             AnimatedLinearProgressIndicator.step(current: 2, totalSteps: 7),
             const SizedBox(height: 16),
@@ -73,11 +79,13 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
   Widget _buildLoadingContent() {
     return Expanded(
       child: Padding(
-        padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+        padding: ClientConfig.getCustomClientUiSettings()
+            .defaultScreenHorizontalPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Read & confirm contracts", style: ClientConfig.getTextStyleScheme().heading2),
+            Text("Read & confirm contracts",
+                style: ClientConfig.getTextStyleScheme().heading2),
             const SizedBox(height: 24),
             Text(
               "Please bear with us a couple of seconds while we create your contracts...",
@@ -104,7 +112,10 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Skeleton(width: 24, height: 24, borderRadius: BorderRadius.circular(100)),
+                Skeleton(
+                    width: 24,
+                    height: 24,
+                    borderRadius: BorderRadius.circular(100)),
                 const SizedBox(width: 16),
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,12 +141,15 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
-            child: Text("Read & confirm contracts", style: ClientConfig.getTextStyleScheme().heading2),
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
+            child: Text("Read & confirm contracts",
+                style: ClientConfig.getTextStyleScheme().heading2),
           ),
           const SizedBox(height: 24),
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: Text.rich(
               TextSpan(
                 style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
@@ -143,12 +157,14 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
                   const TextSpan(text: "Before opening your bank account, "),
                   TextSpan(
                     text: "review and confirm ",
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(text: "our contract terms and conditions. \n"),
                   TextSpan(
                     text: "Download and read ",
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
                     text:
@@ -161,7 +177,9 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
           const SizedBox(height: 24),
           DocumentsListView(
             documents: viewModel.documents,
-            downloadingDocument: viewModel is DocumentDownloadingViewModel ? viewModel.downloadingDocument : null,
+            downloadingDocument: viewModel is DocumentDownloadingViewModel
+                ? viewModel.downloadingDocument
+                : null,
             enabled: viewModel is! DocumentsConfirmingViewModel,
             onTapDownload: (document) {
               StoreProvider.of<AppState>(context).dispatch(
@@ -174,7 +192,8 @@ class _OnboardingContractsConfirmScreenState extends State<OnboardingContractsCo
           ),
           const Spacer(),
           Padding(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             child: PrimaryButton(
               isLoading: viewModel is DocumentsConfirmingViewModel,
               onPressed: () {
@@ -220,7 +239,8 @@ class DocumentListItem extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: 16,
-          horizontal: ClientConfig.getCustomClientUiSettings().defaultScreenLeftPadding,
+          horizontal:
+              ClientConfig.getCustomClientUiSettings().defaultScreenLeftPadding,
         ),
         child: Row(
           children: [
@@ -235,15 +255,15 @@ class DocumentListItem extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: ClientConfig.getTextStyleScheme()
-                        .heading4
-                        .copyWith(color: ClientConfig.getCustomColors().neutral900),
+                    style: ClientConfig.getTextStyleScheme().heading4.copyWith(
+                        color: ClientConfig.getCustomColors().neutral900),
                   ),
                   Text(
                     "$fileSize, $fileType",
                     style: ClientConfig.getTextStyleScheme()
                         .bodySmallRegular
-                        .copyWith(color: ClientConfig.getCustomColors().neutral700),
+                        .copyWith(
+                            color: ClientConfig.getCustomColors().neutral700),
                   ),
                 ],
               ),
@@ -257,7 +277,8 @@ class DocumentListItem extends StatelessWidget {
                       strokeWidth: 3,
                     ),
                   )
-                : Icon(Icons.download_outlined, color: ClientConfig.getColorScheme().tertiary),
+                : Icon(Icons.download_outlined,
+                    color: ClientConfig.getColorScheme().tertiary),
           ],
         ),
       ),

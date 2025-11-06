@@ -27,14 +27,16 @@ class TransactionApprovalMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     final authState = store.state.authState;
-    if(authState is! AuthenticatedState) {
+    if (authState is! AuthenticatedState) {
       return;
     }
 
     if (action is AuthorizeTransactionCommandAction) {
-      final consentId = await _deviceService.getConsentId(authState.authenticatedUser.cognito.personId!);
+      final consentId = await _deviceService
+          .getConsentId(authState.authenticatedUser.cognito.personId!);
       final deviceId = await _deviceService.getDeviceId();
-      final deviceData = await _deviceFingerprintService.getDeviceFingerprint(consentId);
+      final deviceData =
+          await _deviceFingerprintService.getDeviceFingerprint(consentId);
 
       final isDeviceIdNotEmpty = deviceId != null && deviceId.isNotEmpty;
       final isDeviceDataNotEmpty = deviceData != null && deviceData.isNotEmpty;
@@ -81,7 +83,7 @@ class TransactionApprovalMiddleware extends MiddlewareClass<AppState> {
 
     if (action is RejectTransactionCommandAction) {
       final authorizeResponse = await _changeRequestService.authorizeWithDevice(
-        user:authState.authenticatedUser.cognito,
+        user: authState.authenticatedUser.cognito,
         changeRequestId: action.declineChangeRequestId,
         deviceId: action.deviceId,
         deviceData: action.deviceData,
@@ -119,7 +121,8 @@ class TransactionApprovalMiddleware extends MiddlewareClass<AppState> {
     String? consentId = await _deviceService.getConsentId(user.personId!);
 
     final isBiometricsAuthenticated =
-        await _biometricsService.authenticateWithBiometrics(message: "Please use biometric authentication.");
+        await _biometricsService.authenticateWithBiometrics(
+            message: "Please use biometric authentication.");
 
     if (consentId == null || !isBiometricsAuthenticated) {
       store.dispatch(TransactionApprovalFailedEventAction());

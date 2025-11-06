@@ -21,7 +21,8 @@ class IvoryTabBar extends StatelessWidget {
   final IvoryTabController controller;
   final List<IvoryTab> tabs;
 
-  IvoryTabBar({super.key, required this.tabs, required this.controller}) : assert(tabs.length == controller.tabsCount);
+  IvoryTabBar({super.key, required this.tabs, required this.controller})
+      : assert(tabs.length == controller.tabsCount);
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,11 @@ class IvoryTabBar extends StatelessWidget {
             Expanded(
               child: Button(
                 text: title,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                color: isActive ? Colors.white : ClientConfig.getCustomColors().neutral300,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                color: isActive
+                    ? Colors.white
+                    : ClientConfig.getCustomColors().neutral300,
                 textColor: ClientConfig.getCustomColors().neutral900,
                 borderRadius: BorderRadius.only(
                   topLeft: isFirst ? const Radius.circular(8) : Radius.zero,

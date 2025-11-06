@@ -85,7 +85,8 @@ class _IvorySelectOptionState extends State<IvorySelectOption> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.label, style: ClientConfig.getTextStyleScheme().labelSmall),
+            Text(widget.label,
+                style: ClientConfig.getTextStyleScheme().labelSmall),
             const SizedBox(height: 8),
             GestureDetector(
               onTap: _onTap,
@@ -98,7 +99,8 @@ class _IvorySelectOptionState extends State<IvorySelectOption> {
                             ? ClientConfig.getCustomColors().neutral500
                             : ClientConfig.getCustomColors().neutral400),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -109,10 +111,14 @@ class _IvorySelectOptionState extends State<IvorySelectOption> {
                       if (_controller.selectedOptions.isNotEmpty)
                         Expanded(
                           child: Text(
-                            _controller.selectedOptions.map((e) => e.textLabel).join(", "),
+                            _controller.selectedOptions
+                                .map((e) => e.textLabel)
+                                .join(", "),
                             style: ClientConfig.getTextStyleScheme()
                                 .bodyLargeRegular
-                                .copyWith(color: ClientConfig.getCustomColors().neutral900),
+                                .copyWith(
+                                    color: ClientConfig.getCustomColors()
+                                        .neutral900),
                             overflow: TextOverflow.ellipsis,
                           ),
                         )
@@ -121,7 +127,9 @@ class _IvorySelectOptionState extends State<IvorySelectOption> {
                           widget.placeholder,
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegular
-                              .copyWith(color: ClientConfig.getCustomColors().neutral500),
+                              .copyWith(
+                                  color: ClientConfig.getCustomColors()
+                                      .neutral500),
                         ),
                       const SizedBox(width: 8),
                       isLoading
@@ -130,10 +138,12 @@ class _IvorySelectOptionState extends State<IvorySelectOption> {
                               width: 16,
                               child: CircularProgressIndicator(
                                 strokeWidth: 3,
-                                color: ClientConfig.getCustomColors().neutral700,
+                                color:
+                                    ClientConfig.getCustomColors().neutral700,
                               ),
                             )
-                          : Icon(Icons.keyboard_arrow_down, color: ClientConfig.getCustomColors().neutral700),
+                          : Icon(Icons.keyboard_arrow_down,
+                              color: ClientConfig.getCustomColors().neutral700),
                     ],
                   )),
             ),
@@ -207,22 +217,28 @@ class IvorySelectOptionController extends ChangeNotifier {
 
   void toggleOptionSelection(SelectOption selectedOption, int index) {
     if (selectedOption.selected) {
-      _selectedOptions.removeWhere((element) => element.value == selectedOption.value);
+      _selectedOptions
+          .removeWhere((element) => element.value == selectedOption.value);
 
-      final optionIndex = _options.indexWhere((element) => element.value == selectedOption.value);
+      final optionIndex = _options
+          .indexWhere((element) => element.value == selectedOption.value);
       _options[optionIndex] = _options[optionIndex].copyWith(selected: false);
     } else {
       if (!multiselect) {
         _selectedOptions.clear();
-        for (int optionIndex = 0; optionIndex < _options.length; optionIndex++) {
-          _options[optionIndex] = _options[optionIndex].copyWith(selected: false);
+        for (int optionIndex = 0;
+            optionIndex < _options.length;
+            optionIndex++) {
+          _options[optionIndex] =
+              _options[optionIndex].copyWith(selected: false);
         }
       }
 
       _selectedOptions.add(selectedOption.copyWith(selected: true));
     }
 
-    _options.removeWhere((option) => selectedOptions.any((element) => element.value == option.value));
+    _options.removeWhere((option) =>
+        selectedOptions.any((element) => element.value == option.value));
     _options.insertAll(0, selectedOptions);
 
     notifyListeners();
@@ -232,9 +248,12 @@ class IvorySelectOptionController extends ChangeNotifier {
     _searchText = searchText;
 
     final filtered = List<SelectOption>.empty(growable: true);
-    for (int optionIndex = 0; optionIndex < _initialOptions.length; optionIndex++) {
+    for (int optionIndex = 0;
+        optionIndex < _initialOptions.length;
+        optionIndex++) {
       final option = _initialOptions[optionIndex];
-      final isSelected = selectedOptions.any((element) => element.value == option.value);
+      final isSelected =
+          selectedOptions.any((element) => element.value == option.value);
 
       if (!option.textLabel.toLowerCase().contains(searchText.toLowerCase())) {
         continue;
@@ -257,9 +276,12 @@ class IvorySelectOptionController extends ChangeNotifier {
     _searchText = "";
 
     final options = List<SelectOption>.empty(growable: true);
-    for (int optionIndex = 0; optionIndex < _initialOptions.length; optionIndex++) {
+    for (int optionIndex = 0;
+        optionIndex < _initialOptions.length;
+        optionIndex++) {
       final option = _initialOptions[optionIndex];
-      final isSelected = selectedOptions.any((element) => element.value == option.value);
+      final isSelected =
+          selectedOptions.any((element) => element.value == option.value);
 
       if (isSelected) {
         options.insert(0, option.copyWith(selected: true));

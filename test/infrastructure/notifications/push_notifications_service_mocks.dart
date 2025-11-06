@@ -7,10 +7,12 @@ import 'package:solarisdemo/redux/app_state.dart';
 
 class MockReduxStore extends Mock implements Store<AppState> {
   @override
-  dynamic dispatch(dynamic action) => super.noSuchMethod(Invocation.method(#dispatch, [action]));
+  dynamic dispatch(dynamic action) =>
+      super.noSuchMethod(Invocation.method(#dispatch, [action]));
 }
 
-class MockFlutterLocalNotificationsPlugin extends Mock implements FlutterLocalNotificationsPlugin {
+class MockFlutterLocalNotificationsPlugin extends Mock
+    implements FlutterLocalNotificationsPlugin {
   @override
   Future<void> cancelAll() async {
     return super.noSuchMethod(
@@ -21,7 +23,8 @@ class MockFlutterLocalNotificationsPlugin extends Mock implements FlutterLocalNo
   }
 }
 
-class MockPushNotificationStorageService extends Mock implements PushNotificationStorageService {
+class MockPushNotificationStorageService extends Mock
+    implements PushNotificationStorageService {
   @override
   Future<void> add(String jsonMessageData) {
     return super.noSuchMethod(

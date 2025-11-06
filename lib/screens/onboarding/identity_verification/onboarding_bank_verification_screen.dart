@@ -12,10 +12,12 @@ class OnboardingBankVerificationScreen extends StatefulWidget {
   const OnboardingBankVerificationScreen({super.key});
 
   @override
-  State<OnboardingBankVerificationScreen> createState() => _OnboardingBankVerificationScreenState();
+  State<OnboardingBankVerificationScreen> createState() =>
+      _OnboardingBankVerificationScreenState();
 }
 
-class _OnboardingBankVerificationScreenState extends State<OnboardingBankVerificationScreen> {
+class _OnboardingBankVerificationScreenState
+    extends State<OnboardingBankVerificationScreen> {
   late WebViewController controller;
   bool pageLoaded = false;
 
@@ -39,7 +41,9 @@ class _OnboardingBankVerificationScreenState extends State<OnboardingBankVerific
 
             if (url != null && url.endsWith("?success")) {
               Navigator.pushNamedAndRemoveUntil(
-                  context, OnboardingReviewUpdatedContractsScreen.routeName, (route) => false);
+                  context,
+                  OnboardingReviewUpdatedContractsScreen.routeName,
+                  (route) => false);
             }
           },
         ),
@@ -54,19 +58,21 @@ class _OnboardingBankVerificationScreenState extends State<OnboardingBankVerific
       backgroundColor: Colors.white,
       body: StoreConnector<AppState, OnboardingIdentityVerificationViewModel>(
         converter: (store) => OnboardingIdentityVerificationPresenter.present(
-          identityVerificationState: store.state.onboardingIdentityVerificationState,
+          identityVerificationState:
+              store.state.onboardingIdentityVerificationState,
         ),
         onInitialBuild: (viewModel) {
           if (viewModel.urlForIntegration != null) {
             controller.loadRequest(Uri.parse(viewModel.urlForIntegration!));
           }
         },
-        builder: (context, viewModel) => pageLoaded && viewModel.urlForIntegration != null
-            ? GestureDetector(
-                onVerticalDragUpdate: (dragUpdateDetails) {},
-                child: WebViewWidget(controller: controller),
-              )
-            : const Center(child: CircularLoadingIndicator(width: 128)),
+        builder: (context, viewModel) =>
+            pageLoaded && viewModel.urlForIntegration != null
+                ? GestureDetector(
+                    onVerticalDragUpdate: (dragUpdateDetails) {},
+                    child: WebViewWidget(controller: controller),
+                  )
+                : const Center(child: CircularLoadingIndicator(width: 128)),
       ),
     );
   }

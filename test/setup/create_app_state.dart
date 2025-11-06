@@ -63,34 +63,46 @@ AppState createAppState({
   return AppState(
     transactionsState: transactionsState ?? TransactionsInitialState(),
     creditLineState: creditLineState ?? CreditLineInitialState(),
-    repaymentReminderState: repaymentReminderState ?? RepaymentReminderInitialState(),
+    repaymentReminderState:
+        repaymentReminderState ?? RepaymentReminderInitialState(),
     cardApplicationState: cardApplicationState ?? CardApplicationInitialState(),
     billsState: billsState ?? BillsInitialState(),
     moreCreditState: moreCreditState ?? MoreCreditInitialState(),
     bankCardState: bankCardState ?? BankCardInitialState(),
     bankCardsState: bankCardsState ?? BankCardsInitialState(),
     categoriesState: categoriesState ?? CategoriesInitialState(),
-    referenceAccountState: referenceAccountState ?? ReferenceAccountInitialState(),
+    referenceAccountState:
+        referenceAccountState ?? ReferenceAccountInitialState(),
     personAccountState: personAccountState ?? PersonAccountInitialState(),
     transferState: transferState ?? TransferInitialState(),
     deviceBindingState: deviceBindingState ?? DeviceBindingInitialState(),
     notificationState: notificationState ?? NotificationInitialState(),
-    transactionApprovalState: transactionApprovalState ?? TransactionApprovalInitialState(),
+    transactionApprovalState:
+        transactionApprovalState ?? TransactionApprovalInitialState(),
     addCardInfoState: addCardInfoState ?? AddCardInfoInitialState(),
     accountSummaryState: accountSummaryState ?? AccountSummaryInitialState(),
     authState: authState ?? AuthInitialState(),
-    homePageTransactionsState: homePageTransactionsState ?? TransactionsInitialState(),
-    onboardingProgressState: onboardingProgressState ?? OnboardingProgressInitialLoadingState(),
-    onboardingSignupState: onboardingSignupState ?? const OnboardingSignupState(),
-    onboardingPersonalDetailsState: onboardingPersonalDetailsState ?? const OnboardingPersonalDetailsState(),
+    homePageTransactionsState:
+        homePageTransactionsState ?? TransactionsInitialState(),
+    onboardingProgressState:
+        onboardingProgressState ?? OnboardingProgressInitialLoadingState(),
+    onboardingSignupState:
+        onboardingSignupState ?? const OnboardingSignupState(),
+    onboardingPersonalDetailsState: onboardingPersonalDetailsState ??
+        const OnboardingPersonalDetailsState(),
     citySuggestionsState: citySuggestionsState ?? CitySuggestionsInitialState(),
-    addressSuggestionsState: addressSuggestionsState ?? AddressSuggestionsInitialState(),
-    onboardingFinancialDetailsState: onboardingFinancialDetailsState ?? const OnboardingFinancialDetailsState(),
+    addressSuggestionsState:
+        addressSuggestionsState ?? AddressSuggestionsInitialState(),
+    onboardingFinancialDetailsState: onboardingFinancialDetailsState ??
+        const OnboardingFinancialDetailsState(),
     documentsState: documentsState ?? DocumentsInitialLoadingState(),
-    downloadDocumentState: downloadDocumentState ?? DownloadDocumentInitialState(),
-    confirmDocumentsState: confirmDocumentsState ?? ConfirmDocumentsInitialState(),
-    onboardingIdentityVerificationState:
-        onboardingIdentityVerificationState ?? const OnboardingIdentityVerificationState(),
-    onboardingCardConfigurationState: onboardingCardConfigurationState ?? OnboardingCardConfigurationInitialState(),
+    downloadDocumentState:
+        downloadDocumentState ?? DownloadDocumentInitialState(),
+    confirmDocumentsState:
+        confirmDocumentsState ?? ConfirmDocumentsInitialState(),
+    onboardingIdentityVerificationState: onboardingIdentityVerificationState ??
+        const OnboardingIdentityVerificationState(),
+    onboardingCardConfigurationState: onboardingCardConfigurationState ??
+        OnboardingCardConfigurationInitialState(),
   );
 }

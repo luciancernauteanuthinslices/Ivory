@@ -10,7 +10,8 @@ import 'change_repayment_mocks.dart';
 void main() {
   final authState = AuthStatePlaceholder.loggedInState();
 
-  test('When asking to fetch card application the first time you enter the screen it should have a loading state',
+  test(
+      'When asking to fetch card application the first time you enter the screen it should have a loading state',
       () async {
     //given
     final store = createTestStore(
@@ -29,7 +30,8 @@ void main() {
     expect(await appState, false);
   });
 
-  test('When fetching minimum amount is failing should update with error', () async {
+  test('When fetching minimum amount is failing should update with error',
+      () async {
     //given
     final store = createTestStore(
       cardApplicationService: FakeFailingCardApplicationService(),
@@ -38,16 +40,19 @@ void main() {
         authState: authState,
       ),
     );
-    final appState = store.onChange.firstWhere((element) => element.cardApplicationState is CardApplicationErrorState);
+    final appState = store.onChange.firstWhere(
+        (element) => element.cardApplicationState is CardApplicationErrorState);
 
     //when
     store.dispatch(GetCardApplicationCommandAction());
 
     //then
-    expect((await appState).cardApplicationState, isA<CardApplicationErrorState>());
+    expect((await appState).cardApplicationState,
+        isA<CardApplicationErrorState>());
   });
 
-  test('When updating minimum amount is failing should update with error', () async {
+  test('When updating minimum amount is failing should update with error',
+      () async {
     //given
     final store = createTestStore(
       cardApplicationService: FakeFailingCardApplicationService(),
@@ -56,7 +61,8 @@ void main() {
         authState: authState,
       ),
     );
-    final appState = store.onChange.firstWhere((element) => element.cardApplicationState is CardApplicationErrorState);
+    final appState = store.onChange.firstWhere(
+        (element) => element.cardApplicationState is CardApplicationErrorState);
 
     //when
     store.dispatch(UpdateCardApplicationCommandAction(
@@ -66,10 +72,13 @@ void main() {
     ));
 
     //then
-    expect((await appState).cardApplicationState, isA<CardApplicationErrorState>());
+    expect((await appState).cardApplicationState,
+        isA<CardApplicationErrorState>());
   });
 
-  test('When fetching minimum amount is successful should update with fetched data', () async {
+  test(
+      'When fetching minimum amount is successful should update with fetched data',
+      () async {
     //given
     final store = createTestStore(
       cardApplicationService: FakeCardApplicationService(),
@@ -78,13 +87,14 @@ void main() {
         authState: authState,
       ),
     );
-    final appState =
-        store.onChange.firstWhere((element) => element.cardApplicationState is CardApplicationFetchedState);
+    final appState = store.onChange.firstWhere((element) =>
+        element.cardApplicationState is CardApplicationFetchedState);
 
     //when
     store.dispatch(GetCardApplicationCommandAction());
 
     //then
-    expect((await appState).cardApplicationState, isA<CardApplicationFetchedState>());
+    expect((await appState).cardApplicationState,
+        isA<CardApplicationFetchedState>());
   });
 }

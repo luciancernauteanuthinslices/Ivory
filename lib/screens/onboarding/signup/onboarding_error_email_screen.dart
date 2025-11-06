@@ -25,12 +25,14 @@ class OnboardingErrorEmailScreen extends StatelessWidget {
       body: Column(
         children: [
           AppToolbar(
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             backButtonEnabled: false,
           ),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 children: [
                   Align(
@@ -48,14 +50,18 @@ class OnboardingErrorEmailScreen extends StatelessWidget {
                     builder: (context, viewModel) {
                       return Text.rich(
                         TextSpan(
-                          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
                           children: [
                             const TextSpan(text: 'The email address '),
                             TextSpan(
                               text: viewModel.signupAttributes.email,
-                              style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
                             ),
-                            const TextSpan(text: ' is already in use. Please choose a different one and try again.'),
+                            const TextSpan(
+                                text:
+                                    ' is already in use. Please choose a different one and try again.'),
                           ],
                         ),
                       );
@@ -80,7 +86,10 @@ class OnboardingErrorEmailScreen extends StatelessWidget {
                     child: PrimaryButton(
                         text: "Go to email address",
                         onPressed: () {
-                          Navigator.popUntil(context, ModalRoute.withName(OnboardingEmailScreen.routeName));
+                          Navigator.popUntil(
+                              context,
+                              ModalRoute.withName(
+                                  OnboardingEmailScreen.routeName));
                         }),
                   ),
                   const SizedBox(height: 16),

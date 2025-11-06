@@ -9,7 +9,8 @@ class AuthErrorScreen extends StatelessWidget {
   final String title;
   final String message;
 
-  const AuthErrorScreen({super.key, required this.message, required this.title});
+  const AuthErrorScreen(
+      {super.key, required this.message, required this.title});
 
   @override
   Widget build(BuildContext context) {

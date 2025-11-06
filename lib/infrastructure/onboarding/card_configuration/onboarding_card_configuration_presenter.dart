@@ -6,9 +6,11 @@ import '../../../redux/onboarding/card_configuration/onboarding_card_configurati
 class OnboardingCardConfigurationPresenter {
   static OnboardingCardConfigurationViewModel presentCardConfiguration(
       {required OnboardingCardConfigurationState cardConfigurationState}) {
-    if (cardConfigurationState is OnboardingCardConfigurationGenericErrorState) {
+    if (cardConfigurationState
+        is OnboardingCardConfigurationGenericErrorState) {
       return OnboardingCardConfigurationGenericErrorViewModel();
-    } else if (cardConfigurationState is OnboardingCardConfigurationGenericSuccessState) {
+    } else if (cardConfigurationState
+        is OnboardingCardConfigurationGenericSuccessState) {
       return OnboardingCardConfigurationGenericSuccessViewModel();
     } else if (cardConfigurationState is WithCardholderNameState) {
       return WithCardholderNameViewModel(
@@ -22,14 +24,17 @@ class OnboardingCardConfigurationPresenter {
         expiryDate: cardConfigurationState.expiryDate,
         isLoading: cardConfigurationState.isLoading,
       );
-    } else if (cardConfigurationState is OnboardingCreditCardApplicationFetchedState) {
+    } else if (cardConfigurationState
+        is OnboardingCreditCardApplicationFetchedState) {
       return OnboardingCreditCardApplicationFetchedViewModel(
         cardApplication: cardConfigurationState.cardApplication,
         isLoading: cardConfigurationState.isLoading,
       );
-    } else if (cardConfigurationState is OnboardingGetCreditCardApplicationLoadingState) {
+    } else if (cardConfigurationState
+        is OnboardingGetCreditCardApplicationLoadingState) {
       return OnboardingGetCreditCardApplicationLoadingViewModel();
-    } else if (cardConfigurationState is OnboardingCreditCardApplicationUpdatedState) {
+    } else if (cardConfigurationState
+        is OnboardingCreditCardApplicationUpdatedState) {
       return OnboardingCreditCardApplicationUpdatedViewModel(
         cardApplication: cardConfigurationState.cardApplication,
       );
@@ -44,11 +49,14 @@ abstract class OnboardingCardConfigurationViewModel extends Equatable {
   List<Object?> get props => [];
 }
 
-class OnboardingCardConfigurationInitialViewModel extends OnboardingCardConfigurationViewModel {}
+class OnboardingCardConfigurationInitialViewModel
+    extends OnboardingCardConfigurationViewModel {}
 
-class OnboardingCardConfigurationGenericErrorViewModel extends OnboardingCardConfigurationViewModel {}
+class OnboardingCardConfigurationGenericErrorViewModel
+    extends OnboardingCardConfigurationViewModel {}
 
-class OnboardingCardConfigurationGenericSuccessViewModel extends OnboardingCardConfigurationViewModel {}
+class OnboardingCardConfigurationGenericSuccessViewModel
+    extends OnboardingCardConfigurationViewModel {}
 
 class WithCardholderNameViewModel extends OnboardingCardConfigurationViewModel {
   final String cardholderName;
@@ -80,7 +88,8 @@ class WithCardInfoViewModel extends OnboardingCardConfigurationViewModel {
   List<Object?> get props => [cardholderName, maskedPAN, expiryDate, isLoading];
 }
 
-class OnboardingCreditCardApplicationFetchedViewModel extends OnboardingCardConfigurationViewModel {
+class OnboardingCreditCardApplicationFetchedViewModel
+    extends OnboardingCardConfigurationViewModel {
   final CreditCardApplication cardApplication;
   final bool isLoading;
 
@@ -93,9 +102,11 @@ class OnboardingCreditCardApplicationFetchedViewModel extends OnboardingCardConf
   List<Object?> get props => [cardApplication, isLoading];
 }
 
-class OnboardingGetCreditCardApplicationLoadingViewModel extends OnboardingCardConfigurationViewModel {}
+class OnboardingGetCreditCardApplicationLoadingViewModel
+    extends OnboardingCardConfigurationViewModel {}
 
-class OnboardingCreditCardApplicationUpdatedViewModel extends OnboardingCardConfigurationViewModel {
+class OnboardingCreditCardApplicationUpdatedViewModel
+    extends OnboardingCardConfigurationViewModel {
   final CreditCardApplication cardApplication;
 
   OnboardingCreditCardApplicationUpdatedViewModel({

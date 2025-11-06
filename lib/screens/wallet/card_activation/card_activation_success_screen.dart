@@ -20,8 +20,9 @@ class BankCardDetailsActivationSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        (StoreProvider.of<AppState>(context).state.authState as AuthenticatedState).authenticatedUser;
+    final user = (StoreProvider.of<AppState>(context).state.authState
+            as AuthenticatedState)
+        .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
         converter: (store) => BankCardPresenter.presentBankCard(
@@ -31,7 +32,8 @@ class BankCardDetailsActivationSuccessScreen extends StatelessWidget {
         builder: (context, viewModel) {
           return ScreenScaffold(
             body: Padding(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+              padding:
+                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +84,8 @@ class BankCardDetailsActivationSuccessScreen extends StatelessWidget {
                           context,
                           ModalRoute.withName(HomeScreen.routeName),
                         );
-                        StoreProvider.of<AppState>(context).dispatch(GetBankCardCommandAction(
+                        StoreProvider.of<AppState>(context)
+                            .dispatch(GetBankCardCommandAction(
                           cardId: viewModel.bankCard!.id,
                           forceReloadCardData: true,
                         ));

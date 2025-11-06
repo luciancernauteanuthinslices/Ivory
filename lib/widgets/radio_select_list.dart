@@ -27,7 +27,8 @@ class _RadioSelectListState extends State<RadioSelectList> {
   void initState() {
     super.initState();
 
-    _selectedValue = widget.selectedValueNotifier ?? ValueNotifier<RadioSelectItem?>(null);
+    _selectedValue =
+        widget.selectedValueNotifier ?? ValueNotifier<RadioSelectItem?>(null);
   }
 
   @override
@@ -47,8 +48,10 @@ class _RadioSelectListState extends State<RadioSelectList> {
               item: item,
               isItemSelected: isItemSelected,
               onTap: () {
-                final newSelectedValue = isItemSelected && widget.toggleable ? null : item.value;
-                widget.onSelectionChanged?.call(newSelectedValue != null ? item : null);
+                final newSelectedValue =
+                    isItemSelected && widget.toggleable ? null : item.value;
+                widget.onSelectionChanged
+                    ?.call(newSelectedValue != null ? item : null);
                 _selectedValue.value = newSelectedValue != null ? item : null;
               },
             );
@@ -123,7 +126,9 @@ class RadioIndicator extends StatelessWidget {
           width: selected ? 12 : 0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            color: selected ? selectedColor ?? ClientConfig.getColorScheme().secondary : Colors.transparent,
+            color: selected
+                ? selectedColor ?? ClientConfig.getColorScheme().secondary
+                : Colors.transparent,
           ),
         ),
       ),
@@ -136,7 +141,11 @@ class RadioSelectListTile extends StatelessWidget {
   final bool isItemSelected;
   final VoidCallback? onTap;
 
-  const RadioSelectListTile({super.key, required this.item, required this.isItemSelected, this.onTap});
+  const RadioSelectListTile(
+      {super.key,
+      required this.item,
+      required this.isItemSelected,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +154,9 @@ class RadioSelectListTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: isItemSelected ? ClientConfig.getColorScheme().secondary : ClientConfig.getCustomColors().neutral200,
+            color: isItemSelected
+                ? ClientConfig.getColorScheme().secondary
+                : ClientConfig.getCustomColors().neutral200,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -167,7 +178,9 @@ class RadioSelectListTile extends StatelessWidget {
                           item.title,
                           style: ClientConfig.getTextStyleScheme()
                               .labelMedium
-                              .copyWith(color: ClientConfig.getCustomColors().neutral900),
+                              .copyWith(
+                                  color: ClientConfig.getCustomColors()
+                                      .neutral900),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -176,10 +189,14 @@ class RadioSelectListTile extends StatelessWidget {
                         item.timeEstimation,
                         style: ClientConfig.getTextStyleScheme()
                             .labelCaps
-                            .copyWith(color: ClientConfig.getCustomColors().neutral700),
+                            .copyWith(
+                                color:
+                                    ClientConfig.getCustomColors().neutral700),
                       ),
                       const SizedBox(width: 8),
-                      Icon(Icons.alarm, size: 18, color: ClientConfig.getCustomColors().neutral700),
+                      Icon(Icons.alarm,
+                          size: 18,
+                          color: ClientConfig.getCustomColors().neutral700),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -187,7 +204,8 @@ class RadioSelectListTile extends StatelessWidget {
                     item.subtitle,
                     style: ClientConfig.getTextStyleScheme()
                         .bodySmallRegular
-                        .copyWith(color: ClientConfig.getCustomColors().neutral900),
+                        .copyWith(
+                            color: ClientConfig.getCustomColors().neutral900),
                   )
                 ],
               ),

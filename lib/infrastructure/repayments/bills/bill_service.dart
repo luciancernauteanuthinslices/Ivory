@@ -24,7 +24,8 @@ class BillService extends ApiService {
     }
   }
 
-  Future<BillServiceResponse> getBillById({required String id, required User user}) async {
+  Future<BillServiceResponse> getBillById(
+      {required String id, required User user}) async {
     this.user = user;
 
     try {

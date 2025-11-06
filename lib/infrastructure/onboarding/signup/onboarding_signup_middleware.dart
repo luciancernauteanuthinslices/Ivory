@@ -22,13 +22,15 @@ class OnboardingSignupMiddleware extends MiddlewareClass<AppState> {
       await _pushNotificationService.init(store);
       final hasPermission = await _pushNotificationService.hasPermission();
 
-      store.dispatch(UpdatedPushNotificationsPermissionEventAction(allowed: hasPermission));
+      store.dispatch(UpdatedPushNotificationsPermissionEventAction(
+          allowed: hasPermission));
     }
 
     if (action is CheckPushNotificationPermissionCommandAction) {
       final hasPermission = await _pushNotificationService.hasPermission();
 
-      store.dispatch(UpdatedPushNotificationsPermissionEventAction(allowed: hasPermission));
+      store.dispatch(UpdatedPushNotificationsPermissionEventAction(
+          allowed: hasPermission));
     }
 
     if (action is CreateAccountCommandAction) {
@@ -36,7 +38,8 @@ class OnboardingSignupMiddleware extends MiddlewareClass<AppState> {
 
       final deviceToken = await _pushNotificationService.getToken();
       final tsAndCsSignedAt = DateTime.now().toUtc().toIso8601String();
-      final signupAttributes = store.state.onboardingSignupState.signupAttributes;
+      final signupAttributes =
+          store.state.onboardingSignupState.signupAttributes;
 
       final response = await _onboardingSignupService.createPerson(
         signupAttributes: signupAttributes,
@@ -53,7 +56,8 @@ class OnboardingSignupMiddleware extends MiddlewareClass<AppState> {
           ),
         );
       } else if (response is CreatePersonErrorResponse) {
-        store.dispatch(OnboardingSignupFailedEventAction(errorType: response.errorType));
+        store.dispatch(
+            OnboardingSignupFailedEventAction(errorType: response.errorType));
       }
     }
   }

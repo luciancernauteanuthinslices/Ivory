@@ -7,15 +7,19 @@ import 'package:solarisdemo/models/user.dart';
 
 class FakeCitySuggestionsService extends CitySuggestionsService {
   @override
-  Future<CitySuggestionsServiceResponse> fetchCities({required String countryCode, String? searchTerm}) async {
-    return FetchCitySuggestionsSuccessResponse(cities: const ['city1', 'city2']);
+  Future<CitySuggestionsServiceResponse> fetchCities(
+      {required String countryCode, String? searchTerm}) async {
+    return FetchCitySuggestionsSuccessResponse(
+        cities: const ['city1', 'city2']);
   }
 }
 
 class FakeFailingCitySuggestionsService extends CitySuggestionsService {
   @override
-  Future<CitySuggestionsServiceResponse> fetchCities({required String countryCode, String? searchTerm}) async {
-    return FetchCitySuggestionsErrorResponse(errorType: CitySuggestionsErrorType.unknown);
+  Future<CitySuggestionsServiceResponse> fetchCities(
+      {required String countryCode, String? searchTerm}) async {
+    return FetchCitySuggestionsErrorResponse(
+        errorType: CitySuggestionsErrorType.unknown);
   }
 }
 
@@ -34,14 +38,17 @@ List<AddressSuggestion> mockSuggestions = const [
 
 class FakeAddressSuggestionsService extends AddressSuggestionsService {
   @override
-  Future<AddressSuggestionsServiceResponse> getAddressSuggestions({required User user, required String query}) async {
+  Future<AddressSuggestionsServiceResponse> getAddressSuggestions(
+      {required User user, required String query}) async {
     return GetAddressSuggestionsSuccessResponse(suggestions: mockSuggestions);
   }
 }
 
 class FakeFailingAddressSuggestionsService extends AddressSuggestionsService {
   @override
-  Future<AddressSuggestionsServiceResponse> getAddressSuggestions({required User user, required String query}) async {
-    return GetAddressSuggestionsErrorResponse(errorType: AddressSuggestionsErrorType.unknown);
+  Future<AddressSuggestionsServiceResponse> getAddressSuggestions(
+      {required User user, required String query}) async {
+    return GetAddressSuggestionsErrorResponse(
+        errorType: AddressSuggestionsErrorType.unknown);
   }
 }

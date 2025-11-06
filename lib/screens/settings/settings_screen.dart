@@ -23,7 +23,8 @@ class SettingsScreen extends StatelessWidget {
         children: [
           AppToolbar(
             title: "Settings",
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
             scrollController: scrollController,
           ),
           Expanded(
@@ -34,7 +35,8 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   ScreenTitle(
                     "Settings",
-                    padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+                    padding: ClientConfig.getCustomClientUiSettings()
+                        .defaultScreenHorizontalPadding,
                   ),
                   const SizedBox(
                     height: 24,
@@ -56,7 +58,8 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Security',
                     subtitle: 'Password & device pairing',
                     rightIcon: Icons.arrow_forward_ios,
-                    onTap: () => Navigator.of(context).pushNamed(SettingsSecurityScreen.routeName),
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(SettingsSecurityScreen.routeName),
                   ),
                   const IvoryListTile(
                     leftIcon: Icons.help_outline,

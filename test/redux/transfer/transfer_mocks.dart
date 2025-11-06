@@ -15,7 +15,8 @@ class FakeTransferService extends TransferService {
       transferAuthorizationRequest: TransferAuthorizationRequest(
         id: '31e02b4d5fc5304adb72fa496ee5c777csc',
         status: 'CONFIRMATION_REQUIRED',
-        confirmUrl: '/change_requests/31e02b4d5fc5304adb72fa496ee5c777csc/confirm',
+        confirmUrl:
+            '/change_requests/31e02b4d5fc5304adb72fa496ee5c777csc/confirm',
         stringToSign: null,
       ),
     );

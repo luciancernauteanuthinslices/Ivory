@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:solarisdemo/config.dart';
 import 'package:solarisdemo/widgets/button.dart';
@@ -19,13 +16,12 @@ class SignAndConfirmScreen extends StatefulWidget {
   State<SignAndConfirmScreen> createState() => _SignAndCofirmState();
 }
 
-class _SignAndCofirmState extends State<SignAndConfirmScreen> {  
+class _SignAndCofirmState extends State<SignAndConfirmScreen> {
   bool _canContinue = true;
-
 
   @override
   Widget build(BuildContext context) {
-  return ScreenScaffold(
+    return ScreenScaffold(
       body: Padding(
         padding: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
         child: Column(
@@ -43,44 +39,48 @@ class _SignAndCofirmState extends State<SignAndConfirmScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             Container(
-            decoration: BoxDecoration(
-              color: ClientConfig.getCustomColors().neutral100,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                const SizedBox(width: 8.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Adding',
-                      style: TextStyle(
-                        color: ClientConfig.getCustomColors().neutral500,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
+              decoration: BoxDecoration(
+                color: ClientConfig.getCustomColors().neutral100,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  const SizedBox(width: 8.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Adding',
+                        style: TextStyle(
+                          color: ClientConfig.getCustomColors().neutral500,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: Format.currencyWithSymbol(1000.000),
-                            style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(color: ClientConfig.getCustomColors().neutral800, fontSize: 16),
-                          ),
-                        ],
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: Format.currencyWithSymbol(1000.000),
+                              style: ClientConfig.getTextStyleScheme()
+                                  .labelSmall
+                                  .copyWith(
+                                      color: ClientConfig.getCustomColors()
+                                          .neutral800,
+                                      fontSize: 16),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),                
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 16.0),
-          Container(
+            SizedBox(height: 16.0),
+            Container(
               decoration: BoxDecoration(
                 color: ClientConfig.getCustomColors().neutral100,
                 borderRadius: BorderRadius.circular(8.0),
@@ -119,14 +119,12 @@ class _SignAndCofirmState extends State<SignAndConfirmScreen> {
                         ),
                       ),
                     ],
-                  ),                
+                  ),
                 ],
               ),
             ),
-
             SizedBox(height: 24.0),
             ScheduleContainer(),
-
             Spacer(),
             SizedBox(
               width: double.infinity,
@@ -137,9 +135,9 @@ class _SignAndCofirmState extends State<SignAndConfirmScreen> {
                 color: ClientConfig.getColorScheme().tertiary,
                 textColor: ClientConfig.getColorScheme().surface,
                 onPressed: () {
-                   Navigator.pushNamed(
-                      context,
-                      TopUpSuccessfulScreen.routeName,   
+                  Navigator.pushNamed(
+                    context,
+                    TopUpSuccessfulScreen.routeName,
                   );
                 },
               ),
@@ -153,7 +151,6 @@ class _SignAndCofirmState extends State<SignAndConfirmScreen> {
 }
 
 class ScheduleContainer extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,11 +167,12 @@ class ScheduleContainer extends StatelessWidget {
             size: 24,
           ),
           SizedBox(width: 8),
-          Text('Schedule later',
-           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-           ),
-           Spacer(),
-           IvorySwitch(),
+          Text(
+            'Schedule later',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+          Spacer(),
+          IvorySwitch(),
         ],
       ),
     );

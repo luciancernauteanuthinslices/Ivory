@@ -60,12 +60,15 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
 
     _controller = widget.controller ?? TextEditingController();
 
-    final [digitsText, decimalsText] = _getFormattedTextValues(_controller.text);
+    final [digitsText, decimalsText] =
+        _getFormattedTextValues(_controller.text);
 
-    _digitsController = TextEditingController(text: _controller.text.isNotEmpty ? digitsText : "");
+    _digitsController = TextEditingController(
+        text: _controller.text.isNotEmpty ? digitsText : "");
     _digitsFocusNode = widget.focusNode ?? FocusNode();
 
-    _decimalsController = TextEditingController(text: _controller.text.isNotEmpty ? decimalsText : "");
+    _decimalsController = TextEditingController(
+        text: _controller.text.isNotEmpty ? decimalsText : "");
     _decimalsFocusNode = FocusNode();
 
     _digitsController.addListener(_updateControllerValue);
@@ -76,7 +79,10 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
   }
 
   double get doubleValue {
-    final digitsText = _digitsController.text.replaceAll(widget.currencySymbol, "").replaceAll(",", "").trim();
+    final digitsText = _digitsController.text
+        .replaceAll(widget.currencySymbol, "")
+        .replaceAll(",", "")
+        .trim();
     final decimalsText = _decimalsController.text;
 
     final digits = int.tryParse(digitsText) ?? 0;
@@ -108,10 +114,12 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
       return;
     }
 
-    if (_digitsController.text.length == singleDigitWithCurrencySymbol && _decimalsController.text.isEmpty) {
+    if (_digitsController.text.length == singleDigitWithCurrencySymbol &&
+        _decimalsController.text.isEmpty) {
       _decimalsController.text = formatted[1];
     }
-    if (_decimalsController.text.length == singleDigit && _digitsController.text.isEmpty) {
+    if (_decimalsController.text.length == singleDigit &&
+        _digitsController.text.isEmpty) {
       _digitsController.text = formatted[0];
     }
 
@@ -164,7 +172,8 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
                   if (newValue.text.endsWith(".")) {
                     _decimalsFocusNode.requestFocus();
                     _decimalsController.text = "";
-                    _decimalsController.selection = const TextSelection.collapsed(offset: 0);
+                    _decimalsController.selection =
+                        const TextSelection.collapsed(offset: 0);
                     return oldValue;
                   }
                   return newValue;
@@ -189,7 +198,8 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
           Text(
             ".",
             style: widget.digitsTextStyle.copyWith(
-              color: _digitsController.text.isNotEmpty || _decimalsController.text.isNotEmpty
+              color: _digitsController.text.isNotEmpty ||
+                      _decimalsController.text.isNotEmpty
                   ? widget.digitsTextStyle.color
                   : widget.hintColor,
             ),

@@ -78,7 +78,9 @@ class _FieldValidatorsState extends State<FieldValidators> {
                 const SizedBox(width: 8),
                 Text(
                   validator.label,
-                  style: ClientConfig.getTextStyleScheme().bodySmallRegular.copyWith(
+                  style: ClientConfig.getTextStyleScheme()
+                      .bodySmallRegular
+                      .copyWith(
                         color: isActive
                             ? isValid
                                 ? ClientConfig.getCustomColors().neutral900
@@ -116,7 +118,8 @@ class CustomFieldValidators {
       );
   static minNumbers(int length) => FieldValidator(
         label: '$length Number',
-        validate: (value) => value.replaceAll(RegExp(r'[^0-9]'), '').length >= length,
+        validate: (value) =>
+            value.replaceAll(RegExp(r'[^0-9]'), '').length >= length,
       );
   static uppercase() => FieldValidator(
         label: 'Uppercase',

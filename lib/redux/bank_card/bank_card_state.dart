@@ -78,8 +78,6 @@ class BankCardDetailsFetchedState extends BankCardState {
 
 class BankCardPinChangedState extends BankCardState {}
 
-
-
 abstract class BankCardsState extends Equatable {
   @override
   List<Object?> get props => [];

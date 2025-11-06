@@ -53,7 +53,8 @@ void main() {
     //given
     final bankCardState = BankCardErrorState();
     //when
-    final viewModel = BankCardPresenter.presentBankCard(bankCardState: bankCardState, user: user);
+    final viewModel = BankCardPresenter.presentBankCard(
+        bankCardState: bankCardState, user: user);
     //then
     expect(viewModel, BankCardErrorViewModel());
   });
@@ -63,9 +64,11 @@ void main() {
     final bankCardState = BankCardFetchedState(bankCard1, user);
 
     //when
-    final viewModel = BankCardPresenter.presentBankCard(bankCardState: bankCardState, user: user);
+    final viewModel = BankCardPresenter.presentBankCard(
+        bankCardState: bankCardState, user: user);
 
     //then
-    expect(viewModel, BankCardFetchedViewModel(bankCard: bankCard1, user: user));
+    expect(
+        viewModel, BankCardFetchedViewModel(bankCard: bankCard1, user: user));
   });
 }

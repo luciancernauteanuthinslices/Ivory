@@ -118,7 +118,8 @@ class FakeFailingFingerprintService extends DeviceFingerprintService {
   Future<DeviceFingerprintServiceResponse> createDeviceConsent({
     User? user,
   }) async {
-    return DeviceFingerprintServiceErrorResponse(errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+    return DeviceFingerprintServiceErrorResponse(
+        errorType: DeviceFingerprintErrorType.unableToCreateActivity);
   }
 
   @override
@@ -127,7 +128,8 @@ class FakeFailingFingerprintService extends DeviceFingerprintService {
     required DeviceActivityType activityType,
     required String deviceFingerprint,
   }) async {
-    return DeviceFingerprintServiceErrorResponse(errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+    return DeviceFingerprintServiceErrorResponse(
+        errorType: DeviceFingerprintErrorType.unableToCreateActivity);
   }
 
   @override
@@ -152,7 +154,8 @@ class FakeFailingBiometricsService extends BiometricsService {
 
 class FakeDeviceBindingService extends DeviceBindingService {
   @override
-  Future<DeviceBindingServiceResponse> getDeviceBinding({required User user}) async {
+  Future<DeviceBindingServiceResponse> getDeviceBinding(
+      {required User user}) async {
     return GetDeviceBindingSuccessResponse(
       devices: [
         Device(

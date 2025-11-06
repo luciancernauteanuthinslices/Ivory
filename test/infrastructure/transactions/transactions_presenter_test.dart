@@ -40,7 +40,11 @@ void main() {
     recordedAt: DateTime.parse("2023-07-05T09:06:02Z"),
   );
 
-  final List<Transaction> transactions = [transaction1, transaction2, transaction3];
+  final List<Transaction> transactions = [
+    transaction1,
+    transaction2,
+    transaction3
+  ];
 
   final upcomingTransactions1 = UpcomingTransaction(
     id: "6e40fbd5-d7fa-5656-bff8-e19a8f4fa540",
@@ -82,7 +86,8 @@ void main() {
     //given
     final transactionsState = TransactionsLoadingState(null);
     //when
-    final viewModel = TransactionPresenter.presentTransactions(transactionsState: transactionsState);
+    final viewModel = TransactionPresenter.presentTransactions(
+        transactionsState: transactionsState);
     //then
     expect(viewModel, const TransactionsLoadingViewModel());
   });
@@ -91,7 +96,8 @@ void main() {
     //given
     final transactionsState = TransactionsFetchedState(transactions, null);
     //when
-    final viewModel = TransactionPresenter.presentTransactions(transactionsState: transactionsState);
+    final viewModel = TransactionPresenter.presentTransactions(
+        transactionsState: transactionsState);
     //then
     expect(viewModel, TransactionsFetchedViewModel(transactions: transactions));
   });
@@ -100,17 +106,25 @@ void main() {
     //given
     final transactionsState = TransactionsErrorState();
     //when
-    final viewModel = TransactionPresenter.presentTransactions(transactionsState: transactionsState);
+    final viewModel = TransactionPresenter.presentTransactions(
+        transactionsState: transactionsState);
     //then
     expect(viewModel, TransactionsErrorViewModel());
   });
 
-  test("When fetching upcoming transactions is successful should return a list of upcoming transactions", () {
+  test(
+      "When fetching upcoming transactions is successful should return a list of upcoming transactions",
+      () {
     //given
-    final upcomingTransactionsState = UpcomingTransactionsFetchedState(upcomingTransactions, null);
+    final upcomingTransactionsState =
+        UpcomingTransactionsFetchedState(upcomingTransactions, null);
     //when
-    final viewModel = TransactionPresenter.presentTransactions(transactionsState: upcomingTransactionsState);
+    final viewModel = TransactionPresenter.presentTransactions(
+        transactionsState: upcomingTransactionsState);
     //then
-    expect(viewModel, UpcomingTransactionsFetchedViewModel(upcomingTransactions: upcomingTransactions));
+    expect(
+        viewModel,
+        UpcomingTransactionsFetchedViewModel(
+            upcomingTransactions: upcomingTransactions));
   });
 }

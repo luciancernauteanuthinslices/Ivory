@@ -9,7 +9,8 @@ class OnboardingFinancialDetailsState extends Equatable {
   final bool isCreditCardApplicationCreated;
 
   const OnboardingFinancialDetailsState({
-    this.financialDetailsAttributes = const OnboardingFinancialDetailsAttributes(),
+    this.financialDetailsAttributes =
+        const OnboardingFinancialDetailsAttributes(),
     this.isLoading = false,
     this.errorType,
     this.isCreditCardApplicationCreated = false,

@@ -36,5 +36,12 @@ class OnboardingPersonalDetailsViewModel extends Equatable {
   });
 
   @override
-  List<Object?> get props => [attributes, isLoading, tanRequestedAt, isAddressSaved, isMobileConfirmed, errorType];
+  List<Object?> get props => [
+        attributes,
+        isLoading,
+        tanRequestedAt,
+        isAddressSaved,
+        isMobileConfirmed,
+        errorType
+      ];
 }

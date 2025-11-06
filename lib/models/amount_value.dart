@@ -11,7 +11,8 @@ class AmountValue {
     required this.currency,
   });
 
-  factory AmountValue.fromRawJson(String str) => AmountValue.fromJson(json.decode(str));
+  factory AmountValue.fromRawJson(String str) =>
+      AmountValue.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 

@@ -7,11 +7,14 @@ abstract class OnboardingCardConfigurationState extends Equatable {
   List<Object?> get props => [];
 }
 
-class OnboardingCardConfigurationInitialState extends OnboardingCardConfigurationState {}
+class OnboardingCardConfigurationInitialState
+    extends OnboardingCardConfigurationState {}
 
-class OnboardingCardConfigurationGenericErrorState extends OnboardingCardConfigurationState {}
+class OnboardingCardConfigurationGenericErrorState
+    extends OnboardingCardConfigurationState {}
 
-class OnboardingCardConfigurationGenericSuccessState extends OnboardingCardConfigurationState {}
+class OnboardingCardConfigurationGenericSuccessState
+    extends OnboardingCardConfigurationState {}
 
 class WithCardholderNameState extends OnboardingCardConfigurationState {
   final String cardholderName;
@@ -43,9 +46,11 @@ class WithCardInfoState extends OnboardingCardConfigurationState {
   List<Object?> get props => [cardholderName, maskedPAN, expiryDate, isLoading];
 }
 
-class OnboardingGetCreditCardApplicationLoadingState extends OnboardingCardConfigurationState {}
+class OnboardingGetCreditCardApplicationLoadingState
+    extends OnboardingCardConfigurationState {}
 
-class OnboardingCreditCardApplicationFetchedState extends OnboardingCardConfigurationState {
+class OnboardingCreditCardApplicationFetchedState
+    extends OnboardingCardConfigurationState {
   final CreditCardApplication cardApplication;
   final bool isLoading;
 
@@ -58,9 +63,11 @@ class OnboardingCreditCardApplicationFetchedState extends OnboardingCardConfigur
   List<Object?> get props => [cardApplication, isLoading];
 }
 
-class OnboardingUpdateCreditCardApplicationLoadingState extends OnboardingCardConfigurationState {}
+class OnboardingUpdateCreditCardApplicationLoadingState
+    extends OnboardingCardConfigurationState {}
 
-class OnboardingCreditCardApplicationUpdatedState extends OnboardingCardConfigurationState {
+class OnboardingCreditCardApplicationUpdatedState
+    extends OnboardingCardConfigurationState {
   final CreditCardApplication cardApplication;
 
   OnboardingCreditCardApplicationUpdatedState({

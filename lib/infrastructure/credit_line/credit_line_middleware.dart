@@ -15,16 +15,18 @@ class GetCreditLineMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     final authState = store.state.authState;
-    if(authState is! AuthenticatedState) {
+    if (authState is! AuthenticatedState) {
       return;
     }
 
     if (action is GetCreditLineCommandAction) {
       store.dispatch(CreditLineLoadingEventAction());
-      final response = await _creditLineService.getCreditLine(user: authState.authenticatedUser.cognito);
+      final response = await _creditLineService.getCreditLine(
+          user: authState.authenticatedUser.cognito);
 
       if (response is GetCreditLineSuccessResponse) {
-        store.dispatch(CreditLineFetchedEventAction(creditLine: response.creditLine));
+        store.dispatch(
+            CreditLineFetchedEventAction(creditLine: response.creditLine));
       } else {
         store.dispatch(CreditLineFailedEventAction());
       }

@@ -8,7 +8,10 @@ class IvoryAssetWithBadge extends StatelessWidget {
   final Widget childWidget;
   final BadgePosition childPosition;
   const IvoryAssetWithBadge(
-      {super.key, required this.childWidget, required this.isSuccess, required this.childPosition});
+      {super.key,
+      required this.childWidget,
+      required this.isSuccess,
+      required this.childPosition});
 
   static const double badgeSize = 64;
 
@@ -43,7 +46,9 @@ class IvoryAssetWithBadge extends StatelessWidget {
       return Container(
         height: IvoryAssetWithBadge.badgeSize,
         width: IvoryAssetWithBadge.badgeSize,
-        decoration: BoxDecoration(shape: BoxShape.circle, color: ClientConfig.getCustomColors().success),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: ClientConfig.getCustomColors().success),
         child: Icon(
           Icons.check_rounded,
           color: ClientConfig.getColorScheme().surface,
@@ -54,7 +59,8 @@ class IvoryAssetWithBadge extends StatelessWidget {
       return Container(
         height: IvoryAssetWithBadge.badgeSize,
         width: IvoryAssetWithBadge.badgeSize,
-        decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+        decoration:
+            const BoxDecoration(shape: BoxShape.circle, color: Colors.red),
         child: Icon(
           Icons.close_rounded,
           color: ClientConfig.getColorScheme().surface,

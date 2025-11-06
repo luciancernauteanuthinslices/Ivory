@@ -27,15 +27,22 @@ class OnboardingDateAndPlaceOfBirthScreen extends StatefulWidget {
   const OnboardingDateAndPlaceOfBirthScreen({super.key});
 
   @override
-  State<OnboardingDateAndPlaceOfBirthScreen> createState() => _OnboardingDateAndPlaceOfBirthScreenState();
+  State<OnboardingDateAndPlaceOfBirthScreen> createState() =>
+      _OnboardingDateAndPlaceOfBirthScreenState();
 }
 
-class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndPlaceOfBirthScreen> {
-  final IvoryTextFieldController _dateOfBirthController = IvoryTextFieldController();
-  final IvorySelectOptionController _selectCountryController = IvorySelectOptionController(loading: true);
-  final IvorySelectOptionController _selectCityController = IvorySelectOptionController(enabled: false);
-  final IvorySelectOptionController _selectNationalityController = IvorySelectOptionController(loading: true);
-  final ContinueButtonController _continueButtonController = ContinueButtonController();
+class _OnboardingDateAndPlaceOfBirthScreenState
+    extends State<OnboardingDateAndPlaceOfBirthScreen> {
+  final IvoryTextFieldController _dateOfBirthController =
+      IvoryTextFieldController();
+  final IvorySelectOptionController _selectCountryController =
+      IvorySelectOptionController(loading: true);
+  final IvorySelectOptionController _selectCityController =
+      IvorySelectOptionController(enabled: false);
+  final IvorySelectOptionController _selectNationalityController =
+      IvorySelectOptionController(loading: true);
+  final ContinueButtonController _continueButtonController =
+      ContinueButtonController();
   late DateTime _maxDate;
 
   final _debouncer = Debouncer(seconds: 1);
@@ -77,7 +84,8 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
 
   bool _notValidNationality() {
     final supportedNationalities = ["DE", "DEMO"];
-    return !supportedNationalities.contains(_selectNationalityController.selectedOptions.first.value);
+    return !supportedNationalities
+        .contains(_selectNationalityController.selectedOptions.first.value);
   }
 
   bool _isValidInputDate() {
@@ -108,17 +116,20 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
           AppToolbar(
             richTextTitle: StepRichTextTitle(step: 1, totalSteps: 4),
             actions: const [AppbarLogo()],
-            padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
           ),
           AnimatedLinearProgressIndicator.step(current: 1, totalSteps: 5),
           Expanded(
             child: ScrollableScreenContainer(
-              padding: ClientConfig.getCustomClientUiSettings().defaultScreenHorizontalPadding,
+              padding: ClientConfig.getCustomClientUiSettings()
+                  .defaultScreenHorizontalPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 16),
-                  Text("Date & place of birth", style: ClientConfig.getTextStyleScheme().heading2),
+                  Text("Date & place of birth",
+                      style: ClientConfig.getTextStyleScheme().heading2),
                   const SizedBox(height: 16),
                   Text(
                     "Enter your date of birth and country of birth below.",
@@ -157,14 +168,16 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                       final countryCode = option.value;
                       if (countryCode == "DEMO") {
                         _selectCityController.setOptions(const [
-                          SelectOption(value: "Demo city", textLabel: "Demo city"),
+                          SelectOption(
+                              value: "Demo city", textLabel: "Demo city"),
                         ]);
 
                         return;
                       }
 
                       StoreProvider.of<AppState>(context).dispatch(
-                        FetchCitySuggestionsCommandAction(countryCode: countryCode),
+                        FetchCitySuggestionsCommandAction(
+                            countryCode: countryCode),
                       );
                     },
                   ),
@@ -179,7 +192,8 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                         _selectCityController.setOptions([]);
                         _selectCityController.setLoading(true);
                         _selectCityController.setEnabled(false);
-                      } else if (newViewModel is CitySuggestionsFetchedViewModel) {
+                      } else if (newViewModel
+                          is CitySuggestionsFetchedViewModel) {
                         _selectCityController.setOptions(newViewModel.cities
                             .map((city) => SelectOption(
                                   textLabel: city,
@@ -188,7 +202,8 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                             .toList());
                         _selectCityController.setLoading(false);
                         _selectCityController.setEnabled(true);
-                      } else if (newViewModel is CitySuggestionsErrorViewModel) {
+                      } else if (newViewModel
+                          is CitySuggestionsErrorViewModel) {
                         _selectCityController.setOptions([]);
                         _selectCityController.setLoading(false);
                         _selectCityController.setEnabled(false);
@@ -200,7 +215,8 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                             children: [
                               Text.rich(
                                 TextSpan(
-                                  style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .bodyLargeRegular,
                                   children: [
                                     const TextSpan(
                                       text:
@@ -210,7 +226,10 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                                       text: "+49 (0)123 456789",
                                       style: ClientConfig.getTextStyleScheme()
                                           .bodyLargeRegularBold
-                                          .copyWith(color: ClientConfig.getColorScheme().secondary),
+                                          .copyWith(
+                                              color:
+                                                  ClientConfig.getColorScheme()
+                                                      .secondary),
                                     ),
                                     const TextSpan(text: "."),
                                   ],
@@ -221,13 +240,15 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                                 text: "Try again",
                                 onPressed: () {
                                   Navigator.pop(context);
-                                  if (_selectCountryController.selectedOptions.isEmpty) {
+                                  if (_selectCountryController
+                                      .selectedOptions.isEmpty) {
                                     return;
                                   }
 
                                   StoreProvider.of<AppState>(context).dispatch(
                                     FetchCitySuggestionsCommandAction(
-                                      countryCode: _selectCountryController.selectedOptions.first.value,
+                                      countryCode: _selectCountryController
+                                          .selectedOptions.first.value,
                                       searchTerm: newViewModel.searchTerm,
                                     ),
                                   );
@@ -248,11 +269,12 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                       enabledSearch: true,
                       filterOptions: false,
                       bottomSheetExpanded: true,
-                      searchFieldInitialText: viewModel is CitySuggestionsFetchedViewModel
-                          ? viewModel.searchTerm ?? ""
-                          : viewModel is CitySuggestionsFetchedViewModel
+                      searchFieldInitialText:
+                          viewModel is CitySuggestionsFetchedViewModel
                               ? viewModel.searchTerm ?? ""
-                              : "",
+                              : viewModel is CitySuggestionsFetchedViewModel
+                                  ? viewModel.searchTerm ?? ""
+                                  : "",
                       onOptionSelected: (option) {
                         onChanged();
                       },
@@ -262,13 +284,15 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
 
                           StoreProvider.of<AppState>(context).dispatch(
                             FetchCitySuggestionsCommandAction(
-                              countryCode: _selectCountryController.selectedOptions.first.value,
+                              countryCode: _selectCountryController
+                                  .selectedOptions.first.value,
                               searchTerm: value,
                             ),
                           );
                         });
                       },
-                      onBottomSheetOpened: () => FocusScope.of(context).unfocus(),
+                      onBottomSheetOpened: () =>
+                          FocusScope.of(context).unfocus(),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -296,7 +320,10 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                           onPressed: _continueButtonController.isEnabled
                               ? () {
                                   if (_notValidNationality()) {
-                                    Navigator.pushNamed(context, OnboardingNationalityNotSupportedScreen.routeName);
+                                    Navigator.pushNamed(
+                                        context,
+                                        OnboardingNationalityNotSupportedScreen
+                                            .routeName);
                                     return;
                                   }
 
@@ -304,7 +331,8 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                                     _dateOfBirthController.text,
                                     pattern: textFieldDatePattern,
                                   )) {
-                                    _dateOfBirthController.setErrorText("Invalid date of birth");
+                                    _dateOfBirthController
+                                        .setErrorText("Invalid date of birth");
                                     return;
                                   }
 
@@ -313,13 +341,19 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
                                   StoreProvider.of<AppState>(context).dispatch(
                                     SubmitOnboardingBirthInfoCommandAction(
                                       birthDate: _dateOfBirthController.text,
-                                      country: _selectCountryController.selectedOptions.first.value,
-                                      city: _selectCityController.selectedOptions.first.value,
-                                      nationality: _selectNationalityController.selectedOptions.first.value,
+                                      country: _selectCountryController
+                                          .selectedOptions.first.value,
+                                      city: _selectCityController
+                                          .selectedOptions.first.value,
+                                      nationality: _selectNationalityController
+                                          .selectedOptions.first.value,
                                     ),
                                   );
 
-                                  Navigator.pushNamed(context, OnboardingAddressOfResidenceScreen.routeName);
+                                  Navigator.pushNamed(
+                                      context,
+                                      OnboardingAddressOfResidenceScreen
+                                          .routeName);
                                 }
                               : null,
                         );
@@ -337,7 +371,8 @@ class _OnboardingDateAndPlaceOfBirthScreenState extends State<OnboardingDateAndP
   }
 
   Future<void> _loadCountries() async {
-    final List<SelectOption> options = await loadCountryPickerOptions(addPhoneCode: false);
+    final List<SelectOption> options =
+        await loadCountryPickerOptions(addPhoneCode: false);
 
     _selectCountryController.setOptions(options);
     _selectNationalityController.setOptions(options);

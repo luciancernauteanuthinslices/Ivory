@@ -20,7 +20,8 @@ class TransactionApprovalRejectedScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const AppToolbar(),
-            Text("Payment rejected!", style: ClientConfig.getTextStyleScheme().heading1),
+            Text("Payment rejected!",
+                style: ClientConfig.getTextStyleScheme().heading1),
             const SizedBox(height: 16),
             Text(
               "You rejected this payment. No money was taken from your account.",
@@ -34,7 +35,8 @@ class TransactionApprovalRejectedScreen extends StatelessWidget {
               child: PrimaryButton(
                 text: "Back to \"Home\"",
                 onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, HomeScreen.routeName, (route) => false);
                 },
               ),
             ),

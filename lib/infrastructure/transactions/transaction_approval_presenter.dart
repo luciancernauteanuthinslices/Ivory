@@ -12,15 +12,22 @@ class TransactionApprovalPresenter {
     required BankCardState bankCardState,
   }) {
     if (notificationState is NotificationTransactionApprovalState) {
-      if (transactionApprovalState is TransactionApprovalLoadingState || bankCardState is BankCardLoadingState) {
-        return WithMessageViewModel(message: notificationState.message, isLoading: true);
+      if (transactionApprovalState is TransactionApprovalLoadingState ||
+          bankCardState is BankCardLoadingState) {
+        return WithMessageViewModel(
+            message: notificationState.message, isLoading: true);
       } else if (transactionApprovalState is TransactionApprovalRejectedState) {
         return TransactionApprovalRejectedViewModel();
-      } else if (transactionApprovalState is TransactionApprovalDeviceNotBoundedState) {
-        return TransactionApprovalFailedViewModel(errorType: TransactionApprovalErrorType.unboundedDeviceError);
-      } else if (transactionApprovalState is TransactionApprovalFailedState || bankCardState is BankCardErrorState) {
-        return TransactionApprovalFailedViewModel(errorType: TransactionApprovalErrorType.unknownError);
-      } else if (transactionApprovalState is TransactionApprovalAuthorizedState &&
+      } else if (transactionApprovalState
+          is TransactionApprovalDeviceNotBoundedState) {
+        return TransactionApprovalFailedViewModel(
+            errorType: TransactionApprovalErrorType.unboundedDeviceError);
+      } else if (transactionApprovalState is TransactionApprovalFailedState ||
+          bankCardState is BankCardErrorState) {
+        return TransactionApprovalFailedViewModel(
+            errorType: TransactionApprovalErrorType.unknownError);
+      } else if (transactionApprovalState
+              is TransactionApprovalAuthorizedState &&
           bankCardState is BankCardFetchedState) {
         return WithApprovalChallengeViewModel(
           isLoading: false,
@@ -31,11 +38,13 @@ class TransactionApprovalPresenter {
           stringToSign: transactionApprovalState.stringToSign,
           changeRequestId: transactionApprovalState.changeRequestId,
         );
-      } else if (transactionApprovalState is TransactionApprovalSucceededState) {
+      } else if (transactionApprovalState
+          is TransactionApprovalSucceededState) {
         return TransactionApprovalSucceededViewModel();
       }
 
-      return WithMessageViewModel(message: notificationState.message, isLoading: true);
+      return WithMessageViewModel(
+          message: notificationState.message, isLoading: true);
     }
 
     return TransactionApprovalInitialViewModel();
@@ -47,7 +56,8 @@ abstract class TransactionApprovalViewModel extends Equatable {
   List<Object> get props => [];
 }
 
-class TransactionApprovalInitialViewModel extends TransactionApprovalViewModel {}
+class TransactionApprovalInitialViewModel
+    extends TransactionApprovalViewModel {}
 
 class WithMessageViewModel extends TransactionApprovalViewModel {
   final bool isLoading;
@@ -77,20 +87,36 @@ class WithApprovalChallengeViewModel extends WithMessageViewModel {
   });
 
   @override
-  List<Object> get props => [stringToSign, deviceId, deviceData, isLoading, message, changeRequestId, bankCard];
+  List<Object> get props => [
+        stringToSign,
+        deviceId,
+        deviceData,
+        isLoading,
+        message,
+        changeRequestId,
+        bankCard
+      ];
 }
 
-class TransactionApprovalSucceededViewModel extends TransactionApprovalViewModel {}
+class TransactionApprovalSucceededViewModel
+    extends TransactionApprovalViewModel {}
 
 class TransactionApprovalFailedViewModel extends TransactionApprovalViewModel {
   final TransactionApprovalErrorType errorType;
 
-  TransactionApprovalFailedViewModel({this.errorType = TransactionApprovalErrorType.unknownError});
+  TransactionApprovalFailedViewModel(
+      {this.errorType = TransactionApprovalErrorType.unknownError});
 
   @override
   List<Object> get props => [errorType];
 }
 
-class TransactionApprovalRejectedViewModel extends TransactionApprovalViewModel {}
+class TransactionApprovalRejectedViewModel
+    extends TransactionApprovalViewModel {}
 
-enum TransactionApprovalErrorType { unboundedDeviceError, biometricsError, rejected, unknownError }
+enum TransactionApprovalErrorType {
+  unboundedDeviceError,
+  biometricsError,
+  rejected,
+  unknownError
+}
