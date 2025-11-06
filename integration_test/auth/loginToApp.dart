@@ -28,27 +28,9 @@ class LoginToApp {
                  : dotenv.env['PASSWORD'] ?? '');
   
   Future<void> login() async {
-    // Validate credentials are loaded
-    if (email.isEmpty || password.isEmpty) {
-      // ignore: avoid_print
-      print('❌ EMAIL: "$email" (length: ${email.length})');
-      // ignore: avoid_print
-      print('❌ PASSWORD: ${password.isEmpty ? "empty" : "***"} (length: ${password.length})');
-      // ignore: avoid_print
-      print('❌ PATROL_EMAIL env: "${const String.fromEnvironment('PATROL_EMAIL', defaultValue: 'NOT_SET')}"');
-      // ignore: avoid_print
-      print('❌ dotenv EMAIL: "${dotenv.env['EMAIL'] ?? 'NOT_SET'}"');
-      throw Exception('❌ Test credentials not loaded! Checked: --dart-define PATROL_EMAIL/PATROL_PASSWORD and .env file');
-    }
-    
-    // Debug: Show which credentials are being used (safely)
-    // ignore: avoid_print
-    final maskedEmail = email.length > 3 && email.contains('@')
-        ? email.replaceRange(3, email.indexOf('@'), '***')
-        : '***@***';
-    print('🔐 Logging in with email: $maskedEmail');
-
     // expect login button to be displayed
+
+    await $.waitUntilVisible($(keys.welcomeScreen.logInButton), timeout: Duration(seconds: 10));
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
 
     // Tap on the "Log in" button

@@ -7,5 +7,5 @@ void main() {
   // Register all test groups
   cardCanBeFrozenOrUnfreeze.registerTests();
   repaymentRateIsSaved.registerTests();
-  // Add more registerTests() calls as needed
+
 }

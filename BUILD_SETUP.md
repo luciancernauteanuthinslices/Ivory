@@ -1,6 +1,6 @@
 # Build Configuration
 
-This document outlines the build configuration changes made to support the current Flutter environment while keeping dependencies as close as possible to their original versions.
+This document outlines the build configuration changes made to support the current Flutter environment for the Ivory app (old dependencies version) while keeping dependencies as close as possible to their original versions.
 
 ## Changes Made
 
@@ -20,13 +20,13 @@ This document outlines the build configuration changes made to support the curre
 ### 3. Gradle Configuration Updates
 
 #### Gradle Wrapper (`android/gradle/wrapper/gradle-wrapper.properties`)
-- **Updated:** Gradle version from `8.3` to `8.7`
+- **Updated:** Gradle version from `8.3` to `8.10`
 - **Reason:** Minimum required version for Flutter compatibility
 
 #### Android Settings (`android/settings.gradle`)
-- **Updated:** Android Gradle Plugin from `8.1.0` to `8.2.1`
+- **Updated:** Android Gradle Plugin from `8.1.0` to `8.6.0`
 - **Reason:** Required for Java 21 compatibility and modern Flutter support
-- **Note:** Kotlin version kept at `1.9.0` (warnings present but functional)
+- **Note:** Kotlin Gradle plugin set to `2.0.21` for compatibility with AGP `8.6.0`
 
 #### App Build Configuration (`android/app/build.gradle`)
 - **Added:** Core library desugaring support
@@ -46,6 +46,10 @@ This document outlines the build configuration changes made to support the curre
 #### Gradle Properties (`android/gradle.properties`)
 - **Updated:** JVM heap size from `-Xmx1536M` to `-Xmx4096M`
 - **Reason:** Prevent Java heap space errors during build
+
+#### Patrol Integration Tests
+- **Note:** Patrol creates a temporary `:integration_test` module which may miss `compileSdkVersion`
+- **Fix:** Root `android/build.gradle` applies `compileSdkVersion 34` to all Android subprojects to ensure Patrol tests build successfully
 
 ### 4. iOS Configuration
 
@@ -131,8 +135,8 @@ make release CLIENT=default
 The following warnings appear during build but do not prevent successful compilation:
 
 ### Android Warnings
-1. **Android Gradle Plugin version warning**: AGP 8.2.1 is functional but Flutter recommends 8.6.0+
-2. **Kotlin version warning**: Kotlin 1.9.0 is functional but Flutter recommends 2.1.0+
+1. **Android Gradle Plugin**: Using AGP 8.6.0 (supported by Flutter stable)
+2. **Kotlin Gradle plugin**: Using 2.0.21 for compatibility with AGP 8.6.0 (2.1.x may cause build issues)
 3. **SDK processing warning**: Version mismatch between Android Studio and command-line tools (cosmetic)
 4. **Java version warnings**: Source/target value 8 is obsolete (but required for compatibility)
 
@@ -149,8 +153,8 @@ These warnings are intentionally kept as-is to maintain compatibility with the e
 ### Android
 | Component | Original | Updated | Notes |
 |-----------|----------|---------|-------|
-| Gradle | 8.3 | 8.7 | Minimum required |
-| Android Gradle Plugin | 8.1.0 | 8.2.1 | Java 21 compatibility |
+| Gradle | 8.3 | 8.10 | Minimum required |
+| Android Gradle Plugin | 8.1.0 | 8.6.0 | Java 21 compatibility |
 | JVM Heap Size | 1536M | 4096M | Prevent build errors |
 | Core Desugaring | Not enabled | Enabled | Required by dependencies |
 
@@ -202,6 +206,36 @@ flutter clean
 flutter pub get
 flutter build apk --debug --dart-define=CLIENT=default
 ```
+
+### Gradle plugin resolution / Kotlin DSL cache errors
+If you see errors like:
+
+```
+Error resolving plugin [id: 'dev.flutter.flutter-plugin-loader']
+Could not read workspace metadata .../.gradle/caches/8.10/kotlin-dsl/accessors/.../metadata.bin
+```
+
+Fix steps:
+
+```bash
+# 1) Ensure Kotlin plugin matches AGP
+#    android/settings.gradle -> id "org.jetbrains.kotlin.android" version "2.0.21"
+
+# 2) Stop Gradle daemons
+./gradlew --stop
+
+# 3) Clear Gradle caches and project state (safe to recreate)
+rm -rf ~/.gradle/caches/8.10 ~/.gradle/kotlin ~/.gradle/.kotlin-dsl ~/.gradle/caches/journal-1 android/.gradle .gradle
+
+# 4) Clean and restore Flutter deps
+flutter clean
+flutter pub get
+
+# 5) Re-run Patrol test
+patrol test --target integration_test/all_tests_test.dart -- -r expanded
+```
+
+If the error persists, try setting Gradle wrapper to 8.7 in `android/gradle/wrapper/gradle-wrapper.properties` and repeat the steps above.
 
 **iOS:**
 ```bash

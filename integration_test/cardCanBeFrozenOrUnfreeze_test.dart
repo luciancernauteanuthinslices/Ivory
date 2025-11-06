@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 
 void registerTests() {
-  patrolTest('Check if virtual card can be frozen and unfrozen',
+  patrolTest('Check if virtual card can be frozen and unfrozen', tags: ['smoke'],
       framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive, ($) async {
 
     //build app for test
