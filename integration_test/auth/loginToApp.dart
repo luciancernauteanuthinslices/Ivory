@@ -53,7 +53,7 @@ class LoginToApp {
     }
 
     // Wait for OTP screen to appear
-    await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
+    // await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
     expect($('Verify login'), findsOneWidget);
 
     // Tap on the OTP input area to focus it
