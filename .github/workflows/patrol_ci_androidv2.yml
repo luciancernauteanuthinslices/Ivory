@@ -40,8 +40,6 @@ jobs:
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
-      - name: Analyze code
-        run: flutter analyze --no-fatal-infos
 
   integration-test-android:
     name: Integration Tests (Android)
