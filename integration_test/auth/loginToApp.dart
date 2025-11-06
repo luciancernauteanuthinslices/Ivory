@@ -49,7 +49,7 @@ class LoginToApp {
 
     // Handle permission dialog if it appears
     if (await $.native.isPermissionDialogVisible()) {
-      await $.native.grantPermissionWhenInUse();
+      await $.native.grantPermissionOnlyThisTime();
     }
 
     // Wait for OTP screen to appear
