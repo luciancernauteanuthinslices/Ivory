@@ -139,10 +139,7 @@ jobs:
             
             # Build test bundle without running (Patrol)
             echo "Building Patrol test bundle..."
-            patrol build android \
-              --target integration_test/repaymentRateIsSaved_test.dart \
-              --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" \
-              --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}"
+            patrol build android --target integration_test/repaymentRateIsSaved_test.dart --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}"
             
             # Install app granting all runtime permissions at install time (-g flag)
             echo "Installing app with permissions..."
@@ -167,11 +164,7 @@ jobs:
             
             # Run Patrol tests (will reuse installed app)
             echo "Running Patrol tests..."
-            patrol test \
-              --verbose \
-              --target integration_test/repaymentRateIsSaved_test.dart \
-              --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" \
-              --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}"
+            patrol test --verbose --target integration_test/repaymentRateIsSaved_test.dart --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}"
 
       - name: Upload test results
         if: always()
