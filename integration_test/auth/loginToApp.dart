@@ -66,9 +66,8 @@ class LoginToApp {
         // or 'Allow While Using App' / 'Allow Once' depending on the prompt
       }
     }
-    await $.pumpAndSettle();
 
-    await $.pumpAndSettle(timeout: Duration(seconds: 3));
+    // await $.pumpAndSettle(timeout: Duration(seconds: 3));
     // Wait for OTP screen to appear
     // await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
     // expect($('Verify login'), findsOneWidget);
