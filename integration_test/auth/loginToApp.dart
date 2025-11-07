@@ -51,7 +51,7 @@ class LoginToApp {
     if (await $.native.isPermissionDialogVisible()) {
       await $.native.grantPermissionOnlyThisTime();
     }
-
+    await $.pumpAndSettle(timeout: Duration(seconds: 3));
     // Wait for OTP screen to appear
     // await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
     // expect($('Verify login'), findsOneWidget);
