@@ -133,6 +133,18 @@ jobs:
             adb logcat > logcat.txt &
             flutter doctor -v
             adb devices -l
+            
+            # Wait for emulator to be fully ready
+            adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+            
+            # Build and install the app to grant permissions
+            flutter build apk --debug
+            adb install build/app/outputs/flutter-apk/app-debug.apk || echo "App already installed or install failed"
+            
+            # Pre-grant runtime permissions to avoid dialog issues on CI
+            adb shell pm grant com.thinslices.solarisdemo android.permission.POST_NOTIFICATIONS || echo "Permission already granted or not needed"
+            
+            # Run the tests
             patrol test \
               --verbose \
               --target integration_test/repaymentRateIsSaved_test.dart \
