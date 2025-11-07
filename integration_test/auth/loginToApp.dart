@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../helpers/permissionsHelper.dart';
 
 class LoginToApp {
   final PatrolIntegrationTester $;
@@ -48,25 +49,26 @@ class LoginToApp {
     await $("Continue").tap();
 
     // Handle permission dialog if it appears
-    if (await $.native
-        .isPermissionDialogVisible(timeout: const Duration(seconds: 5))) {
-      if (Platform.isAndroid) {
-        // Prefer Patrol helper
-        await $.native.grantPermissionWhenInUse();
+    // if (await $.native
+    //     .isPermissionDialogVisible()) {
+    //   if (Platform.isAndroid) {
+    //     // Prefer Patrol helper
+    //     await $.native.grantPermissionWhenInUse();
 
-        // Optional fallback in case some Android images show different labels:
-        // await $.native.tap(Selector(text: 'Allow'));
-      } else if (Platform.isIOS) {
-        // iOS: pass SpringBoard appId
-        // Prefer helper if it works for your permission type:
-        await $.native.grantPermissionWhenInUse();
+    //     // Optional fallback in case some Android images show different labels:
+    //     // await $.native.tap(Selector(text: 'Allow'));
+    //   } else if (Platform.isIOS) {
+    //     // iOS: pass SpringBoard appId
+    //     // Prefer helper if it works for your permission type:
+    //     await $.native.grantPermissionWhenInUse();
 
-        // Fallback to a direct tap if needed:
-        // await $.native.tap(Selector(text: 'Allow'), appId: 'com.apple.springboard');
-        // or 'Allow While Using App' / 'Allow Once' depending on the prompt
-      }
-    }
+    //     Fallback to a direct tap if needed:
+    //     await $.native.tap(Selector(text: 'Allow'), appId: 'com.apple.springboard');
+    //     or 'Allow While Using App' / 'Allow Once' depending on the prompt
+    //   }
+    // }
 
+    await PermissionsHelper().grantAllVisiblePermissions($);
     // await $.pumpAndSettle(timeout: Duration(seconds: 3));
     // Wait for OTP screen to appear
     // await $.waitUntilVisible($('Verify login'), timeout: Duration(seconds: 10));
