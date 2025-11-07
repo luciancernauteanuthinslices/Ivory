@@ -58,7 +58,7 @@ void registerTests() {
     // Add a small delay to ensure UI is fully settled
     await Future.delayed(const Duration(milliseconds: 500));
 
-    await $('Save changes').waitUntilVisible().tap();
+    await $(SizedBox).$('Save changes').tap();
 
     expect($("Repayment successfully changed!"), findsOneWidget);
 

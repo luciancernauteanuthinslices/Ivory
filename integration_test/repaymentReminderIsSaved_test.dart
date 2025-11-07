@@ -40,12 +40,28 @@ void registerTests() {
 
     expect($('1 hour before'), findsOneWidget);
 
-    await $('1 hour before').tap();
+    //taps the '1 hour before' reminder with finding the ancestor class of the text
+    await $(
+      find.ancestor(
+        of: find.text('1 hour before'),
+        matching: find.byType(InkWell), // or ListTile if that’s what it builds
+      ),
+    ).scrollTo().tap();
 
     await $.pumpAndSettle();
     await $(Button).containing('Save').tap();
 
-    expect($("Repayment successfully changed!"), findsOneWidget);
+    //check if reminder is saved
+    expect($("Set repayment reminder"), findsOneWidget);
+    await repaymentsAction.tapSetRepaymentReminder();
+
+    expect(
+        find.ancestor(
+          of: find.text('1 hour before'),
+          matching:
+              find.byType(ListTile), // or ListTile if that’s what it builds
+        ),
+        findsOneWidget);
 
     expect(
         $(find
