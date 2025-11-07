@@ -1,0 +1,106 @@
+﻿2025-11-07T12:32:27.7198967Z ##[group]Run subosito/flutter-action@v2
+2025-11-07T12:32:27.7199406Z with:
+2025-11-07T12:32:27.7199631Z   flutter-version: 3.35.7
+2025-11-07T12:32:27.7199883Z   channel: stable
+2025-11-07T12:32:27.7200104Z   cache: true
+2025-11-07T12:32:27.7200385Z   architecture: X64
+2025-11-07T12:32:27.7200633Z   pub-cache-path: default
+2025-11-07T12:32:27.7200885Z   dry-run: false
+2025-11-07T12:32:27.7201191Z   git-source: https://github.com/flutter/flutter.git
+2025-11-07T12:32:27.7201742Z env:
+2025-11-07T12:32:27.7201962Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.7202210Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.7202541Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7203041Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7203424Z ##[endgroup]
+2025-11-07T12:32:27.7294133Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2025-11-07T12:32:27.7294592Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2025-11-07T12:32:27.7332819Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:32:27.7333208Z env:
+2025-11-07T12:32:27.7333425Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.7333671Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.7334026Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7334536Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7334922Z ##[endgroup]
+2025-11-07T12:32:27.7471686Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2025-11-07T12:32:27.7472150Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2025-11-07T12:32:27.7472455Z [36;1m  -n '3.35.7' \[0m
+2025-11-07T12:32:27.7472708Z [36;1m  -f '' \[0m
+2025-11-07T12:32:27.7472931Z [36;1m  -a 'X64' \[0m
+2025-11-07T12:32:27.7473162Z [36;1m  -k '' \[0m
+2025-11-07T12:32:27.7473379Z [36;1m  -c '' \[0m
+2025-11-07T12:32:27.7473596Z [36;1m  -l '' \[0m
+2025-11-07T12:32:27.7473826Z [36;1m  -d 'default' \[0m
+2025-11-07T12:32:27.7474164Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2025-11-07T12:32:27.7474526Z [36;1m  stable[0m
+2025-11-07T12:32:27.7506095Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:32:27.7506457Z env:
+2025-11-07T12:32:27.7506673Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.7507091Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.7507434Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7507937Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7508328Z ##[endgroup]
+2025-11-07T12:32:27.9102137Z ##[group]Run actions/cache@v4
+2025-11-07T12:32:27.9102462Z with:
+2025-11-07T12:32:27.9102744Z   path: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:32:27.9103224Z   key: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:32:27.9103656Z   enableCrossOsArchive: false
+2025-11-07T12:32:27.9103938Z   fail-on-cache-miss: false
+2025-11-07T12:32:27.9104192Z   lookup-only: false
+2025-11-07T12:32:27.9104440Z   save-always: false
+2025-11-07T12:32:27.9104680Z env:
+2025-11-07T12:32:27.9104894Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.9105136Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.9105470Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.9105985Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.9106370Z ##[endgroup]
+2025-11-07T12:32:28.2826037Z Cache hit for: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:32:29.4269663Z Received 130023424 of 1585727500 (8.2%), 124.0 MBs/sec
+2025-11-07T12:32:30.4272095Z Received 260046848 of 1585727500 (16.4%), 124.0 MBs/sec
+2025-11-07T12:32:31.4273207Z Received 402653184 of 1585727500 (25.4%), 128.0 MBs/sec
+2025-11-07T12:32:32.4415144Z Received 595591168 of 1585727500 (37.6%), 141.5 MBs/sec
+2025-11-07T12:32:33.4419030Z Received 801112064 of 1585727500 (50.5%), 152.3 MBs/sec
+2025-11-07T12:32:34.4423384Z Received 964689920 of 1585727500 (60.8%), 152.9 MBs/sec
+2025-11-07T12:32:35.4429586Z Received 1145044992 of 1585727500 (72.2%), 155.6 MBs/sec
+2025-11-07T12:32:36.4431756Z Received 1329594368 of 1585727500 (83.8%), 158.2 MBs/sec
+2025-11-07T12:32:37.4439620Z Received 1476395008 of 1585727500 (93.1%), 156.1 MBs/sec
+2025-11-07T12:32:38.0725836Z Received 1585727500 of 1585727500 (100.0%), 156.8 MBs/sec
+2025-11-07T12:32:38.0729172Z Cache Size: ~1512 MB (1585727500 B)
+2025-11-07T12:32:38.0848678Z [command]/usr/bin/tar -xf /home/runner/work/_temp/04794834-7115-4207-b523-774b88c7cc66/cache.tzst -P -C /home/runner/work/Ivory/Ivory --use-compress-program unzstd
+2025-11-07T12:32:42.7857118Z Cache restored successfully
+2025-11-07T12:32:43.0777755Z Cache restored from key: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:32:43.2404167Z ##[group]Run actions/cache@v4
+2025-11-07T12:32:43.2404430Z with:
+2025-11-07T12:32:43.2404616Z   path: /home/runner/.pub-cache
+2025-11-07T12:32:43.2405281Z   key: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:32:43.2405982Z   enableCrossOsArchive: false
+2025-11-07T12:32:43.2406211Z   fail-on-cache-miss: false
+2025-11-07T12:32:43.2406447Z   lookup-only: false
+2025-11-07T12:32:43.2406645Z   save-always: false
+2025-11-07T12:32:43.2406820Z env:
+2025-11-07T12:32:43.2406992Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:43.2407205Z   JAVA_VERSION: 17
+2025-11-07T12:32:43.2407497Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:43.2407949Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:43.2408291Z ##[endgroup]
+2025-11-07T12:32:43.4924402Z Cache hit for: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:32:44.6662035Z Received 134217728 of 140060785 (95.8%), 120.5 MBs/sec
+2025-11-07T12:32:44.7967777Z Received 140060785 of 140060785 (100.0%), 112.1 MBs/sec
+2025-11-07T12:32:44.7969198Z Cache Size: ~134 MB (140060785 B)
+2025-11-07T12:32:44.7999796Z [command]/usr/bin/tar -xf /home/runner/work/_temp/ab753b51-eb74-4ba6-b7a8-3fc9f5d21e42/cache.tzst -P -C /home/runner/work/Ivory/Ivory --use-compress-program unzstd
+2025-11-07T12:32:46.2881830Z Cache restored successfully
+2025-11-07T12:32:46.3230250Z Cache restored from key: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:32:46.3346414Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2025-11-07T12:32:46.3346756Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2025-11-07T12:32:46.3347014Z [36;1m  -n '3.35.7' \[0m
+2025-11-07T12:32:46.3347225Z [36;1m  -a 'x64' \[0m
+2025-11-07T12:32:46.3347512Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.35.7-x64' \[0m
+2025-11-07T12:32:46.3347859Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2025-11-07T12:32:46.3348131Z [36;1m  stable[0m
+2025-11-07T12:32:46.3380765Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:32:46.3381096Z env:
+2025-11-07T12:32:46.3381500Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:46.3381719Z   JAVA_VERSION: 17
+2025-11-07T12:32:46.3382053Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:46.3382512Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:46.3382866Z ##[endgroup]

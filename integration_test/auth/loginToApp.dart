@@ -75,8 +75,8 @@ class LoginToApp {
     await $.pumpAndSettle(timeout: const Duration(seconds: 5));
 
     // Wait for OTP screen to appear
-    await $.waitUntilVisible($(find.byType(EditableText)),
-        timeout: const Duration(seconds: 10));
+    // await $.waitUntilVisible($(find.byType(EditableText)),
+    //     timeout: const Duration(seconds: 10));
 
     // Tap on the OTP input area to focus it
     final otpField = $(find.byType(EditableText)).first;

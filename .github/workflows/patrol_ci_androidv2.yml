@@ -157,9 +157,13 @@ jobs:
             adb shell pm grant com.thinslices.solarisdemo android.permission.READ_EXTERNAL_STORAGE || true
             adb shell pm grant com.thinslices.solarisdemo android.permission.WRITE_EXTERNAL_STORAGE || true
             
-            # Verify installation
-            echo "Verifying app installation..."
+            # Verify installation and permissions
+            echo "Verifying app installation and permissions..."
             adb shell pm list packages | grep com.thinslices.solarisdemo
+            
+            # Verify POST_NOTIFICATIONS permission was granted
+            echo "Checking POST_NOTIFICATIONS permission..."
+            adb shell dumpsys package com.thinslices.solarisdemo | grep "POST_NOTIFICATIONS" || echo "POST_NOTIFICATIONS permission not found in package info"
             
             # Run Patrol tests (will reuse installed app)
             echo "Running Patrol tests..."

@@ -1,0 +1,45 @@
+﻿2025-11-07T12:32:24.0623085Z Current runner version: '2.329.0'
+2025-11-07T12:32:24.0649243Z ##[group]Runner Image Provisioner
+2025-11-07T12:32:24.0650199Z Hosted Compute Agent
+2025-11-07T12:32:24.0650776Z Version: 20251016.436
+2025-11-07T12:32:24.0651672Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-07T12:32:24.0652460Z Build Date: 2025-10-15T20:44:12Z
+2025-11-07T12:32:24.0653130Z ##[endgroup]
+2025-11-07T12:32:24.0653634Z ##[group]Operating System
+2025-11-07T12:32:24.0654254Z Ubuntu
+2025-11-07T12:32:24.0654732Z 24.04.3
+2025-11-07T12:32:24.0655217Z LTS
+2025-11-07T12:32:24.0655755Z ##[endgroup]
+2025-11-07T12:32:24.0656247Z ##[group]Runner Image
+2025-11-07T12:32:24.0656824Z Image: ubuntu-24.04
+2025-11-07T12:32:24.0657288Z Version: 20251030.96.2
+2025-11-07T12:32:24.0658379Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251030.96/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-07T12:32:24.0659697Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251030.96
+2025-11-07T12:32:24.0660938Z ##[endgroup]
+2025-11-07T12:32:24.0663500Z ##[group]GITHUB_TOKEN Permissions
+2025-11-07T12:32:24.0665840Z Actions: write
+2025-11-07T12:32:24.0666398Z Attestations: write
+2025-11-07T12:32:24.0666909Z Checks: write
+2025-11-07T12:32:24.0667571Z Contents: write
+2025-11-07T12:32:24.0668100Z Deployments: write
+2025-11-07T12:32:24.0668592Z Discussions: write
+2025-11-07T12:32:24.0669230Z Issues: write
+2025-11-07T12:32:24.0669688Z Metadata: read
+2025-11-07T12:32:24.0670186Z Models: read
+2025-11-07T12:32:24.0670766Z Packages: write
+2025-11-07T12:32:24.0671427Z Pages: write
+2025-11-07T12:32:24.0671968Z PullRequests: write
+2025-11-07T12:32:24.0672571Z RepositoryProjects: write
+2025-11-07T12:32:24.0673161Z SecurityEvents: write
+2025-11-07T12:32:24.0673782Z Statuses: write
+2025-11-07T12:32:24.0674347Z ##[endgroup]
+2025-11-07T12:32:24.0676453Z Secret source: Actions
+2025-11-07T12:32:24.0677425Z Prepare workflow directory
+2025-11-07T12:32:24.1069133Z Prepare all required actions
+2025-11-07T12:32:24.1106871Z Getting action download info
+2025-11-07T12:32:24.4517381Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-11-07T12:32:24.6260599Z Download action repository 'actions/setup-java@v4' (SHA:c5195efecf7bdfc987ee8bae7a71cb8b11521c00)
+2025-11-07T12:32:25.2974498Z Download action repository 'subosito/flutter-action@v2' (SHA:fd55f4c5af5b953cc57a2be44cb082c8f6635e8e)
+2025-11-07T12:32:25.6694060Z Getting action download info
+2025-11-07T12:32:25.8054743Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-11-07T12:32:26.0274511Z Complete job name: Analyze & Unit Test

@@ -1,0 +1,1180 @@
+﻿2025-11-07T12:32:55.2696606Z Current runner version: '2.329.0'
+2025-11-07T12:32:55.2722070Z ##[group]Runner Image Provisioner
+2025-11-07T12:32:55.2722943Z Hosted Compute Agent
+2025-11-07T12:32:55.2723882Z Version: 20251016.436
+2025-11-07T12:32:55.2724662Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-07T12:32:55.2725401Z Build Date: 2025-10-15T20:44:12Z
+2025-11-07T12:32:55.2726065Z ##[endgroup]
+2025-11-07T12:32:55.2726656Z ##[group]Operating System
+2025-11-07T12:32:55.2727299Z Ubuntu
+2025-11-07T12:32:55.2727867Z 24.04.3
+2025-11-07T12:32:55.2728376Z LTS
+2025-11-07T12:32:55.2728883Z ##[endgroup]
+2025-11-07T12:32:55.2729498Z ##[group]Runner Image
+2025-11-07T12:32:55.2730537Z Image: ubuntu-24.04
+2025-11-07T12:32:55.2731185Z Version: 20251030.96.2
+2025-11-07T12:32:55.2732327Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251030.96/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-07T12:32:55.2733903Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251030.96
+2025-11-07T12:32:55.2735076Z ##[endgroup]
+2025-11-07T12:32:55.2737591Z ##[group]GITHUB_TOKEN Permissions
+2025-11-07T12:32:55.2739907Z Actions: write
+2025-11-07T12:32:55.2740833Z Attestations: write
+2025-11-07T12:32:55.2741527Z Checks: write
+2025-11-07T12:32:55.2742087Z Contents: write
+2025-11-07T12:32:55.2742690Z Deployments: write
+2025-11-07T12:32:55.2743315Z Discussions: write
+2025-11-07T12:32:55.2743875Z Issues: write
+2025-11-07T12:32:55.2744464Z Metadata: read
+2025-11-07T12:32:55.2745015Z Models: read
+2025-11-07T12:32:55.2745526Z Packages: write
+2025-11-07T12:32:55.2746222Z Pages: write
+2025-11-07T12:32:55.2746807Z PullRequests: write
+2025-11-07T12:32:55.2747387Z RepositoryProjects: write
+2025-11-07T12:32:55.2748094Z SecurityEvents: write
+2025-11-07T12:32:55.2748794Z Statuses: write
+2025-11-07T12:32:55.2749573Z ##[endgroup]
+2025-11-07T12:32:55.2752125Z Secret source: Actions
+2025-11-07T12:32:55.2753142Z Prepare workflow directory
+2025-11-07T12:32:55.3144480Z Prepare all required actions
+2025-11-07T12:32:55.3184038Z Getting action download info
+2025-11-07T12:32:55.7914032Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-11-07T12:32:55.9195815Z Download action repository 'actions/setup-java@v4' (SHA:c5195efecf7bdfc987ee8bae7a71cb8b11521c00)
+2025-11-07T12:32:56.6331196Z Download action repository 'subosito/flutter-action@v2' (SHA:fd55f4c5af5b953cc57a2be44cb082c8f6635e8e)
+2025-11-07T12:32:56.9637399Z Download action repository 'gradle/actions@v3' (SHA:d9c87d481d55275bb5441eef3fe0e46805f9ef70)
+2025-11-07T12:32:57.7973407Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-11-07T12:32:57.8979321Z Download action repository 'ReactiveCircus/android-emulator-runner@v2' (SHA:b530d96654c385303d652368551fb075bc2f0b6b)
+2025-11-07T12:32:58.3374302Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-11-07T12:32:58.5256617Z Getting action download info
+2025-11-07T12:32:58.7822121Z Complete job name: Integration Tests (Android) (29, x86_64)
+2025-11-07T12:32:58.8450507Z ##[group]Run actions/checkout@v4
+2025-11-07T12:32:58.8451119Z with:
+2025-11-07T12:32:58.8451374Z   repository: luciancernauteanuthinslices/Ivory
+2025-11-07T12:32:58.8451816Z   token: ***
+2025-11-07T12:32:58.8452025Z   ssh-strict: true
+2025-11-07T12:32:58.8452233Z   ssh-user: git
+2025-11-07T12:32:58.8452454Z   persist-credentials: true
+2025-11-07T12:32:58.8452687Z   clean: true
+2025-11-07T12:32:58.8452901Z   sparse-checkout-cone-mode: true
+2025-11-07T12:32:58.8453156Z   fetch-depth: 1
+2025-11-07T12:32:58.8453349Z   fetch-tags: false
+2025-11-07T12:32:58.8453556Z   show-progress: true
+2025-11-07T12:32:58.8453752Z   lfs: false
+2025-11-07T12:32:58.8453935Z   submodules: false
+2025-11-07T12:32:58.8454140Z   set-safe-directory: true
+2025-11-07T12:32:58.8454542Z env:
+2025-11-07T12:32:58.8454733Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:58.8454950Z   JAVA_VERSION: 17
+2025-11-07T12:32:58.8455138Z ##[endgroup]
+2025-11-07T12:32:58.9522593Z Syncing repository: luciancernauteanuthinslices/Ivory
+2025-11-07T12:32:58.9524045Z ##[group]Getting Git version info
+2025-11-07T12:32:58.9524449Z Working directory is '/home/runner/work/Ivory/Ivory'
+2025-11-07T12:32:58.9524962Z [command]/usr/bin/git version
+2025-11-07T12:32:58.9625670Z git version 2.51.2
+2025-11-07T12:32:58.9652774Z ##[endgroup]
+2025-11-07T12:32:58.9674953Z Temporarily overriding HOME='/home/runner/work/_temp/bbf3f411-73d1-460a-8c61-9641fc0609d0' before making global git config changes
+2025-11-07T12:32:58.9676053Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-07T12:32:58.9680556Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Ivory/Ivory
+2025-11-07T12:32:58.9720106Z Deleting the contents of '/home/runner/work/Ivory/Ivory'
+2025-11-07T12:32:58.9723793Z ##[group]Initializing the repository
+2025-11-07T12:32:58.9727812Z [command]/usr/bin/git init /home/runner/work/Ivory/Ivory
+2025-11-07T12:32:58.9870749Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-11-07T12:32:58.9871689Z hint: is subject to change. To configure the initial branch name to use in all
+2025-11-07T12:32:58.9872310Z hint: of your new repositories, which will suppress this warning, call:
+2025-11-07T12:32:58.9872759Z hint:
+2025-11-07T12:32:58.9873118Z hint: 	git config --global init.defaultBranch <name>
+2025-11-07T12:32:58.9873542Z hint:
+2025-11-07T12:32:58.9873997Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-11-07T12:32:58.9874912Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-11-07T12:32:58.9875617Z hint:
+2025-11-07T12:32:58.9875866Z hint: 	git branch -m <name>
+2025-11-07T12:32:58.9876150Z hint:
+2025-11-07T12:32:58.9876729Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-11-07T12:32:58.9877419Z Initialized empty Git repository in /home/runner/work/Ivory/Ivory/.git/
+2025-11-07T12:32:58.9887481Z [command]/usr/bin/git remote add origin https://github.com/luciancernauteanuthinslices/Ivory
+2025-11-07T12:32:58.9923636Z ##[endgroup]
+2025-11-07T12:32:58.9924297Z ##[group]Disabling automatic garbage collection
+2025-11-07T12:32:58.9928751Z [command]/usr/bin/git config --local gc.auto 0
+2025-11-07T12:32:58.9957151Z ##[endgroup]
+2025-11-07T12:32:58.9957797Z ##[group]Setting up auth
+2025-11-07T12:32:58.9965367Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-07T12:32:58.9995198Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-07T12:32:59.0402935Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-07T12:32:59.0433375Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-07T12:32:59.0655180Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-11-07T12:32:59.0691070Z ##[endgroup]
+2025-11-07T12:32:59.0691542Z ##[group]Fetching the repository
+2025-11-07T12:32:59.0699387Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +da535c54aca237fa4dc24a92a3d00f764cd354c9:refs/remotes/origin/test_playground
+2025-11-07T12:33:00.2130658Z From https://github.com/luciancernauteanuthinslices/Ivory
+2025-11-07T12:33:00.2133225Z  * [new ref]         da535c54aca237fa4dc24a92a3d00f764cd354c9 -> origin/test_playground
+2025-11-07T12:33:00.2174444Z ##[endgroup]
+2025-11-07T12:33:00.2175185Z ##[group]Determining the checkout info
+2025-11-07T12:33:00.2176251Z ##[endgroup]
+2025-11-07T12:33:00.2182617Z [command]/usr/bin/git sparse-checkout disable
+2025-11-07T12:33:00.2225208Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-11-07T12:33:00.2254027Z ##[group]Checking out the ref
+2025-11-07T12:33:00.2258316Z [command]/usr/bin/git checkout --progress --force -B test_playground refs/remotes/origin/test_playground
+2025-11-07T12:33:00.3558675Z Switched to a new branch 'test_playground'
+2025-11-07T12:33:00.3560157Z branch 'test_playground' set up to track 'origin/test_playground'.
+2025-11-07T12:33:00.3580854Z ##[endgroup]
+2025-11-07T12:33:00.3625393Z [command]/usr/bin/git log -1 --format=%H
+2025-11-07T12:33:00.3648804Z da535c54aca237fa4dc24a92a3d00f764cd354c9
+2025-11-07T12:33:00.3891515Z ##[group]Run actions/setup-java@v4
+2025-11-07T12:33:00.3891809Z with:
+2025-11-07T12:33:00.3892018Z   distribution: temurin
+2025-11-07T12:33:00.3892245Z   java-version: 17
+2025-11-07T12:33:00.3892452Z   java-package: jdk
+2025-11-07T12:33:00.3892671Z   check-latest: false
+2025-11-07T12:33:00.3892879Z   server-id: github
+2025-11-07T12:33:00.3893095Z   server-username: GITHUB_ACTOR
+2025-11-07T12:33:00.3893344Z   server-password: GITHUB_TOKEN
+2025-11-07T12:33:00.3893611Z   overwrite-settings: true
+2025-11-07T12:33:00.3893858Z   job-status: success
+2025-11-07T12:33:00.3894218Z   token: ***
+2025-11-07T12:33:00.3894411Z env:
+2025-11-07T12:33:00.3894598Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:00.3894829Z   JAVA_VERSION: 17
+2025-11-07T12:33:00.3895036Z ##[endgroup]
+2025-11-07T12:33:00.5820293Z ##[group]Installed distributions
+2025-11-07T12:33:00.5898009Z Resolved Java 17.0.17+10 from tool-cache
+2025-11-07T12:33:00.5899095Z Setting Java 17.0.17+10 as the default
+2025-11-07T12:33:00.5912629Z Creating toolchains.xml for JDK version 17 from temurin
+2025-11-07T12:33:00.5988283Z Writing to /home/runner/.m2/toolchains.xml
+2025-11-07T12:33:00.5988737Z 
+2025-11-07T12:33:00.5988966Z Java configuration:
+2025-11-07T12:33:00.5990421Z   Distribution: temurin
+2025-11-07T12:33:00.5990905Z   Version: 17.0.17+10
+2025-11-07T12:33:00.5992018Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:00.5992610Z 
+2025-11-07T12:33:00.5993110Z ##[endgroup]
+2025-11-07T12:33:00.6010348Z Creating settings.xml with server-id: github
+2025-11-07T12:33:00.6040636Z Writing to /home/runner/.m2/settings.xml
+2025-11-07T12:33:00.6224368Z ##[group]Run subosito/flutter-action@v2
+2025-11-07T12:33:00.6224680Z with:
+2025-11-07T12:33:00.6224885Z   flutter-version: 3.35.7
+2025-11-07T12:33:00.6225118Z   channel: stable
+2025-11-07T12:33:00.6225318Z   cache: true
+2025-11-07T12:33:00.6225517Z   architecture: X64
+2025-11-07T12:33:00.6225737Z   pub-cache-path: default
+2025-11-07T12:33:00.6225969Z   dry-run: false
+2025-11-07T12:33:00.6226235Z   git-source: https://github.com/flutter/flutter.git
+2025-11-07T12:33:00.6226527Z env:
+2025-11-07T12:33:00.6226714Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:00.6226937Z   JAVA_VERSION: 17
+2025-11-07T12:33:00.6227255Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:00.6227735Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:00.6228099Z ##[endgroup]
+2025-11-07T12:33:00.6315469Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2025-11-07T12:33:00.6315928Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2025-11-07T12:33:00.6353363Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:33:00.6353714Z env:
+2025-11-07T12:33:00.6353915Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:00.6354145Z   JAVA_VERSION: 17
+2025-11-07T12:33:00.6354468Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:00.6354954Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:00.6355322Z ##[endgroup]
+2025-11-07T12:33:00.6485270Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2025-11-07T12:33:00.6485639Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2025-11-07T12:33:00.6485922Z [36;1m  -n '3.35.7' \[0m
+2025-11-07T12:33:00.6486138Z [36;1m  -f '' \[0m
+2025-11-07T12:33:00.6486343Z [36;1m  -a 'X64' \[0m
+2025-11-07T12:33:00.6486537Z [36;1m  -k '' \[0m
+2025-11-07T12:33:00.6486929Z [36;1m  -c '' \[0m
+2025-11-07T12:33:00.6487116Z [36;1m  -l '' \[0m
+2025-11-07T12:33:00.6487315Z [36;1m  -d 'default' \[0m
+2025-11-07T12:33:00.6487629Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2025-11-07T12:33:00.6487939Z [36;1m  stable[0m
+2025-11-07T12:33:00.6516889Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:33:00.6517223Z env:
+2025-11-07T12:33:00.6517419Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:00.6517659Z   JAVA_VERSION: 17
+2025-11-07T12:33:00.6517987Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:00.6518492Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:00.6518968Z ##[endgroup]
+2025-11-07T12:33:01.0036130Z ##[group]Run actions/cache@v4
+2025-11-07T12:33:01.0036591Z with:
+2025-11-07T12:33:01.0037003Z   path: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:33:01.0037796Z   key: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:33:01.0038537Z   enableCrossOsArchive: false
+2025-11-07T12:33:01.0038972Z   fail-on-cache-miss: false
+2025-11-07T12:33:01.0039386Z   lookup-only: false
+2025-11-07T12:33:01.0039743Z   save-always: false
+2025-11-07T12:33:01.0040473Z env:
+2025-11-07T12:33:01.0040793Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:01.0041167Z   JAVA_VERSION: 17
+2025-11-07T12:33:01.0041703Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:01.0042530Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:01.0043166Z ##[endgroup]
+2025-11-07T12:33:01.3161131Z Cache hit for: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:33:02.5567626Z Received 62914560 of 1585727500 (4.0%), 60.0 MBs/sec
+2025-11-07T12:33:03.5576085Z Received 222298112 of 1585727500 (14.0%), 105.9 MBs/sec
+2025-11-07T12:33:04.5611222Z Received 322961408 of 1585727500 (20.4%), 102.6 MBs/sec
+2025-11-07T12:33:05.5584785Z Received 473956352 of 1585727500 (29.9%), 112.9 MBs/sec
+2025-11-07T12:33:06.5583945Z Received 641728512 of 1585727500 (40.5%), 122.4 MBs/sec
+2025-11-07T12:33:07.5622203Z Received 801112064 of 1585727500 (50.5%), 127.3 MBs/sec
+2025-11-07T12:33:08.5602608Z Received 939524096 of 1585727500 (59.2%), 127.9 MBs/sec
+2025-11-07T12:33:09.5609329Z Received 1073741824 of 1585727500 (67.7%), 127.9 MBs/sec
+2025-11-07T12:33:10.5609881Z Received 1216348160 of 1585727500 (76.7%), 128.8 MBs/sec
+2025-11-07T12:33:11.5605604Z Received 1371537408 of 1585727500 (86.5%), 130.7 MBs/sec
+2025-11-07T12:33:12.5606706Z Received 1509949440 of 1585727500 (95.2%), 130.9 MBs/sec
+2025-11-07T12:33:13.0566358Z Received 1585727500 of 1585727500 (100.0%), 131.5 MBs/sec
+2025-11-07T12:33:13.0569636Z Cache Size: ~1512 MB (1585727500 B)
+2025-11-07T12:33:13.0610325Z [command]/usr/bin/tar -xf /home/runner/work/_temp/61e81741-48bf-4132-a081-0a2d562d5e1a/cache.tzst -P -C /home/runner/work/Ivory/Ivory --use-compress-program unzstd
+2025-11-07T12:33:17.4657460Z Cache restored successfully
+2025-11-07T12:33:17.7595150Z Cache restored from key: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:33:17.9239101Z ##[group]Run actions/cache@v4
+2025-11-07T12:33:17.9239345Z with:
+2025-11-07T12:33:17.9239555Z   path: /home/runner/.pub-cache
+2025-11-07T12:33:17.9240694Z   key: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:33:17.9241397Z   enableCrossOsArchive: false
+2025-11-07T12:33:17.9241658Z   fail-on-cache-miss: false
+2025-11-07T12:33:17.9241914Z   lookup-only: false
+2025-11-07T12:33:17.9242126Z   save-always: false
+2025-11-07T12:33:17.9242323Z env:
+2025-11-07T12:33:17.9242511Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:17.9242731Z   JAVA_VERSION: 17
+2025-11-07T12:33:17.9243053Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:17.9243539Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:17.9244224Z ##[endgroup]
+2025-11-07T12:33:18.2116158Z Cache hit for: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:33:19.3778883Z Received 62914560 of 140060785 (44.9%), 60.0 MBs/sec
+2025-11-07T12:33:19.9568655Z Received 140060785 of 140060785 (100.0%), 84.6 MBs/sec
+2025-11-07T12:33:19.9569336Z Cache Size: ~134 MB (140060785 B)
+2025-11-07T12:33:19.9611273Z [command]/usr/bin/tar -xf /home/runner/work/_temp/193dddb7-415d-4978-8742-938594814bb0/cache.tzst -P -C /home/runner/work/Ivory/Ivory --use-compress-program unzstd
+2025-11-07T12:33:21.3768980Z Cache restored successfully
+2025-11-07T12:33:21.4116899Z Cache restored from key: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:33:21.4224554Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2025-11-07T12:33:21.4224918Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2025-11-07T12:33:21.4225205Z [36;1m  -n '3.35.7' \[0m
+2025-11-07T12:33:21.4225453Z [36;1m  -a 'x64' \[0m
+2025-11-07T12:33:21.4225751Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.35.7-x64' \[0m
+2025-11-07T12:33:21.4226097Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2025-11-07T12:33:21.4226362Z [36;1m  stable[0m
+2025-11-07T12:33:21.4258566Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:33:21.4258907Z env:
+2025-11-07T12:33:21.4259105Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:21.4259337Z   JAVA_VERSION: 17
+2025-11-07T12:33:21.4259666Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:21.4260375Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:21.4260783Z ##[endgroup]
+2025-11-07T12:33:21.6877561Z ##[group]Run flutter pub get
+2025-11-07T12:33:21.6877882Z [36;1mflutter pub get[0m
+2025-11-07T12:33:21.6911465Z shell: /usr/bin/bash -e {0}
+2025-11-07T12:33:21.6911734Z env:
+2025-11-07T12:33:21.6911933Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:21.6912174Z   JAVA_VERSION: 17
+2025-11-07T12:33:21.6912507Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:21.6913018Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:21.6913483Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:33:21.6913852Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:33:21.6914117Z ##[endgroup]
+2025-11-07T12:33:22.2043491Z Resolving dependencies...
+2025-11-07T12:33:22.9394223Z Downloading packages...
+2025-11-07T12:33:23.1977614Z   _fe_analyzer_shared 85.0.0 (92.0.0 available)
+2025-11-07T12:33:23.1978292Z   _flutterfire_internals 1.3.59 (1.3.64 available)
+2025-11-07T12:33:23.1978950Z   analyzer 7.7.1 (9.0.0 available)
+2025-11-07T12:33:23.1979454Z   bloc 8.1.4 (9.1.0 available)
+2025-11-07T12:33:23.1980157Z   build 3.1.0 (4.0.2 available)
+2025-11-07T12:33:23.1980673Z   build_resolvers 3.0.3 (3.0.4 available)
+2025-11-07T12:33:23.1981194Z   build_runner 2.7.1 (2.10.1 available)
+2025-11-07T12:33:23.1981710Z   build_runner_core 9.3.1 (9.3.2 available)
+2025-11-07T12:33:23.1982258Z   characters 1.4.0 (1.4.1 available)
+2025-11-07T12:33:23.1982750Z   cross_file 0.3.4+2 (0.3.5 available)
+2025-11-07T12:33:23.1983230Z   crypto 3.0.6 (3.0.7 available)
+2025-11-07T12:33:23.1983705Z   crypto_keys 0.3.0+1 (0.3.0+2 available)
+2025-11-07T12:33:23.1984202Z   dart_style 3.1.1 (3.1.2 available)
+2025-11-07T12:33:23.1984689Z   device_info_plus 11.5.0 (12.2.0 available)
+2025-11-07T12:33:23.1985201Z   dotted_border 2.1.0 (3.1.0 available)
+2025-11-07T12:33:23.1985688Z   firebase_core 3.15.2 (4.2.1 available)
+2025-11-07T12:33:23.1986194Z   firebase_core_web 2.24.1 (3.3.0 available)
+2025-11-07T12:33:23.1986744Z   firebase_messaging 15.2.10 (16.0.4 available)
+2025-11-07T12:33:23.1987403Z   firebase_messaging_platform_interface 4.6.10 (4.7.4 available)
+2025-11-07T12:33:23.1988088Z   firebase_messaging_web 3.10.10 (4.1.0 available)
+2025-11-07T12:33:23.1988949Z   fl_chart 0.69.2 (1.1.1 available)
+2025-11-07T12:33:23.1989426Z   flutter_bloc 8.1.6 (9.1.1 available)
+2025-11-07T12:33:23.1990159Z   flutter_dotenv 5.2.1 (6.0.0 available)
+2025-11-07T12:33:23.1990691Z   flutter_lints 5.0.0 (6.0.0 available)
+2025-11-07T12:33:23.1991243Z   flutter_local_notifications 18.0.1 (19.5.0 available)
+2025-11-07T12:33:23.1991916Z   flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+2025-11-07T12:33:23.1992699Z   flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+2025-11-07T12:33:23.1993446Z   flutter_platform_widgets 7.0.1 (9.0.0 available)
+2025-11-07T12:33:23.1993815Z   flutter_svg 2.2.1 (2.2.2 available)
+2025-11-07T12:33:23.1994095Z   intl 0.19.0 (0.20.2 available)
+2025-11-07T12:33:23.1994369Z   lints 5.1.1 (6.0.0 available)
+2025-11-07T12:33:23.1994632Z   local_auth 2.3.0 (3.0.0 available)
+2025-11-07T12:33:23.1994918Z   local_auth_android 1.0.56 (2.0.0 available)
+2025-11-07T12:33:23.1995243Z   local_auth_darwin 1.6.1 (2.0.0 available)
+2025-11-07T12:33:23.1995539Z   local_auth_windows 1.0.11 (2.0.0 available)
+2025-11-07T12:33:23.1995859Z   material_color_utilities 0.11.1 (0.13.0 available)
+2025-11-07T12:33:23.1996170Z   meta 1.16.0 (1.17.0 available)
+2025-11-07T12:33:23.1996424Z   mockito 5.5.0 (5.5.1 available)
+2025-11-07T12:33:23.1996705Z   permission_handler 11.4.0 (12.0.1 available)
+2025-11-07T12:33:23.1997038Z   permission_handler_android 12.1.0 (13.0.1 available)
+2025-11-07T12:33:23.1997529Z   pointycastle 3.9.1 (4.0.0 available)
+2025-11-07T12:33:23.1998022Z   share_plus 10.1.4 (12.0.1 available)
+2025-11-07T12:33:23.1998611Z   share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-11-07T12:33:23.2001313Z   source_gen 3.1.0 (4.0.2 available)
+2025-11-07T12:33:23.2002171Z   syncfusion_flutter_core 27.2.5 (31.2.5 available)
+2025-11-07T12:33:23.2002688Z   syncfusion_flutter_datepicker 27.2.5 (31.2.5 available)
+2025-11-07T12:33:23.2003032Z   test 1.26.2 (1.26.3 available)
+2025-11-07T12:33:23.2003304Z   test_api 0.7.6 (0.7.7 available)
+2025-11-07T12:33:23.2003581Z   test_core 0.6.11 (0.6.12 available)
+2025-11-07T12:33:23.2003841Z   uuid 4.5.1 (4.5.2 available)
+2025-11-07T12:33:23.2004143Z   video_player_platform_interface 6.5.0 (6.6.0 available)
+2025-11-07T12:33:23.2004495Z   webview_flutter_wkwebview 3.23.1 (3.23.2 available)
+2025-11-07T12:33:23.2010429Z Got dependencies!
+2025-11-07T12:33:23.2037117Z 52 packages have newer versions incompatible with dependency constraints.
+2025-11-07T12:33:23.2037924Z Try `flutter pub outdated` for more information.
+2025-11-07T12:33:23.8552795Z ##[group]Run dart pub global activate patrol_cli
+2025-11-07T12:33:23.8553520Z [36;1mdart pub global activate patrol_cli[0m
+2025-11-07T12:33:23.8554145Z [36;1mecho "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"[0m
+2025-11-07T12:33:23.8587572Z shell: /usr/bin/bash -e {0}
+2025-11-07T12:33:23.8587827Z env:
+2025-11-07T12:33:23.8588032Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:23.8588270Z   JAVA_VERSION: 17
+2025-11-07T12:33:23.8588620Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:23.8589127Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:23.8589587Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:33:23.8590148Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:33:23.8590427Z ##[endgroup]
+2025-11-07T12:33:23.9595550Z Resolving dependencies...
+2025-11-07T12:33:24.7612997Z Downloading packages...
+2025-11-07T12:33:25.3169018Z + adb 0.5.0 (0.6.0 available)
+2025-11-07T12:33:25.3169611Z + ansi_styles 0.3.2+1
+2025-11-07T12:33:25.3170156Z + args 2.7.0
+2025-11-07T12:33:25.3170491Z + async 2.13.0
+2025-11-07T12:33:25.3170786Z + ci 0.1.0
+2025-11-07T12:33:25.3171113Z + cli_completion 0.4.0 (0.5.1 available)
+2025-11-07T12:33:25.3171561Z + cli_config 0.2.0
+2025-11-07T12:33:25.3171898Z + collection 1.19.1
+2025-11-07T12:33:25.3172219Z + coverage 1.15.0
+2025-11-07T12:33:25.3172535Z + crypto 3.0.7
+2025-11-07T12:33:25.3173221Z + dispose_scope 2.1.0
+2025-11-07T12:33:25.3173576Z + equatable 2.0.7
+2025-11-07T12:33:25.3173902Z + ffi 2.1.4
+2025-11-07T12:33:25.3174199Z + file 7.0.1
+2025-11-07T12:33:25.3174516Z + fixnum 1.1.1
+2025-11-07T12:33:25.3174860Z + glob 2.1.3
+2025-11-07T12:33:25.3175200Z + http 1.5.0
+2025-11-07T12:33:25.3175528Z + http_parser 4.1.2
+2025-11-07T12:33:25.3175872Z + io 1.0.5
+2025-11-07T12:33:25.3176227Z + json_annotation 4.9.0
+2025-11-07T12:33:25.3176513Z + logging 1.3.0
+2025-11-07T12:33:25.3176741Z + mason_logger 0.2.16 (0.3.3 available)
+2025-11-07T12:33:25.3177013Z + meta 1.17.0
+2025-11-07T12:33:25.3177224Z + package_config 2.2.0
+2025-11-07T12:33:25.3177452Z + path 1.9.1
+2025-11-07T12:33:25.3177643Z + patrol_cli 3.10.0
+2025-11-07T12:33:25.3177844Z + patrol_log 0.5.0
+2025-11-07T12:33:25.3178049Z + platform 3.1.6
+2025-11-07T12:33:25.3178252Z + process 5.0.5
+2025-11-07T12:33:25.3178445Z + pub_semver 2.2.0
+2025-11-07T12:33:25.3178665Z + pub_updater 0.4.0 (0.5.0 available)
+2025-11-07T12:33:25.3178924Z + source_maps 0.10.13
+2025-11-07T12:33:25.3179141Z + source_span 1.10.1
+2025-11-07T12:33:25.3179351Z + stack_trace 1.12.1
+2025-11-07T12:33:25.3179555Z + string_scanner 1.4.1
+2025-11-07T12:33:25.3179765Z + term_glyph 1.2.2
+2025-11-07T12:33:25.3180275Z + typed_data 1.4.0
+2025-11-07T12:33:25.3180587Z + uuid 4.5.2
+2025-11-07T12:33:25.3180779Z + version 3.0.2
+2025-11-07T12:33:25.3180976Z + vm_service 15.0.2
+2025-11-07T12:33:25.3181172Z + web 1.1.1
+2025-11-07T12:33:25.3181355Z + win32 5.15.0
+2025-11-07T12:33:25.3181549Z + yaml 3.1.3
+2025-11-07T12:33:25.3374891Z Building package executables...
+2025-11-07T12:33:28.5672050Z Built patrol_cli:main.
+2025-11-07T12:33:28.5845774Z Installed executable patrol.
+2025-11-07T12:33:28.5915151Z Activated patrol_cli 3.10.0.
+2025-11-07T12:33:28.6364336Z ##[group]Run echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+2025-11-07T12:33:28.6365235Z [36;1mecho 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules[0m
+2025-11-07T12:33:28.6365810Z [36;1msudo udevadm control --reload-rules[0m
+2025-11-07T12:33:28.6366136Z [36;1msudo udevadm trigger --name-match=kvm[0m
+2025-11-07T12:33:28.6398612Z shell: /usr/bin/bash -e {0}
+2025-11-07T12:33:28.6398859Z env:
+2025-11-07T12:33:28.6399056Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:28.6399295Z   JAVA_VERSION: 17
+2025-11-07T12:33:28.6399641Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:28.6400362Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:28.6400828Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:33:28.6401232Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:33:28.6401503Z ##[endgroup]
+2025-11-07T12:33:28.6520851Z KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"
+2025-11-07T12:33:28.6925181Z ##[group]Run gradle/actions/setup-gradle@v3
+2025-11-07T12:33:28.6925493Z with:
+2025-11-07T12:33:28.6925723Z   cache-read-only: true
+2025-11-07T12:33:28.6925955Z   cache-disabled: false
+2025-11-07T12:33:28.6926200Z   cache-write-only: false
+2025-11-07T12:33:28.6926450Z   cache-overwrite-existing: false
+2025-11-07T12:33:28.6926768Z   gradle-home-cache-includes: caches
+notifications
+
+2025-11-07T12:33:28.6927115Z   gradle-home-cache-cleanup: false
+2025-11-07T12:33:28.6927399Z   add-job-summary: always
+2025-11-07T12:33:28.6927656Z   add-job-summary-as-pr-comment: never
+2025-11-07T12:33:28.6927943Z   dependency-graph: disabled
+2025-11-07T12:33:28.6928228Z   dependency-graph-continue-on-failure: true
+2025-11-07T12:33:28.6928536Z   build-scan-publish: false
+2025-11-07T12:33:28.6928788Z   validate-wrappers: false
+2025-11-07T12:33:28.6929034Z   generate-job-summary: true
+2025-11-07T12:33:28.6929301Z   gradle-home-cache-strict-match: false
+2025-11-07T12:33:28.6929699Z   workflow-job-context: {
+  "api-level": 29,
+  "arch": "x86_64"
+}
+2025-11-07T12:33:28.6930313Z   github-token: ***
+2025-11-07T12:33:28.6930707Z env:
+2025-11-07T12:33:28.6930925Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:28.6931164Z   JAVA_VERSION: 17
+2025-11-07T12:33:28.6931498Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:28.6932014Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:28.6932474Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:33:28.6932828Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:33:28.6933093Z ##[endgroup]
+2025-11-07T12:33:29.1260974Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+2025-11-07T12:33:29.1264430Z ##[group]Restore Gradle state from cache
+2025-11-07T12:33:29.4786304Z ##[warning]Failed to restore gradle-home-v1|Linux|integration-test-android[1fd9eecff10ae4b16c6dba06bed20c5c]-da535c54aca237fa4dc24a92a3d00f764cd354c9: Error: Cache service responded with 400
+2025-11-07T12:33:29.4839493Z Gradle User Home cache not found. Will initialize empty.
+2025-11-07T12:33:29.4840565Z ##[endgroup]
+2025-11-07T12:33:29.4961792Z ##[group]Run actions/cache@v4
+2025-11-07T12:33:29.4962065Z with:
+2025-11-07T12:33:29.4962287Z   path: ~/.android/avd/*
+~/.android/adb*
+
+2025-11-07T12:33:29.4962576Z   key: avd-29-x86_64
+2025-11-07T12:33:29.4962805Z   enableCrossOsArchive: false
+2025-11-07T12:33:29.4963071Z   fail-on-cache-miss: false
+2025-11-07T12:33:29.4963314Z   lookup-only: false
+2025-11-07T12:33:29.4963536Z   save-always: false
+2025-11-07T12:33:29.4963741Z env:
+2025-11-07T12:33:29.4963952Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:29.4964278Z   JAVA_VERSION: 17
+2025-11-07T12:33:29.4964700Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:29.4965392Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:29.4965936Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:33:29.4966512Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:33:29.4966940Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2025-11-07T12:33:29.4967513Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2025-11-07T12:33:29.4967913Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2025-11-07T12:33:29.5027703Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2025-11-07T12:33:29.5028538Z   DEVELOCITY_AUTO_INJECTION_CUSTOM_VALUE: gradle-actions
+2025-11-07T12:33:29.5029073Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2025-11-07T12:33:29.5029483Z ##[endgroup]
+2025-11-07T12:33:29.8281332Z Cache not found for input keys: avd-29-x86_64
+2025-11-07T12:33:29.8377673Z ##[group]Run ReactiveCircus/android-emulator-runner@v2
+2025-11-07T12:33:29.8378008Z with:
+2025-11-07T12:33:29.8378203Z   api-level: 29
+2025-11-07T12:33:29.8378413Z   arch: x86_64
+2025-11-07T12:33:29.8378612Z   target: google_apis
+2025-11-07T12:33:29.8378850Z   force-avd-creation: false
+2025-11-07T12:33:29.8379314Z   emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+2025-11-07T12:33:29.8379793Z   disable-animations: true
+2025-11-07T12:33:29.8380301Z   script: echo "Generated AVD snapshot for caching."
+2025-11-07T12:33:29.8380609Z   cores: 2
+2025-11-07T12:33:29.8380805Z   avd-name: test
+2025-11-07T12:33:29.8381030Z   emulator-boot-timeout: 600
+2025-11-07T12:33:29.8381280Z   emulator-port: 5554
+2025-11-07T12:33:29.8381518Z   disable-spellchecker: false
+2025-11-07T12:33:29.8381789Z   disable-linux-hw-accel: auto
+2025-11-07T12:33:29.8382044Z   enable-hw-keyboard: false
+2025-11-07T12:33:29.8382275Z   channel: stable
+2025-11-07T12:33:29.8382499Z env:
+2025-11-07T12:33:29.8382691Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:33:29.8382916Z   JAVA_VERSION: 17
+2025-11-07T12:33:29.8383241Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:29.8383728Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:33:29.8384176Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:33:29.8384535Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:33:29.8385018Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2025-11-07T12:33:29.8385358Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2025-11-07T12:33:29.8385661Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2025-11-07T12:33:29.8386091Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2025-11-07T12:33:29.8386571Z   DEVELOCITY_AUTO_INJECTION_CUSTOM_VALUE: gradle-actions
+2025-11-07T12:33:29.8386913Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2025-11-07T12:33:29.8387183Z ##[endgroup]
+2025-11-07T12:33:29.8915310Z ##[group]Configure emulator
+2025-11-07T12:33:29.8919895Z API level: 29
+2025-11-07T12:33:29.8920378Z System image API level: 29
+2025-11-07T12:33:29.8921140Z target: google_apis
+2025-11-07T12:33:29.8921821Z CPU architecture: x86_64
+2025-11-07T12:33:29.8922288Z Hardware profile: 
+2025-11-07T12:33:29.8922686Z Cores: 2
+2025-11-07T12:33:29.8923036Z RAM size: 
+2025-11-07T12:33:29.8923392Z Heap size: 
+2025-11-07T12:33:29.8925321Z SD card path or size: 
+2025-11-07T12:33:29.8926040Z Disk size: 
+2025-11-07T12:33:29.8926485Z AVD name: test
+2025-11-07T12:33:29.8927372Z force avd creation: false
+2025-11-07T12:33:29.8927851Z Emulator boot timeout: 600
+2025-11-07T12:33:29.8930222Z emulator port: 5554
+2025-11-07T12:33:29.8931064Z emulator options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+2025-11-07T12:33:29.8931959Z disable animations: true
+2025-11-07T12:33:29.8932443Z disable spellchecker: false
+2025-11-07T12:33:29.8933200Z disable Linux hardware acceleration: false
+2025-11-07T12:33:29.8934530Z enable hardware keyboard: false
+2025-11-07T12:33:29.8935561Z Channel: 0 (stable)
+2025-11-07T12:33:29.8938122Z Script:
+2025-11-07T12:33:29.8939041Z echo "Generated AVD snapshot for caching."
+2025-11-07T12:33:29.8939622Z Pre emulator launch script:
+2025-11-07T12:33:29.8940590Z ##[endgroup]
+2025-11-07T12:33:29.8943519Z ##[group]Install Android SDK
+2025-11-07T12:33:29.9103723Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+2025-11-07T12:33:36.4977140Z Installing latest build tools, platform tools, and platform.
+2025-11-07T12:33:36.4996915Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-29'> /dev/null
+2025-11-07T12:33:42.2639467Z Installing latest emulator.
+2025-11-07T12:33:42.2657765Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+2025-11-07T12:33:51.4032823Z Installing system images.
+2025-11-07T12:33:51.4053957Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-29;google_apis;x86_64' --channel=0 > /dev/null
+2025-11-07T12:34:41.8447948Z ##[endgroup]
+2025-11-07T12:34:41.8451028Z ##[group]Create AVD
+2025-11-07T12:34:41.8451666Z Creating AVD.
+2025-11-07T12:34:41.8473786Z [command]/usr/bin/sh -c \echo no | avdmanager create avd --force -n test --abi 'google_apis/x86_64' --package 'system-images;android-29;google_apis;x86_64'
+2025-11-07T12:34:42.5948691Z Loading local repository...                                                     
+2025-11-07T12:34:42.5950268Z [=========                              ] 25% Loading local repository...       
+2025-11-07T12:34:42.5951540Z [=========                              ] 25% Fetch remote repository...        
+2025-11-07T12:34:42.5957476Z [=======================================] 100% Fetch remote repository...       
+2025-11-07T12:34:43.0048750Z Do you wish to create a custom hardware profile? [no] [command]/usr/bin/sh -c \printf 'hw.cpu.ncore=2\n' >> /home/runner/.android/avd/test.avd/config.ini
+2025-11-07T12:34:43.0068744Z ##[endgroup]
+2025-11-07T12:34:43.0071530Z ##[group]Launch Emulator
+2025-11-07T12:34:43.0071946Z Starting emulator.
+2025-11-07T12:34:43.0091286Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none &
+2025-11-07T12:34:43.0222208Z INFO         | Android emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
+2025-11-07T12:34:43.0222877Z INFO         | Graphics backend: gfxstream
+2025-11-07T12:34:43.0223678Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-29/google_apis/x86_64/
+2025-11-07T12:34:43.5840307Z WARNING      | Please update the emulator to one that supports the feature(s): Vulkan
+2025-11-07T12:34:43.5841251Z INFO         | Increasing RAM size to 2048MB
+2025-11-07T12:34:43.5841870Z ##############################################################################
+2025-11-07T12:34:43.5842591Z ##                        WARNING - ACTION REQUIRED                         ##
+2025-11-07T12:34:43.5843638Z ##  Consider using the '-metrics-collection' flag to help improve the       ##
+2025-11-07T12:34:43.5844387Z ##  emulator by sending anonymized usage data. Or use the '-no-metrics'     ##
+2025-11-07T12:34:43.5845007Z ##  flag to bypass this warning and turn off the metrics collection.        ##
+2025-11-07T12:34:43.5845613Z ##  In a future release this warning will turn into a one-time blocking     ##
+2025-11-07T12:34:43.5846221Z ##  prompt to ask for explicit user input regarding metrics collection.     ##
+2025-11-07T12:34:43.5846719Z ##                                                                          ##
+2025-11-07T12:34:43.5847220Z ##  Please see '-help-metrics-collection' for more details. You can use     ##
+2025-11-07T12:34:43.5847856Z ##  '-metrics-to-file' or '-metrics-to-console' flags to see what type of   ##
+2025-11-07T12:34:43.5848463Z ##  data is being collected by emulator as part of usage statistics.        ##
+2025-11-07T12:34:43.5848959Z ##############################################################################
+2025-11-07T12:34:43.5849362Z INFO         | Guest GLES Driver: Auto (ext controls)
+2025-11-07T12:34:43.5849854Z library_mode swiftshader_indirect gpu mode swiftshader_indirect
+2025-11-07T12:34:43.5850559Z INFO         | Checking system compatibility:
+2025-11-07T12:34:43.5850960Z INFO         |   Checking: hasSufficientDiskSpace
+2025-11-07T12:34:43.5851437Z INFO         |      Ok: Disk space requirements to run avd: `test` are met
+2025-11-07T12:34:43.5851900Z INFO         |   Checking: hasSufficientHwGpu
+2025-11-07T12:34:43.5852341Z INFO         |      Ok: Hardware GPU compatibility checks are not required
+2025-11-07T12:34:43.5852793Z INFO         |   Checking: hasSufficientSystem
+2025-11-07T12:34:43.5853167Z INFO         |      Ok: System requirements to run avd: `test` are met
+2025-11-07T12:34:43.5853581Z WARNING      | FeatureControl is requesting a non existing feature.
+2025-11-07T12:34:43.5854239Z ERROR        | Unable to connect to adb daemon on port: 5037
+2025-11-07T12:34:43.5854797Z INFO         | Storing crashdata in: /tmp/android-runner/emu-crash-36.2.12.db, detection is enabled for process: 2821
+2025-11-07T12:34:43.5855344Z INFO         | Initializing hardware OpenGLES emulation support
+2025-11-07T12:34:43.5855708Z INFO         | android_startOpenglesRenderer: gpu info
+2025-11-07T12:34:43.5855998Z INFO         | 
+2025-11-07T12:34:43.5856218Z INFO         | HealthMonitor disabled.
+2025-11-07T12:34:43.5856575Z INFO         | initIcdPaths: ICD set to 'swiftshader', using Swiftshader ICD
+2025-11-07T12:34:43.5857197Z INFO         | Setting ICD filenames for the loader = /usr/local/lib/android/sdk/emulator/lib64/vulkan/vk_swiftshader_icd.json
+2025-11-07T12:34:43.5857998Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-11-07T12:34:43.5858896Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+2025-11-07T12:34:43.5859835Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix): begin
+2025-11-07T12:34:43.5861373Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-11-07T12:34:43.5862868Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] failed (posix). dlerror: []
+2025-11-07T12:34:43.5863718Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-11-07T12:34:43.5864626Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]: not found in map, open for the first time
+2025-11-07T12:34:43.5865575Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix): begin
+2025-11-07T12:34:43.5866796Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-11-07T12:34:43.5868035Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] failed (posix). dlerror: []
+2025-11-07T12:34:43.5868818Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-11-07T12:34:43.6004119Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]: not found in map, open for the first tiWARNING: could not open libX11.so, try libX11.so.6
+2025-11-07T12:34:43.6129386Z me
+2025-11-07T12:34:43.6130882Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so] (posix): begin
+2025-11-07T12:34:43.6132939Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-11-07T12:34:43.6136084Z INFO         | SharedLibrary::open succeeded for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so].
+2025-11-07T12:34:43.6137217Z INFO         | Added library: /usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so
+2025-11-07T12:34:43.6138166Z INFO         | Selecting Vulkan device: SwiftShader Device (Subzero), Version: 1.3.0
+2025-11-07T12:34:43.6138907Z INFO         | Disabling sparse binding feature support
+2025-11-07T12:34:43.6139697Z INFO         | SharedLibrary::open for [libGLESv2.so]: not found in map, open for the first time
+2025-11-07T12:34:43.6140771Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix): begin
+2025-11-07T12:34:43.6141934Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix,linux): call dlopen on [libGLESv2.so]
+2025-11-07T12:34:43.6142816Z INFO         | SharedLibrary::open succeeded for [libGLESv2.so].
+2025-11-07T12:34:43.6143624Z INFO         | SharedLibrary::open for [libEGL.so]: not found in map, open for the first time
+2025-11-07T12:34:43.6144269Z INFO         | SharedLibrary::open for [libEGL.so] (posix): begin
+2025-11-07T12:34:43.6144745Z INFO         | SharedLibrary::open for [libEGL.so] (posix,linux): call dlopen on [libEGL.so]
+2025-11-07T12:34:43.6145213Z INFO         | SharedLibrary::open succeeded for [libEGL.so].
+2025-11-07T12:34:43.6145563Z INFO         | SharedLibrary::open for [libX11]
+2025-11-07T12:34:43.6145985Z INFO         | SharedLibrary::open for [libX11]: not found in map, open for the first time
+2025-11-07T12:34:43.6146434Z INFO         | SharedLibrary::open for [libX11] (posix): begin
+2025-11-07T12:34:43.6146870Z INFO         | SharedLibrary::open for [libX11] (posix,linux): call dlopen on [libX11.so]
+2025-11-07T12:34:43.6147344Z INFO         | SharedLibrary::open for [libX11] failed (posix). dlerror: []
+2025-11-07T12:34:43.6147730Z INFO         | SharedLibrary::open for [libX11.so.6]
+2025-11-07T12:34:43.6148441Z INFO         | SharedLibrary::open for [libX11.so.6]: not found in map, open for the first time
+2025-11-07T12:34:43.6148952Z INFO         | SharedLibrary::open for [libX11.so.6] (posix): begin
+2025-11-07T12:34:43.6149412Z INFO         | SharedLibrary::open for [libX11.so.6] (posix,linux): call dlopen on [libX11.so.6]
+2025-11-07T12:34:43.6150356Z INFO         | SharedLibrary::open succeeded for [libX11.so.6].
+2025-11-07T12:34:43.6150707Z INFO         | Initializing VkEmulation features:
+2025-11-07T12:34:43.6151023Z INFO         |     glInteropSupported: false
+2025-11-07T12:34:43.6151319Z INFO         |     useDeferredCommands: true
+2025-11-07T12:34:43.6151636Z INFO         |     createResourceWithRequirements: true
+2025-11-07T12:34:43.6151957Z INFO         |     useVulkanComposition: false
+2025-11-07T12:34:43.6152275Z INFO         |     useVulkanNativeSwapchain: false
+2025-11-07T12:34:43.6152587Z INFO         |     enable guestRenderDoc: false
+2025-11-07T12:34:43.6152893Z INFO         |     ASTC LDR emulation mode: Gpu
+2025-11-07T12:34:43.6153183Z INFO         |     enable ETC2 emulation: true
+2025-11-07T12:34:43.6153484Z INFO         |     enable Ycbcr emulation: false
+2025-11-07T12:34:43.6153778Z INFO         |     guestVulkanOnly: false
+2025-11-07T12:34:43.6154092Z INFO         |     useDedicatedAllocations: false
+2025-11-07T12:34:43.6154439Z INFO         | Graphics Adapter Vendor Google (Google Inc.)
+2025-11-07T12:34:43.6154882Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+2025-11-07T12:34:43.6155397Z INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+2025-11-07T12:34:43.6157278Z INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+2025-11-07T12:34:43.6159064Z INFO         | Graphics Device Extensions N/A
+2025-11-07T12:34:43.6159698Z INFO         | Userspace boot properties:
+2025-11-07T12:34:43.6160201Z INFO         |   android.bootanim=0
+2025-11-07T12:34:43.6160484Z INFO         |   android.qemud=1
+2025-11-07T12:34:43.6160865Z INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+2025-11-07T12:34:43.6161270Z INFO         |   androidboot.hardware=ranchu
+2025-11-07T12:34:43.6161580Z INFO         |   androidboot.hardware.vulkan=ranchu
+2025-11-07T12:34:43.6162249Z INFO         |   androidboot.serialno=EMULATOR36X2X12X0
+2025-11-07T12:34:43.6163056Z INFO         |   androidboot.vbmeta.digest=e565d59c032d8f786b6463dbea3d0c8d823a00cdec3d0e5de905a3c535fef13b
+2025-11-07T12:34:43.6163881Z INFO         |   androidboot.vbmeta.hash_alg=sha256
+2025-11-07T12:34:43.6164423Z INFO         |   androidboot.vbmeta.size=4352
+2025-11-07T12:34:43.6164905Z INFO         |   qemu=1
+2025-11-07T12:34:43.6355139Z WARNING: cannnot unmap ptr 0x7f8c39e01000 as it is in the protected range from 0x7f8bb9e00000 to 0x7f8c3a000000
+2025-11-07T12:34:43.6485277Z INFO         |   qemu.avd_name=test
+2025-11-07T12:34:43.6486176Z INFO         |   qemu.camera_hq_edge_processing=0
+2025-11-07T12:34:43.6486738Z INFO         |   qemu.dalvik.vm.heapsize=512m
+2025-11-07T12:34:43.6487213Z INFO         |   qemu.encrypt=1
+2025-11-07T12:34:43.6487622Z INFO         |   qemu.gles=1
+2025-11-07T12:34:43.6488082Z INFO         |   qemu.gltransport=pipe
+2025-11-07T12:34:43.6488677Z INFO         |   qemu.gltransport.drawFlushInterval=800
+2025-11-07T12:34:43.6489464Z INFO         |   qemu.hwcodec.avcdec=2
+2025-11-07T12:34:43.6489762Z INFO         |   qemu.hwcodec.hevcdec=2
+2025-11-07T12:34:43.6490330Z INFO         |   qemu.hwcodec.vpxdec=2
+2025-11-07T12:34:43.6490639Z INFO         |   qemu.opengles.version=196608
+2025-11-07T12:34:43.6490996Z INFO         |   qemu.settings.system.screen_off_timeout=2147483647
+2025-11-07T12:34:43.6491332Z INFO         |   qemu.uirenderer=skiagl
+2025-11-07T12:34:43.6491889Z INFO         |   qemu.vsync=60
+2025-11-07T12:34:43.6492130Z INFO         |   qemu.wifi=1
+2025-11-07T12:34:43.6492404Z INFO         | Monitoring duration of emulator setup.
+2025-11-07T12:34:43.6664826Z INFO         | Setting display: 0 configuration to: 320x640, dpi: 160x160 
+2025-11-07T12:34:43.6665645Z INFO         | setDisplayActiveConfig 0
+2025-11-07T12:34:43.6770930Z INFO         | Loading snapshot 'default_boot'...
+2025-11-07T12:34:43.6772322Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2025-11-07T12:34:43.6901351Z WARNING      | Device 'cache' does not have the requested snapshot 'default_boot'
+2025-11-07T12:34:43.6902097Z 
+2025-11-07T12:34:43.6902486Z WARNING      | Failed to load snapshot 'default_boot'
+2025-11-07T12:34:43.6903960Z USER_INFO    | The emulator is performing a cold boot without a saved state because there's no snapshot and you have configured it not to save on exit.
+2025-11-07T12:34:45.2085899Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2025-11-07T12:34:53.0151038Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-11-07T12:34:53.0188363Z * daemon not running; starting now at tcp:5037
+2025-11-07T12:34:56.2853406Z * daemon started successfully
+2025-11-07T12:34:56.3156775Z 
+2025-11-07T12:34:58.3222358Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-11-07T12:34:58.3709202Z 
+2025-11-07T12:35:00.3789072Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-11-07T12:35:00.4430824Z 
+2025-11-07T12:35:01.2944832Z INFO         | Boot completed in 18248 ms
+2025-11-07T12:35:01.2949135Z INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+2025-11-07T12:35:02.4483792Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-11-07T12:35:02.5667819Z 1
+2025-11-07T12:35:02.5678678Z Emulator booted.
+2025-11-07T12:35:02.5700723Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+2025-11-07T12:35:04.5454478Z Disabling animations.
+2025-11-07T12:35:04.5483181Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+2025-11-07T12:35:05.1341561Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+2025-11-07T12:35:05.2494719Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+2025-11-07T12:35:05.6000895Z ##[endgroup]
+2025-11-07T12:35:05.6029329Z [command]/usr/bin/sh -c echo "Generated AVD snapshot for caching."
+2025-11-07T12:35:05.6047041Z Generated AVD snapshot for caching.
+2025-11-07T12:35:05.6055961Z ##[group]Terminate Emulator
+2025-11-07T12:35:05.6081809Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2025-11-07T12:35:05.6116791Z OK: killing emulator, bye bye
+2025-11-07T12:35:05.6117519Z OK
+2025-11-07T12:35:05.6121519Z INFO         | Wait for emulator (pid 2821) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+2025-11-07T12:35:05.6123441Z 
+2025-11-07T12:35:05.6124023Z ##[endgroup]
+2025-11-07T12:35:07.6671723Z INFO         | Saving with gfxstream=1
+2025-11-07T12:35:07.6818219Z INFO         | Saving snapshot 'default_boot' using 2065 ms
+2025-11-07T12:35:08.6520174Z ERROR        | stop: Not implemented
+2025-11-07T12:35:08.6520979Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+2025-11-07T12:35:09.2543426Z ##[group]Run cat > .env << 'EOF'
+2025-11-07T12:35:09.2543737Z [36;1mcat > .env << 'EOF'[0m
+2025-11-07T12:35:09.2544091Z [36;1mCOGNITO_USER_POOL_ID=***[0m
+2025-11-07T12:35:09.2544435Z [36;1mCOGNITO_CLIENT_ID=***[0m
+2025-11-07T12:35:09.2544978Z [36;1mAPI_BASE_URL=***[0m
+2025-11-07T12:35:09.2545234Z [36;1mGEONAMES_USERNAME=***[0m
+2025-11-07T12:35:09.2545485Z [36;1mEOF[0m
+2025-11-07T12:35:09.2545688Z [36;1mecho "Created .env"[0m
+2025-11-07T12:35:09.2579718Z shell: /usr/bin/bash -e {0}
+2025-11-07T12:35:09.2580161Z env:
+2025-11-07T12:35:09.2580395Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:35:09.2580629Z   JAVA_VERSION: 17
+2025-11-07T12:35:09.2580961Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:35:09.2581455Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:35:09.2581912Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:35:09.2582304Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:35:09.2582614Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2025-11-07T12:35:09.2582935Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2025-11-07T12:35:09.2583232Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2025-11-07T12:35:09.2583676Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2025-11-07T12:35:09.2584182Z   DEVELOCITY_AUTO_INJECTION_CUSTOM_VALUE: gradle-actions
+2025-11-07T12:35:09.2584514Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2025-11-07T12:35:09.2584807Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2025-11-07T12:35:09.2585086Z ##[endgroup]
+2025-11-07T12:35:09.2649652Z Created .env
+2025-11-07T12:35:09.2710458Z ##[group]Run ReactiveCircus/android-emulator-runner@v2
+2025-11-07T12:35:09.2710800Z with:
+2025-11-07T12:35:09.2710998Z   api-level: 29
+2025-11-07T12:35:09.2711206Z   arch: x86_64
+2025-11-07T12:35:09.2711403Z   target: google_apis
+2025-11-07T12:35:09.2711635Z   force-avd-creation: false
+2025-11-07T12:35:09.2712143Z   emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+2025-11-07T12:35:09.2712667Z   disable-animations: true
+2025-11-07T12:35:09.2718331Z   script: set -e
+adb logcat > logcat.txt &
+flutter doctor -v
+adb devices -l
+
+# Wait for emulator to be fully ready
+adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+
+# Build test bundle without running (Patrol)
+echo "Building Patrol test bundle..."
+patrol build android \
+  --target integration_test/repaymentRateIsSaved_test.dart \
+  --dart-define="PATROL_EMAIL=***" \
+  --dart-define="PATROL_PASSWORD=***"
+
+# Install app granting all runtime permissions at install time (-g flag)
+echo "Installing app with permissions..."
+adb install -r -g build/app/outputs/apk/debug/app-debug.apk || echo "Install with -g failed, trying without -g"
+
+# Explicit permission grants as fallback (in case -g doesn't work on this API level)
+echo "Granting runtime permissions explicitly..."
+adb shell pm grant com.thinslices.solarisdemo android.permission.CAMERA || true
+adb shell pm grant com.thinslices.solarisdemo android.permission.ACCESS_FINE_LOCATION || true
+adb shell pm grant com.thinslices.solarisdemo android.permission.ACCESS_COARSE_LOCATION || true
+adb shell pm grant com.thinslices.solarisdemo android.permission.POST_NOTIFICATIONS || true
+adb shell pm grant com.thinslices.solarisdemo android.permission.READ_EXTERNAL_STORAGE || true
+adb shell pm grant com.thinslices.solarisdemo android.permission.WRITE_EXTERNAL_STORAGE || true
+
+# Verify installation
+echo "Verifying app installation..."
+adb shell pm list packages | grep com.thinslices.solarisdemo
+
+# Run Patrol tests (will reuse installed app)
+echo "Running Patrol tests..."
+patrol test \
+  --verbose \
+  --target integration_test/repaymentRateIsSaved_test.dart \
+  --dart-define="PATROL_EMAIL=***" \
+  --dart-define="PATROL_PASSWORD=***"
+
+2025-11-07T12:35:09.2724254Z   cores: 2
+2025-11-07T12:35:09.2724448Z   avd-name: test
+2025-11-07T12:35:09.2724666Z   emulator-boot-timeout: 600
+2025-11-07T12:35:09.2724918Z   emulator-port: 5554
+2025-11-07T12:35:09.2725156Z   disable-spellchecker: false
+2025-11-07T12:35:09.2725414Z   disable-linux-hw-accel: auto
+2025-11-07T12:35:09.2725843Z   enable-hw-keyboard: false
+2025-11-07T12:35:09.2726077Z   channel: stable
+2025-11-07T12:35:09.2726277Z env:
+2025-11-07T12:35:09.2726469Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:35:09.2726693Z   JAVA_VERSION: 17
+2025-11-07T12:35:09.2727012Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:35:09.2727498Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:35:09.2727944Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:35:09.2728298Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:35:09.2728594Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2025-11-07T12:35:09.2728915Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2025-11-07T12:35:09.2729210Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2025-11-07T12:35:09.2729632Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2025-11-07T12:35:09.2730288Z   DEVELOCITY_AUTO_INJECTION_CUSTOM_VALUE: gradle-actions
+2025-11-07T12:35:09.2730626Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2025-11-07T12:35:09.2730918Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2025-11-07T12:35:09.2731187Z ##[endgroup]
+2025-11-07T12:35:09.3250447Z ##[group]Configure emulator
+2025-11-07T12:35:09.3254752Z API level: 29
+2025-11-07T12:35:09.3255234Z System image API level: 29
+2025-11-07T12:35:09.3255721Z target: google_apis
+2025-11-07T12:35:09.3256447Z CPU architecture: x86_64
+2025-11-07T12:35:09.3257295Z Hardware profile: 
+2025-11-07T12:35:09.3257729Z Cores: 2
+2025-11-07T12:35:09.3258093Z RAM size: 
+2025-11-07T12:35:09.3258467Z Heap size: 
+2025-11-07T12:35:09.3259557Z SD card path or size: 
+2025-11-07T12:35:09.3260718Z Disk size: 
+2025-11-07T12:35:09.3261192Z AVD name: test
+2025-11-07T12:35:09.3262102Z force avd creation: false
+2025-11-07T12:35:09.3262587Z Emulator boot timeout: 600
+2025-11-07T12:35:09.3264348Z emulator port: 5554
+2025-11-07T12:35:09.3265319Z emulator options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+2025-11-07T12:35:09.3266293Z disable animations: true
+2025-11-07T12:35:09.3266767Z disable spellchecker: false
+2025-11-07T12:35:09.3267455Z disable Linux hardware acceleration: false
+2025-11-07T12:35:09.3268590Z enable hardware keyboard: false
+2025-11-07T12:35:09.3269464Z Channel: 0 (stable)
+2025-11-07T12:35:09.3271965Z Script:
+2025-11-07T12:35:09.3272885Z set -e
+2025-11-07T12:35:09.3273467Z adb logcat > logcat.txt &
+2025-11-07T12:35:09.3273871Z flutter doctor -v
+2025-11-07T12:35:09.3274217Z adb devices -l
+2025-11-07T12:35:09.3274915Z adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+2025-11-07T12:35:09.3275733Z echo "Building Patrol test bundle..."
+2025-11-07T12:35:09.3276184Z patrol build android \
+2025-11-07T12:35:09.3276576Z --target integration_test/repaymentRateIsSaved_test.dart \
+2025-11-07T12:35:09.3277383Z --dart-define="PATROL_EMAIL=***" \
+2025-11-07T12:35:09.3277905Z --dart-define="PATROL_PASSWORD=***"
+2025-11-07T12:35:09.3278403Z echo "Installing app with permissions..."
+2025-11-07T12:35:09.3278975Z adb install -r -g build/app/outputs/apk/debug/app-debug.apk || echo "Install with -g failed, trying without -g"
+2025-11-07T12:35:09.3279513Z echo "Granting runtime permissions explicitly..."
+2025-11-07T12:35:09.3280750Z adb shell pm grant com.thinslices.solarisdemo android.permission.CAMERA || true
+2025-11-07T12:35:09.3281754Z adb shell pm grant com.thinslices.solarisdemo android.permission.ACCESS_FINE_LOCATION || true
+2025-11-07T12:35:09.3282615Z adb shell pm grant com.thinslices.solarisdemo android.permission.ACCESS_COARSE_LOCATION || true
+2025-11-07T12:35:09.3283237Z adb shell pm grant com.thinslices.solarisdemo android.permission.POST_NOTIFICATIONS || true
+2025-11-07T12:35:09.3283982Z adb shell pm grant com.thinslices.solarisdemo android.permission.READ_EXTERNAL_STORAGE || true
+2025-11-07T12:35:09.3284944Z adb shell pm grant com.thinslices.solarisdemo android.permission.WRITE_EXTERNAL_STORAGE || true
+2025-11-07T12:35:09.3285642Z echo "Verifying app installation..."
+2025-11-07T12:35:09.3285988Z adb shell pm list packages | grep com.thinslices.solarisdemo
+2025-11-07T12:35:09.3286333Z echo "Running Patrol tests..."
+2025-11-07T12:35:09.3286585Z patrol test \
+2025-11-07T12:35:09.3286786Z --verbose \
+2025-11-07T12:35:09.3287059Z --target integration_test/repaymentRateIsSaved_test.dart \
+2025-11-07T12:35:09.3287478Z --dart-define="PATROL_EMAIL=***" \
+2025-11-07T12:35:09.3287783Z --dart-define="PATROL_PASSWORD=***"
+2025-11-07T12:35:09.3288056Z Pre emulator launch script:
+2025-11-07T12:35:09.3288484Z ##[endgroup]
+2025-11-07T12:35:09.3288830Z ##[group]Install Android SDK
+2025-11-07T12:35:09.3335748Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+2025-11-07T12:35:10.9187394Z Installing latest build tools, platform tools, and platform.
+2025-11-07T12:35:10.9210555Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;35.0.0' platform-tools 'platforms;android-29'> /dev/null
+2025-11-07T12:35:12.2561093Z Installing latest emulator.
+2025-11-07T12:35:12.2584355Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+2025-11-07T12:35:13.5648657Z Installing system images.
+2025-11-07T12:35:13.5667567Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-29;google_apis;x86_64' --channel=0 > /dev/null
+2025-11-07T12:35:14.8852467Z ##[endgroup]
+2025-11-07T12:35:14.8854922Z ##[group]Create AVD
+2025-11-07T12:35:14.8873952Z [command]/usr/bin/sh -c \printf 'hw.cpu.ncore=2\n' >> /home/runner/.android/avd/test.avd/config.ini
+2025-11-07T12:35:14.8896137Z ##[endgroup]
+2025-11-07T12:35:14.8897971Z ##[group]Launch Emulator
+2025-11-07T12:35:14.8898386Z Starting emulator.
+2025-11-07T12:35:14.8923753Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none &
+2025-11-07T12:35:14.9047998Z INFO         | Android emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
+2025-11-07T12:35:14.9048702Z INFO         | Graphics backend: gfxstream
+2025-11-07T12:35:14.9049253Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-29/google_apis/x86_64/
+2025-11-07T12:35:15.0114533Z WARNING      | Please update the emulator to one that supports the feature(s): Vulkan
+2025-11-07T12:35:15.0115422Z INFO         | Increasing RAM size to 2048MB
+2025-11-07T12:35:15.0116060Z ##############################################################################
+2025-11-07T12:35:15.0116745Z ##                        WARNING - ACTION REQUIRED                         ##
+2025-11-07T12:35:15.0117565Z ##  Consider using the '-metrics-collection' flag to help improve the       ##
+2025-11-07T12:35:15.0118594Z ##  emulator by sending anonymized usage data. Or use the '-no-metrics'     ##
+2025-11-07T12:35:15.0119583Z ##  flag to bypass this warning and turn off the metrics collection.        ##
+2025-11-07T12:35:15.0120541Z ##  In a future release this warning will turn into a one-time blocking     ##
+2025-11-07T12:35:15.0121175Z ##  prompt to ask for explicit user input regarding metrics collection.     ##
+2025-11-07T12:35:15.0121673Z ##                                                                          ##
+2025-11-07T12:35:15.0122177Z ##  Please see '-help-metrics-collection' for more details. You can use     ##
+2025-11-07T12:35:15.0122798Z ##  '-metrics-to-file' or '-metrics-to-console' flags to see what type of   ##
+2025-11-07T12:35:15.0123410Z ##  data is being collected by emulator as part of usage statistics.        ##
+2025-11-07T12:35:15.0123907Z ##############################################################################
+2025-11-07T12:35:15.0124313Z INFO         | Guest GLES Driver: Auto (ext controls)
+2025-11-07T12:35:15.0124736Z library_mode swiftshader_indirect gpu mode swiftshader_indirect
+2025-11-07T12:35:15.0125128Z INFO         | Checking system compatibility:
+2025-11-07T12:35:15.0125458Z INFO         |   Checking: hasSufficientDiskSpace
+2025-11-07T12:35:15.0125821Z INFO         |      Ok: Disk space requirements to run avd: `test` are met
+2025-11-07T12:35:15.0126421Z INFO         |   Checking: hasSufficientHwGpu
+2025-11-07T12:35:15.0126788Z INFO         |      Ok: Hardware GPU compatibility checks are not required
+2025-11-07T12:35:15.0127153Z INFO         |   Checking: hasSufficientSystem
+2025-11-07T12:35:15.0127491Z INFO         |      Ok: System requirements to run avd: `test` are met
+2025-11-07T12:35:15.0127895Z WARNING      | FeatureControl is requesting a non existing feature.
+2025-11-07T12:35:15.0128460Z INFO         | Storing crashdata in: /tmp/android-runner/emu-crash-36.2.12.db, detection is enabled for process: 3257
+2025-11-07T12:35:15.0129010Z INFO         | Initializing hardware OpenGLES emulation support
+2025-11-07T12:35:15.0129370Z INFO         | android_startOpenglesRenderer: gpu info
+2025-11-07T12:35:15.0129661Z INFO         | 
+2025-11-07T12:35:15.0129878Z INFO         | HealthMonitor disabled.
+2025-11-07T12:35:15.0130438Z INFO         | initIcdPaths: ICD set to 'swiftshader', using Swiftshader ICD
+2025-11-07T12:35:15.0131056Z INFO         | Setting ICD filenames for the loader = /usr/local/lib/android/sdk/emulator/lib64/vulkan/vk_swiftshader_icd.json
+2025-11-07T12:35:15.0131842Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-11-07T12:35:15.0132888Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+2025-11-07T12:35:15.0133835Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix): begin
+2025-11-07T12:35:15.0135000Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+2025-11-07T12:35:15.0136218Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] failed (posix). dlerror: []
+2025-11-07T12:35:15.0137057Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-11-07T12:35:15.0137974Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]: not found in map, open for the first time
+2025-11-07T12:35:15.0138923Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix): begin
+2025-11-07T12:35:15.0140520Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+2025-11-07T12:35:15.0142086Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] failed (posix). dlerror: []
+2025-11-07T12:35:15.0142886Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-11-07T12:35:15.0143670Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+2025-11-07T12:35:15.0337565Z INFO         | SharedLibrary::open for [/usr/local/lib/andWARNING: could not open libX11.so, try libX11.so.6
+2025-11-07T12:35:15.0546136Z roid/sdk/emulator/lib64/vulkan/libvulkan.so] (posix): begin
+2025-11-07T12:35:15.0548505Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+2025-11-07T12:35:15.0550621Z INFO         | SharedLibrary::open succeeded for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so].
+2025-11-07T12:35:15.0551787Z INFO         | Added library: /usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so
+2025-11-07T12:35:15.0553044Z INFO         | Selecting Vulkan device: SwiftShader Device (Subzero), Version: 1.3.0
+2025-11-07T12:35:15.0553797Z INFO         | Disabling sparse binding feature support
+2025-11-07T12:35:15.0554601Z INFO         | SharedLibrary::open for [libGLESv2.so]: not found in map, open for the first time
+2025-11-07T12:35:15.0555503Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix): begin
+2025-11-07T12:35:15.0556366Z INFO         | SharedLibrary::open for [libGLESv2.so] (posix,linux): call dlopen on [libGLESv2.so]
+2025-11-07T12:35:15.0557223Z INFO         | SharedLibrary::open succeeded for [libGLESv2.so].
+2025-11-07T12:35:15.0558025Z INFO         | SharedLibrary::open for [libEGL.so]: not found in map, open for the first time
+2025-11-07T12:35:15.0558847Z INFO         | SharedLibrary::open for [libEGL.so] (posix): begin
+2025-11-07T12:35:15.0559647Z INFO         | SharedLibrary::open for [libEGL.so] (posix,linux): call dlopen on [libEGL.so]
+2025-11-07T12:35:15.0560672Z INFO         | SharedLibrary::open succeeded for [libEGL.so].
+2025-11-07T12:35:15.0561250Z INFO         | SharedLibrary::open for [libX11]
+2025-11-07T12:35:15.0561772Z INFO         | SharedLibrary::open for [libX11]: not found in map, open for the first time
+2025-11-07T12:35:15.0562238Z INFO         | SharedLibrary::open for [libX11] (posix): begin
+2025-11-07T12:35:15.0562864Z INFO         | SharedLibrary::open for [libX11] (posix,linux): call dlopen on [libX11.so]
+2025-11-07T12:35:15.0563364Z INFO         | SharedLibrary::open for [libX11] failed (posix). dlerror: []
+2025-11-07T12:35:15.0563764Z INFO         | SharedLibrary::open for [libX11.so.6]
+2025-11-07T12:35:15.0564218Z INFO         | SharedLibrary::open for [libX11.so.6]: not found in map, open for the first time
+2025-11-07T12:35:15.0564680Z INFO         | SharedLibrary::open for [libX11.so.6] (posix): begin
+2025-11-07T12:35:15.0565137Z INFO         | SharedLibrary::open for [libX11.so.6] (posix,linux): call dlopen on [libX11.so.6]
+2025-11-07T12:35:15.0565603Z INFO         | SharedLibrary::open succeeded for [libX11.so.6].
+2025-11-07T12:35:15.0565944Z INFO         | Initializing VkEmulation features:
+2025-11-07T12:35:15.0566253Z INFO         |     glInteropSupported: false
+2025-11-07T12:35:15.0566544Z INFO         |     useDeferredCommands: true
+2025-11-07T12:35:15.0566855Z INFO         |     createResourceWithRequirements: true
+2025-11-07T12:35:15.0567178Z INFO         |     useVulkanComposition: false
+2025-11-07T12:35:15.0567484Z INFO         |     useVulkanNativeSwapchain: false
+2025-11-07T12:35:15.0567791Z INFO         |     enable guestRenderDoc: false
+2025-11-07T12:35:15.0568095Z INFO         |     ASTC LDR emulation mode: Gpu
+2025-11-07T12:35:15.0568383Z INFO         |     enable ETC2 emulation: true
+2025-11-07T12:35:15.0568676Z INFO         |     enable Ycbcr emulation: false
+2025-11-07T12:35:15.0568961Z INFO         |     guestVulkanOnly: false
+2025-11-07T12:35:15.0569261Z INFO         |     useDedicatedAllocations: false
+2025-11-07T12:35:15.0569596Z INFO         | Graphics Adapter Vendor Google (Google Inc.)
+2025-11-07T12:35:15.0570266Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+2025-11-07T12:35:15.0570779Z INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+2025-11-07T12:35:15.0572671Z INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+2025-11-07T12:35:15.0574775Z INFO         | Graphics Device Extensions N/A
+2025-11-07T12:35:15.0575226Z INFO         | Userspace boot properties:
+2025-11-07T12:35:15.0575524Z INFO         |   android.bootanim=0
+2025-11-07T12:35:15.0575792Z INFO         |   android.qemud=1
+2025-11-07T12:35:15.0576160Z INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+2025-11-07T12:35:15.0576559Z INFO         |   androidboot.hardware=ranchu
+2025-11-07T12:35:15.0577094Z INFO         |   androidboot.hardware.vulkan=ranchu
+2025-11-07T12:35:15.0577795Z INFO         |   androidboot.serialno=EMULATOR36X2X12X0
+2025-11-07T12:35:15.0578639Z INFO         |   androidboot.vbmeta.digest=e565d59c032d8f786b6463dbea3d0c8d823a00cdec3d0e5de905a3c535fef13b
+2025-11-07T12:35:15.0579501Z INFO         |   androidboot.vbmeta.hash_alg=sha256
+2025-11-07T12:35:15.0580239Z INFO         |   androidboot.vbmeta.size=4352
+2025-11-07T12:35:15.0580710Z INFO         |   qemu=1
+2025-11-07T12:35:15.0581081Z INFO         |   qemu.avd_name=test
+2025-11-07T12:35:15.0640278Z INFO         |   qemu.camWARNING: cannnot unmap ptr 0x7fce6d801000 as it is in the protected range from 0x7fcded800000 to 0x7fce6da00000
+2025-11-07T12:35:15.0767703Z era_hq_edge_processing=0
+2025-11-07T12:35:15.0768190Z INFO         |   qemu.dalvik.vm.heapsize=512m
+2025-11-07T12:35:15.0768675Z INFO         |   qemu.encrypt=1
+2025-11-07T12:35:15.0769090Z INFO         |   qemu.gles=1
+2025-11-07T12:35:15.0769505Z INFO         |   qemu.gltransport=pipe
+2025-11-07T12:35:15.0770514Z INFO         |   qemu.gltransport.drawFlushInterval=800
+2025-11-07T12:35:15.0771117Z INFO         |   qemu.hwcodec.avcdec=2
+2025-11-07T12:35:15.0771625Z INFO         |   qemu.hwcodec.hevcdec=2
+2025-11-07T12:35:15.0772131Z INFO         |   qemu.hwcodec.vpxdec=2
+2025-11-07T12:35:15.0772640Z INFO         |   qemu.opengles.version=196608
+2025-11-07T12:35:15.0773240Z INFO         |   qemu.settings.system.screen_off_timeout=2147483647
+2025-11-07T12:35:15.0773833Z INFO         |   qemu.uirenderer=skiagl
+2025-11-07T12:35:15.0774321Z INFO         |   qemu.vsync=60
+2025-11-07T12:35:15.0774763Z INFO         |   qemu.wifi=1
+2025-11-07T12:35:15.0775230Z INFO         | Monitoring duration of emulator setup.
+2025-11-07T12:35:15.0975588Z INFO         | Setting display: 0 configuration to: 320x640, dpi: 160x160 
+2025-11-07T12:35:15.0976328Z INFO         | setDisplayActiveConfig 0
+2025-11-07T12:35:15.1042103Z INFO         | Loading snapshot 'default_boot'...
+2025-11-07T12:35:16.0041203Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.0041974Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.0042640Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.0043321Z WARNING      | Unknown XR viewport mode requested: 0, ignored.
+2025-11-07T12:35:16.0043725Z 
+2025-11-07T12:35:16.0043967Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.0044507Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.0045075Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.0045718Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.0046323Z WARNING      | Client not connected yet. Ignoring message!
+2025-11-07T12:35:16.1673947Z INFO         | Successfully loaded snapshot 'default_boot' using 1064 ms
+2025-11-07T12:35:24.9013493Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2025-11-07T12:35:24.9140674Z 1
+2025-11-07T12:35:24.9149146Z Emulator booted.
+2025-11-07T12:35:24.9187369Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+2025-11-07T12:35:25.7872431Z Disabling animations.
+2025-11-07T12:35:25.7919192Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+2025-11-07T12:35:25.9851167Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+2025-11-07T12:35:26.1519755Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+2025-11-07T12:35:26.2829890Z ##[endgroup]
+2025-11-07T12:35:26.2867142Z [command]/usr/bin/sh -c set -e
+2025-11-07T12:35:26.2933398Z [command]/usr/bin/sh -c adb logcat > logcat.txt &
+2025-11-07T12:35:36.3022261Z [command]/usr/bin/sh -c flutter doctor -v
+2025-11-07T12:35:36.6373920Z [✓] Flutter (Channel stable, 3.35.7, on Ubuntu 24.04.3 LTS 6.11.0-1018-azure, locale C.UTF-8) [60ms]
+2025-11-07T12:35:36.6376477Z     • Flutter version 3.35.7 on channel stable at /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:35:36.6377569Z     • Upstream repository https://github.com/flutter/flutter.git
+2025-11-07T12:35:36.6378438Z     • Framework revision adc9010625 (2 weeks ago), 2025-10-21 14:16:03 -0400
+2025-11-07T12:35:36.6382056Z     • Engine revision 035316565a
+2025-11-07T12:35:36.6382647Z     • Dart version 3.9.2
+2025-11-07T12:35:36.6383114Z     • DevTools version 2.48.0
+2025-11-07T12:35:36.6384443Z     • Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-lldb-debugging
+2025-11-07T12:35:36.6385394Z 
+2025-11-07T12:35:39.2513800Z [✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0) [2.6s]
+2025-11-07T12:35:39.2522131Z     • Android SDK at /usr/local/lib/android/sdk
+2025-11-07T12:35:39.2526900Z     • Emulator version unknown
+2025-11-07T12:35:39.2535427Z     • Platform android-36.1, build-tools 36.1.0
+2025-11-07T12:35:39.2540128Z     • ANDROID_HOME = /usr/local/lib/android/sdk
+2025-11-07T12:35:39.2544956Z     • ANDROID_SDK_ROOT = /usr/local/lib/android/sdk
+2025-11-07T12:35:39.2548673Z     • Java binary at: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64/bin/java
+2025-11-07T12:35:39.2553577Z       This JDK is specified by the JAVA_HOME environment variable.
+2025-11-07T12:35:39.2554357Z       To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+2025-11-07T12:35:39.2555497Z     • Java version OpenJDK Runtime Environment Temurin-17.0.17+10 (build 17.0.17+10)
+2025-11-07T12:35:39.2556355Z     • All Android licenses accepted.
+2025-11-07T12:35:39.2556681Z 
+2025-11-07T12:35:39.2556962Z [✓] Chrome - develop for the web [12ms]
+2025-11-07T12:35:39.2557519Z     • Chrome at google-chrome
+2025-11-07T12:35:39.2557800Z 
+2025-11-07T12:35:39.2558180Z [✗] Linux toolchain - develop for Linux desktop [1,732ms]
+2025-11-07T12:35:39.2558843Z     • Ubuntu clang version 18.1.3 (1ubuntu1)
+2025-11-07T12:35:39.2559379Z     • cmake version 3.31.6
+2025-11-07T12:35:39.2559861Z     • ninja version 1.13.1
+2025-11-07T12:35:39.2562068Z     • pkg-config version 1.8.1
+2025-11-07T12:35:39.2562817Z     ✗ GTK 3.0 development libraries are required for Linux development.
+2025-11-07T12:35:39.2563728Z       They are likely available from your distribution (e.g.: apt install libgtk-3-dev)
+2025-11-07T12:35:39.2564552Z     ! Unable to access driver information using 'eglinfo'.
+2025-11-07T12:35:39.2565366Z       It is likely available from your distribution (e.g.: apt install mesa-utils)
+2025-11-07T12:35:39.2565906Z 
+2025-11-07T12:35:39.2566119Z [!] Android Studio (not installed) [8ms]
+2025-11-07T12:35:39.2567138Z     • Android Studio not found; download from https://developer.android.com/studio/index.html
+2025-11-07T12:35:39.2568192Z       (or visit https://flutter.dev/to/linux-android-setup for detailed instructions).
+2025-11-07T12:35:39.2568752Z 
+2025-11-07T12:35:39.2569065Z [✓] Connected device (3 available) [629ms]
+2025-11-07T12:35:39.2570213Z     • Android SDK built for x86 64 (mobile) • emulator-5554 • android-x64    • Android 10 (API 29) (emulator)
+2025-11-07T12:35:39.2571473Z     • Linux (desktop)                       • linux         • linux-x64      • Ubuntu 24.04.3 LTS 6.11.0-1018-azure
+2025-11-07T12:35:39.2572536Z     • Chrome (web)                          • chrome        • web-javascript • Google Chrome 142.0.7444.59
+2025-11-07T12:35:39.2573035Z 
+2025-11-07T12:35:39.2573581Z [✓] Network resources [246ms]
+2025-11-07T12:35:39.2574170Z     • All expected network resources are available.
+2025-11-07T12:35:39.2574556Z 
+2025-11-07T12:35:39.2574754Z ! Doctor found issues in 2 categories.
+2025-11-07T12:35:39.2738227Z [command]/usr/bin/sh -c adb devices -l
+2025-11-07T12:35:39.2775187Z List of devices attached
+2025-11-07T12:35:39.2779274Z emulator-5554          device product:sdk_gphone_x86_64 model:Android_SDK_built_for_x86_64 device:generic_x86_64 transport_id:2
+2025-11-07T12:35:39.2782328Z 
+2025-11-07T12:35:39.2816202Z [command]/usr/bin/sh -c adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+2025-11-07T12:35:40.1616224Z [command]/usr/bin/sh -c echo "Building Patrol test bundle..."
+2025-11-07T12:35:40.1642481Z Building Patrol test bundle...
+2025-11-07T12:35:40.1680659Z [command]/usr/bin/sh -c patrol build android \
+2025-11-07T12:35:40.7641557Z 
+2025-11-07T12:35:40.7660413Z Completion files installed. To enable completion, run the following command in your shell:
+2025-11-07T12:35:40.7661429Z source /home/runner/.bash_profile
+2025-11-07T12:35:40.7661796Z 
+2025-11-07T12:45:26.7062138Z • Building apk with entrypoint test_bundle.dart...
+2025-11-07T12:45:27.9142031Z 	Warning: Flutter support for your project's Kotlin version (2.0.21) will soon be dropped. Please upgrade your Kotlin version to a version of at least 2.1.0 soon.
+2025-11-07T12:45:27.9151655Z 	Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+2025-11-07T12:45:27.9152477Z 	
+2025-11-07T12:45:27.9153895Z 	Potential fix: Your project's KGP version is typically defined in the plugins block of the `settings.gradle` file (/home/runner/work/Ivory/Ivory/android/settings.gradle), by a plugin with the id of org.jetbrains.kotlin.android. 
+2025-11-07T12:45:27.9156638Z 	If you don't see a plugins block, your project was likely created with an older template version, in which case it is most likely defined in the top-level build.gradle file (/home/runner/work/Ivory/Ivory/android/build.gradle) by the ext.kotlin_version property.
+2025-11-07T12:45:27.9158298Z 	
+2025-11-07T12:49:16.2417273Z 	Warning: Flutter support for your project's Kotlin version (2.0.21) will soon be dropped. Please upgrade your Kotlin version to a version of at least 2.1.0 soon.
+2025-11-07T12:49:16.2420977Z 	Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+2025-11-07T12:49:16.2421713Z 	
+2025-11-07T12:49:16.2423289Z 	Potential fix: Your project's KGP version is typically defined in the plugins block of the `settings.gradle` file (/home/runner/work/Ivory/Ivory/android/settings.gradle), by a plugin with the id of org.jetbrains.kotlin.android. 
+2025-11-07T12:49:16.2425035Z 	If you don't see a plugins block, your project was likely created with an older template version, in which case it is most likely defined in the top-level build.gradle file (/home/runner/work/Ivory/Ivory/android/build.gradle) by the ext.kotlin_version property.
+2025-11-07T12:49:16.2426162Z 	
+2025-11-07T12:49:22.0957241Z ✓ Completed building apk with entrypoint test_bundle.dart (235.4s)
+2025-11-07T12:49:22.0965883Z build/app/outputs/apk/debug/app-debug.apk (app under test)
+2025-11-07T12:49:22.0971400Z build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk (test instrumentation app)
+2025-11-07T12:49:22.1084783Z [command]/usr/bin/sh -c --target integration_test/repaymentRateIsSaved_test.dart \
+2025-11-07T12:49:22.1102423Z /usr/bin/sh: 0: Illegal option --
+2025-11-07T12:49:22.1115006Z ##[error]The process '/usr/bin/sh' failed with exit code 2
+2025-11-07T12:49:22.1116107Z ##[group]Terminate Emulator
+2025-11-07T12:49:22.1156127Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2025-11-07T12:49:22.1201732Z OK: killing emulator, bye bye
+2025-11-07T12:49:22.1211571Z OK
+2025-11-07T12:49:22.1212999Z INFO         | Wait for emulator (pid 3257) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+2025-11-07T12:49:22.1216884Z 
+2025-11-07T12:49:22.1217370Z ##[endgroup]
+2025-11-07T12:49:22.1246895Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+2025-11-07T12:49:22.1255791Z INFO         | Saving snapshot 'default_boot' using 1 ms
+2025-11-07T12:49:22.2830561Z ERROR        | stop: Not implemented
+2025-11-07T12:49:22.2831531Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+2025-11-07T12:49:23.2612606Z ##[group]Run actions/upload-artifact@v4
+2025-11-07T12:49:23.2613055Z with:
+2025-11-07T12:49:23.2613297Z   name: integration-test-results-android-29
+2025-11-07T12:49:23.2613593Z   path: logcat.txt
+
+2025-11-07T12:49:23.2613812Z   retention-days: 14
+2025-11-07T12:49:23.2614034Z   if-no-files-found: warn
+2025-11-07T12:49:23.2614264Z   compression-level: 6
+2025-11-07T12:49:23.2614480Z   overwrite: false
+2025-11-07T12:49:23.2614697Z   include-hidden-files: false
+2025-11-07T12:49:23.2614945Z env:
+2025-11-07T12:49:23.2615131Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:49:23.2615348Z   JAVA_VERSION: 17
+2025-11-07T12:49:23.2615674Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:49:23.2616152Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:49:23.2616618Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:49:23.2616962Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:49:23.2617283Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2025-11-07T12:49:23.2617588Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2025-11-07T12:49:23.2617877Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2025-11-07T12:49:23.2618298Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2025-11-07T12:49:23.2618784Z   DEVELOCITY_AUTO_INJECTION_CUSTOM_VALUE: gradle-actions
+2025-11-07T12:49:23.2619114Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2025-11-07T12:49:23.2619405Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2025-11-07T12:49:23.2619675Z ##[endgroup]
+2025-11-07T12:49:23.5050572Z With the provided path, there will be 1 file uploaded
+2025-11-07T12:49:23.5055533Z Artifact name is valid!
+2025-11-07T12:49:23.5056894Z Root directory input is valid!
+2025-11-07T12:49:23.6937788Z Beginning upload of artifact content to blob storage
+2025-11-07T12:49:24.1205161Z Uploaded bytes 344137
+2025-11-07T12:49:24.1772301Z Finished uploading artifact content to blob storage!
+2025-11-07T12:49:24.1775019Z SHA256 digest of uploaded artifact zip is e91c19fc3fba12b15159a79292549f0923dddc8c5e7489293d339c9893ed5e58
+2025-11-07T12:49:24.1777034Z Finalizing artifact upload
+2025-11-07T12:49:24.2861032Z Artifact integration-test-results-android-29.zip successfully finalized. Artifact ID 4499093487
+2025-11-07T12:49:24.2862677Z Artifact integration-test-results-android-29 has been successfully uploaded! Final size is 344137 bytes. Artifact ID is 4499093487
+2025-11-07T12:49:24.2870146Z Artifact download URL: https://github.com/luciancernauteanuthinslices/Ivory/actions/runs/19168457840/artifacts/4499093487
+2025-11-07T12:49:24.2987260Z ##[group]Run actions/upload-artifact@v4
+2025-11-07T12:49:24.2987571Z with:
+2025-11-07T12:49:24.2987816Z   name: integration-test-screenshots-android-29
+2025-11-07T12:49:24.2988170Z   path: integration_test/screenshots/
+screenshots/
+
+2025-11-07T12:49:24.2988474Z   retention-days: 14
+2025-11-07T12:49:24.2988700Z   if-no-files-found: warn
+2025-11-07T12:49:24.2988940Z   compression-level: 6
+2025-11-07T12:49:24.2989159Z   overwrite: false
+2025-11-07T12:49:24.2989386Z   include-hidden-files: false
+2025-11-07T12:49:24.2989627Z env:
+2025-11-07T12:49:24.2989819Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:49:24.2990296Z   JAVA_VERSION: 17
+2025-11-07T12:49:24.2990634Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:49:24.2991133Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:49:24.2991597Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:49:24.2992176Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:49:24.2992484Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2025-11-07T12:49:24.2992800Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2025-11-07T12:49:24.2993104Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2025-11-07T12:49:24.2993532Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2025-11-07T12:49:24.2994029Z   DEVELOCITY_AUTO_INJECTION_CUSTOM_VALUE: gradle-actions
+2025-11-07T12:49:24.2994366Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2025-11-07T12:49:24.2994663Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2025-11-07T12:49:24.2994940Z ##[endgroup]
+2025-11-07T12:49:24.5174721Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2025-11-07T12:49:24.5176623Z The least common ancestor is /home/runner/work/Ivory/Ivory. This will be the root directory of the artifact
+2025-11-07T12:49:24.5179518Z ##[warning]No files were found with the provided path: integration_test/screenshots/
+screenshots/. No artifacts will be uploaded.
+2025-11-07T12:49:24.5330366Z Post job cleanup.
+2025-11-07T12:49:24.7803813Z In post-action step
+2025-11-07T12:49:24.7817912Z Cache is read-only: will not save state for use in subsequent builds.
+2025-11-07T12:49:24.7824198Z Generating Job Summary
+2025-11-07T12:49:24.7846022Z Completed post-action step
+2025-11-07T12:49:24.8035525Z Post job cleanup.
+2025-11-07T12:49:24.8088849Z Post job cleanup.
+2025-11-07T12:49:24.9903056Z Post job cleanup.
+2025-11-07T12:49:25.0929659Z [command]/usr/bin/git version
+2025-11-07T12:49:25.0971547Z git version 2.51.2
+2025-11-07T12:49:25.1017102Z Temporarily overriding HOME='/home/runner/work/_temp/95692251-620e-4302-bf4e-ef4d2b6a386e' before making global git config changes
+2025-11-07T12:49:25.1018473Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-07T12:49:25.1030172Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Ivory/Ivory
+2025-11-07T12:49:25.1064780Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-07T12:49:25.1097116Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-07T12:49:25.1415399Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-07T12:49:25.1437375Z http.https://github.com/.extraheader
+2025-11-07T12:49:25.1450869Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-11-07T12:49:25.1489238Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-07T12:49:25.1814937Z Cleaning up orphan processes
+2025-11-07T12:49:25.2249854Z Terminate orphan process: pid (2948) (adb)
+2025-11-07T12:49:25.2318876Z Terminate orphan process: pid (3831) (java)
+2025-11-07T12:49:25.2457992Z Terminate orphan process: pid (4025) (java)
+2025-11-07T12:49:25.2555198Z Terminate orphan process: pid (4575) (java)

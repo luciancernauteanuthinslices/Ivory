@@ -1,0 +1,340 @@
+﻿2025-11-07T12:32:24.0623847Z Current runner version: '2.329.0'
+2025-11-07T12:32:24.0649270Z ##[group]Runner Image Provisioner
+2025-11-07T12:32:24.0650204Z Hosted Compute Agent
+2025-11-07T12:32:24.0650781Z Version: 20251016.436
+2025-11-07T12:32:24.0651681Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-07T12:32:24.0652464Z Build Date: 2025-10-15T20:44:12Z
+2025-11-07T12:32:24.0653133Z ##[endgroup]
+2025-11-07T12:32:24.0653637Z ##[group]Operating System
+2025-11-07T12:32:24.0654258Z Ubuntu
+2025-11-07T12:32:24.0654771Z 24.04.3
+2025-11-07T12:32:24.0655220Z LTS
+2025-11-07T12:32:24.0655758Z ##[endgroup]
+2025-11-07T12:32:24.0656251Z ##[group]Runner Image
+2025-11-07T12:32:24.0656828Z Image: ubuntu-24.04
+2025-11-07T12:32:24.0657291Z Version: 20251030.96.2
+2025-11-07T12:32:24.0658384Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251030.96/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-07T12:32:24.0659896Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251030.96
+2025-11-07T12:32:24.0660942Z ##[endgroup]
+2025-11-07T12:32:24.0663506Z ##[group]GITHUB_TOKEN Permissions
+2025-11-07T12:32:24.0665860Z Actions: write
+2025-11-07T12:32:24.0666401Z Attestations: write
+2025-11-07T12:32:24.0666912Z Checks: write
+2025-11-07T12:32:24.0667574Z Contents: write
+2025-11-07T12:32:24.0668103Z Deployments: write
+2025-11-07T12:32:24.0668595Z Discussions: write
+2025-11-07T12:32:24.0669233Z Issues: write
+2025-11-07T12:32:24.0669691Z Metadata: read
+2025-11-07T12:32:24.0670189Z Models: read
+2025-11-07T12:32:24.0670770Z Packages: write
+2025-11-07T12:32:24.0671431Z Pages: write
+2025-11-07T12:32:24.0671971Z PullRequests: write
+2025-11-07T12:32:24.0672575Z RepositoryProjects: write
+2025-11-07T12:32:24.0673165Z SecurityEvents: write
+2025-11-07T12:32:24.0673787Z Statuses: write
+2025-11-07T12:32:24.0674350Z ##[endgroup]
+2025-11-07T12:32:24.0676472Z Secret source: Actions
+2025-11-07T12:32:24.0677431Z Prepare workflow directory
+2025-11-07T12:32:24.1069170Z Prepare all required actions
+2025-11-07T12:32:24.1106927Z Getting action download info
+2025-11-07T12:32:24.4517419Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-11-07T12:32:24.6260633Z Download action repository 'actions/setup-java@v4' (SHA:c5195efecf7bdfc987ee8bae7a71cb8b11521c00)
+2025-11-07T12:32:25.2974569Z Download action repository 'subosito/flutter-action@v2' (SHA:fd55f4c5af5b953cc57a2be44cb082c8f6635e8e)
+2025-11-07T12:32:25.6694096Z Getting action download info
+2025-11-07T12:32:25.8054778Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2025-11-07T12:32:26.0274546Z Complete job name: Analyze & Unit Test
+2025-11-07T12:32:26.1029310Z ##[group]Run actions/checkout@v4
+2025-11-07T12:32:26.1030614Z with:
+2025-11-07T12:32:26.1031709Z   repository: luciancernauteanuthinslices/Ivory
+2025-11-07T12:32:26.1033100Z   token: ***
+2025-11-07T12:32:26.1033860Z   ssh-strict: true
+2025-11-07T12:32:26.1034648Z   ssh-user: git
+2025-11-07T12:32:26.1035448Z   persist-credentials: true
+2025-11-07T12:32:26.1036382Z   clean: true
+2025-11-07T12:32:26.1037180Z   sparse-checkout-cone-mode: true
+2025-11-07T12:32:26.1038146Z   fetch-depth: 1
+2025-11-07T12:32:26.1038920Z   fetch-tags: false
+2025-11-07T12:32:26.1039714Z   show-progress: true
+2025-11-07T12:32:26.1040516Z   lfs: false
+2025-11-07T12:32:26.1041458Z   submodules: false
+2025-11-07T12:32:26.1042291Z   set-safe-directory: true
+2025-11-07T12:32:26.1043409Z env:
+2025-11-07T12:32:26.1044136Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:26.1044998Z   JAVA_VERSION: 17
+2025-11-07T12:32:26.1045765Z ##[endgroup]
+2025-11-07T12:32:26.2134213Z Syncing repository: luciancernauteanuthinslices/Ivory
+2025-11-07T12:32:26.2136919Z ##[group]Getting Git version info
+2025-11-07T12:32:26.2138132Z Working directory is '/home/runner/work/Ivory/Ivory'
+2025-11-07T12:32:26.2139853Z [command]/usr/bin/git version
+2025-11-07T12:32:26.2206891Z git version 2.51.2
+2025-11-07T12:32:26.2233905Z ##[endgroup]
+2025-11-07T12:32:26.2248532Z Temporarily overriding HOME='/home/runner/work/_temp/5f15833c-a3be-4841-8566-5fa67ef517bf' before making global git config changes
+2025-11-07T12:32:26.2251732Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-07T12:32:26.2261425Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Ivory/Ivory
+2025-11-07T12:32:26.2298767Z Deleting the contents of '/home/runner/work/Ivory/Ivory'
+2025-11-07T12:32:26.2302737Z ##[group]Initializing the repository
+2025-11-07T12:32:26.2306599Z [command]/usr/bin/git init /home/runner/work/Ivory/Ivory
+2025-11-07T12:32:26.2415193Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-11-07T12:32:26.2417333Z hint: is subject to change. To configure the initial branch name to use in all
+2025-11-07T12:32:26.2420180Z hint: of your new repositories, which will suppress this warning, call:
+2025-11-07T12:32:26.2422898Z hint:
+2025-11-07T12:32:26.2424479Z hint: 	git config --global init.defaultBranch <name>
+2025-11-07T12:32:26.2426488Z hint:
+2025-11-07T12:32:26.2428286Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-11-07T12:32:26.2431572Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-11-07T12:32:26.2434116Z hint:
+2025-11-07T12:32:26.2435369Z hint: 	git branch -m <name>
+2025-11-07T12:32:26.2436769Z hint:
+2025-11-07T12:32:26.2438649Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-11-07T12:32:26.2441024Z Initialized empty Git repository in /home/runner/work/Ivory/Ivory/.git/
+2025-11-07T12:32:26.2444429Z [command]/usr/bin/git remote add origin https://github.com/luciancernauteanuthinslices/Ivory
+2025-11-07T12:32:26.2470376Z ##[endgroup]
+2025-11-07T12:32:26.2472951Z ##[group]Disabling automatic garbage collection
+2025-11-07T12:32:26.2475119Z [command]/usr/bin/git config --local gc.auto 0
+2025-11-07T12:32:26.2505130Z ##[endgroup]
+2025-11-07T12:32:26.2507413Z ##[group]Setting up auth
+2025-11-07T12:32:26.2513249Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-07T12:32:26.2546782Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-07T12:32:26.2930963Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-07T12:32:26.2963933Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-07T12:32:26.3187793Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-11-07T12:32:26.3232699Z ##[endgroup]
+2025-11-07T12:32:26.3235065Z ##[group]Fetching the repository
+2025-11-07T12:32:26.3243820Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +da535c54aca237fa4dc24a92a3d00f764cd354c9:refs/remotes/origin/test_playground
+2025-11-07T12:32:27.2608103Z From https://github.com/luciancernauteanuthinslices/Ivory
+2025-11-07T12:32:27.2608742Z  * [new ref]         da535c54aca237fa4dc24a92a3d00f764cd354c9 -> origin/test_playground
+2025-11-07T12:32:27.2639331Z ##[endgroup]
+2025-11-07T12:32:27.2640075Z ##[group]Determining the checkout info
+2025-11-07T12:32:27.2642124Z ##[endgroup]
+2025-11-07T12:32:27.2647796Z [command]/usr/bin/git sparse-checkout disable
+2025-11-07T12:32:27.2689192Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-11-07T12:32:27.2717276Z ##[group]Checking out the ref
+2025-11-07T12:32:27.2721988Z [command]/usr/bin/git checkout --progress --force -B test_playground refs/remotes/origin/test_playground
+2025-11-07T12:32:27.4025093Z Switched to a new branch 'test_playground'
+2025-11-07T12:32:27.4025997Z branch 'test_playground' set up to track 'origin/test_playground'.
+2025-11-07T12:32:27.4045445Z ##[endgroup]
+2025-11-07T12:32:27.4087667Z [command]/usr/bin/git log -1 --format=%H
+2025-11-07T12:32:27.4110217Z da535c54aca237fa4dc24a92a3d00f764cd354c9
+2025-11-07T12:32:27.4357798Z ##[group]Run actions/setup-java@v4
+2025-11-07T12:32:27.4358116Z with:
+2025-11-07T12:32:27.4358341Z   distribution: temurin
+2025-11-07T12:32:27.4358586Z   java-version: 17
+2025-11-07T12:32:27.4358820Z   java-package: jdk
+2025-11-07T12:32:27.4359052Z   check-latest: false
+2025-11-07T12:32:27.4359292Z   server-id: github
+2025-11-07T12:32:27.4359527Z   server-username: GITHUB_ACTOR
+2025-11-07T12:32:27.4359815Z   server-password: GITHUB_TOKEN
+2025-11-07T12:32:27.4360092Z   overwrite-settings: true
+2025-11-07T12:32:27.4360342Z   job-status: success
+2025-11-07T12:32:27.4360705Z   token: ***
+2025-11-07T12:32:27.4360917Z env:
+2025-11-07T12:32:27.4361135Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.4361589Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.4361818Z ##[endgroup]
+2025-11-07T12:32:27.6400838Z ##[group]Installed distributions
+2025-11-07T12:32:27.6858742Z Resolved Java 17.0.17+10 from tool-cache
+2025-11-07T12:32:27.6859975Z Setting Java 17.0.17+10 as the default
+2025-11-07T12:32:27.6874237Z Creating toolchains.xml for JDK version 17 from temurin
+2025-11-07T12:32:27.6961015Z Writing to /home/runner/.m2/toolchains.xml
+2025-11-07T12:32:27.6962075Z 
+2025-11-07T12:32:27.6962343Z Java configuration:
+2025-11-07T12:32:27.6963484Z   Distribution: temurin
+2025-11-07T12:32:27.6963990Z   Version: 17.0.17+10
+2025-11-07T12:32:27.6964664Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.6966470Z 
+2025-11-07T12:32:27.6967137Z ##[endgroup]
+2025-11-07T12:32:27.6980784Z Creating settings.xml with server-id: github
+2025-11-07T12:32:27.6986098Z Writing to /home/runner/.m2/settings.xml
+2025-11-07T12:32:27.7198996Z ##[group]Run subosito/flutter-action@v2
+2025-11-07T12:32:27.7199410Z with:
+2025-11-07T12:32:27.7199635Z   flutter-version: 3.35.7
+2025-11-07T12:32:27.7199886Z   channel: stable
+2025-11-07T12:32:27.7200107Z   cache: true
+2025-11-07T12:32:27.7200389Z   architecture: X64
+2025-11-07T12:32:27.7200637Z   pub-cache-path: default
+2025-11-07T12:32:27.7200888Z   dry-run: false
+2025-11-07T12:32:27.7201195Z   git-source: https://github.com/flutter/flutter.git
+2025-11-07T12:32:27.7201746Z env:
+2025-11-07T12:32:27.7201965Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.7202213Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.7202545Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7203045Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7203427Z ##[endgroup]
+2025-11-07T12:32:27.7294156Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2025-11-07T12:32:27.7294639Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2025-11-07T12:32:27.7332840Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:32:27.7333212Z env:
+2025-11-07T12:32:27.7333429Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.7333674Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.7334029Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7334540Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7334925Z ##[endgroup]
+2025-11-07T12:32:27.7471711Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2025-11-07T12:32:27.7472154Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2025-11-07T12:32:27.7472458Z [36;1m  -n '3.35.7' \[0m
+2025-11-07T12:32:27.7472711Z [36;1m  -f '' \[0m
+2025-11-07T12:32:27.7472934Z [36;1m  -a 'X64' \[0m
+2025-11-07T12:32:27.7473165Z [36;1m  -k '' \[0m
+2025-11-07T12:32:27.7473387Z [36;1m  -c '' \[0m
+2025-11-07T12:32:27.7473600Z [36;1m  -l '' \[0m
+2025-11-07T12:32:27.7473829Z [36;1m  -d 'default' \[0m
+2025-11-07T12:32:27.7474185Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2025-11-07T12:32:27.7474529Z [36;1m  stable[0m
+2025-11-07T12:32:27.7506106Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:32:27.7506460Z env:
+2025-11-07T12:32:27.7506676Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.7507095Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.7507437Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7507941Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.7508331Z ##[endgroup]
+2025-11-07T12:32:27.9102173Z ##[group]Run actions/cache@v4
+2025-11-07T12:32:27.9102471Z with:
+2025-11-07T12:32:27.9102749Z   path: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:32:27.9103229Z   key: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:32:27.9103659Z   enableCrossOsArchive: false
+2025-11-07T12:32:27.9103941Z   fail-on-cache-miss: false
+2025-11-07T12:32:27.9104211Z   lookup-only: false
+2025-11-07T12:32:27.9104443Z   save-always: false
+2025-11-07T12:32:27.9104683Z env:
+2025-11-07T12:32:27.9104897Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:27.9105140Z   JAVA_VERSION: 17
+2025-11-07T12:32:27.9105474Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.9105989Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:27.9106373Z ##[endgroup]
+2025-11-07T12:32:28.2826079Z Cache hit for: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:32:29.4269720Z Received 130023424 of 1585727500 (8.2%), 124.0 MBs/sec
+2025-11-07T12:32:30.4272142Z Received 260046848 of 1585727500 (16.4%), 124.0 MBs/sec
+2025-11-07T12:32:31.4273274Z Received 402653184 of 1585727500 (25.4%), 128.0 MBs/sec
+2025-11-07T12:32:32.4415207Z Received 595591168 of 1585727500 (37.6%), 141.5 MBs/sec
+2025-11-07T12:32:33.4419090Z Received 801112064 of 1585727500 (50.5%), 152.3 MBs/sec
+2025-11-07T12:32:34.4424068Z Received 964689920 of 1585727500 (60.8%), 152.9 MBs/sec
+2025-11-07T12:32:35.4429652Z Received 1145044992 of 1585727500 (72.2%), 155.6 MBs/sec
+2025-11-07T12:32:36.4431815Z Received 1329594368 of 1585727500 (83.8%), 158.2 MBs/sec
+2025-11-07T12:32:37.4439685Z Received 1476395008 of 1585727500 (93.1%), 156.1 MBs/sec
+2025-11-07T12:32:38.0725894Z Received 1585727500 of 1585727500 (100.0%), 156.8 MBs/sec
+2025-11-07T12:32:38.0729193Z Cache Size: ~1512 MB (1585727500 B)
+2025-11-07T12:32:38.0848722Z [command]/usr/bin/tar -xf /home/runner/work/_temp/04794834-7115-4207-b523-774b88c7cc66/cache.tzst -P -C /home/runner/work/Ivory/Ivory --use-compress-program unzstd
+2025-11-07T12:32:42.7857170Z Cache restored successfully
+2025-11-07T12:32:43.0777847Z Cache restored from key: flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2
+2025-11-07T12:32:43.2404182Z ##[group]Run actions/cache@v4
+2025-11-07T12:32:43.2404433Z with:
+2025-11-07T12:32:43.2404619Z   path: /home/runner/.pub-cache
+2025-11-07T12:32:43.2405303Z   key: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:32:43.2405984Z   enableCrossOsArchive: false
+2025-11-07T12:32:43.2406213Z   fail-on-cache-miss: false
+2025-11-07T12:32:43.2406449Z   lookup-only: false
+2025-11-07T12:32:43.2406647Z   save-always: false
+2025-11-07T12:32:43.2406822Z env:
+2025-11-07T12:32:43.2406995Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:43.2407208Z   JAVA_VERSION: 17
+2025-11-07T12:32:43.2407507Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:43.2407952Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:43.2408294Z ##[endgroup]
+2025-11-07T12:32:43.4924424Z Cache hit for: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:32:44.6662113Z Received 134217728 of 140060785 (95.8%), 120.5 MBs/sec
+2025-11-07T12:32:44.7967824Z Received 140060785 of 140060785 (100.0%), 112.1 MBs/sec
+2025-11-07T12:32:44.7969206Z Cache Size: ~134 MB (140060785 B)
+2025-11-07T12:32:44.7999811Z [command]/usr/bin/tar -xf /home/runner/work/_temp/ab753b51-eb74-4ba6-b7a8-3fc9f5d21e42/cache.tzst -P -C /home/runner/work/Ivory/Ivory --use-compress-program unzstd
+2025-11-07T12:32:46.2881882Z Cache restored successfully
+2025-11-07T12:32:46.3230278Z Cache restored from key: flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06
+2025-11-07T12:32:46.3346427Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2025-11-07T12:32:46.3346758Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2025-11-07T12:32:46.3347017Z [36;1m  -n '3.35.7' \[0m
+2025-11-07T12:32:46.3347227Z [36;1m  -a 'x64' \[0m
+2025-11-07T12:32:46.3347515Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.35.7-x64' \[0m
+2025-11-07T12:32:46.3347875Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2025-11-07T12:32:46.3348134Z [36;1m  stable[0m
+2025-11-07T12:32:46.3380779Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-11-07T12:32:46.3381099Z env:
+2025-11-07T12:32:46.3381503Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:46.3381721Z   JAVA_VERSION: 17
+2025-11-07T12:32:46.3382056Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:46.3382515Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:46.3382869Z ##[endgroup]
+2025-11-07T12:32:46.4879670Z ##[group]Run flutter pub get
+2025-11-07T12:32:46.4879963Z [36;1mflutter pub get[0m
+2025-11-07T12:32:46.4914308Z shell: /usr/bin/bash -e {0}
+2025-11-07T12:32:46.4914568Z env:
+2025-11-07T12:32:46.4914823Z   FLUTTER_VERSION: 3.35.7
+2025-11-07T12:32:46.4915039Z   JAVA_VERSION: 17
+2025-11-07T12:32:46.4915348Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:46.4915808Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-07T12:32:46.4916251Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-07T12:32:46.4916588Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-07T12:32:46.4916830Z ##[endgroup]
+2025-11-07T12:32:47.0060350Z Resolving dependencies...
+2025-11-07T12:32:47.7340192Z Downloading packages...
+2025-11-07T12:32:47.9369778Z   _fe_analyzer_shared 85.0.0 (92.0.0 available)
+2025-11-07T12:32:47.9370425Z   _flutterfire_internals 1.3.59 (1.3.64 available)
+2025-11-07T12:32:47.9371031Z   analyzer 7.7.1 (9.0.0 available)
+2025-11-07T12:32:47.9371685Z   bloc 8.1.4 (9.1.0 available)
+2025-11-07T12:32:47.9372095Z   build 3.1.0 (4.0.2 available)
+2025-11-07T12:32:47.9372518Z   build_resolvers 3.0.3 (3.0.4 available)
+2025-11-07T12:32:47.9372991Z   build_runner 2.7.1 (2.10.1 available)
+2025-11-07T12:32:47.9373462Z   build_runner_core 9.3.1 (9.3.2 available)
+2025-11-07T12:32:47.9373937Z   characters 1.4.0 (1.4.1 available)
+2025-11-07T12:32:47.9374380Z   cross_file 0.3.4+2 (0.3.5 available)
+2025-11-07T12:32:47.9374918Z   crypto 3.0.6 (3.0.7 available)
+2025-11-07T12:32:47.9375335Z   crypto_keys 0.3.0+1 (0.3.0+2 available)
+2025-11-07T12:32:47.9375791Z   dart_style 3.1.1 (3.1.2 available)
+2025-11-07T12:32:47.9376253Z   device_info_plus 11.5.0 (12.2.0 available)
+2025-11-07T12:32:47.9376738Z   dotted_border 2.1.0 (3.1.0 available)
+2025-11-07T12:32:47.9377188Z   firebase_core 3.15.2 (4.2.1 available)
+2025-11-07T12:32:47.9377659Z   firebase_core_web 2.24.1 (3.3.0 available)
+2025-11-07T12:32:47.9378158Z   firebase_messaging 15.2.10 (16.0.4 available)
+2025-11-07T12:32:47.9378772Z   firebase_messaging_platform_interface 4.6.10 (4.7.4 available)
+2025-11-07T12:32:47.9379415Z   firebase_messaging_web 3.10.10 (4.1.0 available)
+2025-11-07T12:32:47.9379910Z   fl_chart 0.69.2 (1.1.1 available)
+2025-11-07T12:32:47.9380347Z   flutter_bloc 8.1.6 (9.1.1 available)
+2025-11-07T12:32:47.9380786Z   flutter_dotenv 5.2.1 (6.0.0 available)
+2025-11-07T12:32:47.9381452Z   flutter_lints 5.0.0 (6.0.0 available)
+2025-11-07T12:32:47.9382028Z   flutter_local_notifications 18.0.1 (19.5.0 available)
+2025-11-07T12:32:47.9382634Z   flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+2025-11-07T12:32:47.9383366Z   flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+2025-11-07T12:32:47.9384359Z   flutter_platform_widgets 7.0.1 (9.0.0 available)
+2025-11-07T12:32:47.9384862Z   flutter_svg 2.2.1 (2.2.2 available)
+2025-11-07T12:32:47.9385286Z   intl 0.19.0 (0.20.2 available)
+2025-11-07T12:32:47.9385675Z   lints 5.1.1 (6.0.0 available)
+2025-11-07T12:32:47.9386059Z   local_auth 2.3.0 (3.0.0 available)
+2025-11-07T12:32:47.9386487Z   local_auth_android 1.0.56 (2.0.0 available)
+2025-11-07T12:32:47.9386947Z   local_auth_darwin 1.6.1 (2.0.0 available)
+2025-11-07T12:32:47.9387252Z   local_auth_windows 1.0.11 (2.0.0 available)
+2025-11-07T12:32:47.9387553Z   material_color_utilities 0.11.1 (0.13.0 available)
+2025-11-07T12:32:47.9387836Z   meta 1.16.0 (1.17.0 available)
+2025-11-07T12:32:47.9388066Z   mockito 5.5.0 (5.5.1 available)
+2025-11-07T12:32:47.9388328Z   permission_handler 11.4.0 (12.0.1 available)
+2025-11-07T12:32:47.9388628Z   permission_handler_android 12.1.0 (13.0.1 available)
+2025-11-07T12:32:47.9388918Z   pointycastle 3.9.1 (4.0.0 available)
+2025-11-07T12:32:47.9389169Z   share_plus 10.1.4 (12.0.1 available)
+2025-11-07T12:32:47.9389444Z   share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-11-07T12:32:47.9389718Z   source_gen 3.1.0 (4.0.2 available)
+2025-11-07T12:32:47.9390218Z   syncfusion_flutter_core 27.2.5 (31.2.5 available)
+2025-11-07T12:32:47.9390554Z   syncfusion_flutter_datepicker 27.2.5 (31.2.5 available)
+2025-11-07T12:32:47.9390841Z   test 1.26.2 (1.26.3 available)
+2025-11-07T12:32:47.9391065Z   test_api 0.7.6 (0.7.7 available)
+2025-11-07T12:32:47.9391539Z   test_core 0.6.11 (0.6.12 available)
+2025-11-07T12:32:47.9391787Z   uuid 4.5.1 (4.5.2 available)
+2025-11-07T12:32:47.9392052Z   video_player_platform_interface 6.5.0 (6.6.0 available)
+2025-11-07T12:32:47.9392364Z   webview_flutter_wkwebview 3.23.1 (3.23.2 available)
+2025-11-07T12:32:47.9405463Z Got dependencies!
+2025-11-07T12:32:47.9431787Z 52 packages have newer versions incompatible with dependency constraints.
+2025-11-07T12:32:47.9432598Z Try `flutter pub outdated` for more information.
+2025-11-07T12:32:48.5774684Z Post job cleanup.
+2025-11-07T12:32:48.7368254Z Post job cleanup.
+2025-11-07T12:32:48.8694795Z Cache hit occurred on the primary key flutter-pub-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2-06f9793bb7c5355fb58c04d9e84c0e2ada01ed571662c41ded49decb264d7d06, not saving cache.
+2025-11-07T12:32:48.8788392Z Post job cleanup.
+2025-11-07T12:32:49.0103426Z Cache hit occurred on the primary key flutter-linux-stable-3.35.7-x64-adc901062556672b4138e18a4dc62a4be8f4b3c2, not saving cache.
+2025-11-07T12:32:49.0216493Z Post job cleanup.
+2025-11-07T12:32:49.1966169Z Post job cleanup.
+2025-11-07T12:32:49.2917185Z [command]/usr/bin/git version
+2025-11-07T12:32:49.2954644Z git version 2.51.2
+2025-11-07T12:32:49.2999652Z Temporarily overriding HOME='/home/runner/work/_temp/01ccb0a8-2fc8-4842-95ac-4a45102fe499' before making global git config changes
+2025-11-07T12:32:49.3001016Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-07T12:32:49.3013309Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Ivory/Ivory
+2025-11-07T12:32:49.3054371Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-07T12:32:49.3090923Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-07T12:32:49.3341526Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-07T12:32:49.3362689Z http.https://github.com/.extraheader
+2025-11-07T12:32:49.3375312Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-11-07T12:32:49.3410552Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-07T12:32:49.3738107Z Cleaning up orphan processes
