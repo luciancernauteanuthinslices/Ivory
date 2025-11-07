@@ -137,14 +137,32 @@ jobs:
             # Wait for emulator to be fully ready
             adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
             
-            # Build and install the app to grant permissions
-            flutter build apk --debug
-            adb install build/app/outputs/flutter-apk/app-debug.apk || echo "App already installed or install failed"
+            # Build test bundle without running (Patrol)
+            echo "Building Patrol test bundle..."
+            patrol build android \
+              --target integration_test/repaymentRateIsSaved_test.dart \
+              --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" \
+              --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}"
             
-            # Pre-grant runtime permissions to avoid dialog issues on CI
-            adb shell pm grant com.thinslices.solarisdemo android.permission.POST_NOTIFICATIONS || echo "Permission already granted or not needed"
+            # Install app granting all runtime permissions at install time (-g flag)
+            echo "Installing app with permissions..."
+            adb install -r -g build/app/outputs/apk/debug/app-debug.apk || echo "Install with -g failed, trying without -g"
             
-            # Run the tests
+            # Explicit permission grants as fallback (in case -g doesn't work on this API level)
+            echo "Granting runtime permissions explicitly..."
+            adb shell pm grant com.thinslices.solarisdemo android.permission.CAMERA || true
+            adb shell pm grant com.thinslices.solarisdemo android.permission.ACCESS_FINE_LOCATION || true
+            adb shell pm grant com.thinslices.solarisdemo android.permission.ACCESS_COARSE_LOCATION || true
+            adb shell pm grant com.thinslices.solarisdemo android.permission.POST_NOTIFICATIONS || true
+            adb shell pm grant com.thinslices.solarisdemo android.permission.READ_EXTERNAL_STORAGE || true
+            adb shell pm grant com.thinslices.solarisdemo android.permission.WRITE_EXTERNAL_STORAGE || true
+            
+            # Verify installation
+            echo "Verifying app installation..."
+            adb shell pm list packages | grep com.thinslices.solarisdemo
+            
+            # Run Patrol tests (will reuse installed app)
+            echo "Running Patrol tests..."
             patrol test \
               --verbose \
               --target integration_test/repaymentRateIsSaved_test.dart \
