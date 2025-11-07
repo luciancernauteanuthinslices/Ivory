@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patrol/patrol.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:solarisdemo/models/repayments/reminder/repayment_reminder.dart';
 import 'package:solarisdemo/widgets/app_toolbar.dart';
 import 'package:solarisdemo/widgets/button.dart';
 import 'package:solarisdemo/widgets/ivory_list_tile.dart';
@@ -9,6 +10,7 @@ import 'auth/loginToApp.dart';
 import 'pages/bottomActionBar/bottomActionButtons.dart';
 import 'build_app/test_app.dart';
 import 'pages/repaymentsPage/repaymentsActions.dart';
+import 'package:solarisdemo/screens/repayments/repayment_reminder.dart';
 
 void registerTests() {
   patrolTest('Repayment reminder is saved correctly',
@@ -34,16 +36,14 @@ void registerTests() {
 
     await repaymentsAction.tapSetRepaymentReminder();
 
-    await $(find.widgetWithText(InkWell, 'Set repayment reminder')).tap();
+    await $(Text).containing('Add reminder').tap();
 
-    await $(Icon).containing(Icons.notifications_active_outlined).tap();
-
-    expect($(Column).containing('1 hour before'), findsOneWidget);
+    expect($('1 hour before'), findsOneWidget);
 
     await $('1 hour before').tap();
 
     await $.pumpAndSettle();
-    await $(Button).containing('Save changes').tap();
+    await $(Button).containing('Save').tap();
 
     expect($("Repayment successfully changed!"), findsOneWidget);
 
