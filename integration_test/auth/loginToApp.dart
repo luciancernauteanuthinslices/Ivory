@@ -52,6 +52,8 @@ class LoginToApp {
       await $.native
           .tap(Selector(text: 'Allow'), appId: 'com.apple.springboard');
       // await $.native.grantPermissionWhenInUse();
+    } else {
+      await $.native.tap(Selector(text: 'Allow'));
     }
     await $.pumpAndSettle(timeout: Duration(seconds: 3));
     // Wait for OTP screen to appear
