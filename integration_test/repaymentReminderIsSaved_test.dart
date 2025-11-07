@@ -10,7 +10,6 @@ import 'auth/loginToApp.dart';
 import 'pages/bottomActionBar/bottomActionButtons.dart';
 import 'build_app/test_app.dart';
 import 'pages/repaymentsPage/repaymentsActions.dart';
-import 'package:solarisdemo/screens/repayments/repayment_reminder.dart';
 
 void registerTests() {
   patrolTest('Repayment reminder is saved correctly',
@@ -63,10 +62,25 @@ void registerTests() {
         ),
         findsOneWidget);
 
+    await $.pumpAndSettle();
+
+    //delete reminder
+    await $(find.byIcon(Icons.delete_outline).at(0)).scrollTo().tap();
+
+    await $(Button).containing('Yes, remove reminder').tap();
+
+    await $.pumpAndSettle();
+
+    //expect reminder is deleted
+    await $.pumpAndSettle();
+
     expect(
-        $(find
-            .textContaining('You will start paying a percentage rate of 40%')),
-        findsOneWidget);
+        find.ancestor(
+          of: find.text('1 hour before'),
+          matching:
+              find.byType(ListTile), // or ListTile if that’s what it builds
+        ),
+        findsNothing);
   });
 }
 
