@@ -24,6 +24,8 @@ void registerTests() {
     // Tap the "Transactions" button
     await bottomActionButtons.tapTransactions();
 
+    await $("Upcoming").tap();
+
     //tap on second 'Automatic repayment'
     await $("Automatic repayment").at(0).tap();
 

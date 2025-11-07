@@ -24,9 +24,7 @@ void registerTests() {
     // Tap the "Transactions" button
     await bottomActionButtons.tapTransactions();
 
-    final upcomingButton = $("Upcoming");
-
-    await upcomingButton.tap();
+    await $("Upcoming").tap();
 
     //tap on second 'Automatic repayment'
     await $("Automatic repayment").at(1).tap();
@@ -53,7 +51,13 @@ void registerTests() {
 
     // Tap at the computed position
     await $.tester.tapAt(tapPosition);
-    await $.pumpAndSettle();
+
+    //timeout 2s
+    await $.pumpAndSettle(timeout: const Duration(seconds: 2));
+
+    // Add a small delay to ensure UI is fully settled
+    await Future.delayed(const Duration(milliseconds: 500));
+
     await $('Save changes').tap();
 
     expect($("Repayment successfully changed!"), findsOneWidget);

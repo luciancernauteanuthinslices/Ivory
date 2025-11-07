@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
 // START: GENERATED TEST IMPORTS
-import 'repaymentRateIsSaved_test.dart' as repaymentRateIsSaved_test;
+import 'repaymentReminderIsSaved_test.dart' as repaymentReminderIsSaved_test;
 // END: GENERATED TEST IMPORTS
 
 Future<void> main() async {
@@ -16,6 +16,6 @@ Future<void> main() async {
         debugDefaultTargetPlatformOverride;
 
   // START: GENERATED TEST GROUPS
-  group('repaymentRateIsSaved_test', repaymentRateIsSaved_test.main);
+  group('repaymentReminderIsSaved_test', repaymentReminderIsSaved_test.main);
   // END: GENERATED TEST GROUPS
 }
