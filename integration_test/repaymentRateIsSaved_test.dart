@@ -54,7 +54,7 @@ void registerTests() {
     // Tap at the computed position
     await $.tester.tapAt(tapPosition);
     await $.pumpAndSettle();
-    await $(Button).containing('Save changes').tap();
+    await $('Save changes').tap();
 
     expect($("Repayment successfully changed!"), findsOneWidget);
 

@@ -38,6 +38,8 @@ void registerTests() {
 
     expect($(Column).containing('1 hour before'), findsOneWidget);
 
+    await $('1 hour before').tap();
+
     await $.pumpAndSettle();
     await $(Button).containing('Save changes').tap();
 
