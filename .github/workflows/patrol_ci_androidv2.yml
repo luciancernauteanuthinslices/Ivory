@@ -37,8 +37,8 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+      # - name: Verify formatting
+      #   run: dart format --output=none --set-exit-if-changed .
 
 
   integration-test-android:

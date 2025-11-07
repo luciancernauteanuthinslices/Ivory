@@ -49,7 +49,8 @@ class LoginToApp {
 
     // Handle permission dialog if it appears
     if (await $.native.isPermissionDialogVisible()) {
-      await $.native.tap(Selector(text: 'Allow'), appId: 'com.thinslices.solarisdemo');
+      await $.native
+          .tap(Selector(text: 'Allow'), appId: 'com.apple.springboard');
       // await $.native.grantPermissionWhenInUse();
     }
     await $.pumpAndSettle(timeout: Duration(seconds: 3));
