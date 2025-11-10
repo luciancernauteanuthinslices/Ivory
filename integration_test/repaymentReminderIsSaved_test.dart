@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patrol/patrol.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:solarisdemo/models/repayments/reminder/repayment_reminder.dart';
-import 'package:solarisdemo/widgets/app_toolbar.dart';
 import 'package:solarisdemo/widgets/button.dart';
 import 'package:solarisdemo/widgets/ivory_list_tile.dart';
 
