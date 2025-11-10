@@ -153,6 +153,18 @@ class _IvoryAppState extends State<IvoryApp> with WidgetsBindingObserver {
         return MaterialApp(
           title: "Ivory Demo",
           theme: widget.clientConfig.uiSettings.themeData,
+          builder: (context, child) {
+            final mq = MediaQuery.of(context);
+            final ts = double.tryParse(
+                  const String.fromEnvironment('TEXT_SCALE',
+                      defaultValue: '1.0'),
+                ) ??
+                1.0;
+            return MediaQuery(
+              data: mq.copyWith(textScaleFactor: ts),
+              child: child!,
+            );
+          },
           navigatorObservers: [
             IvoryApp.routeObserver,
             IvoryApp.loggingObserver,

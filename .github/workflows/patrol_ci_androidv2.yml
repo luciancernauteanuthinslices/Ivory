@@ -164,7 +164,7 @@ jobs:
             
             # Run Patrol tests (will reuse installed app)
             echo "Running Patrol tests..."
-            patrol test --verbose --target integration_test/repaymentRateIsSaved_test.dart --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}"
+            patrol build android --target integration_test/repaymentRateIsSaved_test.dart --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}" --dart-define="TEXT_SCALE=1.0"
 
       - name: Upload test results
         if: always()

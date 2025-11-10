@@ -29,6 +29,7 @@ void registerTests() {
     await $("Automatic repayment").at(0).tap();
 
     await $(IvoryListTile).containing("Manage repayment settings").tap();
+    await $.pumpAndSettle();
     expect($("Set repayment reminder"), findsOneWidget);
 
     await repaymentsAction.tapSetRepaymentReminder();
