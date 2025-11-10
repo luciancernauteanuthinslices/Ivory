@@ -1,0 +1,39 @@
+﻿2025-11-10T09:18:05.2374644Z Current runner version: '2.329.0'
+2025-11-10T09:18:05.2409060Z ##[group]Runner Image Provisioner
+2025-11-10T09:18:05.2410486Z Hosted Compute Agent
+2025-11-10T09:18:05.2411345Z Version: 20251016.436
+2025-11-10T09:18:05.2412400Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-10T09:18:05.2413672Z Build Date: 2025-10-15T20:44:12Z
+2025-11-10T09:18:05.2414850Z ##[endgroup]
+2025-11-10T09:18:05.2415595Z ##[group]Operating System
+2025-11-10T09:18:05.2416562Z Ubuntu
+2025-11-10T09:18:05.2417357Z 24.04.3
+2025-11-10T09:18:05.2418153Z LTS
+2025-11-10T09:18:05.2419122Z ##[endgroup]
+2025-11-10T09:18:05.2419976Z ##[group]Runner Image
+2025-11-10T09:18:05.2420889Z Image: ubuntu-24.04
+2025-11-10T09:18:05.2421649Z Version: 20251102.99.1
+2025-11-10T09:18:05.2423638Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251102.99/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-10T09:18:05.2426299Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251102.99
+2025-11-10T09:18:05.2428359Z ##[endgroup]
+2025-11-10T09:18:05.2432593Z ##[group]GITHUB_TOKEN Permissions
+2025-11-10T09:18:05.2435958Z Actions: write
+2025-11-10T09:18:05.2436748Z Attestations: write
+2025-11-10T09:18:05.2437704Z Checks: write
+2025-11-10T09:18:05.2438481Z Contents: write
+2025-11-10T09:18:05.2439309Z Deployments: write
+2025-11-10T09:18:05.2440289Z Discussions: write
+2025-11-10T09:18:05.2441216Z Issues: write
+2025-11-10T09:18:05.2441967Z Metadata: read
+2025-11-10T09:18:05.2442889Z Models: read
+2025-11-10T09:18:05.2443733Z Packages: write
+2025-11-10T09:18:05.2444795Z Pages: write
+2025-11-10T09:18:05.2445901Z PullRequests: write
+2025-11-10T09:18:05.2446893Z RepositoryProjects: write
+2025-11-10T09:18:05.2447954Z SecurityEvents: write
+2025-11-10T09:18:05.2448981Z Statuses: write
+2025-11-10T09:18:05.2449793Z ##[endgroup]
+2025-11-10T09:18:05.2452825Z Secret source: Actions
+2025-11-10T09:18:05.2453961Z Prepare workflow directory
+2025-11-10T09:18:05.2995194Z Prepare all required actions
+2025-11-10T09:18:05.3071797Z Complete job name: CI Success

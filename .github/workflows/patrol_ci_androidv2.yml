@@ -162,28 +162,33 @@ jobs:
             echo "Checking POST_NOTIFICATIONS permission..."
             adb shell dumpsys package com.thinslices.solarisdemo | grep "POST_NOTIFICATIONS" || echo "POST_NOTIFICATIONS permission not found in package info"
             
-            # Run Patrol tests (will reuse installed app)
-            echo "Running Patrol tests..."
-            patrol build android --target integration_test/repaymentRateIsSaved_test.dart --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}" --dart-define="TEXT_SCALE=1.0"
+            # Ensure emulator is ready and font scale is deterministic
+            adb wait-for-device
+            adb shell settings put system font_scale 1.0
 
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: integration-test-results-android-${{ matrix.api-level }}
-          path: |
-            logcat.txt
-          retention-days: 14
+            # Run Patrol tests
+            patrol test --verbose --target integration_test/repaymentRateIsSaved_test.dart \
+              --dart-define="PATROL_EMAIL=${{ secrets.PATROL_EMAIL }}" \
+              --dart-define="PATROL_PASSWORD=${{ secrets.PATROL_PASSWORD }}" \
+              --dart-define="TEXT_SCALE=1.0"
+                  - name: Upload test results
+                    if: always()
+                    uses: actions/upload-artifact@v4
+                    with:
+                      name: integration-test-results-android-${{ matrix.api-level }}
+                      path: |
+                        logcat.txt
+                      retention-days: 14
 
-      - name: Upload screenshots on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: integration-test-screenshots-android-${{ matrix.api-level }}
-          path: |
-            integration_test/screenshots/
-            screenshots/
-          retention-days: 14
+                  - name: Upload screenshots on failure
+                    if: failure()
+                    uses: actions/upload-artifact@v4
+                    with:
+                      name: integration-test-screenshots-android-${{ matrix.api-level }}
+                      path: |
+                        integration_test/screenshots/
+                        screenshots/
+                      retention-days: 14
 
   ci-success:
     name: CI Success

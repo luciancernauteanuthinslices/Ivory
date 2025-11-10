@@ -1,0 +1,36 @@
+﻿2025-11-10T09:01:28.2519604Z ##[group]Run gradle/actions/setup-gradle@v3
+2025-11-10T09:01:28.2519939Z with:
+2025-11-10T09:01:28.2520172Z   cache-read-only: true
+2025-11-10T09:01:28.2520407Z   cache-disabled: false
+2025-11-10T09:01:28.2520643Z   cache-write-only: false
+2025-11-10T09:01:28.2520898Z   cache-overwrite-existing: false
+2025-11-10T09:01:28.2521215Z   gradle-home-cache-includes: caches
+notifications
+
+2025-11-10T09:01:28.2521552Z   gradle-home-cache-cleanup: false
+2025-11-10T09:01:28.2521830Z   add-job-summary: always
+2025-11-10T09:01:28.2522083Z   add-job-summary-as-pr-comment: never
+2025-11-10T09:01:28.2522370Z   dependency-graph: disabled
+2025-11-10T09:01:28.2522650Z   dependency-graph-continue-on-failure: true
+2025-11-10T09:01:28.2522951Z   build-scan-publish: false
+2025-11-10T09:01:28.2523207Z   validate-wrappers: false
+2025-11-10T09:01:28.2523449Z   generate-job-summary: true
+2025-11-10T09:01:28.2523707Z   gradle-home-cache-strict-match: false
+2025-11-10T09:01:28.2524058Z   workflow-job-context: {
+  "api-level": 29,
+  "arch": "x86_64"
+}
+2025-11-10T09:01:28.2524555Z   github-token: ***
+2025-11-10T09:01:28.2524947Z env:
+2025-11-10T09:01:28.2525150Z   FLUTTER_VERSION: 3.35.7
+2025-11-10T09:01:28.2525382Z   JAVA_VERSION: 17
+2025-11-10T09:01:28.2525702Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-10T09:01:28.2526185Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-10T09:01:28.2526633Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-10T09:01:28.2526990Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-10T09:01:28.2527252Z ##[endgroup]
+2025-11-10T09:01:28.6340862Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+2025-11-10T09:01:28.6343839Z ##[group]Restore Gradle state from cache
+2025-11-10T09:01:28.7329403Z ##[warning]Failed to restore gradle-home-v1|Linux|integration-test-android[1fd9eecff10ae4b16c6dba06bed20c5c]-8578fb93a6bede12d3744b6a059bb46c3b13a13d: Error: Cache service responded with 400
+2025-11-10T09:01:28.7381107Z Gradle User Home cache not found. Will initialize empty.
+2025-11-10T09:01:28.7382164Z ##[endgroup]

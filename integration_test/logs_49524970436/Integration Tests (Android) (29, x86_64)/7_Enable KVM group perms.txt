@@ -1,0 +1,14 @@
+﻿2025-11-10T09:01:28.1931005Z ##[group]Run echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+2025-11-10T09:01:28.1932410Z [36;1mecho 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules[0m
+2025-11-10T09:01:28.1933372Z [36;1msudo udevadm control --reload-rules[0m
+2025-11-10T09:01:28.1933708Z [36;1msudo udevadm trigger --name-match=kvm[0m
+2025-11-10T09:01:28.1970248Z shell: /usr/bin/bash -e {0}
+2025-11-10T09:01:28.1970521Z env:
+2025-11-10T09:01:28.1970721Z   FLUTTER_VERSION: 3.35.7
+2025-11-10T09:01:28.1970956Z   JAVA_VERSION: 17
+2025-11-10T09:01:28.1971295Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-10T09:01:28.1971808Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-10T09:01:28.1972271Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-10T09:01:28.1972632Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-10T09:01:28.1973235Z ##[endgroup]
+2025-11-10T09:01:28.2101769Z KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"

@@ -1,0 +1,68 @@
+﻿2025-11-10T09:01:19.6074779Z ##[group]Run flutter pub get
+2025-11-10T09:01:19.6075101Z [36;1mflutter pub get[0m
+2025-11-10T09:01:19.6107891Z shell: /usr/bin/bash -e {0}
+2025-11-10T09:01:19.6108431Z env:
+2025-11-10T09:01:19.6108676Z   FLUTTER_VERSION: 3.35.7
+2025-11-10T09:01:19.6108917Z   JAVA_VERSION: 17
+2025-11-10T09:01:19.6109251Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-10T09:01:19.6109743Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
+2025-11-10T09:01:19.6110194Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.35.7-x64
+2025-11-10T09:01:19.6110554Z   PUB_CACHE: /home/runner/.pub-cache
+2025-11-10T09:01:19.6110820Z ##[endgroup]
+2025-11-10T09:01:20.1152500Z Resolving dependencies...
+2025-11-10T09:01:22.3197085Z Downloading packages...
+2025-11-10T09:01:22.6279853Z   _fe_analyzer_shared 85.0.0 (92.0.0 available)
+2025-11-10T09:01:22.6280525Z   _flutterfire_internals 1.3.59 (1.3.64 available)
+2025-11-10T09:01:22.6281098Z   analyzer 7.7.1 (9.0.0 available)
+2025-11-10T09:01:22.6281632Z   bloc 8.1.4 (9.1.0 available)
+2025-11-10T09:01:22.6282113Z   build 3.1.0 (4.0.2 available)
+2025-11-10T09:01:22.6282645Z   build_resolvers 3.0.3 (3.0.4 available)
+2025-11-10T09:01:22.6283195Z   build_runner 2.7.1 (2.10.1 available)
+2025-11-10T09:01:22.6283748Z   build_runner_core 9.3.1 (9.3.2 available)
+2025-11-10T09:01:22.6284303Z   characters 1.4.0 (1.4.1 available)
+2025-11-10T09:01:22.6284838Z   cross_file 0.3.4+2 (0.3.5 available)
+2025-11-10T09:01:22.6285373Z   crypto 3.0.6 (3.0.7 available)
+2025-11-10T09:01:22.6285892Z   crypto_keys 0.3.0+1 (0.3.0+2 available)
+2025-11-10T09:01:22.6286444Z   dart_style 3.1.1 (3.1.2 available)
+2025-11-10T09:01:22.6286804Z   device_info_plus 11.5.0 (12.2.0 available)
+2025-11-10T09:01:22.6287174Z   dotted_border 2.1.0 (3.1.0 available)
+2025-11-10T09:01:22.6287532Z   firebase_core 3.15.2 (4.2.1 available)
+2025-11-10T09:01:22.6287895Z   firebase_core_web 2.24.1 (3.3.0 available)
+2025-11-10T09:01:22.6288731Z   firebase_messaging 15.2.10 (16.0.4 available)
+2025-11-10T09:01:22.6289503Z   firebase_messaging_platform_interface 4.6.10 (4.7.4 available)
+2025-11-10T09:01:22.6290271Z   firebase_messaging_web 3.10.10 (4.1.0 available)
+2025-11-10T09:01:22.6291029Z   fl_chart 0.69.2 (1.1.1 available)
+2025-11-10T09:01:22.6291366Z   flutter_bloc 8.1.6 (9.1.1 available)
+2025-11-10T09:01:22.6291677Z   flutter_dotenv 5.2.1 (6.0.0 available)
+2025-11-10T09:01:22.6291961Z   flutter_lints 5.0.0 (6.0.0 available)
+2025-11-10T09:01:22.6292275Z   flutter_local_notifications 18.0.1 (19.5.0 available)
+2025-11-10T09:01:22.6292629Z   flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+2025-11-10T09:01:22.6293046Z   flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+2025-11-10T09:01:22.6293556Z   flutter_platform_widgets 7.0.1 (9.0.0 available)
+2025-11-10T09:01:22.6294082Z   flutter_svg 2.2.1 (2.2.2 available)
+2025-11-10T09:01:22.6294542Z   intl 0.19.0 (0.20.2 available)
+2025-11-10T09:01:22.6294977Z   lints 5.1.1 (6.0.0 available)
+2025-11-10T09:01:22.6295458Z   local_auth 2.3.0 (3.0.0 available)
+2025-11-10T09:01:22.6295958Z   local_auth_android 1.0.56 (2.0.0 available)
+2025-11-10T09:01:22.6296509Z   local_auth_darwin 1.6.1 (2.0.0 available)
+2025-11-10T09:01:22.6297063Z   local_auth_windows 1.0.11 (2.0.0 available)
+2025-11-10T09:01:22.6297640Z   material_color_utilities 0.11.1 (0.13.0 available)
+2025-11-10T09:01:22.6298409Z   meta 1.16.0 (1.17.0 available)
+2025-11-10T09:01:22.6298885Z   mockito 5.5.0 (5.5.1 available)
+2025-11-10T09:01:22.6299385Z   permission_handler 11.4.0 (12.0.1 available)
+2025-11-10T09:01:22.6299987Z   permission_handler_android 12.1.0 (13.0.1 available)
+2025-11-10T09:01:22.6300577Z   pointycastle 3.9.1 (4.0.0 available)
+2025-11-10T09:01:22.6301071Z   share_plus 10.1.4 (12.0.1 available)
+2025-11-10T09:01:22.6301630Z   share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-11-10T09:01:22.6302188Z   source_gen 3.1.0 (4.0.2 available)
+2025-11-10T09:01:22.6302738Z   syncfusion_flutter_core 27.2.5 (31.2.5 available)
+2025-11-10T09:01:22.6303874Z   syncfusion_flutter_datepicker 27.2.5 (31.2.5 available)
+2025-11-10T09:01:22.6304461Z   test 1.26.2 (1.26.3 available)
+2025-11-10T09:01:22.6304927Z   test_api 0.7.6 (0.7.7 available)
+2025-11-10T09:01:22.6305399Z   test_core 0.6.11 (0.6.12 available)
+2025-11-10T09:01:22.6305871Z   uuid 4.5.1 (4.5.2 available)
+2025-11-10T09:01:22.6306384Z   video_player_platform_interface 6.5.0 (6.6.0 available)
+2025-11-10T09:01:22.6307004Z   webview_flutter_wkwebview 3.23.1 (3.23.2 available)
+2025-11-10T09:01:22.6307611Z Got dependencies!
+2025-11-10T09:01:22.6332036Z 52 packages have newer versions incompatible with dependency constraints.
+2025-11-10T09:01:22.6332840Z Try `flutter pub outdated` for more information.
