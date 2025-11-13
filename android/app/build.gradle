@@ -56,7 +56,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        testInstrumentationRunner = "pl.leancode.patrol.PatrolJUnitRunner"
+        testInstrumentationRunner = "com.thinslices.solarisdemo.AllurePatrolJUnitRunner"
         testInstrumentationRunnerArguments["clearPackageData"] = "true"
 
     }
@@ -97,6 +97,11 @@ dependencies {
     }
     implementation("com.nimbusds:nimbus-jose-jwt:9.23")
     androidTestUtil("androidx.test:orchestrator:1.5.1")
+    androidTestImplementation "io.qameta.allure:allure-kotlin-model:2.4.0"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-commons:2.4.0"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-junit4:2.4.0"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-android:2.4.0"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:2.2.0"
 }
 
 // Task to ensure test reports are accessible at the expected path

@@ -9,8 +9,9 @@ import 'pages/bottomActionBar/bottomActionButtons.dart';
 import 'build_app/test_app.dart';
 import 'pages/repaymentsPage/repaymentsActions.dart';
 
-void registerTests() {
+void main() {
   patrolTest('Repayment reminder is saved correctly',
+      tags: ['regression'],
       framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive,
       ($) async {
     final app = await buildTestApp();
@@ -81,8 +82,4 @@ void registerTests() {
         ),
         findsNothing);
   });
-}
-
-void main() {
-  registerTests();
 }

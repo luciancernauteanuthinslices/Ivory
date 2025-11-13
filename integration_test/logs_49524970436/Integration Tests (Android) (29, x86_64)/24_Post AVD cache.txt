@@ -1,6 +1,0 @@
-﻿2025-11-10T09:17:44.9661369Z Post job cleanup.
-2025-11-10T09:17:45.1180764Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/Ivory/Ivory --files-from manifest.txt --use-compress-program zstdmt
-2025-11-10T09:17:57.0965707Z Sent 0 of 890028343 (0.0%), 0.0 MBs/sec
-2025-11-10T09:17:58.0964728Z Sent 536870912 of 890028343 (60.3%), 256.0 MBs/sec
-2025-11-10T09:17:58.6329784Z Sent 890028343 of 890028343 (100.0%), 334.7 MBs/sec
-2025-11-10T09:17:58.8737853Z Cache saved with key: avd-29-x86_64

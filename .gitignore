@@ -12,6 +12,10 @@
 /keys
 pubspec.lock
 
+#Schemathesis Virtual environment
+/myenv/
+/myenv
+
 # Environment variables
 .env
 .env.*

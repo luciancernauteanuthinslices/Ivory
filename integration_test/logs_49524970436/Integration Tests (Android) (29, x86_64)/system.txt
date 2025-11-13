@@ -1,5 +1,0 @@
-2025-11-10T09:00:47.7490000Z Requested labels: ubuntu-latest
-2025-11-10T09:00:47.7490000Z Job defined at: luciancernauteanuthinslices/Ivory/.github/workflows/patrol_ci_androidv2.yml@refs/heads/test_playground
-2025-11-10T09:00:47.7490000Z Waiting for a runner to pick up this job...
-2025-11-10T09:00:48.2370000Z Job is waiting for a hosted runner to come online.
-2025-11-10T09:00:48.2370000Z Job is about to start running on the hosted runner: GitHub Actions 1000000479

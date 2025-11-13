@@ -1,0 +1,2015 @@
+openapi: '3.0.1'
+info:
+  title: 'uat-SolarisDemoBackend-Api'
+  version: '2023-08-09 08:02:56UTC'
+servers:
+  - url: 'https://{stage}.execute-api.eu-west-1.amazonaws.com/{basePath}'
+    variables:
+      stage:
+        description: 'SST Stage'
+        default: 'jsxhc7emf3'
+      basePath:
+        description: 'UAT'
+        default: ''
+
+tags:
+  - name: 'Notifications'
+paths:
+  /account:
+    get:
+      summary: Gets the account details for the authenticated user (from cognito)
+      responses:
+        '200':
+          description: A JSON containing account's information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+      security:
+        - jwt: []
+  /account/cards:
+    get:
+      summary: Gets card information
+      responses:
+        '200':
+          description: An array containing the cards
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cards'
+      security:
+        - jwt: []
+    post:
+      summary: Create a new card
+      requestBody:
+        description: Card's body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCardRequestBody'
+      responses:
+        '200':
+          description: Card created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        default:
+          description: 'Default response for POST /account/cards'
+      security:
+        - jwt: []
+  /account/cards/{card_id}:
+    get:
+      description: Gets card information
+      responses:
+        '200':
+          description: Card information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        default:
+          description: 'Default response for GET /account/cards/{card_id}'
+      security:
+        - jwt: []
+    post:
+      description: Activates the card
+      responses:
+        '200':
+          description: Card information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        default:
+          description: 'Default response for POST /account/cards/{card_id}'
+      security:
+        - jwt: []
+    parameters:
+      - name: 'card_id'
+        in: 'path'
+        description: 'Generated path parameter for card_id'
+        required: true
+        schema:
+          type: 'string'
+  /account/cards/{card_id}/pin_keys/latest:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        default:
+          description: 'Default response for GET /account/cards/{card_id}/pin_keys/latest'
+      security:
+        - jwt: []
+    parameters:
+      - name: 'card_id'
+        in: 'path'
+        description: 'Generated path parameter for card_id'
+        required: true
+        schema:
+          type: 'string'
+  /account/summary:
+    get:
+      description: Gets person's account data
+      responses:
+        '200':
+          description: Data is returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonAccount'
+        default:
+          description: 'Default response for GET /account/summary'
+      security:
+        - jwt: []
+  /person:
+    get:
+      description: Get person information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: 'Default response for GET /person'
+      security:
+        - jwt: []
+    post:
+      summary: Creates person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePersonRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: 'Default response for POST /person'
+  /status:
+    get:
+      responses:
+        '200':
+          description: Up and running
+
+  /transactions:
+    get:
+      responses:
+        '200':
+          description: 'Transactions list'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions'
+      security:
+        - jwt: []
+    post:
+      description: Create a new transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransactionResponseBody'
+        default:
+          description: 'Default response for POST /transactions'
+      security:
+        - jwt: []
+  /transactions/categories:
+    get:
+      responses:
+        '200':
+          description: 'Get transaction categories'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransactionCategories'
+  /account/cards/{card_id}/block:
+    post:
+      responses:
+        '200':
+          description: Card blocked successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardResponse'
+        default:
+          description: 'Default response for POST /account/cards/{card_id}/block'
+      security:
+        - jwt: []
+    parameters:
+      - name: 'card_id'
+        in: 'path'
+        description: 'Generated path parameter for card_id'
+        required: true
+        schema:
+          type: 'string'
+  /account/cards/{card_id}/change_card_pin:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeCardPinRequestBody'
+      responses:
+        '200':
+          description: OK
+        default:
+          description: 'Default response for POST /account/cards/{card_id}/change_card_pin'
+      security:
+        - jwt: []
+    parameters:
+      - name: 'card_id'
+        in: 'path'
+        description: 'Generated path parameter for card_id'
+        required: true
+        schema:
+          type: 'string'
+  /account/cards/{card_id}/unblock:
+    post:
+      responses:
+        '200':
+          description: Card unblocked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardResponse'
+        default:
+          description: 'Default response for POST /account/cards/{card_id}/unblock'
+      security:
+        - jwt: []
+    parameters:
+      - name: 'card_id'
+        in: 'path'
+        description: 'Generated path parameter for card_id'
+        required: true
+        schema:
+          type: 'string'
+  /accounts:
+    post:
+      responses:
+        '200':
+          description: Account created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAccountResponse'
+        default:
+          description: 'Default response for POST /accounts'
+      security:
+        - jwt: []
+  /change_requests/{change_request_id}/confirm:
+    post:
+      requestBody:
+        description: Body of the request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmChangeRequestBody'
+      responses:
+        default:
+          description: 'Default response for POST /change_requests/{change_request_id}/confirm'
+      security:
+        - jwt: []
+    parameters:
+      - name: 'change_request_id'
+        in: 'path'
+        description: 'Generated path parameter for change_request_id'
+        required: true
+        schema:
+          type: 'string'
+  /person/device:
+    post:
+      description: Saves mobile number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveMobileNumberRequestBody'
+      responses:
+        '200':
+          description: Saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessObject'
+        default:
+          description: 'Default response for POST /person/device'
+      security:
+        - jwt: []
+  /person/device/activity:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceActivityResponseBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessObject'
+        default:
+          description: 'Default response for POST /person/device/activity'
+      security:
+        - jwt: []
+  /person/device/binding:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBindingRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceBindingResponse'
+        default:
+          description: 'Default response for POST /person/device/binding'
+      security:
+        - jwt: []
+  /person/device/consent:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceConsentRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceConsent'
+        default:
+          description: 'Default response for POST /person/device/consent'
+      security:
+        - jwt: []
+  /person/device/verify_signature/{device_id}:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifySignatureRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessObject'
+        default:
+          description: 'Default response for POST /person/device/verify_signature/{device_id}'
+      security:
+        - jwt: []
+    parameters:
+      - name: 'device_id'
+        in: 'path'
+        description: 'Generated path parameter for device_id'
+        required: true
+        schema:
+          type: 'string'
+  /person/kyc:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndentifyPersonRequestBody'
+      responses:
+        default:
+          description: 'Default response for POST /person/kyc'
+      security:
+        - jwt: []
+  /person/tax_identification:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxIdentificationRequestBody'
+      responses:
+        default:
+          description: 'Default response for POST /person/tax_identification'
+      security:
+        - jwt: []
+  /notifications:
+    post:
+      tags:
+        - 'Notifications'
+      security:
+        - jwt: []
+      description: Send a push notification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationReponse'
+  /notifications/scheduled:
+    post:
+      tags:
+        - 'Notifications'
+      security:
+        - jwt: []
+      description: Schedule a push notification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduledNotificationRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledNotification'
+    get:
+      tags:
+        - 'Notifications'
+      security:
+        - jwt: []
+      description: Get all scheduled notifications
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScheduledNotification'
+  /notifications/scheduled/{id}:
+    delete:
+      tags:
+        - 'Notifications'
+      security:
+        - jwt: []
+      description: Delete a scheduled notification
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          schema:
+            type: 'string'
+      responses:
+        '204':
+          description: No Content
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          example: account-id
+        bic:
+          type: string
+          example: bic
+        iban:
+          type: string
+          example: IBAN
+        type:
+          type: string
+          example: type
+        income:
+          $ref: '#/components/schemas/CurrencyValue'
+        status:
+          type: string
+          example: active
+        balance:
+          $ref: '#/components/schemas/CurrencyValue'
+        spending:
+          $ref: '#/components/schemas/CurrencyValue'
+        opened_at:
+          type: string
+          example: 2020-01-02
+        closed_at:
+          type: string
+          example: 2020-01-02
+        person_id:
+          type: string
+          example: something ending in per
+        overdraft:
+          $ref: '#/components/schemas/SolarisOverdraft'
+        partner_id:
+          type: string
+          example: 2424
+        business_id:
+          type: string
+          example: 44444
+        account_limit:
+          $ref: '#/components/schemas/CurrencyValue'
+        locking_status:
+          type: string
+          example: not locked
+        locking_reasons:
+          type: array
+          items:
+            type: string
+            example: something
+        available_balance:
+          $ref: '#/components/schemas/CurrencyValue'
+    CurrencyValue:
+      type: object
+      properties:
+        value:
+          type: integer
+          example: 1000
+        currency:
+          type: string
+          example: euro
+        unit:
+          $ref: '#/components/schemas/TransactionUnitEnum'
+    TransactionUnitEnum:
+      type: string
+      enum: ['value', 'cents']
+    SolarisOverdraft:
+      type: object
+      properties:
+        rate:
+          type: integer
+          example: 123
+        limit:
+          type: integer
+          example: 3542
+    Cards:
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/Card'
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+          example: card-id
+        account_id:
+          type: string
+          example: account-id
+        type:
+          $ref: '#/components/schemas/CardTypeEnum'
+        status:
+          $ref: '#/components/schemas/CardStatusEnum'
+        representation:
+          $ref: '#/components/schemas/CardRepresentation'
+    CardTypeEnum:
+      type: string
+      enum:
+        [
+          'VISA_BUSINESS_DEBIT',
+          'VISA_BUSINESS_DEBIT_2',
+          'MASTERCARD_BUSINESS_DEBIT',
+          'VIRTUAL_VISA_BUSINESS_DEBIT',
+          'VIRTUAL_VISA_FREELANCE_DEBIT',
+          'VIRTUAL_MASTERCARD_BUSINESS_DEBIT',
+          'VIRTUAL_VISA_CREDIT',
+        ]
+    CardStatusEnum:
+      type: string
+      enum:
+        [
+          'ACTIVE',
+          'CLOSED',
+          'BLOCKED',
+          'INACTIVE',
+          'PROCESSING',
+          'CLOSED_BY_SOLARIS',
+          'BLOCKED_BY_SOLARIS',
+          'ACTIVATION_BLOCKED_BY_SOLARIS',
+        ]
+    CardRepresentation:
+      type: object
+      properties:
+        line_1:
+          type: string
+          example: John
+        line_2:
+          type: string
+          example: Snow
+        masked_pan:
+          type: string
+          example: 1234567891234xxxx
+        formatted_expiration_date:
+          type: string
+          example: 12/29
+    CreateCardRequestBody:
+      type: object
+      properties:
+        line_1:
+          type: string
+          example: John
+        line_2:
+          type: string
+          example: Snow
+        type:
+          type: string
+          example: Card
+        business_id:
+          type: string
+          example: idd
+        reference:
+          type: string
+          example: reference
+    PersonAccount:
+      type: object
+      properties:
+        id:
+          type: string
+          example: account id
+        bic:
+          type: string
+          example: bic
+        iban:
+          type: string
+          example: IBAN
+        balance:
+          $ref: '#/components/schemas/CurrencyValue'
+        available_balance:
+          $ref: '#/components/schemas/CurrencyValue'
+        income:
+          type: integer
+          example: 1324
+        spending:
+          type: integer
+          example: 1235
+    Person:
+      type: object
+      properties:
+        id:
+          type: string
+          example: something-per
+        title:
+          $ref: '#/components/schemas/PersonTitle'
+        email:
+          type: string
+          example: email@email.com
+        branch:
+          $ref: '#/components/schemas/PersonBranch'
+        birth_date:
+          type: string
+          example: 2020-01-02
+        industry:
+          $ref: '#/components/schemas/PersonIndustry'
+        last_name:
+          type: string
+          example: John
+        job_title:
+          type: string
+          example: Medic
+        nace_code:
+          $ref: '#/components/schemas/PersonNaceCode'
+        salutation:
+          $ref: '#/components/schemas/PersonSalutation'
+        first_name:
+          type: string
+          example: Snow
+        birth_name:
+          type: string
+          example: Snow
+        birth_city:
+          type: string
+          example: Berlin
+        vat_number:
+          type: string
+          example: 112345
+        nationality:
+          $ref: '#/components/schemas/Country'
+        industry_key:
+          $ref: '#/components/schemas/PersonIndustryKey'
+        work_country:
+          $ref: '#/components/schemas/Country'
+        mobile_number:
+          type: string
+          example: 123535343
+        birth_country:
+          $ref: '#/components/schemas/Country'
+        business_city:
+          $ref: '#/components/schemas/Country'
+        work_province:
+          $ref: '#/components/schemas/Country'
+        aml_confirmed_on:
+          type: string
+          example: 2020-01-22
+        address:
+          $ref: '#/components/schemas/Address'
+        fatca_relevant:
+          type: boolean
+          example: false
+        business_purpose:
+          type: string
+          example: Purpose
+        business_country:
+          $ref: '#/components/schemas/Country'
+        aml_follow_up_date:
+          type: string
+          example: 2022-01-01
+        employment_status:
+          $ref: '#/components/schemas/PersonEmploymentStatus'
+        screening_progress:
+          type: string
+          example: progress
+        data_terms_signed_at:
+          type: string
+          example: 2022-01-01
+        annual_income_range:
+          $ref: '#/components/schemas/PersonAnnualIncomeRange'
+        registration_number:
+          type: string
+          example: 32424
+        fatca_crs_confirmed_at:
+          type: string
+          example: 2020-01-01
+        website_social_media:
+          type: string
+          example: www.google.com
+        business_postal_code:
+          type: string
+          example: 342424
+        business_trading_name:
+          type: string
+          example: BTN
+        self_declared_as_pep:
+          type: boolean
+          example: false
+        flagged_by_compliance:
+          type: boolean
+          example: false
+        legitimation_valid_until:
+          type: string
+          example: 2020-12-02
+        contact_address:
+          $ref: '#/components/schemas/Address'
+        business_address_line_1:
+          type: string
+          example: Line 1
+        business_address_line_2:
+          type: string
+          example: line 2
+        customer_vetting_status:
+          type: string
+          example: vetting
+        terms_conditions_signed_at:
+          type: string
+          example: 2022-10-01
+        risk_classification_status:
+          type: string
+          example: classified
+        own_economic_interest_signed_at:
+          type: string
+          example: 2020-02-02
+        tax_information:
+          $ref: '#/components/schemas/PersonTaxInformation'
+        expected_monthly_revenue_cents:
+          type: integer
+          example: 1010
+        international_operativity_expectation:
+          $ref: '#/components/schemas/PersonInternationalOperativityExpectation'
+    PersonTitle:
+      type: string
+      enum: ['DR', 'MAGISTER', 'PROF', 'PROF_DR']
+    PersonBranch:
+      type: string
+      enum: ['DE', 'ES', 'FR', 'IT']
+    PersonIndustry:
+      type: string
+      enum:
+        [
+          'BUILDING_INDUSTRY',
+          'CHEMICAL_INDUSTRY_COKE_OVEN_MINERAL_OIL',
+          'CONSUMER_INSTALMENT_CREDITS',
+          'DEBIT_BALANCE_SALARY_ACCOUNT',
+          'FARMER_FORESTRY_FISHING_AND_AQUACULTURE',
+          'FINANCIAL_INSTITUTIONS_INSURANCE',
+          'FINANCIAL_LEASING_COMPANIES',
+          'FOOD_INDUSTRY_TOBACCO_PRODUCTS',
+          'GASTRONOMY',
+          'HEALTH_CARE_VETERIN_A_WELFARE_FIRM_FREELANCE',
+          'HOLDING_COMPANIES',
+          'HOUSING_COMPANIES',
+          'INFORMATION_AND_COMMUNICATION',
+          'INSTALMENT_CREDITS',
+          'LEASING_OF_MOVABLE_OBJECTS',
+          'LEATHER_TEXTILE_CLOTHES_INDUSTRY',
+          'MANUFACTURE_DATA_PROC_EQUIPMENT_ELECTRIC_OPTICS',
+          'MANUFACTURE_PLASTICS_RUBBER_GOODS',
+          'MECHANICAL_ENGINEERING_VEHICLE_MANUFACTURING',
+          'METAL_PRODUCTION_PROCESSING',
+          'NONE',
+          'OTHER_ECONOMIC_SERVICES',
+          'OTHER_PROPERTY_MANAGEMENT',
+          'OTHER_SERVICES',
+          'POWER_WATER_SUPPLY_DISPOSAL_MINING',
+          'SCIENTIFIC_TECHNICAL_CONSULTING_SERVICES',
+          'STONE_SOIL_CERAMICS_GLASS',
+          'TRADE_MAINTENANCE_AND_REPAIR_OF_VEHICLES',
+          'TRANSPORT_AND_STORAGE_AND_NEWS_TRANSMISSION',
+          'WOOD_PAPER_PRINT_INDUSTRY_FURNITURE_ETC',
+          'NON_PROFIT_ORGANIZATION',
+          'NON_MARKET_PRODUCERS',
+          'ORGANIZATION_WITHOUT_ACQUIRING_HOUSE_BUILDING',
+          'OTHER_INDUSTRY',
+        ]
+    PersonNaceCode:
+      type: string
+      enum:
+        [
+          'I_55_10',
+          'I_55_20',
+          'I_55_30',
+          'I_55_90',
+          'I_56_10',
+          'I_56_21',
+          'I_56_29',
+          'I_56_30',
+          'J_58_11',
+          'J_58_12',
+          'J_58_13',
+          'J_58_14',
+          'J_58_19',
+          'J_58_21',
+          'J_58_29',
+          'J_59_11',
+          'J_59_12',
+          'J_59_13',
+          'J_59_14',
+          'J_59_20',
+          'J_60_10',
+          'J_60_20',
+          'J_61_10',
+          'J_61_20',
+          'J_61_30',
+          'J_61_90',
+          'J_62_01',
+          'J_62_02',
+          'J_62_03',
+          'J_62_09',
+          'J_63_11',
+          'J_63_12',
+          'J_63_91',
+          'J_63_99',
+          'K_64_11',
+          'K_64_19',
+          'L_68_10',
+          'L_68_20',
+          'L_68_31',
+          'L_68_32',
+          'M_69_10',
+          'M_69_20',
+          'M_70_10',
+          'M_70_21',
+          'M_70_22',
+          'M_71_11',
+          'M_71_12',
+          'M_71_20',
+          'M_72_11',
+          'M_72_19',
+          'M_72_20',
+          'M_73_11',
+          'M_73_12',
+          'M_73_20',
+          'M_74_10',
+          'M_74_20',
+          'M_74_30',
+          'M_74_90',
+          'M_75_00',
+          'N_77_11',
+          'N_77_12',
+          'N_77_21',
+          'N_77_22',
+          'N_77_29',
+          'N_77_31',
+          'N_77_32',
+          'N_77_33',
+          'N_77_34',
+          'N_77_35',
+          'N_77_39',
+          'N_77_40',
+          'N_78_10',
+          'N_78_20',
+          'N_78_30',
+          'N_80_10',
+          'N_80_20',
+          'N_80_30',
+          'N_81_10',
+          'N_81_21',
+          'N_81_22',
+          'N_81_29',
+          'N_81_30',
+          'N_82_11',
+          'N_82_19',
+          'N_82_20',
+          'N_82_30',
+          'N_82_91',
+          'N_82_92',
+          'N_82_99',
+          'P_85_10',
+          'P_85_20',
+          'P_85_31',
+          'P_85_32',
+          'P_85_41',
+          'P_85_42',
+          'P_85_51',
+          'P_85_52',
+          'P_85_53',
+          'P_85_59',
+          'P_85_60',
+          'Q_86_10',
+          'Q_86_21',
+          'Q_86_22',
+          'Q_86_23',
+          'Q_86_90',
+          'Q_87_10',
+          'Q_87_20',
+          'Q_87_30',
+          'Q_87_90',
+          'Q_88_10',
+          'Q_88_91',
+          'Q_88_99',
+          'R_90_01',
+          'R_90_02',
+          'R_90_03',
+          'R_90_04',
+          'R_91_01',
+          'R_91_02',
+          'R_91_03',
+          'R_91_04',
+          'R_92_00',
+          'R_93_11',
+          'R_93_12',
+          'R_93_13',
+          'R_93_19',
+          'R_93_21',
+          'R_93_29',
+          'S_94_11',
+          'S_94_12',
+          'S_94_20',
+          'S_94_91',
+          'S_94_92',
+          'S_94_99',
+          'S_96_01',
+          'S_96_02',
+          'S_96_03',
+          'S_96_04',
+          'S_96_09',
+        ]
+    PersonSalutation:
+      type: string
+      enum: ['MR', 'MS']
+    PersonIndustryKey:
+      type: string
+      enum:
+        [
+          'ACCOMMODATION',
+          'ACTIVITIES_OF_BUSINESS_EMPLOYERS_AND_PROFESSIONAL_MEMBERSHIP_ORGANISATIONS',
+          'ACTIVITIES_OF_HEAD_OFFICES',
+          'ACTIVITIES_OF_INVESTMENT_STOCK_CORPORATIONS_AND_FUNDS_OF_INVESTMENT_MANAGEMENT_COMPANIES_EXCL_MONEY_MARKET_FUNDS',
+          'ADULT_ENTERTAINMENT_AND_ONLINE_DATING_AND_RELATED',
+          'ADVERTISING_AND_MARKET_RESEARCH',
+          'AIR_TRANSPORT',
+          'ARCHITECTURAL_AND_ENGINEERING_ACTIVITIES_TECHNICAL_TESTING_AND_ANALYSIS',
+          'BUYING_AND_SELLING_OF_OWN_NON_RESIDENTIAL_REAL_ESTATE',
+          'BUYING_AND_SELLING_OF_OWN_RESIDENTIAL_REAL_ESTATE',
+          'CAPITAL_HOLDING_COMPANY',
+          'CIVIL_ENGINEERING',
+          'COMPUTER_PROGRAMMING_CONSULTANCY_AND_RELATED_ACTIVITIES',
+          'CONSTRUCTION_OF_BUILDINGS',
+          'CREATIVE_ARTS_AND_ENTERTAINMENT_ACTIVITIES',
+          'CROP_AND_ANIMAL_PRODUCTION_HUNTING_AND_RELATED_SERVICE_ACTIVITIES',
+          'ECONOMICALLY_DEPENDENT_INDIVIDUALS',
+          'EDUCATION',
+          'ELECTRICITY_GAS_STEAM_AND_AIR_CONDITIONING_SUPPLY',
+          'EMPLOYMENT_ACTIVITIES',
+          'IMPORT_EXPORT_OF_RAW_MATERIALS_SUCH_AS_OIL_GAS_MINING_AND_EXPLOITATION',
+          'INSURANCE_REINSURANCE_EXCEPT_PENSION_FUNDING',
+          'FINANCIAL_LEASING',
+          'FISHING_AND_AQUACULTURE',
+          'FOOD_AND_BEVERAGE_SERVICE_ACTIVITIES',
+          'FORESTRY_AND_LOGGING',
+          'GAMBLING_AND_BETTING_ACTIVITIES',
+          'HOLDING_COMPANIES_WITHOUT_MANAGEMENT_FUNCTION',
+          'HUMAN_HEALTH_ACTIVITIES',
+          'INFORMATION_SERVICE_ACTIVITIES',
+          'LAND_TRANSPORT_AND_TRANSPORT_VIA_PIPELINES',
+          'LEGAL_AND_ACCOUNTING_ACTIVITIES',
+          'LIBRARIES_ARCHIVES_MUSEUMS_AND_OTHER_CULTURAL_ACTIVITIES',
+          'MANAGEMENT_CONSULTANCY_ACTIVITIES',
+          'MANUFACTURE_OF_BASIC_METALS',
+          'MANUFACTURE_OF_BASIC_PHARMACEUTICAL_PRODUCTS_AND_PHARMACEUTICAL_PREPARATIONS',
+          'MANUFACTURE_OF_BEVERAGES',
+          'MANUFACTURE_OF_CHEMICALS_AND_CHEMICAL_PRODUCTS',
+          'MANUFACTURE_OF_COKE_AND_REFINED_PETROLEUM_PRODUCTS',
+          'MANUFACTURE_OF_COMPUTER_ELECTRONIC_AND_OPTICAL_PRODUCTS',
+          'MANUFACTURE_OF_ELECTRICAL_EQUIPMENT',
+          'MANUFACTURE_OF_FABRICATED_METAL_PRODUCTS_EXCEPT_MACHINERY_AND_EQUIPMENT',
+          'MANUFACTURE_OF_FOOD_PRODUCTS',
+          'MANUFACTURE_OF_FURNITURE',
+          'MANUFACTURE_OF_LEATHER_AND_RELATED_PRODUCTS',
+          'MANUFACTURE_OF_MACHINERY_AND_EQUIPMENT_N_E_C',
+          'MANUFACTURE_OF_MOTOR_VEHICLES_TRAILERS_AND_SEMI_TRAILERS',
+          'MANUFACTURE_OF_PRECIOUS_METALS_OR_STONES',
+          'MANUFACTURE_OF_OTHER_TRANSPORT_EQUIPMENT',
+          'MANUFACTURE_OF_PAPER_AND_PAPER_PRODUCTS',
+          'MANUFACTURE_OF_RUBBER_AND_PLASTIC_PRODUCTS',
+          'MANUFACTURE_OF_TEXTILES',
+          'MANUFACTURE_OR_TRADE_OF_ALCOHOL_OR_CIGARETTES',
+          'MANUFACTURE_OF_WEARING_APPAREL',
+          'MANUFACTURE_OF_WOOD_AND_OF_PRODUCTS_OF_WOOD_AND_CORK_EXCEPT_FURNITURE_MANUFACTURE_OF_ARTICLES_OF_STRAW_AND_PLAITING_MATERIALS',
+          'MINING_OF_COAL_AND_LIGNITE',
+          'MINING_OF_METAL_ORES',
+          'MOTION_PICTURE_VIDEO_AND_TELEVISION_PROGRAMME_PRODUCTION_SOUND_RECORDING_AND_MUSIC_PUBLISHING_ACTIVITIES',
+          'NONE',
+          'OFFICE_ADMINISTRATIVE_OFFICE_SUPPORT_AND_OTHER_BUSINESS_SUPPORT_ACTIVITIES',
+          'OTHER_MANUFACTURING',
+          'WHOLESALE_RETAIL_OF_PRECIOUS_METALS_OR_STONES',
+          'OTHER_CREDIT_GRANTING',
+          'OTHER_PERSONAL_SERVICE_ACTIVITIES',
+          'OTHER_PROFESSIONAL_SCIENTIFIC_AND_TECHNICAL_ACTIVITIES',
+          'OWN_ASSET_MANAGEMENT',
+          'PENSION_FUNDING_EXCEPT_COMPULSORY_SOCIAL_SECURITY',
+          'POSTAL_AND_COURIER_ACTIVITIES',
+          'PRINTING_AND_REPRODUCTION_OF_RECORDED_MEDIA',
+          'PROGRAMMING_AND_BROADCASTING_ACTIVITIES',
+          'PUBLISHING_ACTIVITIES',
+          'REMEDIATION_ACTIVITIES_AND_OTHER_WASTE_MANAGEMENT_SERVICES',
+          'RENTAL_AND_LEASING_ACTIVITIES',
+          'REPAIR_AND_INSTALLATION_OF_MACHINERY_AND_EQUIPMENT',
+          'REPAIR_OF_COMPUTERS_AND_PERSONAL_AND_HOUSEHOLD_GOODS',
+          'RESIDENTIAL_CARE_ACTIVITIES',
+          'RETAIL_TRADE_EXCEPT_OF_MOTOR_VEHICLES_AND_MOTORCYCLES',
+          'SCIENTIFIC_RESEARCH_AND_DEVELOPMENT',
+          'SECURITY_AND_INVESTIGATION_ACTIVITIES',
+          'SERVICES_TO_BUILDINGS_AND_LANDSCAPE_ACTIVITIES',
+          'SEWERAGE',
+          'SOCIAL_WORK_ACTIVITIES_WITHOUT_ACCOMMODATION',
+          'SPECIALISED_CONSTRUCTION_ACTIVITIES',
+          'SPORTS_ACTIVITIES_AND_AMUSEMENT_AND_RECREATION_ACTIVITIES',
+          'TELECOMMUNICATIONS',
+          'TRAVEL_AGENCY_TOUR_OPERATOR_AND_OTHER_RESERVATION_SERVICE_AND_RELATED_ACTIVITIES',
+          'TRUSTS_FUNDS_AND_SIMILAR_FINANCIAL_ENTITIES',
+          'VETERINARY_ACTIVITIES',
+          'WAREHOUSING_AND_SUPPORT_ACTIVITIES_FOR_TRANSPORTATION',
+          'WASTE_COLLECTION_TREATMENT_AND_DISPOSAL_ACTIVITIES_MATERIALS_RECOVERY',
+          'WATER_COLLECTION_TREATMENT_AND_SUPPLY',
+          'WATER_TRANSPORT',
+          'WHOLESALE_AND_RETAIL_TRADE_AND_REPAIR_OF_MOTOR_VEHICLES_AND_MOTORCYCLES',
+          'WHOLESALE_TRADE_EXCEPT_OF_MOTOR_VEHICLES_AND_MOTORCYCLES',
+          'PRIVATE_NON_PROFIT_ORGANIZATIONS',
+          'ACTIVITIES_AUXILIARY_TO_FINANCIAL_SERVICES_AND_INSURANCE_ACTIVITIES',
+          'ADMINISTRATION_OF_THE_STATE_AND_THE_ECONOMIC_AND_SOCIAL_POLICY_OF_THE_COMMUNITY',
+          'COMPULSORY_SOCIAL_SECURITY_ACTIVITIES',
+          'OTHER_INDUSTRY_KE',
+        ]
+    Address:
+      type: object
+      properties:
+        line_1:
+          type: string
+          example: Street 1
+        line_2:
+          type: string
+          example: Building 1
+        postal_code:
+          type: string
+          example: 12341
+        city:
+          type: string
+          example: Berlin
+        country:
+          $ref: '#/components/schemas/Country'
+        state:
+          type: string
+          example: State
+    Country:
+      type: string
+      enum:
+        [
+          'AD',
+          'AE',
+          'AF',
+          'AG',
+          'AI',
+          'AL',
+          'AM',
+          'AO',
+          'AQ',
+          'AR',
+          'AS',
+          'AT',
+          'AU',
+          'AW',
+          'AX',
+          'AZ',
+          'BA',
+          'BB',
+          'BD',
+          'BE',
+          'BF',
+          'BG',
+          'BH',
+          'BI',
+          'BJ',
+          'BL',
+          'BM',
+          'BN',
+          'BO',
+          'BQ',
+          'BR',
+          'BS',
+          'BT',
+          'BV',
+          'BW',
+          'BY',
+          'BZ',
+          'CA',
+          'CC',
+          'CD',
+          'CF',
+          'CG',
+          'CH',
+          'CI',
+          'CK',
+          'CL',
+          'CM',
+          'CN',
+          'CO',
+          'CR',
+          'CU',
+          'CV',
+          'CW',
+          'CX',
+          'CY',
+          'CZ',
+          'DE',
+          'DJ',
+          'DK',
+          'DM',
+          'DO',
+          'DZ',
+          'EC',
+          'EE',
+          'EG',
+          'EH',
+          'ER',
+          'ES',
+          'ET',
+          'FI',
+          'FJ',
+          'FK',
+          'FM',
+          'FO',
+          'FR',
+          'GA',
+          'GB',
+          'GD',
+          'GE',
+          'GF',
+          'GG',
+          'GH',
+          'GI',
+          'GL',
+          'GM',
+          'GN',
+          'GP',
+          'GQ',
+          'GR',
+          'GS',
+          'GT',
+          'GU',
+          'GW',
+          'GY',
+          'HK',
+          'HM',
+          'HN',
+          'HR',
+          'HT',
+          'HU',
+          'ID',
+          'IE',
+          'IL',
+          'IM',
+          'IN',
+          'IO',
+          'IQ',
+          'IR',
+          'IS',
+          'IT',
+          'JE',
+          'JM',
+          'JO',
+          'JP',
+          'KE',
+          'KG',
+          'KH',
+          'KI',
+          'KM',
+          'KN',
+          'KP',
+          'KR',
+          'KW',
+          'KY',
+          'KZ',
+          'LA',
+          'LB',
+          'LC',
+          'LI',
+          'LK',
+          'LR',
+          'LS',
+          'LT',
+          'LU',
+          'LV',
+          'LY',
+          'MA',
+          'MC',
+          'MD',
+          'ME',
+          'MF',
+          'MG',
+          'MH',
+          'MK',
+          'ML',
+          'MM',
+          'MN',
+          'MO',
+          'MP',
+          'MQ',
+          'MR',
+          'MS',
+          'MT',
+          'MU',
+          'MV',
+          'MW',
+          'MX',
+          'MY',
+          'MZ',
+          'NA',
+          'NC',
+          'NE',
+          'NF',
+          'NG',
+          'NI',
+          'NL',
+          'NO',
+          'NP',
+          'NR',
+          'NU',
+          'NZ',
+          'OM',
+          'PA',
+          'PE',
+          'PF',
+          'PG',
+          'PH',
+          'PK',
+          'PL',
+          'PM',
+          'PN',
+          'PR',
+          'PS',
+          'PT',
+          'PW',
+          'PY',
+          'QA',
+          'RE',
+          'RO',
+          'RS',
+          'RU',
+          'RW',
+          'SA',
+          'SB',
+          'SC',
+          'SD',
+          'SE',
+          'SG',
+          'SH',
+          'SI',
+          'SJ',
+          'SK',
+          'SL',
+          'SM',
+          'SN',
+          'SO',
+          'SR',
+          'SS',
+          'ST',
+          'SV',
+          'SX',
+          'SY',
+          'SZ',
+          'TC',
+          'TD',
+          'TF',
+          'TG',
+          'TH',
+          'TJ',
+          'TK',
+          'TL',
+          'TM',
+          'TN',
+          'TO',
+          'TR',
+          'TT',
+          'TV',
+          'TW',
+          'TZ',
+          'UA',
+          'UG',
+          'UM',
+          'US',
+          'UY',
+          'UZ',
+          'VA',
+          'VC',
+          'VE',
+          'VG',
+          'VI',
+          'VN',
+          'VU',
+          'WF',
+          'WS',
+          'XK',
+          'YE',
+          'YT',
+          'ZA',
+          'ZM',
+          'ZW',
+        ]
+    PersonEmploymentStatus:
+      type: string
+      enum:
+        [
+          'EMPLOYED',
+          'UNEMPLOYED',
+          'PUBLIC_SECTOR_EMPLOYEE',
+          'PROFESSIONAL_SOLDIER',
+          'FREELANCER',
+          'HOUSEWORK',
+          'APPRENTICE',
+          'MANAGEMENT',
+          'RETIRED',
+          'STUDENT',
+          'SELF_EMPLOYED',
+          'MILITARY_OR_COMMUNITY_SERVICE',
+        ]
+    PersonAnnualIncomeRange:
+      type: string
+      enum:
+        [
+          'RANGE_1',
+          'RANGE_2',
+          'RANGE_3',
+          'RANGE_4',
+          'RANGE_5',
+          'RANGE_6',
+          'RANGE_7',
+        ]
+    PersonTaxInformation:
+      type: object
+      properties:
+        tax_assessment:
+          $ref: '#/components/schemas/TaxAssessment'
+        marital_status:
+          $ref: '#/components/schemas/MaritalStatus'
+    TaxAssessment:
+      type: string
+      enum: ['NONE', 'JOINT', 'SEPARATE']
+    MaritalStatus:
+      type: string
+      enum: ['SINGLE', 'MARRIED', 'DIVORCED', 'WIDOWED', 'UNKNOWN']
+    PersonInternationalOperativityExpectation:
+      type: array
+      items:
+        $ref: '#/components/schemas/InternationalOperativityExpectation'
+    InternationalOperativityExpectation:
+      type: string
+      enum:
+        [
+          'AFRICA',
+          'ASIA',
+          'MIDDLE_EAST',
+          'NORTH_AMERICA',
+          'SOUTH_AMERICA',
+          'NATIONAL_ACTIVITY_ONLY',
+        ]
+    CreatePersonRequestBody:
+      type: object
+      properties:
+        email:
+          type: string
+          example: email@email.com
+        last_name:
+          type: string
+          example: John
+        first_name:
+          type: string
+          example: Snow
+        mobile_number:
+          type: string
+          example: 243242423
+        address:
+          $ref: '#/components/schemas/Address'
+        contact_address:
+          $ref: '#/components/schemas/Address'
+        birth_name:
+          type: string
+          example: Snow
+        birth_date:
+          type: string
+          example: 1990-01-01
+        birth_city:
+          type: string
+          example: Berlin
+        birth_country:
+          $ref: '#/components/schemas/Country'
+        birth_province:
+          type: string
+          example: Berlin
+        birth_post_code:
+          type: string
+          example: 123413
+        nationality:
+          $ref: '#/components/schemas/Country'
+        employment_status:
+          $ref: '#/components/schemas/PersonEmploymentStatus'
+        job_title:
+          type: string
+          example: Medic
+        tax_information:
+          $ref: '#/components/schemas/PersonTaxInformation'
+        fatcha_relevant:
+          type: boolean
+          example: false
+        fatca_crs_confirmed_at:
+          type: string
+          example: 2020-01-01
+        terms_conditions_signed_at:
+          type: string
+          example: 2020-01-01
+        own_economic_interest_signed_at:
+          type: string
+          example: 2020-01-01
+        data_terms_signed_at:
+          type: string
+          example: 2020-01-01
+        annual_income_range:
+          $ref: '#/components/schemas/PersonAnnualIncomeRange'
+        branch:
+          $ref: '#/components/schemas/PersonBranch'
+        main_income_source:
+          $ref: '#/components/schemas/MainIncomeSource'
+        purpose_of_account_opening:
+          $ref: '#/components/schemas/PurposeOfAccountOpening'
+        socioprofessional_category:
+          $ref: '#/components/schemas/SocioprofessionalCategory'
+        work_country:
+          $ref: '#/components/schemas/Country'
+        work_province:
+          $ref: '#/components/schemas/WorkProvince'
+        self_declared_as_pep:
+          type: boolean
+          example: false
+    MainIncomeSource:
+      type: string
+      enum:
+        [
+          'SALARY_INCOME_OR_OWN_BUSINESS',
+          'REAL_ESTATE_INCOME',
+          'INCOME_FROM_SAVINGS',
+          'SALES_OF_ASSETS',
+          'FAMILY_INCOME',
+          'DONATIONS',
+          'INHERITANCE',
+          'PENSION',
+          'PUBLIC_SUBSIDIES',
+        ]
+    PurposeOfAccountOpening:
+      type: string
+      enum:
+        [
+          'SAVINGS',
+          'DAILY_EXPENSES',
+          'TRAVELLING_AND_RELOCATING',
+          'FREELANCER_ACTIVITY',
+          'ONLINE_SHOPPING',
+          'SALARY_OR_PENSION_ACCREDITATION',
+          'TRADING',
+        ]
+    SocioprofessionalCategory:
+      type: string
+      enum:
+        [
+          'FARMERS',
+          'CRAFTSMEN',
+          'MERCHANTS_AND_COMPANY_MANAGERS',
+          'MANAGERS_AND_HIGHER_INTELLECTUAL_PROFESSIONS',
+          'INTERMEDIATE_PROFESSIONS',
+          'EMPLOYEES',
+          'WORKERS',
+        ]
+    WorkProvince:
+      type: string
+      enum:
+        [
+          'BE',
+          'BB',
+          'BW',
+          'BY',
+          'HB',
+          'HE',
+          'HH',
+          'MV',
+          'NI',
+          'NW',
+          'RP',
+          'SH',
+          'SL',
+          'SN',
+          'ST',
+          'TH',
+        ]
+    Transactions:
+      type: array
+      items:
+        $ref: '#/components/schemas/Transaction'
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          example: transaction id
+        valuta_date:
+          type: string
+          example: 2020-01-01
+        meta_info:
+          type: string
+          example: information
+        recorded_at:
+          type: string
+          example: 2020-01-01
+        booking_date:
+          type: string
+          example: 2020-01-01
+        sender_bic:
+          type: string
+          example: sender bic
+        creation_date:
+          type: string
+          example: 2020-01-01
+        description:
+          type: string
+          example: description
+        sender_iban:
+          type: string
+          example: IBAN
+        sender_name:
+          type: string
+          example: name
+        booking_type:
+          type: string
+          example: TYPE
+        purpose_code:
+          type: string
+          example: code
+        recipient_bic:
+          type: string
+          example: bic
+        end_to_end_id:
+          type: string
+          example: id
+        recipient_iban:
+          type: string
+          example: IBAN
+        recipient_name:
+          type: string
+          example: name
+        transaction_id:
+          type: string
+          example: transaction id
+        sepa_return_code:
+          type: string
+          example: sepa code
+        mandate_reference:
+          type: string
+          example: ref
+        reconciliation_id:
+          type: string
+          example: rec id
+        sepa_return_reason:
+          type: string
+          example: reason
+        amount:
+          $ref: '#/components/schemas/CurrencyValue'
+        creditior_identifier:
+          type: string
+          example: identifier
+        initiator_reference:
+          type: string
+          example: ref
+        receiver_iban_virtual:
+          type: string
+          example: iban virtual
+        return_transaction_id:
+          type: string
+          example: return transaction id
+        sepa_charges:
+          $ref: '#/components/schemas/CurrencyValue'
+        sepa_return_reason_definition:
+          type: string
+          example: reason
+        category:
+          $ref: '#/components/schemas/TransactionCategory'
+    CreateTransactionResponseBody:
+      type: object
+      properties:
+        authorizationRequest:
+          $ref: '#/components/schemas/AuthorizationRequest'
+        confirmUrl:
+          type: string
+          example: '/change_requests/{authorizationId}/confirm'
+    AuthorizationRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          example: authorization-id
+        status:
+          $ref: '#/components/schemas/SolarisChangeRequestStatus'
+        updated_at:
+          type: string
+          example: 2022-01-01
+    SolarisChangeRequestStatus:
+      type: string
+      enum:
+        [
+          'FAILED',
+          'ACCEPTED',
+          'COMPLETED',
+          'CONFIRMATION_REQUIRED',
+          'AUTHORIZATION_REQUIRED',
+        ]
+    CreateTransactionRequestBody:
+      type: object
+      properties:
+        type:
+          type: string
+          example: transaction
+        reference:
+          type: string
+          example: reference
+        description:
+          type: string
+          example: Description
+        recipient_bic:
+          type: string
+          example: bic
+        end_to_end_id:
+          type: string
+          example: id
+        recipient_name:
+          type: string
+          example: Daenerys Targaryen
+        recipient_iban:
+          type: string
+          example: IBAN
+        amount:
+          type: object
+          properties:
+            value:
+              type: integer
+              example: 100
+            currency:
+              type: string
+              example: eur
+    CardResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: card-id
+        person_id:
+          type: string
+          example: person-id
+        reference:
+          type: string
+          example: reference
+        account_id:
+          type: string
+          example: account-id
+        creation_date:
+          type: string
+          example: 2020-01-01
+        business_id:
+          type: string
+          example: business-id
+        expiration_date:
+          type: string
+          example: 2024-01-01
+        type:
+          $ref: '#/components/schemas/CardTypeEnum'
+        new_card_ordered:
+          type: boolean
+          example: false
+        status:
+          $ref: '#/components/schemas/CardStatusEnum'
+        sia_account_number:
+          type: string
+          example: acc number
+        representation:
+          $ref: '#/components/schemas/CardRepresentation'
+    ChangeCardPinRequestBody:
+      type: object
+      properties:
+        encrypted_pin:
+          type: string
+          example: pin
+        key_id:
+          type: string
+          example: key
+        device_id:
+          type: string
+          example: dID
+        device_data:
+          type: string
+          example: data
+        signature:
+          type: string
+          example: signature
+    CreateAccountResponse:
+      type: object
+      properties:
+        person_id:
+          type: string
+          example: per id
+        account_id:
+          type: string
+          example: account id
+    ConfirmChangeRequestBody:
+      type: object
+      properties:
+        tan:
+          type: string
+          example: 212212
+    SaveMobileNumberRequestBody:
+      type: object
+      properties:
+        number:
+          type: string
+          example: 11123242444
+        device_data:
+          type: string
+          example: data
+    DeviceActivityResponseBody:
+      type: object
+      properties:
+        device_data:
+          type: string
+          example: device data
+        activity_type:
+          $ref: '#/components/schemas/SolarisDeviceActivityType'
+    SolarisDeviceActivityType:
+      type: string
+      enum: ['APP_START', 'PASSWORD_RESET', 'CONSENT_PROVIDED']
+    SuccessObject:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+    CreateBindingRequestBody:
+      type: object
+      properties:
+        person_id:
+          type: string
+          example: pers id
+        key_type:
+          type: string
+          example: KEY TYPE
+        challenge_type:
+          type: string
+          example: challenge type
+        key_purpose:
+          $ref: '#/components/schemas/DeviceBindingKeyPurpose'
+        name:
+          type: string
+          example: name
+        sms_challenge:
+          type: object
+          properties:
+            app_signature:
+              type: string
+              example: signed
+        language:
+          $ref: '#/components/schemas/DeviceBindingLanguageType'
+        device_data:
+          type: string
+          example: data
+    DeviceBindingKeyPurpose:
+      type: string
+      enum: ['unrestricted', 'restricted']
+    DeviceBindingLanguageType:
+      type: string
+      enum: ['en', 'de', 'fr']
+    DeviceBindingResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ididd
+        key_id:
+          type: string
+          example: kid
+        challenge:
+          $ref: '#/components/schemas/DeviceBindingChallenge'
+    DeviceBindingChallenge:
+      type: object
+      properties:
+        id:
+          type: string
+          example: challenge id
+        type:
+          type: string
+          example: challenge type
+        created_at:
+          type: string
+          example: 2020-01-01
+        expires_at:
+          type: string
+          example: 2020-10-10
+    DeviceConsentRequestBody:
+      type: object
+      properties:
+        event_type:
+          $ref: '#/components/schemas/DeviceMonitoringConsentEventType'
+        confirmed_at:
+          type: string
+          example: 2020-01-01
+    DeviceMonitoringConsentEventType:
+      type: string
+      enum: ['APPROVED', 'REJECTED']
+    DeviceConsent:
+      type: object
+      properties:
+        id:
+          type: string
+          example: consent-id
+        person_id:
+          type: string
+          example: per id
+        created_at:
+          type: string
+          example: 2020-01-01
+        confirmed_at:
+          type: string
+          example: 2020-01-01
+        event_type:
+          $ref: '#/components/schemas/DeviceMonitoringConsentEventType'
+    VerifySignatureRequestBody:
+      type: object
+      properties:
+        signature:
+          type: string
+          example: sig
+        device_data:
+          type: string
+          example: device data
+    IndentifyPersonRequestBody:
+      type: object
+      properties:
+        method:
+          type: string
+          example: method
+        device_data:
+          type: string
+          example: ddata
+    TaxIdentificationRequestBody:
+      type: object
+      properties:
+        number:
+          type: string
+          example: 13414124
+        country:
+          type: string
+          example: Germany
+        primary:
+          type: boolean
+          example: true
+    GetTransactionCategories:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionCategory'
+    TransactionCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          example: id-cat-1
+        name:
+          type: string
+          example: Name of category 1
+    NotificationRequestBody:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Notification title
+        body:
+          type: string
+          example: Notification body
+        type:
+          type: string
+          enum: ['BASIC_NOTIFICATION', 'REPAYMENT_REMINDER']
+    NotificationReponse:
+      type: object
+      properties:
+        notificationId:
+          type: string
+          example: 'projects/ivorysolarisdemoapp/messages/0:1692175525313767%5a079b275a079b27'
+    ScheduledNotificationRequestBody:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Notification title
+        body:
+          type: string
+          example: Notification body
+        type:
+          type: string
+          enum: ['BASIC_NOTIFICATION', 'REPAYMENT_REMINDER']
+        scheduledTime:
+          type: string
+          example: 2020-01-01T00:00:00.000Z
+        details:
+          type: object
+          properties:
+            short_description:
+              type: string
+              example: 1 day before
+    ScheduledNotification:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '7c3a17f57b00ed2ecc7df179202ef82ccper_0'
+        type:
+          type: string
+          enum: ['BASIC_NOTIFICATION', 'REPAYMENT_REMINDER']
+        title:
+          type: string
+          example: Notification title
+        body:
+          type: string
+          example: Notification body
+        deviceToken:
+          type: string
+          example: 'em-THeUXSd-DdxcKa1yT8_:APA91bFcQY-YfmEr1_B12mEsCaEjhcG89DitLutfpRNxD_1kY9Hq0eAh3jQuaLptHsALL5q5RHYHy1bnllWDgxqNcbrcI599UFhm2vIZJd39vhGINnpfBFJ-p3T-5HdOlfGQIvB4G3S3'
+        datetime:
+          type: string
+          example: 2020-01-01T00:00:00.000Z
+        details:
+          type: object
+          properties:
+            short_description:
+              type: string
+              example: 1 day before
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

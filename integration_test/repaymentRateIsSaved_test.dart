@@ -10,9 +10,10 @@ import 'build_app/test_app.dart';
 import 'pages/repaymentsPage/repaymentsActions.dart';
 import 'helpers/sliderHelper.dart';
 
-void registerTests() {
+void main() {
   patrolTest(
     'Repayment rate is saved correctly',
+    tags: ['smoke'],
     framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive,
     ($) async {
       final app = await buildTestApp();
@@ -25,7 +26,8 @@ void registerTests() {
       // Tap the "Transactions" button
       await bottomActionButtons.tapTransactions();
 
-      await $("Upcoming").tap();
+      // await $("Upcoming").tap();
+      await $("Upcomings").tap(); // intentionally fails
 
       //tap on second 'Automatic repayment'
       await $("Automatic repayment").at(1).tap();
@@ -79,8 +81,4 @@ void registerTests() {
       );
     },
   );
-}
-
-void main() {
-  registerTests();
 }

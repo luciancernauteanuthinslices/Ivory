@@ -6,7 +6,7 @@ import 'package:test/test.dart' hide expect;
 import 'build_app/test_app.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void registerTests() {
+void main() {
   patrolTest('Check if virtual card can be frozen and unfrozen',
       tags: ['smoke'],
       framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive,
@@ -43,8 +43,4 @@ void registerTests() {
     //expect subtitle "If your card is compromised" to not be visible
     expect(ifYourCardIsCompromised, findsNothing);
   });
-}
-
-void main() {
-  registerTests();
 }

@@ -37,7 +37,11 @@ class LoginToApp {
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
 
     // Tap on the "Log in" button
-    await $(keys.welcomeScreen.logInButton).tap();
+    if ($(keys.welcomeScreen.logInButton).isVisibleAt()) {
+      await $(keys.welcomeScreen.logInButton).tap();
+    } else {
+      await $.native.pressBack();
+    }
 
     // Expect we are on Login Page
     await $.waitUntilVisible($(keys.loginPage.loginTitle));

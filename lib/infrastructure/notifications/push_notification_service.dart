@@ -130,7 +130,19 @@ class FirebasePushNotificationService extends PushNotificationService {
     this.user = user;
 
     // Handle token
-    _messaging.getToken().then(_onTokenRefresh); // Initial token (on app start)
+    if (Platform.isIOS) {
+      _messaging.getAPNSToken().then((apnsToken) {
+        if (apnsToken != null) {
+          _messaging
+              .getToken()
+              .then(_onTokenRefresh); // Initial token (on app start)
+        }
+      });
+    } else {
+      _messaging
+          .getToken()
+          .then(_onTokenRefresh); // Initial token (on app start)
+    }
     _messaging.onTokenRefresh.listen(_onTokenRefresh); // Token refresh
   }
 
@@ -244,6 +256,12 @@ class FirebasePushNotificationService extends PushNotificationService {
 
   @override
   Future<String?> getToken() async {
+    if (Platform.isIOS) {
+      final apnsToken = await _messaging.getAPNSToken();
+      if (apnsToken == null) {
+        return null;
+      }
+    }
     return await _messaging.getToken();
   }
 

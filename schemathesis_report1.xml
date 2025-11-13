@@ -1,0 +1,1826 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites disabled="0" errors="0" failures="30" tests="30" time="499.30420128100377">
+	<testsuite disabled="0" errors="0" failures="30" name="schemathesis" skipped="15" tests="30" time="499.30420128100377" hostname="luciancernauteanus-MacBook-Air.local">
+		<testcase name="GET /account" time="2.848939">
+			<failure type="failure" message="1. Test Case ID: 9YMXZp
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account"/>
+			<failure type="failure" message="1. Test Case ID: 9YMXZp
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account
+
+2. Test Case ID: Klmooo
+
+- Response violates schema
+
+    123.45 is not of type 'integer'
+
+    Schema at /properties/income/properties/value:
+
+        {
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;example&quot;: 1000
+        }
+
+    Value:
+
+        123.45
+
+[200] OK:
+
+    `{&quot;id&quot;:&quot;dcf4846150e208386abcbbc1bd22837fcacc&quot;,&quot;bic&quot;:&quot;SOBKDEB2XXX&quot;,&quot;iban&quot;:&quot;DE44110101014581751439&quot;,&quot;type&quot;:&quot;CREDITCARD_PERSONAL&quot;,&quot;income&quot;:{&quot;value&quot;:123.45,&quot;currency&quot;:&quot;EUR&quot;,&quot;unit&quot;:&quot;value&quot;},&quot;status&quot;:&quot;ACTIVE&quot;,&quot;balance&quot;:{&quot;currency&quot;:&quot;EUR&quot;,&quot;value&quot;:0,&quot;unit&quot;:&quot;value&quot;},&quot;spending&quot;:{&quot;value&quot;:678.9,&quot;currency&quot;:&quot;EUR&quot;,&quot;unit&quot;:&quot;value&quot;},&quot;opened_at&quot;:&quot;2025-10-09T13:07:28Z&quot;,&quot;closed_at&quot;:null,&quot;person_id&quot;:&quot;e482e4872ec944a408e10729e750bc53cper&quot;,&quot;overdraft&quot;:{&quot;rate&quot;:0,&quot;limit&quot;:0},&quot;partner_id&quot;:null,&quot;business_id&quot;:null,&quot;account_limit&quot;:{&quot;value&quot; // Output truncated...`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account
+
+3. Test Case ID: UOgAtN
+
+- API accepts invalid authentication
+
+    Expected 401, got `403 Forbidden` for `GET /account` (invalid credentials provided)
+
+[403] Forbidden:
+
+    `{&quot;message&quot;:&quot;Forbidden&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="GET /account/cards" time="2.108324">
+			<failure type="failure" message="1. Test Case ID: pduhmE
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards"/>
+			<failure type="failure" message="1. Test Case ID: pduhmE
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards
+
+2. Test Case ID: WFZob6
+
+- Response violates schema
+
+    {'id': '5abd308703c442059307195e519189e6mcrd', 'account_id': 'dcf4846150e208386abcbbc1bd22837fcacc', 'type': 'VISA_CREDIT01', 'status': 'INACTIVE', 'representation': {'line_1': 'LARA WITHSTATICTOKEN', 'line_2': 'JOHN/DOE', 'masked_pan': '493441******9927', 'formatted_expiration_date': '09/26'}} is not valid under any of the given schemas
+
+    Schema at /items:
+
+        {
+            &quot;oneOf&quot;: [
+                {
+                    &quot;$ref&quot;: &quot;#/x-bundled/schema2&quot;
+                }
+            ]
+        }
+
+    Value:
+
+        {
+            &quot;id&quot;: &quot;5abd308703c442059307195e519189e6mcrd&quot;,
+            &quot;account_id&quot;: &quot;dcf4846150e208386abcbbc1bd22837fcacc&quot;,
+            &quot;type&quot;: &quot;VISA_CREDIT01&quot;,
+            &quot;status&quot;: &quot;INACTIVE&quot;,
+            &quot;representation&quot;: {
+                &quot;line_1&quot;: &quot;LARA WITHSTATICTOKEN&quot;,
+                &quot;line_2&quot;: &quot;JOHN/DOE&quot;,
+                &quot;masked_pan&quot;: &quot;493441******9927&quot;,
+                &quot;formatted_expiration_date&quot;: &quot;09/26&quot;
+            }
+        }
+
+[200] OK:
+
+    `[{&quot;id&quot;:&quot;5abd308703c442059307195e519189e6mcrd&quot;,&quot;account_id&quot;:&quot;dcf4846150e208386abcbbc1bd22837fcacc&quot;,&quot;type&quot;:&quot;VISA_CREDIT01&quot;,&quot;status&quot;:&quot;INACTIVE&quot;,&quot;representation&quot;:{&quot;line_1&quot;:&quot;LARA WITHSTATICTOKEN&quot;,&quot;line_2&quot;:&quot;JOHN/DOE&quot;,&quot;masked_pan&quot;:&quot;493441******9927&quot;,&quot;formatted_expiration_date&quot;:&quot;09/26&quot;}},{&quot;id&quot;:&quot;068a0223943d46be8757755e1ed15cf2mcrd&quot;,&quot;account_id&quot;:&quot;dcf4846150e208386abcbbc1bd22837fcacc&quot;,&quot;type&quot;:&quot;VISA_CREDIT01&quot;,&quot;status&quot;:&quot;INACTIVE&quot;,&quot;representation&quot;:{&quot;line_1&quot;:&quot;LARA WITHSTATICTOKEN&quot;,&quot;line_2&quot;:&quot;JOHN/DOE&quot;,&quot;masked_pan&quot;:&quot;493441* // Output truncated...`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards
+
+3. Test Case ID: KacDUJ
+
+- API accepts invalid authentication
+
+    Expected 401, got `403 Forbidden` for `GET /account/cards` (invalid credentials provided)
+
+[403] Forbidden:
+
+    `{&quot;message&quot;:&quot;Forbidden&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /account/cards" time="2.775530">
+			<failure type="failure" message="1. Test Case ID: I6RJmg
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;8e3bfe90-e9b7-48a8-bf86-ba74899b9728&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;validation_error&quot;,&quot;title&quot;:&quot;Cards Limit Exceeded&quot;,&quot;detail&quot;:&quot;Person can only have 10 activatable cards per account&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;line_1&quot;: &quot;John&quot;, &quot;line_2&quot;: &quot;Snow&quot;, &quot;type&quot;: &quot;Card&quot;, &quot;business_id&quot;: &quot;idd&quot;, &quot;reference&quot;: &quot;reference&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards"/>
+			<failure type="failure" message="1. Test Case ID: I6RJmg
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;8e3bfe90-e9b7-48a8-bf86-ba74899b9728&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;validation_error&quot;,&quot;title&quot;:&quot;Cards Limit Exceeded&quot;,&quot;detail&quot;:&quot;Person can only have 10 activatable cards per account&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;line_1&quot;: &quot;John&quot;, &quot;line_2&quot;: &quot;Snow&quot;, &quot;type&quot;: &quot;Card&quot;, &quot;business_id&quot;: &quot;idd&quot;, &quot;reference&quot;: &quot;reference&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards
+
+2. Test Case ID: 5HyFXk
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;line_1&quot;: &quot;John&quot;, &quot;line_2&quot;: &quot;Snow&quot;, &quot;type&quot;: &quot;Card&quot;, &quot;business_id&quot;: &quot;idd&quot;, &quot;reference&quot;: &quot;reference&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards"/>
+			<failure type="failure" message="1. Test Case ID: I6RJmg
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;8e3bfe90-e9b7-48a8-bf86-ba74899b9728&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;validation_error&quot;,&quot;title&quot;:&quot;Cards Limit Exceeded&quot;,&quot;detail&quot;:&quot;Person can only have 10 activatable cards per account&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;line_1&quot;: &quot;John&quot;, &quot;line_2&quot;: &quot;Snow&quot;, &quot;type&quot;: &quot;Card&quot;, &quot;business_id&quot;: &quot;idd&quot;, &quot;reference&quot;: &quot;reference&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards
+
+2. Test Case ID: 5HyFXk
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;line_1&quot;: &quot;John&quot;, &quot;line_2&quot;: &quot;Snow&quot;, &quot;type&quot;: &quot;Card&quot;, &quot;business_id&quot;: &quot;idd&quot;, &quot;reference&quot;: &quot;reference&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards"/>
+		</testcase>
+		<testcase name="GET /account/cards/{card_id}" time="2.525154">
+			<failure type="failure" message="1. Test Case ID: 7pYkhr
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0"/>
+			<failure type="failure" message="1. Test Case ID: 7pYkhr
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0
+
+2. Test Case ID: yZQVD7
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;statusCode&quot;:500,&quot;message&quot;:&quot;Request failed with status code 500&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;d3808ad8-c49c-400e-8bd5-81d7462c06db&quot;,&quot;status&quot;:500,&quot;code&quot;:&quot;generic_error&quot;,&quot;title&quot;:&quot;Generic exception&quot;,&quot;detail&quot;:&quot;Internal Server Error&quot;}]}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/s%C3%85n%0E%C3%BCSl3%F2%88%9E%A67%C2%AE"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /account/cards/{card_id}" time="2.839059">
+			<failure type="failure" message="1. Test Case ID: jVrPAE
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0"/>
+			<failure type="failure" message="1. Test Case ID: jVrPAE
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0
+
+2. Test Case ID: tLvkPu
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;statusCode&quot;:500,&quot;message&quot;:&quot;Request failed with status code 500&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;2105f959-c95f-4493-a393-dea15b4963e5&quot;,&quot;status&quot;:500,&quot;code&quot;:&quot;generic_error&quot;,&quot;title&quot;:&quot;Generic exception&quot;,&quot;detail&quot;:&quot;Internal Server Error&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/s%C3%85n%0E%C3%BCSl3%F2%88%9E%A67%C2%AE"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="GET /account/cards/{card_id}/pin_keys/latest" time="1.796501">
+			<failure type="failure" message="1. Test Case ID: 0Cyp5S
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/pin_keys/latest"/>
+			<failure type="failure" message="1. Test Case ID: 0Cyp5S
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/pin_keys/latest
+
+2. Test Case ID: xPhuJv
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;message&quot;:&quot;Internal Server Error&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/pin_keys/latest"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="GET /account/summary" time="3.004685">
+			<failure type="failure" message="1. Test Case ID: GKUWW2
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/summary"/>
+			<failure type="failure" message="1. Test Case ID: GKUWW2
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/summary
+
+2. Test Case ID: iDvUEu
+
+- Response violates schema
+
+    123.45 is not of type 'integer'
+
+    Schema at /properties/income:
+
+        {
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;example&quot;: 1324
+        }
+
+    Value:
+
+        123.45
+
+[200] OK:
+
+    `{&quot;id&quot;:&quot;dcf4846150e208386abcbbc1bd22837fcacc&quot;,&quot;bic&quot;:&quot;SOBKDEB2XXX&quot;,&quot;iban&quot;:&quot;DE44110101014581751439&quot;,&quot;balance&quot;:{&quot;currency&quot;:&quot;EUR&quot;,&quot;value&quot;:0,&quot;unit&quot;:&quot;value&quot;},&quot;available_balance&quot;:{&quot;currency&quot;:&quot;EUR&quot;,&quot;value&quot;:2000,&quot;unit&quot;:&quot;value&quot;},&quot;income&quot;:123.45,&quot;spending&quot;:678.9,&quot;credit_limit&quot;:2000,&quot;outstanding_amount&quot;:0}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/summary
+
+3. Test Case ID: xtK3Us
+
+- API accepts invalid authentication
+
+    Expected 401, got `403 Forbidden` for `GET /account/summary` (invalid credentials provided)
+
+[403] Forbidden:
+
+    `{&quot;message&quot;:&quot;Forbidden&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/summary"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="GET /person" time="1.546183">
+			<failure type="failure" message="1. Test Case ID: 2NpuPr
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person"/>
+			<failure type="failure" message="1. Test Case ID: 2NpuPr
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person
+
+2. Test Case ID: jZK6pM
+
+- Response violates schema
+
+    None is not of type 'string'
+
+    Schema at /properties/title:
+
+        {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;enum&quot;: [
+                &quot;DR&quot;,
+                &quot;MAGISTER&quot;,
+                &quot;PROF&quot;,
+                &quot;PROF_DR&quot;
+            ]
+        }
+
+    Value:
+
+        null
+
+[200] OK:
+
+    `{&quot;id&quot;:&quot;e482e4872ec944a408e10729e750bc53cper&quot;,&quot;title&quot;:null,&quot;email&quot;:&quot;lifebloom77@yahoo.com&quot;,&quot;branch&quot;:null,&quot;address&quot;:{&quot;line_1&quot;:&quot;Straße des 17. Juni&quot;,&quot;line_2&quot;:null,&quot;postal_code&quot;:&quot;44135&quot;,&quot;city&quot;:&quot;Berlin&quot;,&quot;country&quot;:&quot;DE&quot;,&quot;state&quot;:null},&quot;industry&quot;:&quot;DEBIT_BALANCE_SALARY_ACCOUNT&quot;,&quot;last_name&quot;:&quot;Doe&quot;,&quot;job_title&quot;:null,&quot;nace_code&quot;:null,&quot;birth_date&quot;:&quot;1988-10-09&quot;,&quot;salutation&quot;:&quot;MR&quot;,&quot;first_name&quot;:&quot;John&quot;,&quot;birth_name&quot;:null,&quot;birth_city&quot;:&quot;Berlin&quot;,&quot;vat_number&quot;:null,&quot;nationality&quot;:&quot;DE&quot;,&quot;industry_key&quot;:&quot;ECONOMICALLY_DEPENDENT_INDIVIDUALS // Output truncated...`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person
+
+3. Test Case ID: zdS8zG
+
+- API accepts invalid authentication
+
+    Expected 401, got `403 Forbidden` for `GET /person` (invalid credentials provided)
+
+[403] Forbidden:
+
+    `{&quot;message&quot;:&quot;Forbidden&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /person" time="11.104514">
+			<failure type="failure" message="1. Test Case ID: 11eWto
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;email&quot;: &quot;email@email.com&quot;, &quot;last_name&quot;: &quot;John&quot;, &quot;first_name&quot;: &quot;Snow&quot;, &quot;mobile_number&quot;: 243242423, &quot;address&quot;: {&quot;line_1&quot;: &quot;&quot;, &quot;line_2&quot;: &quot;&quot;, &quot;postal_code&quot;: &quot;&quot;, &quot;city&quot;: &quot;&quot;, &quot;country&quot;: &quot;AD&quot;, &quot;state&quot;: &quot;&quot;}, &quot;contact_address&quot;: {&quot;line_1&quot;: &quot;&quot;, &quot;line_2&quot;: &quot;&quot;, &quot;postal_code&quot;: &quot;&quot;, &quot;city&quot;: &quot;&quot;, &quot;country&quot;: &quot;AD&quot;, &quot;state&quot;: &quot;&quot;}, &quot;birth_name&quot;: &quot;Snow&quot;, &quot;birth_date&quot;: &quot;1990-01-01&quot;, &quot;birth_city&quot;: &quot;Berlin&quot;, &quot;birth_country&quot;: &quot;AD&quot;, &quot;birth_province&quot;: &quot;Berlin&quot;, &quot;birth_post_code&quot;: 123413, &quot;nationality&quot;: &quot;AD&quot;, &quot;employment_status&quot;: &quot;EMPLOYED&quot;, &quot;job_title&quot;: &quot;Medic&quot;, &quot;tax_information&quot;: {&quot;tax_assessment&quot;: &quot;NONE&quot;, &quot;marital_status&quot;: &quot;SINGLE&quot;}, &quot;fatcha_relevant&quot;: false, &quot;fatca_crs_confirmed_at&quot;: &quot;2020-01-01&quot;, &quot;terms_conditions_signed_at&quot;: &quot;2020-01-01&quot;, &quot;own_economic_interest_signed_at&quot;: &quot;2020-01-01&quot;, &quot;data_terms_signed_at&quot;: &quot;2020-01-01&quot;, &quot;annual_income_range&quot;: &quot;RANGE_1&quot;, &quot;branch&quot;: &quot;DE&quot;, &quot;main_income_source&quot;: &quot;SALARY_INCOME_OR_OWN_BUSINESS&quot;, &quot;purpose_of_account_opening&quot;: &quot;SAVINGS&quot;, &quot;socioprofessional_category&quot;: &quot;FARMERS&quot;, &quot;work_country&quot;: &quot;AD&quot;, &quot;work_province&quot;: &quot;BE&quot;, &quot;self_declared_as_pep&quot;: false}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person"/>
+		</testcase>
+		<testcase name="GET /status" time="0.806013">
+			<failure type="failure" message="1. Test Case ID: XTPyYE
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/status"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="GET /transactions" time="2.214557">
+			<failure type="failure" message="1. Test Case ID: EoiMxH
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions"/>
+			<failure type="failure" message="1. Test Case ID: EoiMxH
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions
+
+2. Test Case ID: 78n81M
+
+- API accepts invalid authentication
+
+    Expected 401, got `403 Forbidden` for `GET /transactions` (invalid credentials provided)
+
+[403] Forbidden:
+
+    `{&quot;message&quot;:&quot;Forbidden&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /transactions" time="2.249404">
+			<failure type="failure" message="1. Test Case ID: WY7Exc
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;05c0b132-a196-4ca1-9103-bc5045d800ca&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;invalid_enum&quot;,&quot;title&quot;:&quot;Invalid Enum&quot;,&quot;detail&quot;:&quot;Invalid enum for field 'currency' and value 'eur'.  Valid enum values are 'CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NOK, SEK, SGD, USD, AED, ALL, AMD, ANG, AOA, ARS, AUD, AZN, BAM, BBD, BDT, BGN, BHD, BMD, BND, BOB, BRL, BTN, BZD, CLP, COP, CRC, CUP, CVE, CZK, DJF, DOP, DZD, ETB, FJD, GEL, GTQ, GYD, HNL, HRK, HTG, HUF, IDR // Output truncated...`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;type&quot;: &quot;transaction&quot;, &quot;reference&quot;: &quot;reference&quot;, &quot;description&quot;: &quot;Description&quot;, &quot;recipient_bic&quot;: &quot;bic&quot;, &quot;end_to_end_id&quot;: &quot;id&quot;, &quot;recipient_name&quot;: &quot;Daenerys Targaryen&quot;, &quot;recipient_iban&quot;: &quot;IBAN&quot;, &quot;amount&quot;: {&quot;value&quot;: 100, &quot;currency&quot;: &quot;eur&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions"/>
+			<failure type="failure" message="1. Test Case ID: WY7Exc
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;05c0b132-a196-4ca1-9103-bc5045d800ca&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;invalid_enum&quot;,&quot;title&quot;:&quot;Invalid Enum&quot;,&quot;detail&quot;:&quot;Invalid enum for field 'currency' and value 'eur'.  Valid enum values are 'CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NOK, SEK, SGD, USD, AED, ALL, AMD, ANG, AOA, ARS, AUD, AZN, BAM, BBD, BDT, BGN, BHD, BMD, BND, BOB, BRL, BTN, BZD, CLP, COP, CRC, CUP, CVE, CZK, DJF, DOP, DZD, ETB, FJD, GEL, GTQ, GYD, HNL, HRK, HTG, HUF, IDR // Output truncated...`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;type&quot;: &quot;transaction&quot;, &quot;reference&quot;: &quot;reference&quot;, &quot;description&quot;: &quot;Description&quot;, &quot;recipient_bic&quot;: &quot;bic&quot;, &quot;end_to_end_id&quot;: &quot;id&quot;, &quot;recipient_name&quot;: &quot;Daenerys Targaryen&quot;, &quot;recipient_iban&quot;: &quot;IBAN&quot;, &quot;amount&quot;: {&quot;value&quot;: 100, &quot;currency&quot;: &quot;eur&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions
+
+2. Test Case ID: IMtsyG
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;type&quot;: &quot;transaction&quot;, &quot;reference&quot;: &quot;reference&quot;, &quot;description&quot;: &quot;Description&quot;, &quot;recipient_bic&quot;: &quot;bic&quot;, &quot;end_to_end_id&quot;: &quot;id&quot;, &quot;recipient_name&quot;: &quot;Daenerys Targaryen&quot;, &quot;recipient_iban&quot;: &quot;IBAN&quot;, &quot;amount&quot;: {&quot;value&quot;: 100, &quot;currency&quot;: &quot;eur&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions"/>
+			<failure type="failure" message="1. Test Case ID: WY7Exc
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;05c0b132-a196-4ca1-9103-bc5045d800ca&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;invalid_enum&quot;,&quot;title&quot;:&quot;Invalid Enum&quot;,&quot;detail&quot;:&quot;Invalid enum for field 'currency' and value 'eur'.  Valid enum values are 'CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NOK, SEK, SGD, USD, AED, ALL, AMD, ANG, AOA, ARS, AUD, AZN, BAM, BBD, BDT, BGN, BHD, BMD, BND, BOB, BRL, BTN, BZD, CLP, COP, CRC, CUP, CVE, CZK, DJF, DOP, DZD, ETB, FJD, GEL, GTQ, GYD, HNL, HRK, HTG, HUF, IDR // Output truncated...`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;type&quot;: &quot;transaction&quot;, &quot;reference&quot;: &quot;reference&quot;, &quot;description&quot;: &quot;Description&quot;, &quot;recipient_bic&quot;: &quot;bic&quot;, &quot;end_to_end_id&quot;: &quot;id&quot;, &quot;recipient_name&quot;: &quot;Daenerys Targaryen&quot;, &quot;recipient_iban&quot;: &quot;IBAN&quot;, &quot;amount&quot;: {&quot;value&quot;: 100, &quot;currency&quot;: &quot;eur&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions
+
+2. Test Case ID: IMtsyG
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;type&quot;: &quot;transaction&quot;, &quot;reference&quot;: &quot;reference&quot;, &quot;description&quot;: &quot;Description&quot;, &quot;recipient_bic&quot;: &quot;bic&quot;, &quot;end_to_end_id&quot;: &quot;id&quot;, &quot;recipient_name&quot;: &quot;Daenerys Targaryen&quot;, &quot;recipient_iban&quot;: &quot;IBAN&quot;, &quot;amount&quot;: {&quot;value&quot;: 100, &quot;currency&quot;: &quot;eur&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions
+
+3. Test Case ID: MRMPIi
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;statusCode&quot;:500,&quot;message&quot;:&quot;amount value is required&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions"/>
+		</testcase>
+		<testcase name="GET /transactions/categories" time="0.820362">
+			<failure type="failure" message="1. Test Case ID: RGYQhL
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/transactions/categories"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /account/cards/{card_id}/block" time="2.696604">
+			<failure type="failure" message="1. Test Case ID: RssQvo
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/block"/>
+			<failure type="failure" message="1. Test Case ID: RssQvo
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/block
+
+2. Test Case ID: W08uIn
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;statusCode&quot;:500,&quot;message&quot;:&quot;Request failed with status code 500&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;5e5c929c-fe39-474d-a2e6-c0f11cfa882d&quot;,&quot;status&quot;:500,&quot;code&quot;:&quot;generic_error&quot;,&quot;title&quot;:&quot;Generic exception&quot;,&quot;detail&quot;:&quot;Internal Server Error&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/s%C3%85n%0E%C3%BCSl3%F2%88%9E%A67%C2%AE/block"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /account/cards/{card_id}/change_card_pin" time="2.636493">
+			<failure type="failure" message="1. Test Case ID: yABmLv
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;4a1f9ed2-e07d-4617-afee-2a5da3664cb4&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;invalid_model&quot;,&quot;title&quot;:&quot;Invalid Model&quot;,&quot;detail&quot;:&quot;Malformed cardAccountId&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;encrypted_pin&quot;: &quot;pin&quot;, &quot;key_id&quot;: &quot;key&quot;, &quot;device_id&quot;: &quot;dID&quot;, &quot;device_data&quot;: &quot;data&quot;, &quot;signature&quot;: &quot;signature&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/change_card_pin"/>
+			<failure type="failure" message="1. Test Case ID: yABmLv
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;4a1f9ed2-e07d-4617-afee-2a5da3664cb4&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;invalid_model&quot;,&quot;title&quot;:&quot;Invalid Model&quot;,&quot;detail&quot;:&quot;Malformed cardAccountId&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;encrypted_pin&quot;: &quot;pin&quot;, &quot;key_id&quot;: &quot;key&quot;, &quot;device_id&quot;: &quot;dID&quot;, &quot;device_data&quot;: &quot;data&quot;, &quot;signature&quot;: &quot;signature&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/change_card_pin
+
+2. Test Case ID: rVRKRP
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;encrypted_pin&quot;: &quot;pin&quot;, &quot;key_id&quot;: &quot;key&quot;, &quot;device_id&quot;: &quot;dID&quot;, &quot;device_data&quot;: &quot;data&quot;, &quot;signature&quot;: &quot;signature&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/change_card_pin"/>
+			<failure type="failure" message="1. Test Case ID: yABmLv
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Request failed with status code 400&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;4a1f9ed2-e07d-4617-afee-2a5da3664cb4&quot;,&quot;status&quot;:400,&quot;code&quot;:&quot;invalid_model&quot;,&quot;title&quot;:&quot;Invalid Model&quot;,&quot;detail&quot;:&quot;Malformed cardAccountId&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;encrypted_pin&quot;: &quot;pin&quot;, &quot;key_id&quot;: &quot;key&quot;, &quot;device_id&quot;: &quot;dID&quot;, &quot;device_data&quot;: &quot;data&quot;, &quot;signature&quot;: &quot;signature&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/change_card_pin
+
+2. Test Case ID: rVRKRP
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;encrypted_pin&quot;: &quot;pin&quot;, &quot;key_id&quot;: &quot;key&quot;, &quot;device_id&quot;: &quot;dID&quot;, &quot;device_data&quot;: &quot;data&quot;, &quot;signature&quot;: &quot;signature&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/change_card_pin"/>
+		</testcase>
+		<testcase name="POST /account/cards/{card_id}/unblock" time="2.824149">
+			<failure type="failure" message="1. Test Case ID: no6Q08
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/unblock"/>
+			<failure type="failure" message="1. Test Case ID: no6Q08
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/0/unblock
+
+2. Test Case ID: PwBLl8
+
+- Server error
+
+[500] Internal Server Error:
+
+    `{&quot;statusCode&quot;:500,&quot;message&quot;:&quot;Request failed with status code 500&quot;,&quot;errors&quot;:[{&quot;id&quot;:&quot;96597a82-ca65-4852-8912-cce976f2ad11&quot;,&quot;status&quot;:500,&quot;code&quot;:&quot;generic_error&quot;,&quot;title&quot;:&quot;Generic exception&quot;,&quot;detail&quot;:&quot;Internal Server Error&quot;}]}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/s%C3%85n%0E%C3%BCSl3%F2%88%9E%A67%C2%AE/unblock"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /accounts" time="0.260708">
+			<failure type="failure" message="1. Test Case ID: VDaCbE
+
+- Missing header not rejected
+
+    Got 404 when missing required 'Authorization' header, expected 401
+
+[404] Not Found:
+
+    `{&quot;message&quot;:&quot;Not Found&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/accounts"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="POST /change_requests/{change_request_id}/confirm" time="1.927414">
+			<failure type="failure" message="1. Test Case ID: NilP3t
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;delivery_method must be one of [mobile_number, device_signing, static]&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;tan&quot;: 212212}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/change_requests/0/confirm"/>
+			<failure type="failure" message="1. Test Case ID: NilP3t
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;delivery_method must be one of [mobile_number, device_signing, static]&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;tan&quot;: 212212}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/change_requests/0/confirm
+
+2. Test Case ID: sOfEwW
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;tan&quot;: 212212}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/change_requests/0/confirm"/>
+			<failure type="failure" message="1. Test Case ID: NilP3t
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;delivery_method must be one of [mobile_number, device_signing, static]&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;tan&quot;: 212212}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/change_requests/0/confirm
+
+2. Test Case ID: sOfEwW
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;tan&quot;: 212212}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/change_requests/0/confirm"/>
+		</testcase>
+		<testcase name="POST /person/device" time="8.240270">
+			<failure type="failure" message="1. Test Case ID: WMkur2
+
+- Missing header not rejected
+
+    Got 404 when missing required 'Authorization' header, expected 401
+
+[404] Not Found:
+
+    `{&quot;message&quot;:&quot;Not Found&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{&quot;number&quot;: 11123242444, &quot;device_data&quot;: &quot;data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device"/>
+		</testcase>
+		<testcase name="POST /person/device/activity" time="2.198195">
+			<failure type="failure" message="1. Test Case ID: daH8kC
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid activity type&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;device_data&quot;: &quot;device data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/activity"/>
+			<failure type="failure" message="1. Test Case ID: daH8kC
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid activity type&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;device_data&quot;: &quot;device data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/activity
+
+2. Test Case ID: XXShJC
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;device_data&quot;: &quot;device data&quot;, &quot;activity_type&quot;: &quot;APP_START&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/activity"/>
+			<failure type="failure" message="1. Test Case ID: daH8kC
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid activity type&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;device_data&quot;: &quot;device data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/activity
+
+2. Test Case ID: XXShJC
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;device_data&quot;: &quot;device data&quot;, &quot;activity_type&quot;: &quot;APP_START&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/activity"/>
+		</testcase>
+		<testcase name="POST /person/device/binding" time="1.715228">
+			<failure type="failure" message="1. Test Case ID: 5qMlSq
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid key&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;person_id&quot;: &quot;pers id&quot;, &quot;key_type&quot;: &quot;KEY TYPE&quot;, &quot;challenge_type&quot;: &quot;challenge type&quot;, &quot;name&quot;: &quot;name&quot;, &quot;sms_challenge&quot;: {&quot;app_signature&quot;: &quot;signed&quot;}, &quot;device_data&quot;: &quot;data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/binding"/>
+			<failure type="failure" message="1. Test Case ID: 5qMlSq
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid key&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;person_id&quot;: &quot;pers id&quot;, &quot;key_type&quot;: &quot;KEY TYPE&quot;, &quot;challenge_type&quot;: &quot;challenge type&quot;, &quot;name&quot;: &quot;name&quot;, &quot;sms_challenge&quot;: {&quot;app_signature&quot;: &quot;signed&quot;}, &quot;device_data&quot;: &quot;data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/binding
+
+2. Test Case ID: DrLY4Q
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;person_id&quot;: &quot;pers id&quot;, &quot;key_type&quot;: &quot;KEY TYPE&quot;, &quot;challenge_type&quot;: &quot;challenge type&quot;, &quot;key_purpose&quot;: &quot;unrestricted&quot;, &quot;name&quot;: &quot;name&quot;, &quot;sms_challenge&quot;: {&quot;app_signature&quot;: &quot;signed&quot;}, &quot;language&quot;: &quot;en&quot;, &quot;device_data&quot;: &quot;data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/binding"/>
+			<failure type="failure" message="1. Test Case ID: 5qMlSq
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid key&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;person_id&quot;: &quot;pers id&quot;, &quot;key_type&quot;: &quot;KEY TYPE&quot;, &quot;challenge_type&quot;: &quot;challenge type&quot;, &quot;name&quot;: &quot;name&quot;, &quot;sms_challenge&quot;: {&quot;app_signature&quot;: &quot;signed&quot;}, &quot;device_data&quot;: &quot;data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/binding
+
+2. Test Case ID: DrLY4Q
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;person_id&quot;: &quot;pers id&quot;, &quot;key_type&quot;: &quot;KEY TYPE&quot;, &quot;challenge_type&quot;: &quot;challenge type&quot;, &quot;key_purpose&quot;: &quot;unrestricted&quot;, &quot;name&quot;: &quot;name&quot;, &quot;sms_challenge&quot;: {&quot;app_signature&quot;: &quot;signed&quot;}, &quot;language&quot;: &quot;en&quot;, &quot;device_data&quot;: &quot;data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/binding"/>
+		</testcase>
+		<testcase name="POST /person/device/consent" time="2.146819">
+			<failure type="failure" message="1. Test Case ID: oc97lI
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid event_type&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;confirmed_at&quot;: &quot;2020-01-01&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/consent"/>
+			<failure type="failure" message="1. Test Case ID: oc97lI
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid event_type&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;confirmed_at&quot;: &quot;2020-01-01&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/consent
+
+2. Test Case ID: UrEz2x
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;event_type&quot;: &quot;APPROVED&quot;, &quot;confirmed_at&quot;: &quot;2020-01-01&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/consent"/>
+			<failure type="failure" message="1. Test Case ID: oc97lI
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid event_type&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;confirmed_at&quot;: &quot;2020-01-01&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/consent
+
+2. Test Case ID: UrEz2x
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;event_type&quot;: &quot;APPROVED&quot;, &quot;confirmed_at&quot;: &quot;2020-01-01&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/consent"/>
+		</testcase>
+		<testcase name="POST /person/device/verify_signature/{device_id}" time="2.078655">
+			<failure type="failure" message="1. Test Case ID: dTcQgX
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;signature&quot;: &quot;sig&quot;, &quot;device_data&quot;: &quot;device data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/verify_signature/0"/>
+			<failure type="failure" message="1. Test Case ID: dTcQgX
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;signature&quot;: &quot;sig&quot;, &quot;device_data&quot;: &quot;device data&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/verify_signature/0
+
+2. Test Case ID: vOJo13
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;Invalid signature&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/device/verify_signature/0"/>
+		</testcase>
+		<testcase name="POST /person/kyc" time="8.724211">
+			<failure type="failure" message="1. Test Case ID: rBSwEN
+
+- Missing header not rejected
+
+    Got 404 when missing required 'Authorization' header, expected 401
+
+[404] Not Found:
+
+    `{&quot;message&quot;:&quot;Not Found&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{&quot;method&quot;: &quot;method&quot;, &quot;device_data&quot;: &quot;ddata&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/kyc"/>
+		</testcase>
+		<testcase name="POST /person/tax_identification" time="8.952575">
+			<failure type="failure" message="1. Test Case ID: NXkIrT
+
+- Unsupported methods
+
+    TRACE returned 405 without required `Allow` header
+
+    Add `Allow` header listing supported methods (required by RFC 9110)
+
+[405] Method Not Allowed:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X TRACE -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;number&quot;: 13414124, &quot;country&quot;: &quot;Germany&quot;, &quot;primary&quot;: true}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/person/tax_identification"/>
+		</testcase>
+		<testcase name="POST /notifications" time="2.117538">
+			<failure type="failure" message="1. Test Case ID: PQLlRR
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 200
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;type is required&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications"/>
+			<failure type="failure" message="1. Test Case ID: PQLlRR
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 200
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;type is required&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications
+
+2. Test Case ID: VcvNl1
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;, &quot;type&quot;: &quot;BASIC_NOTIFICATION&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications"/>
+			<failure type="failure" message="1. Test Case ID: PQLlRR
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 200
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;type is required&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications
+
+2. Test Case ID: VcvNl1
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;, &quot;type&quot;: &quot;BASIC_NOTIFICATION&quot;}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications"/>
+		</testcase>
+		<testcase name="POST /notifications/scheduled" time="1.683618">
+			<failure type="failure" message="1. Test Case ID: sdzHhz
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 200
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;datetime is required&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;, &quot;scheduledTime&quot;: &quot;2020-01-01T00:00:00.000Z&quot;, &quot;details&quot;: {&quot;short_description&quot;: &quot;1 day before&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled"/>
+			<failure type="failure" message="1. Test Case ID: sdzHhz
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 200
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;datetime is required&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;, &quot;scheduledTime&quot;: &quot;2020-01-01T00:00:00.000Z&quot;, &quot;details&quot;: {&quot;short_description&quot;: &quot;1 day before&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled
+
+2. Test Case ID: l3uVlW
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;, &quot;type&quot;: &quot;BASIC_NOTIFICATION&quot;, &quot;scheduledTime&quot;: &quot;2020-01-01T00:00:00.000Z&quot;, &quot;details&quot;: {&quot;short_description&quot;: &quot;1 day before&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled"/>
+			<failure type="failure" message="1. Test Case ID: sdzHhz
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 200
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;datetime is required&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;, &quot;scheduledTime&quot;: &quot;2020-01-01T00:00:00.000Z&quot;, &quot;details&quot;: {&quot;short_description&quot;: &quot;1 day before&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled
+
+2. Test Case ID: l3uVlW
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{&quot;title&quot;: &quot;Notification title&quot;, &quot;body&quot;: &quot;Notification body&quot;, &quot;type&quot;: &quot;BASIC_NOTIFICATION&quot;, &quot;scheduledTime&quot;: &quot;2020-01-01T00:00:00.000Z&quot;, &quot;details&quot;: {&quot;short_description&quot;: &quot;1 day before&quot;}}' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled"/>
+		</testcase>
+		<testcase name="GET /notifications/scheduled" time="1.875161">
+			<failure type="failure" message="1. Test Case ID: rm6ztY
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled"/>
+			<failure type="failure" message="1. Test Case ID: rm6ztY
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 200
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled
+
+2. Test Case ID: Brfb02
+
+- API accepts invalid authentication
+
+    Expected 401, got `403 Forbidden` for `GET /notifications/scheduled` (invalid credentials provided)
+
+[403] Forbidden:
+
+    `{&quot;message&quot;:&quot;Forbidden&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="DELETE /notifications/scheduled/{id}" time="1.229246">
+			<failure type="failure" message="1. Test Case ID: f9jV2E
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 204
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X DELETE -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled/0"/>
+			<failure type="failure" message="1. Test Case ID: f9jV2E
+
+- Undocumented HTTP status code
+
+    Received: 401
+    Documented: 204
+
+[401] Unauthorized:
+
+    `{&quot;message&quot;:&quot;Unauthorized&quot;}`
+
+Reproduce with: 
+
+    curl -X DELETE -H 'Accept: application/json' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled/0
+
+2. Test Case ID: D809jX
+
+- Undocumented HTTP status code
+
+    Received: 404
+    Documented: 204
+
+[404] Not Found:
+
+    `{&quot;statusCode&quot;:404,&quot;message&quot;:&quot;Schedule 0 does not exist.&quot;,&quot;code&quot;:&quot;ResourceNotFoundException&quot;}`
+
+Reproduce with: 
+
+    curl -X DELETE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled/0"/>
+			<skipped type="skipped">No examples in schema</skipped>
+		</testcase>
+		<testcase name="Stateful tests" time="411.358090">
+			<failure type="failure" message="1. Test Case ID: xkZmMW
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 204
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;1 validation error detected: Value '\u001f\u0006·á๩򦬣\u000fU­' at 'name' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-zA-Z-_.]+&quot;,&quot;code&quot;:&quot;ValidationException&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled
+    curl -X DELETE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled/%1F%06%C2%B7%C3%A1%E0%B9%A9%F2%A6%AC%A3%0FU%C2%AD"/>
+			<failure type="failure" message="1. Test Case ID: xkZmMW
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 204
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;1 validation error detected: Value '\u001f\u0006·á๩򦬣\u000fU­' at 'name' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-zA-Z-_.]+&quot;,&quot;code&quot;:&quot;ValidationException&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled
+    curl -X DELETE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled/%1F%06%C2%B7%C3%A1%E0%B9%A9%F2%A6%AC%A3%0FU%C2%AD
+
+2. Test Case ID: auUhyv
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;400 Bad Request&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;400 Bad Request&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/%29%00%C3%98%C3%8E"/>
+			<failure type="failure" message="1. Test Case ID: xkZmMW
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 204
+
+[400] Bad Request:
+
+    `{&quot;statusCode&quot;:400,&quot;message&quot;:&quot;1 validation error detected: Value '\u001f\u0006·á๩򦬣\u000fU­' at 'name' failed to satisfy constraint: Member must satisfy regular expression pattern: [0-9a-zA-Z-_.]+&quot;,&quot;code&quot;:&quot;ValidationException&quot;}`
+
+Reproduce with: 
+
+    curl -X GET -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled
+    curl -X DELETE -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/notifications/scheduled/%1F%06%C2%B7%C3%A1%E0%B9%A9%F2%A6%AC%A3%0FU%C2%AD
+
+2. Test Case ID: auUhyv
+
+- API rejected schema-compliant request
+
+    Valid data should have been accepted
+    Expected: 2xx, 401, 403, 404, 5xx
+
+[400] Bad Request:
+
+    `&lt;html&gt;
+    &lt;head&gt;&lt;title&gt;400 Bad Request&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+    &lt;center&gt;&lt;h1&gt;400 Bad Request&lt;/h1&gt;&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with: 
+
+    curl -X POST -H 'Accept: application/json' -H 'Authorization: [Filtered]' https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com/account/cards/%29%00%C3%98%C3%8E"/>
+		</testcase>
+	</testsuite>
+</testsuites>
