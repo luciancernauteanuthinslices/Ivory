@@ -13,7 +13,7 @@ import 'helpers/sliderHelper.dart';
 void main() {
   patrolTest(
     'Repayment rate is saved correctly',
-    tags: ['smoke'],
+    tags: ['regression'],
     framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive,
     ($) async {
       final app = await buildTestApp();
@@ -27,7 +27,7 @@ void main() {
       await bottomActionButtons.tapTransactions();
 
       // await $("Upcoming").tap();
-      await $("Upcomings").tap(); // intentionally fails
+      await $("Upcoming").tap(); // intentionally fails
 
       //tap on second 'Automatic repayment'
       await $("Automatic repayment").at(1).tap();

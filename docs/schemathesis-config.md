@@ -33,13 +33,13 @@ What Playwright doesn’t do automatically:
 # 1) Install Python (macOS via Homebrew)
 brew install python
 
-# 2) Create a virtual environment in project root
-python3 -m venv myenv
+# 2) Create a virtual environment under integration_test so we will not pollute global dependencies
+python3 -m venv integration_test/myenv
 
 # 3) Activate it (macOS/Linux)
-source myenv/bin/activate
+source integration_test/myenv/bin/activate
 # (Windows PowerShell)
-# .\myenv\Scripts\Activate.ps1
+# .\integration_test\myenv\Scripts\Activate.ps1
 
 # 4) Upgrade pip & install Schemathesis
 python -m pip install --upgrade pip
@@ -49,6 +49,64 @@ pip install schemathesis
 schemathesis --version
 schemathesis run --help
 ```
+
+## This repo: Solaris demo API flow
+
+In this project, Schemathesis targets the Solaris demo backend:
+
+- Schema: `openapi-docs.yaml` (repo root)
+- Base URL: `https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com`
+- Token: exported from the mobile app into `.schemathesis_token` during Patrol runs
+  (see `docs/Schemathesis_Token_Export.md`).
+
+The recommended entrypoint is the wrapper `integration_test/run_schemathesis.sh`, which:
+
+- Uses `./integration_test/myenv/bin/schemathesis` by default (override via `SCHEMATHESIS_BIN`).
+- Reads the Bearer token from `.schemathesis_token` and injects
+  `Authorization: Bearer <token>` if `AUTH_HEADER` is not set.
+- Produces JUnit + HAR reports under `integration_test/schemathesis-report/` by default.
+
+Typical local flow:
+
+```bash
+# 1) Run Patrol tests to log in and export the token
+TAGS=regression EXPORT_TOKEN=1 ./integration_test/run_patrol_allure.sh
+
+# 2) (Optional) Pull the token manually if needed
+# iOS Simulator:
+#   BUNDLE_ID="com.thinslices.solarisdemo" bash integration_test/ios_pull_token.sh
+# Android:
+#   PKG="com.thinslices.solarisdemo"
+#   adb exec-out run-as "$PKG" cat \
+#     /data/data/$PKG/app_flutter/.schemathesis_token > .schemathesis_token
+
+# 3) Run Schemathesis via the wrapper
+./integration_test/run_schemathesis.sh \
+  -u "https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com"
+
+# Or, if you prefer to inject the header explicitly
+AUTH_HEADER="Authorization: Bearer $(cat .schemathesis_token)" \
+  ./integration_test/run_schemathesis.sh \
+  -u "https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com"
+```
+
+For a single self-contained run that also imports Schemathesis results into Allure,
+use the unified Patrol script:
+
+```bash
+ST_URL="https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com" \
+TAGS=regression EXPORT_TOKEN=1 RUN_ST=1 \
+ST_FINISH_TIMEOUT_SECS=120 \
+./integration_test/run_patrol_allure.sh
+```
+
+This will:
+
+- Run Patrol regression tests (e.g., `repaymentRateIsSaved_test.dart`).
+- Export and pull the token to `.schemathesis_token`.
+- Run Schemathesis via `run_schemathesis.sh`.
+- Import a single synthetic Allure test `Schemathesis → Schemathesis contract` with
+  JUnit/HAR/summary attached.
 
 ## Minimal Run Examples
 
@@ -116,9 +174,9 @@ Schemathesis can generate multiple report formats.
 schemathesis run openapi-docs.yaml \
   --url=https://api.example.com \
   --report=junit,har \
-  --report-dir=schemathesis-report \
-  --report-junit-path=schemathesis-report/results.xml \
-  --report-har-path=schemathesis-report/traffic.har \
+  --report-dir=integration_test/schemathesis-report \
+  --report-junit-path=integration_test/schemathesis-report/results.xml \
+  --report-har-path=integration_test/schemathesis-report/traffic.har \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -150,7 +208,7 @@ schemathesis run openapi-docs.yaml \
   --mode=positive \
   --generation-with-security-parameters=true \
   --report=junit \
-  --report-dir=schemathesis-report \
+  --report-dir=integration_test/schemathesis-report \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -172,7 +230,7 @@ schemathesis run openapi-docs.yaml \
   --checks=all \
   --exclude-checks=unsupported_method \
   --report=junit \
-  --report-junit-path=schemathesis-report/results.xml \
+  --report-junit-path=integration_test/schemathesis-report/results.xml \
   --seed=42 \
   -H "Authorization: Bearer $TOKEN"
 ```
@@ -231,26 +289,38 @@ schemathesis run openapi-docs.yaml \
 - Use Schemathesis for contract & fuzz testing behind the UI
 - In CI, run Schemathesis before Playwright to catch backend/contract issues early
 
-## Example Script (this repo)
+## Example commands (this repo)
 
-Create a convenience script (already present example under `myenv/bin/commands/`):
+### Run Schemathesis only (token already exported)
 
 ```bash
-#!/usr/bin/env bash
-set -euo pipefail
-
-export TOKEN="<YOUR_JWT>"
-
-schemathesis run openapi-docs.yaml \
-  --url=https://api.example.com \
-  --mode=positive \
-  --generation-with-security-parameters=true \
-  --report=junit,har \
-  --report-dir=schemathesis-report \
-  --report-junit-path=schemathesis-report/results.xml \
-  --report-har-path=schemathesis-report/traffic.har \
-  -H "Authorization: Bearer $TOKEN"
+./integration_test/run_schemathesis.sh \
+  -u "https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com" \
+  --phases examples,coverage \
+  --mode all \
+  -n 5
 ```
+
+The wrapper will:
+
+- Use `./integration_test/myenv/bin/schemathesis`.
+- Read `.schemathesis_token` and inject `Authorization: Bearer <token>`.
+- Write JUnit + HAR into `integration_test/schemathesis-report/` and `integration_test/schemathesis-report/output.txt`.
+
+### Run Patrol + Schemathesis + Allure in one go
+
+```bash
+ST_URL="https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com" \
+TAGS=regression EXPORT_TOKEN=1 RUN_ST=1 \
+ST_FINISH_TIMEOUT_SECS=120 \
+./integration_test/run_patrol_allure.sh
+```
+
+After the run you will typically see two Allure suites:
+
+- `RunnerUITests` – iOS Patrol tests.
+- `Schemathesis` – single aggregated test `Schemathesis contract` with
+  JUnit/HAR/summary attached.
 
 ## Handy One-liners
 

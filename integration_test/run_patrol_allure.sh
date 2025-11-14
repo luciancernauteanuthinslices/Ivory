@@ -11,8 +11,22 @@ PLATFORM="${PLATFORM:-auto}"   # android|ios|auto
 ALLURE_XCRESULT_BIN="${ALLURE_XCRESULT_BIN:-}"
 ALLURE_XCRESULT_REPO="${ALLURE_XCRESULT_REPO:-}"
 ENV_FILE="integration_test/patrol_env.sh"
-TAGS="${TAGS:-}"
-EXCLUDE_TAGS="${EXCLUDE_TAGS:-}"
+# Preserve any user-provided values before sourcing env file
+ORIG_TAGS="${TAGS:-}"
+ORIG_EXCLUDE_TAGS="${EXCLUDE_TAGS:-}"
+
+# --- SCHEMATHESIS INTEGRATION (toggles & defaults) ---------------------------
+RUN_ST="${RUN_ST:-1}"  # 1=start Schemathesis wrapper in background
+SCHEMATHESIS_WRAPPER="${SCHEMATHESIS_WRAPPER:-./integration_test/run_schemathesis.sh}"
+ST_SCHEMA="${ST_SCHEMA:-openapi-docs.yaml}"
+ST_URL="${ST_URL:-}"                         # e.g. https://api.dev.example.com
+ST_DIR="${ST_DIR:-integration_test/schemathesis-report}"
+ST_WAIT_TOKEN_SECS="${ST_WAIT_TOKEN_SECS:-120}"  # wrapper waits up to N seconds for .schemathesis_token
+ST_FINISH_TIMEOUT_SECS="${ST_FINISH_TIMEOUT_SECS:-0}"  # 0 = don't wait for finish before import
+ST_PULL_TOKEN_TIMEOUT_SECS="${ST_PULL_TOKEN_TIMEOUT_SECS:-300}"  # how long this script tries to pull token to host
+PKG="${PKG:-com.thinslices.solarisdemo}"          # Android package name
+BUNDLE_ID="${BUNDLE_ID:-com.thinslices.solarisdemo}"  # iOS bundle identifier
+SERVE_REPORT="${SERVE_REPORT:-1}"  # 1=also run `allure serve`, 0=only generate static HTML
 
 # --- SANITY CHECKS (common) --------------------------------------------------
 if ! command -v patrol >/dev/null; then
@@ -21,8 +35,12 @@ fi
 if ! command -v allure >/dev/null; then
   echo "ERROR: Allure CLI not found in PATH."; exit 3
 fi
-# Optional: load environment exports
+# Optional: load environment exports (does not override user-provided values)
 if [ -f "$ENV_FILE" ]; then . "$ENV_FILE"; fi
+
+# Re-apply precedence: command-line/env overrides file defaults
+TAGS="${ORIG_TAGS:-${TAGS:-}}"
+EXCLUDE_TAGS="${ORIG_EXCLUDE_TAGS:-${EXCLUDE_TAGS:-}}"
 
 if [ ! -f "$TARGET" ] && [ ! -d "$TARGET" ]; then
   echo "Usage: $0 integration_test/your_test.dart | integration_test/"
@@ -69,14 +87,186 @@ convert_xcresult() {
   exit 5
 }
 
+# --- SCHEMATHESIS HELPERS ----------------------------------------------------
+pull_token_background() {
+  # Attempt to copy token from device/simulator to host ./.schemathesis_token
+  # Retries up to ST_PULL_TOKEN_TIMEOUT_SECS but returns immediately if already present
+  if [ -s ./.schemathesis_token ]; then return; fi
+  echo ">> Starting token puller (platform: $PLAT) ..."
+  (
+    SECS=0
+    while [ $SECS -lt "$ST_PULL_TOKEN_TIMEOUT_SECS" ]; do
+      if [ -s ./.schemathesis_token ]; then exit 0; fi
+      if [ "$PLAT" = "android" ] && command -v adb >/dev/null 2>&1; then
+        adb exec-out run-as "$PKG" cat "/data/data/$PKG/app_flutter/.schemathesis_token" > ./.schemathesis_token 2>/dev/null || true
+      else
+        BUNDLE_ID="$BUNDLE_ID" bash integration_test/ios_pull_token.sh >/dev/null 2>&1 || true
+      fi
+      if [ -s ./.schemathesis_token ]; then exit 0; fi
+      sleep 2; SECS=$((SECS+2))
+    done
+    exit 0
+  ) &
+}
+
+start_schemathesis() {
+  if [ "$RUN_ST" != "1" ]; then return; fi
+  if [ -z "$ST_URL" ]; then echo ">> ST_URL not set; skip Schemathesis."; return; fi
+  if [ ! -x "$SCHEMATHESIS_WRAPPER" ]; then echo ">> Schemathesis wrapper not executable at $SCHEMATHESIS_WRAPPER (skip)."; return; fi
+  mkdir -p "$ST_DIR"
+  echo ">> Starting Schemathesis in background via wrapper..."
+  WAIT_TOKEN_SECS="$ST_WAIT_TOKEN_SECS" ST_DIR="$ST_DIR" \
+    "$SCHEMATHESIS_WRAPPER" -u "$ST_URL" -s "$ST_SCHEMA" &
+  ST_PID=$!
+}
+
+import_schemathesis_into_allure() {
+  local junit_latest
+  local har_latest
+  junit_latest=$(ls -1t "$ST_DIR"/junit-*.xml 2>/dev/null | head -n1 || true)
+  har_latest=$(ls -1t "$ST_DIR"/har-*.json 2>/dev/null | head -n1 || true)
+  local out_txt="$ST_DIR/output.txt"
+
+  if [ -z "$junit_latest" ] || [ ! -f "$junit_latest" ]; then
+    echo ">> Schemathesis JUnit not found in $ST_DIR (skip import)"
+    return
+  fi
+
+  echo ">> Importing Schemathesis artifacts into Allure..."
+  local safe_har=""
+  if [ -n "$har_latest" ] && [ -f "$har_latest" ]; then
+    safe_har="$RUN_DIR/schemathesis-har-redacted.har"
+    sed -E 's/(Authorization"\:\s*"Bearer\s*)[^"]+/\1***REDACTED***/g' "$har_latest" \
+      | sed -E 's/(Authorization\:\s*Bearer\s*)[A-Za-z0-9._-]+/\1***REDACTED***/g' > "$safe_har"
+  fi
+
+  local sum_txt="$RUN_DIR/schemathesis-summary.txt"
+  local sum_html="$RUN_DIR/schemathesis-summary.html"
+  local sum_json="$RUN_DIR/schemathesis-summary.json"
+
+  python3 - <<PY "$junit_latest" "$sum_txt" "$sum_html" "$sum_json"
+import sys, xml.etree.ElementTree as ET, html, json
+junit, out_txt, out_html, out_json = sys.argv[1:5]
+t = ET.parse(junit).getroot()
+ts = t if t.tag.endswith("testsuite") else next((c for c in t if c.tag.endswith("testsuite")), t)
+tests  = int(ts.attrib.get("tests", 0))
+fail   = int(ts.attrib.get("failures", ts.attrib.get("failuresCount", 0)))
+err    = int(ts.attrib.get("errors", 0))
+skip   = int(ts.attrib.get("skipped", ts.attrib.get("skip", 0)))
+name   = ts.attrib.get("name", "Schemathesis")
+status = "passed" if (fail==0 and err==0) else "failed"
+open(out_txt,"w").write(f"Suite: {name}\nTests: {tests}\nFailures: {fail}\nErrors: {err}\nSkipped: {skip}\nStatus: {status}\n")
+open(out_html,"w").write("""<!doctype html>
+<meta charset=\"utf-8\"><title>Schemathesis Summary</title>
+<style>body{font:14px/1.4 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial} .k{font-weight:600}</style>
+<h2>Schemathesis Summary</h2>
+<p><span class=\"k\">Suite:</span> %s</p>
+<p><span class=\"k\">Tests:</span> %d &nbsp; <span class=\"k\">Failures:</span> %d &nbsp; <span class=\"k\">Errors:</span> %d &nbsp; <span class=\"k\">Skipped:</span> %d</p>
+<p><span class=\"k\">Status:</span> <b>%s</b></p>""" % (html.escape(name), tests, fail, err, skip, status.upper()))
+with open(out_json,"w") as f:
+  json.dump({"suite":name,"tests":tests,"failures":fail,"errors":err,"skipped":skip,"status":status}, f, indent=2)
+PY
+
+  local st_status
+  st_status=$(python3 - <<PY "$junit_latest"
+import sys, xml.etree.ElementTree as ET
+t=ET.parse(sys.argv[1]).getroot()
+ts = t if t.tag.endswith("testsuite") else next((c for c in t if c.tag.endswith("testsuite")), t)
+fail=int(ts.attrib.get("failures", ts.attrib.get("failuresCount", 0)))
+err=int(ts.attrib.get("errors",0))
+print("passed" if (fail==0 and err==0) else "failed")
+PY
+)
+
+  local uuid
+  uuid=$( (uuidgen 2>/dev/null || cat /proc/sys/kernel/random/uuid) 2>/dev/null || date +%s%N )
+  [ -z "$uuid" ] && uuid=$(date +%s%N)
+
+  # Copy JUnit XML as attachment-only (non-.xml extension) so Allure does not import 29 separate tests
+  local junit_copy="$RUN_DIR/schemathesis-results-$uuid.xml.txt"
+  cp -f "$junit_latest" "$junit_copy"
+  cp -f "$sum_txt" "$RUN_DIR/schemathesis-summary-$uuid.txt"
+  cp -f "$sum_html" "$RUN_DIR/schemathesis-summary-$uuid.html"
+  cp -f "$sum_json" "$RUN_DIR/schemathesis-summary-$uuid.json"
+  if [ -n "$safe_har" ] && [ -f "$safe_har" ]; then
+    cp -f "$safe_har" "$RUN_DIR/schemathesis-har-$uuid.har"
+  fi
+  if [ -f "$out_txt" ]; then
+    cp -f "$out_txt" "$RUN_DIR/schemathesis-output-$uuid.txt"
+  fi
+
+  local now_ms=$(( $(date +%s%N)/1000000 ))
+  cat > "$RUN_DIR/$uuid-result.json" <<JSON
+{
+  "uuid": "$uuid",
+  "name": "Schemathesis contract",
+  "fullName": "Schemathesis contract",
+  "status": "$st_status",
+  "stage": "finished",
+  "start": $now_ms,
+  "stop": $now_ms,
+  "labels": [
+    {"name":"suite","value":"Schemathesis"},
+    {"name":"feature","value":"API Contract"},
+    {"name":"framework","value":"schemathesis"},
+    {"name":"severity","value":"normal"}
+  ],
+  "attachments": [
+    {"name":"JUnit XML","type":"application/xml","source":"$(basename "$junit_copy")"},
+    {"name":"Summary (HTML)","type":"text/html","source":"schemathesis-summary-$uuid.html"},
+    {"name":"Summary (TXT)","type":"text/plain","source":"schemathesis-summary-$uuid.txt"},
+    {"name":"Summary (JSON)","type":"application/json","source":"schemathesis-summary-$uuid.json"}
+  ]
+}
+JSON
+
+  if [ -f "$RUN_DIR/schemathesis-har-$uuid.har" ]; then
+    python3 - <<'PY' "$RUN_DIR/$uuid-result.json"
+import sys, json
+p=sys.argv[1]
+j=json.load(open(p))
+j["attachments"].append({"name":"HTTP Archive (HAR)","type":"application/json","source":[s for s in j["attachments"] if s["name"]=="Summary (JSON)"][0]["source"].replace("schemathesis-summary","schemathesis-har").replace(".json",".har")})
+open(p,"w").write(json.dumps(j,indent=2))
+PY
+  fi
+  if [ -f "$RUN_DIR/schemathesis-output-$uuid.txt" ]; then
+    python3 - <<'PY' "$RUN_DIR/$uuid-result.json"
+import sys, json
+p=sys.argv[1]
+j=json.load(open(p))
+j["attachments"].append({"name":"Console Output","type":"text/plain","source":[s for s in j["attachments"] if s["name"]=="Summary (JSON)"][0]["source"].replace("schemathesis-summary","schemathesis-output").replace(".json",".txt")})
+open(p,"w").write(json.dumps(j,indent=2))
+PY
+  fi
+
+  # Mark pipeline failure if Schemathesis failed
+  if [ "$st_status" = "failed" ]; then ANY_FAIL=1; fi
+
+  # Remove any other Schemathesis-origin tests so only the aggregate "Schemathesis contract" remains
+  for f in "$RUN_DIR"/*-result.json; do
+    [ "$f" = "$RUN_DIR/$uuid-result.json" ] && continue
+    if grep -q '"framework":"schemathesis"' "$f" 2>/dev/null; then
+      rm -f "$f" || true
+    fi
+  done
+}
+
 # --- RUN TESTS ---------------------------------------------------------------
 PATROL_ARGS=()
 if [ -n "$TAGS" ]; then PATROL_ARGS+=(--tags "$TAGS"); fi
 if [ -n "$EXCLUDE_TAGS" ]; then PATROL_ARGS+=(--exclude-tags "$EXCLUDE_TAGS"); fi
 
+if [ -n "${EXPORT_TOKEN:-}" ] && [ "${EXPORT_TOKEN}" != "0" ] && [ "${EXPORT_TOKEN}" != "false" ]; then
+  PATROL_ARGS+=(--dart-define=EXPORT_TOKEN=true)
+fi
+
 ANY_FAIL=0
 MULTI=0
 if [ "$#" -gt 1 ]; then MULTI=1; fi
+
+# Start token puller and Schemathesis (optional) before running Patrol
+pull_token_background
+start_schemathesis
 
 if [ "$MULTI" -eq 1 ]; then
   # Run each provided test file sequentially, aggregate results, continue on failures
@@ -235,6 +425,22 @@ if [ ${#RESULT_FILES[@]} -eq 0 ]; then
   exit 10
 fi
 
+# --- OPTIONAL: WAIT FOR SCHEMATHESIS TO FINISH -------------------------------
+if [ "${RUN_ST}" = "1" ] && [ -n "${ST_PID:-}" ] && [ "$ST_FINISH_TIMEOUT_SECS" -gt 0 ]; then
+  echo ">> Waiting up to ${ST_FINISH_TIMEOUT_SECS}s for Schemathesis to finish…"
+  SECS=0
+  while kill -0 "$ST_PID" 2>/dev/null; do
+    sleep 2; SECS=$((SECS+2))
+    if [ $SECS -ge "$ST_FINISH_TIMEOUT_SECS" ]; then
+      echo "WARN: Schemathesis still running; continue."
+      break
+    fi
+  done
+fi
+
+# --- IMPORT SCHEMATHESIS ARTIFACTS INTO ALLURE ------------------------------
+import_schemathesis_into_allure
+
 # --- ADD ENVIRONMENT PANEL ---------------------------------------------------
 echo ">> Writing environment.properties..."
 APP_VERSION=${APP_VERSION:-""}
@@ -273,9 +479,12 @@ if [ -d "$REPORT_DIR/history" ]; then
   cp -r "$REPORT_DIR/history" "$RUN_DIR/" || true
 fi
 
-# --- GENERATE & SERVE REPORT -------------------------------------------------
+# --- GENERATE & (OPTIONALLY) SERVE REPORT ------------------------------------
 echo ">> Generating Allure report..."
 allure generate "$RUN_DIR" -o "$REPORT_DIR" --clean
+echo ">> Static report available at: $REPORT_DIR/index.html"
 
-echo ">> Serving Allure report (Ctrl+C to stop)..."
-allure serve "$RUN_DIR"
+if [ "$SERVE_REPORT" = "1" ]; then
+  echo ">> Serving Allure report (Ctrl+C to stop)..."
+  allure serve "$RUN_DIR"
+fi

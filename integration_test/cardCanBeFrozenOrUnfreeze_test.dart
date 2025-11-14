@@ -30,6 +30,7 @@ void main() {
     await $.waitUntilVisible($(keys.cardsPage.cardsPageTitle),
         timeout: Duration(seconds: 10));
 
+    // await $().scrollTo();
     //freezeCard
     await $(keys.cardActions.freezeCardButton).tap();
 

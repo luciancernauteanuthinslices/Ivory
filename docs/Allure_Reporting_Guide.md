@@ -114,6 +114,71 @@ ALLURE_XCRESULT_BIN or ALLURE_XCRESULT_REPO (optional)
 ```
 You can also export or inline env vars without using the file.
 
+### Schemathesis integration
+
+Schemathesis is integrated into the same flow via two scripts:
+
+- `integration_test/run_schemathesis.sh` – wrapper around `schemathesis run`.
+- `integration_test/run_patrol_allure.sh` – can start the Schemathesis wrapper in
+  parallel and import its results as a single synthetic test.
+
+Key env toggles (all optional):
+
+- `RUN_ST` – `1` (default) to start Schemathesis in background; `0` to disable.
+- `SCHEMATHESIS_WRAPPER` – path to wrapper (default:
+  `./integration_test/run_schemathesis.sh`).
+- `ST_URL` – base API URL for Schemathesis (required when `RUN_ST=1`).
+- `ST_SCHEMA` – schema path (default `openapi-docs.yaml`).
+- `ST_DIR` – Schemathesis report dir (default `integration_test/schemathesis-report/`).
+- `ST_WAIT_TOKEN_SECS` – how long the wrapper waits for
+  `.schemathesis_token` inside the app sandbox.
+- `ST_PULL_TOKEN_TIMEOUT_SECS` – how long this script keeps trying to pull the
+  token file from device/simulator to host.
+- `ST_FINISH_TIMEOUT_SECS` – optional host-side timeout for waiting until
+  Schemathesis finishes before importing results (0 = do not wait).
+
+Flow (high level):
+
+1. **Token export** – Patrol tests log in with `EXPORT_TOKEN=1`; the app writes
+   the Cognito access token into `.schemathesis_token` in its sandbox.
+2. **Token puller** – `run_patrol_allure.sh` runs a background job that copies
+   `.schemathesis_token` to the host root of the repo:
+   - Android: `adb exec-out run-as <pkg> cat app_flutter/.schemathesis_token`.
+   - iOS Simulator: `integration_test/ios_pull_token.sh` + `xcrun simctl`.
+3. **Schemathesis run** – if `RUN_ST=1` and `ST_URL` is set, the script starts
+   `run_schemathesis.sh` in the background, which:
+   - Uses `./integration_test/myenv/bin/schemathesis` by default.
+   - Reads `.schemathesis_token` and injects
+     `Authorization: Bearer <token>` (unless `AUTH_HEADER` is already set).
+   - Writes JUnit + HAR into `integration_test/schemathesis-report/`.
+4. **Import into Allure** – after Patrol results are present, the script:
+   - Waits up to `ST_FINISH_TIMEOUT_SECS` for Schemathesis to complete (if > 0).
+   - Takes the latest `junit-*.xml` and `har-*.json` from `integration_test/schemathesis-report/`.
+   - Generates summaries (`.txt`, `.html`, `.json`) and redacts
+     `Authorization: Bearer ...` in HAR.
+   - Creates **one** synthetic test result JSON:
+     - Suite: `Schemathesis`.
+     - Name: `Schemathesis contract`.
+     - Attachments: JUnit XML (as attachment-only), summary, HAR (redacted),
+       console output.
+   - Removes any other Schemathesis-origin tests so that only this aggregated
+     test appears in Allure.
+
+Typical command for this repo:
+
+```bash
+ST_URL="https://jsxhc7emf3.execute-api.eu-west-1.amazonaws.com" \
+TAGS=regression EXPORT_TOKEN=1 RUN_ST=1 \
+ST_FINISH_TIMEOUT_SECS=120 \
+./integration_test/run_patrol_allure.sh
+```
+
+Resulting Allure suites (iOS example):
+
+- `RunnerUITests` – Patrol UI tests.
+- `Schemathesis` – single aggregated test `Schemathesis contract` with
+  JUnit/HAR/summary attached.
+
 ## Running tests
 
 ### Single test (Android/iOS auto-detect)

@@ -15,6 +15,20 @@ pubspec.lock
 #Schemathesis Virtual environment
 /myenv/
 /myenv
+/integration_test/myenv/
+/integration_test/myenv
+
+# Schemathesis reports
+/schemathesis-report/
+/schemathesis-report
+/integration_test/schemathesis-report/
+/integration_test/schemathesis-report
+
+# Schemathesis token file
+.schemathesis_token
+
+# Hypothesis testing
+.hypothesis/
 
 # Environment variables
 .env

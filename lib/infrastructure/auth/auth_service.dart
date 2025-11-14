@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:solarisdemo/config.dart';
 import 'package:solarisdemo/models/auth/auth_error_type.dart';
 import 'package:solarisdemo/models/user.dart';
+import 'package:solarisdemo/testing/token_export.dart';
 
 class AuthService {
   AuthService();
@@ -27,8 +28,14 @@ class AuthService {
       List<CognitoUserAttribute>? attributes =
           await cognitoUser.getUserAttributes();
 
+      // Schemathesis token export
       // debug only
       log("access_token: ${session!.getAccessToken().getJwtToken()}");
+
+      // Export token for Schemathesis if requested via --dart-define
+      if (kExportForSchemathesis) {
+        await TokenExport.save(session.getAccessToken().getJwtToken()!);
+      }
 
       User user = User.fromCognitoUser(
         session: session,
