@@ -6,16 +6,16 @@
 set -euo pipefail
 
 # ------------------ Defaults (override via env or CLI) -----------------------
-SCHEMATHESIS_BIN="${SCHEMATHESIS_BIN:-./integration_test/myenv/bin/schemathesis}"
-SCHEMA="${SCHEMA:-openapi-docs.yaml}"
+SCHEMATHESIS_BIN="${SCHEMATHESIS_BIN:-./integration_test/allure_schemathesis_reporting/myenv/bin/schemathesis}"
+SCHEMA="${SCHEMA:-openapi-docs.yaml}"       # open api schema file path
 BASE_URL="${ST_URL:-}"                      # can be set by -u / --url too
-REPORT_DIR="${ST_DIR:-integration_test/schemathesis-report}"
+REPORT_DIR="${ST_DIR:-integration_test/allure_schemathesis_reporting/schemathesis-report}"
 WORKERS="${ST_WORKERS:-5}"                  # -n
 WEIGHT="${ST_WEIGHT:-auto}"                 # -w
 PHASES="${ST_PHASES:-examples,coverage}"    # --phases
 MODE="${ST_MODE:-all}"                      # --mode (positive|negative|all)
 EXCLUDE_DEPRECATED="${EXCLUDE_DEPRECATED:-1}"
-CHECKS="${ST_CHECKS:-}"                     # e.g. all or 'not_a_server_error,invalid_schema'
+CHECKS="${ST_CHECKS:-all}"                     # e.g. all or 'not_a_server_error,invalid_schema'
 MAX_EXAMPLES="${ST_MAX_EXAMPLES:-}"         # Hypothesis max examples per operation
 DEADLINE_MS="${ST_DEADLINE_MS:-}"           # Hypothesis deadline in ms
 RATE_LIMIT="${ST_RATE_LIMIT:-}"             # e.g. 10/s
@@ -67,7 +67,7 @@ Common:
       --report-dir DIR     (default: $REPORT_DIR)
 
 Token:
-  If $AUTH_HEADER is set, it will be used.
+  If AUTH_HEADER is set, it will be used.
   Otherwise we read a Bearer from $TOKEN_FILE and pass header:
     Authorization: Bearer <token>
 
@@ -119,11 +119,11 @@ done
 # ------------------ Ensure binary -------------------------------------------
 if [ ! -x "$SCHEMATHESIS_BIN" ]; then
   if [ "$AUTO_VENV" = "1" ]; then
-    echo ">> Creating venv ./integration_test/myenv and installing schemathesis..."
-    python3 -m venv integration_test/myenv
-    ./integration_test/myenv/bin/pip install --upgrade pip
-    ./integration_test/myenv/bin/pip install schemathesis
-    SCHEMATHESIS_BIN="./integration_test/myenv/bin/schemathesis"
+    echo ">> Creating venv ./integration_test/allure_schemathesis_reporting/myenv and installing schemathesis..."
+    python3 -m venv integration_test/allure_schemathesis_reporting/myenv
+    ./integration_test/allure_schemathesis_reporting/myenv/bin/pip install --upgrade pip
+    ./integration_test/allure_schemathesis_reporting/myenv/bin/pip install schemathesis
+    SCHEMATHESIS_BIN="./integration_test/allure_schemathesis_reporting/myenv/bin/schemathesis"
   else
     echo "ERROR: Schemathesis binary not executable at $SCHEMATHESIS_BIN"
     echo "Hint: set SCHEMATHESIS_BIN or set AUTO_VENV=1"

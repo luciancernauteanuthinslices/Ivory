@@ -1,0 +1,1 @@
+./integration_test/run_schemathesis.sh: ./integration_test/myenv/bin/schemathesis: /Users/lucian.cernauteanuthinslices.com/Documents/Repos/Ivory/myenv/bin/python: bad interpreter: No such file or directory

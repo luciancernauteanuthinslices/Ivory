@@ -13,10 +13,8 @@
 pubspec.lock
 
 #Schemathesis Virtual environment
-/myenv/
-/myenv
-/integration_test/myenv/
-/integration_test/myenv
+/integration_test/allure_schemathesis_reporting/myenv/
+/integration_test/allure_schemathesis_reporting/myenv
 
 # Schemathesis reports
 /schemathesis-report/

@@ -1,6 +1,6 @@
 # Environment for Patrol + Allure runs
 # Source automatically by run_patrol_allure.sh if present
-# Before running script run in console: chmod +x integration_test/run_patrol_allure.sh 
+# Before running script run in console: chmod +x integration_test/allure_schemathesis_reporting/patrol_env.sh
 
 # Core metadata for Allure environment panel
 export APP_VERSION="1.0"
@@ -14,7 +14,7 @@ export PATROL_CONFIG_JSON=""      # e.g. '{"retries":1}'
 export FEATURE_FLAGS_TEXT=""      # e.g. $'flagA=true\nflagB=false'
 
 # Platform selection (android|ios|auto)
-export PLATFORM="auto"
+export PLATFORM="${PLATFORM:-auto}"
 
 # Tag filtering (Patrol supports complex expressions)
 # Examples:

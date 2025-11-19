@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# run one-time before in console: chmod +x integration_test/run_patrol_allure.sh
+# run one-time before in console: chmod +x integration_test/allure_schemathesis_reporting/run_patrol_allure.sh
 
 set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 # --- INPUTS / DEFAULTS -------------------------------------------------------
 TARGET="${1:-${TARGET:-integration_test}}"   # allow arg, $TARGET, or default directory
@@ -10,23 +12,52 @@ REPORT_DIR="build/allure-report"
 PLATFORM="${PLATFORM:-auto}"   # android|ios|auto
 ALLURE_XCRESULT_BIN="${ALLURE_XCRESULT_BIN:-}"
 ALLURE_XCRESULT_REPO="${ALLURE_XCRESULT_REPO:-}"
-ENV_FILE="integration_test/patrol_env.sh"
+ENV_FILE="integration_test/allure_schemathesis_reporting/patrol_env.sh"
 # Preserve any user-provided values before sourcing env file
 ORIG_TAGS="${TAGS:-}"
 ORIG_EXCLUDE_TAGS="${EXCLUDE_TAGS:-}"
 
 # --- SCHEMATHESIS INTEGRATION (toggles & defaults) ---------------------------
-RUN_ST="${RUN_ST:-1}"  # 1=start Schemathesis wrapper in background
-SCHEMATHESIS_WRAPPER="${SCHEMATHESIS_WRAPPER:-./integration_test/run_schemathesis.sh}"
+SCHEMATHESIS_WRAPPER="${SCHEMATHESIS_WRAPPER:-./integration_test/allure_schemathesis_reporting/run_schemathesis.sh}"
 ST_SCHEMA="${ST_SCHEMA:-openapi-docs.yaml}"
 ST_URL="${ST_URL:-}"                         # e.g. https://api.dev.example.com
-ST_DIR="${ST_DIR:-integration_test/schemathesis-report}"
+ST_DIR="${ST_DIR:-integration_test/allure_schemathesis_reporting/schemathesis-report}"
+ST_AUTH_SCRIPT="${ST_AUTH_SCRIPT:-integration_test/allure_schemathesis_reporting/sct_auth/get_schemathesis_token.sh}"
+GET_TOKEN_MODE="${GET_TOKEN_MODE:-${GET_TOKEN:-export_token}}"
 ST_WAIT_TOKEN_SECS="${ST_WAIT_TOKEN_SECS:-120}"  # wrapper waits up to N seconds for .schemathesis_token
 ST_FINISH_TIMEOUT_SECS="${ST_FINISH_TIMEOUT_SECS:-0}"  # 0 = don't wait for finish before import
 ST_PULL_TOKEN_TIMEOUT_SECS="${ST_PULL_TOKEN_TIMEOUT_SECS:-300}"  # how long this script tries to pull token to host
-PKG="${PKG:-com.thinslices.solarisdemo}"          # Android package name
-BUNDLE_ID="${BUNDLE_ID:-com.thinslices.solarisdemo}"  # iOS bundle identifier
-SERVE_REPORT="${SERVE_REPORT:-1}"  # 1=also run `allure serve`, 0=only generate static HTML
+PKG="${PKG:-}"
+BUNDLE_ID="${BUNDLE_ID:-}"
+SERVE_REPORT="${SERVE_REPORT:-0}"  # 1=also run `allure serve`, 0=only generate static HTML
+
+# Helper to derive PKG/BUNDLE_ID from pubspec.yaml if not provided
+load_ids_from_pubspec() {
+  if [ -n "${PKG:-}" ] && [ -n "${BUNDLE_ID:-}" ]; then
+    return
+  fi
+  local pubspec pkg bundle
+  pubspec="$ROOT_DIR/pubspec.yaml"
+  if [ ! -f "$pubspec" ]; then
+    return
+  fi
+  pkg="$(awk '
+    /^[[:space:]]*patrol:/ {in_patrol=1; next}
+    in_patrol && /^[[:space:]]*android:/ {in_android=1; next}
+    in_android && /^[[:space:]]*package_name:/ {print $2; exit}
+  ' "$pubspec")"
+  bundle="$(awk '
+    /^[[:space:]]*patrol:/ {in_patrol=1; next}
+    in_patrol && /^[[:space:]]*ios:/ {in_ios=1; next}
+    in_ios && /^[[:space:]]*bundle_id:/ {print $2; exit}
+  ' "$pubspec")"
+  if [ -z "${PKG:-}" ] && [ -n "$pkg" ]; then
+    PKG="$pkg"
+  fi
+  if [ -z "${BUNDLE_ID:-}" ] && [ -n "$bundle" ]; then
+    BUNDLE_ID="$bundle"
+  fi
+}
 
 # --- SANITY CHECKS (common) --------------------------------------------------
 if ! command -v patrol >/dev/null; then
@@ -42,6 +73,13 @@ if [ -f "$ENV_FILE" ]; then . "$ENV_FILE"; fi
 TAGS="${ORIG_TAGS:-${TAGS:-}}"
 EXCLUDE_TAGS="${ORIG_EXCLUDE_TAGS:-${EXCLUDE_TAGS:-}}"
 
+load_ids_from_pubspec
+if [ -z "$PKG" ] || [ -z "$BUNDLE_ID" ]; then
+  echo "ERROR: PKG/BUNDLE_ID not set and could not be derived from pubspec.yaml." >&2
+  echo "Set PKG/BUNDLE_ID env vars or define patrol.android.package_name and patrol.ios.bundle_id in pubspec.yaml." >&2
+  exit 2
+fi
+
 if [ ! -f "$TARGET" ] && [ ! -d "$TARGET" ]; then
   echo "Usage: $0 integration_test/your_test.dart | integration_test/"
   echo "Tip: pass a file, a directory, or set \$TARGET. Current: '$TARGET' not found."
@@ -52,12 +90,23 @@ fi
 detect_platform() {
   if [ "$PLATFORM" = "android" ]; then echo android; return; fi
   if [ "$PLATFORM" = "ios" ]; then echo ios; return; fi
-  if adb get-state >/dev/null 2>&1; then echo android; return; fi
-  if command -v xcrun >/dev/null; then echo ios; return; fi
+  if command -v adb >/dev/null 2>&1; then
+    # Consider Android available if there is at least one attached device in "device" state
+    if adb devices 2>/dev/null | awk 'NR>1 && $2=="device"{exit 0} END{exit 1}'; then
+      echo android
+      return
+    fi
+  fi
+  if command -v xcrun >/dev/null 2>&1; then echo ios; return; fi
   echo android
 }
 
 PLAT=$(detect_platform)
+if command -v adb >/dev/null 2>&1; then
+  if [ -z "${ADB_TARGET:-}" ]; then
+    ADB_TARGET=$(adb devices | awk 'NR>1 && $2=="device"{print $1; exit}')
+  fi
+fi
 
 # --- HELPERS -----------------------------------------------------------------
 convert_xcresult() {
@@ -87,37 +136,49 @@ convert_xcresult() {
   exit 5
 }
 
+init_schemathesis_auth() {
+  if [ "$GET_TOKEN_MODE" != "direct_api" ]; then return; fi
+  if [ -n "${AUTH_HEADER:-}" ]; then return; fi
+  if [ ! -x "${ST_AUTH_SCRIPT}" ]; then return; fi
+  if [ -z "${ST_AUTH_URL:-}" ] || [ -z "${ST_AUTH_CLIENT_ID:-}" ]; then return; fi
+  echo ">> Obtaining Schemathesis token via auth script..."
+  if ! TOKEN="$(${ST_AUTH_SCRIPT})"; then
+    echo "WARN: Auth script failed; falling back to device token export if available."
+    return
+  fi
+  AUTH_HEADER="Authorization: Bearer ${TOKEN}"
+  export AUTH_HEADER
+  printf '%s' "${TOKEN}" > ./.schemathesis_token || true
+}
+
 # --- SCHEMATHESIS HELPERS ----------------------------------------------------
 pull_token_background() {
   # Attempt to copy token from device/simulator to host ./.schemathesis_token
   # Retries up to ST_PULL_TOKEN_TIMEOUT_SECS but returns immediately if already present
-  if [ -s ./.schemathesis_token ]; then return; fi
-  echo ">> Starting token puller (platform: $PLAT) ..."
+  if [ "$GET_TOKEN_MODE" != "export_token" ]; then return; fi
+  # Always refresh the host token file for each run
+  rm -f ./.schemathesis_token 2>/dev/null || true
+  echo ">> Starting token puller (auto-detect platform) ..."
   (
     SECS=0
     while [ $SECS -lt "$ST_PULL_TOKEN_TIMEOUT_SECS" ]; do
       if [ -s ./.schemathesis_token ]; then exit 0; fi
-      if [ "$PLAT" = "android" ] && command -v adb >/dev/null 2>&1; then
-        adb exec-out run-as "$PKG" cat "/data/data/$PKG/app_flutter/.schemathesis_token" > ./.schemathesis_token 2>/dev/null || true
-      else
-        BUNDLE_ID="$BUNDLE_ID" bash integration_test/ios_pull_token.sh >/dev/null 2>&1 || true
+      if command -v adb >/dev/null 2>&1; then
+        if [ -z "${ADB_TARGET:-}" ]; then
+          ADB_TARGET=$(adb devices 2>/dev/null | awk 'NR>1 && $2=="device"{print $1; exit}')
+        fi
+        if [ -n "${ADB_TARGET:-}" ]; then
+          adb ${ADB_TARGET:+-s "$ADB_TARGET"} exec-out run-as "$PKG" cat "/data/data/$PKG/app_flutter/.schemathesis_token" > ./.schemathesis_token 2>/dev/null || true
+        fi
+      fi
+      if [ ! -s ./.schemathesis_token ] && command -v xcrun >/dev/null 2>&1; then
+        BUNDLE_ID="$BUNDLE_ID" bash integration_test/allure_schemathesis_reporting/sct_auth/ios_pull_token.sh >/dev/null 2>&1 || true
       fi
       if [ -s ./.schemathesis_token ]; then exit 0; fi
       sleep 2; SECS=$((SECS+2))
     done
     exit 0
   ) &
-}
-
-start_schemathesis() {
-  if [ "$RUN_ST" != "1" ]; then return; fi
-  if [ -z "$ST_URL" ]; then echo ">> ST_URL not set; skip Schemathesis."; return; fi
-  if [ ! -x "$SCHEMATHESIS_WRAPPER" ]; then echo ">> Schemathesis wrapper not executable at $SCHEMATHESIS_WRAPPER (skip)."; return; fi
-  mkdir -p "$ST_DIR"
-  echo ">> Starting Schemathesis in background via wrapper..."
-  WAIT_TOKEN_SECS="$ST_WAIT_TOKEN_SECS" ST_DIR="$ST_DIR" \
-    "$SCHEMATHESIS_WRAPPER" -u "$ST_URL" -s "$ST_SCHEMA" &
-  ST_PID=$!
 }
 
 import_schemathesis_into_allure() {
@@ -264,9 +325,9 @@ ANY_FAIL=0
 MULTI=0
 if [ "$#" -gt 1 ]; then MULTI=1; fi
 
-# Start token puller and Schemathesis (optional) before running Patrol
+# Start token puller (optional) before running Patrol
+init_schemathesis_auth
 pull_token_background
-start_schemathesis
 
 if [ "$MULTI" -eq 1 ]; then
   # Run each provided test file sequentially, aggregate results, continue on failures
@@ -284,11 +345,11 @@ if [ "$MULTI" -eq 1 ]; then
 
     if [ "$PLAT" = "android" ]; then
       mkdir -p "$RUN_DIR"
-      if ! adb get-state >/dev/null 2>&1; then
+      if ! adb ${ADB_TARGET:+-s "$ADB_TARGET"} get-state >/dev/null 2>&1; then
         echo "ERROR: No Android device/emulator detected (adb)."; exit 2
       fi
       echo ">> Pulling Allure results from Android device..."
-      adb exec-out sh -c 'cd /sdcard/googletest/test_outputfiles && tar cf - allure-results' \
+      adb ${ADB_TARGET:+-s "$ADB_TARGET"} exec-out sh -c 'cd /sdcard/googletest/test_outputfiles && tar cf - allure-results' \
       | tar xvf - -C "$RUN_DIR" --strip-components=1
     else
       echo ">> Locating latest .xcresult..."
@@ -362,11 +423,11 @@ else
   if [ "$PLAT" = "android" ]; then
     mkdir -p "$RUN_DIR"
     # --- ANDROID: COLLECT FROM TEST STORAGE ------------------------------------
-    if ! adb get-state >/dev/null 2>&1; then
+    if ! adb ${ADB_TARGET:+-s "$ADB_TARGET"} get-state >/dev/null 2>&1; then
       echo "ERROR: No Android device/emulator detected (adb)."; exit 2
     fi
     echo ">> Pulling Allure results from Android device..."
-    adb exec-out sh -c 'cd /sdcard/googletest/test_outputfiles && tar cf - allure-results' \
+    adb ${ADB_TARGET:+-s "$ADB_TARGET"} exec-out sh -c 'cd /sdcard/googletest/test_outputfiles && tar cf - allure-results' \
     | tar xvf - -C "$RUN_DIR" --strip-components=1
   else
     # --- IOS: CONVERT XCRESULT WITH allure-xcresult ----------------------------
@@ -425,22 +486,6 @@ if [ ${#RESULT_FILES[@]} -eq 0 ]; then
   exit 10
 fi
 
-# --- OPTIONAL: WAIT FOR SCHEMATHESIS TO FINISH -------------------------------
-if [ "${RUN_ST}" = "1" ] && [ -n "${ST_PID:-}" ] && [ "$ST_FINISH_TIMEOUT_SECS" -gt 0 ]; then
-  echo ">> Waiting up to ${ST_FINISH_TIMEOUT_SECS}s for Schemathesis to finish…"
-  SECS=0
-  while kill -0 "$ST_PID" 2>/dev/null; do
-    sleep 2; SECS=$((SECS+2))
-    if [ $SECS -ge "$ST_FINISH_TIMEOUT_SECS" ]; then
-      echo "WARN: Schemathesis still running; continue."
-      break
-    fi
-  done
-fi
-
-# --- IMPORT SCHEMATHESIS ARTIFACTS INTO ALLURE ------------------------------
-import_schemathesis_into_allure
-
 # --- ADD ENVIRONMENT PANEL ---------------------------------------------------
 echo ">> Writing environment.properties..."
 APP_VERSION=${APP_VERSION:-""}
@@ -451,8 +496,8 @@ GIT_SHA=${GIT_SHA:-$(git rev-parse --short HEAD 2>/dev/null || echo "")}
 BASE_URL=${BASE_URL:-""}
 
 if [ "$PLAT" = "android" ]; then
-  DEVICE_NAME=${DEVICE_NAME:-"$(adb shell getprop ro.product.manufacturer | tr -d '\r') $(adb shell getprop ro.product.model | tr -d '\r')"}
-  API_LEVEL=${API_LEVEL:-"$(adb shell getprop ro.build.version.sdk | tr -d '\r')"}
+  DEVICE_NAME=${DEVICE_NAME:-"$(adb ${ADB_TARGET:+-s "$ADB_TARGET"} shell getprop ro.product.manufacturer | tr -d '\r') $(adb ${ADB_TARGET:+-s "$ADB_TARGET"} shell getprop ro.product.model | tr -d '\r')"}
+  API_LEVEL=${API_LEVEL:-"$(adb ${ADB_TARGET:+-s "$ADB_TARGET"} shell getprop ro.build.version.sdk | tr -d '\r')"}
 fi
 
 cat > "$RUN_DIR/environment.properties" <<EOF
@@ -479,10 +524,30 @@ if [ -d "$REPORT_DIR/history" ]; then
   cp -r "$REPORT_DIR/history" "$RUN_DIR/" || true
 fi
 
+# --- PREPARE EXECUTOR METADATA FOR SCHEMATHESIS DEEPLINK --------------------
+if [ -d "build/allure-report-schemathesis" ]; then
+  EXEC_NAME="${ST_URL:-Patrol E2E}"
+  cat > "$RUN_DIR/executor.json" <<EOF
+{
+  "name": "$EXEC_NAME",
+  "buildName": "API Contracts Test",
+  "reportUrl": "schemathesis/index.html",
+  "buildUrl": "schemathesis/index.html"
+}
+EOF
+fi
+
 # --- GENERATE & (OPTIONALLY) SERVE REPORT ------------------------------------
 echo ">> Generating Allure report..."
 allure generate "$RUN_DIR" -o "$REPORT_DIR" --clean
 echo ">> Static report available at: $REPORT_DIR/index.html"
+
+# --- LINK SEPARATE SCHEMATHESIS REPORT, IF PRESENT --------------------------
+if [ -d "build/allure-report-schemathesis" ]; then
+  echo ">> Linking Schemathesis report into Patrol report..."
+  rm -rf "$REPORT_DIR/schemathesis" || true
+  cp -r "build/allure-report-schemathesis" "$REPORT_DIR/schemathesis"
+fi
 
 if [ "$SERVE_REPORT" = "1" ]; then
   echo ">> Serving Allure report (Ctrl+C to stop)..."

@@ -2,10 +2,10 @@
 set -euo pipefail
 
 # Pull .schemathesis_token from a booted iOS Simulator's app container
-# Usage:
-#   BUNDLE_ID=com.example.app bash integration_test/ios_pull_token.sh
+# Usage (from repo root):
+#   BUNDLE_ID=com.example.app bash integration_test/allure_schemathesis_reporting/sct_auth/ios_pull_token.sh
 # Optional:
-#   DEVICE_UDID=<sim-udid> BUNDLE_ID=... bash integration_test/ios_pull_token.sh
+#   DEVICE_UDID=<sim-udid> BUNDLE_ID=... bash integration_test/allure_schemathesis_reporting/sct_auth/ios_pull_token.sh
 
 BUNDLE_ID=${BUNDLE_ID:-}
 DEVICE_UDID=${DEVICE_UDID:-}

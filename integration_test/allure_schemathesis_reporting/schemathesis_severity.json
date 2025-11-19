@@ -1,0 +1,198 @@
+{
+  "_note": "Per-project risk management: this file MUST be reviewed & maintained by the project's risk owners. The severities below are tailored for Ivory's Solaris demo backend.",
+  "version": 1,
+  "default_severity": "normal",
+  "rules": [
+    {
+      "name": "status-health-low",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/status$"
+      },
+      "severity": "low"
+    },
+
+    {
+      "name": "notifications-low",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/notifications(/scheduled.*)?$"
+      },
+      "severity": "low"
+    },
+    {
+      "name": "notifications-scheduled-low-get-delete",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/notifications/scheduled(/.*)?$"
+      },
+      "severity": "low"
+    },
+
+    {
+      "name": "person-core-critical",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/person$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "person-create-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/person$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "person-kyc-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/person/kyc$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "person-tax-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/person/tax_identification$"
+      },
+      "severity": "critical"
+    },
+
+    {
+      "name": "person-device-normal",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/person/device(/.*)?$"
+      },
+      "severity": "normal"
+    },
+
+    {
+      "name": "account-core-critical",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/account$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "account-summary-critical",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/account/summary$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "accounts-create-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/accounts$"
+      },
+      "severity": "critical"
+    },
+
+    {
+      "name": "cards-list-critical",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/account/cards$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "cards-create-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/account/cards$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "card-detail-critical",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/account/cards/[^/]+$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "card-activate-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/account/cards/[^/]+$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "card-pin-keys-critical",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/account/cards/[^/]+/pin_keys/latest$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "card-block-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/account/cards/[^/]+/block$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "card-unblock-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/account/cards/[^/]+/unblock$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "card-change-pin-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/account/cards/[^/]+/change_card_pin$"
+      },
+      "severity": "critical"
+    },
+
+    {
+      "name": "transactions-list-critical",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/transactions$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "transactions-create-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/transactions$"
+      },
+      "severity": "critical"
+    },
+    {
+      "name": "transaction-categories-normal",
+      "when": {
+        "method": "GET",
+        "path_regex": "^/transactions/categories$"
+      },
+      "severity": "normal"
+    },
+
+    {
+      "name": "change-requests-confirm-critical",
+      "when": {
+        "method": "POST",
+        "path_regex": "^/change_requests/[^/]+/confirm$"
+      },
+      "severity": "critical"
+    }
+  ]
+}
