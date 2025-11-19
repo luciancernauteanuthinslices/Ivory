@@ -62,7 +62,10 @@ jobs:
           bundle install
 
       - name: Install Patrol CLI
-        run: dart pub global activate patrol_cli
+        run: dart pub global activate patrol_cli 3.10.0
+
+      - name: Create .env file
+        run: echo "# Environment variables placeholder" > .env
 
       - name: Enable KVM group perms
         run: |
@@ -137,7 +140,10 @@ jobs:
           working-directory: ios
 
       - name: Install Patrol CLI
-        run: dart pub global activate patrol_cli
+        run: dart pub global activate patrol_cli 3.10.0
+
+      - name: Create .env file
+        run: echo "# Environment variables placeholder" > .env
 
       - name: Get Flutter dependencies
         run: flutter pub get

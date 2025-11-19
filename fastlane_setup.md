@@ -711,7 +711,23 @@ jobs:
      
      Then run `bundle update cocoapods` to update `Gemfile.lock`.
 
-4. **"physical iOS devices only in release mode"**
+4. **"No file or variants found for asset: .env"**
+
+   - **Cause:** The `.env` file is referenced in `pubspec.yaml` under assets but doesn't exist (usually in `.gitignore`).
+   - **Solution:** Create a placeholder `.env` file in the project root:
+
+     ```bash
+     echo "# Environment variables placeholder" > .env
+     ```
+     
+     Or add it as a CI workflow step:
+     
+     ```yaml
+     - name: Create .env file
+       run: echo "# Environment variables placeholder" > .env
+     ```
+
+5. **"physical iOS devices only in release mode"**
 
    - **Cause:** Missing `--simulator` flag in `patrol build`.
    - **Solution:** Always use:
@@ -721,12 +737,12 @@ jobs:
      patrol build ios --simulator --verbose
      ```
 
-4. **Simulator boot timeout / data migration hang**
+6. **Simulator boot timeout / data migration hang**
 
    - **Cause:** Simulator corruption or slow migration.
    - **Solution:** Erase simulator before boot (already handled in Fastfile).
 
-5. **"Using the first of multiple matching destinations"**
+7. **"Using the first of multiple matching destinations"**
 
    - **Cause:** Using `OS=latest` which matches multiple iOS versions.
    - **Solution:** Use exact device ID:
@@ -772,7 +788,19 @@ jobs:
      sudo udevadm trigger --name-match=kvm
      ```
 
-3. **Tests timing out**
+3. **Patrol CLI version incompatibility**
+
+   - **Cause:** Mismatch between `patrol` package version in `pubspec.yaml` and `patrol_cli` version installed in CI.
+   - **Solution:** Pin `patrol_cli` to a compatible version in the workflow:
+
+     ```yaml
+     - name: Install Patrol CLI
+       run: dart pub global activate patrol_cli 3.10.0  # Compatible with patrol 3.19.0
+     ```
+     
+     Check the [Patrol compatibility table](https://patrol.leancode.co/documentation/compatibility-table) for the correct version.
+
+4. **Tests timing out**
 
    - **Solution:** Increase timeout in workflow:
 
