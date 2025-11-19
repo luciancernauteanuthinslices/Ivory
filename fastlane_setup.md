@@ -698,7 +698,20 @@ jobs:
      xcrun simctl erase #{device_id}
      ```
 
-3. **"physical iOS devices only in release mode"**
+3. **"FirebaseCore requires CocoaPods version >= 1.12.0"**
+
+   - **Cause:** CocoaPods version in `Gemfile` is too old (e.g., 1.10.2).
+   - **Solution:** Update CocoaPods in `ios/Gemfile`:
+
+     ```ruby
+     source "https://rubygems.org"
+     gem "fastlane", "2.228.0"
+     gem "cocoapods", "~> 1.15.0"  # Update to 1.15+
+     ```
+     
+     Then run `bundle update cocoapods` to update `Gemfile.lock`.
+
+4. **"physical iOS devices only in release mode"**
 
    - **Cause:** Missing `--simulator` flag in `patrol build`.
    - **Solution:** Always use:
@@ -736,30 +749,18 @@ jobs:
 
 1. **"Could not locate Gemfile or .bundle/ directory" in CI**
 
-   - **Cause:** The emulator runner executes scripts in a context that may not inherit Ruby/bundler environment from previous steps.
-   - **Solution:** 
-     - Add a verification step before the emulator runner to ensure Ruby and bundler are set up
-     - In the emulator runner script, explicitly set PATH to include Ruby and bundler locations
-     - Use `$GITHUB_WORKSPACE` or absolute paths when navigating to the android directory
-     - Example workflow fix:
+   - **Cause:** The emulator runner executes each line of the script in a separate shell context, so `cd` commands don't persist across lines.
+   - **Solution:** Chain all commands on a single line using `&&` to ensure they run in the same shell context:
 
      ```yaml
-     - name: Verify Ruby and Bundler setup
-       run: |
-         echo "Ruby version: $(ruby --version)"
-         echo "Bundler version: $(bundle --version)"
-         cd android
-         bundle install
-     
      - name: Run Fastlane test lane (with emulator)
        uses: reactivecircus/android-emulator-runner@v2
        with:
          script: |
-           set -e
-           export PATH="$HOME/.ruby/ruby/3.2.0/bin:$HOME/.pub-cache/bin:$PATH"
-           cd "$GITHUB_WORKSPACE/android" || cd android
-           bundle exec fastlane test
+           export PATH="$HOME/.ruby/ruby/3.2.0/bin:$HOME/.pub-cache/bin:$PATH" && cd "$GITHUB_WORKSPACE/android" && bundle exec fastlane test
      ```
+     
+     **Important:** All commands must be chained with `&&` on the same line, otherwise each command runs in a separate shell and the working directory resets.
 
 2. **Emulator not starting in CI**
 
@@ -877,6 +878,356 @@ The key to success is:
 
 **Tested With:**
 
+- Flutter 3.35.7
+- Patrol CLI 3.6.0
+- Xcode 16.1
+- Ruby 3.2.9
+- Bundler 2.5.23
+- Fastlane 2.228.0
+
+
+2. Install Android Dependencies
+cd android
+bundle install
+3. Android Fastfile Configuration
+Create android/fastlane/Fastfile :
+# Fastfile for Android
+# This file contains the fastlane.tools configuration
+default_platform(:android)
+FASTLANE PATROL SETUP 10
+platform :android do
+desc "Run Patrol integration tests on Android"
+lane :test do
+
+# Install dependencies
+sh("cd ../.. && flutter pub get")
+# Run Patrol tests - uses default test_bundle.dart
+# This will build the APKs and execute the tests on connected device/emulator
+sh("cd ../.. && patrol test android --verbose")
+UI.success("✅ Android Patrol tests completed!")
+end
+desc "Build Android release APK"
+lane :build_release do
+sh("cd ../.. && flutter clean")
+sh("cd ../.. && flutter pub get")
+sh("cd ../.. && flutter build apk --release")
+UI.success("✅ Release APK built!")
+UI.message("APK: build/app/outputs/flutter-apk/app-release.apk")
+end
+desc "Build APKs only (without running tests)"
+lane :build_apks do
+# Install dependencies
+sh("cd ../.. && flutter pub get")
+# Build APKs with Patrol (for uploading to Firebase Test Lab, etc.)
+sh("cd ../.. && patrol build android --verbose")
+UI.success("✅ Android test APKs built successfully!")
+UI.message("App APK: build/app/outputs/apk/debug/app-debug.apk")
+UI.message("Test APK: build/app/outputs/apk/androidTest/debug/app-deb
+ug-androidTest.apk")
+FASTLANE PATROL SETUP 11
+end
+desc "Build and deploy to internal testing"
+lane :deploy_internal do
+build_release
+# TODO: Add Play Store upload when ready
+# upload_to_play_store(
+# track: 'internal',
+# apk: '../build/app/outputs/flutter-apk/app-release.apk'
+# )
+UI.success("✅ Ready for internal deployment!")
+end
+end
+
+# CI/CD Configuration
+# GitHub Actions Workflow
+Create .github/workflows/fastlane-ci.yml :
+name: Fastlane CI/CD
+on:
+push:
+branches: [main, develop]
+pull_request:
+branches: [main, develop]
+workflow_dispatch: # Allows manual trigger from GitHub UI
+env:
+FLUTTER_VERSION: "3.35.7"
+jobs:
+# Android - Build and Test
+android:
+name: Android - Build & Test
+runs-on: ubuntu-latest
+timeout-minutes: 30
+steps:
+- name: Checkout code
+uses: actions/checkout@v4
+- name: Free up disk space
+run: |
+echo "Disk space before cleanup:"
+df -h
+sudo rm -rf /usr/share/dotnet
+sudo rm -rf /opt/ghc
+sudo rm -rf /usr/local/share/boost
+sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+echo "Disk space after cleanup:"
+df -h
+- name: Setup Java
+uses: actions/setup-java@v4
+with:
+distribution: "temurin"
+java-version: "17"
+- name: Setup Flutter
+uses: subosito/flutter-action@v2
+with:
+flutter-version: ${{ env.FLUTTER_VERSION }}
+channel: "stable"
+cache: true
+- name: Setup Ruby for Fastlane
+uses: ruby/setup-ruby@v1
+FASTLANE PATROL SETUP 13
+with:
+ruby-version: '3.2'
+bundler-cache: true
+working-directory: android
+- name: Install Patrol CLI
+run: dart pub global activate patrol_cli
+# NOTE: patrol test requires a running emulator or connected device
+# For CI, we need to start an Android emulator first
+- name: Enable KVM group perms
+run: |
+echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="st
+atic_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger --name-match=kvm
+- name: AVD cache
+uses: actions/cache@v4
+id: avd-cache
+with:
+path: |
+~/.android/avd/*
+~/.android/adb*
+key: avd-33
+- name: Create AVD and generate snapshot for caching
+if: steps.avd-cache.outputs.cache-hit != 'true'
+uses: reactivecircus/android-emulator-runner@v2
+with:
+api-level: 33
+arch: x86_64
+force-avd-creation: false
+emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-
+boot-anim -camera-back none
+disable-animations: false
+FASTLANE PATROL SETUP 14
+script: echo "Generated AVD snapshot for caching."
+- name: Run Fastlane test lane (with emulator)
+uses: reactivecircus/android-emulator-runner@v2
+with:
+api-level: 33
+arch: x86_64
+force-avd-creation: false
+emulator-options: -no-snapshot-save -no-window -gpu swiftshader_ind
+irect -noaudio -no-boot-anim -camera-back none
+disable-animations: true
+working-directory: android
+script: |
+export PATH="$HOME/.pub-cache/bin:$PATH"
+bundle exec fastlane test
+- name: Upload test results
+if: always()
+uses: actions/upload-artifact@v4
+with:
+name: android-test-results
+path: |
+build/app/outputs/
+retention-days: 7
+# iOS - Build and Test
+ios:
+name: iOS - Build & Test
+runs-on: macos-14
+timeout-minutes: 45 # Increased timeout for iOS simulator startup
+steps:
+- name: Checkout code
+uses: actions/checkout@v4
+- name: Select Xcode version
+FASTLANE PATROL SETUP 15
+run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Develo
+per
+- name: Setup Flutter
+uses: subosito/flutter-action@v2
+with:
+flutter-version: ${{ env.FLUTTER_VERSION }}
+channel: "stable"
+cache: true
+- name: Setup Ruby for Fastlane
+uses: ruby/setup-ruby@v1
+with:
+ruby-version: '3.2'
+bundler-cache: true
+working-directory: ios
+- name: Install Patrol CLI
+run: dart pub global activate patrol_cli
+- name: Get Flutter dependencies
+run: flutter pub get
+- name: List available simulators
+run: xcrun simctl list devices available
+# NOTE: Fastlane will handle the full build process
+- name: Run Fastlane test lane
+working-directory: ios
+run: |
+export PATH="$HOME/.pub-cache/bin:$PATH"
+bundle exec fastlane test
+- name: Upload test results
+if: always()
+uses: actions/upload-artifact@v4
+FASTLANE PATROL SETUP 16
+with:
+name: ios-test-results
+path: |
+build/ios/
+retention-days: 7
+
+# Key CI/CD Configuration Points
+
+iOS CI/CD Requirements
+1. Xcode Version: Select Xcode 16.1+ to support modern project format
+- name: Select Xcode 16.1 run: sudo xcode-select -s /Applications/Xcode_
+16.1.app/Contents/Developer
+2. Ruby Setup: Use ruby/setup-ruby@v1 with bundler-cache: true
+- uses: ruby/setup-ruby@v1 with: ruby-version: '3.2.9' bundler-cache:
+true working-directory: ios
+3. Bundler Version: Ensure BUNDLED WITH 2.5.23 in Gemfile.lock
+
+Android CI/CD Requirements
+1. KVM Acceleration: Enable for faster emulator performance
+2. AVD Caching: Cache Android Virtual Device for faster CI runs
+3. Emulator Runner: Use reactivecircus/android-emulator-runner@v2
+
+
+# Troubleshooting
+
+## Common iOS Issues
+
+1.“Could not find ‘bundler’ (2.5.23)”
+Cause: Ruby version mismatch or Bundler not installed
+Solution:
+FASTLANE PATROL SETUP 17
+# Check Ruby versionruby --version # Should be 3.2.9# Install correct Bundle
+rgem install bundler:2.5.23
+# Update Gemfile.lockbundle update --bundler
+
+# 2.“Unable to erase contents and settings in current state: Booted”
+Cause: Simulator already running
+Solution: Shutdown before erasing (already handled in Fastfile)
+sh("xcrun simctl shutdown #{device_id} 2>&1 || true", log: false)
+sh("xcrun simctl erase #{device_id}")
+
+# 3.“physical iOS devices only in release mode”
+Cause: Missing --simulator flag in patrol build
+Solution: Always use:
+sh("cd ../.. && patrol build ios --simulator --verbose")
+
+# 4. Simulator boot timeout / data migration hang
+Cause: Simulator corruption or slow migration
+Solution: Erase simulator before boot (already handled in Fastfile)
+
+# 5.“Using the first of multiple matching destinations”
+Cause: Using OS=latest which matches multiple iOS versions
+Solution: Use exact device ID:
+-destination 'platform=iOS Simulator,id=#{device_id}'
+
+# 6. Bundle identifier couldn’t be read / DerivedData path issues
+Cause: Using workspace/scheme instead of xctestrun file
+FASTLANE PATROL SETUP 18
+Solution: Use .xctestrun file from patrol build:
+xctestrun_file = Dir.glob("../../build/ios_integ/Build/Products/* .xctestrun").firsts
+h("xcodebuild test-without-building -xctestrun '#{xctestrun_file}' ...")
+
+## Common Android Issues
+
+1. Emulator not starting in CI
+Solution: Enable KVM and use hardware acceleration
+- name: Enable KVM run: | echo 'KERNEL=="kvm", GROUP="kvm", MODE
+="0666"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+
+sudo udevadm control --reload-rules
+
+2. Tests timing out
+Solution: Increase timeout in workflow:
+timeout-minutes: 60
+
+## Common Issues
+# Environment Issues
+
+# macOS System Ruby Incompatibility
+❌ Problem: macOS ships with Ruby 2.6, but Bundler 2.5.23 requires Ruby 3.0+
+✅ Solution: Use rbenv to manage Ruby versions (see iOS Setup)
+
+# PATH Issues
+❌ Problem: Patrol CLI or rbenv not in PATH
+✅ Solution:
+
+# Add to ~/.zshrcexport PATH="$HOME/.rbenv/shims:$PATH"export PATH
+="$HOME/.pub-cache/bin:$PATH"
+Build Issues
+Xcode Version Mismatch
+❌ Problem: Project uses Xcode 16 format, but CI uses Xcode 15.4
+✅ Solution: Select Xcode 16.1 in CI (see CI/CD Configuration)
+CocoaPods Installation
+❌ Problem: Pods not installed or outdated
+✅ Solution:
+cd ios
+pod install --repo-update
+
+## Testing Locally
+
+### Test iOS Locally
+
+# Ensure rbenv is initializedeval "$(rbenv init - zsh)"# Run testscd ios
+bundle exec fastlane test
+
+### Test Android Locally
+
+# Start emulator firstemulator -avd Pixel_6_API_34
+
+# Run tests 
+cd android && bundle exec fastlane test
+
+## Best Practices
+
+1. ✅ Always use -simulator flag for iOS simulator builds
+2. ✅ Clean simulator state before tests (shutdown + erase)
+3. ✅ Use exact device IDs instead of OS=latest
+4. ✅ Use .xctestrun files for xcodebuild
+5. ✅ Set appropriate timeouts for boot and test execution
+6. ✅ Cache dependencies in CI (Ruby gems, AVD, etc.)
+7. ✅ Upload test results as artifacts for debugging
+8. ✅ Use Ruby version manager (rbenv) instead of system Ruby
+
+## Resources
+
+### Patrol Documentation
+
+### Fastlane Documentation
+
+### Flutter Integration Testing
+
+### GitHub Actions Documentation
+
+## Summary
+This setup provides:
+- ✅ Reliable local and CI/CD testing
+- ✅ Automated simulator/emulator management
+- ✅ Platform-specific optimizations
+- ✅ Comprehensive error handling
+- ✅ Clear debugging information
+
+The key to success is:
+1. Using the correct flags (--simulator for iOS)
+2. Proper simulator state management (shutdown + erase)
+3. Using exact device IDs and xctestrun files
+4. Matching Ruby/Bundler versions between local and CI
+Created: November 13, 2025
+Last Updated: November 13, 2025
+
+Tested With:
 - Flutter 3.35.7
 - Patrol CLI 3.6.0
 - Xcode 16.1

@@ -99,12 +99,7 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            export PATH="$HOME/.ruby/ruby/3.2.0/bin:$HOME/.local/share/gem/ruby/3.2.0/bin:$HOME/.pub-cache/bin:$PATH"
-            cd "$GITHUB_WORKSPACE/android" || cd android
-            echo "Working directory: $(pwd)"
-            ls -la
-            test -f Gemfile || echo "Gemfile not found"
-            bundle exec fastlane test
+            export PATH="$HOME/.ruby/ruby/3.2.0/bin:$HOME/.local/share/gem/ruby/3.2.0/bin:$HOME/.pub-cache/bin:$PATH" && cd "$GITHUB_WORKSPACE/android" && echo "Working directory: $(pwd)" && ls -la Gemfile && bundle exec fastlane test
 
       - name: Upload test results
         if: always()

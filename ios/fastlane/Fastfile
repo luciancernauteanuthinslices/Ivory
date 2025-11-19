@@ -20,8 +20,6 @@ platform :ios do
     # Build the iOS app first for simulator
     sh("cd ../.. && flutter build ios --debug --simulator")
 
-    # FASTLANE PATROL SETUP 3
-
     # Run pod install to ensure CocoaPods dependencies are up to date
     # Use direct pod command instead of bundle exec to avoid bundler gem issues
     sh("pod install --repo-update")
@@ -55,9 +53,6 @@ platform :ios do
       if !result.empty?
         device_id = result
         device_name = sim_name
-
-        # FASTLANE PATROL SETUP 4
-
         break
       end
     end
@@ -92,8 +87,6 @@ platform :ios do
     # Shutdown simulator if it's running, then erase it for clean state
     UI.message("Shutting down simulator if running...")
     sh("xcrun simctl shutdown #{device_id} 2>&1 || true", log: false)
-
-    # FASTLANE PATROL SETUP 5
 
     UI.message("Erasing simulator to ensure clean state...")
     sh("xcrun simctl erase #{device_id}")
@@ -130,8 +123,6 @@ platform :ios do
       "xcrun simctl list devices booted | grep '#{device_id}' || echo 'not found'",
       log: false
     ).strip
-
-    # FASTLANE PATROL SETUP 6
 
     if device_state.include?("not found")
       UI.error("Simulator #{device_id} is not in booted state!")
@@ -172,7 +163,6 @@ platform :ios do
       sh("xcrun simctl spawn #{device_id} log show --predicate 'process == \"Runner\"' --last 5m || true")
       raise ex
     end
-
     UI.success("✅ iOS Patrol tests completed!")
   end
 
@@ -203,8 +193,6 @@ platform :ios do
     # Example when ready:
     # get_certificates # invokes cert
     # get_provisioning_profile # invokes sigh
-
-    # FASTLANE PATROL SETUP 8
     # build_app(scheme: "Runner")
     # upload_to_testflight
 
