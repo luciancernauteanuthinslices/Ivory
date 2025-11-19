@@ -51,6 +51,16 @@ jobs:
           bundler-cache: true
           working-directory: android
 
+      - name: Verify Ruby and Bundler setup
+        run: |
+          echo "Ruby version: $(ruby --version)"
+          echo "Bundler version: $(bundle --version)"
+          cd android
+          echo "Verifying Gemfile exists:"
+          ls -la Gemfile || (echo "ERROR: Gemfile not found" && exit 1)
+          echo "Installing gems..."
+          bundle install
+
       - name: Install Patrol CLI
         run: dart pub global activate patrol_cli
 
@@ -89,8 +99,35 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
-            cd android
-            export PATH="$HOME/.pub-cache/bin:$PATH"
+            set -e
+            # Ensure PATH includes Ruby and Patrol CLI
+            export PATH="$HOME/.ruby/ruby/3.2.0/bin:$HOME/.local/share/gem/ruby/3.2.0/bin:$HOME/.pub-cache/bin:$PATH"
+            # Navigate to android directory (try multiple paths)
+            cd "$GITHUB_WORKSPACE/android" 2>/dev/null || cd android || (echo "ERROR: Failed to cd to android directory. Current dir: $(pwd)" && exit 1)
+            echo "Working directory: $(pwd)"
+            # Verify Gemfile exists
+            if [ ! -f Gemfile ]; then
+              echo "ERROR: Gemfile not found in $(pwd)"
+              echo "Directory contents:"
+              ls -la
+              exit 1
+            fi
+            # Verify bundler is available
+            if ! command -v bundle &> /dev/null; then
+              echo "WARNING: Bundler not in PATH, trying to find it..."
+              # Try to find bundler in common locations
+              if [ -f "$HOME/.ruby/ruby/3.2.0/bin/bundle" ]; then
+                export PATH="$HOME/.ruby/ruby/3.2.0/bin:$PATH"
+              elif [ -f "$HOME/.local/share/gem/ruby/3.2.0/bin/bundle" ]; then
+                export PATH="$HOME/.local/share/gem/ruby/3.2.0/bin:$PATH"
+              else
+                echo "ERROR: Bundler not found. Installing..."
+                gem install bundler:2.5.23
+              fi
+            fi
+            echo "Ruby: $(ruby --version)"
+            echo "Bundler: $(bundle --version)"
+            # Run fastlane test
             bundle exec fastlane test
 
       - name: Upload test results

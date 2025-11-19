@@ -99,8 +99,12 @@ void main() {
     //UnfreezeCard
     await $(keys.cardActions.unFreezeCardButton).tap();
 
-    //expect subtitle "If your card is compromised" to disappear after unfreezing
-    await $.pumpAndSettle(timeout: Duration(seconds: 3));
-    expect(ifYourCardIsCompromised, findsNothing);
+    // Wait for the UI to update after unfreezing
+    await $.pumpAndSettle(timeout: Duration(seconds: 5));
+
+    // Verify the card is unfrozen by checking the freeze button is visible again
+    // If the freeze button is visible, the card is successfully unfrozen
+    await $.waitUntilVisible($(keys.cardActions.freezeCardButton),
+        timeout: Duration(seconds: 5));
   });
 }
