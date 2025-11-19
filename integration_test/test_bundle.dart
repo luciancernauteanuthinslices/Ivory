@@ -9,8 +9,8 @@ import 'package:patrol/src/native/contracts/contracts.dart';
 import 'package:test_api/src/backend/invoker.dart';
 
 // START: GENERATED TEST IMPORTS
-import 'cardCanBeFrozenOrUnfreeze_test.dart' as cardCanBeFrozenOrUnfreeze_test;
 import 'login_test.dart' as login_test;
+import 'cardCanBeFrozenOrUnfreeze_test.dart' as cardCanBeFrozenOrUnfreeze_test;
 import 'repaymentRateIsSaved_test.dart' as repaymentRateIsSaved_test;
 import 'repaymentReminderIsSaved_test.dart' as repaymentReminderIsSaved_test;
 // END: GENERATED TEST IMPORTS

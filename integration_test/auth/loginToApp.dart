@@ -30,18 +30,26 @@ class LoginToApp {
                 : dotenv.env['PASSWORD'] ?? '');
 
   Future<void> login() async {
-    // expect login button to be displayed
+    // Try to navigate back to welcome screen if we're not there already
+    // This handles cases where previous tests left the app in a different state
+    int retries = 0;
+    while (!$(keys.welcomeScreen.logInButton).exists && retries < 5) {
+      try {
+        await $.native.pressBack();
+        await $.pumpAndSettle(timeout: Duration(seconds: 2));
+      } catch (e) {
+        // Ignore errors during back navigation
+      }
+      retries++;
+    }
 
+    // Now wait for the login button to be displayed
     await $.waitUntilVisible($(keys.welcomeScreen.logInButton),
         timeout: Duration(seconds: 10));
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
 
     // Tap on the "Log in" button
-    if ($(keys.welcomeScreen.logInButton).isVisibleAt()) {
-      await $(keys.welcomeScreen.logInButton).tap();
-    } else {
-      await $.native.pressBack();
-    }
+    await $(keys.welcomeScreen.logInButton).tap();
 
     // Expect we are on Login Page
     await $.waitUntilVisible($(keys.loginPage.loginTitle));
