@@ -800,7 +800,32 @@ jobs:
      
      Check the [Patrol compatibility table](https://patrol.leancode.co/documentation/compatibility-table) for the correct version.
 
-4. **Tests timing out**
+4. **Permission dialogs causing test timeouts**
+
+   - **Cause:** Native permission dialogs (notifications, location, camera) appear during tests, blocking UI and causing `pumpAndSettle` to timeout.
+   - **Solution:** Pre-grant permissions before tests run in Fastfile:
+
+     **Android (`android/fastlane/Fastfile`):**
+     ```ruby
+     # Before running tests
+     package_name = "com.thinslices.solarisdemo"
+     sh("adb shell pm grant #{package_name} android.permission.POST_NOTIFICATIONS || true")
+     sh("adb shell pm grant #{package_name} android.permission.ACCESS_FINE_LOCATION || true")
+     # ... other permissions
+     ```
+
+     **iOS (`ios/fastlane/Fastfile`):**
+     ```ruby
+     # After booting simulator, before running tests
+     bundle_id = "com.thinslices.solarisdemo"
+     sh("xcrun simctl privacy #{device_id} grant notification #{bundle_id} || true")
+     sh("xcrun simctl privacy #{device_id} grant location #{bundle_id} || true")
+     # ... other permissions
+     ```
+     
+   - **Additional handling in test code:** Implement retry logic with timeout handling in `loginToApp.dart` to gracefully handle any remaining dialogs.
+
+5. **Tests timing out**
 
    - **Solution:** Increase timeout in workflow:
 

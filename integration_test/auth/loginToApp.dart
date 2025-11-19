@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:patrol/patrol.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -60,31 +61,50 @@ class LoginToApp {
     await $(IvoryTextField).containing('Password').enterText(password);
     await $("Continue").tap();
 
-    // Handle permission dialog if it appears
-    // if (await $.native
-    //     .isPermissionDialogVisible()) {
-    //   if (Platform.isAndroid) {
-    //     // Prefer Patrol helper
-    //     await $.native.grantPermissionWhenInUse();
-
-    //     // Optional fallback in case some Android images show different labels:
-    //     // await $.native.tap(Selector(text: 'Allow'));
-    //   } else if (Platform.isIOS) {
-    //     // iOS: pass SpringBoard appId
-    //     // Prefer helper if it works for your permission type:
-    //     await $.native.grantPermissionWhenInUse();
-
-    //     Fallback to a direct tap if needed:
-    //     await $.native.tap(Selector(text: 'Allow'), appId: 'com.apple.springboard');
-    //     or 'Allow While Using App' / 'Allow Once' depending on the prompt
-    //   }
-    // }
-
-    // Handle permissions (pre-granted on CI, but might appear locally)
+    // Handle permission dialogs that may appear after login
+    // Pre-granted in CI, but may still appear locally or if app was reinstalled
     await PermissionsHelper().grantAllVisiblePermissions($);
 
+    // Wait for any permission dialogs to fully dismiss before proceeding
+    // Use a more robust waiting strategy that doesn't timeout if dialog is gone
+    int waitAttempts = 0;
+    while (waitAttempts < 10) {
+      final hasDialog = await $.native.isPermissionDialogVisible(
+        timeout: const Duration(milliseconds: 500),
+      );
+
+      if (!hasDialog) {
+        // No dialog visible, break and proceed
+        break;
+      }
+
+      // Dialog still visible, try granting again
+      debugPrint('Permission dialog still visible, attempting to grant...');
+      try {
+        if (Platform.isAndroid) {
+          await $.native.grantPermissionWhenInUse();
+        } else if (Platform.isIOS) {
+          await $.native.grantPermissionWhenInUse();
+        }
+      } catch (e) {
+        debugPrint('Error granting permission: $e');
+      }
+
+      // Wait a bit before checking again
+      await $.pump(const Duration(milliseconds: 500));
+      waitAttempts++;
+    }
+
     // Give app time to settle after permissions and navigate to OTP screen
-    await $.pumpAndSettle(timeout: const Duration(seconds: 5));
+    // Use pump with timeout instead of pumpAndSettle to avoid timeout exceptions
+    await $.pump(const Duration(milliseconds: 1000));
+    try {
+      await $.pumpAndSettle(timeout: const Duration(seconds: 3));
+    } catch (e) {
+      // If pumpAndSettle times out, just pump a few more times and continue
+      debugPrint('pumpAndSettle timed out, continuing anyway: $e');
+      await $.pump(const Duration(milliseconds: 1000));
+    }
 
     // Wait for OTP screen to appear
     // await $.waitUntilVisible($(find.byType(EditableText)),

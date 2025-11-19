@@ -145,6 +145,24 @@ platform :ios do
 
     UI.message("Found xctestrun file: #{xctestrun_file}")
 
+    # Pre-grant permissions to avoid permission dialogs during tests
+    # This is especially important in CI where we can't interact with dialogs
+    UI.message("Pre-granting permissions for CI...")
+    bundle_id = "com.thinslices.solarisdemo"
+    
+    # Grant notification permission (iOS 13+)
+    sh("xcrun simctl privacy #{device_id} grant notification #{bundle_id} || true")
+    
+    # Grant other common permissions that might be requested
+    sh("xcrun simctl privacy #{device_id} grant location #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant location-always #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant camera #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant microphone #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant photos #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant contacts #{bundle_id} || true")
+    
+    UI.message("✅ Permissions pre-granted")
+
     # Run tests using the xctestrun file with the exact device ID
     UI.message("Running Patrol tests on #{device_name} (#{device_id})...")
 
