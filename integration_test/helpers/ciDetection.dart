@@ -19,9 +19,11 @@ class CIDetection {
       'TEAMCITY_VERSION',
     ];
 
-    return ciEnvVars.any((envVar) =>
-        Platform.environment.containsKey(envVar) &&
-        Platform.environment[envVar]?.toLowerCase() != 'false');
+    return ciEnvVars.any(
+      (envVar) =>
+          Platform.environment.containsKey(envVar) &&
+          Platform.environment[envVar]?.toLowerCase() != 'false',
+    );
   }
 
   /// Returns the name of the CI platform if detected, null otherwise

@@ -2,52 +2,87 @@
 # Script to grant permissions to the app after installation
 # This script waits for the app to be installed and then grants all necessary permissions
 
+set -e  # Exit on error
+
 PACKAGE_NAME="com.thinslices.solarisdemo"
 MAX_WAIT=60  # Maximum seconds to wait for app installation
-WAIT_INTERVAL=2  # Check every 2 seconds
+WAIT_INTERVAL=1  # Check every 1 second
 
-echo "🔍 Waiting for $PACKAGE_NAME to be installed..."
+echo "🔍 [$(date +%H:%M:%S)] Waiting for $PACKAGE_NAME to be installed..."
 
 # Wait for the app to be installed
 elapsed=0
 while [ $elapsed -lt $MAX_WAIT ]; do
-    if adb shell pm list packages | grep -q "$PACKAGE_NAME"; then
-        echo "✅ App detected! Waiting 2 seconds for installation to settle..."
-        sleep 2
+    if adb shell pm list packages 2>/dev/null | grep -q "$PACKAGE_NAME"; then
+        echo "✅ [$(date +%H:%M:%S)] App detected! Waiting 3 seconds for installation to settle..."
+        sleep 3
         break
     fi
+    echo "   [$(date +%H:%M:%S)] Still waiting... ($elapsed/$MAX_WAIT seconds)"
     sleep $WAIT_INTERVAL
     elapsed=$((elapsed + WAIT_INTERVAL))
 done
 
 # Check if app was found
-if ! adb shell pm list packages | grep -q "$PACKAGE_NAME"; then
-    echo "❌ App not found after ${MAX_WAIT}s. Permissions will not be granted."
+if ! adb shell pm list packages 2>/dev/null | grep -q "$PACKAGE_NAME"; then
+    echo "❌ [$(date +%H:%M:%S)] App not found after ${MAX_WAIT}s. Permissions will not be granted."
     exit 1
 fi
 
-echo "🔓 Granting permissions to $PACKAGE_NAME..."
+echo "🔓 [$(date +%H:%M:%S)] Granting permissions to $PACKAGE_NAME..."
 
-# Grant all permissions
-adb shell pm grant $PACKAGE_NAME android.permission.POST_NOTIFICATIONS 2>/dev/null || echo "  ⚠️ Could not grant POST_NOTIFICATIONS"
-adb shell pm grant $PACKAGE_NAME android.permission.ACCESS_FINE_LOCATION 2>/dev/null || echo "  ⚠️ Could not grant ACCESS_FINE_LOCATION"
-adb shell pm grant $PACKAGE_NAME android.permission.ACCESS_COARSE_LOCATION 2>/dev/null || echo "  ⚠️ Could not grant ACCESS_COARSE_LOCATION"
-adb shell pm grant $PACKAGE_NAME android.permission.CAMERA 2>/dev/null || echo "  ⚠️ Could not grant CAMERA"
-adb shell pm grant $PACKAGE_NAME android.permission.MICROPHONE 2>/dev/null || echo "  ⚠️ Could not grant MICROPHONE"
-adb shell pm grant $PACKAGE_NAME android.permission.RECORD_AUDIO 2>/dev/null || echo "  ⚠️ Could not grant RECORD_AUDIO"
-adb shell pm grant $PACKAGE_NAME android.permission.READ_EXTERNAL_STORAGE 2>/dev/null || echo "  ⚠️ Could not grant READ_EXTERNAL_STORAGE"
-adb shell pm grant $PACKAGE_NAME android.permission.WRITE_EXTERNAL_STORAGE 2>/dev/null || echo "  ⚠️ Could not grant WRITE_EXTERNAL_STORAGE"
-adb shell pm grant $PACKAGE_NAME android.permission.READ_MEDIA_IMAGES 2>/dev/null || echo "  ⚠️ Could not grant READ_MEDIA_IMAGES"
-adb shell pm grant $PACKAGE_NAME android.permission.READ_MEDIA_VIDEO 2>/dev/null || echo "  ⚠️ Could not grant READ_MEDIA_VIDEO"
+# Function to grant permission with retry
+grant_permission() {
+    local perm=$1
+    local perm_name=$2
+    local max_retries=3
+    
+    for i in $(seq 1 $max_retries); do
+        if adb shell pm grant $PACKAGE_NAME $perm 2>/dev/null; then
+            echo "  ✅ Granted $perm_name"
+            return 0
+        fi
+        sleep 1
+    done
+    echo "  ⚠️  Could not grant $perm_name (may not exist on this Android version)"
+    return 1
+}
 
-echo "✅ Permission granting completed!"
+# Grant all permissions with retries
+echo "  📱 Granting notification permission (critical for login)..."
+grant_permission "android.permission.POST_NOTIFICATIONS" "POST_NOTIFICATIONS"
 
-# Verify critical permission (POST_NOTIFICATIONS)
-if adb shell dumpsys package $PACKAGE_NAME | grep -q "android.permission.POST_NOTIFICATIONS.*granted=true"; then
+echo "  📍 Granting location permissions..."
+grant_permission "android.permission.ACCESS_FINE_LOCATION" "ACCESS_FINE_LOCATION"
+grant_permission "android.permission.ACCESS_COARSE_LOCATION" "ACCESS_COARSE_LOCATION"
+
+echo "  📷 Granting camera/microphone permissions..."
+grant_permission "android.permission.CAMERA" "CAMERA"
+grant_permission "android.permission.MICROPHONE" "MICROPHONE"
+grant_permission "android.permission.RECORD_AUDIO" "RECORD_AUDIO"
+
+echo "  💾 Granting storage permissions..."
+grant_permission "android.permission.READ_EXTERNAL_STORAGE" "READ_EXTERNAL_STORAGE"
+grant_permission "android.permission.WRITE_EXTERNAL_STORAGE" "WRITE_EXTERNAL_STORAGE"
+grant_permission "android.permission.READ_MEDIA_IMAGES" "READ_MEDIA_IMAGES"
+grant_permission "android.permission.READ_MEDIA_VIDEO" "READ_MEDIA_VIDEO"
+
+echo "✅ [$(date +%H:%M:%S)] Permission granting completed!"
+
+# Verify critical permissions
+echo "🔍 [$(date +%H:%M:%S)] Verifying permissions..."
+if adb shell dumpsys package $PACKAGE_NAME 2>/dev/null | grep -q "android.permission.POST_NOTIFICATIONS.*granted=true"; then
     echo "✅ POST_NOTIFICATIONS verified as granted"
+elif adb shell dumpsys package $PACKAGE_NAME 2>/dev/null | grep -q "android.permission.POST_NOTIFICATIONS"; then
+    echo "ℹ️  POST_NOTIFICATIONS exists but status unclear"
 else
-    echo "⚠️ POST_NOTIFICATIONS may not be granted (this is expected on Android < 13)"
+    echo "ℹ️  POST_NOTIFICATIONS not in manifest or Android < 13"
 fi
 
+# Show all granted runtime permissions
+echo "📋 [$(date +%H:%M:%S)] Granted runtime permissions:"
+adb shell dumpsys package $PACKAGE_NAME 2>/dev/null | grep "granted=true" | head -n 10 || echo "  (Could not list permissions)"
+
+echo "🏁 [$(date +%H:%M:%S)] Permission script finished successfully"
 exit 0
 

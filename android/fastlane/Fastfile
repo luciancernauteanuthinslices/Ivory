@@ -11,35 +11,62 @@ platform :android do
     package_name = "com.thinslices.solarisdemo"
     
     # Uninstall any existing version first to ensure clean state
-    UI.message("Uninstalling any existing app version...")
+    UI.message("🧹 Uninstalling any existing app version...")
     sh("adb uninstall #{package_name} 2>/dev/null || true")
     
-    # Start the permission granting script in the background
+    # Verify app is removed
+    sleep(2)
+    if sh("adb shell pm list packages | grep #{package_name} || echo 'not found'", log: false).include?('not found')
+      UI.success("✅ App successfully uninstalled")
+    else
+      UI.important("⚠️  App may still be present, but continuing...")
+    end
+    
+    # Start the permission granting script in the background with visible output
     # This script will wait for the app to be installed and then grant permissions
-    UI.message("Starting background permission granting script...")
+    UI.message("🚀 Starting background permission granting script...")
+    
+    # Create a log file for the permission script
+    log_file = "../../permission_grant.log"
     permission_pid = Process.spawn(
       "bash", "../grant_permissions.sh",
-      out: "/dev/null",
-      err: "/dev/null"
+      out: log_file,
+      err: log_file
     )
     Process.detach(permission_pid)
-    UI.message("✅ Permission granting script started (PID: #{permission_pid})")
+    UI.success("✅ Permission granting script started (PID: #{permission_pid})")
+    UI.message("   Log file: #{log_file}")
+
+    # Give the background script a moment to start
+    sleep(1)
 
     # Run Patrol tests - this will build, install, and run tests
     # The background script will grant permissions after installation
-    UI.message("Running Patrol tests (permissions will be granted automatically)...")
+    UI.message("🧪 Running Patrol tests (permissions will be granted automatically)...")
+    UI.message("   The background script is monitoring for app installation...")
     
     begin
       sh("cd ../.. && patrol test android --verbose")
     rescue => ex
       UI.error("❌ Patrol test failed!")
       UI.error("Error: #{ex.message}")
-      UI.message("Collecting logs for debugging...")
+      
+      # Show permission grant log
+      UI.message("📋 Permission grant script output:")
+      begin
+        log_content = File.read("../../permission_grant.log")
+        UI.message(log_content)
+      rescue
+        UI.message("Could not read permission grant log")
+      end
+      
+      UI.message("📋 Collecting device logs for debugging...")
       sh("adb logcat -d > ../../android_test_logcat.txt || true")
       
       # Try to kill the background process
       begin
         Process.kill("TERM", permission_pid)
+        UI.message("Stopped background permission script")
       rescue
         # Process might have already exited
       end
@@ -50,8 +77,18 @@ platform :android do
     # Try to kill the background process if it's still running
     begin
       Process.kill("TERM", permission_pid)
+      UI.message("Stopped background permission script")
     rescue
       # Process might have already exited
+    end
+    
+    # Show permission grant log
+    UI.message("📋 Permission grant script final output:")
+    begin
+      log_content = File.read("../../permission_grant.log")
+      UI.message(log_content)
+    rescue
+      UI.message("Could not read permission grant log")
     end
 
     UI.success("✅ Android Patrol tests completed!")

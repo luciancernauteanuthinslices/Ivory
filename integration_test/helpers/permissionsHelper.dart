@@ -5,15 +5,19 @@ import 'package:patrol/patrol.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class PermissionsHelper {
-  Future<void> grantAllVisiblePermissions(PatrolIntegrationTester $,
-      {int maxAttempts = 3, bool isCI = false}) async {
+  Future<void> grantAllVisiblePermissions(
+    PatrolIntegrationTester $, {
+    int maxAttempts = 3,
+    bool isCI = false,
+  }) async {
     // In CI, use shorter timeouts and fewer attempts since permissions should be pre-granted
     final timeout =
         isCI ? const Duration(milliseconds: 300) : const Duration(seconds: 2);
     final attempts = isCI ? 2 : maxAttempts;
 
     debugPrint(
-        'PermissionsHelper: Starting permission check (CI mode: $isCI, max attempts: $attempts)');
+      'PermissionsHelper: Starting permission check (CI mode: $isCI, max attempts: $attempts)',
+    );
 
     // Try up to N times to handle multiple permission dialogs
     for (var i = 0; i < attempts; i++) {
@@ -24,12 +28,14 @@ class PermissionsHelper {
 
         if (!visible) {
           debugPrint(
-              'PermissionsHelper: No permission dialog visible (attempt ${i + 1}/$attempts)');
+            'PermissionsHelper: No permission dialog visible (attempt ${i + 1}/$attempts)',
+          );
           break;
         }
 
         debugPrint(
-            'PermissionsHelper: Permission dialog detected (attempt ${i + 1}/$attempts)');
+          'PermissionsHelper: Permission dialog detected (attempt ${i + 1}/$attempts)',
+        );
 
         // Try multiple strategies to grant the permission
         bool granted = false;
@@ -40,30 +46,36 @@ class PermissionsHelper {
           await $.native.grantPermissionWhenInUse();
           granted = true;
           debugPrint(
-              'PermissionsHelper: Successfully granted via grantPermissionWhenInUse()');
+            'PermissionsHelper: Successfully granted via grantPermissionWhenInUse()',
+          );
         } catch (e) {
           debugPrint(
-              'PermissionsHelper: grantPermissionWhenInUse() failed: $e');
+            'PermissionsHelper: grantPermissionWhenInUse() failed: $e',
+          );
         }
 
         // Strategy 2: Fall back to "Only this time" on Android 12+
         if (!granted) {
           try {
             debugPrint(
-                'PermissionsHelper: Trying grantPermissionOnlyThisTime()');
+              'PermissionsHelper: Trying grantPermissionOnlyThisTime()',
+            );
             await $.native.grantPermissionOnlyThisTime();
             granted = true;
             debugPrint(
-                'PermissionsHelper: Successfully granted via grantPermissionOnlyThisTime()');
+              'PermissionsHelper: Successfully granted via grantPermissionOnlyThisTime()',
+            );
           } catch (e) {
             debugPrint(
-                'PermissionsHelper: grantPermissionOnlyThisTime() failed: $e');
+              'PermissionsHelper: grantPermissionOnlyThisTime() failed: $e',
+            );
           }
         }
 
         if (!granted) {
           debugPrint(
-              'PermissionsHelper: WARNING - Could not grant permission, may have been pre-granted or dialog closed');
+            'PermissionsHelper: WARNING - Could not grant permission, may have been pre-granted or dialog closed',
+          );
         }
 
         // Wait a bit for the dialog to dismiss and app to settle
@@ -78,7 +90,8 @@ class PermissionsHelper {
         }
       } catch (e) {
         debugPrint(
-            'PermissionsHelper: Error checking for permission dialog: $e');
+          'PermissionsHelper: Error checking for permission dialog: $e',
+        );
         // Continue to next attempt or break if last attempt
         if (i == attempts - 1) {
           debugPrint('PermissionsHelper: Max attempts reached, continuing...');

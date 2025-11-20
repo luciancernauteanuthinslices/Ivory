@@ -15,11 +15,8 @@ class LoginToApp {
   final String email;
   final String password;
 
-  LoginToApp(
-    this.$, {
-    String? email,
-    String? password,
-  })  : email = email ??
+  LoginToApp(this.$, {String? email, String? password})
+      : email = email ??
             (const String.fromEnvironment('PATROL_EMAIL', defaultValue: '') !=
                     ''
                 ? const String.fromEnvironment('PATROL_EMAIL')
@@ -46,8 +43,10 @@ class LoginToApp {
     }
 
     // Now wait for the login button to be displayed
-    await $.waitUntilVisible($(keys.welcomeScreen.logInButton),
-        timeout: Duration(seconds: 10));
+    await $.waitUntilVisible(
+      $(keys.welcomeScreen.logInButton),
+      timeout: Duration(seconds: 10),
+    );
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
 
     // Tap on the "Log in" button
@@ -64,81 +63,121 @@ class LoginToApp {
 
     // Handle permission dialogs that may appear after login
     // Pre-granted in CI, but may still appear locally or if app was reinstalled
-    // Use a shorter timeout and fewer retries since permissions should be pre-granted in CI
     final isCI = CIDetection.isCI;
     final ciPlatform = CIDetection.ciPlatform;
 
     if (isCI) {
-      debugPrint('Running in CI environment: $ciPlatform');
-      debugPrint('Permissions should be pre-granted, using fast-fail approach');
+      debugPrint('🤖 Running in CI environment: $ciPlatform');
+      debugPrint('📋 Permissions should be pre-granted');
     } else {
-      debugPrint('Running locally, using more patient permission handling');
+      debugPrint('💻 Running locally');
     }
 
-    debugPrint('Checking for permission dialogs...');
+    debugPrint('🔍 Checking for permission dialogs...');
 
-    bool dialogHandled = false;
-    int maxAttempts =
-        isCI ? 2 : 5; // Fewer attempts in CI since permissions are pre-granted
+    // Give the app a moment to show any permission dialogs
+    await $.pump(const Duration(milliseconds: 1000));
+
+    // Try to handle permission dialogs with multiple strategies
+    int maxAttempts = isCI ? 3 : 5;
 
     for (int attempt = 0; attempt < maxAttempts; attempt++) {
       try {
-        // Quick check for permission dialog with short timeout
+        debugPrint(
+          '🔄 Attempt ${attempt + 1}/$maxAttempts: Checking for permission dialog',
+        );
+
+        // Check if permission dialog is visible
         final hasDialog = await $.native.isPermissionDialogVisible(
-          timeout: const Duration(milliseconds: 300),
+          timeout: const Duration(milliseconds: 500),
         );
 
         if (!hasDialog) {
-          debugPrint(
-              'No permission dialog found (attempt ${attempt + 1}/$maxAttempts)');
-          dialogHandled = true;
+          debugPrint('✅ No permission dialog detected');
           break;
         }
 
-        debugPrint(
-            'Permission dialog detected (attempt ${attempt + 1}/$maxAttempts), granting...');
+        debugPrint('⚠️  Permission dialog detected! Attempting to grant...');
 
-        // Try to grant the permission
+        // Strategy 1: Try grantPermissionWhenInUse
         try {
           await $.native.grantPermissionWhenInUse();
-          debugPrint('Successfully granted permission');
+          debugPrint('✅ Granted permission via grantPermissionWhenInUse');
+          await $.pump(const Duration(milliseconds: 500));
+          continue;
         } catch (e) {
-          debugPrint(
-              'Failed to grant permission: $e, trying alternative methods...');
+          debugPrint('❌ grantPermissionWhenInUse failed: $e');
+        }
+
+        // Strategy 2: Try grantPermissionOnlyThisTime (Android 12+)
+        try {
+          await $.native.grantPermissionOnlyThisTime();
+          debugPrint('✅ Granted permission via grantPermissionOnlyThisTime');
+          await $.pump(const Duration(milliseconds: 500));
+          continue;
+        } catch (e) {
+          debugPrint('❌ grantPermissionOnlyThisTime failed: $e');
+        }
+
+        // Strategy 3: Try to tap "Allow" button directly with native tap
+        if (Platform.isIOS) {
           try {
-            await $.native.grantPermissionOnlyThisTime();
-            debugPrint('Successfully granted permission (only this time)');
-          } catch (e2) {
-            debugPrint('All permission grant methods failed: $e2');
+            debugPrint('📱 iOS: Trying to tap Allow button');
+            await $.native.tap(Selector(text: 'Allow'));
+            debugPrint('✅ Tapped Allow button');
+            await $.pump(const Duration(milliseconds: 500));
+            continue;
+          } catch (e) {
+            debugPrint('❌ Failed to tap Allow button: $e');
+          }
+        } else if (Platform.isAndroid) {
+          try {
+            debugPrint('🤖 Android: Trying to tap Allow button');
+            // Try different permission button texts
+            final allowTexts = [
+              'Allow',
+              'ALLOW',
+              'While using the app',
+              'Only this time',
+            ];
+            for (final text in allowTexts) {
+              try {
+                await $.native.tap(Selector(text: text));
+                debugPrint('✅ Tapped "$text" button');
+                await $.pump(const Duration(milliseconds: 500));
+                break;
+              } catch (e) {
+                // Try next text
+              }
+            }
+          } catch (e) {
+            debugPrint('❌ Failed to tap permission button: $e');
           }
         }
 
-        // Short wait before checking again
-        await $.pump(const Duration(milliseconds: 300));
+        // Wait a bit before next attempt
+        await $.pump(const Duration(milliseconds: 500));
       } catch (e) {
-        debugPrint('Error checking for permission dialog: $e');
-        // If we can't check, assume no dialog and continue
-        dialogHandled = true;
-        break;
+        debugPrint('❌ Error in permission handling attempt ${attempt + 1}: $e');
+        // Continue to next attempt
       }
     }
 
-    if (!dialogHandled) {
-      debugPrint(
-          '⚠️ Warning: Permission dialog may still be visible after $maxAttempts attempts');
-      debugPrint(
-          'Continuing anyway as permissions should be pre-granted in CI');
-    }
+    debugPrint('🏁 Permission handling complete, proceeding with test');
 
-    // Give app minimal time to settle after permissions
-    await $.pump(const Duration(milliseconds: 500));
+    // Give app time to settle after permission handling
+    await $.pump(const Duration(milliseconds: 1000));
 
-    // Try pumpAndSettle with a short timeout, but don't fail if it times out
+    // Try pumpAndSettle but don't fail if it times out
     try {
-      await $.pumpAndSettle(timeout: const Duration(seconds: 2));
+      await $.pumpAndSettle(timeout: const Duration(seconds: 3));
+      debugPrint('✅ App settled successfully');
     } catch (e) {
-      debugPrint('pumpAndSettle timed out (expected in some cases): $e');
-      await $.pump(const Duration(milliseconds: 500));
+      debugPrint('⚠️  pumpAndSettle timed out (continuing anyway): $e');
+      // Just pump a few times to let UI update
+      for (int i = 0; i < 5; i++) {
+        await $.pump(const Duration(milliseconds: 200));
+      }
     }
 
     // Wait for OTP screen to appear
