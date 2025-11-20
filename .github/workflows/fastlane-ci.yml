@@ -64,16 +64,14 @@ jobs:
       - name: Install Patrol CLI
         run: dart pub global activate patrol_cli 3.10.0
 
-      - name: Create .env file
-        run: echo "# Environment variables placeholder" > .env
-
-      - name: Create .patrol.env file for integration tests
+      - name: Create .env file with test credentials
         run: |
-          cat > integration_test/.patrol.env << EOF
+          cat > .env << EOF
+          # Environment variables for integration tests
           EMAIL=${{ secrets.PATROL_EMAIL }}
           PASSWORD=${{ secrets.PATROL_PASSWORD }}
           EOF
-          echo "✅ Created .patrol.env with test credentials"
+          echo "✅ Created .env with test credentials"
 
       - name: Enable KVM group perms
         run: |
@@ -150,16 +148,14 @@ jobs:
       - name: Install Patrol CLI
         run: dart pub global activate patrol_cli 3.10.0
 
-      - name: Create .env file
-        run: echo "# Environment variables placeholder" > .env
-
-      - name: Create .patrol.env file for integration tests
+      - name: Create .env file with test credentials
         run: |
-          cat > integration_test/.patrol.env << EOF
+          cat > .env << EOF
+          # Environment variables for integration tests
           EMAIL=${{ secrets.PATROL_EMAIL }}
           PASSWORD=${{ secrets.PATROL_PASSWORD }}
           EOF
-          echo "✅ Created .patrol.env with test credentials"
+          echo "✅ Created .env with test credentials"
 
       - name: Get Flutter dependencies
         run: flutter pub get
