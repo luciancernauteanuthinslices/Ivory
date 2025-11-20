@@ -146,7 +146,7 @@ platform :ios do
     UI.message("Found xctestrun file: #{xctestrun_file}")
 
     # Install the app on the simulator first
-    UI.message("📱 Installing app on simulator...")
+    UI.message("Installing app on simulator...")
     bundle_id = "com.thinslices.solarisdemo"
     app_path = Dir.glob("../../build/ios_integ/Build/Products/*-iphonesimulator/Runner.app").first
     
@@ -156,49 +156,35 @@ platform :ios do
     
     UI.message("Found app at: #{app_path}")
     sh("xcrun simctl install #{device_id} '#{app_path}'")
-    UI.success("✅ App installed on simulator")
+    UI.message("✅ App installed on simulator")
     
     # Grant permissions AFTER app installation
     # This is critical - permissions can only be granted if the app is installed
-    UI.message("🔓 Granting permissions for CI (preventing permission dialogs)...")
+    UI.message("Granting permissions for CI...")
     
     # Reset all permissions first to ensure clean state
-    UI.message("  Resetting all permissions to default state...")
-    sh("xcrun simctl privacy #{device_id} reset all #{bundle_id} 2>&1 || true")
+    sh("xcrun simctl privacy #{device_id} reset all #{bundle_id} || true")
     
     # Wait a moment for reset to complete
-    sleep(3)
-    
-    UI.message("  Granting notification permission (critical for login flow)...")
-    # Grant notification permission (iOS 13+) - most critical
-    result = sh("xcrun simctl privacy #{device_id} grant notification #{bundle_id} 2>&1", log: true)
-    UI.message("  Notification permission result: #{result.strip}")
-    
-    UI.message("  Granting location permissions...")
-    sh("xcrun simctl privacy #{device_id} grant location #{bundle_id} 2>&1 || true")
-    sh("xcrun simctl privacy #{device_id} grant location-always #{bundle_id} 2>&1 || true")
-    
-    UI.message("  Granting media permissions...")
-    sh("xcrun simctl privacy #{device_id} grant camera #{bundle_id} 2>&1 || true")
-    sh("xcrun simctl privacy #{device_id} grant microphone #{bundle_id} 2>&1 || true")
-    sh("xcrun simctl privacy #{device_id} grant photos #{bundle_id} 2>&1 || true")
-    sh("xcrun simctl privacy #{device_id} grant photos-add #{bundle_id} 2>&1 || true")
-    sh("xcrun simctl privacy #{device_id} grant contacts #{bundle_id} 2>&1 || true")
-    
-    UI.success("✅ All permissions granted successfully")
-    
-    # Verify permissions were actually granted
-    UI.message("🔍 Verifying granted permissions...")
-    begin
-      privacy_output = sh("xcrun simctl privacy #{device_id} list 2>&1 | grep -A 5 #{bundle_id} || echo 'Bundle not found in privacy list'", log: false)
-      UI.message("Privacy status:\n#{privacy_output}")
-    rescue
-      UI.message("Could not read privacy status (continuing anyway)")
-    end
-    
-    # Give the simulator a moment to process the permission changes
-    UI.message("⏳ Waiting for permission changes to take effect...")
     sleep(2)
+    
+    # Grant notification permission (iOS 13+) - most critical
+    sh("xcrun simctl privacy #{device_id} grant notification #{bundle_id}")
+    
+    # Grant other common permissions that might be requested
+    sh("xcrun simctl privacy #{device_id} grant location #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant location-always #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant camera #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant microphone #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant photos #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant photos-add #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant contacts #{bundle_id} || true")
+    
+    UI.success("✅ Permissions granted successfully")
+    
+    # Verify permissions (this helps debug if something goes wrong)
+    UI.message("Verifying granted permissions...")
+    sh("xcrun simctl privacy #{device_id} list | grep #{bundle_id} || echo 'No explicit denials found (good)'")
 
     # Run tests using the xctestrun file with the exact device ID
     UI.message("Running Patrol tests on #{device_name} (#{device_id})...")

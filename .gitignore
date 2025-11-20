@@ -15,7 +15,6 @@ pubspec.lock
 # Test logs
 android_test_logcat.txt
 ios_test_logs.txt
-permission_grant.log
 logs_*/
 
 #Schemathesis Virtual environment
