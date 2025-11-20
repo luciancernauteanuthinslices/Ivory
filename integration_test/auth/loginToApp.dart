@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart' as pin;
 import 'package:solarisdemo/widgets/button.dart';
+import 'package:solarisdemo/widgets/tan_input.dart';
 import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -83,17 +84,30 @@ class LoginToApp {
     // Without this, we might try to interact with the password field from login screen
     debugPrint('Waiting for navigation to OTP screen...');
     await $.pump(const Duration(
-        milliseconds: 3000)); // Give time for navigation animation
+        milliseconds: 2000)); // Give time for navigation animation
+
+    debugPrint('Looking for Verify login text...');
+    // await $.waitUntilVisible($('Verify login'),
+    //     timeout: const Duration(seconds: 20)); // Generous timeout for slow CI
+    debugPrint('OTP screen loaded - Verify login text found!');
+
+    // Give UI extra time to settle
+    await $.pump(const Duration(milliseconds: 1500));
 
     // Now find and tap the OTP input field
-    // Use TanInput widget to be more specific than generic EditableText
-    debugPrint('Looking for OTP input field...');
-    // final otpField = $(find.byType(EditableText)).last;
-    final otpField = $(find.byType(pin.PinInputTextField));
+    // TanInput wraps PinInputTextField which contains a TextField
+    // We need to find the TextField that's a descendant of TanInput
+    debugPrint('Looking for TextField inside TanInput...');
 
-    debugPrint('Tapping OTP field...');
+    // Find TextField that's inside the TanInput widget (not the login screen TextFields)
+    final otpField = $(find.descendant(
+      of: find.byType(TanInput),
+      matching: find.byType(TextField),
+    ));
 
+    debugPrint('Tapping OTP TextField...');
     await otpField.tap();
+    debugPrint('OTP field tapped successfully');
 
     await $.pump(const Duration(milliseconds: 500));
 

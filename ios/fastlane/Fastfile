@@ -133,8 +133,9 @@ platform :ios do
     UI.success("Simulator is ready!")
 
     # Build the test bundle using patrol
-    UI.message("Building Patrol test bundle for simulator...")
-    sh("cd ../.. && patrol build ios --simulator --verbose")
+    # PATROL_TEST=true tells the app to skip OS notification dialogs during Patrol tests
+    UI.message("Building Patrol test bundle for simulator (PATROL_TEST=true)...")
+    sh("cd ../.. && patrol build ios --simulator --verbose --dart-define=PATROL_TEST=true")
 
     # Find the .xctestrun file created by patrol build
     xctestrun_file = Dir.glob("../../build/ios_integ/Build/Products/*.xctestrun").first
@@ -193,8 +194,8 @@ platform :ios do
     # Install dependencies
     sh("cd ../.. && flutter pub get")
 
-    # Build iOS test bundle for simulator with Patrol
-    sh("cd ../.. && patrol build ios --simulator --verbose")
+    # Build iOS test bundle for simulator with Patrol and PATROL_TEST flag
+    sh("cd ../.. && patrol build ios --simulator --verbose --dart-define=PATROL_TEST=true")
 
     UI.success("✅ iOS test bundle built successfully!")
   end
