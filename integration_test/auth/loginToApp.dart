@@ -60,54 +60,39 @@ class LoginToApp {
     await $(IvoryTextField).containing('Password').enterText(password);
     await $("Continue").tap();
 
-    // Give app minimal time to settle after permissions
-    await $.pump(const Duration(milliseconds: 1000));
+    // Wait for app to transition to OTP screen
+    // Permissions are pre-granted in CI via grant_permissions.sh
+    // and locally via adb commands, so no need to handle permission dialogs here
+    debugPrint('Waiting for OTP screen to appear...');
+    await $.pump(const Duration(milliseconds: 2000));
 
-    // Handle permission dialogs that may appear after login
-    // Pre-granted in CI, but may still appear locally or if app was reinstalled
-    // Use a shorter timeout and fewer retries since permissions should be pre-granted in CI
-
-    debugPrint('Checking for permission dialogs...');
-    // Try to grant the permission
+    // Wait for OTP input field to be visible and tappable
+    debugPrint('Looking for OTP input field...');
     try {
-      await $.native.grantPermissionWhenInUse();
-      debugPrint('Successfully granted permission');
+      await $.waitUntilVisible($(find.byType(EditableText)),
+          timeout: const Duration(seconds: 15));
+      debugPrint('OTP field is visible');
     } catch (e) {
-      debugPrint(
-          'Failed to grant permission: $e, trying alternative methods...');
-      try {
-        await $.native.grantPermissionOnlyThisTime();
-        debugPrint('Successfully granted permission (only this time)');
-      } catch (e2) {
-        debugPrint('All permission grant methods failed: $e2');
+      debugPrint('Failed to find visible OTP field: $e');
+      // Try to pump a few more times to let UI settle
+      for (int i = 0; i < 3; i++) {
+        await $.pump(const Duration(milliseconds: 500));
       }
     }
 
-    // Give app minimal time to settle after permissions
-    await $.pump(const Duration(milliseconds: 500));
-
-    // Try pumpAndSettle with a short timeout, but don't fail if it times out
-    // try {
-    //   await $.pumpAndSettle(timeout: const Duration(seconds: 2));
-    // } catch (e) {
-    //   debugPrint('pumpAndSettle timed out (expected in some cases): $e');
-    //   await $.pump(const Duration(milliseconds: 500));
-    // }
-
-    // Wait for OTP screen to appear
-    // await $.waitUntilVisible($(find.byType(EditableText)),
-    //     timeout: const Duration(seconds: 10));
-
     // Tap on the OTP input area to focus it
+    debugPrint('Tapping OTP field...');
     final otpField = $(find.byType(EditableText)).first;
     await otpField.tap();
-    await $.pumpAndSettle();
+    await $.pump(const Duration(milliseconds: 500));
 
     // Enter OTP code - controller listener will enable button
+    debugPrint('Entering OTP code...');
     await otpField.enterText('212212');
 
     // Wait for state to update after text entry
-    await $.pumpAndSettle();
+    debugPrint('Waiting for OTP confirmation button...');
+    await $.pump(const Duration(milliseconds: 1000));
 
     await $(keys.loginPage.otpConfirmButton).tap();
 
