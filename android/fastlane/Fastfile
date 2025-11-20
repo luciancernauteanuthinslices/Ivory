@@ -30,7 +30,9 @@ platform :android do
     UI.message("Running Patrol tests (permissions will be granted automatically)...")
     
     begin
-      sh("cd ../.. && patrol test android --verbose")
+      # PATROL_TEST=true tells the app to skip OS notification
+      # permission dialogs in PushNotificationService.init()
+      sh("cd ../.. && patrol test android --verbose --dart-define=PATROL_TEST=true")
     rescue => ex
       UI.error("❌ Patrol test failed!")
       UI.error("Error: #{ex.message}")

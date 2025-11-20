@@ -21,6 +21,12 @@ import '../../redux/app_state.dart';
 
 const String highImportanceChannelId = 'high_importance_channel';
 
+// When PATROL_TEST is true (set via --dart-define=PATROL_TEST=true),
+// we skip requesting OS notification permissions to avoid native dialogs
+// interfering with Patrol integration tests.
+const bool kIsPatrolTestEnv =
+    bool.fromEnvironment('PATROL_TEST', defaultValue: false);
+
 @pragma('vm:entry-point')
 Future<void> _onBackgroundMessage(RemoteMessage message) async {
   debugPrint("FCM Background Message Received: ${message.notification?.title}");
@@ -76,6 +82,16 @@ class FirebasePushNotificationService extends PushNotificationService {
     }
 
     this.store = store;
+
+    // In Patrol test runs we don't need push notifications,
+    // and OS dialogs can break automated flows, so we skip
+    // requesting notification permissions entirely.
+    if (kDebugMode && kIsPatrolTestEnv) {
+      debugPrint(
+          'PushNotificationService.init: skipping permission request in Patrol test environment');
+      _isInitialized = true;
+      return;
+    }
 
     final settings = await _messaging.requestPermission();
     if (settings.authorizationStatus != AuthorizationStatus.authorized) {
