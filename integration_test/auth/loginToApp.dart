@@ -108,9 +108,10 @@ class LoginToApp {
     await otpField.tap();
     await otpField.enterText('212212');
 
-    // Wait for state to update after text entry
+    await $.pump(const Duration(milliseconds: 1500));
+
+    //// Wait for state to update after text entry
     debugPrint('Waiting for OTP confirmation button...');
-    await $.pump(const Duration(milliseconds: 1000));
 
     await $(keys.loginPage.otpConfirmButton).tap();
 
