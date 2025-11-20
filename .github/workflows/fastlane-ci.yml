@@ -67,6 +67,14 @@ jobs:
       - name: Create .env file
         run: echo "# Environment variables placeholder" > .env
 
+      - name: Create .patrol.env file for integration tests
+        run: |
+          cat > integration_test/.patrol.env << EOF
+          EMAIL=${{ secrets.PATROL_EMAIL }}
+          PASSWORD=${{ secrets.PATROL_PASSWORD }}
+          EOF
+          echo "✅ Created .patrol.env with test credentials"
+
       - name: Enable KVM group perms
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -144,6 +152,14 @@ jobs:
 
       - name: Create .env file
         run: echo "# Environment variables placeholder" > .env
+
+      - name: Create .patrol.env file for integration tests
+        run: |
+          cat > integration_test/.patrol.env << EOF
+          EMAIL=${{ secrets.PATROL_EMAIL }}
+          PASSWORD=${{ secrets.PATROL_PASSWORD }}
+          EOF
+          echo "✅ Created .patrol.env with test credentials"
 
       - name: Get Flutter dependencies
         run: flutter pub get
