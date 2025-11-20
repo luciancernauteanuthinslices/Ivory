@@ -99,7 +99,7 @@ class LoginToApp {
     // We need to find the TextField that's a descendant of TanInput
     debugPrint('Looking for TextField inside TanInput...');
 
-    // Find TextField that's inside the TanInput widget (not the login screen TextFields)
+    //// Find TextField that's inside the TanInput widget (not the login screen TextFields)
     final otpField = $(find.descendant(
       of: find.byType(TanInput),
       matching: find.byType(TextField),
