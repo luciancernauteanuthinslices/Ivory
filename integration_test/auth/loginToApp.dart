@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:patrol/patrol.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:solarisdemo/widgets/button.dart';
 import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -59,19 +60,27 @@ class LoginToApp {
     await $(IvoryTextField).containing('Email address').enterText(email);
     await $(IvoryTextField).containing('Password').enterText(password);
 
-    // Dismiss keyboard to fix RenderFlex overflow and ensure Continue button is tappable
-    debugPrint('Dismissing keyboard...');
-    await $.native.pressBack(); // Dismiss keyboard on Android
-    await $.pump(const Duration(milliseconds: 500));
+    //scroll and tap the Continue button
+    debugPrint('Scrolling and tapping Continue button...');
+    await $.scrollUntilVisible(
+      finder: $(find.byType(Button)),
+      view: $(find.byType(Scrollable)),
+      delta: 100,
+      maxScrolls: 10,
+    );
 
-    debugPrint('Tapping Continue button...');
+    debugPrint('Continue button scrolled into view');
     await $("Continue").tap();
 
     // Give more time for navigation to complete in CI (slower than local)
     await $.pump(const Duration(milliseconds: 2000));
 
+    // If Permissions dialog is displayed, Allow notification permission
+    if ($(find.byType(AlertDialog)).exists) {
+      await $.native.grantPermissionWhenInUse();
+    }
+
     // Wait for app to transition to OTP screen
-    // Permissions are pre-granted in CI via grant_permissions.sh
     // and locally via adb commands, so no need to handle permission dialogs here
     debugPrint('Waiting for OTP screen to appear...');
 
