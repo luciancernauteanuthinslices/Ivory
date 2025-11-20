@@ -203,6 +203,9 @@ platform :ios do
       UI.message("Checking simulator logs...")
       sh("xcrun simctl spawn #{device_id} log show --predicate 'process == \"Runner\"' --last 5m || true")
       raise ex
+    ensure
+      UI.message("Saving simulator logs to ios_test_logs.txt for CI artifacts...")
+      sh("xcrun simctl spawn #{device_id} log show --predicate 'process == \"Runner\"' --last 10m > ../../ios_test_logs.txt || true")
     end
     UI.success("✅ iOS Patrol tests completed!")
   end

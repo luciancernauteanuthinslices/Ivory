@@ -35,7 +35,6 @@ platform :android do
       UI.error("❌ Patrol test failed!")
       UI.error("Error: #{ex.message}")
       UI.message("Collecting logs for debugging...")
-      sh("adb logcat -d > ../../android_test_logcat.txt || true")
       
       # Try to kill the background process
       begin
@@ -45,6 +44,9 @@ platform :android do
       end
       
       raise ex
+    ensure
+      UI.message("Saving logcat to android_test_logcat.txt for CI artifacts...")
+      sh("adb logcat -d > ../../android_test_logcat.txt || true")
     end
 
     # Try to kill the background process if it's still running

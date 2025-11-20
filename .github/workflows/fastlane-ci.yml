@@ -117,6 +117,7 @@ jobs:
           name: android-test-results
           path: |
             build/app/outputs/
+            android_test_logcat.txt
           retention-days: 7
 
   ios:
@@ -176,4 +177,5 @@ jobs:
           name: ios-test-results
           path: |
             build/ios/
+            ios_test_logs.txt
           retention-days: 7
