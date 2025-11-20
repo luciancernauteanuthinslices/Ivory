@@ -63,32 +63,32 @@ class LoginToApp {
     // Pre-granted in CI, but may still appear locally or if app was reinstalled
     // Use a shorter timeout and fewer retries since permissions should be pre-granted in CI
 
-    debugPrint('Checking for permission dialogs...');
-    // Try to grant the permission
-    try {
-      await $.native.grantPermissionWhenInUse();
-      debugPrint('Successfully granted permission');
-    } catch (e) {
-      debugPrint(
-          'Failed to grant permission: $e, trying alternative methods...');
-      try {
-        await $.native.grantPermissionOnlyThisTime();
-        debugPrint('Successfully granted permission (only this time)');
-      } catch (e2) {
-        debugPrint('All permission grant methods failed: $e2');
-      }
-    }
+    // debugPrint('Checking for permission dialogs...');
+    // // Try to grant the permission
+    // try {
+    //   await $.native.grantPermissionWhenInUse();
+    //   debugPrint('Successfully granted permission');
+    // } catch (e) {
+    //   debugPrint(
+    //       'Failed to grant permission: $e, trying alternative methods...');
+    //   try {
+    //     await $.native.grantPermissionOnlyThisTime();
+    //     debugPrint('Successfully granted permission (only this time)');
+    //   } catch (e2) {
+    //     debugPrint('All permission grant methods failed: $e2');
+    //   }
+    // }
 
-    // Give app minimal time to settle after permissions
-    await $.pump(const Duration(milliseconds: 500));
+    // // Give app minimal time to settle after permissions
+    // await $.pump(const Duration(milliseconds: 500));
 
     // Try pumpAndSettle with a short timeout, but don't fail if it times out
-    try {
-      await $.pumpAndSettle(timeout: const Duration(seconds: 2));
-    } catch (e) {
-      debugPrint('pumpAndSettle timed out (expected in some cases): $e');
-      await $.pump(const Duration(milliseconds: 500));
-    }
+    // try {
+    //   await $.pumpAndSettle(timeout: const Duration(seconds: 2));
+    // } catch (e) {
+    //   debugPrint('pumpAndSettle timed out (expected in some cases): $e');
+    //   await $.pump(const Duration(milliseconds: 500));
+    // }
 
     // Wait for OTP screen to appear
     // await $.waitUntilVisible($(find.byType(EditableText)),
