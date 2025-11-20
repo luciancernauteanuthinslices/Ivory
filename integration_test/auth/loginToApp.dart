@@ -78,6 +78,7 @@ class LoginToApp {
 
     debugPrint('Tapping Continue button...');
     await $("Continue").tap();
+
     debugPrint('Continue button tapped successfully');
 
     // CRITICAL: Wait for "Verify login" text to confirm navigation to OTP screen completed
@@ -110,7 +111,7 @@ class LoginToApp {
 
     await $.pump(const Duration(milliseconds: 1500));
 
-    //// Wait for state to update after text entry
+    // Wait for state to update after text entry
     debugPrint('Waiting for OTP confirmation button...');
 
     await $(keys.loginPage.otpConfirmButton).tap();
@@ -118,5 +119,7 @@ class LoginToApp {
     // Assert we are on Home Page
     await $.waitUntilVisible($('Welcome Doe!'));
     expect($('Welcome Doe!'), findsOneWidget);
+
+    //end of login flow
   }
 }
