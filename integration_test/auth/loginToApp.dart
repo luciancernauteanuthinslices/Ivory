@@ -72,49 +72,36 @@ class LoginToApp {
     debugPrint('Continue button scrolled into view');
     await $("Continue").tap();
 
-    // Give more time for navigation to complete in CI (slower than local)
+    // CRITICAL: Wait for "Verify login" text to confirm navigation to OTP screen completed
+    // Without this, we might try to interact with the password field from login screen
+    debugPrint('Waiting for OTP screen to load...');
+    await $.waitUntilVisible($('Verify login'),
+        timeout: const Duration(seconds: 20)); // Generous timeout for slow CI
+    debugPrint('✅ OTP screen loaded ("Verify login" text found)');
+
+    // Give UI extra time to settle and complete layout (fixes RenderFlex overflow in CI)
     await $.pump(const Duration(milliseconds: 2000));
 
-    // If Permissions dialog is displayed, Allow notification permission
-    if ($(find.byType(AlertDialog)).exists) {
-      await $.native.grantPermissionWhenInUse();
-    }
+    // Now find and tap the OTP input field
+    // Use TanInput widget to be more specific than generic EditableText
+    debugPrint('Looking for OTP input field...');
+    final otpField = $(find.byType(EditableText)).last;
 
-    // Wait for app to transition to OTP screen
-    // and locally via adb commands, so no need to handle permission dialogs here
-    // debugPrint('Waiting for OTP screen to appear...');
-
-    // Wait for "Verify login" text to confirm we're on the OTP screen
-    // This is more reliable than looking for EditableText which may exist from previous screen
-    // await $.waitUntilVisible($('Verify login'),
-    //     timeout: const Duration(seconds: 15)); // Increased timeout for CI
-    // debugPrint('OTP screen loaded ("Verify login" text found)');
-
-    // Give UI time to settle and layout to complete (fixes RenderFlex overflow in CI)
-    // await $.pump(const Duration(milliseconds: 1500));
-
-    // Scroll to ensure OTP input is visible (handles layout overflow in CI)
-    debugPrint('Scrolling to OTP input field...');
-    try {
-      await $.scrollUntilVisible(
-        finder: $(find.byType(EditableText)),
-        view: $(find.byType(Scrollable)),
-        delta: 100,
-        maxScrolls: 10,
-      );
-      debugPrint('OTP field scrolled into view');
-    } catch (e) {
-      debugPrint('Scroll not needed or failed: $e, continuing...');
-    }
-
-    // Additional pump to ensure scroll animation completes
-    await $.pump(const Duration(milliseconds: 500));
-
-    // Now tap the OTP input field
     debugPrint('Tapping OTP field...');
-    final otpField = $(find.byType(EditableText))
-        .last; // Use .last to get the OTP field, not login fields
-    await otpField.tap();
+    try {
+      await otpField.tap();
+      debugPrint('✅ OTP field tapped');
+    } catch (e) {
+      debugPrint('Failed to tap OTP field, trying scroll: $e');
+      // If tap fails, try scrolling first
+      await $.scrollUntilVisible(
+        finder: otpField,
+        view: $(find.byType(Scrollable)),
+        delta: 50,
+        maxScrolls: 5,
+      );
+      await otpField.tap();
+    }
     await $.pump(const Duration(milliseconds: 500));
 
     // Enter OTP code - controller listener will enable button
