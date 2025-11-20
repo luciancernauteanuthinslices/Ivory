@@ -58,7 +58,17 @@ class LoginToApp {
     debugPrint('Logging in with email: $email');
     await $(IvoryTextField).containing('Email address').enterText(email);
     await $(IvoryTextField).containing('Password').enterText(password);
+
+    // Dismiss keyboard to fix RenderFlex overflow and ensure Continue button is tappable
+    debugPrint('Dismissing keyboard...');
+    await $.native.pressBack(); // Dismiss keyboard on Android
+    await $.pump(const Duration(milliseconds: 500));
+
+    debugPrint('Tapping Continue button...');
     await $("Continue").tap();
+
+    // Give more time for navigation to complete in CI (slower than local)
+    await $.pump(const Duration(milliseconds: 2000));
 
     // Wait for app to transition to OTP screen
     // Permissions are pre-granted in CI via grant_permissions.sh
@@ -68,7 +78,7 @@ class LoginToApp {
     // Wait for "Verify login" text to confirm we're on the OTP screen
     // This is more reliable than looking for EditableText which may exist from previous screen
     await $.waitUntilVisible($('Verify login'),
-        timeout: const Duration(seconds: 10));
+        timeout: const Duration(seconds: 15)); // Increased timeout for CI
     debugPrint('OTP screen loaded ("Verify login" text found)');
 
     // Give UI time to settle and layout to complete (fixes RenderFlex overflow in CI)
