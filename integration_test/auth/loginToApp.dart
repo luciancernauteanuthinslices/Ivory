@@ -64,25 +64,37 @@ class LoginToApp {
     // Permissions are pre-granted in CI via grant_permissions.sh
     // and locally via adb commands, so no need to handle permission dialogs here
     debugPrint('Waiting for OTP screen to appear...');
-    await $.pump(const Duration(milliseconds: 2000));
 
-    // Wait for OTP input field to be visible and tappable
-    debugPrint('Looking for OTP input field...');
+    // Wait for "Verify login" text to confirm we're on the OTP screen
+    // This is more reliable than looking for EditableText which may exist from previous screen
+    await $.waitUntilVisible($('Verify login'),
+        timeout: const Duration(seconds: 10));
+    debugPrint('OTP screen loaded ("Verify login" text found)');
+
+    // Give UI time to settle and layout to complete (fixes RenderFlex overflow in CI)
+    await $.pump(const Duration(milliseconds: 1500));
+
+    // Scroll to ensure OTP input is visible (handles layout overflow in CI)
+    debugPrint('Scrolling to OTP input field...');
     try {
-      await $.waitUntilVisible($(find.byType(EditableText)),
-          timeout: const Duration(seconds: 15));
-      debugPrint('OTP field is visible');
+      await $.scrollUntilVisible(
+        finder: $(find.byType(EditableText)),
+        view: $(find.byType(Scrollable)),
+        delta: 100,
+        maxScrolls: 10,
+      );
+      debugPrint('OTP field scrolled into view');
     } catch (e) {
-      debugPrint('Failed to find visible OTP field: $e');
-      // Try to pump a few more times to let UI settle
-      for (int i = 0; i < 3; i++) {
-        await $.pump(const Duration(milliseconds: 500));
-      }
+      debugPrint('Scroll not needed or failed: $e, continuing...');
     }
 
-    // Tap on the OTP input area to focus it
+    // Additional pump to ensure scroll animation completes
+    await $.pump(const Duration(milliseconds: 500));
+
+    // Now tap the OTP input field
     debugPrint('Tapping OTP field...');
-    final otpField = $(find.byType(EditableText)).first;
+    final otpField = $(find.byType(EditableText))
+        .last; // Use .last to get the OTP field, not login fields
     await otpField.tap();
     await $.pump(const Duration(milliseconds: 500));
 
