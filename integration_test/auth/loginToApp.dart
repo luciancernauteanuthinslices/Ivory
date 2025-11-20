@@ -95,24 +95,17 @@ class LoginToApp {
     await $.pump(const Duration(milliseconds: 1500));
 
     // Now find and tap the OTP input field
-    // TanInput wraps PinInputTextField which contains a TextField
-    // We need to find the TextField that's a descendant of TanInput
-    debugPrint('Looking for TextField inside TanInput...');
+    // debugPrint('Looking for Verify login text...');
+    // await $.waitUntilVisible($('Verify login'),
+    // timeout: const Duration(seconds: 20));
+    debugPrint('OTP screen loaded - Verify login text found!');
 
-    //// Find TextField that's inside the TanInput widget (not the login screen TextFields)
-    final otpField = $(find.descendant(
-      of: find.byType(TanInput),
-      matching: find.byType(TextField),
-    ));
+    await $.pump(const Duration(milliseconds: 1500));
 
-    debugPrint('Tapping OTP TextField...');
+    debugPrint(
+        'Looking for OTP EditableText (after confirming OTP screen loaded)...');
+    final otpField = $(find.byType(EditableText));
     await otpField.tap();
-    debugPrint('OTP field tapped successfully');
-
-    await $.pump(const Duration(milliseconds: 500));
-
-    // Enter OTP code - controller listener will enable button
-    debugPrint('Entering OTP code...');
     await otpField.enterText('212212');
 
     // Wait for state to update after text entry
