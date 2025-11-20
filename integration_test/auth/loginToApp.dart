@@ -60,24 +60,34 @@ class LoginToApp {
     await $(IvoryTextField).containing('Email address').enterText(email);
     await $(IvoryTextField).containing('Password').enterText(password);
 
-    //scroll and tap the Continue button
-    debugPrint('Scrolling and tapping Continue button...');
-    await $.scrollUntilVisible(
-      finder: $(find.byType(Button)),
-      view: $(find.byType(Scrollable)),
-      delta: 100,
-      maxScrolls: 10,
-    );
+    // Scroll and tap the Continue button
+    debugPrint('Scrolling to Continue button...');
+    try {
+      await $.scrollUntilVisible(
+        finder: $("Continue"),
+        view: $(find.byType(Scrollable)),
+        delta: 100,
+        maxScrolls: 10,
+      );
+      debugPrint('Continue button scrolled into view');
+    } catch (e) {
+      debugPrint('Scroll for Continue failed (may already be visible): $e');
+    }
 
-    debugPrint('Continue button scrolled into view');
+    debugPrint('Tapping Continue button...');
     await $("Continue").tap();
+    debugPrint('Continue button tapped successfully');
 
     // CRITICAL: Wait for "Verify login" text to confirm navigation to OTP screen completed
     // Without this, we might try to interact with the password field from login screen
-    debugPrint('Waiting for OTP screen to load...');
+    debugPrint('Waiting for navigation to OTP screen...');
+    await $.pump(const Duration(
+        milliseconds: 3000)); // Give time for navigation animation
+
+    debugPrint('Looking for Verify login text...');
     await $.waitUntilVisible($('Verify login'),
         timeout: const Duration(seconds: 20)); // Generous timeout for slow CI
-    debugPrint('✅ OTP screen loaded ("Verify login" text found)');
+    debugPrint('OTP screen loaded - Verify login text found!');
 
     // Give UI extra time to settle and complete layout (fixes RenderFlex overflow in CI)
     await $.pump(const Duration(milliseconds: 2000));
