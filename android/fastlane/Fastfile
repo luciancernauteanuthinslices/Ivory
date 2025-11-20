@@ -13,17 +13,7 @@ platform :android do
     # Uninstall any existing version first to ensure clean state
     UI.message("Uninstalling any existing app version...")
     sh("adb uninstall #{package_name} 2>/dev/null || true")
-    
-    # Start the permission granting script in the background
-    # This script will wait for the app to be installed and then grant permissions
-    UI.message("Starting background permission granting script...")
-    permission_pid = Process.spawn(
-      "bash", "../grant_permissions.sh",
-      out: "/dev/null",
-      err: "/dev/null"
-    )
-    Process.detach(permission_pid)
-    UI.message("✅ Permission granting script started (PID: #{permission_pid})")
+
 
     # Run Patrol tests - this will build, install, and run tests
     # The background script will grant permissions after installation

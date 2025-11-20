@@ -82,16 +82,16 @@ class LoginToApp {
 
     // Wait for app to transition to OTP screen
     // and locally via adb commands, so no need to handle permission dialogs here
-    debugPrint('Waiting for OTP screen to appear...');
+    // debugPrint('Waiting for OTP screen to appear...');
 
     // Wait for "Verify login" text to confirm we're on the OTP screen
     // This is more reliable than looking for EditableText which may exist from previous screen
-    await $.waitUntilVisible($('Verify login'),
-        timeout: const Duration(seconds: 15)); // Increased timeout for CI
-    debugPrint('OTP screen loaded ("Verify login" text found)');
+    // await $.waitUntilVisible($('Verify login'),
+    //     timeout: const Duration(seconds: 15)); // Increased timeout for CI
+    // debugPrint('OTP screen loaded ("Verify login" text found)');
 
     // Give UI time to settle and layout to complete (fixes RenderFlex overflow in CI)
-    await $.pump(const Duration(milliseconds: 1500));
+    // await $.pump(const Duration(milliseconds: 1500));
 
     // Scroll to ensure OTP input is visible (handles layout overflow in CI)
     debugPrint('Scrolling to OTP input field...');
