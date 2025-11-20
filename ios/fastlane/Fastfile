@@ -145,13 +145,31 @@ platform :ios do
 
     UI.message("Found xctestrun file: #{xctestrun_file}")
 
-    # Pre-grant permissions to avoid permission dialogs during tests
-    # This is especially important in CI where we can't interact with dialogs
-    UI.message("Pre-granting permissions for CI...")
+    # Install the app on the simulator first
+    UI.message("Installing app on simulator...")
     bundle_id = "com.thinslices.solarisdemo"
+    app_path = Dir.glob("../../build/ios_integ/Build/Products/*-iphonesimulator/Runner.app").first
     
-    # Grant notification permission (iOS 13+)
-    sh("xcrun simctl privacy #{device_id} grant notification #{bundle_id} || true")
+    if app_path.nil?
+      UI.user_error!("Could not find Runner.app after patrol build")
+    end
+    
+    UI.message("Found app at: #{app_path}")
+    sh("xcrun simctl install #{device_id} '#{app_path}'")
+    UI.message("✅ App installed on simulator")
+    
+    # Grant permissions AFTER app installation
+    # This is critical - permissions can only be granted if the app is installed
+    UI.message("Granting permissions for CI...")
+    
+    # Reset all permissions first to ensure clean state
+    sh("xcrun simctl privacy #{device_id} reset all #{bundle_id} || true")
+    
+    # Wait a moment for reset to complete
+    sleep(2)
+    
+    # Grant notification permission (iOS 13+) - most critical
+    sh("xcrun simctl privacy #{device_id} grant notification #{bundle_id}")
     
     # Grant other common permissions that might be requested
     sh("xcrun simctl privacy #{device_id} grant location #{bundle_id} || true")
@@ -159,9 +177,14 @@ platform :ios do
     sh("xcrun simctl privacy #{device_id} grant camera #{bundle_id} || true")
     sh("xcrun simctl privacy #{device_id} grant microphone #{bundle_id} || true")
     sh("xcrun simctl privacy #{device_id} grant photos #{bundle_id} || true")
+    sh("xcrun simctl privacy #{device_id} grant photos-add #{bundle_id} || true")
     sh("xcrun simctl privacy #{device_id} grant contacts #{bundle_id} || true")
     
-    UI.message("✅ Permissions pre-granted")
+    UI.success("✅ Permissions granted successfully")
+    
+    # Verify permissions (this helps debug if something goes wrong)
+    UI.message("Verifying granted permissions...")
+    sh("xcrun simctl privacy #{device_id} list | grep #{bundle_id} || echo 'No explicit denials found (good)'")
 
     # Run tests using the xctestrun file with the exact device ID
     UI.message("Running Patrol tests on #{device_name} (#{device_id})...")

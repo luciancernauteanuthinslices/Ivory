@@ -10,27 +10,49 @@ platform :android do
 
     package_name = "com.thinslices.solarisdemo"
     
-    # Pre-grant permissions to avoid permission dialogs during tests
-    # This is especially important in CI where we can't interact with dialogs
-    # Note: Commands will fail gracefully if app isn't installed yet (|| true)
-    UI.message("Pre-granting permissions for CI...")
+    # Uninstall any existing version first to ensure clean state
+    UI.message("Uninstalling any existing app version...")
+    sh("adb uninstall #{package_name} 2>/dev/null || true")
     
-    # Grant notification permission (Android 13+) - most critical for this app
-    sh("adb shell pm grant #{package_name} android.permission.POST_NOTIFICATIONS || true")
-    
-    # Grant other common permissions that might be requested
-    sh("adb shell pm grant #{package_name} android.permission.ACCESS_FINE_LOCATION || true")
-    sh("adb shell pm grant #{package_name} android.permission.ACCESS_COARSE_LOCATION || true")
-    sh("adb shell pm grant #{package_name} android.permission.CAMERA || true")
-    sh("adb shell pm grant #{package_name} android.permission.RECORD_AUDIO || true")
-    sh("adb shell pm grant #{package_name} android.permission.READ_EXTERNAL_STORAGE || true")
-    sh("adb shell pm grant #{package_name} android.permission.WRITE_EXTERNAL_STORAGE || true")
-    
-    UI.message("✅ Permission grant commands executed (will apply after app installation)")
+    # Start the permission granting script in the background
+    # This script will wait for the app to be installed and then grant permissions
+    UI.message("Starting background permission granting script...")
+    permission_pid = Process.spawn(
+      "bash", "../grant_permissions.sh",
+      out: "/dev/null",
+      err: "/dev/null"
+    )
+    Process.detach(permission_pid)
+    UI.message("✅ Permission granting script started (PID: #{permission_pid})")
 
     # Run Patrol tests - this will build, install, and run tests
-    # Permissions will be granted after installation via a background process
-    sh("cd ../.. && patrol test android --verbose")
+    # The background script will grant permissions after installation
+    UI.message("Running Patrol tests (permissions will be granted automatically)...")
+    
+    begin
+      sh("cd ../.. && patrol test android --verbose")
+    rescue => ex
+      UI.error("❌ Patrol test failed!")
+      UI.error("Error: #{ex.message}")
+      UI.message("Collecting logs for debugging...")
+      sh("adb logcat -d > ../../android_test_logcat.txt || true")
+      
+      # Try to kill the background process
+      begin
+        Process.kill("TERM", permission_pid)
+      rescue
+        # Process might have already exited
+      end
+      
+      raise ex
+    end
+
+    # Try to kill the background process if it's still running
+    begin
+      Process.kill("TERM", permission_pid)
+    rescue
+      # Process might have already exited
+    end
 
     UI.success("✅ Android Patrol tests completed!")
   end

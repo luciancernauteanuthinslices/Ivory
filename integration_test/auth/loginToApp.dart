@@ -8,6 +8,7 @@ import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../helpers/permissionsHelper.dart';
+import '../helpers/ciDetection.dart';
 
 class LoginToApp {
   final PatrolIntegrationTester $;
@@ -63,47 +64,81 @@ class LoginToApp {
 
     // Handle permission dialogs that may appear after login
     // Pre-granted in CI, but may still appear locally or if app was reinstalled
-    await PermissionsHelper().grantAllVisiblePermissions($);
+    // Use a shorter timeout and fewer retries since permissions should be pre-granted in CI
+    final isCI = CIDetection.isCI;
+    final ciPlatform = CIDetection.ciPlatform;
 
-    // Wait for any permission dialogs to fully dismiss before proceeding
-    // Use a more robust waiting strategy that doesn't timeout if dialog is gone
-    int waitAttempts = 0;
-    while (waitAttempts < 10) {
-      final hasDialog = await $.native.isPermissionDialogVisible(
-        timeout: const Duration(milliseconds: 500),
-      );
-
-      if (!hasDialog) {
-        // No dialog visible, break and proceed
-        break;
-      }
-
-      // Dialog still visible, try granting again
-      debugPrint('Permission dialog still visible, attempting to grant...');
-      try {
-        if (Platform.isAndroid) {
-          await $.native.grantPermissionWhenInUse();
-        } else if (Platform.isIOS) {
-          await $.native.grantPermissionWhenInUse();
-        }
-      } catch (e) {
-        debugPrint('Error granting permission: $e');
-      }
-
-      // Wait a bit before checking again
-      await $.pump(const Duration(milliseconds: 500));
-      waitAttempts++;
+    if (isCI) {
+      debugPrint('Running in CI environment: $ciPlatform');
+      debugPrint('Permissions should be pre-granted, using fast-fail approach');
+    } else {
+      debugPrint('Running locally, using more patient permission handling');
     }
 
-    // Give app time to settle after permissions and navigate to OTP screen
-    // Use pump with timeout instead of pumpAndSettle to avoid timeout exceptions
-    await $.pump(const Duration(milliseconds: 1000));
+    debugPrint('Checking for permission dialogs...');
+
+    bool dialogHandled = false;
+    int maxAttempts =
+        isCI ? 2 : 5; // Fewer attempts in CI since permissions are pre-granted
+
+    for (int attempt = 0; attempt < maxAttempts; attempt++) {
+      try {
+        // Quick check for permission dialog with short timeout
+        final hasDialog = await $.native.isPermissionDialogVisible(
+          timeout: const Duration(milliseconds: 300),
+        );
+
+        if (!hasDialog) {
+          debugPrint(
+              'No permission dialog found (attempt ${attempt + 1}/$maxAttempts)');
+          dialogHandled = true;
+          break;
+        }
+
+        debugPrint(
+            'Permission dialog detected (attempt ${attempt + 1}/$maxAttempts), granting...');
+
+        // Try to grant the permission
+        try {
+          await $.native.grantPermissionWhenInUse();
+          debugPrint('Successfully granted permission');
+        } catch (e) {
+          debugPrint(
+              'Failed to grant permission: $e, trying alternative methods...');
+          try {
+            await $.native.grantPermissionOnlyThisTime();
+            debugPrint('Successfully granted permission (only this time)');
+          } catch (e2) {
+            debugPrint('All permission grant methods failed: $e2');
+          }
+        }
+
+        // Short wait before checking again
+        await $.pump(const Duration(milliseconds: 300));
+      } catch (e) {
+        debugPrint('Error checking for permission dialog: $e');
+        // If we can't check, assume no dialog and continue
+        dialogHandled = true;
+        break;
+      }
+    }
+
+    if (!dialogHandled) {
+      debugPrint(
+          '⚠️ Warning: Permission dialog may still be visible after $maxAttempts attempts');
+      debugPrint(
+          'Continuing anyway as permissions should be pre-granted in CI');
+    }
+
+    // Give app minimal time to settle after permissions
+    await $.pump(const Duration(milliseconds: 500));
+
+    // Try pumpAndSettle with a short timeout, but don't fail if it times out
     try {
-      await $.pumpAndSettle(timeout: const Duration(seconds: 3));
+      await $.pumpAndSettle(timeout: const Duration(seconds: 2));
     } catch (e) {
-      // If pumpAndSettle times out, just pump a few more times and continue
-      debugPrint('pumpAndSettle timed out, continuing anyway: $e');
-      await $.pump(const Duration(milliseconds: 1000));
+      debugPrint('pumpAndSettle timed out (expected in some cases): $e');
+      await $.pump(const Duration(milliseconds: 500));
     }
 
     // Wait for OTP screen to appear
