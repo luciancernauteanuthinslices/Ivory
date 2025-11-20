@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:patrol/patrol.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:pin_input_text_field/pin_input_text_field.dart' as pin;
 import 'package:solarisdemo/widgets/button.dart';
 import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
@@ -84,34 +85,16 @@ class LoginToApp {
     await $.pump(const Duration(
         milliseconds: 3000)); // Give time for navigation animation
 
-    debugPrint('Looking for Verify login text...');
-    await $.waitUntilVisible($('Verify login'),
-        timeout: const Duration(seconds: 20)); // Generous timeout for slow CI
-    debugPrint('OTP screen loaded - Verify login text found!');
-
-    // Give UI extra time to settle and complete layout (fixes RenderFlex overflow in CI)
-    await $.pump(const Duration(milliseconds: 2000));
-
     // Now find and tap the OTP input field
     // Use TanInput widget to be more specific than generic EditableText
     debugPrint('Looking for OTP input field...');
-    final otpField = $(find.byType(EditableText)).last;
+    // final otpField = $(find.byType(EditableText)).last;
+    final otpField = $(find.byType(pin.PinInputTextField));
 
     debugPrint('Tapping OTP field...');
-    try {
-      await otpField.tap();
-      debugPrint('✅ OTP field tapped');
-    } catch (e) {
-      debugPrint('Failed to tap OTP field, trying scroll: $e');
-      // If tap fails, try scrolling first
-      await $.scrollUntilVisible(
-        finder: otpField,
-        view: $(find.byType(Scrollable)),
-        delta: 50,
-        maxScrolls: 5,
-      );
-      await otpField.tap();
-    }
+
+    await otpField.tap();
+
     await $.pump(const Duration(milliseconds: 500));
 
     // Enter OTP code - controller listener will enable button
