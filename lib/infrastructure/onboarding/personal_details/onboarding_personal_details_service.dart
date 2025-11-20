@@ -22,24 +22,29 @@ class OnboardingPersonalDetailsService extends ApiService {
     this.user = user;
 
     try {
-      final response = await post('/signup/person', body: {
-        'address': {
-          'line_1': address.address,
-          'line_2': addressLine,
-          'postal_code': "44135", // TODO: get postal code from address
-          'city': address.city,
-          'country': await _isoCodeFromCountryName(address.country),
+      final response = await post(
+        '/signup/person',
+        body: {
+          'address': {
+            'line_1': address.address,
+            'line_2': addressLine,
+            'postal_code': "44135", // TODO: get postal code from address
+            'city': address.city,
+            'country': await _isoCodeFromCountryName(address.country),
+          },
+          'birthDate': birthDate,
+          'birthCity': birthCity,
+          'nationality': nationality,
         },
-        'birthDate': birthDate,
-        'birthCity': birthCity,
-        'nationality': nationality,
-      });
+      );
 
       return OnboardingCreatePersonSuccessResponse(
-          personId: response['person_id'] as String);
+        personId: response['person_id'] as String,
+      );
     } catch (error) {
       return OnboardingPersonalDetailsServiceErrorResponse(
-          errorType: OnboardingPersonalDetailsErrorType.unknown);
+        errorType: OnboardingPersonalDetailsErrorType.unknown,
+      );
     }
   }
 }
@@ -70,8 +75,9 @@ class OnboardingPersonalDetailsServiceErrorResponse
 }
 
 Future<String> _isoCodeFromCountryName(String countryName) async {
-  final countriesJson =
-      await rootBundle.loadString('assets/data/countries.json');
+  final countriesJson = await rootBundle.loadString(
+    'assets/data/countries.json',
+  );
   final countries = jsonDecode(countriesJson);
 
   for (var country in countries) {

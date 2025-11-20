@@ -3,15 +3,17 @@ import 'package:solarisdemo/models/person_account_summary.dart';
 import 'package:solarisdemo/redux/person/account_summary/account_summay_state.dart';
 
 class AccountSummaryPresenter {
-  static AccountSummaryViewModel presentAccountSummary(
-      {required AccountSummaryState accountSummaryState}) {
+  static AccountSummaryViewModel presentAccountSummary({
+    required AccountSummaryState accountSummaryState,
+  }) {
     if (accountSummaryState is AccountSummaryLoadingState) {
       return AccountSummaryLoadingViewModel();
     } else if (accountSummaryState is AccountSummaryErrorState) {
       return AccountSummaryErrorViewModel();
     } else if (accountSummaryState is WithAccountSummaryState) {
       return AccountSummaryFetchedViewModel(
-          accountSummary: accountSummaryState.accountSummary);
+        accountSummary: accountSummaryState.accountSummary,
+      );
     }
     return AccountSummaryInitialViewModel();
   }
@@ -33,7 +35,7 @@ class AccountSummaryLoadingViewModel extends AccountSummaryViewModel {}
 class AccountSummaryErrorViewModel extends AccountSummaryViewModel {}
 
 class AccountSummaryFetchedViewModel extends AccountSummaryViewModel {
-  const AccountSummaryFetchedViewModel(
-      {required PersonAccountSummary accountSummary})
-      : super(accountSummary: accountSummary);
+  const AccountSummaryFetchedViewModel({
+    required PersonAccountSummary accountSummary,
+  }) : super(accountSummary: accountSummary);
 }

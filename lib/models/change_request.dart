@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 class ChangeRequestConfirm {
-  ChangeRequestConfirm({
-    required this.tan,
-  });
+  ChangeRequestConfirm({required this.tan});
 
   final String tan;
 
@@ -13,13 +11,9 @@ class ChangeRequestConfirm {
   String toRawJson() => json.encode(toJson());
 
   factory ChangeRequestConfirm.fromJson(Map<String, dynamic> json) =>
-      ChangeRequestConfirm(
-        tan: json["tan"],
-      );
+      ChangeRequestConfirm(tan: json["tan"]);
 
-  Map<String, dynamic> toJson() => {
-        "tan": tan,
-      };
+  Map<String, dynamic> toJson() => {"tan": tan};
 }
 
 ChangeRequestToken changeRequestTokenFromJson(String str) =>
@@ -29,27 +23,18 @@ String changeRequestTokenToJson(ChangeRequestToken data) =>
     json.encode(data.toJson());
 
 class ChangeRequestToken {
-  ChangeRequestToken({
-    required this.token,
-  });
+  ChangeRequestToken({required this.token});
 
   String token;
 
   factory ChangeRequestToken.fromJson(Map<String, dynamic> json) =>
-      ChangeRequestToken(
-        token: json["token"],
-      );
+      ChangeRequestToken(token: json["token"]);
 
-  Map<String, dynamic> toJson() => {
-        "token": token,
-      };
+  Map<String, dynamic> toJson() => {"token": token};
 }
 
 class ChangeRequestConfirmed {
-  ChangeRequestConfirmed({
-    this.success,
-    this.response,
-  });
+  ChangeRequestConfirmed({this.success, this.response});
 
   final bool? success;
   final Response? response;
@@ -68,18 +53,13 @@ class ChangeRequestConfirmed {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "response": response?.toJson(),
-      };
+    "success": success,
+    "response": response?.toJson(),
+  };
 }
 
 class Response {
-  Response({
-    this.status,
-    this.responseCode,
-    this.id,
-    this.responseBody,
-  });
+  Response({this.status, this.responseCode, this.id, this.responseBody});
 
   final String? status;
   final int? responseCode;
@@ -92,20 +72,20 @@ class Response {
   String toRawJson() => json.encode(toJson());
 
   factory Response.fromJson(Map<String, dynamic> json) => Response(
-        status: json["status"],
-        responseCode: json["response_code"],
-        id: json["id"],
-        responseBody: json["response_body"] == null
-            ? null
-            : ResponseBody.fromJson(json["response_body"]),
-      );
+    status: json["status"],
+    responseCode: json["response_code"],
+    id: json["id"],
+    responseBody: json["response_body"] == null
+        ? null
+        : ResponseBody.fromJson(json["response_body"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "response_code": responseCode,
-        "id": id,
-        "response_body": responseBody?.toJson(),
-      };
+    "status": status,
+    "response_code": responseCode,
+    "id": id,
+    "response_body": responseBody?.toJson(),
+  };
 }
 
 class ResponseBody {

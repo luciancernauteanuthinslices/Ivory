@@ -84,14 +84,15 @@ class DocumentListItem extends StatelessWidget {
                   Text(
                     title,
                     style: ClientConfig.getTextStyleScheme().heading4.copyWith(
-                        color: ClientConfig.getCustomColors().neutral900),
+                      color: ClientConfig.getCustomColors().neutral900,
+                    ),
                   ),
                   Text(
                     "$fileSize, $fileType",
-                    style: ClientConfig.getTextStyleScheme()
-                        .bodySmallRegular
+                    style: ClientConfig.getTextStyleScheme().bodySmallRegular
                         .copyWith(
-                            color: ClientConfig.getCustomColors().neutral700),
+                          color: ClientConfig.getCustomColors().neutral700,
+                        ),
                   ),
                 ],
               ),
@@ -101,14 +102,14 @@ class DocumentListItem extends StatelessWidget {
                 ? const SizedBox(
                     height: 20,
                     width: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 3,
-                    ),
+                    child: CircularProgressIndicator(strokeWidth: 3),
                   )
-                : Icon(Icons.download_outlined,
+                : Icon(
+                    Icons.download_outlined,
                     color: onTap != null
                         ? ClientConfig.getColorScheme().tertiary
-                        : ClientConfig.getCustomColors().neutral500),
+                        : ClientConfig.getCustomColors().neutral500,
+                  ),
           ],
         ),
       ),

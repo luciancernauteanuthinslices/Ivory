@@ -27,10 +27,12 @@ class OnbordingIdentityVerificationService extends ApiService {
       final response = await post(path, body: body);
 
       return CreateIdentificationSuccessResponse(
-          urlForIntegration: response['url']);
+        urlForIntegration: response['url'],
+      );
     } catch (err) {
       return const IdentityVerificationServiceErrorResponse(
-          errorType: OnboardingIdentityVerificationErrorType.unknown);
+        errorType: OnboardingIdentityVerificationErrorType.unknown,
+      );
     }
   }
 
@@ -42,8 +44,9 @@ class OnbordingIdentityVerificationService extends ApiService {
     try {
       final response = await get('/signup/identification');
 
-      final identificationStatus =
-          _parseIdentificationStatus(response['status'] ?? "");
+      final identificationStatus = _parseIdentificationStatus(
+        response['status'] ?? "",
+      );
 
       if (identificationStatus == OnboardingIdentificationStatus.pending) {
         return const IdentityVerificationServiceErrorResponse(
@@ -58,8 +61,9 @@ class OnbordingIdentityVerificationService extends ApiService {
             .map(
               (document) => Document(
                 id: document['id'],
-                documentType:
-                    DocumentTypeParser.parse(document['document_type']),
+                documentType: DocumentTypeParser.parse(
+                  document['document_type'],
+                ),
                 fileType: document['content_type'],
                 fileSize: document['size'] ?? 0,
               ),
@@ -68,12 +72,14 @@ class OnbordingIdentityVerificationService extends ApiService {
       );
     } catch (err) {
       return const IdentityVerificationServiceErrorResponse(
-          errorType: OnboardingIdentityVerificationErrorType.unknown);
+        errorType: OnboardingIdentityVerificationErrorType.unknown,
+      );
     }
   }
 
-  Future<IdentityVerificationServiceResponse> authorizeIdentification(
-      {required User user}) async {
+  Future<IdentityVerificationServiceResponse> authorizeIdentification({
+    required User user,
+  }) async {
     this.user = user;
 
     try {
@@ -84,10 +90,12 @@ class OnbordingIdentityVerificationService extends ApiService {
       }
 
       return const IdentityVerificationServiceErrorResponse(
-          errorType: OnboardingIdentityVerificationErrorType.unknown);
+        errorType: OnboardingIdentityVerificationErrorType.unknown,
+      );
     } catch (error) {
       return const IdentityVerificationServiceErrorResponse(
-          errorType: OnboardingIdentityVerificationErrorType.unknown);
+        errorType: OnboardingIdentityVerificationErrorType.unknown,
+      );
     }
   }
 
@@ -98,9 +106,7 @@ class OnbordingIdentityVerificationService extends ApiService {
     this.user = user;
 
     String url = '/signup/identification/confirm';
-    Map<String, dynamic> body = {
-      'token': tan,
-    };
+    Map<String, dynamic> body = {'token': tan};
 
     try {
       await patch(url, body: body);
@@ -108,12 +114,14 @@ class OnbordingIdentityVerificationService extends ApiService {
       return SignWithTanSuccessResponse();
     } catch (err) {
       return const IdentityVerificationServiceErrorResponse(
-          errorType: OnboardingIdentityVerificationErrorType.invalidTan);
+        errorType: OnboardingIdentityVerificationErrorType.invalidTan,
+      );
     }
   }
 
-  Future<IdentityVerificationServiceResponse> getCreditLimit(
-      {required User user}) async {
+  Future<IdentityVerificationServiceResponse> getCreditLimit({
+    required User user,
+  }) async {
     this.user = user;
 
     String url = '/credit_card_applications';
@@ -132,14 +140,13 @@ class OnbordingIdentityVerificationService extends ApiService {
     }
   }
 
-  Future<IdentityVerificationServiceResponse> finalizeIdentification(
-      {required User user}) async {
+  Future<IdentityVerificationServiceResponse> finalizeIdentification({
+    required User user,
+  }) async {
     this.user = user;
 
     String url = '/signup/identification/finalize';
-    Map<String, dynamic> body = {
-      'token': '212212',
-    };
+    Map<String, dynamic> body = {'token': '212212'};
 
     try {
       await post(url, body: body);
@@ -189,8 +196,10 @@ class GetSignupIdentificationInfoSuccessResponse
   final OnboardingIdentificationStatus identificationStatus;
   final List<Document> documents;
 
-  const GetSignupIdentificationInfoSuccessResponse(
-      {required this.identificationStatus, required this.documents});
+  const GetSignupIdentificationInfoSuccessResponse({
+    required this.identificationStatus,
+    required this.documents,
+  });
 
   @override
   List<Object?> get props => [identificationStatus, documents];

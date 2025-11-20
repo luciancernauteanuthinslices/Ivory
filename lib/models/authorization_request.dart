@@ -20,15 +20,16 @@ class AuthorizationRequest {
 
   factory AuthorizationRequest.fromJson(Map<String, dynamic> json) =>
       AuthorizationRequest(
-        authorizationRequest:
-            AuthorizationRequestClass.fromJson(json["authorizationRequest"]),
+        authorizationRequest: AuthorizationRequestClass.fromJson(
+          json["authorizationRequest"],
+        ),
         confirmUrl: json["confirmUrl"],
       );
 
   Map<String, dynamic> toJson() => {
-        "authorizationRequest": authorizationRequest.toJson(),
-        "confirmUrl": confirmUrl,
-      };
+    "authorizationRequest": authorizationRequest.toJson(),
+    "confirmUrl": confirmUrl,
+  };
 }
 
 class AuthorizationRequestClass {
@@ -55,8 +56,8 @@ class AuthorizationRequestClass {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "status": status,
-        "updated_at": updatedAt.toIso8601String(),
-      };
+    "id": id,
+    "status": status,
+    "updated_at": updatedAt.toIso8601String(),
+  };
 }

@@ -6,8 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:solarisdemo/models/select_option.dart';
 
 Future<List> loadCountries() async {
-  final countriesJson =
-      await rootBundle.loadString('assets/data/countries.json');
+  final countriesJson = await rootBundle.loadString(
+    'assets/data/countries.json',
+  );
   final countries = jsonDecode(countriesJson) as List;
 
   log("Countries loaded: ${countries.length}");
@@ -15,8 +16,9 @@ Future<List> loadCountries() async {
   return countries;
 }
 
-Future<List<SelectOption>> loadCountryPickerOptions(
-    {bool addPhoneCode = false}) async {
+Future<List<SelectOption>> loadCountryPickerOptions({
+  bool addPhoneCode = false,
+}) async {
   final countries = await loadCountries();
   final List<SelectOption> options = [];
 
@@ -26,17 +28,15 @@ Future<List<SelectOption>> loadCountryPickerOptions(
 
     options.add(
       SelectOption(
-        textLabel:
-            addPhoneCode ? '$phoneCode (${country["name"]})' : country["name"],
+        textLabel: addPhoneCode
+            ? '$phoneCode (${country["name"]})'
+            : country["name"],
         value: country["isoCode"],
         prefix: Text(
           "${country['flag']} ",
           style: const TextStyle(fontSize: 20, height: 24 / 20),
         ),
-        data: {
-          "phoneCode": phoneCode,
-          "phoneNumberFormat": phoneNumberFormat,
-        },
+        data: {"phoneCode": phoneCode, "phoneNumberFormat": phoneNumberFormat},
       ),
     );
   }

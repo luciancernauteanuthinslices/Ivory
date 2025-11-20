@@ -8,10 +8,11 @@ import 'package:solarisdemo/redux/onboarding/identity_verification/onboarding_id
 class OnboardingIdentityVerificationMiddleware
     extends MiddlewareClass<AppState> {
   final OnbordingIdentityVerificationService
-      _onboardingIdentityVerificationService;
+  _onboardingIdentityVerificationService;
 
   OnboardingIdentityVerificationMiddleware(
-      this._onboardingIdentityVerificationService);
+    this._onboardingIdentityVerificationService,
+  );
 
   @override
   call(Store<AppState> store, dynamic action, NextDispatcher next) async {
@@ -25,20 +26,26 @@ class OnboardingIdentityVerificationMiddleware
     if (action is CreateIdentificationCommandAction) {
       store.dispatch(OnboardingIdentityVerificationLoadingEventAction());
 
-      final response =
-          await _onboardingIdentityVerificationService.createIdentification(
-        user: authState.cognitoUser,
-        accountName: action.accountName,
-        iban: action.iban,
-        termsAndCondsSignedAt: DateTime.now().toUtc().toIso8601String(),
-      );
+      final response = await _onboardingIdentityVerificationService
+          .createIdentification(
+            user: authState.cognitoUser,
+            accountName: action.accountName,
+            iban: action.iban,
+            termsAndCondsSignedAt: DateTime.now().toUtc().toIso8601String(),
+          );
 
       if (response is CreateIdentificationSuccessResponse) {
-        store.dispatch(CreateIdentificationSuccessEventAction(
-            urlForIntegration: response.urlForIntegration));
+        store.dispatch(
+          CreateIdentificationSuccessEventAction(
+            urlForIntegration: response.urlForIntegration,
+          ),
+        );
       } else if (response is IdentityVerificationServiceErrorResponse) {
-        store.dispatch(OnboardingIdentityVerificationErrorEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          OnboardingIdentityVerificationErrorEventAction(
+            errorType: response.errorType,
+          ),
+        );
       }
     }
 
@@ -49,34 +56,40 @@ class OnboardingIdentityVerificationMiddleware
       await Future.delayed(const Duration(seconds: 3));
 
       final response = await _onboardingIdentityVerificationService
-          .getSignupIdentificationInfo(
-        user: authState.cognitoUser,
-      );
+          .getSignupIdentificationInfo(user: authState.cognitoUser);
 
       if (response is GetSignupIdentificationInfoSuccessResponse) {
-        store.dispatch(SignupIdentificationInfoFetchedEventAction(
-            identificationStatus: response.identificationStatus));
         store.dispatch(
-            DocumentsFetchedEventAction(documents: response.documents));
+          SignupIdentificationInfoFetchedEventAction(
+            identificationStatus: response.identificationStatus,
+          ),
+        );
+        store.dispatch(
+          DocumentsFetchedEventAction(documents: response.documents),
+        );
       } else if (response is IdentityVerificationServiceErrorResponse) {
-        store.dispatch(OnboardingIdentityVerificationErrorEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          OnboardingIdentityVerificationErrorEventAction(
+            errorType: response.errorType,
+          ),
+        );
       }
     }
 
     if (action is AuthorizeIdentificationSigningCommandAction) {
       store.dispatch(OnboardingIdentityAuthorizationLoadingEventAction());
 
-      final response =
-          await _onboardingIdentityVerificationService.authorizeIdentification(
-        user: authState.cognitoUser,
-      );
+      final response = await _onboardingIdentityVerificationService
+          .authorizeIdentification(user: authState.cognitoUser);
 
       if (response is AuthorizeIdentificationSuccessResponse) {
         store.dispatch(AuthorizeIdentificationSigningSuccessEventAction());
       } else if (response is IdentityVerificationServiceErrorResponse) {
-        store.dispatch(OnboardingIdentityVerificationErrorEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          OnboardingIdentityVerificationErrorEventAction(
+            errorType: response.errorType,
+          ),
+        );
       }
     }
 
@@ -84,13 +97,18 @@ class OnboardingIdentityVerificationMiddleware
       store.dispatch(OnboardingIdentityVerificationLoadingEventAction());
 
       final response = await _onboardingIdentityVerificationService.signWithTan(
-          user: authState.cognitoUser, tan: action.tan);
+        user: authState.cognitoUser,
+        tan: action.tan,
+      );
 
       if (response is SignWithTanSuccessResponse) {
         store.dispatch(SignWithTanSuccessEventAction());
       } else if (response is IdentityVerificationServiceErrorResponse) {
-        store.dispatch(OnboardingIdentityVerificationErrorEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          OnboardingIdentityVerificationErrorEventAction(
+            errorType: response.errorType,
+          ),
+        );
       }
     }
 
@@ -101,11 +119,17 @@ class OnboardingIdentityVerificationMiddleware
           .getCreditLimit(user: authState.cognitoUser);
 
       if (response is GetCreditLimitSuccessResponse) {
-        store.dispatch(CreditLimitSuccessEventAction(
-            approvedCreditLimit: response.creditLimit ~/ 100));
+        store.dispatch(
+          CreditLimitSuccessEventAction(
+            approvedCreditLimit: response.creditLimit ~/ 100,
+          ),
+        );
       } else if (response is IdentityVerificationServiceErrorResponse) {
-        store.dispatch(OnboardingIdentityVerificationErrorEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          OnboardingIdentityVerificationErrorEventAction(
+            errorType: response.errorType,
+          ),
+        );
       }
     }
 
@@ -118,8 +142,9 @@ class OnboardingIdentityVerificationMiddleware
       if (response is FinalizeIdentificationSuccessResponse) {
         store.dispatch(FinalizeIdentificationSuccessEventAction());
       } else if (response is IdentityVerificationServiceErrorResponse) {
-        store.dispatch(FinalizeIdentificationErrorEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          FinalizeIdentificationErrorEventAction(errorType: response.errorType),
+        );
       }
     }
   }

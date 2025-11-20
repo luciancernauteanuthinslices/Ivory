@@ -9,11 +9,7 @@ class TabView extends StatefulWidget {
   final List<TabViewItem> tabs;
   final int? initialSelectedTabIndex;
 
-  const TabView({
-    super.key,
-    required this.tabs,
-    this.initialSelectedTabIndex,
-  });
+  const TabView({super.key, required this.tabs, this.initialSelectedTabIndex});
 
   @override
   State<TabView> createState() => _TabViewState();
@@ -48,18 +44,20 @@ class _TabViewState extends State<TabView> {
                   borderRadius: tabIndex == 0
                       ? const BorderRadius.only(
                           topLeft: Radius.circular(8.0),
-                          bottomLeft: Radius.circular(8.0))
+                          bottomLeft: Radius.circular(8.0),
+                        )
                       : tabIndex == widget.tabs.length - 1
-                          ? const BorderRadius.only(
-                              topRight: Radius.circular(8.0),
-                              bottomRight: Radius.circular(8.0))
-                          : BorderRadius.zero,
+                      ? const BorderRadius.only(
+                          topRight: Radius.circular(8.0),
+                          bottomRight: Radius.circular(8.0),
+                        )
+                      : BorderRadius.zero,
                   onPressed: () {
                     setState(() {
                       selectedTab = tabIndex;
                     });
                   },
-                )
+                ),
             ],
           ),
         ),
@@ -73,8 +71,5 @@ class TabViewItem {
   final String text;
   final Widget child;
 
-  const TabViewItem({
-    required this.text,
-    required this.child,
-  });
+  const TabViewItem({required this.text, required this.child});
 }

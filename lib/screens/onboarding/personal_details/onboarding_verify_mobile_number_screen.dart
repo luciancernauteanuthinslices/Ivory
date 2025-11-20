@@ -85,9 +85,9 @@ class _OnboardingVerifyMobileNumberScreenState
     return StoreConnector<AppState, OnboardingPersonalDetailsViewModel>(
       converter: (store) =>
           OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
-        onboardingPersonalDetailsState:
-            store.state.onboardingPersonalDetailsState,
-      ),
+            onboardingPersonalDetailsState:
+                store.state.onboardingPersonalDetailsState,
+          ),
       distinct: true,
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel.isLoading) {
@@ -129,7 +129,10 @@ class _OnboardingVerifyMobileNumberScreenState
         }
         if (newViewModel.isMobileConfirmed == true) {
           Navigator.pushNamedAndRemoveUntil(
-              context, OnboardingStepperScreen.routeName, (route) => false);
+            context,
+            OnboardingStepperScreen.routeName,
+            (route) => false,
+          );
         }
       },
       builder: (context, viewModel) {
@@ -139,17 +142,12 @@ class _OnboardingVerifyMobileNumberScreenState
             children: [
               AppToolbar(
                 richTextTitle: StepRichTextTitle(step: 4, totalSteps: 4),
-                actions: const [
-                  AppbarLogo(),
-                ],
+                actions: const [AppbarLogo()],
                 backButtonEnabled: false,
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
               ),
-              AnimatedLinearProgressIndicator.step(
-                current: 4,
-                totalSteps: 4,
-              ),
+              AnimatedLinearProgressIndicator.step(current: 4, totalSteps: 4),
               Expanded(
                 child: Padding(
                   padding: ClientConfig.getCustomClientUiSettings()
@@ -157,9 +155,7 @@ class _OnboardingVerifyMobileNumberScreenState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       Text(
                         "Verify mobile number",
                         style: ClientConfig.getTextStyleScheme().heading1,
@@ -172,20 +168,20 @@ class _OnboardingVerifyMobileNumberScreenState
                           children: [
                             const TextSpan(text: 'Please enter below the '),
                             TextSpan(
-                                text: '6-digit code ',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '6-digit code ',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(text: 'we sent to '),
                             TextSpan(
-                                text: '${viewModel.attributes.mobileNumber}',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '${viewModel.attributes.mobileNumber}',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       TanInput(
                         isLoading: _continueButtonController.isLoading,
                         key: _tanInputKey,
@@ -199,7 +195,8 @@ class _OnboardingVerifyMobileNumberScreenState
                       ListenableBuilder(
                         listenable: _continueButtonController,
                         builder: (context, child) => InkWell(
-                          onTap: _currentDuration.inSeconds > 0 ||
+                          onTap:
+                              _currentDuration.inSeconds > 0 ||
                                   _continueButtonController.isEnabled
                               ? null
                               : () {
@@ -220,26 +217,26 @@ class _OnboardingVerifyMobileNumberScreenState
                               _currentDuration.inSeconds > 0
                                   ? "Request new code in $timerText"
                                   : "Request new code",
-                              style: _currentDuration.inSeconds > 0 ||
+                              style:
+                                  _currentDuration.inSeconds > 0 ||
                                       _continueButtonController.isEnabled
                                   ? ClientConfig.getTextStyleScheme()
-                                      .bodyLargeRegularBold
-                                      .copyWith(
+                                        .bodyLargeRegularBold
+                                        .copyWith(
                                           color: ClientConfig.getCustomColors()
-                                              .neutral500)
+                                              .neutral500,
+                                        )
                                   : ClientConfig.getTextStyleScheme()
-                                      .bodyLargeRegularBold
-                                      .copyWith(
-                                        color: ClientConfig.getColorScheme()
-                                            .tertiary,
-                                      ),
+                                        .bodyLargeRegularBold
+                                        .copyWith(
+                                          color: ClientConfig.getColorScheme()
+                                              .tertiary,
+                                        ),
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       SizedBox(
                         width: double.infinity,
                         child: ListenableBuilder(
@@ -249,8 +246,9 @@ class _OnboardingVerifyMobileNumberScreenState
                             isLoading: _continueButtonController.isLoading,
                             onPressed: _continueButtonController.isEnabled
                                 ? () {
-                                    StoreProvider.of<AppState>(context)
-                                        .dispatch(
+                                    StoreProvider.of<AppState>(
+                                      context,
+                                    ).dispatch(
                                       ConfirmMobileNumberCommandAction(
                                         mobileNumber:
                                             viewModel.attributes.mobileNumber!,

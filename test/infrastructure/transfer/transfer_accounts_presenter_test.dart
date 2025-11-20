@@ -11,38 +11,40 @@ void main() {
   final personAccount = PersonAccount();
 
   test(
-      "When fetching is in progress for person account it should return loading",
-      () {
-    //given
-    final referenceAccountState = ReferenceAccountInitialState();
-    final personAccountState = PersonAccountLoadingState();
+    "When fetching is in progress for person account it should return loading",
+    () {
+      //given
+      final referenceAccountState = ReferenceAccountInitialState();
+      final personAccountState = PersonAccountLoadingState();
 
-    //when
-    final viewModel = TransferAccountsPresenter.presentTransfer(
-      referenceAccountState: referenceAccountState,
-      personAccountState: personAccountState,
-    );
+      //when
+      final viewModel = TransferAccountsPresenter.presentTransfer(
+        referenceAccountState: referenceAccountState,
+        personAccountState: personAccountState,
+      );
 
-    //then
-    expect(viewModel, TransferAccountsLoadingViewModel());
-  });
+      //then
+      expect(viewModel, TransferAccountsLoadingViewModel());
+    },
+  );
 
   test(
-      "When fetching is in progress for reference account it should return loading",
-      () {
-    //given
-    final referenceAccountState = ReferenceAccountLoadingState();
-    final personAccountState = PersonAccountInitialState();
+    "When fetching is in progress for reference account it should return loading",
+    () {
+      //given
+      final referenceAccountState = ReferenceAccountLoadingState();
+      final personAccountState = PersonAccountInitialState();
 
-    //when
-    final viewModel = TransferAccountsPresenter.presentTransfer(
-      referenceAccountState: referenceAccountState,
-      personAccountState: personAccountState,
-    );
+      //when
+      final viewModel = TransferAccountsPresenter.presentTransfer(
+        referenceAccountState: referenceAccountState,
+        personAccountState: personAccountState,
+      );
 
-    //then
-    expect(viewModel, TransferAccountsLoadingViewModel());
-  });
+      //then
+      expect(viewModel, TransferAccountsLoadingViewModel());
+    },
+  );
 
   test("When fetching failed for person account it should return error", () {
     //given
@@ -61,8 +63,9 @@ void main() {
 
   test("When fetching failed for reference account it should return error", () {
     //given
-    final referenceAccountState =
-        ReferenceAccountErrorState(errorType: PersonServiceErrorType.unknown);
+    final referenceAccountState = ReferenceAccountErrorState(
+      errorType: PersonServiceErrorType.unknown,
+    );
     final personAccountState = PersonAccountInitialState();
 
     //when
@@ -76,26 +79,30 @@ void main() {
   });
 
   test(
-      "When fetching succeeded for person account and reference account it should return fetched accounts",
-      () {
-    //given
-    final referenceAccountState =
-        ReferenceAccountFetchedState(referenceAccount);
-    final personAccountState = PersonAccountFetchedState(personAccount);
+    "When fetching succeeded for person account and reference account it should return fetched accounts",
+    () {
+      //given
+      final referenceAccountState = ReferenceAccountFetchedState(
+        referenceAccount,
+      );
+      final personAccountState = PersonAccountFetchedState(personAccount);
 
-    //when
-    final viewModel = TransferAccountsPresenter.presentTransfer(
-      referenceAccountState: referenceAccountState,
-      personAccountState: personAccountState,
-    );
+      //when
+      final viewModel = TransferAccountsPresenter.presentTransfer(
+        referenceAccountState: referenceAccountState,
+        personAccountState: personAccountState,
+      );
 
-    //then
-    expect(
-      viewModel,
-      TransferAccountsFetchedViewModel(
-          personAccount: personAccount, referenceAccount: referenceAccount),
-    );
-  });
+      //then
+      expect(
+        viewModel,
+        TransferAccountsFetchedViewModel(
+          personAccount: personAccount,
+          referenceAccount: referenceAccount,
+        ),
+      );
+    },
+  );
 
   test("When is initial state it should return initial", () {
     //given

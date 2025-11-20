@@ -66,9 +66,7 @@ class _OnboardingPublicStatusScreenState
             padding: ClientConfig.getCustomClientUiSettings()
                 .defaultScreenHorizontalPadding,
             richTextTitle: StepRichTextTitle(step: 3, totalSteps: 5),
-            actions: const [
-              AppbarLogo(),
-            ],
+            actions: const [AppbarLogo()],
             backButtonEnabled: false,
           ),
           AnimatedLinearProgressIndicator.step(current: 3, totalSteps: 5),
@@ -81,8 +79,10 @@ class _OnboardingPublicStatusScreenState
                   const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Marital status, living situation & dependents',
-                        style: ClientConfig.getTextStyleScheme().heading2),
+                    child: Text(
+                      'Marital status, living situation & dependents',
+                      style: ClientConfig.getTextStyleScheme().heading2,
+                    ),
                   ),
                   const SizedBox(height: 24),
                   IvorySelectOption(
@@ -93,20 +93,25 @@ class _OnboardingPublicStatusScreenState
                     placeholder: 'Select marital status',
                     options: [
                       SelectOption(
-                          textLabel: 'Not married',
-                          value: OnboardingMaritalStatus.notMarried.name),
+                        textLabel: 'Not married',
+                        value: OnboardingMaritalStatus.notMarried.name,
+                      ),
                       SelectOption(
-                          textLabel: 'Married',
-                          value: OnboardingMaritalStatus.married.name),
+                        textLabel: 'Married',
+                        value: OnboardingMaritalStatus.married.name,
+                      ),
                       SelectOption(
-                          textLabel: 'Divorced',
-                          value: OnboardingMaritalStatus.divorced.name),
+                        textLabel: 'Divorced',
+                        value: OnboardingMaritalStatus.divorced.name,
+                      ),
                       SelectOption(
-                          textLabel: 'Widowed',
-                          value: OnboardingMaritalStatus.widowed.name),
+                        textLabel: 'Widowed',
+                        value: OnboardingMaritalStatus.widowed.name,
+                      ),
                       SelectOption(
-                          textLabel: 'Prefer not to say',
-                          value: OnboardingMaritalStatus.preferNotToSay.name),
+                        textLabel: 'Prefer not to say',
+                        value: OnboardingMaritalStatus.preferNotToSay.name,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -117,14 +122,17 @@ class _OnboardingPublicStatusScreenState
                     placeholder: 'Select living situation',
                     options: [
                       SelectOption(
-                          textLabel: 'I live in my own home',
-                          value: OnboardingLivingSituation.own.name),
+                        textLabel: 'I live in my own home',
+                        value: OnboardingLivingSituation.own.name,
+                      ),
                       SelectOption(
-                          textLabel: 'I live in a rented home',
-                          value: OnboardingLivingSituation.rent.name),
+                        textLabel: 'I live in a rented home',
+                        value: OnboardingLivingSituation.rent.name,
+                      ),
                       SelectOption(
-                          textLabel: 'I live with my parents',
-                          value: OnboardingLivingSituation.parents.name),
+                        textLabel: 'I live with my parents',
+                        value: OnboardingLivingSituation.parents.name,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -142,31 +150,37 @@ class _OnboardingPublicStatusScreenState
                               children: [
                                 const TextSpan(text: 'Dependents are '),
                                 TextSpan(
-                                    text:
-                                        'individuals who rely on your financial support, such as children or other family members.',
-                                    style: ClientConfig.getTextStyleScheme()
-                                        .mixedStyles
-                                        .copyWith(fontWeight: FontWeight.w600)),
+                                  text:
+                                      'individuals who rely on your financial support, such as children or other family members.',
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .mixedStyles
+                                      .copyWith(fontWeight: FontWeight.w600),
+                                ),
                                 const TextSpan(
-                                    text:
-                                        ' By providing this information, you help us understand your financial responsibilities, which can be important for determining your credit card limit and eligibility.\n\n'),
+                                  text:
+                                      ' By providing this information, you help us understand your financial responsibilities, which can be important for determining your credit card limit and eligibility.\n\n',
+                                ),
                                 TextSpan(
-                                    text:
-                                        'If you do not have any dependents, simply enter \'0\'',
-                                    style: ClientConfig.getTextStyleScheme()
-                                        .mixedStyles
-                                        .copyWith(fontWeight: FontWeight.w600)),
+                                  text:
+                                      'If you do not have any dependents, simply enter \'0\'',
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .mixedStyles
+                                      .copyWith(fontWeight: FontWeight.w600),
+                                ),
                                 const TextSpan(
-                                    text:
-                                        ' to indicate that you are financially independent.'),
+                                  text:
+                                      ' to indicate that you are financially independent.',
+                                ),
                               ],
                             ),
                           ),
                         );
                       },
-                      child: Icon(Icons.info_outline,
-                          color: ClientConfig.getColorScheme().primary,
-                          size: 16),
+                      child: Icon(
+                        Icons.info_outline,
+                        color: ClientConfig.getColorScheme().primary,
+                        size: 16,
+                      ),
                     ),
                     controller: _dependentsController,
                     keyboardType: TextInputType.number,
@@ -182,26 +196,36 @@ class _OnboardingPublicStatusScreenState
                         isLoading: _continueButtonController.isLoading,
                         onPressed: _continueButtonController.isEnabled
                             ? () {
-                                StoreProvider.of<AppState>(context)
-                                    .dispatch(CreatePublicStatusCommandAction(
-                                  maritalAttributes: OnboardingMaritalStatus
-                                      .values
-                                      .firstWhere((element) =>
-                                          element.name ==
-                                          _selectMaritalController
-                                              .selectedOptions.first.value),
-                                  livingAttributes: OnboardingLivingSituation
-                                      .values
-                                      .firstWhere((element) =>
-                                          element.name ==
-                                          _selectLivingController
-                                              .selectedOptions.first.value),
-                                  numberOfDependents:
-                                      int.parse(_dependentsController.text),
-                                ));
+                                StoreProvider.of<AppState>(context).dispatch(
+                                  CreatePublicStatusCommandAction(
+                                    maritalAttributes: OnboardingMaritalStatus
+                                        .values
+                                        .firstWhere(
+                                          (element) =>
+                                              element.name ==
+                                              _selectMaritalController
+                                                  .selectedOptions
+                                                  .first
+                                                  .value,
+                                        ),
+                                    livingAttributes: OnboardingLivingSituation
+                                        .values
+                                        .firstWhere(
+                                          (element) =>
+                                              element.name ==
+                                              _selectLivingController
+                                                  .selectedOptions
+                                                  .first
+                                                  .value,
+                                        ),
+                                    numberOfDependents: int.parse(
+                                      _dependentsController.text,
+                                    ),
+                                  ),
+                                );
                                 Navigator.of(context).pushNamed(
-                                    OnboardingOccupationalStatusScreen
-                                        .routeName);
+                                  OnboardingOccupationalStatusScreen.routeName,
+                                );
                               }
                             : null,
                       );
@@ -211,7 +235,7 @@ class _OnboardingPublicStatusScreenState
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

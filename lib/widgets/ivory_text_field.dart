@@ -72,7 +72,8 @@ class _IvoryTextFieldState extends State<IvoryTextField> {
     super.initState();
 
     _focusNode = widget.focusNode ?? FocusNode();
-    _controller = widget.controller ??
+    _controller =
+        widget.controller ??
         IvoryTextFieldController(
           text: widget.initialText,
           error: widget.error,
@@ -117,95 +118,85 @@ class _IvoryTextFieldState extends State<IvoryTextField> {
     final textCapitalization = _getTextCapitalization();
 
     return ListenableBuilder(
-        listenable: _controller,
-        builder: (context, child) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (widget.label != null) ...[
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        widget.label!,
-                        style: ClientConfig.getTextStyleScheme()
-                            .labelSmall
-                            .copyWith(
-                                color: isEnabled == false
-                                    ? ClientConfig.getCustomColors().neutral500
-                                    : hasError
-                                        ? ClientConfig.getColorScheme().error
-                                        : ClientConfig.getCustomColors()
-                                            .neutral700),
-                      ),
+      listenable: _controller,
+      builder: (context, child) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (widget.label != null) ...[
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      widget.label!,
+                      style: ClientConfig.getTextStyleScheme().labelSmall
+                          .copyWith(
+                            color: isEnabled == false
+                                ? ClientConfig.getCustomColors().neutral500
+                                : hasError
+                                ? ClientConfig.getColorScheme().error
+                                : ClientConfig.getCustomColors().neutral700,
+                          ),
                     ),
-                    if (widget.labelSuffix != null) ...[
-                      const SizedBox(width: 4),
-                      widget.labelSuffix!,
-                    ],
-                  ],
-                ),
-                const SizedBox(height: 8),
-              ],
-              CupertinoTextField(
-                focusNode: _focusNode,
-                decoration: BoxDecoration(
-                  color: hasError && !_focusNode.hasFocus
-                      ? ClientConfig.getCustomColors().red100
-                      : ClientConfig.getCustomColors().neutral100,
-                  border: Border.all(
-                    color: _borderColor,
-                    width: 1,
                   ),
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-                controller: _controller._textEditingController,
-                onChanged: widget.onChanged,
-                obscureText: _controller.obscureText,
-                placeholder: widget.placeholder,
-                enabled: _controller.isEnabled,
-                textCapitalization: textCapitalization,
-                inputFormatters: inputFormatters,
-                prefix: widget.prefix != null
-                    ? Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: widget.prefix,
-                      )
-                    : null,
-                suffix: _buildSuffix(context),
-                keyboardType: keyboardType,
-                minLines: widget.minLines,
-                maxLines: widget.maxLines ?? widget.minLines ?? 1,
-                style: ClientConfig.getTextStyleScheme()
-                    .bodyLargeRegular
-                    .copyWith(
-                        fontWeight: FontWeight.w400,
-                        color: _controller.isEnabled
-                            ? ClientConfig.getCustomColors().neutral900
-                            : ClientConfig.getCustomColors().neutral500),
-                placeholderStyle: ClientConfig.getTextStyleScheme()
-                    .bodyLargeRegular
-                    .copyWith(color: ClientConfig.getCustomColors().neutral500),
+                  if (widget.labelSuffix != null) ...[
+                    const SizedBox(width: 4),
+                    widget.labelSuffix!,
+                  ],
+                ],
               ),
-              if (_controller.errorText != null ||
-                  widget.errorText != null) ...[
-                const SizedBox(height: 8),
-                Text(
-                  _controller.errorText ?? widget.errorText!,
-                  style: ClientConfig.getTextStyleScheme()
-                      .bodySmallRegular
-                      .copyWith(
-                        color: ClientConfig.getColorScheme().error,
-                      ),
-                ),
-              ]
+              const SizedBox(height: 8),
             ],
-          );
-        });
+            CupertinoTextField(
+              focusNode: _focusNode,
+              decoration: BoxDecoration(
+                color: hasError && !_focusNode.hasFocus
+                    ? ClientConfig.getCustomColors().red100
+                    : ClientConfig.getCustomColors().neutral100,
+                border: Border.all(color: _borderColor, width: 1),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              controller: _controller._textEditingController,
+              onChanged: widget.onChanged,
+              obscureText: _controller.obscureText,
+              placeholder: widget.placeholder,
+              enabled: _controller.isEnabled,
+              textCapitalization: textCapitalization,
+              inputFormatters: inputFormatters,
+              prefix: widget.prefix != null
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: widget.prefix,
+                    )
+                  : null,
+              suffix: _buildSuffix(context),
+              keyboardType: keyboardType,
+              minLines: widget.minLines,
+              maxLines: widget.maxLines ?? widget.minLines ?? 1,
+              style: ClientConfig.getTextStyleScheme().bodyLargeRegular
+                  .copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: _controller.isEnabled
+                        ? ClientConfig.getCustomColors().neutral900
+                        : ClientConfig.getCustomColors().neutral500,
+                  ),
+              placeholderStyle: ClientConfig.getTextStyleScheme()
+                  .bodyLargeRegular
+                  .copyWith(color: ClientConfig.getCustomColors().neutral500),
+            ),
+            if (_controller.errorText != null || widget.errorText != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                _controller.errorText ?? widget.errorText!,
+                style: ClientConfig.getTextStyleScheme().bodySmallRegular
+                    .copyWith(color: ClientConfig.getColorScheme().error),
+              ),
+            ],
+          ],
+        );
+      },
+    );
   }
 
   Color _getBorderColor() {
@@ -231,17 +222,11 @@ class _IvoryTextFieldState extends State<IvoryTextField> {
       case TextFieldInputType.text:
         return null;
       case TextFieldInputType.name:
-        return [
-          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z .-]')),
-        ];
+        return [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z .-]'))];
       case TextFieldInputType.number:
-        return [
-          FilteringTextInputFormatter.allow(RegExp(r'[0-9\.,]')),
-        ];
+        return [FilteringTextInputFormatter.allow(RegExp(r'[0-9\.,]'))];
       case TextFieldInputType.password:
-        return [
-          FilteringTextInputFormatter.deny(RegExp(r'[\s]')),
-        ];
+        return [FilteringTextInputFormatter.deny(RegExp(r'[\s]'))];
       case TextFieldInputType.date:
         return [InputFormatter.date(initialText: _controller.text)];
       default:
@@ -293,9 +278,11 @@ class _IvoryTextFieldState extends State<IvoryTextField> {
         onTap: () {
           final currentDate = widget.currentDate ?? DateTime.now();
           final initialDate = _controller.text.isNotEmpty
-              ? Format.tryParseDate(_controller.text,
-                      pattern: textFieldDatePattern) ??
-                  currentDate
+              ? Format.tryParseDate(
+                      _controller.text,
+                      pattern: textFieldDatePattern,
+                    ) ??
+                    currentDate
               : currentDate;
 
           showBottomModal(
@@ -437,14 +424,16 @@ class _DatePickerContentState extends State<_DatePickerContent> {
   void initState() {
     super.initState();
 
-    _formattedDate =
-        Format.date(_initialDateTime, pattern: textFieldDatePattern);
+    _formattedDate = Format.date(
+      _initialDateTime,
+      pattern: textFieldDatePattern,
+    );
   }
 
   DateTime get _initialDateTime =>
       widget.initialDate.isAfter(widget.maximumDate)
-          ? widget.maximumDate
-          : widget.initialDate;
+      ? widget.maximumDate
+      : widget.initialDate;
 
   @override
   Widget build(BuildContext context) {
@@ -457,11 +446,12 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             child: CupertinoTheme(
               data: CupertinoThemeData(
                 textTheme: CupertinoTextThemeData(
-                  dateTimePickerTextStyle:
-                      ClientConfig.getTextStyleScheme().heading2.copyWith(
-                            color: ClientConfig.getCustomColors().neutral900,
-                            fontWeight: FontWeight.w400,
-                          ),
+                  dateTimePickerTextStyle: ClientConfig.getTextStyleScheme()
+                      .heading2
+                      .copyWith(
+                        color: ClientConfig.getCustomColors().neutral900,
+                        fontWeight: FontWeight.w400,
+                      ),
                 ),
               ),
               child: CupertinoDatePicker(
@@ -472,8 +462,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 initialDateTime: _initialDateTime,
                 onDateTimeChanged: (DateTime newDate) {
                   setState(() {
-                    _formattedDate =
-                        Format.date(newDate, pattern: textFieldDatePattern);
+                    _formattedDate = Format.date(
+                      newDate,
+                      pattern: textFieldDatePattern,
+                    );
                   });
                 },
                 dateOrder: DatePickerDateOrder.dmy,

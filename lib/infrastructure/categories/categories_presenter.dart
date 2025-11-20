@@ -3,8 +3,9 @@ import 'package:solarisdemo/models/categories/category.dart';
 import 'package:solarisdemo/redux/categories/category_state.dart';
 
 class CategoriesPresenter {
-  static CategoriesViewModel presentCategories(
-      {required CategoriesState categoriesState}) {
+  static CategoriesViewModel presentCategories({
+    required CategoriesState categoriesState,
+  }) {
     if (categoriesState is CategoriesLoadingState) {
       return CategoriesLoadingViewModel();
     } else if (categoriesState is CategoriesErrorState) {
@@ -34,5 +35,5 @@ class CategoriesErrorViewModel extends CategoriesViewModel {}
 
 class WithCategoriesViewModel extends CategoriesViewModel {
   const WithCategoriesViewModel({required List<Category>? categories})
-      : super(categories: categories);
+    : super(categories: categories);
 }

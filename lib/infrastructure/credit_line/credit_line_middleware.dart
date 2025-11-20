@@ -22,11 +22,13 @@ class GetCreditLineMiddleware extends MiddlewareClass<AppState> {
     if (action is GetCreditLineCommandAction) {
       store.dispatch(CreditLineLoadingEventAction());
       final response = await _creditLineService.getCreditLine(
-          user: authState.authenticatedUser.cognito);
+        user: authState.authenticatedUser.cognito,
+      );
 
       if (response is GetCreditLineSuccessResponse) {
         store.dispatch(
-            CreditLineFetchedEventAction(creditLine: response.creditLine));
+          CreditLineFetchedEventAction(creditLine: response.creditLine),
+        );
       } else {
         store.dispatch(CreditLineFailedEventAction());
       }

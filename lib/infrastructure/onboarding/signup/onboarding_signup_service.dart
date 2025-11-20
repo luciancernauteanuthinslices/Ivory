@@ -28,11 +28,13 @@ class OnboardingSignupService extends ApiService {
     } catch (e) {
       if (e is HttpException && e.statusCode == 409) {
         return const CreatePersonErrorResponse(
-            errorType: OnboardingSignupErrorType.emailAlreadyExists);
+          errorType: OnboardingSignupErrorType.emailAlreadyExists,
+        );
       }
 
       return const CreatePersonErrorResponse(
-          errorType: OnboardingSignupErrorType.unknown);
+        errorType: OnboardingSignupErrorType.unknown,
+      );
     }
   }
 }

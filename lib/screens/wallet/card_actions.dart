@@ -20,16 +20,14 @@ import '../../widgets/ivory_list_title.dart';
 class CardActions extends StatelessWidget {
   final String initialCardId;
 
-  const CardActions({
-    super.key,
-    required this.initialCardId,
-  });
+  const CardActions({super.key, required this.initialCardId});
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
       onInit: (store) {
@@ -48,39 +46,27 @@ class CardActions extends StatelessWidget {
       },
       builder: (context, viewModel) {
         if (viewModel is BankCardInitialViewModel) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
         if (viewModel is BankCardLoadingViewModel) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
         if (viewModel is BankCardErrorViewModel) {
           return const Text("Something went wrong");
         }
         if (viewModel is BankCardFetchedViewModel) {
           if (viewModel.bankCard!.status == BankCardStatus.ACTIVE) {
-            return ActiveCard(
-              viewModel: viewModel,
-            );
+            return ActiveCard(viewModel: viewModel);
           }
           if (viewModel.bankCard!.status == BankCardStatus.INACTIVE) {
-            return InactiveCard(
-              viewModel: viewModel,
-            );
+            return InactiveCard(viewModel: viewModel);
           }
           if (viewModel.bankCard!.status == BankCardStatus.BLOCKED) {
-            return FrozenCard(
-              viewModel: viewModel,
-            );
+            return FrozenCard(viewModel: viewModel);
           }
         }
 
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
@@ -106,9 +92,7 @@ class InactiveCard extends StatelessWidget {
                 'Activate your card',
                 style: ClientConfig.getTextStyleScheme().heading3,
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Text(
                 'Your card is currently inactive. \n\nOnce it arrives to your address, click on the "Activate my card" to active it and start using. \n\nIt will take only 1 minute.',
                 style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
@@ -116,9 +100,7 @@ class InactiveCard extends StatelessWidget {
               const SizedBox(height: 60),
             ],
           ),
-          const SizedBox(
-            height: 70,
-          ),
+          const SizedBox(height: 70),
           SizedBox(
             width: double.infinity,
             child: Button(
@@ -182,10 +164,12 @@ class ActiveCard extends StatelessWidget {
                 onPressed: () {
                   StoreProvider.of<AppState>(context).dispatch(
                     BankCardFreezeCommandAction(
-                      bankCards: (StoreProvider.of<AppState>(context)
-                              .state
-                              .bankCardsState as BankCardsFetchedState)
-                          .bankCards,
+                      bankCards:
+                          (StoreProvider.of<AppState>(
+                                    context,
+                                  ).state.bankCardsState
+                                  as BankCardsFetchedState)
+                              .bankCards,
                       bankCard: viewModel.bankCard!,
                     ),
                   );
@@ -257,9 +241,9 @@ class ActiveCard extends StatelessWidget {
               subtitle: 'The card will be permanently closed',
               rightIcon: Icons.arrow_forward_ios,
             ),
-            const SizedBox(height: 16)
+            const SizedBox(height: 16),
           ],
-        )
+        ),
       ],
     );
   }
@@ -284,10 +268,12 @@ class FrozenCard extends StatelessWidget {
                 StoreProvider.of<AppState>(context).dispatch(
                   BankCardUnfreezeCommandAction(
                     bankCard: viewModel.bankCard!,
-                    bankCards: (StoreProvider.of<AppState>(context)
-                            .state
-                            .bankCardsState as BankCardsFetchedState)
-                        .bankCards,
+                    bankCards:
+                        (StoreProvider.of<AppState>(
+                                  context,
+                                ).state.bankCardsState
+                                as BankCardsFetchedState)
+                            .bankCards,
                   ),
                 );
               },
@@ -315,7 +301,7 @@ class FrozenCard extends StatelessWidget {
               rightIcon: Icons.arrow_forward_ios,
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -326,11 +312,12 @@ class CardOptionsButton extends StatelessWidget {
   final String textLabel;
   final Function onPressed;
 
-  const CardOptionsButton(
-      {super.key,
-      required this.icon,
-      required this.textLabel,
-      required this.onPressed});
+  const CardOptionsButton({
+    super.key,
+    required this.icon,
+    required this.textLabel,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -355,11 +342,11 @@ class CardOptionsButton extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10),
           child: Text(
             textLabel,
-            style: ClientConfig.getTextStyleScheme()
-                .labelSmall
-                .copyWith(color: ClientConfig.getCustomColors().neutral900),
+            style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+              color: ClientConfig.getCustomColors().neutral900,
+            ),
           ),
-        )
+        ),
       ],
     );
   }

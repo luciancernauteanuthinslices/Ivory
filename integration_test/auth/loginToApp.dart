@@ -8,27 +8,25 @@ import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../helpers/permissionsHelper.dart';
+import '../helpers/ciDetection.dart';
 
 class LoginToApp {
   final PatrolIntegrationTester $;
   final String email;
   final String password;
 
-  LoginToApp(
-    this.$, {
-    String? email,
-    String? password,
-  })  : email = email ??
-            (const String.fromEnvironment('PATROL_EMAIL', defaultValue: '') !=
-                    ''
-                ? const String.fromEnvironment('PATROL_EMAIL')
-                : dotenv.env['EMAIL'] ?? ''),
-        password = password ??
-            (const String.fromEnvironment('PATROL_PASSWORD',
-                        defaultValue: '') !=
-                    ''
-                ? const String.fromEnvironment('PATROL_PASSWORD')
-                : dotenv.env['PASSWORD'] ?? '');
+  LoginToApp(this.$, {String? email, String? password})
+    : email =
+          email ??
+          (const String.fromEnvironment('PATROL_EMAIL', defaultValue: '') != ''
+              ? const String.fromEnvironment('PATROL_EMAIL')
+              : dotenv.env['EMAIL'] ?? ''),
+      password =
+          password ??
+          (const String.fromEnvironment('PATROL_PASSWORD', defaultValue: '') !=
+                  ''
+              ? const String.fromEnvironment('PATROL_PASSWORD')
+              : dotenv.env['PASSWORD'] ?? '');
 
   Future<void> login() async {
     // Try to navigate back to welcome screen if we're not there already
@@ -45,8 +43,10 @@ class LoginToApp {
     }
 
     // Now wait for the login button to be displayed
-    await $.waitUntilVisible($(keys.welcomeScreen.logInButton),
-        timeout: Duration(seconds: 10));
+    await $.waitUntilVisible(
+      $(keys.welcomeScreen.logInButton),
+      timeout: Duration(seconds: 10),
+    );
     expect($(keys.welcomeScreen.logInButton), findsOneWidget);
 
     // Tap on the "Log in" button
@@ -63,47 +63,121 @@ class LoginToApp {
 
     // Handle permission dialogs that may appear after login
     // Pre-granted in CI, but may still appear locally or if app was reinstalled
-    await PermissionsHelper().grantAllVisiblePermissions($);
+    final isCI = CIDetection.isCI;
+    final ciPlatform = CIDetection.ciPlatform;
 
-    // Wait for any permission dialogs to fully dismiss before proceeding
-    // Use a more robust waiting strategy that doesn't timeout if dialog is gone
-    int waitAttempts = 0;
-    while (waitAttempts < 10) {
-      final hasDialog = await $.native.isPermissionDialogVisible(
-        timeout: const Duration(milliseconds: 500),
-      );
-
-      if (!hasDialog) {
-        // No dialog visible, break and proceed
-        break;
-      }
-
-      // Dialog still visible, try granting again
-      debugPrint('Permission dialog still visible, attempting to grant...');
-      try {
-        if (Platform.isAndroid) {
-          await $.native.grantPermissionWhenInUse();
-        } else if (Platform.isIOS) {
-          await $.native.grantPermissionWhenInUse();
-        }
-      } catch (e) {
-        debugPrint('Error granting permission: $e');
-      }
-
-      // Wait a bit before checking again
-      await $.pump(const Duration(milliseconds: 500));
-      waitAttempts++;
+    if (isCI) {
+      debugPrint('🤖 Running in CI environment: $ciPlatform');
+      debugPrint('📋 Permissions should be pre-granted');
+    } else {
+      debugPrint('💻 Running locally');
     }
 
-    // Give app time to settle after permissions and navigate to OTP screen
-    // Use pump with timeout instead of pumpAndSettle to avoid timeout exceptions
+    debugPrint('🔍 Checking for permission dialogs...');
+
+    // Give the app a moment to show any permission dialogs
     await $.pump(const Duration(milliseconds: 1000));
+
+    // Try to handle permission dialogs with multiple strategies
+    int maxAttempts = isCI ? 3 : 5;
+
+    for (int attempt = 0; attempt < maxAttempts; attempt++) {
+      try {
+        debugPrint(
+          '🔄 Attempt ${attempt + 1}/$maxAttempts: Checking for permission dialog',
+        );
+
+        // Check if permission dialog is visible
+        final hasDialog = await $.native.isPermissionDialogVisible(
+          timeout: const Duration(milliseconds: 500),
+        );
+
+        if (!hasDialog) {
+          debugPrint('✅ No permission dialog detected');
+          break;
+        }
+
+        debugPrint('⚠️  Permission dialog detected! Attempting to grant...');
+
+        // Strategy 1: Try grantPermissionWhenInUse
+        try {
+          await $.native.grantPermissionWhenInUse();
+          debugPrint('✅ Granted permission via grantPermissionWhenInUse');
+          await $.pump(const Duration(milliseconds: 500));
+          continue;
+        } catch (e) {
+          debugPrint('❌ grantPermissionWhenInUse failed: $e');
+        }
+
+        // Strategy 2: Try grantPermissionOnlyThisTime (Android 12+)
+        try {
+          await $.native.grantPermissionOnlyThisTime();
+          debugPrint('✅ Granted permission via grantPermissionOnlyThisTime');
+          await $.pump(const Duration(milliseconds: 500));
+          continue;
+        } catch (e) {
+          debugPrint('❌ grantPermissionOnlyThisTime failed: $e');
+        }
+
+        // Strategy 3: Try to tap "Allow" button directly with native tap
+        if (Platform.isIOS) {
+          try {
+            debugPrint('📱 iOS: Trying to tap Allow button');
+            await $.native.tap(Selector(text: 'Allow'));
+            debugPrint('✅ Tapped Allow button');
+            await $.pump(const Duration(milliseconds: 500));
+            continue;
+          } catch (e) {
+            debugPrint('❌ Failed to tap Allow button: $e');
+          }
+        } else if (Platform.isAndroid) {
+          try {
+            debugPrint('🤖 Android: Trying to tap Allow button');
+            // Try different permission button texts
+            final allowTexts = [
+              'Allow',
+              'ALLOW',
+              'While using the app',
+              'Only this time',
+            ];
+            for (final text in allowTexts) {
+              try {
+                await $.native.tap(Selector(text: text));
+                debugPrint('✅ Tapped "$text" button');
+                await $.pump(const Duration(milliseconds: 500));
+                break;
+              } catch (e) {
+                // Try next text
+              }
+            }
+          } catch (e) {
+            debugPrint('❌ Failed to tap permission button: $e');
+          }
+        }
+
+        // Wait a bit before next attempt
+        await $.pump(const Duration(milliseconds: 500));
+      } catch (e) {
+        debugPrint('❌ Error in permission handling attempt ${attempt + 1}: $e');
+        // Continue to next attempt
+      }
+    }
+
+    debugPrint('🏁 Permission handling complete, proceeding with test');
+
+    // Give app time to settle after permission handling
+    await $.pump(const Duration(milliseconds: 1000));
+
+    // Try pumpAndSettle but don't fail if it times out
     try {
       await $.pumpAndSettle(timeout: const Duration(seconds: 3));
+      debugPrint('✅ App settled successfully');
     } catch (e) {
-      // If pumpAndSettle times out, just pump a few more times and continue
-      debugPrint('pumpAndSettle timed out, continuing anyway: $e');
-      await $.pump(const Duration(milliseconds: 1000));
+      debugPrint('⚠️  pumpAndSettle timed out (continuing anyway): $e');
+      // Just pump a few times to let UI update
+      for (int i = 0; i < 5; i++) {
+        await $.pump(const Duration(milliseconds: 200));
+      }
     }
 
     // Wait for OTP screen to appear

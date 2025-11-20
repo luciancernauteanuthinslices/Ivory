@@ -78,7 +78,8 @@ class _TransferReviewScreenState extends State<TransferReviewScreen> {
                             ),
                           ),
                         );
-                      }),
+                      },
+                    ),
             ),
             const SizedBox(height: 16),
           ],

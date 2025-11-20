@@ -58,8 +58,8 @@ class OnboardingScoringRejectedScreen extends StatelessWidget {
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegularBold
                               .copyWith(
-                                  color:
-                                      ClientConfig.getColorScheme().secondary),
+                                color: ClientConfig.getColorScheme().secondary,
+                              ),
                         ),
                         const TextSpan(text: '.'),
                       ],
@@ -83,7 +83,10 @@ class OnboardingScoringRejectedScreen extends StatelessWidget {
                     text: "Return to “Welcome Screen”",
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
-                          context, WelcomeScreen.routeName, (route) => false);
+                        context,
+                        WelcomeScreen.routeName,
+                        (route) => false,
+                      );
                     },
                   ),
                   const SizedBox(height: 16),

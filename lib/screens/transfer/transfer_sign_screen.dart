@@ -41,10 +41,15 @@ class _TransferSignScreenState extends State<TransferSignScreen> {
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel is TransferConfirmedViewModel) {
           Navigator.popAndPushNamed(
-              context, TransferSuccessfulScreen.routeName);
+            context,
+            TransferSuccessfulScreen.routeName,
+          );
         } else if (newViewModel is TransferFailedViewModel) {
-          Navigator.popAndPushNamed(context, TransferFailedScreen.routeName,
-              arguments: newViewModel.errorType);
+          Navigator.popAndPushNamed(
+            context,
+            TransferFailedScreen.routeName,
+            arguments: newViewModel.errorType,
+          );
         }
       },
       builder: (context, viewModel) => ScreenScaffold(
@@ -95,7 +100,7 @@ class _TransferSignScreenState extends State<TransferSignScreen> {
                           }
                         },
                       ),
-                    ]
+                    ],
                   ],
                 ),
               ),

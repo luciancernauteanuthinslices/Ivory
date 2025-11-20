@@ -5,11 +5,13 @@ import '../../models/transactions/upcoming_transaction_model.dart';
 import '../../models/transactions/transaction_model.dart';
 
 class TransactionPresenter {
-  static TransactionsViewModel presentTransactions(
-      {required TransactionsState transactionsState}) {
+  static TransactionsViewModel presentTransactions({
+    required TransactionsState transactionsState,
+  }) {
     if (transactionsState is TransactionsLoadingState) {
       return TransactionsLoadingViewModel(
-          transactionListFilter: transactionsState.transactionListFilter);
+        transactionListFilter: transactionsState.transactionListFilter,
+      );
     } else if (transactionsState is TransactionsErrorState) {
       return TransactionsErrorViewModel();
     } else if (transactionsState is TransactionsFetchedState) {
@@ -33,10 +35,11 @@ abstract class TransactionsViewModel extends Equatable {
   final List<UpcomingTransaction>? upcomingTransactions;
   final TransactionListFilter? transactionListFilter;
 
-  const TransactionsViewModel(
-      {this.transactions,
-      this.transactionListFilter,
-      this.upcomingTransactions});
+  const TransactionsViewModel({
+    this.transactions,
+    this.transactionListFilter,
+    this.upcomingTransactions,
+  });
 
   @override
   List<Object?> get props => [transactions, transactionListFilter];
@@ -45,9 +48,9 @@ abstract class TransactionsViewModel extends Equatable {
 class TransactionsInitialViewModel extends TransactionsViewModel {}
 
 class TransactionsLoadingViewModel extends TransactionsViewModel {
-  const TransactionsLoadingViewModel(
-      {TransactionListFilter? transactionListFilter})
-      : super(transactionListFilter: transactionListFilter);
+  const TransactionsLoadingViewModel({
+    TransactionListFilter? transactionListFilter,
+  }) : super(transactionListFilter: transactionListFilter);
 }
 
 class TransactionsErrorViewModel extends TransactionsViewModel {}
@@ -57,9 +60,9 @@ class TransactionsFetchedViewModel extends TransactionsViewModel {
     required List<Transaction> transactions,
     TransactionListFilter? transactionListFilter,
   }) : super(
-          transactions: transactions,
-          transactionListFilter: transactionListFilter,
-        );
+         transactions: transactions,
+         transactionListFilter: transactionListFilter,
+       );
 }
 
 class UpcomingTransactionsFetchedViewModel extends TransactionsViewModel {
@@ -67,7 +70,7 @@ class UpcomingTransactionsFetchedViewModel extends TransactionsViewModel {
     required List<UpcomingTransaction> upcomingTransactions,
     TransactionListFilter? transactionListFilter,
   }) : super(
-          upcomingTransactions: upcomingTransactions,
-          transactionListFilter: transactionListFilter,
-        );
+         upcomingTransactions: upcomingTransactions,
+         transactionListFilter: transactionListFilter,
+       );
 }

@@ -27,18 +27,23 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
             padding: ClientConfig.getCustomClientUiSettings()
                 .defaultScreenHorizontalPadding,
             onBackButtonPressed: () {
-              Navigator.popUntil(context,
-                  ModalRoute.withName(SettingsDevicePairingScreen.routeName));
-              StoreProvider.of<AppState>(context)
-                  .dispatch(FetchBoundDevicesCommandAction());
+              Navigator.popUntil(
+                context,
+                ModalRoute.withName(SettingsDevicePairingScreen.routeName),
+              );
+              StoreProvider.of<AppState>(
+                context,
+              ).dispatch(FetchBoundDevicesCommandAction());
             },
           ),
           StoreConnector<AppState, DeviceBindingViewModel>(
             onWillChange: ((previousViewModel, viewModel) {
               if (previousViewModel is DeviceBindingLoadingViewModel &&
                   viewModel is DeviceBindingCreatedViewModel) {
-                Navigator.pushNamed(context,
-                    SettingsDevicePairingVerifyPairingScreen.routeName);
+                Navigator.pushNamed(
+                  context,
+                  SettingsDevicePairingVerifyPairingScreen.routeName,
+                );
               }
             }),
             converter: (store) => DeviceBindingPresenter.presentDeviceBinding(
@@ -47,15 +52,11 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
             builder: (context, viewModel) {
               if (viewModel is DeviceBindingLoadingViewModel) {
                 return const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: Center(child: CircularProgressIndicator()),
                 );
               }
               if (viewModel is DeviceBindingErrorViewModel) {
-                return const Center(
-                  child: Text('Error'),
-                );
+                return const Center(child: Text('Error'));
               }
               return Expanded(
                 child: Padding(
@@ -69,16 +70,15 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                         style: ClientConfig.getTextStyleScheme().heading1,
                         textAlign: TextAlign.left,
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       RichText(
                         text: TextSpan(
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegular,
                           children: [
                             const TextSpan(
-                                text: 'Device pairing is necessary for '),
+                              text: 'Device pairing is necessary for ',
+                            ),
                             TextSpan(
                               text:
                                   'actions like viewing card details and changing your PIN, ',
@@ -86,14 +86,13 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                                   .bodyLargeRegularBold,
                             ),
                             const TextSpan(
-                                text:
-                                    'increasing app security with your safety in mind.'),
+                              text:
+                                  'increasing app security with your safety in mind.',
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       Expanded(
                         child: Center(
                           child: SvgPicture(
@@ -121,9 +120,7 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       SizedBox(
                         width: double.infinity,
                         height: 48,
@@ -134,8 +131,9 @@ class SettingsDevicePairingInitialScreen extends StatelessWidget {
                           color: ClientConfig.getColorScheme().tertiary,
                           textColor: ClientConfig.getColorScheme().surface,
                           onPressed: () {
-                            StoreProvider.of<AppState>(context)
-                                .dispatch(CreateDeviceBindingCommandAction());
+                            StoreProvider.of<AppState>(
+                              context,
+                            ).dispatch(CreateDeviceBindingCommandAction());
                           },
                         ),
                       ),

@@ -5,12 +5,12 @@ class GradientProgressIndicator extends StatelessWidget {
   final LinearGradient gradient;
   final Color fillColor;
 
-  const GradientProgressIndicator(
-      {required this.percent,
-      required this.gradient,
-      required this.fillColor,
-      Key? key})
-      : super(key: key);
+  const GradientProgressIndicator({
+    required this.percent,
+    required this.gradient,
+    required this.fillColor,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,8 @@ class GradientProgressIndicator extends StatelessWidget {
                   ? const BorderRadius.all(Radius.circular(4))
                   : const BorderRadius.only(
                       bottomLeft: Radius.circular(4),
-                      topLeft: Radius.circular(4)),
+                      topLeft: Radius.circular(4),
+                    ),
             ),
             child: const SizedBox(height: 8.0),
           ),
@@ -41,7 +42,8 @@ class GradientProgressIndicator extends StatelessWidget {
                   ? const BorderRadius.all(Radius.circular(4))
                   : const BorderRadius.only(
                       bottomRight: Radius.circular(4),
-                      topRight: Radius.circular(4)),
+                      topRight: Radius.circular(4),
+                    ),
             ),
             child: const SizedBox(height: 8.0),
           ),

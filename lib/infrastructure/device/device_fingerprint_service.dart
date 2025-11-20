@@ -7,8 +7,9 @@ import 'package:solarisdemo/models/device_consent.dart';
 import 'package:solarisdemo/models/user.dart';
 import 'package:solarisdemo/services/api_service.dart';
 
-MethodChannel _platform =
-    const MethodChannel('com.thinslices.solarisdemo/native');
+MethodChannel _platform = const MethodChannel(
+  'com.thinslices.solarisdemo/native',
+);
 const getDeviceFingerprintMethod = 'getDeviceFingerprint';
 const getIosDeviceFingerprintMethod = 'getIosDeviceFingerprint';
 
@@ -28,14 +29,12 @@ class DeviceFingerprintService extends ApiService {
         eventType: DeviceConsentEventType.APPROVED,
       );
 
-      final data = await post(
-        'person/device/consent',
-        body: reqBody.toJson(),
-      );
+      final data = await post('person/device/consent', body: reqBody.toJson());
       return CreateDeviceConsentResponse(consentId: data['id']);
     } catch (e) {
       return DeviceFingerprintServiceErrorResponse(
-          errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+        errorType: DeviceFingerprintErrorType.unableToCreateActivity,
+      );
     }
   }
 
@@ -59,7 +58,8 @@ class DeviceFingerprintService extends ApiService {
       return CreateDeviceActivityResponse();
     } catch (e) {
       return DeviceFingerprintServiceErrorResponse(
-          errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+        errorType: DeviceFingerprintErrorType.unableToCreateActivity,
+      );
     }
   }
 
@@ -70,15 +70,13 @@ class DeviceFingerprintService extends ApiService {
 
     try {
       if (defaultTargetPlatform == TargetPlatform.android) {
-        return _platform.invokeMethod(
-          getDeviceFingerprintMethod,
-          {'consentId': consentId},
-        );
+        return _platform.invokeMethod(getDeviceFingerprintMethod, {
+          'consentId': consentId,
+        });
       } else if (defaultTargetPlatform == TargetPlatform.iOS) {
-        return await _platform.invokeMethod(
-          getIosDeviceFingerprintMethod,
-          {'consentId': consentId},
-        );
+        return await _platform.invokeMethod(getIosDeviceFingerprintMethod, {
+          'consentId': consentId,
+        });
       }
 
       return null;

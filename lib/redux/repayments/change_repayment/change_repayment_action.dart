@@ -15,9 +15,7 @@ class UpdateCardApplicationCommandAction {
 class UpdateCardApplicationEventAction {
   final CreditCardApplication creditCardApplication;
 
-  UpdateCardApplicationEventAction({
-    required this.creditCardApplication,
-  });
+  UpdateCardApplicationEventAction({required this.creditCardApplication});
 }
 
 class GetCardApplicationCommandAction {}

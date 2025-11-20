@@ -40,8 +40,9 @@ void main() {
 
   test("When documents are fetched, it should return fetched view model", () {
     // given
-    final documentsState =
-        DocumentsFetchedState(documents: const [document1, document2]);
+    final documentsState = DocumentsFetchedState(
+      documents: const [document1, document2],
+    );
     final downloadDocumentState = DownloadDocumentInitialState();
     final confirmDocumentsState = ConfirmDocumentsInitialState();
 
@@ -54,153 +55,173 @@ void main() {
 
     // then
     expect(viewModel, isA<DocumentsFetchedViewModel>());
-    expect((viewModel as DocumentsFetchedViewModel).documents,
-        [document1, document2]);
+    expect((viewModel as DocumentsFetchedViewModel).documents, [
+      document1,
+      document2,
+    ]);
   });
 
-  test("When documents have failed to fetch, it should return error view model",
-      () {
-    // given
-    final documentsState =
-        DocumentsErrorState(errorType: DocumentsErrorType.unknown);
-    final downloadDocumentState = DownloadDocumentInitialState();
-    final confirmDocumentsState = ConfirmDocumentsInitialState();
+  test(
+    "When documents have failed to fetch, it should return error view model",
+    () {
+      // given
+      final documentsState = DocumentsErrorState(
+        errorType: DocumentsErrorType.unknown,
+      );
+      final downloadDocumentState = DownloadDocumentInitialState();
+      final confirmDocumentsState = ConfirmDocumentsInitialState();
 
-    // when
-    final viewModel = DocumentsPresenter.present(
-      documentsState: documentsState,
-      downloadDocumentState: downloadDocumentState,
-      confirmDocumentsState: confirmDocumentsState,
-    );
+      // when
+      final viewModel = DocumentsPresenter.present(
+        documentsState: documentsState,
+        downloadDocumentState: downloadDocumentState,
+        confirmDocumentsState: confirmDocumentsState,
+      );
 
-    // then
-    expect(viewModel, isA<DocumentsErrorViewModel>());
-  });
+      // then
+      expect(viewModel, isA<DocumentsErrorViewModel>());
+    },
+  );
 
   group("Downloading", () {
     test(
-        "When a document is downloading, it should return downloading view model",
-        () {
-      // given
-      final documentsState =
-          DocumentsFetchedState(documents: const [document1, document2]);
-      final downloadDocumentState =
-          DocumentDownloadingState(document: document1);
-      final confirmDocumentsState = ConfirmDocumentsInitialState();
+      "When a document is downloading, it should return downloading view model",
+      () {
+        // given
+        final documentsState = DocumentsFetchedState(
+          documents: const [document1, document2],
+        );
+        final downloadDocumentState = DocumentDownloadingState(
+          document: document1,
+        );
+        final confirmDocumentsState = ConfirmDocumentsInitialState();
 
-      // when
-      final viewModel = DocumentsPresenter.present(
-        documentsState: documentsState,
-        downloadDocumentState: downloadDocumentState,
-        confirmDocumentsState: confirmDocumentsState,
-      );
+        // when
+        final viewModel = DocumentsPresenter.present(
+          documentsState: documentsState,
+          downloadDocumentState: downloadDocumentState,
+          confirmDocumentsState: confirmDocumentsState,
+        );
 
-      // then
-      expect(viewModel, isA<DocumentDownloadingViewModel>());
-    });
-
-    test(
-        "When a document has finished downloading, it should return documents fetched view model",
-        () {
-      // given
-      final documentsState =
-          DocumentsFetchedState(documents: const [document1, document2]);
-      final downloadDocumentState = DocumentDownloadedState();
-      final confirmDocumentsState = ConfirmDocumentsInitialState();
-
-      // when
-      final viewModel = DocumentsPresenter.present(
-        documentsState: documentsState,
-        downloadDocumentState: downloadDocumentState,
-        confirmDocumentsState: confirmDocumentsState,
-      );
-
-      // then
-      expect(viewModel, isA<DocumentsFetchedViewModel>());
-    });
+        // then
+        expect(viewModel, isA<DocumentDownloadingViewModel>());
+      },
+    );
 
     test(
-        "When a document has failed to download, it should return documents fetched view model",
-        () {
-      // given
-      final documentsState =
-          DocumentsFetchedState(documents: const [document1, document2]);
-      final downloadDocumentState =
-          DocumentDownloadErrorState(errorType: DocumentsErrorType.unknown);
-      final confirmDocumentsState = ConfirmDocumentsInitialState();
+      "When a document has finished downloading, it should return documents fetched view model",
+      () {
+        // given
+        final documentsState = DocumentsFetchedState(
+          documents: const [document1, document2],
+        );
+        final downloadDocumentState = DocumentDownloadedState();
+        final confirmDocumentsState = ConfirmDocumentsInitialState();
 
-      // when
-      final viewModel = DocumentsPresenter.present(
-        documentsState: documentsState,
-        downloadDocumentState: downloadDocumentState,
-        confirmDocumentsState: confirmDocumentsState,
-      );
+        // when
+        final viewModel = DocumentsPresenter.present(
+          documentsState: documentsState,
+          downloadDocumentState: downloadDocumentState,
+          confirmDocumentsState: confirmDocumentsState,
+        );
 
-      // then
-      expect(viewModel, isA<DocumentsFetchedViewModel>());
-    });
+        // then
+        expect(viewModel, isA<DocumentsFetchedViewModel>());
+      },
+    );
+
+    test(
+      "When a document has failed to download, it should return documents fetched view model",
+      () {
+        // given
+        final documentsState = DocumentsFetchedState(
+          documents: const [document1, document2],
+        );
+        final downloadDocumentState = DocumentDownloadErrorState(
+          errorType: DocumentsErrorType.unknown,
+        );
+        final confirmDocumentsState = ConfirmDocumentsInitialState();
+
+        // when
+        final viewModel = DocumentsPresenter.present(
+          documentsState: documentsState,
+          downloadDocumentState: downloadDocumentState,
+          confirmDocumentsState: confirmDocumentsState,
+        );
+
+        // then
+        expect(viewModel, isA<DocumentsFetchedViewModel>());
+      },
+    );
   });
 
   group("Confirming", () {
     test(
-        "When documents are confirming, it should return confirming view model",
-        () {
-      // given
-      final documentsState =
-          DocumentsFetchedState(documents: const [document1, document2]);
-      final downloadDocumentState = DownloadDocumentInitialState();
-      final confirmDocumentsState = ConfirmDocumentsLoadingState();
+      "When documents are confirming, it should return confirming view model",
+      () {
+        // given
+        final documentsState = DocumentsFetchedState(
+          documents: const [document1, document2],
+        );
+        final downloadDocumentState = DownloadDocumentInitialState();
+        final confirmDocumentsState = ConfirmDocumentsLoadingState();
 
-      // when
-      final viewModel = DocumentsPresenter.present(
-        documentsState: documentsState,
-        downloadDocumentState: downloadDocumentState,
-        confirmDocumentsState: confirmDocumentsState,
-      );
+        // when
+        final viewModel = DocumentsPresenter.present(
+          documentsState: documentsState,
+          downloadDocumentState: downloadDocumentState,
+          confirmDocumentsState: confirmDocumentsState,
+        );
 
-      // then
-      expect(viewModel, isA<DocumentsConfirmingViewModel>());
-    });
-
-    test(
-        "When documents are confirmed, it should return documents confirmed view model",
-        () {
-      // given
-      final documentsState =
-          DocumentsFetchedState(documents: const [document1, document2]);
-      final downloadDocumentState = DownloadDocumentInitialState();
-      final confirmDocumentsState = ConfirmedDocumentsState();
-
-      // when
-      final viewModel = DocumentsPresenter.present(
-        documentsState: documentsState,
-        downloadDocumentState: downloadDocumentState,
-        confirmDocumentsState: confirmDocumentsState,
-      );
-
-      // then
-      expect(viewModel, isA<DocumentsConfirmedViewModel>());
-    });
+        // then
+        expect(viewModel, isA<DocumentsConfirmingViewModel>());
+      },
+    );
 
     test(
-        "When documents failed confirming, it should return confirm error view model",
-        () {
-      // given
-      final documentsState =
-          DocumentsFetchedState(documents: const [document1, document2]);
-      final downloadDocumentState = DownloadDocumentInitialState();
-      final confirmDocumentsState =
-          ConfirmDocumentsErrorState(errorType: DocumentsErrorType.unknown);
+      "When documents are confirmed, it should return documents confirmed view model",
+      () {
+        // given
+        final documentsState = DocumentsFetchedState(
+          documents: const [document1, document2],
+        );
+        final downloadDocumentState = DownloadDocumentInitialState();
+        final confirmDocumentsState = ConfirmedDocumentsState();
 
-      // when
-      final viewModel = DocumentsPresenter.present(
-        documentsState: documentsState,
-        downloadDocumentState: downloadDocumentState,
-        confirmDocumentsState: confirmDocumentsState,
-      );
+        // when
+        final viewModel = DocumentsPresenter.present(
+          documentsState: documentsState,
+          downloadDocumentState: downloadDocumentState,
+          confirmDocumentsState: confirmDocumentsState,
+        );
 
-      // then
-      expect(viewModel, isA<DocumentsConfirmErrorViewModel>());
-    });
+        // then
+        expect(viewModel, isA<DocumentsConfirmedViewModel>());
+      },
+    );
+
+    test(
+      "When documents failed confirming, it should return confirm error view model",
+      () {
+        // given
+        final documentsState = DocumentsFetchedState(
+          documents: const [document1, document2],
+        );
+        final downloadDocumentState = DownloadDocumentInitialState();
+        final confirmDocumentsState = ConfirmDocumentsErrorState(
+          errorType: DocumentsErrorType.unknown,
+        );
+
+        // when
+        final viewModel = DocumentsPresenter.present(
+          documentsState: documentsState,
+          downloadDocumentState: downloadDocumentState,
+          confirmDocumentsState: confirmDocumentsState,
+        );
+
+        // then
+        expect(viewModel, isA<DocumentsConfirmErrorViewModel>());
+      },
+    );
   });
 }

@@ -18,45 +18,46 @@ class SettingsSecurityScreen extends StatelessWidget {
     final scrollController = ScrollController();
 
     return ScreenScaffold(
-        body: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        AppToolbar(
-          title: "Security",
-          scrollController: scrollController,
-          padding: ClientConfig.getCustomClientUiSettings()
-              .defaultScreenHorizontalPadding,
-        ),
-        Expanded(
-          child: ScrollableScreenContainer(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ScreenTitle(
-                  "Security",
-                  padding: ClientConfig.getCustomClientUiSettings()
-                      .defaultScreenHorizontalPadding,
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                IvoryListTile(
-                  leftIcon: Icons.phonelink_ring,
-                  title: 'Device pairing',
-                  rightIcon: Icons.arrow_forward_ios,
-                  onTap: () => Navigator.pushNamed(
-                      context, SettingsDevicePairingScreen.routeName),
-                ),
-                const IvoryListTile(
-                  leftIcon: Icons.lock_outline,
-                  title: 'Change password',
-                  rightIcon: Icons.arrow_forward_ios,
-                )
-              ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppToolbar(
+            title: "Security",
+            scrollController: scrollController,
+            padding: ClientConfig.getCustomClientUiSettings()
+                .defaultScreenHorizontalPadding,
+          ),
+          Expanded(
+            child: ScrollableScreenContainer(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ScreenTitle(
+                    "Security",
+                    padding: ClientConfig.getCustomClientUiSettings()
+                        .defaultScreenHorizontalPadding,
+                  ),
+                  const SizedBox(height: 24),
+                  IvoryListTile(
+                    leftIcon: Icons.phonelink_ring,
+                    title: 'Device pairing',
+                    rightIcon: Icons.arrow_forward_ios,
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      SettingsDevicePairingScreen.routeName,
+                    ),
+                  ),
+                  const IvoryListTile(
+                    leftIcon: Icons.lock_outline,
+                    title: 'Change password',
+                    rightIcon: Icons.arrow_forward_ios,
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }

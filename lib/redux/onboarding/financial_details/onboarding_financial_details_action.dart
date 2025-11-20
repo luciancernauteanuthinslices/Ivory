@@ -72,7 +72,5 @@ class CreateCreditCardApplicationSuccessEventAction {}
 class CreateCreditCardApplicationFailedEventAction {
   final FinancialDetailsErrorType errorType;
 
-  CreateCreditCardApplicationFailedEventAction({
-    required this.errorType,
-  });
+  CreateCreditCardApplicationFailedEventAction({required this.errorType});
 }

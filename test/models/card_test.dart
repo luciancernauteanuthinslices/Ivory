@@ -13,8 +13,8 @@ void main() {
           "line_1": "John Doe",
           "line_2": null,
           "masked_pan": "**** **** **** 1234",
-          "formatted_expiration_date": "12/25"
-        }
+          "formatted_expiration_date": "12/25",
+        },
       };
 
       // Test fromJson
@@ -59,8 +59,8 @@ void main() {
         "account_id": "account_123",
         "representation": {
           "line_1": "John Doe",
-          "formatted_expiration_date": "12/25"
-        }
+          "formatted_expiration_date": "12/25",
+        },
       };
 
       final card = BankCard.fromJson(jsonData);
@@ -79,7 +79,7 @@ void main() {
         "account_id": "account_123",
         "status": BankCardStatus.ACTIVE.name,
         "type": BankCardType.VIRTUAL_VISA_CREDIT.name,
-        "representation": null
+        "representation": null,
       };
 
       final card = BankCard.fromJson(jsonData);
@@ -109,7 +109,7 @@ void main() {
     test('fromJson with missing fields', () {
       final Map<String, dynamic> jsonData = {
         "line_1": "John Doe",
-        "masked_pan": "**** **** **** 1234"
+        "masked_pan": "**** **** **** 1234",
       };
 
       final representation = BankCardRepresentation.fromJson(jsonData);
@@ -122,7 +122,7 @@ void main() {
       final Map<String, dynamic> jsonData = {
         "line_1": "",
         "masked_pan": "",
-        "formatted_expiration_date": ""
+        "formatted_expiration_date": "",
       };
 
       final representation = BankCardRepresentation.fromJson(jsonData);

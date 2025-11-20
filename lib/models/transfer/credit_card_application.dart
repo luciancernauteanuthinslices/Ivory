@@ -80,8 +80,8 @@ class CreditCardApplication {
         inDunning: json["in_dunning"] ?? false,
         repaymentTypeSwitchAvailableDate:
             json["repayment_type_switch_available_date"] != null
-                ? DateTime.parse(json["repayment_type_switch_available_date"])
-                : null,
+            ? DateTime.parse(json["repayment_type_switch_available_date"])
+            : null,
         createdAt: json["created_at"] != null
             ? DateTime.parse(json["created_at"])
             : null,
@@ -89,42 +89,42 @@ class CreditCardApplication {
         interestStoringAccountId: json["interest_storing_account_id"] ?? '',
         latestRepaymentTypeSwitchDate:
             json["latest_repayment_type_switch_date"] != null
-                ? DateTime.parse(json["latest_repayment_type_switch_date"])
-                : null,
+            ? DateTime.parse(json["latest_repayment_type_switch_date"])
+            : null,
         qesAt: json["qes_at"] != null ? DateTime.parse(json["qes_at"]) : null,
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "external_customer_id": externalCustomerId,
-        "customer_id": customerId,
-        "account_id": accountId,
-        "account_iban": accountIban,
-        "reference_account_id": referenceAccountId,
-        "status": status,
-        "product_type": productType,
-        "billing_start_date":
-            "${billingStartDate.year.toString().padLeft(4, '0')}-${billingStartDate.month.toString().padLeft(2, '0')}-${billingStartDate.day.toString().padLeft(2, '0')}",
-        "billing_end_date":
-            "${billingEndDate.year.toString().padLeft(4, '0')}-${billingEndDate.month.toString().padLeft(2, '0')}-${billingEndDate.day.toString().padLeft(2, '0')}",
-        "approved_limit": approvedLimit?.toJson(),
-        "requested_limit": requestedLimit?.toJson(),
-        "current_limit": currentLimit?.toJson(),
-        "decline_reasons": declineReasons,
-        "repayment_options": repaymentOptions?.toJson(),
-        "statement_with_details": statementWithDetails ?? false,
-        "in_dunning": inDunning ?? false,
-        "repayment_type_switch_available_date":
-            "${repaymentTypeSwitchAvailableDate?.year.toString().padLeft(4, '0')}-${repaymentTypeSwitchAvailableDate?.month.toString().padLeft(2, '0')}-${repaymentTypeSwitchAvailableDate?.day.toString().padLeft(2, '0')}",
-        "created_at":
-            "${createdAt?.year.toString().padLeft(4, '0')}-${createdAt?.month.toString().padLeft(2, '0')}-${createdAt?.day.toString().padLeft(2, '0')}",
-        "default_interest_account_id": defaultInterestAccountId,
-        "interest_storing_account_id": interestStoringAccountId,
-        "latest_repayment_type_switch_date":
-            "${latestRepaymentTypeSwitchDate?.year.toString().padLeft(4, '0')}-${latestRepaymentTypeSwitchDate?.month.toString().padLeft(2, '0')}-${latestRepaymentTypeSwitchDate?.day.toString().padLeft(2, '0')}",
-        "qes_at":
-            "${qesAt?.year.toString().padLeft(4, '0')}-${qesAt?.month.toString().padLeft(2, '0')}-${qesAt?.day.toString().padLeft(2, '0')}",
-      };
+    "id": id,
+    "external_customer_id": externalCustomerId,
+    "customer_id": customerId,
+    "account_id": accountId,
+    "account_iban": accountIban,
+    "reference_account_id": referenceAccountId,
+    "status": status,
+    "product_type": productType,
+    "billing_start_date":
+        "${billingStartDate.year.toString().padLeft(4, '0')}-${billingStartDate.month.toString().padLeft(2, '0')}-${billingStartDate.day.toString().padLeft(2, '0')}",
+    "billing_end_date":
+        "${billingEndDate.year.toString().padLeft(4, '0')}-${billingEndDate.month.toString().padLeft(2, '0')}-${billingEndDate.day.toString().padLeft(2, '0')}",
+    "approved_limit": approvedLimit?.toJson(),
+    "requested_limit": requestedLimit?.toJson(),
+    "current_limit": currentLimit?.toJson(),
+    "decline_reasons": declineReasons,
+    "repayment_options": repaymentOptions?.toJson(),
+    "statement_with_details": statementWithDetails ?? false,
+    "in_dunning": inDunning ?? false,
+    "repayment_type_switch_available_date":
+        "${repaymentTypeSwitchAvailableDate?.year.toString().padLeft(4, '0')}-${repaymentTypeSwitchAvailableDate?.month.toString().padLeft(2, '0')}-${repaymentTypeSwitchAvailableDate?.day.toString().padLeft(2, '0')}",
+    "created_at":
+        "${createdAt?.year.toString().padLeft(4, '0')}-${createdAt?.month.toString().padLeft(2, '0')}-${createdAt?.day.toString().padLeft(2, '0')}",
+    "default_interest_account_id": defaultInterestAccountId,
+    "interest_storing_account_id": interestStoringAccountId,
+    "latest_repayment_type_switch_date":
+        "${latestRepaymentTypeSwitchDate?.year.toString().padLeft(4, '0')}-${latestRepaymentTypeSwitchDate?.month.toString().padLeft(2, '0')}-${latestRepaymentTypeSwitchDate?.day.toString().padLeft(2, '0')}",
+    "qes_at":
+        "${qesAt?.year.toString().padLeft(4, '0')}-${qesAt?.month.toString().padLeft(2, '0')}-${qesAt?.day.toString().padLeft(2, '0')}",
+  };
 }
 
 class ApprovedLimit {
@@ -139,16 +139,16 @@ class ApprovedLimit {
   });
 
   factory ApprovedLimit.fromJson(Map<String, dynamic>? json) => ApprovedLimit(
-        value: json?["value"] ?? 0,
-        unit: unitValues.map[json?["unit"]] ?? Unit.CENTS,
-        currency: currencyValues.map[json?["currency"]] ?? Currency.EUR,
-      );
+    value: json?["value"] ?? 0,
+    unit: unitValues.map[json?["unit"]] ?? Unit.CENTS,
+    currency: currencyValues.map[json?["currency"]] ?? Currency.EUR,
+  );
 
   Map<String, dynamic> toJson() => {
-        "value": value,
-        "unit": unitValues.reverse[unit] ?? 'cents',
-        "currency": currencyValues.reverse[currency] ?? 'EUR',
-      };
+    "value": value,
+    "unit": unitValues.reverse[unit] ?? 'cents',
+    "currency": currencyValues.reverse[currency] ?? 'EUR',
+  };
 }
 
 enum Currency { EUR }
@@ -195,10 +195,12 @@ class RepaymentOptions {
         upcomingBillingCycle: json["upcoming_billing_cycle"] ?? '',
         currentBillingCycle: json["current_billing_cycle"] ?? '',
         gracePeriodInDays: json["grace_period_in_days"] ?? 0,
-        minimumAmountLowerThreshold:
-            ApprovedLimit.fromJson(json["minimum_amount_lower_threshold"]),
-        minimumAmountUpperThreshold:
-            ApprovedLimit.fromJson(json["minimum_amount_upper_threshold"]),
+        minimumAmountLowerThreshold: ApprovedLimit.fromJson(
+          json["minimum_amount_lower_threshold"],
+        ),
+        minimumAmountUpperThreshold: ApprovedLimit.fromJson(
+          json["minimum_amount_upper_threshold"],
+        ),
         minimumPercentageLowerThreshold:
             json["minimum_percentage_lower_threshold"] ?? 0,
         minimumPercentageUpperThreshold:
@@ -206,18 +208,18 @@ class RepaymentOptions {
       );
 
   Map<String, dynamic> toJson() => {
-        "upcoming_type": upcomingType,
-        "minimum_amount": minimumAmount.toJson(),
-        "minimum_percentage": minimumPercentage,
-        "current_type": currentType,
-        "upcoming_billing_cycle": upcomingBillingCycle,
-        "current_billing_cycle": currentBillingCycle,
-        "grace_period_in_days": gracePeriodInDays,
-        "minimum_amount_lower_threshold": minimumAmountLowerThreshold.toJson(),
-        "minimum_amount_upper_threshold": minimumAmountUpperThreshold.toJson(),
-        "minimum_percentage_lower_threshold": minimumPercentageLowerThreshold,
-        "minimum_percentage_upper_threshold": minimumPercentageUpperThreshold,
-      };
+    "upcoming_type": upcomingType,
+    "minimum_amount": minimumAmount.toJson(),
+    "minimum_percentage": minimumPercentage,
+    "current_type": currentType,
+    "upcoming_billing_cycle": upcomingBillingCycle,
+    "current_billing_cycle": currentBillingCycle,
+    "grace_period_in_days": gracePeriodInDays,
+    "minimum_amount_lower_threshold": minimumAmountLowerThreshold.toJson(),
+    "minimum_amount_upper_threshold": minimumAmountUpperThreshold.toJson(),
+    "minimum_percentage_lower_threshold": minimumPercentageLowerThreshold,
+    "minimum_percentage_upper_threshold": minimumPercentageUpperThreshold,
+  };
 }
 
 class EnumValues<T> {

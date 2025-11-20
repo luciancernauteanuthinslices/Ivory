@@ -49,9 +49,7 @@ class _TransactionDatePickerPopupState
             }
           },
         ),
-        const SizedBox(
-          height: 24,
-        ),
+        const SizedBox(height: 24),
         SizedBox(
           height: 48,
           width: double.infinity,
@@ -60,13 +58,15 @@ class _TransactionDatePickerPopupState
               backgroundColor: MaterialStateProperty.resolveWith((states) {
                 return ClientConfig.getColorScheme().tertiary;
               }),
-              shape: MaterialStateProperty.all(const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(4)))),
+              shape: MaterialStateProperty.all(
+                const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                ),
+              ),
             ),
             child: Text(
               "Apply dates",
-              style: ClientConfig.getTextStyleScheme()
-                  .bodyLargeRegularBold
+              style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
                   .copyWith(color: ClientConfig.getColorScheme().surface),
             ),
             onPressed: () {
@@ -74,7 +74,7 @@ class _TransactionDatePickerPopupState
               Navigator.of(context).pop();
             },
           ),
-        )
+        ),
       ],
     );
   }

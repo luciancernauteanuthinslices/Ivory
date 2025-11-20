@@ -17,9 +17,10 @@ class BankCardConfirmPinConfirmScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
     final GlobalKey<_ConfirmPinBodyState> confirmPinBodyKey =
         GlobalKey<_ConfirmPinBodyState>();
 
@@ -29,9 +30,9 @@ class BankCardConfirmPinConfirmScreen extends StatelessWidget {
       onDidChange: (previousViewModel, viewModel) {
         if (previousViewModel is BankCardLoadingViewModel &&
             viewModel is BankCardPinConfirmedViewModel) {
-          Navigator.of(context).pushNamed(
-            BankCardChangePinSuccessScreen.routeName,
-          );
+          Navigator.of(
+            context,
+          ).pushNamed(BankCardChangePinSuccessScreen.routeName);
         }
       },
       converter: (store) {
@@ -66,11 +67,11 @@ class BankCardConfirmPinConfirmScreen extends StatelessWidget {
                           ),
                           TextSpan(
                             text: " out of 2",
-                            style: ClientConfig.getTextStyleScheme()
-                                .heading4
+                            style: ClientConfig.getTextStyleScheme().heading4
                                 .copyWith(
-                                    color: ClientConfig.getCustomColors()
-                                        .neutral700),
+                                  color:
+                                      ClientConfig.getCustomColors().neutral700,
+                                ),
                           ),
                         ],
                       ),
@@ -102,11 +103,7 @@ class BankCardConfirmPinConfirmScreen extends StatelessWidget {
         return const ScreenScaffold(
           body: Column(
             children: [
-              Expanded(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
+              Expanded(child: Center(child: CircularProgressIndicator())),
             ],
           ),
         );
@@ -150,11 +147,9 @@ class _ConfirmPinBodyState extends State<ConfirmPinBody> {
   }
 
   void resetErrorNotifiers() {
-    setState(
-      () {
-        hasError = false;
-      },
-    );
+    setState(() {
+      hasError = false;
+    });
     widget.matchingPinErrorNotifier.value = false;
   }
 
@@ -176,42 +171,35 @@ class _ConfirmPinBodyState extends State<ConfirmPinBody> {
             "Confirm PIN",
             style: ClientConfig.getTextStyleScheme().heading2,
           ),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Text(
             "Confirm your PIN by typing it again.",
             style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
           ),
-          const SizedBox(
-            height: 32,
-          ),
+          const SizedBox(height: 32),
           GestureDetector(
             onTap: () {
               _focusPin.requestFocus();
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                4,
-                (index) {
-                  return Container(
-                    width: 10,
-                    height: 10,
-                    margin: const EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: hasError
-                          ? const Color(0xffE61F27)
-                          : isCompleted == true
-                              ? ClientConfig.getCustomColors().success
-                              : index >= _newPIN.length
-                                  ? ClientConfig.getCustomColors().neutral500
-                                  : ClientConfig.getCustomColors().neutral900,
-                    ),
-                  );
-                },
-              ),
+              children: List.generate(4, (index) {
+                return Container(
+                  width: 10,
+                  height: 10,
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: hasError
+                        ? const Color(0xffE61F27)
+                        : isCompleted == true
+                        ? ClientConfig.getCustomColors().success
+                        : index >= _newPIN.length
+                        ? ClientConfig.getCustomColors().neutral500
+                        : ClientConfig.getCustomColors().neutral900,
+                  ),
+                );
+              }),
             ),
           ),
           SizedBox(
@@ -221,50 +209,36 @@ class _ConfirmPinBodyState extends State<ConfirmPinBody> {
               autofocus: true,
               controller: _controller,
               focusNode: _focusPin,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration.collapsed(
-                hintText: 'PIN',
-              ),
-              style: TextStyle(
-                color: Colors.grey.withOpacity(0),
-              ),
+              decoration: const InputDecoration.collapsed(hintText: 'PIN'),
+              style: TextStyle(color: Colors.grey.withOpacity(0)),
               cursorColor: Colors.transparent,
               cursorRadius: const Radius.circular(0),
               cursorWidth: 0,
               onChanged: (text) {
                 if (text.length <= 4) {
-                  setState(
-                    () {
-                      _newPIN = text;
-                      hasError = !isPinMatching(widget.viewModel.pin!, _newPIN);
-                      if (hasError && text.length == 4) {
-                        Future.delayed(
-                          const Duration(seconds: 2),
-                          () {
-                            resetErrorNotifiers();
-                            clearPinAndResetFocus();
-                          },
+                  setState(() {
+                    _newPIN = text;
+                    hasError = !isPinMatching(widget.viewModel.pin!, _newPIN);
+                    if (hasError && text.length == 4) {
+                      Future.delayed(const Duration(seconds: 2), () {
+                        resetErrorNotifiers();
+                        clearPinAndResetFocus();
+                      });
+                    } else if (!hasError && text.length == 4) {
+                      isCompleted = true;
+                      Future.delayed(const Duration(milliseconds: 500), () {
+                        _focusPin.unfocus();
+                        StoreProvider.of<AppState>(context).dispatch(
+                          BankCardConfirmPinCommandAction(
+                            pin: _newPIN,
+                            bankCard: widget.viewModel.bankCard!,
+                          ),
                         );
-                      } else if (!hasError && text.length == 4) {
-                        isCompleted = true;
-                        Future.delayed(
-                          const Duration(milliseconds: 500),
-                          () {
-                            _focusPin.unfocus();
-                            StoreProvider.of<AppState>(context).dispatch(
-                              BankCardConfirmPinCommandAction(
-                                pin: _newPIN,
-                                bankCard: widget.viewModel.bankCard!,
-                              ),
-                            );
-                          },
-                        );
-                      }
-                    },
-                  );
+                      });
+                    }
+                  });
                 }
               },
             ),
@@ -278,10 +252,8 @@ class _ConfirmPinBodyState extends State<ConfirmPinBody> {
 class ConfirmPinChecks extends StatelessWidget {
   final ValueNotifier<bool> matchingPinErrorNotifier;
 
-  const ConfirmPinChecks({
-    Key? key,
-    required this.matchingPinErrorNotifier,
-  }) : super(key: key);
+  const ConfirmPinChecks({Key? key, required this.matchingPinErrorNotifier})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -292,32 +264,31 @@ class ConfirmPinChecks extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ValueListenableBuilder<bool>(
-              valueListenable: matchingPinErrorNotifier,
-              builder: (context, hasError, child) {
-                return Row(
-                  children: [
-                    Icon(
-                      Icons.check,
-                      size: 24,
-                      color: matchingPinErrorNotifier.value
-                          ? const Color(0xffE61F27)
-                          : ClientConfig.getCustomColors().neutral700,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      "Your PIN should match",
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodyLargeRegular
-                          .copyWith(
-                              color: matchingPinErrorNotifier.value
-                                  ? const Color(0xffE61F27)
-                                  : ClientConfig.getCustomColors().neutral700),
-                    ),
-                  ],
-                );
-              }),
+            valueListenable: matchingPinErrorNotifier,
+            builder: (context, hasError, child) {
+              return Row(
+                children: [
+                  Icon(
+                    Icons.check,
+                    size: 24,
+                    color: matchingPinErrorNotifier.value
+                        ? const Color(0xffE61F27)
+                        : ClientConfig.getCustomColors().neutral700,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    "Your PIN should match",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular
+                        .copyWith(
+                          color: matchingPinErrorNotifier.value
+                              ? const Color(0xffE61F27)
+                              : ClientConfig.getCustomColors().neutral700,
+                        ),
+                  ),
+                ],
+              );
+            },
+          ),
         ],
       ),
     );

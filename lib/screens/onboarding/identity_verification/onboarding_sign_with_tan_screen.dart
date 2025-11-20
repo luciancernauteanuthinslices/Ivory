@@ -94,8 +94,9 @@ class _OnboardingSignWithTanScreenState
                     _newCodeCountdownController.restart();
                     Navigator.pop(context);
 
-                    StoreProvider.of<AppState>(context).dispatch(
-                        AuthorizeIdentificationSigningCommandAction());
+                    StoreProvider.of<AppState>(
+                      context,
+                    ).dispatch(AuthorizeIdentificationSigningCommandAction());
                   },
                 ),
                 const SizedBox(height: 16),
@@ -106,7 +107,10 @@ class _OnboardingSignWithTanScreenState
 
         if (newViewModel.isTanConfirmed == true) {
           Navigator.pushNamedAndRemoveUntil(
-              context, OnboardingScoringWaitingScreen.routeName, (_) => false);
+            context,
+            OnboardingScoringWaitingScreen.routeName,
+            (_) => false,
+          );
         }
       },
       distinct: true,
@@ -132,9 +136,11 @@ class _OnboardingSignWithTanScreenState
                       Row(
                         children: [
                           Expanded(
-                              child: Text('Sign the contracts with a TAN code',
-                                  style: ClientConfig.getTextStyleScheme()
-                                      .heading2)),
+                            child: Text(
+                              'Sign the contracts with a TAN code',
+                              style: ClientConfig.getTextStyleScheme().heading2,
+                            ),
+                          ),
                           const SizedBox(width: 24),
                           SizedBox(
                             width: 70,
@@ -163,9 +169,11 @@ class _OnboardingSignWithTanScreenState
                                           _newCodeCountdownController.restart();
                                           Navigator.pop(context);
 
-                                          StoreProvider.of<AppState>(context)
-                                              .dispatch(
-                                                  AuthorizeIdentificationSigningCommandAction());
+                                          StoreProvider.of<AppState>(
+                                            context,
+                                          ).dispatch(
+                                            AuthorizeIdentificationSigningCommandAction(),
+                                          );
                                         },
                                       ),
                                       const SizedBox(height: 16),
@@ -185,22 +193,26 @@ class _OnboardingSignWithTanScreenState
                           text: 'Please enter below the ',
                           children: [
                             TextSpan(
-                                text: '6-digit code',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '6-digit code',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(text: ' we sent to '),
                             TextSpan(
-                                text: '+49 (30) 4587 8734',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '+49 (30) 4587 8734',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(text: '. You have '),
                             TextSpan(
-                                text: '5 minutes',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '5 minutes',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(
-                                text:
-                                    ' to complete this step. If you are unable to enter the code within this time, you can retry and you will receive a new TAN code. The timer will be reset.'),
+                              text:
+                                  ' to complete this step. If you are unable to enter the code within this time, you can retry and you will receive a new TAN code. The timer will be reset.',
+                            ),
                           ],
                         ),
                       ),
@@ -223,46 +235,60 @@ class _OnboardingSignWithTanScreenState
                           width: double.infinity,
                           height: 48,
                           alignment: Alignment.center,
-                          child: (_newCodeCountdownController
-                                      .remainingDuration.inSeconds >
+                          child:
+                              (_newCodeCountdownController
+                                      .remainingDuration
+                                      .inSeconds >
                                   0)
                               ? Text(
                                   'Request new code in 0:${_newCodeCountdownController.formattedRemainingSeconds}',
                                   style: ClientConfig.getTextStyleScheme()
                                       .labelMedium
                                       .copyWith(
-                                          color: ClientConfig.getCustomColors()
-                                              .neutral500))
-                              : Text.rich(TextSpan(
-                                  text: 'Request new code',
-                                  style: ClientConfig.getTextStyleScheme()
-                                      .labelMedium
-                                      .copyWith(
+                                        color: ClientConfig.getCustomColors()
+                                            .neutral500,
+                                      ),
+                                )
+                              : Text.rich(
+                                  TextSpan(
+                                    text: 'Request new code',
+                                    style: ClientConfig.getTextStyleScheme()
+                                        .labelMedium
+                                        .copyWith(
                                           color: ClientConfig.getColorScheme()
-                                              .secondary),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      _tanController.clear();
-                                      _newCodeCountdownController.restart();
+                                              .secondary,
+                                        ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        _tanController.clear();
+                                        _newCodeCountdownController.restart();
 
-                                      StoreProvider.of<AppState>(context).dispatch(
-                                          AuthorizeIdentificationSigningCommandAction());
-                                    })),
+                                        StoreProvider.of<AppState>(
+                                          context,
+                                        ).dispatch(
+                                          AuthorizeIdentificationSigningCommandAction(),
+                                        );
+                                      },
+                                  ),
+                                ),
                         ),
                       ),
                       const SizedBox(height: 16),
                       ListenableBuilder(
                         listenable: _continueButtonController,
                         builder: (context, child) => PrimaryButton(
-                            text: 'Confirm and sign',
-                            isLoading: viewModel.isLoading,
-                            onPressed: _continueButtonController.isEnabled
-                                ? () {
-                                    StoreProvider.of<AppState>(context)
-                                        .dispatch(SignWithTanCommandAction(
-                                            tan: _tanController.text));
-                                  }
-                                : null),
+                          text: 'Confirm and sign',
+                          isLoading: viewModel.isLoading,
+                          onPressed: _continueButtonController.isEnabled
+                              ? () {
+                                  StoreProvider.of<AppState>(context).dispatch(
+                                    SignWithTanCommandAction(
+                                      tan: _tanController.text,
+                                    ),
+                                  );
+                                }
+                              : null,
+                        ),
                       ),
                       const SizedBox(height: 16),
                     ],

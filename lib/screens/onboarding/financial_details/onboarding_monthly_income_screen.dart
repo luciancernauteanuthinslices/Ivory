@@ -37,7 +37,8 @@ class _OnboardingMonthlyIncomeScreenState
       TextEditingController();
 
   void onChange() {
-    final hasValues = _monthlyIncomeController.text.isNotEmpty &&
+    final hasValues =
+        _monthlyIncomeController.text.isNotEmpty &&
         _monthlyExpenseController.text.isNotEmpty &&
         _totalCurrentDebtController.text.isNotEmpty &&
         _totalCreditLimitController.text.isNotEmpty;
@@ -80,7 +81,10 @@ class _OnboardingMonthlyIncomeScreenState
         if (!previousViewModel!.isCreditCardApplicationCreated &&
             newViewModel.isCreditCardApplicationCreated) {
           Navigator.pushNamedAndRemoveUntil(
-              context, OnboardingStepperScreen.routeName, (route) => false);
+            context,
+            OnboardingStepperScreen.routeName,
+            (route) => false,
+          );
         }
       },
       builder: (context, viewModel) {
@@ -90,20 +94,12 @@ class _OnboardingMonthlyIncomeScreenState
               AppToolbar(
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
-                richTextTitle: StepRichTextTitle(
-                  step: 5,
-                  totalSteps: 5,
-                ),
-                actions: const [
-                  AppbarLogo(),
-                ],
+                richTextTitle: StepRichTextTitle(step: 5, totalSteps: 5),
+                actions: const [AppbarLogo()],
                 onBackButtonPressed: () => Navigator.pop(context),
                 backButtonEnabled: true,
               ),
-              AnimatedLinearProgressIndicator.step(
-                current: 5,
-                totalSteps: 5,
-              ),
+              AnimatedLinearProgressIndicator.step(current: 5, totalSteps: 5),
               Expanded(
                 child: ScrollableScreenContainer(
                   padding: ClientConfig.getCustomClientUiSettings()
@@ -113,8 +109,10 @@ class _OnboardingMonthlyIncomeScreenState
                       const SizedBox(height: 16),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('Income, expenses & other\ncredit',
-                            style: ClientConfig.getTextStyleScheme().heading2),
+                        child: Text(
+                          'Income, expenses & other\ncredit',
+                          style: ClientConfig.getTextStyleScheme().heading2,
+                        ),
                       ),
                       const SizedBox(height: 24),
                       InputCurrencyField(
@@ -213,15 +211,13 @@ class _OnboardingMonthlyIncomeScreenState
         TextSpan(
           style: ClientConfig.getTextStyleScheme().mixedStyles,
           children: [
-            const TextSpan(
-              text: '\'Total current debt\' refers to the ',
-            ),
+            const TextSpan(text: '\'Total current debt\' refers to the '),
             TextSpan(
               text:
                   'combined amount of your outstanding financial obligations, such as credit card balances, loans, or any other debts you currently owe. ',
               style: ClientConfig.getTextStyleScheme().mixedStyles.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const TextSpan(
               text:
@@ -241,15 +237,13 @@ class _OnboardingMonthlyIncomeScreenState
         TextSpan(
           style: ClientConfig.getTextStyleScheme().mixedStyles,
           children: [
-            const TextSpan(
-              text: '\'Total credit limit\' is the ',
-            ),
+            const TextSpan(text: '\'Total credit limit\' is the '),
             TextSpan(
               text:
                   'total maximum amount of credit available to you across all your credit cards and credit accounts. ',
               style: ClientConfig.getTextStyleScheme().mixedStyles.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const TextSpan(
               text:

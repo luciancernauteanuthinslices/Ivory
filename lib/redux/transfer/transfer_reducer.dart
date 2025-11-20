@@ -8,7 +8,8 @@ TransferState transferReducer(TransferState state, dynamic action) {
     return TransferLoadingState();
   } else if (action is SendTransferSuccessEventAction) {
     return TransferNeedConfirmationState(
-        transferAuthorizationRequest: action.transferAuthorizationRequest);
+      transferAuthorizationRequest: action.transferAuthorizationRequest,
+    );
   } else if (action is SendTransferFailedEventAction) {
     return TransferFailedState(ChangeRequestErrorType.unknown);
   } else if (action is ConfirmTransferFailedEventAction) {

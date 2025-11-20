@@ -41,13 +41,9 @@ class AppSettingsBiometricEnabledScreen extends StatelessWidget {
                     style: ClientConfig.getTextStyleScheme().heading1,
                     textAlign: TextAlign.left,
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   const Text('You\'re all set!'),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
                   Expanded(
                     child: Center(
                       child: IvoryAssetWithBadge(
@@ -75,8 +71,9 @@ class AppSettingsBiometricEnabledScreen extends StatelessWidget {
                       textColor: ClientConfig.getColorScheme().surface,
                       onPressed: () {
                         Navigator.pop(context);
-                        StoreProvider.of<AppState>(context)
-                            .dispatch(FetchBoundDevicesCommandAction());
+                        StoreProvider.of<AppState>(
+                          context,
+                        ).dispatch(FetchBoundDevicesCommandAction());
                       },
                     ),
                   ),

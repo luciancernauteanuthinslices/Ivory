@@ -21,65 +21,83 @@ void main() {
         ),
       );
       final loadingState = state.onChange.firstWhere(
-          (element) => element.personAccountState is PersonAccountLoadingState);
+        (element) => element.personAccountState is PersonAccountLoadingState,
+      );
 
       // when
       state.dispatch(GetPersonAccountCommandAction());
 
       // then
-      expect((await loadingState).personAccountState,
-          isA<PersonAccountLoadingState>());
+      expect(
+        (await loadingState).personAccountState,
+        isA<PersonAccountLoadingState>(),
+      );
     });
 
     test(
-        "When fetching person account successfully should update with person account",
-        () async {
-      // given
-      final state = createTestStore(
-        personService: FakePersonService(),
-        initialState: createAppState(
-          personAccountState: PersonAccountInitialState(),
-          authState: authState,
-        ),
-      );
-      final loadingState = state.onChange.firstWhere(
-          (element) => element.personAccountState is PersonAccountLoadingState);
-      final appState = state.onChange.firstWhere(
-          (element) => element.personAccountState is PersonAccountFetchedState);
+      "When fetching person account successfully should update with person account",
+      () async {
+        // given
+        final state = createTestStore(
+          personService: FakePersonService(),
+          initialState: createAppState(
+            personAccountState: PersonAccountInitialState(),
+            authState: authState,
+          ),
+        );
+        final loadingState = state.onChange.firstWhere(
+          (element) => element.personAccountState is PersonAccountLoadingState,
+        );
+        final appState = state.onChange.firstWhere(
+          (element) => element.personAccountState is PersonAccountFetchedState,
+        );
 
-      // when
-      state.dispatch(GetPersonAccountCommandAction());
+        // when
+        state.dispatch(GetPersonAccountCommandAction());
 
-      // then
-      expect((await loadingState).personAccountState,
-          isA<PersonAccountLoadingState>());
-      expect((await appState).personAccountState,
-          isA<PersonAccountFetchedState>());
-    });
+        // then
+        expect(
+          (await loadingState).personAccountState,
+          isA<PersonAccountLoadingState>(),
+        );
+        expect(
+          (await appState).personAccountState,
+          isA<PersonAccountFetchedState>(),
+        );
+      },
+    );
 
-    test("When fetching person account is failing should update with error",
-        () async {
-      // given
-      final state = createTestStore(
-        personService: FakeFailingPersonService(),
-        initialState: createAppState(
-          personAccountState: PersonAccountInitialState(),
-          authState: authState,
-        ),
-      );
-      final loadingState = state.onChange.firstWhere(
-          (element) => element.personAccountState is PersonAccountLoadingState);
-      final appState = state.onChange.firstWhere(
-          (element) => element.personAccountState is PersonAccountErrorState);
+    test(
+      "When fetching person account is failing should update with error",
+      () async {
+        // given
+        final state = createTestStore(
+          personService: FakeFailingPersonService(),
+          initialState: createAppState(
+            personAccountState: PersonAccountInitialState(),
+            authState: authState,
+          ),
+        );
+        final loadingState = state.onChange.firstWhere(
+          (element) => element.personAccountState is PersonAccountLoadingState,
+        );
+        final appState = state.onChange.firstWhere(
+          (element) => element.personAccountState is PersonAccountErrorState,
+        );
 
-      // when
-      state.dispatch(GetPersonAccountCommandAction());
+        // when
+        state.dispatch(GetPersonAccountCommandAction());
 
-      // then
-      expect((await loadingState).personAccountState,
-          isA<PersonAccountLoadingState>());
-      expect(
-          (await appState).personAccountState, isA<PersonAccountErrorState>());
-    });
+        // then
+        expect(
+          (await loadingState).personAccountState,
+          isA<PersonAccountLoadingState>(),
+        );
+        expect(
+          (await appState).personAccountState,
+          isA<PersonAccountErrorState>(),
+        );
+      },
+    );
   });
 }

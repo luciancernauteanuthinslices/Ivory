@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
-const bool kExportForSchemathesis =
-    bool.fromEnvironment('EXPORT_TOKEN', defaultValue: false);
+const bool kExportForSchemathesis = bool.fromEnvironment(
+  'EXPORT_TOKEN',
+  defaultValue: false,
+);
 
 class TokenExport {
   static Future<void> save(String token) async {

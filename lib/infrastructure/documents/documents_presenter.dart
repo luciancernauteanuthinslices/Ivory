@@ -19,7 +19,8 @@ class DocumentsPresenter {
         );
       } else if (confirmDocumentsState is ConfirmDocumentsLoadingState) {
         return DocumentsConfirmingViewModel(
-            documents: documentsState.documents);
+          documents: documentsState.documents,
+        );
       } else if (confirmDocumentsState is ConfirmedDocumentsState) {
         return DocumentsConfirmedViewModel(documents: documentsState.documents);
       } else if (confirmDocumentsState is ConfirmDocumentsErrorState) {
@@ -83,8 +84,10 @@ class DocumentsConfirmedViewModel extends DocumentsFetchedViewModel {
 class DocumentsConfirmErrorViewModel extends DocumentsFetchedViewModel {
   final DocumentsErrorType errorType;
 
-  DocumentsConfirmErrorViewModel(
-      {required this.errorType, required super.documents});
+  DocumentsConfirmErrorViewModel({
+    required this.errorType,
+    required super.documents,
+  });
 
   @override
   List<Object?> get props => [errorType, documents];

@@ -17,7 +17,10 @@ class OnboardingProgressMiddleware extends MiddlewareClass<AppState> {
   final DeviceService _deviceService;
 
   OnboardingProgressMiddleware(
-      this._onboardingService, this._authService, this._deviceService);
+    this._onboardingService,
+    this._authService,
+    this._deviceService,
+  );
 
   @override
   call(Store<AppState> store, action, NextDispatcher next) async {
@@ -32,19 +35,25 @@ class OnboardingProgressMiddleware extends MiddlewareClass<AppState> {
     if (action is GetOnboardingProgressCommandAction) {
       if (cognitoUser == null) {
         store.dispatch(
-            OnboardingProgressFetchedEvendAction(step: OnboardingStep.start));
+          OnboardingProgressFetchedEvendAction(step: OnboardingStep.start),
+        );
       } else {
         store.dispatch(OnboardingProgressLoadingEventAction());
 
-        final response =
-            await _onboardingService.getOnboardingProgress(user: cognitoUser);
+        final response = await _onboardingService.getOnboardingProgress(
+          user: cognitoUser,
+        );
         if (response is OnboardingProgressSuccessResponse) {
           store.dispatch(
-              OnboardingProgressFetchedEvendAction(step: response.step));
+            OnboardingProgressFetchedEvendAction(step: response.step),
+          );
           if (response.mobileNumber.isNotEmpty &&
               response.creditCardApplicationId.isEmpty) {
-            store.dispatch(MobileNumberCreatedEventAction(
-                mobileNumber: response.mobileNumber));
+            store.dispatch(
+              MobileNumberCreatedEventAction(
+                mobileNumber: response.mobileNumber,
+              ),
+            );
           }
         } else {
           store.dispatch(OnboardingProgressFailedEventAction());
@@ -56,8 +65,9 @@ class OnboardingProgressMiddleware extends MiddlewareClass<AppState> {
       if (cognitoUser != null) {
         store.dispatch(OnboardingProgressLoadingEventAction());
 
-        final response =
-            await _onboardingService.finalizeOnboarding(user: cognitoUser);
+        final response = await _onboardingService.finalizeOnboarding(
+          user: cognitoUser,
+        );
         if (response is OnboardingFinalizeSuccessResponse) {
           final credentials = await _deviceService.getCredentialsFromCache();
           if (credentials == null ||

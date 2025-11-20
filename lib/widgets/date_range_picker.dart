@@ -17,7 +17,9 @@ class DateRangePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedRange = initialSelectedRange != null
         ? PickerDateRange(
-            initialSelectedRange?.start, initialSelectedRange?.end)
+            initialSelectedRange?.start,
+            initialSelectedRange?.end,
+          )
         : null;
 
     return SfDateRangePicker(
@@ -26,10 +28,7 @@ class DateRangePicker extends StatelessWidget {
         textStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
         todayCellDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
-          border: Border.all(
-            width: 1,
-            color: Colors.black,
-          ),
+          border: Border.all(width: 1, color: Colors.black),
         ),
         todayTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
         cellDecoration: BoxDecoration(
@@ -56,10 +55,7 @@ class DateRangePicker extends StatelessWidget {
         todayCellDecoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
-          border: Border.all(
-            width: 1,
-            color: Colors.black,
-          ),
+          border: Border.all(width: 1, color: Colors.black),
         ),
         textStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
       ),
@@ -70,8 +66,7 @@ class DateRangePicker extends StatelessWidget {
         dayFormat: 'EEE',
         viewHeaderHeight: 30,
         viewHeaderStyle: DateRangePickerViewHeaderStyle(
-          textStyle: ClientConfig.getTextStyleScheme()
-              .bodyLargeRegularBold
+          textStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
               .copyWith(color: const Color(0xFF9B9EB2)),
         ),
       ),
@@ -92,8 +87,7 @@ class DateRangePicker extends StatelessWidget {
       startRangeSelectionColor: ClientConfig.getColorScheme().secondary,
       selectionMode: DateRangePickerSelectionMode.range,
       selectionShape: DateRangePickerSelectionShape.circle,
-      selectionTextStyle: ClientConfig.getTextStyleScheme()
-          .bodyLargeRegularBold
+      selectionTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
           .copyWith(color: Colors.white),
       initialSelectedRange: selectedRange,
       rangeTextStyle: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,

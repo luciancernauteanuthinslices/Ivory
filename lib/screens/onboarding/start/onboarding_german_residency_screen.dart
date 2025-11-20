@@ -40,15 +40,17 @@ class OnboardingGermanResidencyScreen extends StatelessWidget {
                     TextSpan(
                       children: [
                         const TextSpan(
-                            text: "We currently support users residing in "),
+                          text: "We currently support users residing in ",
+                        ),
                         TextSpan(
                           text: "Germany only",
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text:
-                                ". If you do not, unfortunately, your application will be rejected.")
+                          text:
+                              ". If you do not, unfortunately, your application will be rejected.",
+                        ),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -68,24 +70,30 @@ class OnboardingGermanResidencyScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: SecondaryButton(
-                        borderWidth: 2,
-                        text: "No, I don't live in Germany",
-                        onPressed: () => Navigator.pushNamed(context,
-                            OnboardingGermanResidencyErrorScreen.routeName)),
+                      borderWidth: 2,
+                      text: "No, I don't live in Germany",
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        OnboardingGermanResidencyErrorScreen.routeName,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: PrimaryButton(
-                        text: "Yes, I live in Germany",
-                        onPressed: () => Navigator.pushNamed(
-                            context, OnboardingUsaTaxPayerScreen.routeName)),
+                      text: "Yes, I live in Germany",
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        OnboardingUsaTaxPayerScreen.routeName,
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 16)
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -65,15 +65,15 @@ void main() {
       await $(find.widgetWithText(Button, 'Save changes')).scrollTo().tap();
       await $.pumpAndSettle();
 
-// Success paragraph: match by content (don’t hardcode the exact percent)
+      // Success paragraph: match by content (don’t hardcode the exact percent)
       expect(
         $(
           find.byWidgetPredicate(
             (w) =>
                 w is RichText &&
                 (w.text as TextSpan).toPlainText().contains(
-                      'You will start paying a percentage rate of ',
-                    ) &&
+                  'You will start paying a percentage rate of ',
+                ) &&
                 (w.text as TextSpan).toPlainText().contains('40%'),
           ),
         ),

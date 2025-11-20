@@ -1,4 +1,1 @@
-enum CognitoUserGroup {
-  registering,
-  registered,
-}
+enum CognitoUserGroup { registering, registered }

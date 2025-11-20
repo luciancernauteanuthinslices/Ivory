@@ -13,13 +13,13 @@ class SpacedColumn extends Column {
     super.textBaseline,
     List<Widget> children = const <Widget>[],
   }) : super(
-          key: key,
-          children: [
-            for (var i = 0; i < children.length - 1; i++) ...[
-              children[i],
-              SizedBox(height: space),
-            ],
-            children.last,
-          ],
-        );
+         key: key,
+         children: [
+           for (var i = 0; i < children.length - 1; i++) ...[
+             children[i],
+             SizedBox(height: space),
+           ],
+           children.last,
+         ],
+       );
 }

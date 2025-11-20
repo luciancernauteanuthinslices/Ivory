@@ -49,7 +49,10 @@ class _OnboardingCreditLimitCongratulationsScreenState
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel.isIdentificationSuccessful == true) {
           Navigator.pushNamedAndRemoveUntil(
-              context, OnboardingStepperScreen.routeName, (route) => false);
+            context,
+            OnboardingStepperScreen.routeName,
+            (route) => false,
+          );
         } else if (newViewModel.errorType != null) {
           _showServerErrorBottomSheet(
             context,
@@ -82,15 +85,18 @@ class _OnboardingCreditLimitCongratulationsScreenState
                     children: [
                       const SizedBox(height: 16),
                       Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Congratulations!',
-                              style:
-                                  ClientConfig.getTextStyleScheme().heading2)),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Congratulations!',
+                          style: ClientConfig.getTextStyleScheme().heading2,
+                        ),
+                      ),
                       const SizedBox(height: 24),
                       Text(
-                          'We\'re thrilled to inform you that your credit score has been approved and we\'re delighted to offer you the following credit limit:',
-                          style: ClientConfig.getTextStyleScheme()
-                              .bodyLargeRegular),
+                        'We\'re thrilled to inform you that your credit score has been approved and we\'re delighted to offer you the following credit limit:',
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                      ),
                       const SizedBox(height: 24),
                       CustomBuilder(
                         child: Stack(
@@ -98,8 +104,9 @@ class _OnboardingCreditLimitCongratulationsScreenState
                           children: [
                             Container(
                               decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Color(0x12000000),
@@ -123,19 +130,22 @@ class _OnboardingCreditLimitCongratulationsScreenState
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 const SizedBox(height: 8),
-                                Text('Your credit limit',
-                                    style: ClientConfig.getTextStyleScheme()
-                                        .labelMedium
-                                        .copyWith(
-                                            color:
-                                                ClientConfig.getCustomColors()
-                                                    .neutral700)),
+                                Text(
+                                  'Your credit limit',
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .labelMedium
+                                      .copyWith(
+                                        color: ClientConfig.getCustomColors()
+                                            .neutral700,
+                                      ),
+                                ),
                                 const SizedBox(height: 4),
                                 (viewModel.creditLimit != null)
                                     ? Text(
                                         '€${NumberFormat('#,###').format(viewModel.creditLimit)}',
                                         style: ClientConfig.getTextStyleScheme()
-                                            .heading1)
+                                            .heading1,
+                                      )
                                     : Padding(
                                         padding: const EdgeInsets.only(top: 16),
                                         child: CircularLoadingIndicator(
@@ -158,10 +168,12 @@ class _OnboardingCreditLimitCongratulationsScreenState
                               ? IvoryAssetWithBadge(
                                   childWidget: child!,
                                   childPosition: BadgePosition.topStart(
-                                      start: screenWidth / 2 -
-                                          horizontalPadding -
-                                          halfBadgeSize,
-                                      top: -halfBadgeSize),
+                                    start:
+                                        screenWidth / 2 -
+                                        horizontalPadding -
+                                        halfBadgeSize,
+                                    top: -halfBadgeSize,
+                                  ),
                                   isSuccess: true,
                                 )
                               : Padding(
@@ -173,17 +185,20 @@ class _OnboardingCreditLimitCongratulationsScreenState
                       const Spacer(),
                       const SizedBox(height: 16),
                       PrimaryButton(
-                          text: 'Continue',
-                          isLoading: (viewModel.creditLimit != null) &&
-                              viewModel.isLoading,
-                          onPressed: (viewModel.creditLimit != null)
-                              ? () {
-                                  if (viewModel.creditLimit != null) {
-                                    StoreProvider.of<AppState>(context).dispatch(
-                                        FinalizeIdentificationCommandAction());
-                                  }
+                        text: 'Continue',
+                        isLoading:
+                            (viewModel.creditLimit != null) &&
+                            viewModel.isLoading,
+                        onPressed: (viewModel.creditLimit != null)
+                            ? () {
+                                if (viewModel.creditLimit != null) {
+                                  StoreProvider.of<AppState>(context).dispatch(
+                                    FinalizeIdentificationCommandAction(),
+                                  );
                                 }
-                              : null),
+                              }
+                            : null,
+                      ),
                       const SizedBox(height: 16),
                     ],
                   ),
@@ -207,30 +222,28 @@ class _OnboardingCreditLimitCongratulationsScreenState
       title: 'Server error',
       textWidget: RichText(
         text: TextSpan(
-            style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-            children: [
-              const TextSpan(
-                text:
-                    'We encountered an unexpected technical error. Please try again. If the issue persists, please contact our support team at ',
-              ),
-              TextSpan(
-                  text: "+49 (0)123 456789",
-                  style: ClientConfig.getTextStyleScheme()
-                      .bodyLargeRegularBold
-                      .copyWith(color: ClientConfig.getColorScheme().secondary),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () async {
-                      final telUri = Uri(
-                        scheme: 'tel',
-                        path: '+490123456789',
-                      );
+          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+          children: [
+            const TextSpan(
+              text:
+                  'We encountered an unexpected technical error. Please try again. If the issue persists, please contact our support team at ',
+            ),
+            TextSpan(
+              text: "+49 (0)123 456789",
+              style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
+                  .copyWith(color: ClientConfig.getColorScheme().secondary),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async {
+                  final telUri = Uri(scheme: 'tel', path: '+490123456789');
 
-                      if (await canLaunchUrl(telUri)) {
-                        await launchUrl(telUri);
-                      }
-                    }),
-              const TextSpan(text: '.')
-            ]),
+                  if (await canLaunchUrl(telUri)) {
+                    await launchUrl(telUri);
+                  }
+                },
+            ),
+            const TextSpan(text: '.'),
+          ],
+        ),
       ),
       content: Column(
         children: [
@@ -243,13 +256,15 @@ class _OnboardingCreditLimitCongratulationsScreenState
               if (errorType ==
                   OnboardingIdentityVerificationErrorType
                       .fetchCreditLimitFailed) {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(GetCreditLimitCommandAction());
+                StoreProvider.of<AppState>(
+                  context,
+                ).dispatch(GetCreditLimitCommandAction());
               } else if (errorType ==
                   OnboardingIdentityVerificationErrorType
                       .finalizeIdentificationFailed) {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(FinalizeIdentificationCommandAction());
+                StoreProvider.of<AppState>(
+                  context,
+                ).dispatch(FinalizeIdentificationCommandAction());
               }
             },
           ),

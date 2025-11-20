@@ -49,14 +49,20 @@ class FakeTransactionService extends TransactionService {
         UpcomingTransaction(
           statementDate: DateTime.now(),
           dueDate: DateTime.now(),
-          outstandingAmount:
-              AmountValue(value: 123.45, unit: "cents", currency: "EUR"),
+          outstandingAmount: AmountValue(
+            value: 123.45,
+            unit: "cents",
+            currency: "EUR",
+          ),
         ),
         UpcomingTransaction(
           statementDate: DateTime.now(),
           dueDate: DateTime.now(),
-          outstandingAmount:
-              AmountValue(value: 496.22, unit: "cents", currency: "EUR"),
+          outstandingAmount: AmountValue(
+            value: 496.22,
+            unit: "cents",
+            currency: "EUR",
+          ),
         ),
       ],
     );
@@ -65,8 +71,10 @@ class FakeTransactionService extends TransactionService {
 
 class FakeFailingTransactionService extends TransactionService {
   @override
-  Future<TransactionsServiceResponse> getTransactions(
-      {TransactionListFilter? filter, User? user}) async {
+  Future<TransactionsServiceResponse> getTransactions({
+    TransactionListFilter? filter,
+    User? user,
+  }) async {
     return TransactionsServiceErrorResponse();
   }
 }
@@ -79,9 +87,7 @@ class FakeChangeRequestService extends ChangeRequestService {
     required String deviceId,
     required String deviceData,
   }) async {
-    return AuthorizeChangeRequestSuccessResponse(
-      stringToSign: "stringToSign",
-    );
+    return AuthorizeChangeRequestSuccessResponse(stringToSign: "stringToSign");
   }
 
   @override
@@ -105,7 +111,8 @@ class FakeFailingChangeRequestService extends ChangeRequestService {
     required String deviceData,
   }) async {
     return ChangeRequestServiceErrorResponse(
-        errorType: ChangeRequestErrorType.authorizationFailed);
+      errorType: ChangeRequestErrorType.authorizationFailed,
+    );
   }
 
   @override
@@ -117,7 +124,8 @@ class FakeFailingChangeRequestService extends ChangeRequestService {
     required String deviceData,
   }) async {
     return ChangeRequestServiceErrorResponse(
-        errorType: ChangeRequestErrorType.confirmationFailed);
+      errorType: ChangeRequestErrorType.confirmationFailed,
+    );
   }
 }
 
@@ -130,7 +138,8 @@ class FakeFailingConfirmChangeRequestService extends ChangeRequestService {
     required String deviceData,
   }) async {
     return ChangeRequestServiceErrorResponse(
-        errorType: ChangeRequestErrorType.authorizationFailed);
+      errorType: ChangeRequestErrorType.authorizationFailed,
+    );
   }
 
   @override
@@ -142,7 +151,8 @@ class FakeFailingConfirmChangeRequestService extends ChangeRequestService {
     required String deviceData,
   }) async {
     return ChangeRequestServiceErrorResponse(
-        errorType: ChangeRequestErrorType.confirmationFailed);
+      errorType: ChangeRequestErrorType.confirmationFailed,
+    );
   }
 }
 
@@ -172,8 +182,10 @@ class FakeDeviceService extends DeviceService {
   }
 
   @override
-  String? generateSignature(
-      {required String privateKey, required String stringToSign}) {
+  String? generateSignature({
+    required String privateKey,
+    required String stringToSign,
+  }) {
     return "signature";
   }
 

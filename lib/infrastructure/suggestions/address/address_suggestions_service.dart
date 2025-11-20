@@ -7,30 +7,33 @@ import 'package:solarisdemo/services/api_service.dart';
 class AddressSuggestionsService extends ApiService {
   AddressSuggestionsService({super.user});
 
-  Future<AddressSuggestionsServiceResponse> getAddressSuggestions(
-      {required User user, required String query}) async {
+  Future<AddressSuggestionsServiceResponse> getAddressSuggestions({
+    required User user,
+    required String query,
+  }) async {
     this.user = user;
 
     try {
       final data = await get(
         'signup/address_suggestions',
-        queryParameters: {
-          "queryString": query,
-        },
+        queryParameters: {"queryString": query},
       );
 
       return GetAddressSuggestionsSuccessResponse(
         suggestions: (data["suggestions"] as List)
-            .map((suggestion) => AddressSuggestion(
-                  address: suggestion['address'],
-                  city: suggestion['city'],
-                  country: suggestion['country'],
-                ))
+            .map(
+              (suggestion) => AddressSuggestion(
+                address: suggestion['address'],
+                city: suggestion['city'],
+                country: suggestion['country'],
+              ),
+            )
             .toList(),
       );
     } catch (error) {
       return GetAddressSuggestionsErrorResponse(
-          errorType: AddressSuggestionsErrorType.unknown);
+        errorType: AddressSuggestionsErrorType.unknown,
+      );
     }
   }
 }

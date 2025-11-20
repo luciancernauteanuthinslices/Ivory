@@ -7,9 +7,11 @@ class IvoryErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(error,
-        style: ClientConfig.getTextStyleScheme()
-            .bodyLargeRegularBold
-            .copyWith(color: Colors.red));
+    return Text(
+      error,
+      style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold.copyWith(
+        color: Colors.red,
+      ),
+    );
   }
 }

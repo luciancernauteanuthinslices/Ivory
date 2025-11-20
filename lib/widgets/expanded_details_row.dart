@@ -19,10 +19,7 @@ class ExpandedDetailsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          title,
-          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-        ),
+        Text(title, style: ClientConfig.getTextStyleScheme().bodyLargeRegular),
         if (onInfoIconTap != null) ...[
           const SizedBox(width: 4),
           InfoIconButton(onTap: onInfoIconTap),

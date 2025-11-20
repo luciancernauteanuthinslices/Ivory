@@ -46,8 +46,11 @@ class MockDirectory extends Mock implements Directory {
 
 class MockFile extends Mock implements File {
   @override
-  Future<File> writeAsBytes(List<int>? bytes,
-      {FileMode? mode = FileMode.write, bool? flush = false}) {
+  Future<File> writeAsBytes(
+    List<int>? bytes, {
+    FileMode? mode = FileMode.write,
+    bool? flush = false,
+  }) {
     return super.noSuchMethod(
       Invocation.method(#writeAsBytes, [bytes], {#mode: mode, #flush: flush}),
       returnValue: Future<File>.value(File('')),
@@ -67,8 +70,11 @@ class MockFile extends Mock implements File {
 
 class FakeFile extends Fake implements File {
   @override
-  Future<File> writeAsBytes(List<int>? bytes,
-      {FileMode? mode = FileMode.write, bool? flush = false}) async {
+  Future<File> writeAsBytes(
+    List<int>? bytes, {
+    FileMode? mode = FileMode.write,
+    bool? flush = false,
+  }) async {
     return this;
   }
 
@@ -80,8 +86,11 @@ class FakeFile extends Fake implements File {
 
 class FakeInexistentFile extends Fake implements File {
   @override
-  Future<File> writeAsBytes(List<int>? bytes,
-      {FileMode? mode = FileMode.write, bool? flush = false}) async {
+  Future<File> writeAsBytes(
+    List<int>? bytes, {
+    FileMode? mode = FileMode.write,
+    bool? flush = false,
+  }) async {
     return this;
   }
 
@@ -121,13 +130,15 @@ class MockSharePlatform extends Mock
         {
           #subject: subject,
           #text: text,
-          #sharePositionOrigin: sharePositionOrigin
+          #sharePositionOrigin: sharePositionOrigin,
         },
       ),
-      returnValue:
-          Future.value(const ShareResult("", ShareResultStatus.success)),
-      returnValueForMissingStub:
-          Future.value(const ShareResult("", ShareResultStatus.success)),
+      returnValue: Future.value(
+        const ShareResult("", ShareResultStatus.success),
+      ),
+      returnValueForMissingStub: Future.value(
+        const ShareResult("", ShareResultStatus.success),
+      ),
     );
   }
 }

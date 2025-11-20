@@ -60,15 +60,18 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
 
     _controller = widget.controller ?? TextEditingController();
 
-    final [digitsText, decimalsText] =
-        _getFormattedTextValues(_controller.text);
+    final [digitsText, decimalsText] = _getFormattedTextValues(
+      _controller.text,
+    );
 
     _digitsController = TextEditingController(
-        text: _controller.text.isNotEmpty ? digitsText : "");
+      text: _controller.text.isNotEmpty ? digitsText : "",
+    );
     _digitsFocusNode = widget.focusNode ?? FocusNode();
 
     _decimalsController = TextEditingController(
-        text: _controller.text.isNotEmpty ? decimalsText : "");
+      text: _controller.text.isNotEmpty ? decimalsText : "",
+    );
     _decimalsFocusNode = FocusNode();
 
     _digitsController.addListener(_updateControllerValue);
@@ -147,12 +150,13 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-              color: widget.error
-                  ? widget.errorBorderColor
-                  : _hasFocus
-                      ? widget.focusedBorderColor
-                      : widget.unfocusedBorderColor,
-              width: 2),
+            color: widget.error
+                ? widget.errorBorderColor
+                : _hasFocus
+                ? widget.focusedBorderColor
+                : widget.unfocusedBorderColor,
+            width: 2,
+          ),
         ),
       ),
       padding: widget.padding,
@@ -179,9 +183,7 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
                   return newValue;
                 }),
                 FilteringTextInputFormatter.digitsOnly,
-                _CurrencyDigitsFormatter(
-                  currencySymbol: widget.currencySymbol,
-                ),
+                _CurrencyDigitsFormatter(currencySymbol: widget.currencySymbol),
               ],
               style: widget.digitsTextStyle,
               decoration: InputDecoration(
@@ -198,7 +200,8 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
           Text(
             ".",
             style: widget.digitsTextStyle.copyWith(
-              color: _digitsController.text.isNotEmpty ||
+              color:
+                  _digitsController.text.isNotEmpty ||
                       _decimalsController.text.isNotEmpty
                   ? widget.digitsTextStyle.color
                   : widget.hintColor,
@@ -225,7 +228,7 @@ class _IvoryAmountFieldState extends State<IvoryAmountField> {
                 isDense: true,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -236,9 +239,7 @@ class _CurrencyDigitsFormatter extends TextInputFormatter {
   final int maxLength = 8;
   final String currencySymbol;
 
-  _CurrencyDigitsFormatter({
-    this.currencySymbol = "€",
-  });
+  _CurrencyDigitsFormatter({this.currencySymbol = "€"});
 
   @override
   TextEditingValue formatEditUpdate(

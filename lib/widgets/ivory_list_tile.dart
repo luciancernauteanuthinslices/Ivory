@@ -35,7 +35,8 @@ class IvoryListTile extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: padding ??
+        padding:
+            padding ??
             EdgeInsets.symmetric(
               vertical: 16,
               horizontal: ClientConfig.getCustomClientUiSettings()
@@ -46,9 +47,11 @@ class IvoryListTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(leftIcon,
-                color: leftIconColor ?? ClientConfig.getColorScheme().secondary,
-                size: 24),
+            Icon(
+              leftIcon,
+              color: leftIconColor ?? ClientConfig.getColorScheme().secondary,
+              size: 24,
+            ),
             const SizedBox(width: 16),
             Expanded(
               child: Column(
@@ -69,10 +72,12 @@ class IvoryListTile extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.only(right: 0),
-              child: actionItem ??
+              child:
+                  actionItem ??
                   Icon(
                     rightIcon,
-                    color: rightIconColor ??
+                    color:
+                        rightIconColor ??
                         ClientConfig.getColorScheme().secondary,
                     size: 24,
                   ),

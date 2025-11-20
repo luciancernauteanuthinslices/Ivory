@@ -11,76 +11,101 @@ void main() {
   final authState = AuthStatePlaceholder.loggedInState();
 
   group("Reference Account Fetching", () {
-    test("When fetching reference account should update with loading",
-        () async {
-      // given
-      final store = createTestStore(
-        personService: FakePersonService(),
-        initialState: createAppState(
-          referenceAccountState: ReferenceAccountInitialState(),
-          authState: authState,
-        ),
-      );
-      final loadingState = store.onChange.firstWhere((element) =>
-          element.referenceAccountState is ReferenceAccountLoadingState);
+    test(
+      "When fetching reference account should update with loading",
+      () async {
+        // given
+        final store = createTestStore(
+          personService: FakePersonService(),
+          initialState: createAppState(
+            referenceAccountState: ReferenceAccountInitialState(),
+            authState: authState,
+          ),
+        );
+        final loadingState = store.onChange.firstWhere(
+          (element) =>
+              element.referenceAccountState is ReferenceAccountLoadingState,
+        );
 
-      // when
-      store.dispatch(GetReferenceAccountCommandAction());
+        // when
+        store.dispatch(GetReferenceAccountCommandAction());
 
-      // then
-      expect((await loadingState).referenceAccountState,
-          isA<ReferenceAccountLoadingState>());
-    });
+        // then
+        expect(
+          (await loadingState).referenceAccountState,
+          isA<ReferenceAccountLoadingState>(),
+        );
+      },
+    );
 
     test(
-        "When fetching reference account successfully should update with reference account",
-        () async {
-      // given
-      final store = createTestStore(
-        personService: FakePersonService(),
-        initialState: createAppState(
-          referenceAccountState: ReferenceAccountInitialState(),
-          authState: authState,
-        ),
-      );
-      final loadingState = store.onChange.firstWhere((element) =>
-          element.referenceAccountState is ReferenceAccountLoadingState);
-      final appState = store.onChange.firstWhere((element) =>
-          element.referenceAccountState is ReferenceAccountFetchedState);
+      "When fetching reference account successfully should update with reference account",
+      () async {
+        // given
+        final store = createTestStore(
+          personService: FakePersonService(),
+          initialState: createAppState(
+            referenceAccountState: ReferenceAccountInitialState(),
+            authState: authState,
+          ),
+        );
+        final loadingState = store.onChange.firstWhere(
+          (element) =>
+              element.referenceAccountState is ReferenceAccountLoadingState,
+        );
+        final appState = store.onChange.firstWhere(
+          (element) =>
+              element.referenceAccountState is ReferenceAccountFetchedState,
+        );
 
-      // when
-      store.dispatch(GetReferenceAccountCommandAction());
+        // when
+        store.dispatch(GetReferenceAccountCommandAction());
 
-      // then
-      expect((await loadingState).referenceAccountState,
-          isA<ReferenceAccountLoadingState>());
-      expect((await appState).referenceAccountState,
-          isA<ReferenceAccountFetchedState>());
-    });
+        // then
+        expect(
+          (await loadingState).referenceAccountState,
+          isA<ReferenceAccountLoadingState>(),
+        );
+        expect(
+          (await appState).referenceAccountState,
+          isA<ReferenceAccountFetchedState>(),
+        );
+      },
+    );
 
-    test("When fetching reference account is failing should update with error",
-        () async {
-      // given
-      final store = createTestStore(
-        personService: FakeFailingPersonService(),
-        initialState: createAppState(
-          referenceAccountState: ReferenceAccountInitialState(),
-          authState: authState,
-        ),
-      );
-      final loadingState = store.onChange.firstWhere((element) =>
-          element.referenceAccountState is ReferenceAccountLoadingState);
-      final appState = store.onChange.firstWhere((element) =>
-          element.referenceAccountState is ReferenceAccountErrorState);
+    test(
+      "When fetching reference account is failing should update with error",
+      () async {
+        // given
+        final store = createTestStore(
+          personService: FakeFailingPersonService(),
+          initialState: createAppState(
+            referenceAccountState: ReferenceAccountInitialState(),
+            authState: authState,
+          ),
+        );
+        final loadingState = store.onChange.firstWhere(
+          (element) =>
+              element.referenceAccountState is ReferenceAccountLoadingState,
+        );
+        final appState = store.onChange.firstWhere(
+          (element) =>
+              element.referenceAccountState is ReferenceAccountErrorState,
+        );
 
-      // when
-      store.dispatch(GetReferenceAccountCommandAction());
+        // when
+        store.dispatch(GetReferenceAccountCommandAction());
 
-      // then
-      expect((await loadingState).referenceAccountState,
-          isA<ReferenceAccountLoadingState>());
-      expect((await appState).referenceAccountState,
-          isA<ReferenceAccountErrorState>());
-    });
+        // then
+        expect(
+          (await loadingState).referenceAccountState,
+          isA<ReferenceAccountLoadingState>(),
+        );
+        expect(
+          (await appState).referenceAccountState,
+          isA<ReferenceAccountErrorState>(),
+        );
+      },
+    );
   });
 }

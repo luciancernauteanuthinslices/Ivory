@@ -7,11 +7,12 @@ class IvoryAssetWithBadge extends StatelessWidget {
   final bool isSuccess;
   final Widget childWidget;
   final BadgePosition childPosition;
-  const IvoryAssetWithBadge(
-      {super.key,
-      required this.childWidget,
-      required this.isSuccess,
-      required this.childPosition});
+  const IvoryAssetWithBadge({
+    super.key,
+    required this.childWidget,
+    required this.isSuccess,
+    required this.childPosition,
+  });
 
   static const double badgeSize = 64;
 
@@ -47,8 +48,9 @@ class IvoryAssetWithBadge extends StatelessWidget {
         height: IvoryAssetWithBadge.badgeSize,
         width: IvoryAssetWithBadge.badgeSize,
         decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: ClientConfig.getCustomColors().success),
+          shape: BoxShape.circle,
+          color: ClientConfig.getCustomColors().success,
+        ),
         child: Icon(
           Icons.check_rounded,
           color: ClientConfig.getColorScheme().surface,
@@ -59,8 +61,10 @@ class IvoryAssetWithBadge extends StatelessWidget {
       return Container(
         height: IvoryAssetWithBadge.badgeSize,
         width: IvoryAssetWithBadge.badgeSize,
-        decoration:
-            const BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.red,
+        ),
         child: Icon(
           Icons.close_rounded,
           color: ClientConfig.getColorScheme().surface,
@@ -90,11 +94,6 @@ class IvoryAssetWithBadge extends StatelessWidget {
       end = position.start!.abs();
     }
 
-    return EdgeInsets.only(
-      top: top,
-      right: end,
-      bottom: bottom,
-      left: start,
-    );
+    return EdgeInsets.only(top: top, right: end, bottom: bottom, left: start);
   }
 }

@@ -53,8 +53,9 @@ class _OnboardingMobileNumberScreenState
   }
 
   Future<void> _loadCountryOptions() async {
-    final List<SelectOption> options =
-        await loadCountryPickerOptions(addPhoneCode: true);
+    final List<SelectOption> options = await loadCountryPickerOptions(
+      addPhoneCode: true,
+    );
 
     final preselectedOption = options.first;
     final phoneCode = preselectedOption.getPhoneCode() ?? "";
@@ -63,12 +64,14 @@ class _OnboardingMobileNumberScreenState
     _countrySelectOptionController.setOptions(options);
     _countrySelectOptionController.toggleOptionSelection(preselectedOption, 0);
     _mobileNumberController.text = phoneCode;
-    _phoneNumberFormatter =
-        InputFormatter.createPhoneNumberFormatter(phoneNumberFormat);
+    _phoneNumberFormatter = InputFormatter.createPhoneNumberFormatter(
+      phoneNumberFormat,
+    );
   }
 
   void onChanged() {
-    final phoneNumberFormat = _countrySelectOptionController.firstSelectedOption
+    final phoneNumberFormat =
+        _countrySelectOptionController.firstSelectedOption
             ?.getPhoneNumberFormat() ??
         "";
     if (phoneNumberFormat.length < minFormatterLength) {
@@ -90,9 +93,9 @@ class _OnboardingMobileNumberScreenState
     return StoreConnector<AppState, OnboardingPersonalDetailsViewModel>(
       converter: (store) =>
           OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
-        onboardingPersonalDetailsState:
-            store.state.onboardingPersonalDetailsState,
-      ),
+            onboardingPersonalDetailsState:
+                store.state.onboardingPersonalDetailsState,
+          ),
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel.isLoading) {
           _continueButtonController.setLoading();
@@ -100,7 +103,9 @@ class _OnboardingMobileNumberScreenState
         if (previousViewModel!.attributes.mobileNumber !=
             newViewModel.attributes.mobileNumber) {
           Navigator.pushNamed(
-              context, OnboardingVerifyMobileNumberScreen.routeName);
+            context,
+            OnboardingVerifyMobileNumberScreen.routeName,
+          );
         }
       },
       builder: (context, viewModel) {
@@ -110,27 +115,22 @@ class _OnboardingMobileNumberScreenState
               AppToolbar(
                 backButtonEnabled: false,
                 richTextTitle: StepRichTextTitle(step: 3, totalSteps: 4),
-                actions: const [
-                  AppbarLogo(),
-                ],
+                actions: const [AppbarLogo()],
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
               ),
-              AnimatedLinearProgressIndicator.step(
-                current: 3,
-                totalSteps: 4,
-              ),
+              AnimatedLinearProgressIndicator.step(current: 3, totalSteps: 4),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24.0,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 24),
-                      Text('Mobile number',
-                          style: ClientConfig.getTextStyleScheme().heading2),
+                      Text(
+                        'Mobile number',
+                        style: ClientConfig.getTextStyleScheme().heading2,
+                      ),
                       const SizedBox(height: 16),
                       Text(
                         'Fill in your mobile number below. We will verify it with a code in the next step.',
@@ -175,13 +175,13 @@ class _OnboardingMobileNumberScreenState
                                       _mobileNumberController.text = phoneCode;
 
                                       setState(() {
-                                        _phoneNumberFormatter = InputFormatter
-                                            .createPhoneNumberFormatter(
-                                          phoneNumberFormat.length >
-                                                  minFormatterLength
-                                              ? phoneNumberFormat
-                                              : defaultPhoneNumberFormat,
-                                        );
+                                        _phoneNumberFormatter =
+                                            InputFormatter.createPhoneNumberFormatter(
+                                              phoneNumberFormat.length >
+                                                      minFormatterLength
+                                                  ? phoneNumberFormat
+                                                  : defaultPhoneNumberFormat,
+                                            );
                                       });
 
                                       onChanged();
@@ -195,7 +195,8 @@ class _OnboardingMobileNumberScreenState
                                 child: Row(
                                   children: [
                                     _countrySelectOptionController
-                                            .firstSelectedOption?.prefix ??
+                                            .firstSelectedOption
+                                            ?.prefix ??
                                         const SizedBox(),
                                     const SizedBox(width: 4),
                                     Icon(
@@ -208,9 +209,9 @@ class _OnboardingMobileNumberScreenState
                                       child: VerticalDivider(
                                         color: _mobileNumberFocusNode.hasFocus
                                             ? ClientConfig.getCustomColors()
-                                                .neutral900
+                                                  .neutral900
                                             : ClientConfig.getCustomColors()
-                                                .neutral400,
+                                                  .neutral400,
                                         thickness: 1,
                                       ),
                                     ),
@@ -240,10 +241,12 @@ class _OnboardingMobileNumberScreenState
                                       _continueButtonController.setLoading();
                                       print("Mobile number: $mobileNumber");
 
-                                      StoreProvider.of<AppState>(context)
-                                          .dispatch(
+                                      StoreProvider.of<AppState>(
+                                        context,
+                                      ).dispatch(
                                         CreateMobileNumberCommandAction(
-                                            mobileNumber: mobileNumber),
+                                          mobileNumber: mobileNumber,
+                                        ),
                                       );
                                     }
                                   : null,

@@ -11,82 +11,114 @@ import 'suggestions_mocks.dart';
 
 void main() {
   final user = MockUser();
-  final authentionInitializedState =
-      AuthenticationInitializedState(user, AuthType.onboarding);
-
-  test("When fetching address suggestions, the state should change to loading",
-      () async {
-    // given
-    final store = createTestStore(
-      addressSuggestionsService: FakeAddressSuggestionsService(),
-      initialState: createAppState(
-        authState: authentionInitializedState,
-        addressSuggestionsState: AddressSuggestionsInitialState(),
-      ),
-    );
-
-    final appState = store.onChange.firstWhere((element) =>
-        element.addressSuggestionsState is AddressSuggestionsLoadingState);
-
-    // when
-    store.dispatch(const FetchAddressSuggestionsCommandAction(query: "query"));
-
-    // then
-    expect((await appState).addressSuggestionsState,
-        isA<AddressSuggestionsLoadingState>());
-  });
+  final authentionInitializedState = AuthenticationInitializedState(
+    user,
+    AuthType.onboarding,
+  );
 
   test(
-      "When address suggestions are requested and arrive succesfully, state should be updated",
-      () async {
-    // given
-    final store = createTestStore(
-      addressSuggestionsService: FakeAddressSuggestionsService(),
-      initialState: createAppState(
-        authState: authentionInitializedState,
-        addressSuggestionsState: AddressSuggestionsInitialState(),
-      ),
-    );
+    "When fetching address suggestions, the state should change to loading",
+    () async {
+      // given
+      final store = createTestStore(
+        addressSuggestionsService: FakeAddressSuggestionsService(),
+        initialState: createAppState(
+          authState: authentionInitializedState,
+          addressSuggestionsState: AddressSuggestionsInitialState(),
+        ),
+      );
 
-    final appState = store.onChange.firstWhere((element) =>
-        element.addressSuggestionsState is AddressSuggestionsFetchedState);
-    final loadingState = store.onChange.firstWhere((element) =>
-        element.addressSuggestionsState is AddressSuggestionsLoadingState);
+      final appState = store.onChange.firstWhere(
+        (element) =>
+            element.addressSuggestionsState is AddressSuggestionsLoadingState,
+      );
 
-    // when
-    store.dispatch(const FetchAddressSuggestionsCommandAction(query: "query"));
+      // when
+      store.dispatch(
+        const FetchAddressSuggestionsCommandAction(query: "query"),
+      );
 
-    // then
-    expect((await loadingState).addressSuggestionsState,
-        isA<AddressSuggestionsLoadingState>());
-    expect((await appState).addressSuggestionsState,
-        isA<AddressSuggestionsFetchedState>());
-  });
+      // then
+      expect(
+        (await appState).addressSuggestionsState,
+        isA<AddressSuggestionsLoadingState>(),
+      );
+    },
+  );
 
   test(
-      "When address suggestions are requested and fail, state should be updated",
-      () async {
-    // given
-    final store = createTestStore(
-      addressSuggestionsService: FakeFailingAddressSuggestionsService(),
-      initialState: createAppState(
-        authState: authentionInitializedState,
-        addressSuggestionsState: AddressSuggestionsInitialState(),
-      ),
-    );
+    "When address suggestions are requested and arrive succesfully, state should be updated",
+    () async {
+      // given
+      final store = createTestStore(
+        addressSuggestionsService: FakeAddressSuggestionsService(),
+        initialState: createAppState(
+          authState: authentionInitializedState,
+          addressSuggestionsState: AddressSuggestionsInitialState(),
+        ),
+      );
 
-    final appState = store.onChange.firstWhere((element) =>
-        element.addressSuggestionsState is AddressSuggestionsErrorState);
-    final loadingState = store.onChange.firstWhere((element) =>
-        element.addressSuggestionsState is AddressSuggestionsLoadingState);
+      final appState = store.onChange.firstWhere(
+        (element) =>
+            element.addressSuggestionsState is AddressSuggestionsFetchedState,
+      );
+      final loadingState = store.onChange.firstWhere(
+        (element) =>
+            element.addressSuggestionsState is AddressSuggestionsLoadingState,
+      );
 
-    // when
-    store.dispatch(const FetchAddressSuggestionsCommandAction(query: "query"));
+      // when
+      store.dispatch(
+        const FetchAddressSuggestionsCommandAction(query: "query"),
+      );
 
-    // then
-    expect((await loadingState).addressSuggestionsState,
-        isA<AddressSuggestionsLoadingState>());
-    expect((await appState).addressSuggestionsState,
-        isA<AddressSuggestionsErrorState>());
-  });
+      // then
+      expect(
+        (await loadingState).addressSuggestionsState,
+        isA<AddressSuggestionsLoadingState>(),
+      );
+      expect(
+        (await appState).addressSuggestionsState,
+        isA<AddressSuggestionsFetchedState>(),
+      );
+    },
+  );
+
+  test(
+    "When address suggestions are requested and fail, state should be updated",
+    () async {
+      // given
+      final store = createTestStore(
+        addressSuggestionsService: FakeFailingAddressSuggestionsService(),
+        initialState: createAppState(
+          authState: authentionInitializedState,
+          addressSuggestionsState: AddressSuggestionsInitialState(),
+        ),
+      );
+
+      final appState = store.onChange.firstWhere(
+        (element) =>
+            element.addressSuggestionsState is AddressSuggestionsErrorState,
+      );
+      final loadingState = store.onChange.firstWhere(
+        (element) =>
+            element.addressSuggestionsState is AddressSuggestionsLoadingState,
+      );
+
+      // when
+      store.dispatch(
+        const FetchAddressSuggestionsCommandAction(query: "query"),
+      );
+
+      // then
+      expect(
+        (await loadingState).addressSuggestionsState,
+        isA<AddressSuggestionsLoadingState>(),
+      );
+      expect(
+        (await appState).addressSuggestionsState,
+        isA<AddressSuggestionsErrorState>(),
+      );
+    },
+  );
 }

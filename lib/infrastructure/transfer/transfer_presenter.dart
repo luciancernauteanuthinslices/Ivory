@@ -19,7 +19,8 @@ class TransferPresenter {
         return TransferFailedViewModel(errorType: transferState.errorType);
       } else if (transferState is TransferNeedConfirmationState) {
         return TransferConfirmationViewModel(
-            changeRequestId: transferState.transferAuthorizationRequest.id);
+          changeRequestId: transferState.transferAuthorizationRequest.id,
+        );
       } else if (transferState is TransferConfirmedState) {
         return TransferConfirmedViewModel(amount: transferState.amount);
       }

@@ -19,111 +19,110 @@ class BankCardDetailsInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
-        converter: (store) => BankCardPresenter.presentBankCard(
-              bankCardState: store.state.bankCardState,
-              user: user,
-            ),
-        builder: (context, viewModel) {
-          return ScreenScaffold(
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppToolbar(
-                  richTextTitle: RichText(
-                      text: TextSpan(
+      converter: (store) => BankCardPresenter.presentBankCard(
+        bankCardState: store.state.bankCardState,
+        user: user,
+      ),
+      builder: (context, viewModel) {
+        return ScreenScaffold(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AppToolbar(
+                richTextTitle: RichText(
+                  text: TextSpan(
                     style: ClientConfig.getTextStyleScheme().heading4,
                     children: <TextSpan>[
-                      const TextSpan(
-                        text: 'Step 1 ',
-                      ),
+                      const TextSpan(text: 'Step 1 '),
                       TextSpan(
                         text: 'out of 4',
                         style: TextStyle(
-                            color: ClientConfig.getCustomColors().neutral700),
+                          color: ClientConfig.getCustomColors().neutral700,
+                        ),
                       ),
                     ],
-                  )),
-                  padding: ClientConfig.getCustomClientUiSettings()
-                      .defaultScreenHorizontalPadding,
-                  backButtonEnabled: true,
-                  onBackButtonPressed: () {
-                    Navigator.pop(context);
-                    StoreProvider.of<AppState>(context)
-                        .dispatch(GetBankCardCommandAction(
+                  ),
+                ),
+                padding: ClientConfig.getCustomClientUiSettings()
+                    .defaultScreenHorizontalPadding,
+                backButtonEnabled: true,
+                onBackButtonPressed: () {
+                  Navigator.pop(context);
+                  StoreProvider.of<AppState>(context).dispatch(
+                    GetBankCardCommandAction(
                       cardId: viewModel.bankCard!.id,
                       forceReloadCardData: false,
-                    ));
-                  },
-                ),
-                LinearProgressIndicator(
-                  value: 1 / 3,
-                  color: ClientConfig.getColorScheme().secondary,
-                  backgroundColor: ClientConfig.getCustomColors().neutral200,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: ClientConfig.getCustomClientUiSettings()
-                        .defaultScreenPadding,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Activate your physical card',
-                          style: ClientConfig.getTextStyleScheme().heading2,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          'In order to activate your physical card you will have to choose a PIN and confirm it. You can also add it to your Apple Wallet. \n\nIt\'ll take only 1 minute.',
-                          style: ClientConfig.getTextStyleScheme()
-                              .bodyLargeRegular,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: SvgPicture(
-                              SvgAssetLoader(
-                                'assets/images/choose_pin.svg',
-                                colorMapper: IvoryColorMapper(
-                                  baseColor:
-                                      ClientConfig.getColorScheme().secondary,
-                                ),
+                    ),
+                  );
+                },
+              ),
+              LinearProgressIndicator(
+                value: 1 / 3,
+                color: ClientConfig.getColorScheme().secondary,
+                backgroundColor: ClientConfig.getCustomColors().neutral200,
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Padding(
+                  padding: ClientConfig.getCustomClientUiSettings()
+                      .defaultScreenPadding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Activate your physical card',
+                        style: ClientConfig.getTextStyleScheme().heading2,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'In order to activate your physical card you will have to choose a PIN and confirm it. You can also add it to your Apple Wallet. \n\nIt\'ll take only 1 minute.',
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: SvgPicture(
+                            SvgAssetLoader(
+                              'assets/images/choose_pin.svg',
+                              colorMapper: IvoryColorMapper(
+                                baseColor:
+                                    ClientConfig.getColorScheme().secondary,
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Button(
-                            text: "Choose PIN",
-                            disabledColor:
-                                ClientConfig.getCustomColors().neutral300,
-                            color: ClientConfig.getColorScheme().tertiary,
-                            textColor: ClientConfig.getColorScheme().surface,
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                BankCardDetailsChoosePinScreen.routeName,
-                              );
-                            },
-                          ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Button(
+                          text: "Choose PIN",
+                          disabledColor:
+                              ClientConfig.getCustomColors().neutral300,
+                          color: ClientConfig.getColorScheme().tertiary,
+                          textColor: ClientConfig.getColorScheme().surface,
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              BankCardDetailsChoosePinScreen.routeName,
+                            );
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          );
-        });
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

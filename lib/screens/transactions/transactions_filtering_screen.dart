@@ -21,10 +21,7 @@ class TransactionsFilteringScreen extends StatefulWidget {
 
   final TransactionListFilter? transactionListFilter;
 
-  const TransactionsFilteringScreen({
-    super.key,
-    this.transactionListFilter,
-  });
+  const TransactionsFilteringScreen({super.key, this.transactionListFilter});
 
   @override
   State<TransactionsFilteringScreen> createState() =>
@@ -43,7 +40,8 @@ class _TransactionsFilteringScreenState
 
   @override
   Widget build(BuildContext context) {
-    bool isFilterSelected = transactionListFilter?.bookingDateMin != null ||
+    bool isFilterSelected =
+        transactionListFilter?.bookingDateMin != null ||
         transactionListFilter?.bookingDateMax != null;
 
     return ScreenScaffold(
@@ -84,7 +82,7 @@ class _TransactionsFilteringScreenState
                         PillButton(
                           active:
                               transactionListFilter?.bookingDateMin != null ||
-                                  transactionListFilter?.bookingDateMax != null,
+                              transactionListFilter?.bookingDateMax != null,
                           buttonText:
                               '${getFormattedDate(date: transactionListFilter?.bookingDateMin, text: "Start date")} - ${getFormattedDate(date: transactionListFilter?.bookingDateMax, text: "End date")}',
                           buttonCallback: () {
@@ -97,81 +95,78 @@ class _TransactionsFilteringScreenState
                                         start: transactionListFilter!
                                             .bookingDateMin!,
                                         end: transactionListFilter!
-                                            .bookingDateMax!)
+                                            .bookingDateMax!,
+                                      )
                                     : null,
                                 onDateRangeSelected: (DateTimeRange range) {
                                   setState(() {
                                     transactionListFilter =
                                         TransactionListFilter(
-                                      bookingDateMin: range.start,
-                                      bookingDateMax: range.end,
-                                    );
+                                          bookingDateMin: range.start,
+                                          bookingDateMax: range.end,
+                                        );
                                   });
                                 },
                               ),
                             );
                           },
-                          icon: (transactionListFilter?.bookingDateMin !=
-                                      null ||
+                          icon:
+                              (transactionListFilter?.bookingDateMin != null ||
                                   transactionListFilter?.bookingDateMax != null)
-                              ? const Icon(
-                                  Icons.close,
-                                  size: 16,
-                                )
+                              ? const Icon(Icons.close, size: 16)
                               : null,
                           closeButton: () {
                             setState(() {
                               transactionListFilter =
                                   const TransactionListFilter(
-                                bookingDateMin: null,
-                                bookingDateMax: null,
-                              );
+                                    bookingDateMin: null,
+                                    bookingDateMax: null,
+                                  );
                             });
                           },
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 36,
-                    ),
+                    const SizedBox(height: 36),
                     Text(
                       "By category",
                       style: ClientConfig.getTextStyleScheme().labelLarge,
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
+                    const SizedBox(height: 16),
                     StoreConnector<AppState, CategoriesViewModel>(
                       onInit: (store) {
                         store.dispatch(GetCategoriesCommandAction());
                       },
                       converter: (store) =>
                           CategoriesPresenter.presentCategories(
-                              categoriesState: store.state.categoriesState),
+                            categoriesState: store.state.categoriesState,
+                          ),
                       builder: (context, viewModel) {
                         return Column(
                           children: _buildFiltersListList(
-                              viewModel, transactionListFilter,
-                              (category, selected) {
-                            final List<Category> categories =
-                                transactionListFilter?.categories ?? [];
-                            if (selected == true) {
-                              categories.add(category);
-                            } else {
-                              categories.remove(category);
-                            }
-                            setState(() {
-                              transactionListFilter = TransactionListFilter(
-                                bookingDateMin:
-                                    transactionListFilter?.bookingDateMin,
-                                bookingDateMax:
-                                    transactionListFilter?.bookingDateMax,
-                                searchString:
-                                    transactionListFilter?.searchString,
-                                categories: categories,
-                              );
-                            });
-                          }),
+                            viewModel,
+                            transactionListFilter,
+                            (category, selected) {
+                              final List<Category> categories =
+                                  transactionListFilter?.categories ?? [];
+                              if (selected == true) {
+                                categories.add(category);
+                              } else {
+                                categories.remove(category);
+                              }
+                              setState(() {
+                                transactionListFilter = TransactionListFilter(
+                                  bookingDateMin:
+                                      transactionListFilter?.bookingDateMin,
+                                  bookingDateMax:
+                                      transactionListFilter?.bookingDateMax,
+                                  searchString:
+                                      transactionListFilter?.searchString,
+                                  categories: categories,
+                                );
+                              });
+                            },
+                          ),
                         );
                       },
                     ),
@@ -179,9 +174,7 @@ class _TransactionsFilteringScreenState
                 ),
               ),
             ),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             SizedBox(
               height: 48,
               width: double.infinity,
@@ -190,21 +183,25 @@ class _TransactionsFilteringScreenState
                   backgroundColor: MaterialStateProperty.resolveWith((states) {
                     return ClientConfig.getColorScheme().tertiary;
                   }),
-                  shape: MaterialStateProperty.all(const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)))),
+                  shape: MaterialStateProperty.all(
+                    const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                    ),
+                  ),
                 ),
                 onPressed: () {
                   StoreProvider.of<AppState>(context).dispatch(
-                      GetTransactionsCommandAction(
-                          filter: transactionListFilter,
-                          forceReloadTransactions: true));
+                    GetTransactionsCommandAction(
+                      filter: transactionListFilter,
+                      forceReloadTransactions: true,
+                    ),
+                  );
 
                   Navigator.pop(context);
                 },
                 child: Text(
                   "Apply filters",
-                  style: ClientConfig.getTextStyleScheme()
-                      .bodyLargeRegularBold
+                  style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
                       .copyWith(color: ClientConfig.getColorScheme().surface),
                 ),
               ),
@@ -216,10 +213,7 @@ class _TransactionsFilteringScreenState
   }
 }
 
-String getFormattedDate({
-  DateTime? date,
-  String text = "Date not set",
-}) {
+String getFormattedDate({DateTime? date, String text = "Date not set"}) {
   if (date == null) {
     return text;
   }
@@ -228,30 +222,31 @@ String getFormattedDate({
 }
 
 List<Widget> _buildFiltersListList(
-    CategoriesViewModel viewModel,
-    TransactionListFilter? filter,
-    final Function(Category, bool) onSelectionChanged) {
+  CategoriesViewModel viewModel,
+  TransactionListFilter? filter,
+  final Function(Category, bool) onSelectionChanged,
+) {
   final List<Widget> widgetsList = [];
 
   if (viewModel is CategoriesErrorViewModel) {
     return [
       const Center(
-          child:
-              Text("An error appeared while getting the available categories"))
+        child: Text("An error appeared while getting the available categories"),
+      ),
     ];
   }
 
   if (viewModel is WithCategoriesViewModel) {
     for (int index = 0; index < viewModel.categories!.length; index++) {
       final Category category = viewModel.categories![index];
-      widgetsList.add(_CategoryRow(
-        category: category,
-        filter: filter,
-        onSelectionChanged: onSelectionChanged,
-      ));
-      widgetsList.add(const SizedBox(
-        height: 24,
-      ));
+      widgetsList.add(
+        _CategoryRow(
+          category: category,
+          filter: filter,
+          onSelectionChanged: onSelectionChanged,
+        ),
+      );
+      widgetsList.add(const SizedBox(height: 24));
     }
 
     return widgetsList;
@@ -265,12 +260,12 @@ class _CategoryRow extends StatefulWidget {
   final TransactionListFilter? filter;
   final Function(Category, bool) onSelectionChanged;
 
-  const _CategoryRow(
-      {Key? key,
-      required this.category,
-      required this.filter,
-      required this.onSelectionChanged})
-      : super(key: key);
+  const _CategoryRow({
+    Key? key,
+    required this.category,
+    required this.filter,
+    required this.onSelectionChanged,
+  }) : super(key: key);
 
   @override
   State<_CategoryRow> createState() => _CategoryRowState();
@@ -292,13 +287,12 @@ class _CategoryRowState extends State<_CategoryRow> {
     return Row(
       children: [
         CheckboxWidget(
-            isChecked: isSelected,
-            onChanged: (bool? value) {
-              widget.onSelectionChanged(widget.category, value!);
-            }),
-        const SizedBox(
-          width: 8,
+          isChecked: isSelected,
+          onChanged: (bool? value) {
+            widget.onSelectionChanged(widget.category, value!);
+          },
         ),
+        const SizedBox(width: 8),
         Text(
           widget.category.name,
           style: ClientConfig.getTextStyleScheme().bodyLargeRegular,

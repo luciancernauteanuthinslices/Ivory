@@ -25,7 +25,8 @@ class GetBillsMiddleware extends MiddlewareClass<AppState> {
     if (action is GetBillsCommandAction) {
       store.dispatch(BillsLoadingEventAction());
       final response = await _billService.getBills(
-          user: authState.authenticatedUser.cognito);
+        user: authState.authenticatedUser.cognito,
+      );
 
       if (response is GetBillsSuccessResponse) {
         store.dispatch(BillsFetchedEventAction(bills: response.bills));
@@ -36,17 +37,20 @@ class GetBillsMiddleware extends MiddlewareClass<AppState> {
 
     if (action is GetBillByIdCommandAction) {
       final response = await _billService.getBillById(
-          id: action.id, user: authState.authenticatedUser.cognito);
+        id: action.id,
+        user: authState.authenticatedUser.cognito,
+      );
 
       if (response is GetBillByIdSuccessResponse) {
-        final newBills =
-            (store.state.billsState as BillsFetchedState).bills.map((bill) {
-          if (bill.id == action.id) {
-            return response.bill;
-          }
+        final newBills = (store.state.billsState as BillsFetchedState).bills
+            .map((bill) {
+              if (bill.id == action.id) {
+                return response.bill;
+              }
 
-          return bill;
-        }).toList();
+              return bill;
+            })
+            .toList();
         store.dispatch(BillsFetchedEventAction(bills: newBills));
       }
     }
@@ -54,7 +58,8 @@ class GetBillsMiddleware extends MiddlewareClass<AppState> {
     if (action is DownloadBillCommandAction) {
       store.dispatch(BillDownloadingEventAction());
       final response = await _billService.downloadBillAsPdf(
-          postboxItemId: action.bill.postboxItemId);
+        postboxItemId: action.bill.postboxItemId,
+      );
 
       if (response != null) {
         await _fileSaverService.saveFile(

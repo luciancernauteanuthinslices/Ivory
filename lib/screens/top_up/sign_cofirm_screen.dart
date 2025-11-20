@@ -32,10 +32,7 @@ class _SignAndCofirmState extends State<SignAndConfirmScreen> {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Sign & confirm',
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 16),
@@ -67,9 +64,10 @@ class _SignAndCofirmState extends State<SignAndConfirmScreen> {
                               style: ClientConfig.getTextStyleScheme()
                                   .labelSmall
                                   .copyWith(
-                                      color: ClientConfig.getCustomColors()
-                                          .neutral800,
-                                      fontSize: 16),
+                                    color: ClientConfig.getCustomColors()
+                                        .neutral800,
+                                    fontSize: 16,
+                                  ),
                             ),
                           ],
                         ),
@@ -135,10 +133,7 @@ class _SignAndCofirmState extends State<SignAndConfirmScreen> {
                 color: ClientConfig.getColorScheme().tertiary,
                 textColor: ClientConfig.getColorScheme().surface,
                 onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    TopUpSuccessfulScreen.routeName,
-                  );
+                  Navigator.pushNamed(context, TopUpSuccessfulScreen.routeName);
                 },
               ),
             ),
@@ -161,11 +156,7 @@ class ScheduleContainer extends StatelessWidget {
       ),
       child: const Row(
         children: [
-          Icon(
-            Icons.calendar_month_outlined,
-            color: Colors.orange,
-            size: 24,
-          ),
+          Icon(Icons.calendar_month_outlined, color: Colors.orange, size: 24),
           SizedBox(width: 8),
           Text(
             'Schedule later',

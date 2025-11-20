@@ -47,9 +47,7 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
                           style: ClientConfig.getTextStyleScheme().heading1,
                           textAlign: TextAlign.left,
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
+                        const SizedBox(height: 16),
                         RichText(
                           text: TextSpan(
                             style: ClientConfig.getTextStyleScheme()
@@ -57,18 +55,18 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
                             children: [
                               const TextSpan(text: 'Your '),
                               TextSpan(
-                                  text:
-                                      '${viewModel.thisDevice!.deviceName} (ID: ${viewModel.thisDevice!.deviceId.substring(0, 13)}) ',
-                                  style: ClientConfig.getTextStyleScheme()
-                                      .bodyLargeRegularBold),
+                                text:
+                                    '${viewModel.thisDevice!.deviceName} (ID: ${viewModel.thisDevice!.deviceId.substring(0, 13)}) ',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold,
+                              ),
                               const TextSpan(
-                                  text: 'has been successfully paired.'),
+                                text: 'has been successfully paired.',
+                              ),
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 24,
-                        ),
+                        const SizedBox(height: 24),
                         Expanded(
                           child: IvoryAssetWithBadge(
                             childWidget: SvgPicture(
@@ -80,14 +78,14 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            childPosition:
-                                BadgePosition.topEnd(top: -32, end: 16),
+                            childPosition: BadgePosition.topEnd(
+                              top: -32,
+                              end: 16,
+                            ),
                             isSuccess: true,
                           ),
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
+                        const SizedBox(height: 16),
                         SizedBox(
                           width: double.infinity,
                           height: 48,
@@ -104,27 +102,24 @@ class SettingsDevicePairingSuccessScreen extends StatelessWidget {
                                   SettingsDevicePairingScreen.routeName,
                                 ),
                               );
-                              StoreProvider.of<AppState>(context)
-                                  .dispatch(FetchBoundDevicesCommandAction());
+                              StoreProvider.of<AppState>(
+                                context,
+                              ).dispatch(FetchBoundDevicesCommandAction());
                             },
                           ),
                         ),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           );
         }
         if (viewModel is DeviceBindingErrorViewModel) {
-          return const Center(
-            child: Text('Error'),
-          );
+          return const Center(child: Text('Error'));
         }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

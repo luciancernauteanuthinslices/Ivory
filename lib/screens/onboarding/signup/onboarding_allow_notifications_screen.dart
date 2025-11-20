@@ -49,8 +49,9 @@ class _OnboardingAllowNotificationsScreenState
     if (mounted &&
         state == AppLifecycleState.resumed &&
         currentRoute == OnboardingAllowNotificationsScreen.routeName) {
-      StoreProvider.of<AppState>(context)
-          .dispatch(CheckPushNotificationPermissionCommandAction());
+      StoreProvider.of<AppState>(
+        context,
+      ).dispatch(CheckPushNotificationPermissionCommandAction());
     }
   }
 
@@ -58,7 +59,8 @@ class _OnboardingAllowNotificationsScreenState
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingSignupViewModel>(
       converter: (store) => OnboardingSignupPresenter.present(
-          signupState: store.state.onboardingSignupState),
+        signupState: store.state.onboardingSignupState,
+      ),
       builder: (context, viewModel) => ScreenScaffold(
         body: Column(
           children: [
@@ -140,7 +142,9 @@ class _RequestNotificationPermissionContent extends StatelessWidget {
           borderWidth: 2,
           onPressed: () {
             Navigator.pushNamed(
-                context, OnboardingTermConditionsScreen.routeName);
+              context,
+              OnboardingTermConditionsScreen.routeName,
+            );
           },
         ),
         const SizedBox(height: 16),
@@ -149,17 +153,19 @@ class _RequestNotificationPermissionContent extends StatelessWidget {
                 text: "Go to notification settings",
                 onPressed: () async {
                   await AppSettings.openAppSettings(
-                      type: AppSettingsType.notification);
+                    type: AppSettingsType.notification,
+                  );
                 },
               )
             : PrimaryButton(
                 text: "Allow notifications",
                 onPressed: () {
-                  StoreProvider.of<AppState>(context).dispatch(
-                      RequestPushNotificationsPermissionCommandAction());
+                  StoreProvider.of<AppState>(
+                    context,
+                  ).dispatch(RequestPushNotificationsPermissionCommandAction());
                 },
               ),
-        const SizedBox(height: 16)
+        const SizedBox(height: 16),
       ],
     );
   }
@@ -179,8 +185,10 @@ class _AllowedPermissionContent extends StatelessWidget {
           style: ClientConfig.getTextStyleScheme().heading2,
         ),
         const SizedBox(height: 16),
-        Text("Thank you! We will notify you about every account acitivity.",
-            style: ClientConfig.getTextStyleScheme().bodyLargeRegular),
+        Text(
+          "Thank you! We will notify you about every account acitivity.",
+          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+        ),
         Expanded(
           child: IvoryAssetWithBadge(
             isSuccess: true,
@@ -199,10 +207,12 @@ class _AllowedPermissionContent extends StatelessWidget {
           text: "Continue",
           onPressed: () {
             Navigator.pushNamed(
-                context, OnboardingTermConditionsScreen.routeName);
+              context,
+              OnboardingTermConditionsScreen.routeName,
+            );
           },
         ),
-        const SizedBox(height: 16)
+        const SizedBox(height: 16),
       ],
     );
   }

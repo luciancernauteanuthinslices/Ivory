@@ -12,7 +12,10 @@ class GetMoreCreditMiddleware extends MiddlewareClass<AppState> {
 
   @override
   Future<void> call(
-      Store<AppState> store, dynamic action, NextDispatcher next) async {
+    Store<AppState> store,
+    dynamic action,
+    NextDispatcher next,
+  ) async {
     next(action);
 
     final authState = store.state.authState;
@@ -27,9 +30,9 @@ class GetMoreCreditMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is GetMoreCreditSuccessResponse) {
-        store.dispatch(MoreCreditFetchedEventAction(
-          waitlist: response.waitlist,
-        ));
+        store.dispatch(
+          MoreCreditFetchedEventAction(waitlist: response.waitlist),
+        );
       } else {
         store.dispatch(MoreCreditFailedEventAction());
       }
@@ -42,9 +45,9 @@ class GetMoreCreditMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is GetMoreCreditSuccessResponse) {
-        store.dispatch(MoreCreditFetchedEventAction(
-          waitlist: response.waitlist,
-        ));
+        store.dispatch(
+          MoreCreditFetchedEventAction(waitlist: response.waitlist),
+        );
       } else {
         store.dispatch(MoreCreditFailedEventAction());
       }

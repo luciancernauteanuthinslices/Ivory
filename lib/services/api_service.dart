@@ -76,9 +76,10 @@ class ApiService<T> {
       log(response.body, name: "POST $path $queryParameters RESPONSE");
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw HttpException(
-            method: "POST",
-            statusCode: response.statusCode,
-            responseBody: requestBody);
+          method: "POST",
+          statusCode: response.statusCode,
+          responseBody: requestBody,
+        );
       }
 
       return jsonDecode(response.body);
@@ -115,9 +116,10 @@ class ApiService<T> {
       log(response.body, name: "PATCH $path $queryParameters RESPONSE");
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw HttpException(
-            method: "PATCH",
-            statusCode: response.statusCode,
-            responseBody: response.body);
+          method: "PATCH",
+          statusCode: response.statusCode,
+          responseBody: response.body,
+        );
       }
 
       return jsonDecode(response.body);
@@ -156,9 +158,10 @@ class ApiService<T> {
           response.statusCode != 201 &&
           response.statusCode != 204) {
         throw HttpException(
-            method: "DELETE",
-            statusCode: response.statusCode,
-            responseBody: requestBody);
+          method: "DELETE",
+          statusCode: response.statusCode,
+          responseBody: requestBody,
+        );
       }
 
       return response.body.isNotEmpty ? jsonDecode(response.body) : {};
@@ -198,17 +201,15 @@ class ApiService<T> {
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrintStack(
-          stackTrace: s, label: "downloadFile $path $queryParameters");
+        stackTrace: s,
+        label: "downloadFile $path $queryParameters",
+      );
       rethrow;
     }
   }
 
   static url(String path, {Map<String, String> queryParameters = const {}}) {
-    return Uri.https(
-      Config.apiBaseUrl,
-      path,
-      queryParameters,
-    );
+    return Uri.https(Config.apiBaseUrl, path, queryParameters);
   }
 
   Future<String> getAccessToken() async {

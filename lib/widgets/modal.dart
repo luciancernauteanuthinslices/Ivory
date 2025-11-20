@@ -33,7 +33,7 @@ Future<dynamic> showBottomModal({
         return SizedBox(
           height: (useSafeArea && statusbarVisibilityForTallModal)
               ? MediaQuery.of(context).size.height -
-                  MediaQuery.of(context).viewPadding.top
+                    MediaQuery.of(context).viewPadding.top
               : null,
           child: _BottomModalSheetContent(
             content: content,
@@ -49,7 +49,7 @@ Future<dynamic> showBottomModal({
       return SizedBox(
         height: (useSafeArea && statusbarVisibilityForTallModal)
             ? MediaQuery.of(context).size.height -
-                MediaQuery.of(context).viewPadding.top
+                  MediaQuery.of(context).viewPadding.top
             : null,
         child: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(

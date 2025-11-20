@@ -22,10 +22,7 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
     return TweenAnimationBuilder<double>(
       duration: duration,
       curve: Curves.easeInOut,
-      tween: Tween<double>(
-        begin: begin,
-        end: value,
-      ),
+      tween: Tween<double>(begin: begin, end: value),
       builder: (context, value, _) => LinearProgressIndicator(
         value: value,
         color: color ?? ClientConfig.getColorScheme().secondary,
@@ -58,9 +55,6 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
       stepValue = (current - (isCompleted ? 0 : 1)) / totalSteps;
     }
 
-    return AnimatedLinearProgressIndicator(
-      begin: begin,
-      value: stepValue,
-    );
+    return AnimatedLinearProgressIndicator(begin: begin, value: stepValue);
   }
 }

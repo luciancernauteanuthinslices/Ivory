@@ -19,7 +19,7 @@ enum BankCardStatus {
   LOST,
   NEVER_RECEIVED,
   PROCESSING,
-  STOLEN
+  STOLEN,
 }
 
 // TODO These card types are from Solaris Documentation. For future use
@@ -69,23 +69,22 @@ class BankCard {
   String toRawJson() => json.encode(toJson());
 
   factory BankCard.fromJson(Map<String, dynamic> json) => BankCard(
-        id: json["id"],
-        accountId: json["account_id"] ?? '',
-        status: getCardStatus(json["status"] ?? BankCardStatus.INACTIVE.name),
-        type:
-            getCardType(json["type"] ?? BankCardType.VIRTUAL_VISA_CREDIT.name),
-        representation: json["representation"] == null
-            ? null
-            : BankCardRepresentation.fromJson(json["representation"]),
-      );
+    id: json["id"],
+    accountId: json["account_id"] ?? '',
+    status: getCardStatus(json["status"] ?? BankCardStatus.INACTIVE.name),
+    type: getCardType(json["type"] ?? BankCardType.VIRTUAL_VISA_CREDIT.name),
+    representation: json["representation"] == null
+        ? null
+        : BankCardRepresentation.fromJson(json["representation"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "account_id": accountId,
-        "status": status.name,
-        "type": type.name,
-        "representation": representation?.toJson(),
-      };
+    "id": id,
+    "account_id": accountId,
+    "status": status.name,
+    "type": type.name,
+    "representation": representation?.toJson(),
+  };
 }
 
 BankCardType getCardType(String type) {
@@ -175,11 +174,11 @@ class BankCardRepresentation {
       );
 
   Map<String, dynamic> toJson() => {
-        "line_1": line1,
-        "line_2": line2,
-        "masked_pan": maskedPan,
-        "formatted_expiration_date": formattedExpirationDate,
-      };
+    "line_1": line1,
+    "line_2": line2,
+    "masked_pan": maskedPan,
+    "formatted_expiration_date": formattedExpirationDate,
+  };
 }
 
 class BankCardFetchedDetails {
@@ -221,12 +220,12 @@ class CreateBankCardReqBody {
   }
 
   Map<String, dynamic> toJson() => {
-        "line_1": line1,
-        "line_2": line2,
-        "type": type.name,
-        "business_id": businessId,
-        "reference": reference,
-      };
+    "line_1": line1,
+    "line_2": line2,
+    "type": type.name,
+    "business_id": businessId,
+    "reference": reference,
+  };
 }
 
 String getCardDetailsRequestToJson(GetCardDetailsRequestBody data) =>
@@ -248,12 +247,12 @@ class GetCardDetailsRequestBody {
   });
 
   Map<String, dynamic> toJson() => {
-        "device_id": deviceId,
-        "device_data": deviceData,
-        "signature": signature,
-        "jwk": jwk.toJson(),
-        "jwe": jwe.toJson(),
-      };
+    "device_id": deviceId,
+    "device_data": deviceData,
+    "signature": signature,
+    "jwk": jwk.toJson(),
+    "jwe": jwe.toJson(),
+  };
 }
 
 GetCardDetailsResponse getCardDetailsResponseFromJson(String str) =>
@@ -262,14 +261,10 @@ GetCardDetailsResponse getCardDetailsResponseFromJson(String str) =>
 class GetCardDetailsResponse {
   String data;
 
-  GetCardDetailsResponse({
-    required this.data,
-  });
+  GetCardDetailsResponse({required this.data});
 
   factory GetCardDetailsResponse.fromJson(Map<String, dynamic> json) =>
-      GetCardDetailsResponse(
-        data: json["data"],
-      );
+      GetCardDetailsResponse(data: json["data"]);
 }
 
 String changePinRequestBodyToJson(ChangePinRequestBody data) =>
@@ -291,10 +286,10 @@ class ChangePinRequestBody {
   });
 
   Map<String, dynamic> toJson() => {
-        "encrypted_pin": encryptedPin,
-        "key_id": keyId,
-        "device_id": deviceId,
-        "device_data": deviceData,
-        "signature": signature,
-      };
+    "encrypted_pin": encryptedPin,
+    "key_id": keyId,
+    "device_id": deviceId,
+    "device_data": deviceData,
+    "signature": signature,
+  };
 }

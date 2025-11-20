@@ -34,11 +34,17 @@ class AddressSuggestionsMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is GetAddressSuggestionsSuccessResponse) {
-        store.dispatch(AddressSuggestionsFetchedEventAction(
-            suggestions: response.suggestions));
+        store.dispatch(
+          AddressSuggestionsFetchedEventAction(
+            suggestions: response.suggestions,
+          ),
+        );
       } else if (response is GetAddressSuggestionsErrorResponse) {
-        store.dispatch(FetchAddressSuggestionsFailedEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          FetchAddressSuggestionsFailedEventAction(
+            errorType: response.errorType,
+          ),
+        );
       }
     }
   }

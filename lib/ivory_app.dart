@@ -149,276 +149,287 @@ class _IvoryAppState extends State<IvoryApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: widget.store,
-      child: Builder(builder: (context) {
-        return MaterialApp(
-          title: "Ivory Demo",
-          theme: widget.clientConfig.uiSettings.themeData,
-          builder: (context, child) {
-            final mq = MediaQuery.of(context);
-            final ts = double.tryParse(
-                  const String.fromEnvironment('TEXT_SCALE',
-                      defaultValue: '1.0'),
-                ) ??
-                1.0;
-            return MediaQuery(
-              data: mq.copyWith(textScaleFactor: ts),
-              child: child!,
-            );
-          },
-          navigatorObservers: [
-            IvoryApp.routeObserver,
-            IvoryApp.loggingObserver,
-            IvoryApp.generalRouteObserver,
-          ],
-          debugShowCheckedModeBanner: false,
-          navigatorKey: navigatorKey,
-          initialRoute: WelcomeScreen.routeName,
-          routes: {
-            // landing
-            WelcomeScreen.routeName: (context) => const WelcomeScreen(),
-            // login
-            LoginScreen.routeName: (context) => const LoginScreen(),
-            LoginWithTanScreen.routeName: (context) =>
-                const LoginWithTanScreen(),
-            LoginWithBiometricsScreen.routeName: (context) =>
-                const LoginWithBiometricsScreen(),
-            // home
-            HomeScreen.routeName: (context) {
-              String client = const String.fromEnvironment('CLIENT');
-              switch (client) {
-                case 'iulius':
-                  return const IuliusNavigationScreen(
-                      initialScreen: IuliusNavigationScreens.homeScreen);
-                default:
-                  return const MainNavigationScreen(
-                      initialScreen: MainNavigationScreens.homeScreen);
-              }
-            },
-            AvailableBalanceScreen.routeName: (context) =>
-                const AvailableBalanceScreen(),
-            // settings - security
-            SettingsScreen.routeName: (context) => const MainNavigationScreen(
-                initialScreen: MainNavigationScreens.settingsScreen),
-            SettingsSecurityScreen.routeName: (context) =>
-                const SettingsSecurityScreen(),
-            SettingsDevicePairingScreen.routeName: (context) =>
-                const SettingsDevicePairingScreen(),
-            SettingsPairedDeviceDetailsScreen.routeName: (context) {
-              final pairedDeviceDetailsScreenParams = ModalRoute.of(context)
-                  ?.settings
-                  .arguments as SettingsPairedDeviceDetailsScreenParams?;
-
-              return SettingsPairedDeviceDetailsScreen(
-                params: pairedDeviceDetailsScreenParams!,
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            title: "Ivory Demo",
+            theme: widget.clientConfig.uiSettings.themeData,
+            builder: (context, child) {
+              final mq = MediaQuery.of(context);
+              final ts =
+                  double.tryParse(
+                    const String.fromEnvironment(
+                      'TEXT_SCALE',
+                      defaultValue: '1.0',
+                    ),
+                  ) ??
+                  1.0;
+              return MediaQuery(
+                data: mq.copyWith(textScaleFactor: ts),
+                child: child!,
               );
             },
-            SettingsDevicePairingInitialScreen.routeName: (context) =>
-                const SettingsDevicePairingInitialScreen(),
-            SettingsDevicePairingVerifyPairingScreen.routeName: (context) =>
-                const SettingsDevicePairingVerifyPairingScreen(),
-            SettingsDevicePairingSuccessScreen.routeName: (context) =>
-                const SettingsDevicePairingSuccessScreen(),
-            SettingsDevicePairingTemporaryRestrictionScreen.routeName:
-                (context) =>
-                    const SettingsDevicePairingTemporaryRestrictionScreen(),
-            //settings - app settings
-            AppSettingsBiometricNeededScreen.routeName: (context) =>
-                const AppSettingsBiometricNeededScreen(),
-            AppSettingsBiometricEnabledScreen.routeName: (context) =>
-                const AppSettingsBiometricEnabledScreen(),
+            navigatorObservers: [
+              IvoryApp.routeObserver,
+              IvoryApp.loggingObserver,
+              IvoryApp.generalRouteObserver,
+            ],
+            debugShowCheckedModeBanner: false,
+            navigatorKey: navigatorKey,
+            initialRoute: WelcomeScreen.routeName,
+            routes: {
+              // landing
+              WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+              // login
+              LoginScreen.routeName: (context) => const LoginScreen(),
+              LoginWithTanScreen.routeName: (context) =>
+                  const LoginWithTanScreen(),
+              LoginWithBiometricsScreen.routeName: (context) =>
+                  const LoginWithBiometricsScreen(),
+              // home
+              HomeScreen.routeName: (context) {
+                String client = const String.fromEnvironment('CLIENT');
+                switch (client) {
+                  case 'iulius':
+                    return const IuliusNavigationScreen(
+                      initialScreen: IuliusNavigationScreens.homeScreen,
+                    );
+                  default:
+                    return const MainNavigationScreen(
+                      initialScreen: MainNavigationScreens.homeScreen,
+                    );
+                }
+              },
+              AvailableBalanceScreen.routeName: (context) =>
+                  const AvailableBalanceScreen(),
+              // settings - security
+              SettingsScreen.routeName: (context) => const MainNavigationScreen(
+                initialScreen: MainNavigationScreens.settingsScreen,
+              ),
+              SettingsSecurityScreen.routeName: (context) =>
+                  const SettingsSecurityScreen(),
+              SettingsDevicePairingScreen.routeName: (context) =>
+                  const SettingsDevicePairingScreen(),
+              SettingsPairedDeviceDetailsScreen.routeName: (context) {
+                final pairedDeviceDetailsScreenParams =
+                    ModalRoute.of(context)?.settings.arguments
+                        as SettingsPairedDeviceDetailsScreenParams?;
 
-            //Top-up
-            ChooseMethodScreen.routeName: (context) =>
-                const ChooseMethodScreen(),
-            AddCardScreen.routeName: (context) => const AddCardScreen(),
-            AddMoneyScreen.routeName: (context) => const AddMoneyScreen(),
-            SignAndConfirmScreen.routeName: (context) =>
-                const SignAndConfirmScreen(),
-            TopUpSuccessfulScreen.routeName: (context) =>
-                const TopUpSuccessfulScreen(),
+                return SettingsPairedDeviceDetailsScreen(
+                  params: pairedDeviceDetailsScreenParams!,
+                );
+              },
+              SettingsDevicePairingInitialScreen.routeName: (context) =>
+                  const SettingsDevicePairingInitialScreen(),
+              SettingsDevicePairingVerifyPairingScreen.routeName: (context) =>
+                  const SettingsDevicePairingVerifyPairingScreen(),
+              SettingsDevicePairingSuccessScreen.routeName: (context) =>
+                  const SettingsDevicePairingSuccessScreen(),
+              SettingsDevicePairingTemporaryRestrictionScreen.routeName:
+                  (context) =>
+                      const SettingsDevicePairingTemporaryRestrictionScreen(),
+              //settings - app settings
+              AppSettingsBiometricNeededScreen.routeName: (context) =>
+                  const AppSettingsBiometricNeededScreen(),
+              AppSettingsBiometricEnabledScreen.routeName: (context) =>
+                  const AppSettingsBiometricEnabledScreen(),
 
-            //transactions
-            TransactionsScreen.routeName: (context) {
-              final transactionListFilter = ModalRoute.of(context)
-                  ?.settings
-                  .arguments as TransactionListFilter?;
+              //Top-up
+              ChooseMethodScreen.routeName: (context) =>
+                  const ChooseMethodScreen(),
+              AddCardScreen.routeName: (context) => const AddCardScreen(),
+              AddMoneyScreen.routeName: (context) => const AddMoneyScreen(),
+              SignAndConfirmScreen.routeName: (context) =>
+                  const SignAndConfirmScreen(),
+              TopUpSuccessfulScreen.routeName: (context) =>
+                  const TopUpSuccessfulScreen(),
 
-              return MainNavigationScreen(
+              //transactions
+              TransactionsScreen.routeName: (context) {
+                final transactionListFilter =
+                    ModalRoute.of(context)?.settings.arguments
+                        as TransactionListFilter?;
+
+                return MainNavigationScreen(
                   initialScreen: MainNavigationScreens.transactionsScreen,
-                  screenParams: transactionListFilter);
+                  screenParams: transactionListFilter,
+                );
+              },
+              TransactionsFilteringScreen.routeName: (context) {
+                final transactionListFilter =
+                    ModalRoute.of(context)?.settings.arguments
+                        as TransactionListFilter?;
+
+                return TransactionsFilteringScreen(
+                  transactionListFilter: transactionListFilter,
+                );
+              },
+              TransactionDetailScreen.routeName: (context) =>
+                  const TransactionDetailScreen(),
+              TransactionApprovalPendingScreen.routeName: (context) =>
+                  const TransactionApprovalPendingScreen(),
+              TransactionApprovalSuccessScreen.routeName: (context) =>
+                  const TransactionApprovalSuccessScreen(),
+              TransactionApprovalRejectedScreen.routeName: (context) =>
+                  const TransactionApprovalRejectedScreen(),
+              TransactionApprovalFailedScreen.routeName: (context) =>
+                  const TransactionApprovalFailedScreen(),
+              // wallet
+              BankCardsScreen.routeName: (context) =>
+                  const MainNavigationScreen(
+                    initialScreen: MainNavigationScreens.cardsScreen,
+                  ),
+              BankCardDetailsChoosePinScreen.routeName: (context) =>
+                  const BankCardDetailsChoosePinScreen(),
+              BankCardDetailsConfirmPinScreen.routeName: (context) =>
+                  const BankCardDetailsConfirmPinScreen(),
+              BankCardDetailsAppleWalletScreen.routeName: (context) =>
+                  const BankCardDetailsAppleWalletScreen(),
+              BankCardDetailsActivationSuccessScreen.routeName: (context) =>
+                  const BankCardDetailsActivationSuccessScreen(),
+              BankCardDetailsInfoScreen.routeName: (context) =>
+                  const BankCardDetailsInfoScreen(),
+              BankCardDetailsScreen.routeName: (context) {
+                final cardDetailsScreenParams =
+                    ModalRoute.of(context)?.settings.arguments
+                        as CardScreenParams?;
+
+                return BankCardDetailsScreen(params: cardDetailsScreenParams!);
+              },
+              BankCardChangePinChooseScreen.routeName: (context) =>
+                  const BankCardChangePinChooseScreen(),
+              BankCardConfirmPinConfirmScreen.routeName: (context) =>
+                  const BankCardConfirmPinConfirmScreen(),
+              BankCardChangePinSuccessScreen.routeName: (context) =>
+                  const BankCardChangePinSuccessScreen(),
+
+              // repayments
+              RepaymentsScreen.routeName: (context) => const RepaymentsScreen(),
+              ChangeRepaymentRateScreen.routeName: (context) =>
+                  const ChangeRepaymentRateScreen(),
+              RepaymentSuccessfullyChangedScreen.routeName: (context) {
+                final params =
+                    ModalRoute.of(context)?.settings.arguments
+                        as RepaymentSuccessfullyScreenParams;
+
+                return RepaymentSuccessfullyChangedScreen(params: params);
+              },
+              RepaymentReminderScreen.routeName: (context) =>
+                  const RepaymentReminderScreen(),
+
+              MoreCreditScreen.routeName: (context) => const MoreCreditScreen(),
+              MoreCreditWaitlistScreen.routeName: (context) =>
+                  const MoreCreditWaitlistScreen(),
+
+              BillsScreen.routeName: (context) => const BillsScreen(),
+              BillDetailScreen.routeName: (context) => const BillDetailScreen(),
+              // transfer
+              TransferScreen.routeName: (context) => const TransferScreen(),
+              TransferReviewScreen.routeName: (context) {
+                return TransferReviewScreen(
+                  params:
+                      ModalRoute.of(context)?.settings.arguments
+                          as TransferReviewScreenParams,
+                );
+              },
+              TransferSignScreen.routeName: (context) =>
+                  const TransferSignScreen(),
+              TransferSuccessfulScreen.routeName: (context) =>
+                  const TransferSuccessfulScreen(),
+              TransferFailedScreen.routeName: (context) =>
+                  const TransferFailedScreen(),
+              // account
+              AccountDetailsScreen.routeName: (context) =>
+                  const AccountDetailsScreen(),
+              // onboarding
+              OnboardingStepperScreen.routeName: (context) =>
+                  const OnboardingStepperScreen(),
+              OnboardingStartScreen.routeName: (context) =>
+                  const OnboardingStartScreen(),
+              OnboardingGermanResidencyScreen.routeName: (context) =>
+                  const OnboardingGermanResidencyScreen(),
+              OnboardingGermanResidencyErrorScreen.routeName: (context) =>
+                  const OnboardingGermanResidencyErrorScreen(),
+              OnboardingUsaTaxPayerScreen.routeName: (context) =>
+                  const OnboardingUsaTaxPayerScreen(),
+              OnboardingUsaTaxPayerErrorScreen.routeName: (context) =>
+                  const OnboardingUsaTaxPayerErrorScreen(),
+              // onboarding/sign_up
+              OnboardingBasicInfoScreen.routeName: (context) =>
+                  const OnboardingBasicInfoScreen(),
+              OnboardingEmailScreen.routeName: (context) =>
+                  const OnboardingEmailScreen(),
+              OnboardingPasswordScreen.routeName: (context) =>
+                  const OnboardingPasswordScreen(),
+              OnboardingAllowNotificationsScreen.routeName: (context) =>
+                  const OnboardingAllowNotificationsScreen(),
+              OnboardingTermConditionsScreen.routeName: (context) =>
+                  const OnboardingTermConditionsScreen(),
+              OnboardingErrorEmailScreen.routeName: (context) =>
+                  const OnboardingErrorEmailScreen(),
+              OnboardingGeneralErrorScreen.routeName: (context) =>
+                  const OnboardingGeneralErrorScreen(),
+              // onboarding/personal_details
+              OnboardingDateAndPlaceOfBirthScreen.routeName: (context) =>
+                  const OnboardingDateAndPlaceOfBirthScreen(),
+              OnboardingNationalityNotSupportedScreen.routeName: (context) =>
+                  const OnboardingNationalityNotSupportedScreen(),
+              OnboardingAddressOfResidenceScreen.routeName: (context) =>
+                  const OnboardingAddressOfResidenceScreen(),
+              OnboardingAddressOfResidenceErrorScreen.routeName: (context) =>
+                  const OnboardingAddressOfResidenceErrorScreen(),
+              OnboardingMobileNumberScreen.routeName: (context) =>
+                  const OnboardingMobileNumberScreen(),
+              OnboardingVerifyMobileNumberScreen.routeName: (context) =>
+                  const OnboardingVerifyMobileNumberScreen(),
+              // onboarding/financial_details
+              OnboardingRememberScreen.routeName: (context) =>
+                  const OnboardingRememberScreen(),
+              OnboardingTaxIdScreen.routeName: (context) =>
+                  const OnboardingTaxIdScreen(),
+              OnboardingPublicStatusScreen.routeName: (context) =>
+                  const OnboardingPublicStatusScreen(),
+              OnboardingOccupationalStatusScreen.routeName: (context) =>
+                  const OnboardingOccupationalStatusScreen(),
+              OnboardingMonthlyIncomeScreen.routeName: (context) =>
+                  const OnboardingMonthlyIncomeScreen(),
+              // onboarding/identity_verification
+              OnboardingIdentityVerificationMethodScreen.routeName: (context) =>
+                  const OnboardingIdentityVerificationMethodScreen(),
+              OnboardingVideoIdentificationNotAvailableScreen.routeName:
+                  (context) =>
+                      const OnboardingVideoIdentificationNotAvailableScreen(),
+              OnboardingReferenceAccountIbanScreen.routeName: (context) =>
+                  const OnboardingReferenceAccountIbanScreen(),
+              OnboardingContractsConfirmScreen.routeName: (context) =>
+                  const OnboardingContractsConfirmScreen(),
+              OnboardingBankVerificationScreen.routeName: (context) =>
+                  const OnboardingBankVerificationScreen(),
+              OnboardingSignWithTanScreen.routeName: (context) =>
+                  const OnboardingSignWithTanScreen(),
+              OnboardingReviewUpdatedContractsScreen.routeName: (context) =>
+                  const OnboardingReviewUpdatedContractsScreen(),
+              OnboardingScoringWaitingScreen.routeName: (context) =>
+                  const OnboardingScoringWaitingScreen(),
+              OnboardingCreditLimitCongratulationsScreen.routeName: (context) =>
+                  const OnboardingCreditLimitCongratulationsScreen(),
+              OnboardingScoringRejectedScreen.routeName: (context) =>
+                  const OnboardingScoringRejectedScreen(),
+              OnboardingIdentityVerificationErrorScreen.routeName: (context) =>
+                  const OnboardingIdentityVerificationErrorScreen(),
+              //onboarding/card_configuration
+              OnboardingOrderCardScreen.routeName: (context) =>
+                  const OnboardingOrderCardScreen(),
+              OnboardingConfigureCardScreen.routeName: (context) =>
+                  const OnboardingConfigureCardScreen(),
+              OnboardingRepaymentOptionScreen.routeName: (context) =>
+                  const OnboardingRepaymentOptionScreen(),
+              OnboardingCongratulationsScreen.routeName: (context) =>
+                  const OnboardingCongratulationsScreen(),
             },
-            TransactionsFilteringScreen.routeName: (context) {
-              final transactionListFilter = ModalRoute.of(context)
-                  ?.settings
-                  .arguments as TransactionListFilter?;
-
-              return TransactionsFilteringScreen(
-                transactionListFilter: transactionListFilter,
-              );
-            },
-            TransactionDetailScreen.routeName: (context) =>
-                const TransactionDetailScreen(),
-            TransactionApprovalPendingScreen.routeName: (context) =>
-                const TransactionApprovalPendingScreen(),
-            TransactionApprovalSuccessScreen.routeName: (context) =>
-                const TransactionApprovalSuccessScreen(),
-            TransactionApprovalRejectedScreen.routeName: (context) =>
-                const TransactionApprovalRejectedScreen(),
-            TransactionApprovalFailedScreen.routeName: (context) =>
-                const TransactionApprovalFailedScreen(),
-            // wallet
-            BankCardsScreen.routeName: (context) => const MainNavigationScreen(
-                initialScreen: MainNavigationScreens.cardsScreen),
-            BankCardDetailsChoosePinScreen.routeName: (context) =>
-                const BankCardDetailsChoosePinScreen(),
-            BankCardDetailsConfirmPinScreen.routeName: (context) =>
-                const BankCardDetailsConfirmPinScreen(),
-            BankCardDetailsAppleWalletScreen.routeName: (context) =>
-                const BankCardDetailsAppleWalletScreen(),
-            BankCardDetailsActivationSuccessScreen.routeName: (context) =>
-                const BankCardDetailsActivationSuccessScreen(),
-            BankCardDetailsInfoScreen.routeName: (context) =>
-                const BankCardDetailsInfoScreen(),
-            BankCardDetailsScreen.routeName: (context) {
-              final cardDetailsScreenParams = ModalRoute.of(context)
-                  ?.settings
-                  .arguments as CardScreenParams?;
-
-              return BankCardDetailsScreen(
-                params: cardDetailsScreenParams!,
-              );
-            },
-            BankCardChangePinChooseScreen.routeName: (context) =>
-                const BankCardChangePinChooseScreen(),
-            BankCardConfirmPinConfirmScreen.routeName: (context) =>
-                const BankCardConfirmPinConfirmScreen(),
-            BankCardChangePinSuccessScreen.routeName: (context) =>
-                const BankCardChangePinSuccessScreen(),
-
-            // repayments
-            RepaymentsScreen.routeName: (context) => const RepaymentsScreen(),
-            ChangeRepaymentRateScreen.routeName: (context) =>
-                const ChangeRepaymentRateScreen(),
-            RepaymentSuccessfullyChangedScreen.routeName: (context) {
-              final params = ModalRoute.of(context)?.settings.arguments
-                  as RepaymentSuccessfullyScreenParams;
-
-              return RepaymentSuccessfullyChangedScreen(params: params);
-            },
-            RepaymentReminderScreen.routeName: (context) =>
-                const RepaymentReminderScreen(),
-
-            MoreCreditScreen.routeName: (context) => const MoreCreditScreen(),
-            MoreCreditWaitlistScreen.routeName: (context) =>
-                const MoreCreditWaitlistScreen(),
-
-            BillsScreen.routeName: (context) => const BillsScreen(),
-            BillDetailScreen.routeName: (context) => const BillDetailScreen(),
-            // transfer
-            TransferScreen.routeName: (context) => const TransferScreen(),
-            TransferReviewScreen.routeName: (context) {
-              return TransferReviewScreen(
-                params: ModalRoute.of(context)?.settings.arguments
-                    as TransferReviewScreenParams,
-              );
-            },
-            TransferSignScreen.routeName: (context) =>
-                const TransferSignScreen(),
-            TransferSuccessfulScreen.routeName: (context) =>
-                const TransferSuccessfulScreen(),
-            TransferFailedScreen.routeName: (context) =>
-                const TransferFailedScreen(),
-            // account
-            AccountDetailsScreen.routeName: (context) =>
-                const AccountDetailsScreen(),
-            // onboarding
-            OnboardingStepperScreen.routeName: (context) =>
-                const OnboardingStepperScreen(),
-            OnboardingStartScreen.routeName: (context) =>
-                const OnboardingStartScreen(),
-            OnboardingGermanResidencyScreen.routeName: (context) =>
-                const OnboardingGermanResidencyScreen(),
-            OnboardingGermanResidencyErrorScreen.routeName: (context) =>
-                const OnboardingGermanResidencyErrorScreen(),
-            OnboardingUsaTaxPayerScreen.routeName: (context) =>
-                const OnboardingUsaTaxPayerScreen(),
-            OnboardingUsaTaxPayerErrorScreen.routeName: (context) =>
-                const OnboardingUsaTaxPayerErrorScreen(),
-            // onboarding/sign_up
-            OnboardingBasicInfoScreen.routeName: (context) =>
-                const OnboardingBasicInfoScreen(),
-            OnboardingEmailScreen.routeName: (context) =>
-                const OnboardingEmailScreen(),
-            OnboardingPasswordScreen.routeName: (context) =>
-                const OnboardingPasswordScreen(),
-            OnboardingAllowNotificationsScreen.routeName: (context) =>
-                const OnboardingAllowNotificationsScreen(),
-            OnboardingTermConditionsScreen.routeName: (context) =>
-                const OnboardingTermConditionsScreen(),
-            OnboardingErrorEmailScreen.routeName: (context) =>
-                const OnboardingErrorEmailScreen(),
-            OnboardingGeneralErrorScreen.routeName: (context) =>
-                const OnboardingGeneralErrorScreen(),
-            // onboarding/personal_details
-            OnboardingDateAndPlaceOfBirthScreen.routeName: (context) =>
-                const OnboardingDateAndPlaceOfBirthScreen(),
-            OnboardingNationalityNotSupportedScreen.routeName: (context) =>
-                const OnboardingNationalityNotSupportedScreen(),
-            OnboardingAddressOfResidenceScreen.routeName: (context) =>
-                const OnboardingAddressOfResidenceScreen(),
-            OnboardingAddressOfResidenceErrorScreen.routeName: (context) =>
-                const OnboardingAddressOfResidenceErrorScreen(),
-            OnboardingMobileNumberScreen.routeName: (context) =>
-                const OnboardingMobileNumberScreen(),
-            OnboardingVerifyMobileNumberScreen.routeName: (context) =>
-                const OnboardingVerifyMobileNumberScreen(),
-            // onboarding/financial_details
-            OnboardingRememberScreen.routeName: (context) =>
-                const OnboardingRememberScreen(),
-            OnboardingTaxIdScreen.routeName: (context) =>
-                const OnboardingTaxIdScreen(),
-            OnboardingPublicStatusScreen.routeName: (context) =>
-                const OnboardingPublicStatusScreen(),
-            OnboardingOccupationalStatusScreen.routeName: (context) =>
-                const OnboardingOccupationalStatusScreen(),
-            OnboardingMonthlyIncomeScreen.routeName: (context) =>
-                const OnboardingMonthlyIncomeScreen(),
-            // onboarding/identity_verification
-            OnboardingIdentityVerificationMethodScreen.routeName: (context) =>
-                const OnboardingIdentityVerificationMethodScreen(),
-            OnboardingVideoIdentificationNotAvailableScreen.routeName:
-                (context) =>
-                    const OnboardingVideoIdentificationNotAvailableScreen(),
-            OnboardingReferenceAccountIbanScreen.routeName: (context) =>
-                const OnboardingReferenceAccountIbanScreen(),
-            OnboardingContractsConfirmScreen.routeName: (context) =>
-                const OnboardingContractsConfirmScreen(),
-            OnboardingBankVerificationScreen.routeName: (context) =>
-                const OnboardingBankVerificationScreen(),
-            OnboardingSignWithTanScreen.routeName: (context) =>
-                const OnboardingSignWithTanScreen(),
-            OnboardingReviewUpdatedContractsScreen.routeName: (context) =>
-                const OnboardingReviewUpdatedContractsScreen(),
-            OnboardingScoringWaitingScreen.routeName: (context) =>
-                const OnboardingScoringWaitingScreen(),
-            OnboardingCreditLimitCongratulationsScreen.routeName: (context) =>
-                const OnboardingCreditLimitCongratulationsScreen(),
-            OnboardingScoringRejectedScreen.routeName: (context) =>
-                const OnboardingScoringRejectedScreen(),
-            OnboardingIdentityVerificationErrorScreen.routeName: (context) =>
-                const OnboardingIdentityVerificationErrorScreen(),
-            //onboarding/card_configuration
-            OnboardingOrderCardScreen.routeName: (context) =>
-                const OnboardingOrderCardScreen(),
-            OnboardingConfigureCardScreen.routeName: (context) =>
-                const OnboardingConfigureCardScreen(),
-            OnboardingRepaymentOptionScreen.routeName: (context) =>
-                const OnboardingRepaymentOptionScreen(),
-            OnboardingCongratulationsScreen.routeName: (context) =>
-                const OnboardingCongratulationsScreen(),
-          },
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 }

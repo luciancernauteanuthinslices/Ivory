@@ -33,7 +33,8 @@ class CircularCountdownProgress extends StatelessWidget {
                 child: Text(
                   controller.formattedRemainingDuration.toString(),
                   style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
-                      color: ClientConfig.getCustomColors().neutral900),
+                    color: ClientConfig.getCustomColors().neutral900,
+                  ),
                 ),
               ),
             ),
@@ -43,7 +44,8 @@ class CircularCountdownProgress extends StatelessWidget {
                 value: controller.remainingPercent,
                 backgroundColor: ClientConfig.getCustomColors().neutral200,
                 valueColor: AlwaysStoppedAnimation<Color>(
-                    ClientConfig.getColorScheme().secondary),
+                  ClientConfig.getColorScheme().secondary,
+                ),
               ),
             ),
           ],

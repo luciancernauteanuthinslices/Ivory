@@ -2,7 +2,9 @@ import 'package:solarisdemo/redux/onboarding/financial_details/onboarding_financ
 import 'package:solarisdemo/redux/onboarding/financial_details/onboarding_financial_details_state.dart';
 
 OnboardingFinancialDetailsState onboardingFinancialDetailsReducer(
-    OnboardingFinancialDetailsState state, dynamic action) {
+  OnboardingFinancialDetailsState state,
+  dynamic action,
+) {
   if (action is CreateTaxIdLoadingEventAction ||
       action is CreateCreditCardApplicationLoadingEventAction) {
     return OnboardingFinancialDetailsState(

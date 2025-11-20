@@ -14,9 +14,7 @@ import 'package:solarisdemo/widgets/screen_scaffold.dart';
 class LoginWithBiometricsScreen extends StatefulWidget {
   static const routeName = "/loginBiometricsScreen";
 
-  const LoginWithBiometricsScreen({
-    super.key,
-  });
+  const LoginWithBiometricsScreen({super.key});
 
   @override
   State<LoginWithBiometricsScreen> createState() =>
@@ -33,10 +31,10 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
             (store.state.authState as AuthenticationInitializedState)
                     .authType ==
                 AuthType.withBiometrics) {
-          final cognitoUser = (StoreProvider.of<AppState>(context)
-                  .state
-                  .authState as AuthenticationInitializedState)
-              .cognitoUser;
+          final cognitoUser =
+              (StoreProvider.of<AppState>(context).state.authState
+                      as AuthenticationInitializedState)
+                  .cognitoUser;
           firstName = cognitoUser.firstName ?? '';
           store.dispatch(
             AuthenticateUserCommandAction(
@@ -47,7 +45,9 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
                 Navigator.of(
                   navigatorKey.currentContext as BuildContext,
                 ).pushNamedAndRemoveUntil(
-                    HomeScreen.routeName, (route) => false);
+                  HomeScreen.routeName,
+                  (route) => false,
+                );
               },
             ),
           );
@@ -59,9 +59,7 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppToolbar(
-                actions: const [
-                  AppbarLogo(),
-                ],
+                actions: const [AppbarLogo()],
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
                 backButtonEnabled: false,
@@ -77,20 +75,16 @@ class _LoginWithBiometricsScreenState extends State<LoginWithBiometricsScreen> {
                         "Great to see you back, $firstName",
                         style: ClientConfig.getTextStyleScheme().heading1,
                       ),
-                      const SizedBox(
-                        height: 16,
+                      const SizedBox(height: 16),
+                      Text(
+                        'Unlock your account with biometrics.',
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
                       ),
-                      Text('Unlock your account with biometrics.',
-                          style: ClientConfig.getTextStyleScheme()
-                              .bodyLargeRegular),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       const Spacer(),
                       if (viewModel is AuthLoadingViewModel)
-                        const Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                        const Center(child: CircularProgressIndicator()),
                       const Spacer(),
                     ],
                   ),

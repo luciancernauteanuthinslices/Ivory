@@ -14,10 +14,7 @@ class DeviceBindingService extends ApiService {
     this.user = user;
 
     try {
-      var data = await post(
-        'person/device/binding',
-        body: reqBody.toJson(),
-      );
+      var data = await post('person/device/binding', body: reqBody.toJson());
 
       return CreateDeviceBindingSuccessResponse(
         deviceId: data['id'],
@@ -25,15 +22,17 @@ class DeviceBindingService extends ApiService {
       );
     } catch (e) {
       return const DeviceBindingServiceErrorResponse(
-          errorType: DeviceBindingServiceErrorType.deviceBindingFailed);
+        errorType: DeviceBindingServiceErrorType.deviceBindingFailed,
+      );
     }
   }
 
-  Future<DeviceBindingServiceResponse> verifyDeviceBindingSignature(
-      {required User user,
-      required String deviceId,
-      required String deviceFingerPrint,
-      required String signature}) async {
+  Future<DeviceBindingServiceResponse> verifyDeviceBindingSignature({
+    required User user,
+    required String deviceId,
+    required String deviceFingerPrint,
+    required String signature,
+  }) async {
     this.user = user;
 
     try {
@@ -48,8 +47,9 @@ class DeviceBindingService extends ApiService {
       return VerifyDeviceBindingSignatureSuccessResponse();
     } catch (e) {
       return const DeviceBindingServiceErrorResponse(
-          errorType:
-              DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed);
+        errorType:
+            DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed,
+      );
     }
   }
 
@@ -59,47 +59,44 @@ class DeviceBindingService extends ApiService {
   }) async {
     this.user = user;
     try {
-      await post(
-        'person/device/key',
-        body: reqBody.toJson(),
-      );
+      await post('person/device/key', body: reqBody.toJson());
 
       return CreateRestrictedKeySuccessResponse();
     } catch (e) {
       return const DeviceBindingServiceErrorResponse(
-          errorType: DeviceBindingServiceErrorType.createRestrictedKeyFailed);
+        errorType: DeviceBindingServiceErrorType.createRestrictedKeyFailed,
+      );
     }
   }
 
-  Future<DeviceBindingServiceResponse> deleteDeviceBinding(
-      {required User user, required String deviceId}) async {
+  Future<DeviceBindingServiceResponse> deleteDeviceBinding({
+    required User user,
+    required String deviceId,
+  }) async {
     this.user = user;
     try {
-      await delete(
-        'person/device/binding/$deviceId',
-      );
+      await delete('person/device/binding/$deviceId');
 
       return DeleteDeviceBindingSuccessResponse();
     } catch (e) {
       return const DeviceBindingServiceErrorResponse(
-          errorType: DeviceBindingServiceErrorType.deletingDeviceBindingFailed);
+        errorType: DeviceBindingServiceErrorType.deletingDeviceBindingFailed,
+      );
     }
   }
 
-  Future<DeviceBindingServiceResponse> getDeviceBinding(
-      {required User user}) async {
+  Future<DeviceBindingServiceResponse> getDeviceBinding({
+    required User user,
+  }) async {
     this.user = user;
     try {
-      var data = await get(
-        'person/device',
-      );
+      var data = await get('person/device');
 
-      List<Device> devices =
-          (data as List).map((device) => Device.fromJson(device)).toList();
+      List<Device> devices = (data as List)
+          .map((device) => Device.fromJson(device))
+          .toList();
 
-      return GetDeviceBindingSuccessResponse(
-        devices: devices,
-      );
+      return GetDeviceBindingSuccessResponse(devices: devices);
     } catch (e) {
       return const DeviceBindingServiceErrorResponse(
         errorType: DeviceBindingServiceErrorType.getDeviceBindingFailed,
@@ -131,9 +128,7 @@ class CreateDeviceBindingSuccessResponse extends DeviceBindingServiceResponse {
 class GetDeviceBindingSuccessResponse extends DeviceBindingServiceResponse {
   final List<Device> devices;
 
-  const GetDeviceBindingSuccessResponse({
-    required this.devices,
-  });
+  const GetDeviceBindingSuccessResponse({required this.devices});
 
   @override
   List<Object> get props => [devices];

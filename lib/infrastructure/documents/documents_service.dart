@@ -9,8 +9,9 @@ import 'package:solarisdemo/services/api_service.dart';
 class DocumentsService extends ApiService {
   DocumentsService({super.user});
 
-  Future<DocumentsServiceResponse> getPostboxDocuments(
-      {required User user}) async {
+  Future<DocumentsServiceResponse> getPostboxDocuments({
+    required User user,
+  }) async {
     this.user = user;
 
     try {
@@ -30,7 +31,8 @@ class DocumentsService extends ApiService {
       return GetDocumentsSuccessResponse(documents: documents);
     } catch (error) {
       return DocumentsServiceErrorResponse(
-          errorType: DocumentsErrorType.unknown);
+        errorType: DocumentsErrorType.unknown,
+      );
     }
   }
 
@@ -50,10 +52,13 @@ class DocumentsService extends ApiService {
       final response = await downloadFile(downloadLocations[downloadLocation]!);
 
       return DownloadDocumentSuccessResponse(
-          document: document, file: response);
+        document: document,
+        file: response,
+      );
     } catch (error) {
       return DocumentsServiceErrorResponse(
-          errorType: DocumentsErrorType.unknown);
+        errorType: DocumentsErrorType.unknown,
+      );
     }
   }
 
@@ -64,19 +69,22 @@ class DocumentsService extends ApiService {
     this.user = user;
 
     try {
-      final response = await post('/postbox_items/confirmations', body: {
-        'documents': documents.map((document) => document.id).toList(),
-      });
+      final response = await post(
+        '/postbox_items/confirmations',
+        body: {'documents': documents.map((document) => document.id).toList()},
+      );
 
       if (response['success'] != true) {
         return DocumentsServiceErrorResponse(
-            errorType: DocumentsErrorType.unknown);
+          errorType: DocumentsErrorType.unknown,
+        );
       }
 
       return ConfirmDocumentsSuccessResponse();
     } catch (error) {
       return DocumentsServiceErrorResponse(
-          errorType: DocumentsErrorType.unknown);
+        errorType: DocumentsErrorType.unknown,
+      );
     }
   }
 }

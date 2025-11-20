@@ -66,8 +66,10 @@ void main() {
     );
 
     // then
-    expect(viewModel,
-        WithMessageViewModel(message: notificationMessage, isLoading: true));
+    expect(
+      viewModel,
+      WithMessageViewModel(message: notificationMessage, isLoading: true),
+    );
   });
 
   test("when bank card state is loading should return loading", () {
@@ -86,29 +88,33 @@ void main() {
     );
 
     // then
-    expect(viewModel,
-        WithMessageViewModel(message: notificationMessage, isLoading: true));
+    expect(
+      viewModel,
+      WithMessageViewModel(message: notificationMessage, isLoading: true),
+    );
   });
 
-  test("when transaction approval state is rejected should return rejected",
-      () {
-    // given
-    final notificationState = NotificationTransactionApprovalState(
-      message: notificationMessage,
-    );
-    final transactionApprovalState = TransactionApprovalRejectedState();
-    final bankCardState = BankCardInitialState();
+  test(
+    "when transaction approval state is rejected should return rejected",
+    () {
+      // given
+      final notificationState = NotificationTransactionApprovalState(
+        message: notificationMessage,
+      );
+      final transactionApprovalState = TransactionApprovalRejectedState();
+      final bankCardState = BankCardInitialState();
 
-    // when
-    final viewModel = TransactionApprovalPresenter.present(
-      notificationState: notificationState,
-      transactionApprovalState: transactionApprovalState,
-      bankCardState: bankCardState,
-    );
+      // when
+      final viewModel = TransactionApprovalPresenter.present(
+        notificationState: notificationState,
+        transactionApprovalState: transactionApprovalState,
+        bankCardState: bankCardState,
+      );
 
-    // then
-    expect(viewModel, isA<TransactionApprovalRejectedViewModel>());
-  });
+      // then
+      expect(viewModel, isA<TransactionApprovalRejectedViewModel>());
+    },
+  );
 
   test("when device is not bounded should return failed", () {
     // given
@@ -129,7 +135,8 @@ void main() {
     expect(
       viewModel,
       TransactionApprovalFailedViewModel(
-          errorType: TransactionApprovalErrorType.unboundedDeviceError),
+        errorType: TransactionApprovalErrorType.unboundedDeviceError,
+      ),
     );
   });
 
@@ -152,7 +159,8 @@ void main() {
     expect(
       viewModel,
       TransactionApprovalFailedViewModel(
-          errorType: TransactionApprovalErrorType.unknownError),
+        errorType: TransactionApprovalErrorType.unknownError,
+      ),
     );
   });
 
@@ -175,7 +183,8 @@ void main() {
     expect(
       viewModel,
       TransactionApprovalFailedViewModel(
-          errorType: TransactionApprovalErrorType.unknownError),
+        errorType: TransactionApprovalErrorType.unknownError,
+      ),
     );
   });
 
@@ -190,8 +199,10 @@ void main() {
       deviceData: "deviceData",
       changeRequestId: "changeRequestId",
     );
-    final bankCardState =
-        BankCardFetchedState(bankCard, MockAuthenticatedUser());
+    final bankCardState = BankCardFetchedState(
+      bankCard,
+      MockAuthenticatedUser(),
+    );
 
     // when
     final viewModel = TransactionApprovalPresenter.present(

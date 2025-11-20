@@ -13,9 +13,9 @@ class CreateVerifyMobileNumberRequestBody {
   });
 
   Map<String, dynamic> toJson() => {
-        "number": number,
-        "device_data": deviceData,
-      };
+    "number": number,
+    "device_data": deviceData,
+  };
 }
 
 String confirmDeviceToJson(ConfirmMobileNumberRequestBody data) =>
@@ -33,8 +33,8 @@ class ConfirmMobileNumberRequestBody {
   });
 
   Map<String, dynamic> toJson() => {
-        "token": token,
-        "number": number,
-        "device_data": deviceData,
-      };
+    "token": token,
+    "number": number,
+    "device_data": deviceData,
+  };
 }

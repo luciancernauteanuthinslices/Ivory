@@ -2,7 +2,9 @@ import 'package:solarisdemo/redux/suggestions/address/address_suggestions_action
 import 'package:solarisdemo/redux/suggestions/address/address_suggestions_state.dart';
 
 AddressSuggestionsState addressSuggestionsReducer(
-    AddressSuggestionsState state, dynamic action) {
+  AddressSuggestionsState state,
+  dynamic action,
+) {
   if (action is AddressSuggestionsLoadingEventAction) {
     return AddressSuggestionsLoadingState();
   } else if (action is AddressSuggestionsFetchedEventAction) {

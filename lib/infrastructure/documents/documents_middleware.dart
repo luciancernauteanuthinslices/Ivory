@@ -40,22 +40,28 @@ class DocumentsMiddleware extends MiddlewareClass<AppState> {
       if (response is GetDocumentsSuccessResponse) {
         if (action.retryWhenBelowDocumentCount > 0 &&
             response.documents.length < action.retryWhenBelowDocumentCount) {
-          store.dispatch(GetDocumentsFailedEventAction(
-              errorType: DocumentsErrorType.emptyList));
+          store.dispatch(
+            GetDocumentsFailedEventAction(
+              errorType: DocumentsErrorType.emptyList,
+            ),
+          );
           return;
         }
 
         store.dispatch(
-            DocumentsFetchedEventAction(documents: response.documents));
+          DocumentsFetchedEventAction(documents: response.documents),
+        );
       } else if (response is DocumentsServiceErrorResponse) {
         store.dispatch(
-            GetDocumentsFailedEventAction(errorType: response.errorType));
+          GetDocumentsFailedEventAction(errorType: response.errorType),
+        );
       }
     }
 
     if (action is DownloadDocumentCommandAction) {
       store.dispatch(
-          DownloadDocumentLoadingEventAction(document: action.document));
+        DownloadDocumentLoadingEventAction(document: action.document),
+      );
 
       final response = await _documentsService.downloadDocument(
         user: authState.cognitoUser,
@@ -74,7 +80,8 @@ class DocumentsMiddleware extends MiddlewareClass<AppState> {
         store.dispatch(DownloadDocumentSuccessEventAction());
       } else if (response is DocumentsServiceErrorResponse) {
         store.dispatch(
-            DownloadDocumentFailedEventAction(errorType: response.errorType));
+          DownloadDocumentFailedEventAction(errorType: response.errorType),
+        );
       }
     }
 
@@ -90,7 +97,8 @@ class DocumentsMiddleware extends MiddlewareClass<AppState> {
         store.dispatch(ConfirmDocumentsSuccessEventAction());
       } else if (response is DocumentsServiceErrorResponse) {
         store.dispatch(
-            ConfirmDocumentsFailedEventAction(errorType: response.errorType));
+          ConfirmDocumentsFailedEventAction(errorType: response.errorType),
+        );
       }
     }
   }

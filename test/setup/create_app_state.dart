@@ -88,21 +88,25 @@ AppState createAppState({
         onboardingProgressState ?? OnboardingProgressInitialLoadingState(),
     onboardingSignupState:
         onboardingSignupState ?? const OnboardingSignupState(),
-    onboardingPersonalDetailsState: onboardingPersonalDetailsState ??
+    onboardingPersonalDetailsState:
+        onboardingPersonalDetailsState ??
         const OnboardingPersonalDetailsState(),
     citySuggestionsState: citySuggestionsState ?? CitySuggestionsInitialState(),
     addressSuggestionsState:
         addressSuggestionsState ?? AddressSuggestionsInitialState(),
-    onboardingFinancialDetailsState: onboardingFinancialDetailsState ??
+    onboardingFinancialDetailsState:
+        onboardingFinancialDetailsState ??
         const OnboardingFinancialDetailsState(),
     documentsState: documentsState ?? DocumentsInitialLoadingState(),
     downloadDocumentState:
         downloadDocumentState ?? DownloadDocumentInitialState(),
     confirmDocumentsState:
         confirmDocumentsState ?? ConfirmDocumentsInitialState(),
-    onboardingIdentityVerificationState: onboardingIdentityVerificationState ??
+    onboardingIdentityVerificationState:
+        onboardingIdentityVerificationState ??
         const OnboardingIdentityVerificationState(),
-    onboardingCardConfigurationState: onboardingCardConfigurationState ??
+    onboardingCardConfigurationState:
+        onboardingCardConfigurationState ??
         OnboardingCardConfigurationInitialState(),
   );
 }

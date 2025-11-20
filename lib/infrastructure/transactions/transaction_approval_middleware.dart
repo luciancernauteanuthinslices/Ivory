@@ -32,11 +32,13 @@ class TransactionApprovalMiddleware extends MiddlewareClass<AppState> {
     }
 
     if (action is AuthorizeTransactionCommandAction) {
-      final consentId = await _deviceService
-          .getConsentId(authState.authenticatedUser.cognito.personId!);
+      final consentId = await _deviceService.getConsentId(
+        authState.authenticatedUser.cognito.personId!,
+      );
       final deviceId = await _deviceService.getDeviceId();
-      final deviceData =
-          await _deviceFingerprintService.getDeviceFingerprint(consentId);
+      final deviceData = await _deviceFingerprintService.getDeviceFingerprint(
+        consentId,
+      );
 
       final isDeviceIdNotEmpty = deviceId != null && deviceId.isNotEmpty;
       final isDeviceDataNotEmpty = deviceData != null && deviceData.isNotEmpty;
@@ -50,12 +52,14 @@ class TransactionApprovalMiddleware extends MiddlewareClass<AppState> {
         );
 
         if (response is AuthorizeChangeRequestSuccessResponse) {
-          store.dispatch(AuthorizedTransactionEventAction(
-            changeRequestId: action.changeRequestId,
-            stringToSign: response.stringToSign,
-            deviceId: deviceId,
-            deviceData: deviceData,
-          ));
+          store.dispatch(
+            AuthorizedTransactionEventAction(
+              changeRequestId: action.changeRequestId,
+              stringToSign: response.stringToSign,
+              deviceId: deviceId,
+              deviceData: deviceData,
+            ),
+          );
         } else {
           store.dispatch(TransactionApprovalFailedEventAction());
         }
@@ -120,9 +124,10 @@ class TransactionApprovalMiddleware extends MiddlewareClass<AppState> {
   }) async {
     String? consentId = await _deviceService.getConsentId(user.personId!);
 
-    final isBiometricsAuthenticated =
-        await _biometricsService.authenticateWithBiometrics(
-            message: "Please use biometric authentication.");
+    final isBiometricsAuthenticated = await _biometricsService
+        .authenticateWithBiometrics(
+          message: "Please use biometric authentication.",
+        );
 
     if (consentId == null || !isBiometricsAuthenticated) {
       store.dispatch(TransactionApprovalFailedEventAction());

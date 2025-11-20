@@ -6,20 +6,23 @@ import '../../../models/user.dart';
 class OnboardingCardConfigurationService extends ApiService {
   OnboardingCardConfigurationService({super.user});
 
-  Future<OnboardingCardConfigurationResponse> getCardholderName(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> getCardholderName({
+    required User user,
+  }) async {
     this.user = user;
     try {
       final response = await get("/signup/card_line_2");
       return GetCardholderNameSuccessResponse(
-          cardholderName: response["line_2"]);
+        cardholderName: response["line_2"],
+      );
     } catch (e) {
       return OnboardingCardConfigurationErrorResponse();
     }
   }
 
-  Future<OnboardingCardConfigurationResponse> onboardingCreateCard(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingCreateCard({
+    required User user,
+  }) async {
     this.user = user;
     try {
       await post("/account/cards");
@@ -29,8 +32,9 @@ class OnboardingCardConfigurationService extends ApiService {
     }
   }
 
-  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo({
+    required User user,
+  }) async {
     this.user = user;
     try {
       final response = await get("/account/cards");

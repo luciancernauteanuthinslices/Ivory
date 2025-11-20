@@ -33,7 +33,9 @@ class UpcomingTransactionsFetchedState extends TransactionsState {
   final TransactionListFilter? transactionListFilter;
 
   UpcomingTransactionsFetchedState(
-      this.upcomingTransactions, this.transactionListFilter);
+    this.upcomingTransactions,
+    this.transactionListFilter,
+  );
 
   @override
   List<Object?> get props => [upcomingTransactions, transactionListFilter];

@@ -38,9 +38,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return Screen(
       title: 'Welcome ${user.cognito.firstName}!',
@@ -49,24 +50,18 @@ class HomeScreen extends StatelessWidget {
       trailingActions: [
         IconButton(
           padding: EdgeInsets.zero,
-          icon: const Icon(
-            Icons.remove_red_eye_outlined,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
           onPressed: () {},
         ),
         IconButton(
           padding: EdgeInsets.zero,
-          icon: const Icon(
-            Icons.notifications_none,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.notifications_none, color: Colors.white),
           onPressed: () {},
-        )
+        ),
       ],
-      titleTextStyle: ClientConfig.getTextStyleScheme()
-          .heading3
-          .copyWith(color: Colors.white),
+      titleTextStyle: ClientConfig.getTextStyleScheme().heading3.copyWith(
+        color: Colors.white,
+      ),
       centerTitle: false,
       child: const HomePageContent(),
     );
@@ -74,9 +69,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class HomePageContent extends StatelessWidget {
-  const HomePageContent({
-    super.key,
-  });
+  const HomePageContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +85,7 @@ class HomePageContent extends StatelessWidget {
               Padding(
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
-                child: const TransactionListTitle(
-                  displayShowAllButton: true,
-                ),
+                child: const TransactionListTitle(displayShowAllButton: true),
               ),
               StoreConnector<AppState, TransactionsViewModel>(
                 onInit: (store) => store.dispatch(
@@ -143,7 +134,7 @@ class HomePageContent extends StatelessWidget {
                           padding: ClientConfig.getCustomClientUiSettings()
                               .defaultScreenHorizontalPadding,
                           child: const Rewards(),
-                        )
+                        ),
                       ],
                     );
                   }
@@ -154,10 +145,12 @@ class HomePageContent extends StatelessWidget {
                           .defaultScreenHorizontalPadding,
                       child: Column(
                         children: [
-                          for (var i = 0;
-                              i < _defaultCountTransactionsDisplayed;
-                              i++)
-                            TransactionListItem.loadingSkeleton()
+                          for (
+                            var i = 0;
+                            i < _defaultCountTransactionsDisplayed;
+                            i++
+                          )
+                            TransactionListItem.loadingSkeleton(),
                         ],
                       ),
                     ),
@@ -173,19 +166,19 @@ class HomePageContent extends StatelessWidget {
 }
 
 class HomePageHeader extends StatelessWidget {
-  const HomePageHeader({
-    super.key,
-  });
+  const HomePageHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AccountSummaryViewModel>(
       onInit: (store) {
         store.dispatch(
-            GetAccountSummaryCommandAction(forceAccountSummaryReload: false));
+          GetAccountSummaryCommandAction(forceAccountSummaryReload: false),
+        );
       },
       converter: (store) => AccountSummaryPresenter.presentAccountSummary(
-          accountSummaryState: store.state.accountSummaryState),
+        accountSummaryState: store.state.accountSummaryState,
+      ),
       builder: (context, viewModel) {
         return Container(
           padding: ClientConfig.getCustomClientUiSettings()
@@ -201,13 +194,12 @@ class HomePageHeader extends StatelessWidget {
           child: Column(
             children: [
               viewModel is AccountSummaryFetchedViewModel
-                  ? AccountSummary(
-                      viewModel: viewModel,
-                    )
+                  ? AccountSummary(viewModel: viewModel)
                   : Center(child: AccountSummary.loadingSkeleton()),
               Divider(
-                color:
-                    ClientConfig.getCustomColors().neutral100.withOpacity(0.15),
+                color: ClientConfig.getCustomColors().neutral100.withOpacity(
+                  0.15,
+                ),
                 thickness: 1,
               ),
               const AccountOptions(),
@@ -222,21 +214,14 @@ class HomePageHeader extends StatelessWidget {
 class AccountSummary extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
 
-  const AccountSummary({
-    super.key,
-    required this.viewModel,
-  });
+  const AccountSummary({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AccountBalance(
-          viewModel: viewModel,
-        ),
-        AccountStats(
-          viewModel: viewModel,
-        ),
+        AccountBalance(viewModel: viewModel),
+        AccountStats(viewModel: viewModel),
       ],
     );
   }
@@ -278,16 +263,13 @@ class AccountSummary extends StatelessWidget {
 class AccountBalance extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
 
-  const AccountBalance({
-    super.key,
-    required this.viewModel,
-  });
+  const AccountBalance({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     final creditLimitPercent =
         ((viewModel.accountSummary?.outstandingAmount ?? 0) /
-            (viewModel.accountSummary?.creditLimit ?? 0.01));
+        (viewModel.accountSummary?.creditLimit ?? 0.01));
 
     return Column(
       children: [
@@ -296,9 +278,9 @@ class AccountBalance extends StatelessWidget {
           children: [
             Text(
               "Available Balance",
-              style: ClientConfig.getTextStyleScheme()
-                  .labelSmall
-                  .copyWith(color: Colors.white),
+              style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                color: Colors.white,
+              ),
             ),
             const SizedBox(width: 4),
             InkWell(
@@ -309,19 +291,20 @@ class AccountBalance extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushNamed(
-                    AvailableBalanceScreen.routeName,
-                    arguments: viewModel);
+                  AvailableBalanceScreen.routeName,
+                  arguments: viewModel,
+                );
               },
-            )
+            ),
           ],
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: AccountBalanceText(
             value: viewModel.accountSummary?.availableBalance?.value ?? 0,
-            numberStyle: ClientConfig.getTextStyleScheme()
-                .display
-                .copyWith(color: Colors.white),
+            numberStyle: ClientConfig.getTextStyleScheme().display.copyWith(
+              color: Colors.white,
+            ),
             centsStyle: const TextStyle(color: Colors.white, fontSize: 24),
           ),
         ),
@@ -342,10 +325,7 @@ class AccountBalance extends StatelessWidget {
 class AccountStats extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
 
-  const AccountStats({
-    super.key,
-    required this.viewModel,
-  });
+  const AccountStats({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -359,18 +339,16 @@ class AccountStats extends StatelessWidget {
             children: [
               Text(
                 "Outstanding balance",
-                style: ClientConfig.getTextStyleScheme()
-                    .labelSmall
-                    .copyWith(color: Colors.white),
+                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(width: 5),
               AccountBalanceText(
                 value: viewModel.accountSummary?.outstandingAmount ?? 0,
-                numberStyle: ClientConfig.getTextStyleScheme()
-                    .labelLarge
+                numberStyle: ClientConfig.getTextStyleScheme().labelLarge
                     .copyWith(color: Colors.white),
-                centsStyle: ClientConfig.getTextStyleScheme()
-                    .labelSmall
+                centsStyle: ClientConfig.getTextStyleScheme().labelSmall
                     .copyWith(color: Colors.white),
               ),
             ],
@@ -380,18 +358,16 @@ class AccountStats extends StatelessWidget {
             children: [
               Text(
                 "Credit limit",
-                style: ClientConfig.getTextStyleScheme()
-                    .labelSmall
-                    .copyWith(color: Colors.white),
+                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(width: 5),
               AccountBalanceText(
                 value: viewModel.accountSummary?.creditLimit ?? 0.01,
-                numberStyle: ClientConfig.getTextStyleScheme()
-                    .labelLarge
+                numberStyle: ClientConfig.getTextStyleScheme().labelLarge
                     .copyWith(color: Colors.white),
-                centsStyle: ClientConfig.getTextStyleScheme()
-                    .labelSmall
+                centsStyle: ClientConfig.getTextStyleScheme().labelSmall
                     .copyWith(color: Colors.white),
               ),
             ],
@@ -408,10 +384,7 @@ class AccountOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 24,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -453,11 +426,12 @@ class AccountOptionsButton extends StatelessWidget {
   final Widget icon;
   final Function onPressed;
 
-  const AccountOptionsButton(
-      {super.key,
-      required this.textLabel,
-      required this.icon,
-      required this.onPressed});
+  const AccountOptionsButton({
+    super.key,
+    required this.textLabel,
+    required this.icon,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -473,10 +447,7 @@ class AccountOptionsButton extends StatelessWidget {
           ),
           child: Center(
             child: IconTheme(
-              data: const IconThemeData(
-                size: 24,
-                color: Colors.black,
-              ),
+              data: const IconThemeData(size: 24, color: Colors.black),
               child: icon,
             ),
           ),
@@ -485,11 +456,11 @@ class AccountOptionsButton extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10),
           child: Text(
             textLabel,
-            style: ClientConfig.getTextStyleScheme()
-                .labelSmall
-                .copyWith(color: Colors.white),
+            style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+              color: Colors.white,
+            ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -498,10 +469,7 @@ class AccountOptionsButton extends StatelessWidget {
 class TransactionListTitle extends StatelessWidget {
   final bool displayShowAllButton;
 
-  const TransactionListTitle({
-    super.key,
-    this.displayShowAllButton = false,
-  });
+  const TransactionListTitle({super.key, this.displayShowAllButton = false});
 
   @override
   Widget build(BuildContext context) {
@@ -517,9 +485,9 @@ class TransactionListTitle extends StatelessWidget {
             child: Text(
               "See all",
               textAlign: TextAlign.right,
-              style: ClientConfig.getTextStyleScheme()
-                  .labelMedium
-                  .copyWith(color: ClientConfig.getColorScheme().secondary),
+              style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(
+                color: ClientConfig.getColorScheme().secondary,
+              ),
             ),
             onPressed: () {
               Navigator.pushReplacementNamed(
@@ -527,7 +495,7 @@ class TransactionListTitle extends StatelessWidget {
                 TransactionsScreen.routeName,
               );
             },
-          )
+          ),
       ],
     );
   }

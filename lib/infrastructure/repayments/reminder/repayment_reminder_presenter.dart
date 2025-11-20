@@ -4,9 +4,10 @@ import 'package:solarisdemo/redux/credit_line/credit_line_state.dart';
 import 'package:solarisdemo/redux/repayments/reminder/repayment_reminder_state.dart';
 
 class RepaymentReminderPresenter {
-  static RepaymentReminderViewModel presentRepaymentReminder(
-      {required RepaymentReminderState repaymentReminderState,
-      required CreditLineState creditLineState}) {
+  static RepaymentReminderViewModel presentRepaymentReminder({
+    required RepaymentReminderState repaymentReminderState,
+    required CreditLineState creditLineState,
+  }) {
     if (repaymentReminderState is RepaymentReminderLoadingState ||
         creditLineState is CreditLineLoadingState) {
       return RepaymentReminderLoadingViewModel();

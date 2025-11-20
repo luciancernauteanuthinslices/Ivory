@@ -4,9 +4,7 @@ import 'package:pointycastle/pointycastle.dart';
 import 'package:solarisdemo/models/crypto/jwk.dart';
 
 class CryptoUtils {
-  static Jwk convertRSAPublicKeyToJWK({
-    required RSAPublicKey rsaPublicKey,
-  }) {
+  static Jwk convertRSAPublicKeyToJWK({required RSAPublicKey rsaPublicKey}) {
     return Jwk(
       e: _base64UrlEncodeBigInt(rsaPublicKey.exponent!),
       n: _base64UrlEncodeBigInt(rsaPublicKey.modulus!),

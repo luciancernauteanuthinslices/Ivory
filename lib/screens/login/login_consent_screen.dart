@@ -7,10 +7,7 @@ class GdprConsentScreen extends StatelessWidget {
 
   final void Function() onConsentCallback;
 
-  const GdprConsentScreen({
-    super.key,
-    required this.onConsentCallback,
-  });
+  const GdprConsentScreen({super.key, required this.onConsentCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +21,7 @@ class GdprConsentScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Welcome to SolarisDemo!",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 20),
                   Text(
@@ -62,7 +56,7 @@ class GdprConsentScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

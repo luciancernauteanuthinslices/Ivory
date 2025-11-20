@@ -17,7 +17,10 @@ class AuthStatePlaceholder {
     final person = Person();
     final personAccount = PersonAccount();
     final authUser = AuthenticatedUser(
-        person: person, cognito: user, personAccount: personAccount);
+      person: person,
+      cognito: user,
+      personAccount: personAccount,
+    );
 
     return AuthenticatedState(authUser, AuthType.withTan);
   }

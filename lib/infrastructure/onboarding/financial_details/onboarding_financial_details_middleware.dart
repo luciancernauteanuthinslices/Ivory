@@ -21,17 +21,18 @@ class OnboardingFinancialDetailsMiddleware extends MiddlewareClass<AppState> {
     if (action is CreateTaxIdCommandAction) {
       store.dispatch(CreateTaxIdLoadingEventAction());
 
-      final response =
-          await _onboardingFinancialDetailsService.createTaxIdentification(
-        user: authState.cognitoUser,
-        taxId: action.taxId,
-      );
+      final response = await _onboardingFinancialDetailsService
+          .createTaxIdentification(
+            user: authState.cognitoUser,
+            taxId: action.taxId,
+          );
 
       if (response is CreateTaxIdSuccesResponse) {
         store.dispatch(CreateTaxIdSuccessEventAction(taxId: action.taxId));
       } else if (response is CreateTaxIdErrorResponse) {
         store.dispatch(
-            CreateTaxIdFailedEventAction(errorType: response.errorType));
+          CreateTaxIdFailedEventAction(errorType: response.errorType),
+        );
       }
     }
 
@@ -39,27 +40,32 @@ class OnboardingFinancialDetailsMiddleware extends MiddlewareClass<AppState> {
       store.dispatch(CreateCreditCardApplicationLoadingEventAction());
 
       final financialDetails = store
-          .state.onboardingFinancialDetailsState.financialDetailsAttributes;
+          .state
+          .onboardingFinancialDetailsState
+          .financialDetailsAttributes;
 
-      final response =
-          await _onboardingFinancialDetailsService.createCreditCardApplication(
-        user: authState.cognitoUser,
-        maritalStatus: financialDetails.maritalStatus!,
-        livingSituation: financialDetails.livingSituation!,
-        numberOfDependents: financialDetails.numberOfDependents!,
-        occupationalStatus: financialDetails.occupationalStatus!,
-        dateOfEmployment: financialDetails.dateOfEmployment,
-        monthlyIncome: action.monthlyIncome,
-        monthlyExpense: action.monthlyExpense,
-        totalCurrentDebt: action.totalCurrentDebt,
-        totalCreditLimit: action.totalCreditLimit,
-      );
+      final response = await _onboardingFinancialDetailsService
+          .createCreditCardApplication(
+            user: authState.cognitoUser,
+            maritalStatus: financialDetails.maritalStatus!,
+            livingSituation: financialDetails.livingSituation!,
+            numberOfDependents: financialDetails.numberOfDependents!,
+            occupationalStatus: financialDetails.occupationalStatus!,
+            dateOfEmployment: financialDetails.dateOfEmployment,
+            monthlyIncome: action.monthlyIncome,
+            monthlyExpense: action.monthlyExpense,
+            totalCurrentDebt: action.totalCurrentDebt,
+            totalCreditLimit: action.totalCreditLimit,
+          );
 
       if (response is CreateCreditCardApplicationSuccesResponse) {
         store.dispatch(CreateCreditCardApplicationSuccessEventAction());
       } else if (response is CreateCreditCardApplicationErrorResponse) {
-        store.dispatch(CreateCreditCardApplicationFailedEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          CreateCreditCardApplicationFailedEventAction(
+            errorType: response.errorType,
+          ),
+        );
       }
     }
   }

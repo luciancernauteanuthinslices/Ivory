@@ -39,8 +39,9 @@ class OnboardingGetCreditCardApplicationFailedEventAction {}
 class OnboardingGetCreditCardApplicationSuccessEventAction {
   final CreditCardApplication creditCardApplication;
 
-  OnboardingGetCreditCardApplicationSuccessEventAction(
-      {required this.creditCardApplication});
+  OnboardingGetCreditCardApplicationSuccessEventAction({
+    required this.creditCardApplication,
+  });
 }
 
 class OnboardingUpdateCreditCardApplicationCommandAction {
@@ -62,6 +63,7 @@ class OnboardingUpdateCreditCardApplicationFailedEventAction {}
 class OnboardingUpdateCreditCardApplicationSuccessEventAction {
   final CreditCardApplication creditCardApplication;
 
-  OnboardingUpdateCreditCardApplicationSuccessEventAction(
-      {required this.creditCardApplication});
+  OnboardingUpdateCreditCardApplicationSuccessEventAction({
+    required this.creditCardApplication,
+  });
 }

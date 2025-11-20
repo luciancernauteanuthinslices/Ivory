@@ -68,37 +68,39 @@ class TransferSuccessfulScreen extends StatelessWidget {
                       ),
                       builder: (context, viewModel) =>
                           viewModel is TransferConfirmedViewModel
-                              ? RichText(
-                                  text: TextSpan(
-                                    text: "You have successfully transferred ",
-                                    style: regularFont,
-                                    children: [
-                                      TextSpan(
-                                        text: Format.euro(viewModel.amount,
-                                            digits: 2),
-                                        style: boldFont,
-                                      ),
-                                      TextSpan(
-                                        text: " from your ",
-                                        style: regularFont,
-                                      ),
-                                      TextSpan(
-                                          text: "Ivory account",
-                                          style: boldFont),
-                                      TextSpan(
-                                          text: " to your ",
-                                          style: regularFont),
-                                      TextSpan(
-                                          text: "Reference account",
-                                          style: boldFont),
-                                      TextSpan(
-                                        text: ".",
-                                        style: regularFont,
-                                      ),
-                                    ],
+                          ? RichText(
+                              text: TextSpan(
+                                text: "You have successfully transferred ",
+                                style: regularFont,
+                                children: [
+                                  TextSpan(
+                                    text: Format.euro(
+                                      viewModel.amount,
+                                      digits: 2,
+                                    ),
+                                    style: boldFont,
                                   ),
-                                )
-                              : Container(),
+                                  TextSpan(
+                                    text: " from your ",
+                                    style: regularFont,
+                                  ),
+                                  TextSpan(
+                                    text: "Ivory account",
+                                    style: boldFont,
+                                  ),
+                                  TextSpan(
+                                    text: " to your ",
+                                    style: regularFont,
+                                  ),
+                                  TextSpan(
+                                    text: "Reference account",
+                                    style: boldFont,
+                                  ),
+                                  TextSpan(text: ".", style: regularFont),
+                                ],
+                              ),
+                            )
+                          : Container(),
                     ),
                     const SizedBox(height: 16),
                     RichText(
@@ -109,18 +111,16 @@ class TransferSuccessfulScreen extends StatelessWidget {
                           TextSpan(
                             text: "Transactions ",
                             style: boldFont.copyWith(
-                                color: ClientConfig.getColorScheme().secondary),
+                              color: ClientConfig.getColorScheme().secondary,
+                            ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Navigator.pushNamedAndRemoveUntil(
-                                    context,
-                                    TransactionsScreen.routeName,
-                                    (route) => false,
-                                  ),
-                            children: [
-                              TextSpan(
-                                text: "section.",
-                                style: regularFont,
+                                context,
+                                TransactionsScreen.routeName,
+                                (route) => false,
                               ),
+                            children: [
+                              TextSpan(text: "section.", style: regularFont),
                             ],
                           ),
                         ],
@@ -154,7 +154,10 @@ class TransferSuccessfulScreen extends StatelessWidget {
               text: "Back to \"Home\"",
               textColor: ClientConfig.getColorScheme().surface,
               onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                  context, HomeScreen.routeName, (route) => false),
+                context,
+                HomeScreen.routeName,
+                (route) => false,
+              ),
             ),
           ),
           const SizedBox(height: 16),

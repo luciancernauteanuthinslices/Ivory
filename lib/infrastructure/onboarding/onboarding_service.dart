@@ -7,14 +7,16 @@ import 'package:solarisdemo/services/api_service.dart';
 class OnboardingService extends ApiService {
   OnboardingService({super.user});
 
-  Future<OnboardingServiceResponse> getOnboardingProgress(
-      {required User user}) async {
+  Future<OnboardingServiceResponse> getOnboardingProgress({
+    required User user,
+  }) async {
     this.user = user;
 
     try {
       final data = await get('signup/progress');
-      final currentStep =
-          OnboardingStepExtension.fromString(data['currentStep']);
+      final currentStep = OnboardingStepExtension.fromString(
+        data['currentStep'],
+      );
 
       return OnboardingProgressSuccessResponse(
         step: currentStep,
@@ -26,8 +28,9 @@ class OnboardingService extends ApiService {
     }
   }
 
-  Future<OnboardingServiceResponse> finalizeOnboarding(
-      {required User user}) async {
+  Future<OnboardingServiceResponse> finalizeOnboarding({
+    required User user,
+  }) async {
     this.user = user;
 
     try {
@@ -64,8 +67,9 @@ class OnboardingFinalizeSuccessResponse extends OnboardingServiceResponse {}
 class OnboardingProgressErrorResponse extends OnboardingServiceResponse {
   final OnboardingServiceErrorType errorType;
 
-  OnboardingProgressErrorResponse(
-      {this.errorType = OnboardingServiceErrorType.unknown});
+  OnboardingProgressErrorResponse({
+    this.errorType = OnboardingServiceErrorType.unknown,
+  });
 
   @override
   List<Object?> get props => [errorType];

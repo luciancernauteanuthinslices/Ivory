@@ -9,9 +9,7 @@ import 'package:solarisdemo/services/api_service.dart';
 class BillService extends ApiService {
   BillService({super.user});
 
-  Future<BillServiceResponse> getBills({
-    required User user,
-  }) async {
+  Future<BillServiceResponse> getBills({required User user}) async {
     this.user = user;
 
     try {
@@ -24,8 +22,10 @@ class BillService extends ApiService {
     }
   }
 
-  Future<BillServiceResponse> getBillById(
-      {required String id, required User user}) async {
+  Future<BillServiceResponse> getBillById({
+    required String id,
+    required User user,
+  }) async {
     this.user = user;
 
     try {
@@ -37,9 +37,7 @@ class BillService extends ApiService {
     }
   }
 
-  Future<Uint8List?> downloadBillAsPdf({
-    required String postboxItemId,
-  }) async {
+  Future<Uint8List?> downloadBillAsPdf({required String postboxItemId}) async {
     try {
       final data = await downloadPdf('postbox_items/$postboxItemId');
 
@@ -58,9 +56,7 @@ class BillService extends ApiService {
 
       final response = await http.get(
         ApiService.url(path, queryParameters: queryParameters),
-        headers: {
-          "Authorization": "Bearer $accessToken",
-        },
+        headers: {"Authorization": "Bearer $accessToken"},
       );
       if (response.statusCode != 200) {
         throw Exception("GET request response code: ${response.statusCode}");

@@ -21,7 +21,7 @@ enum StepperItemType {
   financialDetails,
   identityVerification,
   cardConfiguration,
-  unknown
+  unknown,
 }
 
 class OnboardingProgressPresenter {

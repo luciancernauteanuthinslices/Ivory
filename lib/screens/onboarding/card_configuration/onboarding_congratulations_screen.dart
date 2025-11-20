@@ -29,13 +29,16 @@ class OnboardingCongratulationsScreen extends StatelessWidget {
         child: StoreConnector<AppState, OnboardingProgressViewModel>(
           converter: (store) =>
               OnboardingProgressPresenter.presentOnboardingProgress(
-            onboardingProgressState: store.state.onboardingProgressState,
-            authState: store.state.authState,
-          ),
+                onboardingProgressState: store.state.onboardingProgressState,
+                authState: store.state.authState,
+              ),
           onWillChange: (previousViewModel, newViewModel) {
             if (newViewModel is RedirectToHomeViewModel) {
               Navigator.pushNamedAndRemoveUntil(
-                  context, HomeScreen.routeName, (route) => false);
+                context,
+                HomeScreen.routeName,
+                (route) => false,
+              );
             } else if (newViewModel is OnboardingProgressErrorViewModel) {
               _showServerErrorBottomSheet(context);
             }
@@ -68,8 +71,9 @@ class OnboardingCongratulationsScreen extends StatelessWidget {
                 text: "Go to the app",
                 isLoading: viewModel is OnboardingProgressLoadingViewModel,
                 onPressed: () {
-                  StoreProvider.of<AppState>(context)
-                      .dispatch(FinalizeOnboardingCommandAction());
+                  StoreProvider.of<AppState>(
+                    context,
+                  ).dispatch(FinalizeOnboardingCommandAction());
                 },
               ),
               const SizedBox(height: 16),
@@ -88,30 +92,28 @@ class OnboardingCongratulationsScreen extends StatelessWidget {
       title: 'Server error',
       textWidget: RichText(
         text: TextSpan(
-            style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-            children: [
-              const TextSpan(
-                text:
-                    'We encountered an unexpected technical error. Please try again. If the issue persists, please contact our support team at ',
-              ),
-              TextSpan(
-                  text: "+49 (0)123 456789",
-                  style: ClientConfig.getTextStyleScheme()
-                      .bodyLargeRegularBold
-                      .copyWith(color: ClientConfig.getColorScheme().secondary),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () async {
-                      final telUri = Uri(
-                        scheme: 'tel',
-                        path: '+490123456789',
-                      );
+          style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+          children: [
+            const TextSpan(
+              text:
+                  'We encountered an unexpected technical error. Please try again. If the issue persists, please contact our support team at ',
+            ),
+            TextSpan(
+              text: "+49 (0)123 456789",
+              style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
+                  .copyWith(color: ClientConfig.getColorScheme().secondary),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async {
+                  final telUri = Uri(scheme: 'tel', path: '+490123456789');
 
-                      if (await canLaunchUrl(telUri)) {
-                        await launchUrl(telUri);
-                      }
-                    }),
-              const TextSpan(text: '.')
-            ]),
+                  if (await canLaunchUrl(telUri)) {
+                    await launchUrl(telUri);
+                  }
+                },
+            ),
+            const TextSpan(text: '.'),
+          ],
+        ),
       ),
       content: Column(
         children: [
@@ -120,8 +122,9 @@ class OnboardingCongratulationsScreen extends StatelessWidget {
             text: "Try again",
             onPressed: () {
               Navigator.pop(context);
-              StoreProvider.of<AppState>(context)
-                  .dispatch(FinalizeOnboardingCommandAction());
+              StoreProvider.of<AppState>(
+                context,
+              ).dispatch(FinalizeOnboardingCommandAction());
             },
           ),
           const SizedBox(height: 16),

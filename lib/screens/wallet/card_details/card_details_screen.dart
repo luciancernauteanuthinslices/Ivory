@@ -26,16 +26,14 @@ class BankCardDetailsScreen extends StatelessWidget {
   final CardScreenParams params;
   static const routeName = '/cardDetailsScreen';
 
-  const BankCardDetailsScreen({
-    super.key,
-    required this.params,
-  });
+  const BankCardDetailsScreen({super.key, required this.params});
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return ScreenScaffold(
       body: Padding(
@@ -47,7 +45,9 @@ class BankCardDetailsScreen extends StatelessWidget {
               title: 'View card details',
               onBackButtonPressed: () async {
                 Navigator.popUntil(
-                    context, ModalRoute.withName(HomeScreen.routeName));
+                  context,
+                  ModalRoute.withName(HomeScreen.routeName),
+                );
                 StoreProvider.of<AppState>(context).dispatch(
                   GetBankCardCommandAction(
                     cardId: params.card.id,
@@ -64,16 +64,11 @@ class BankCardDetailsScreen extends StatelessWidget {
               onDidChange: (previousViewModel, viewModel) async => {
                 if (previousViewModel is BankCardLoadingViewModel &&
                     viewModel is BankCardNoBoundedDevicesViewModel)
-                  _showDevicePairingMissingModal(
-                    context: context,
-                    user: user,
-                  ),
+                  _showDevicePairingMissingModal(context: context, user: user),
               },
               onInit: (store) => {
                 store.dispatch(
-                  BankCardFetchDetailsCommandAction(
-                    bankCard: params.card,
-                  ),
+                  BankCardFetchDetailsCommandAction(bankCard: params.card),
                 ),
               },
               builder: (context, viewModel) {
@@ -81,28 +76,23 @@ class BankCardDetailsScreen extends StatelessWidget {
                   return const Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(),
-                      ],
+                      children: [CircularProgressIndicator()],
                     ),
                   );
                 }
                 if (viewModel is BankCardErrorViewModel) {
-                  return const Center(
-                    child: Text('Error'),
-                  );
+                  return const Center(child: Text('Error'));
                 }
                 if (viewModel is BankCardDetailsFetchedViewModel) {
                   return Flexible(
                     child: Column(
                       children: [
-                        const SizedBox(
-                          height: 16,
-                        ),
+                        const SizedBox(height: 16),
                         BankCardShowDetailsWidget(
                           cardDetails: viewModel.cardDetails!,
                           cardType: viewModel.bankCard?.type,
-                          cardTypeLabel: viewModel.bankCard!.type
+                          cardTypeLabel:
+                              viewModel.bankCard!.type
                                   .toString()
                                   .toLowerCase()
                                   .contains('virtual')
@@ -129,7 +119,8 @@ class BankCardDetailsScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(0.0),
                               child: CircularCountdownProgress(
                                 controller: CountdownTimerController(
-                                    duration: const Duration(seconds: 60)),
+                                  duration: const Duration(seconds: 60),
+                                ),
                                 onCompleted: () {
                                   Navigator.pop(context);
                                   StoreProvider.of<AppState>(context).dispatch(
@@ -143,9 +134,7 @@ class BankCardDetailsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
+                        const SizedBox(height: 16),
                         SizedBox(
                           width: double.infinity,
                           height: 48,
@@ -171,12 +160,10 @@ class BankCardDetailsScreen extends StatelessWidget {
                   );
                 }
                 return const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: Center(child: CircularProgressIndicator()),
                 );
               },
-            )
+            ),
           ],
         ),
       ),
@@ -217,7 +204,9 @@ class BankCardDetailsScreen extends StatelessWidget {
               onPressed: () async {
                 devicePairedBottomSheetConfirmed = true;
                 Navigator.pushNamed(
-                    context, SettingsDevicePairingScreen.routeName);
+                  context,
+                  SettingsDevicePairingScreen.routeName,
+                );
               },
             ),
           ),

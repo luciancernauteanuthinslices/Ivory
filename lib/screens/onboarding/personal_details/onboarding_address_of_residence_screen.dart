@@ -70,26 +70,28 @@ class _OnboardingAddressOfResidenceScreenState
       },
       converter: (store) =>
           OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
-        onboardingPersonalDetailsState:
-            store.state.onboardingPersonalDetailsState,
-      ),
+            onboardingPersonalDetailsState:
+                store.state.onboardingPersonalDetailsState,
+          ),
       onWillChange: (previousViewModel, viewModel) {
         if (viewModel.isLoading) {
           _continueButtonController.setLoading();
         }
         if (viewModel.errorType == OnboardingPersonalDetailsErrorType.unknown) {
           _continueButtonController.setEnabled();
-          _showTryAgainBottomSheet(context,
-              text:
-                  "We encountered an unexpected error while processing your address input. Please try again. If the issue persists, please contact our support team at ",
-              retryCallback: () {
-            StoreProvider.of<AppState>(context).dispatch(
-              CreatePersonAccountCommandAction(
-                houseNumber: _houseNumberController.text,
-                addressLine: _addressLineController.text,
-              ),
-            );
-          });
+          _showTryAgainBottomSheet(
+            context,
+            text:
+                "We encountered an unexpected error while processing your address input. Please try again. If the issue persists, please contact our support team at ",
+            retryCallback: () {
+              StoreProvider.of<AppState>(context).dispatch(
+                CreatePersonAccountCommandAction(
+                  houseNumber: _houseNumberController.text,
+                  addressLine: _addressLineController.text,
+                ),
+              );
+            },
+          );
         }
 
         if (previousViewModel!.isAddressSaved == null &&
@@ -122,8 +124,10 @@ class _OnboardingAddressOfResidenceScreenState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 16),
-                      Text('Address of residence',
-                          style: ClientConfig.getTextStyleScheme().heading2),
+                      Text(
+                        'Address of residence',
+                        style: ClientConfig.getTextStyleScheme().heading2,
+                      ),
                       const SizedBox(height: 16),
                       Text(
                         'Search for your residential address below and provide any additional information if needed.',
@@ -140,23 +144,25 @@ class _OnboardingAddressOfResidenceScreenState
                       StoreConnector<AppState, AddressSuggestionsViewModel>(
                         converter: (store) =>
                             AddressSuggestionsPresenter.present(
-                          addressSuggestionsState:
-                              store.state.addressSuggestionsState,
-                        ),
+                              addressSuggestionsState:
+                                  store.state.addressSuggestionsState,
+                            ),
                         distinct: true,
                         onWillChange: (previousViewModel, newViewModel) {
                           if (newViewModel
                               is AddressSuggestionsErrorViewModel) {
-                            _showTryAgainBottomSheet(context,
-                                text:
-                                    "We encountered an unexpected error while searching for your address. Please try again. If the issue persists, please contact our support team at ",
-                                retryCallback: () {
-                              StoreProvider.of<AppState>(context).dispatch(
-                                FetchAddressSuggestionsCommandAction(
-                                  query: _addressController.text,
-                                ),
-                              );
-                            });
+                            _showTryAgainBottomSheet(
+                              context,
+                              text:
+                                  "We encountered an unexpected error while searching for your address. Please try again. If the issue persists, please contact our support team at ",
+                              retryCallback: () {
+                                StoreProvider.of<AppState>(context).dispatch(
+                                  FetchAddressSuggestionsCommandAction(
+                                    query: _addressController.text,
+                                  ),
+                                );
+                              },
+                            );
                           }
                         },
                         builder: (context, addressSuggestionsViewModel) {
@@ -166,18 +172,22 @@ class _OnboardingAddressOfResidenceScreenState
                               IvoryTextField(
                                 label: 'Search address',
                                 placeholder: 'Search address',
-                                suffix: addressSuggestionsViewModel
+                                suffix:
+                                    addressSuggestionsViewModel
                                         is AddressSuggestionsLoadingViewModel
                                     ? const SizedBox(
                                         height: 16,
                                         width: 16,
                                         child: CircularProgressIndicator(
-                                            strokeWidth: 3),
+                                          strokeWidth: 3,
+                                        ),
                                       )
-                                    : Icon(Icons.search,
+                                    : Icon(
+                                        Icons.search,
                                         color: ClientConfig.getCustomColors()
                                             .neutral700,
-                                        size: 20),
+                                        size: 20,
+                                      ),
                                 controller: _addressController,
                                 focusNode: _addressFocusNode,
                                 inputType: TextFieldInputType.text,
@@ -186,12 +196,16 @@ class _OnboardingAddressOfResidenceScreenState
                                   _continueButtonController.setDisabled();
 
                                   _debouncer.run(() {
-                                    StoreProvider.of<AppState>(context).dispatch(
-                                        ResetOnboardingSelectedAddressCommandAction());
+                                    StoreProvider.of<AppState>(
+                                      context,
+                                    ).dispatch(
+                                      ResetOnboardingSelectedAddressCommandAction(),
+                                    );
 
                                     if (value.isNotEmpty) {
-                                      StoreProvider.of<AppState>(context)
-                                          .dispatch(
+                                      StoreProvider.of<AppState>(
+                                        context,
+                                      ).dispatch(
                                         FetchAddressSuggestionsCommandAction(
                                           query: value,
                                         ),
@@ -202,16 +216,19 @@ class _OnboardingAddressOfResidenceScreenState
                               ),
                               if (_addressController.text.isNotEmpty &&
                                   onboardingViewModel
-                                          .attributes.selectedAddress ==
+                                          .attributes
+                                          .selectedAddress ==
                                       null &&
                                   addressSuggestionsViewModel
                                       is AddressSuggestionsFetchedViewModel) ...[
                                 const SizedBox(height: 16),
                                 ..._buildAddressSuggestions(
-                                    addressSuggestionsViewModel.suggestions),
+                                  addressSuggestionsViewModel.suggestions,
+                                ),
                               ],
                               if (onboardingViewModel
-                                          .attributes.selectedAddress !=
+                                          .attributes
+                                          .selectedAddress !=
                                       null &&
                                   _addressController.text.isNotEmpty) ...[
                                 const SizedBox(height: 16),
@@ -221,18 +238,14 @@ class _OnboardingAddressOfResidenceScreenState
                                   controller: _houseNumberController,
                                   focusNode: _houseNumberFocusNode,
                                 ),
-                                const SizedBox(
-                                  height: 24,
-                                ),
+                                const SizedBox(height: 24),
                                 IvoryTextField(
                                   placeholder: 'Please type',
                                   label: 'Address line (Optional)',
                                   controller: _addressLineController,
                                   focusNode: _addressLineFocusNode,
                                 ),
-                                const SizedBox(
-                                  height: 24,
-                                ),
+                                const SizedBox(height: 24),
                                 Text(
                                   'Postcode',
                                   style: ClientConfig.getTextStyleScheme()
@@ -243,9 +256,7 @@ class _OnboardingAddressOfResidenceScreenState
                                   style: ClientConfig.getTextStyleScheme()
                                       .bodyLargeRegular,
                                 ),
-                                const SizedBox(
-                                  height: 24,
-                                ),
+                                const SizedBox(height: 24),
                                 Text(
                                   'City',
                                   style: ClientConfig.getTextStyleScheme()
@@ -253,21 +264,23 @@ class _OnboardingAddressOfResidenceScreenState
                                 ),
                                 Text(
                                   onboardingViewModel
-                                          .attributes.selectedAddress?.city ??
+                                          .attributes
+                                          .selectedAddress
+                                          ?.city ??
                                       "",
                                   style: ClientConfig.getTextStyleScheme()
                                       .bodyLargeRegular,
                                 ),
-                                const SizedBox(
-                                  height: 24,
-                                ),
+                                const SizedBox(height: 24),
                                 Text(
                                   'Country',
                                   style: ClientConfig.getTextStyleScheme()
                                       .labelSmall,
                                 ),
                                 Text(
-                                  onboardingViewModel.attributes.selectedAddress
+                                  onboardingViewModel
+                                          .attributes
+                                          .selectedAddress
                                           ?.country ??
                                       "",
                                   style: ClientConfig.getTextStyleScheme()
@@ -295,7 +308,9 @@ class _OnboardingAddressOfResidenceScreenState
                       onPressed: _continueButtonController.isEnabled
                           ? () {
                               if (onboardingViewModel
-                                      .attributes.selectedAddress?.country ==
+                                      .attributes
+                                      .selectedAddress
+                                      ?.country ==
                                   'Germany') {
                                 StoreProvider.of<AppState>(context).dispatch(
                                   CreatePersonAccountCommandAction(
@@ -333,7 +348,8 @@ class _OnboardingAddressOfResidenceScreenState
               onTap: () {
                 StoreProvider.of<AppState>(context).dispatch(
                   SelectOnboardingAddressSuggestionCommandAction(
-                      suggestion: suggestion),
+                    suggestion: suggestion,
+                  ),
                 );
 
                 _addressController.text = suggestion.address;
@@ -384,8 +400,7 @@ class _OnboardingAddressOfResidenceScreenState
                 TextSpan(text: text),
                 TextSpan(
                   text: "+49 (0)123 456789",
-                  style: ClientConfig.getTextStyleScheme()
-                      .bodyLargeRegularBold
+                  style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
                       .copyWith(color: ClientConfig.getColorScheme().secondary),
                 ),
                 const TextSpan(text: "."),
@@ -399,7 +414,7 @@ class _OnboardingAddressOfResidenceScreenState
               Navigator.pop(context);
               retryCallback();
             },
-          )
+          ),
         ],
       ),
     );

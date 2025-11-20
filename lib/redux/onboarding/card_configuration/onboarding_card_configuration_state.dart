@@ -70,9 +70,7 @@ class OnboardingCreditCardApplicationUpdatedState
     extends OnboardingCardConfigurationState {
   final CreditCardApplication cardApplication;
 
-  OnboardingCreditCardApplicationUpdatedState({
-    required this.cardApplication,
-  });
+  OnboardingCreditCardApplicationUpdatedState({required this.cardApplication});
 
   @override
   List<Object?> get props => [cardApplication];

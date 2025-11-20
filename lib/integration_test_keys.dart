@@ -13,11 +13,13 @@ class LoginPage {
   final backButton = const Key("BackButton");
   final emailTab = const Key("EmailTab");
   final mobileNumberTextField = const Key("MobileNumberTextField");
-  final passwordTextFieldForMobileTab =
-      const Key("PasswordTextFieldForMobileTab");
+  final passwordTextFieldForMobileTab = const Key(
+    "PasswordTextFieldForMobileTab",
+  );
   final mobileNumberPrefixDropdown = const Key("MobileNumberPrefixDropdown");
-  final mobileNumberPrefixSearchField =
-      const Key("mobileNumberPrefixSearchField");
+  final mobileNumberPrefixSearchField = const Key(
+    "mobileNumberPrefixSearchField",
+  );
   final otpConfirmButton = const Key("OtpConfirmationButton");
 }
 

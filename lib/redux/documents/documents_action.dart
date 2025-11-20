@@ -32,8 +32,10 @@ class DownloadDocumentCommandAction {
   final Document document;
   final DocumentDownloadLocation downloadLocation;
 
-  DownloadDocumentCommandAction(
-      {required this.document, required this.downloadLocation});
+  DownloadDocumentCommandAction({
+    required this.document,
+    required this.downloadLocation,
+  });
 }
 
 class DownloadDocumentLoadingEventAction {

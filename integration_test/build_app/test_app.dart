@@ -44,9 +44,7 @@ Future<IvoryApp> buildTestApp() async {
 
   final clientConfig = ClientConfig.getClientConfig();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -99,8 +97,5 @@ Future<IvoryApp> buildTestApp() async {
     onboardingCardConfigurationService: OnboardingCardConfigurationService(),
   );
 
-  return IvoryApp(
-    clientConfig: clientConfig,
-    store: store,
-  );
+  return IvoryApp(clientConfig: clientConfig, store: store);
 }

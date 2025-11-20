@@ -41,9 +41,7 @@ class _OnboardingConfigureCardScreenState
                 .defaultScreenHorizontalPadding,
           ),
           AnimatedLinearProgressIndicator.step(current: 2, totalSteps: 3),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Padding(
             padding:
                 ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
@@ -85,16 +83,16 @@ class _OnboardingConfigureCardScreenState
                   oldViewModel.isLoading &&
                   newViewModel
                       is OnboardingCreditCardApplicationFetchedViewModel) {
-                Navigator.of(context).pushNamed(
-                  OnboardingRepaymentOptionScreen.routeName,
-                );
+                Navigator.of(
+                  context,
+                ).pushNamed(OnboardingRepaymentOptionScreen.routeName);
               }
             },
             converter: (store) =>
                 OnboardingCardConfigurationPresenter.presentCardConfiguration(
-              cardConfigurationState:
-                  store.state.onboardingCardConfigurationState,
-            ),
+                  cardConfigurationState:
+                      store.state.onboardingCardConfigurationState,
+                ),
             builder: (context, viewModel) {
               return _buildFrom(viewModel);
             },
@@ -132,14 +130,12 @@ class _OnboardingConfigureCardScreenState
                 text: "Configure my card",
                 isLoading: viewModel.isLoading,
                 onPressed: () {
-                  StoreProvider.of<AppState>(context).dispatch(
-                    OnboardingGetCreditCardApplicationCommandAction(),
-                  );
+                  StoreProvider.of<AppState>(
+                    context,
+                  ).dispatch(OnboardingGetCreditCardApplicationCommandAction());
                 },
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
             ],
           ),
         ),
@@ -156,9 +152,7 @@ class _OnboardingConfigureCardScreenState
             CircularLoadingIndicator(),
             Spacer(),
             PrimaryButton(text: "Configure my card"),
-            SizedBox(
-              height: 16,
-            ),
+            SizedBox(height: 16),
           ],
         ),
       ),

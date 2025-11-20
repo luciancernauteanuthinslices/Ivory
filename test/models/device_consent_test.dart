@@ -35,8 +35,10 @@ void main() {
         "confirmed_at": "invalid date",
       };
 
-      expect(() => CreateDeviceConsentRequest.fromJson(jsonData),
-          throwsFormatException);
+      expect(
+        () => CreateDeviceConsentRequest.fromJson(jsonData),
+        throwsFormatException,
+      );
     });
   });
 
@@ -85,8 +87,10 @@ void main() {
         "created_at": "invalid date",
       };
 
-      expect(() => CreateDeviceConsentResponse.fromJson(jsonData),
-          throwsFormatException);
+      expect(
+        () => CreateDeviceConsentResponse.fromJson(jsonData),
+        throwsFormatException,
+      );
     });
   });
 }

@@ -21,7 +21,8 @@ class FakeFailingOnboardingSignupService extends OnboardingSignupService {
     required String tsAndCsSignedAt,
   }) async {
     return const CreatePersonErrorResponse(
-        errorType: OnboardingSignupErrorType.unknown);
+      errorType: OnboardingSignupErrorType.unknown,
+    );
   }
 }
 
@@ -34,6 +35,7 @@ class FakeFailingOnboardingSignupServiceWithDuplicateEmail
     required String tsAndCsSignedAt,
   }) async {
     return const CreatePersonErrorResponse(
-        errorType: OnboardingSignupErrorType.emailAlreadyExists);
+      errorType: OnboardingSignupErrorType.emailAlreadyExists,
+    );
   }
 }

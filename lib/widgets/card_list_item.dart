@@ -5,8 +5,11 @@ class CardListItem extends StatelessWidget {
   final String cardNumber;
   final String expiryDate;
 
-  const CardListItem(
-      {super.key, required this.cardNumber, required this.expiryDate});
+  const CardListItem({
+    super.key,
+    required this.cardNumber,
+    required this.expiryDate,
+  });
 
   @override
   Widget build(BuildContext context) {

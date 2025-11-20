@@ -6,8 +6,10 @@ class GetTransactionsCommandAction {
   final TransactionListFilter? filter;
   final bool forceReloadTransactions;
 
-  GetTransactionsCommandAction(
-      {required this.filter, required this.forceReloadTransactions});
+  GetTransactionsCommandAction({
+    required this.filter,
+    required this.forceReloadTransactions,
+  });
 }
 
 class TransactionsLoadingEventAction {
@@ -22,8 +24,10 @@ class TransactionsFetchedEventAction {
   final List<Transaction> transactions;
   final TransactionListFilter? transactionListFilter;
 
-  TransactionsFetchedEventAction(
-      {required this.transactions, this.transactionListFilter});
+  TransactionsFetchedEventAction({
+    required this.transactions,
+    this.transactionListFilter,
+  });
 }
 
 class GetUpcomingTransactionsCommandAction {
@@ -46,8 +50,10 @@ class GetHomeTransactionsCommandAction {
   final TransactionListFilter? filter;
   final bool forceReloadTransactions;
 
-  GetHomeTransactionsCommandAction(
-      {required this.filter, required this.forceReloadTransactions});
+  GetHomeTransactionsCommandAction({
+    required this.filter,
+    required this.forceReloadTransactions,
+  });
 }
 
 class HomeTransactionsLoadingEventAction {}

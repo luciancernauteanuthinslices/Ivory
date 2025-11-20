@@ -43,7 +43,9 @@ class _AppSettingsBiometricNeededScreenState
       if (isBiometricEnabled) {
         // ignore: use_build_context_synchronously
         Navigator.popAndPushNamed(
-            context, AppSettingsBiometricEnabledScreen.routeName);
+          context,
+          AppSettingsBiometricEnabledScreen.routeName,
+        );
       }
     }
   }
@@ -73,9 +75,7 @@ class _AppSettingsBiometricNeededScreenState
                     style: ClientConfig.getTextStyleScheme().heading1,
                     textAlign: TextAlign.left,
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   RichText(
                     text: TextSpan(
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
@@ -86,7 +86,8 @@ class _AppSettingsBiometricNeededScreenState
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text: 'in your device\'s Security settings to '),
+                          text: 'in your device\'s Security settings to ',
+                        ),
                         TextSpan(
                           text:
                               'log in without a password, authorise payments ',
@@ -94,13 +95,12 @@ class _AppSettingsBiometricNeededScreenState
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text: 'and do multiple other operations.'),
+                          text: 'and do multiple other operations.',
+                        ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
                   Expanded(
                     child: Center(
                       child: SvgPicture(
@@ -123,7 +123,8 @@ class _AppSettingsBiometricNeededScreenState
                       textColor: ClientConfig.getColorScheme().surface,
                       onPressed: () {
                         AppSettings.openAppSettings(
-                            type: AppSettingsType.security);
+                          type: AppSettingsType.security,
+                        );
                       },
                     ),
                   ),

@@ -10,27 +10,86 @@ platform :android do
 
     package_name = "com.thinslices.solarisdemo"
     
-    # Pre-grant permissions to avoid permission dialogs during tests
-    # This is especially important in CI where we can't interact with dialogs
-    # Note: Commands will fail gracefully if app isn't installed yet (|| true)
-    UI.message("Pre-granting permissions for CI...")
+    # Uninstall any existing version first to ensure clean state
+    UI.message("🧹 Uninstalling any existing app version...")
+    sh("adb uninstall #{package_name} 2>/dev/null || true")
     
-    # Grant notification permission (Android 13+) - most critical for this app
-    sh("adb shell pm grant #{package_name} android.permission.POST_NOTIFICATIONS || true")
+    # Verify app is removed
+    sleep(2)
+    if sh("adb shell pm list packages | grep #{package_name} || echo 'not found'", log: false).include?('not found')
+      UI.success("✅ App successfully uninstalled")
+    else
+      UI.important("⚠️  App may still be present, but continuing...")
+    end
     
-    # Grant other common permissions that might be requested
-    sh("adb shell pm grant #{package_name} android.permission.ACCESS_FINE_LOCATION || true")
-    sh("adb shell pm grant #{package_name} android.permission.ACCESS_COARSE_LOCATION || true")
-    sh("adb shell pm grant #{package_name} android.permission.CAMERA || true")
-    sh("adb shell pm grant #{package_name} android.permission.RECORD_AUDIO || true")
-    sh("adb shell pm grant #{package_name} android.permission.READ_EXTERNAL_STORAGE || true")
-    sh("adb shell pm grant #{package_name} android.permission.WRITE_EXTERNAL_STORAGE || true")
+    # Start the permission granting script in the background with visible output
+    # This script will wait for the app to be installed and then grant permissions
+    UI.message("🚀 Starting background permission granting script...")
     
-    UI.message("✅ Permission grant commands executed (will apply after app installation)")
+    # Create a log file for the permission script
+    log_file = "../../permission_grant.log"
+    permission_pid = Process.spawn(
+      "bash", "../grant_permissions.sh",
+      out: log_file,
+      err: log_file
+    )
+    Process.detach(permission_pid)
+    UI.success("✅ Permission granting script started (PID: #{permission_pid})")
+    UI.message("   Log file: #{log_file}")
+
+    # Give the background script a moment to start
+    sleep(1)
 
     # Run Patrol tests - this will build, install, and run tests
-    # Permissions will be granted after installation via a background process
-    sh("cd ../.. && patrol test android --verbose")
+    # The background script will grant permissions after installation
+    UI.message("🧪 Running Patrol tests (permissions will be granted automatically)...")
+    UI.message("   The background script is monitoring for app installation...")
+    
+    begin
+      sh("cd ../.. && patrol test android --verbose")
+    rescue => ex
+      UI.error("❌ Patrol test failed!")
+      UI.error("Error: #{ex.message}")
+      
+      # Show permission grant log
+      UI.message("📋 Permission grant script output:")
+      begin
+        log_content = File.read("../../permission_grant.log")
+        UI.message(log_content)
+      rescue
+        UI.message("Could not read permission grant log")
+      end
+      
+      UI.message("📋 Collecting device logs for debugging...")
+      sh("adb logcat -d > ../../android_test_logcat.txt || true")
+      
+      # Try to kill the background process
+      begin
+        Process.kill("TERM", permission_pid)
+        UI.message("Stopped background permission script")
+      rescue
+        # Process might have already exited
+      end
+      
+      raise ex
+    end
+
+    # Try to kill the background process if it's still running
+    begin
+      Process.kill("TERM", permission_pid)
+      UI.message("Stopped background permission script")
+    rescue
+      # Process might have already exited
+    end
+    
+    # Show permission grant log
+    UI.message("📋 Permission grant script final output:")
+    begin
+      log_content = File.read("../../permission_grant.log")
+      UI.message(log_content)
+    rescue
+      UI.message("Could not read permission grant log")
+    end
 
     UI.success("✅ Android Patrol tests completed!")
   end

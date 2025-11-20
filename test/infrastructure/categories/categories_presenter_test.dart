@@ -14,8 +14,9 @@ void main() {
     //given
     final categoriesState = CategoriesLoadingState();
     //when
-    final viewModel =
-        CategoriesPresenter.presentCategories(categoriesState: categoriesState);
+    final viewModel = CategoriesPresenter.presentCategories(
+      categoriesState: categoriesState,
+    );
     //then
     expect(viewModel, CategoriesLoadingViewModel());
   });
@@ -24,20 +25,24 @@ void main() {
     //given
     final categoriesState = CategoriesErrorState();
     //when
-    final viewModel =
-        CategoriesPresenter.presentCategories(categoriesState: categoriesState);
+    final viewModel = CategoriesPresenter.presentCategories(
+      categoriesState: categoriesState,
+    );
     //then
     expect(viewModel, CategoriesErrorViewModel());
   });
 
-  test("When fetching categories is successful should return a categories list",
-      () {
-    //given
-    final categoriesState = CategoriesFetchedState(categories);
-    //when
-    final viewModel =
-        CategoriesPresenter.presentCategories(categoriesState: categoriesState);
-    //then
-    expect(viewModel, WithCategoriesViewModel(categories: categories));
-  });
+  test(
+    "When fetching categories is successful should return a categories list",
+    () {
+      //given
+      final categoriesState = CategoriesFetchedState(categories);
+      //when
+      final viewModel = CategoriesPresenter.presentCategories(
+        categoriesState: categoriesState,
+      );
+      //then
+      expect(viewModel, WithCategoriesViewModel(categories: categories));
+    },
+  );
 }

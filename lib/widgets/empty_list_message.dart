@@ -26,23 +26,12 @@ class TextMessageWithCircularImage extends StatelessWidget {
               color: Color(0xFF747474),
             ),
             child: const Center(
-              child: Icon(
-                Icons.image_outlined,
-                size: 65,
-                color: Colors.white,
-              ),
+              child: Icon(Icons.image_outlined, size: 65, color: Colors.white),
             ),
           ),
-          const SizedBox(
-            height: 35,
-          ),
-          Text(
-            title,
-            style: ClientConfig.getTextStyleScheme().heading2,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 35),
+          Text(title, style: ClientConfig.getTextStyleScheme().heading2),
+          const SizedBox(height: 16),
           Text(
             message,
             textAlign: TextAlign.center,

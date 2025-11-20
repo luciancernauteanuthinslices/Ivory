@@ -29,31 +29,32 @@ class CreditLine {
   });
 
   factory CreditLine.fromJson(Map<String, dynamic> json) => CreditLine(
-        id: json['application_id'],
-        dueDate: DateTime.parse(json['due_date']),
-        previousBillAmount: AmountValue.fromJson(json['previous_bill_amount']),
-        currentBillAmount: AmountValue.fromJson(json['current_bill_amount']),
-        outstandingAmount: AmountValue.fromJson(json['outstanding_amount']),
-        spentAmount: json['amount_spent'],
-        accumulatedInterestAmount:
-            AmountValue.fromJson(json['accumulated_interest_amount']),
-        interestRate: json['interest_rate'],
-        fixedRate: AmountValue.fromJson(json['fixed_repayment_rate']),
-        referenceAccount: AccountData.fromJson(json['reference_account']),
-        repaymentPercentageRate: json['repayment_percentage_rate'] ?? 0.0,
-      );
+    id: json['application_id'],
+    dueDate: DateTime.parse(json['due_date']),
+    previousBillAmount: AmountValue.fromJson(json['previous_bill_amount']),
+    currentBillAmount: AmountValue.fromJson(json['current_bill_amount']),
+    outstandingAmount: AmountValue.fromJson(json['outstanding_amount']),
+    spentAmount: json['amount_spent'],
+    accumulatedInterestAmount: AmountValue.fromJson(
+      json['accumulated_interest_amount'],
+    ),
+    interestRate: json['interest_rate'],
+    fixedRate: AmountValue.fromJson(json['fixed_repayment_rate']),
+    referenceAccount: AccountData.fromJson(json['reference_account']),
+    repaymentPercentageRate: json['repayment_percentage_rate'] ?? 0.0,
+  );
 
   factory CreditLine.empty() => CreditLine(
-        id: '0',
-        dueDate: DateTime.now(),
-        previousBillAmount: AmountValue.empty(),
-        currentBillAmount: AmountValue.empty(),
-        outstandingAmount: AmountValue.empty(),
-        spentAmount: 0.0,
-        accumulatedInterestAmount: AmountValue.empty(),
-        interestRate: 0.0,
-        fixedRate: AmountValue.empty(),
-        referenceAccount: AccountData.empty(),
-        repaymentPercentageRate: 0.0,
-      );
+    id: '0',
+    dueDate: DateTime.now(),
+    previousBillAmount: AmountValue.empty(),
+    currentBillAmount: AmountValue.empty(),
+    outstandingAmount: AmountValue.empty(),
+    spentAmount: 0.0,
+    accumulatedInterestAmount: AmountValue.empty(),
+    interestRate: 0.0,
+    fixedRate: AmountValue.empty(),
+    referenceAccount: AccountData.empty(),
+    repaymentPercentageRate: 0.0,
+  );
 }

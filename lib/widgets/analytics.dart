@@ -12,10 +12,7 @@ import '../redux/app_state.dart';
 class Analytics extends StatefulWidget {
   final List<Transaction> transactions;
 
-  const Analytics({
-    Key? key,
-    required this.transactions,
-  }) : super(key: key);
+  const Analytics({Key? key, required this.transactions}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => AnalyticsState();
@@ -29,7 +26,8 @@ class AnalyticsState extends State<Analytics> {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, TransactionsViewModel>(
       converter: (store) => TransactionPresenter.presentTransactions(
-          transactionsState: store.state.homePageTransactionsState),
+        transactionsState: store.state.homePageTransactionsState,
+      ),
       builder: (context, viewModel) {
         Widget emptyListWidget = Column(
           children: [
@@ -45,19 +43,18 @@ class AnalyticsState extends State<Analytics> {
                   child: Text(
                     "See all expenses",
                     textAlign: TextAlign.right,
-                    style:
-                        ClientConfig.getTextStyleScheme().labelMedium.copyWith(
-                              color: ClientConfig.getColorScheme().secondary,
-                            ),
+                    style: ClientConfig.getTextStyleScheme().labelMedium
+                        .copyWith(
+                          color: ClientConfig.getColorScheme().secondary,
+                        ),
                   ),
                   onPressed: () {},
-                )
+                ),
               ],
             ),
             Text(
               "No analytics available. Start spending and you will see your analytics displayed here.",
-              style: ClientConfig.getTextStyleScheme()
-                  .bodyLargeRegular
+              style: ClientConfig.getTextStyleScheme().bodyLargeRegular
                   .copyWith(color: ClientConfig.getCustomColors().neutral700),
             ),
           ],
@@ -85,14 +82,13 @@ class AnalyticsState extends State<Analytics> {
                       child: Text(
                         "See all expenses",
                         textAlign: TextAlign.right,
-                        style: ClientConfig.getTextStyleScheme()
-                            .labelMedium
+                        style: ClientConfig.getTextStyleScheme().labelMedium
                             .copyWith(
                               color: ClientConfig.getColorScheme().secondary,
                             ),
                       ),
                       onPressed: () {},
-                    )
+                    ),
                   ],
                 ),
                 widget.transactions.isNotEmpty
@@ -110,16 +106,15 @@ class AnalyticsState extends State<Analytics> {
                                       aspectRatio: 1,
                                       child: PieChart(
                                         PieChartData(
-                                          borderData: FlBorderData(
-                                            show: false,
-                                          ),
+                                          borderData: FlBorderData(show: false),
                                           sectionsSpace: 0,
                                           centerSpaceRadius: double.infinity,
                                           sections: showingSections(),
                                           startDegreeOffset: -30,
                                         ),
                                         swapAnimationDuration: const Duration(
-                                            milliseconds: 150), // Optional
+                                          milliseconds: 150,
+                                        ), // Optional
                                         swapAnimationCurve:
                                             Curves.linear, // Optional
                                       ),
@@ -129,11 +124,7 @@ class AnalyticsState extends State<Analytics> {
                               ),
                             ),
                           ),
-                          Center(
-                            child: AccountBalanceText(
-                              value: 2481.13,
-                            ),
-                          )
+                          Center(child: AccountBalanceText(value: 2481.13)),
                         ],
                       )
                     : Text(
@@ -141,8 +132,8 @@ class AnalyticsState extends State<Analytics> {
                         style: ClientConfig.getTextStyleScheme()
                             .bodyLargeRegular
                             .copyWith(
-                                color:
-                                    ClientConfig.getCustomColors().neutral700),
+                              color: ClientConfig.getCustomColors().neutral700,
+                            ),
                       ),
               ],
             );
@@ -178,10 +169,7 @@ class AnalyticsState extends State<Analytics> {
             color: const Color(0xFF464658),
             value: 20,
             radius: pieChartItemRadius,
-            badgeWidget: const Icon(
-              Icons.airport_shuttle,
-              color: Colors.white,
-            ),
+            badgeWidget: const Icon(Icons.airport_shuttle, color: Colors.white),
           );
         case 2:
           return PieChartSectionData(
@@ -189,10 +177,7 @@ class AnalyticsState extends State<Analytics> {
             color: const Color(0xFF666670),
             value: 25,
             radius: pieChartItemRadius,
-            badgeWidget: const Icon(
-              Icons.payments,
-              color: Colors.white,
-            ),
+            badgeWidget: const Icon(Icons.payments, color: Colors.white),
           );
         case 3:
           return PieChartSectionData(
@@ -200,10 +185,7 @@ class AnalyticsState extends State<Analytics> {
             color: const Color(0xFF757578),
             value: 35,
             radius: pieChartItemRadius,
-            badgeWidget: const Icon(
-              Icons.shopping_bag,
-              color: Colors.white,
-            ),
+            badgeWidget: const Icon(Icons.shopping_bag, color: Colors.white),
           );
         case 4:
           return PieChartSectionData(
@@ -211,10 +193,7 @@ class AnalyticsState extends State<Analytics> {
             color: const Color(0xFF848484),
             value: 15,
             radius: pieChartItemRadius,
-            badgeWidget: const Icon(
-              Icons.sports_esports,
-              color: Colors.white,
-            ),
+            badgeWidget: const Icon(Icons.sports_esports, color: Colors.white),
           );
         case 5:
           return PieChartSectionData(
@@ -222,10 +201,7 @@ class AnalyticsState extends State<Analytics> {
             color: const Color(0xFF1C1A28),
             value: 35,
             radius: pieChartItemRadius,
-            badgeWidget: const Icon(
-              Icons.flight_takeoff,
-              color: Colors.white,
-            ),
+            badgeWidget: const Icon(Icons.flight_takeoff, color: Colors.white),
           );
         default:
           throw Error();

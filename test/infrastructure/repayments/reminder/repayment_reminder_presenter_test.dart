@@ -30,9 +30,7 @@ void main() {
   test("When fetching is successful should return fetched", () {
     // given
     final repaymentReminderState = RepaymentReminderFetchedState([reminder1]);
-    final creditLineState = CreditLineFetchedState(
-      CreditLine.empty(),
-    );
+    final creditLineState = CreditLineFetchedState(CreditLine.empty());
 
     // when
     final viewModel = RepaymentReminderPresenter.presentRepaymentReminder(
@@ -51,9 +49,7 @@ void main() {
   test("When fetching is failed should return error", () {
     // given
     final repaymentReminderState = RepaymentReminderErrorState();
-    final creditLineState = CreditLineFetchedState(
-      CreditLine.empty(),
-    );
+    final creditLineState = CreditLineFetchedState(CreditLine.empty());
 
     // when
     final viewModel = RepaymentReminderPresenter.presentRepaymentReminder(

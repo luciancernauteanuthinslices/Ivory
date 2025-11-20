@@ -53,38 +53,43 @@ class Screen extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints viewportConstraints) {
-        num bottomStickyWidgetHeight = bottomStickyWidget?.height ?? 0;
+        builder: (BuildContext context, BoxConstraints viewportConstraints) {
+          num bottomStickyWidgetHeight = bottomStickyWidget?.height ?? 0;
 
-        Widget body = SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            children: [
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight:
-                      viewportConstraints.maxHeight - bottomStickyWidgetHeight,
+          Widget body = SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight:
+                        viewportConstraints.maxHeight -
+                        bottomStickyWidgetHeight,
+                  ),
+                  child: child,
                 ),
-                child: child,
-              ),
-            ],
-          ),
-        );
-
-        Widget screenContent = Column(children: [
-          Expanded(child: body),
-          if (bottomStickyWidget != null) bottomStickyWidget!.build(context)
-        ]);
-
-        if (onRefresh != null) {
-          return RefreshIndicator(
-            onRefresh: onRefresh!,
-            child: screenContent,
+              ],
+            ),
           );
-        }
 
-        return screenContent;
-      }),
+          Widget screenContent = Column(
+            children: [
+              Expanded(child: body),
+              if (bottomStickyWidget != null)
+                bottomStickyWidget!.build(context),
+            ],
+          );
+
+          if (onRefresh != null) {
+            return RefreshIndicator(
+              onRefresh: onRefresh!,
+              child: screenContent,
+            );
+          }
+
+          return screenContent;
+        },
+      ),
     );
   }
 }
@@ -98,9 +103,7 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: createAppBar(context, title: title!),
-      body: const Center(
-        child: CircularProgressIndicator(),
-      ),
+      body: const Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -109,10 +112,11 @@ class ErrorScreen extends StatelessWidget {
   final String? title;
   final String? message;
 
-  const ErrorScreen(
-      {super.key,
-      this.title = "Error",
-      this.message = "An unexpected error has occured"});
+  const ErrorScreen({
+    super.key,
+    this.title = "Error",
+    this.message = "An unexpected error has occured",
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -135,10 +139,7 @@ AppBar createAppBar(
   Color? backgroundColor = Colors.white,
   PreferredSizeWidget? bottom,
 }) {
-  Text titleText = Text(
-    title,
-    style: titleTextStyle,
-  );
+  Text titleText = Text(title, style: titleTextStyle);
 
   Icon defaultBackButtonIcon = const Icon(
     Icons.arrow_back_ios,
@@ -178,7 +179,7 @@ AppBar createAppBar(
       SizedBox(
         width:
             ClientConfig.getCustomClientUiSettings().defaultScreenLeftPadding,
-      )
+      ),
     ],
     automaticallyImplyLeading: hideBackButton == true ? false : true,
   );
@@ -188,11 +189,7 @@ class BottomStickyWidget extends StatelessWidget {
   final Widget child;
   final num height;
 
-  const BottomStickyWidget({
-    super.key,
-    this.height = 100,
-    required this.child,
-  });
+  const BottomStickyWidget({super.key, this.height = 100, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -210,10 +207,7 @@ class BottomStickyWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Container(
-        alignment: Alignment.topLeft,
-        child: child,
-      ),
+      child: Container(alignment: Alignment.topLeft, child: child),
     );
   }
 }

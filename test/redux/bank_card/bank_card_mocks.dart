@@ -85,7 +85,7 @@ class FakeBankCardService extends BankCardService {
         "alg": "RS256",
         "n":
             "0REZBtc6LmFoWgGe5esVU6QmtmSSnzQFNwnaUeMwVf-8OMa3uxZh1z4upxR80SbHhiPcAKcpkU-2GSE9MS7Fr6VG25tO7JsN8kPEZ59RzEiSn_8sd57AHaIPJnBUHfT5a7qgsgsoJNW6XISGaNfA4MiLskbCnQxDMaOEK9E7yYqC-do4arrqPy61l7gyWkG2IyZFWp48wiibmeBlHqBkihstD0mnXKbx--kjNx0xQ2s5gmvhO402-F4Vap1Yc3Ub1enG0H8u8sIIPG8JHIDO3GgX40WZAI3uRURi7346eWWl0RJ7Ai6Fy7sDFXsn6YiS0o9RegRWFufwMJ8TbIlm5w",
-        "e": "AQAB"
+        "e": "AQAB",
       },
     );
   }
@@ -248,24 +248,24 @@ class FakeDeviceService extends DeviceService {
   }
 
   @override
-  String? generateSignature(
-      {required String privateKey, required String stringToSign}) {
+  String? generateSignature({
+    required String privateKey,
+    required String stringToSign,
+  }) {
     return "signature";
   }
 
   @override
   RSAKeyPair? generateRSAKey() {
     return RSAKeyPair(
-        publicKey: RSAPublicKey(
-          BigInt.zero,
-          BigInt.zero,
-        ),
-        privateKey: RSAPrivateKey(
-          BigInt.zero,
-          BigInt.zero,
-          BigInt.zero,
-          BigInt.zero,
-        ));
+      publicKey: RSAPublicKey(BigInt.zero, BigInt.zero),
+      privateKey: RSAPrivateKey(
+        BigInt.zero,
+        BigInt.zero,
+        BigInt.zero,
+        BigInt.zero,
+      ),
+    );
   }
 
   @override

@@ -44,7 +44,8 @@ class OnboardingIdentityVerificationErrorScreen extends StatelessWidget {
                   ),
                   const TextSpan(text: '.\n\n'),
                   const TextSpan(
-                      text: 'Please get in touch with us by tapping on the '),
+                    text: 'Please get in touch with us by tapping on the ',
+                  ),
                   TextSpan(
                     text: 'button below',
                     style:
@@ -68,10 +69,7 @@ class OnboardingIdentityVerificationErrorScreen extends StatelessWidget {
                 isSuccess: false,
               ),
             ),
-            PrimaryButton(
-              text: "Contact us",
-              onPressed: () {},
-            ),
+            PrimaryButton(text: "Contact us", onPressed: () {}),
             const SizedBox(height: 16),
           ],
         ),

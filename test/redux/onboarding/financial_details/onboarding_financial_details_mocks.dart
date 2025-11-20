@@ -6,8 +6,10 @@ import 'package:solarisdemo/models/user.dart';
 class FakeOnbordingFinancialDetailsService
     extends OnboardingFinancialDetailsService {
   @override
-  Future<FinancialDetailsServiceResponse> createTaxIdentification(
-      {required User user, required String taxId}) async {
+  Future<FinancialDetailsServiceResponse> createTaxIdentification({
+    required User user,
+    required String taxId,
+  }) async {
     return CreateTaxIdSuccesResponse();
   }
 
@@ -31,8 +33,10 @@ class FakeOnbordingFinancialDetailsService
 class FakeFailingOnbordingFinancialDetailsService
     extends OnboardingFinancialDetailsService {
   @override
-  Future<FinancialDetailsServiceResponse> createTaxIdentification(
-      {required User user, required String taxId}) async {
+  Future<FinancialDetailsServiceResponse> createTaxIdentification({
+    required User user,
+    required String taxId,
+  }) async {
     return const CreateTaxIdErrorResponse(
       errorType: FinancialDetailsErrorType.taxIdNotValid,
     );

@@ -11,8 +11,12 @@ Future<T> retry<T>(
 
     if (retryIf != null && await retryIf(result) && maxAttempts > 0) {
       await Future.delayed(delay);
-      return retry(fn,
-          maxAttempts: maxAttempts - 1, retryIf: retryIf, delay: delay);
+      return retry(
+        fn,
+        maxAttempts: maxAttempts - 1,
+        retryIf: retryIf,
+        delay: delay,
+      );
     }
 
     return result;
@@ -20,8 +24,12 @@ Future<T> retry<T>(
     if (maxAttempts > 0) {
       await Future.delayed(delay);
 
-      return retry(fn,
-          maxAttempts: maxAttempts - 1, retryIf: retryIf, delay: delay);
+      return retry(
+        fn,
+        maxAttempts: maxAttempts - 1,
+        retryIf: retryIf,
+        delay: delay,
+      );
     } else {
       rethrow;
     }

@@ -23,9 +23,10 @@ class BankCardChangePinChooseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
     final GlobalKey<_ChangePinBodyState> changePinBodyKey =
         GlobalKey<_ChangePinBodyState>();
     ValueNotifier<bool> birthdayErrorNotifier = ValueNotifier<bool>(false);
@@ -71,9 +72,7 @@ class BankCardChangePinChooseScreen extends StatelessWidget {
         builder: (context, viewModel) {
           if (viewModel is BankCardLoadingViewModel ||
               viewModel is BankCardNoBoundedDevicesViewModel) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
           return Column(
             children: [
@@ -98,11 +97,11 @@ class BankCardChangePinChooseScreen extends StatelessWidget {
                         ),
                         TextSpan(
                           text: " out of 2",
-                          style: ClientConfig.getTextStyleScheme()
-                              .heading4
+                          style: ClientConfig.getTextStyleScheme().heading4
                               .copyWith(
-                                  color: ClientConfig.getCustomColors()
-                                      .neutral700),
+                                color:
+                                    ClientConfig.getCustomColors().neutral700,
+                              ),
                         ),
                       ],
                     ),
@@ -155,8 +154,9 @@ class BankCardChangePinChooseScreen extends StatelessWidget {
           style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
           children: [
             const TextSpan(
-                text:
-                    'In order to change your pin, you need to pair your device first. Click on the button below, or go to “Device pairing” under Security in the Settings tab and '),
+              text:
+                  'In order to change your pin, you need to pair your device first. Click on the button below, or go to “Device pairing” under Security in the Settings tab and ',
+            ),
             TextSpan(
               text: 'pair your device now.',
               style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
@@ -174,7 +174,9 @@ class BankCardChangePinChooseScreen extends StatelessWidget {
               onPressed: () {
                 devicePairedBottomSheetConfirmed = true;
                 Navigator.pushNamed(
-                    context, SettingsDevicePairingScreen.routeName);
+                  context,
+                  SettingsDevicePairingScreen.routeName,
+                );
               },
             ),
           ),
@@ -308,11 +310,9 @@ class _ChangePinBodyState extends State<ChangePinBody> {
   }
 
   void resetErrorNotifiers() {
-    setState(
-      () {
-        hasError = false;
-      },
-    );
+    setState(() {
+      hasError = false;
+    });
     widget.birthdayErrorNotifier.value = false;
     widget.postalCodeErrorNotifier.value = false;
     widget.sequenceErrorNotifier.value = false;
@@ -329,9 +329,10 @@ class _ChangePinBodyState extends State<ChangePinBody> {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return Padding(
       padding: const EdgeInsets.all(24.0),
@@ -339,46 +340,36 @@ class _ChangePinBodyState extends State<ChangePinBody> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Choose PIN",
-            style: ClientConfig.getTextStyleScheme().heading2,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
+          Text("Choose PIN", style: ClientConfig.getTextStyleScheme().heading2),
+          const SizedBox(height: 16),
           Text(
             "Remember your PIN as you will use it for all future card purchases.",
             style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
           ),
-          const SizedBox(
-            height: 32,
-          ),
+          const SizedBox(height: 32),
           GestureDetector(
             onTap: () {
               _focusPin.requestFocus();
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                4,
-                (index) {
-                  return Container(
-                    width: 10,
-                    height: 10,
-                    margin: const EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: hasError
-                          ? const Color(0xffE61F27)
-                          : widget.viewModel is BankCardPinChoosenViewModel
-                              ? ClientConfig.getCustomColors().success
-                              : index >= _newPIN.length
-                                  ? ClientConfig.getCustomColors().neutral500
-                                  : ClientConfig.getCustomColors().neutral900,
-                    ),
-                  );
-                },
-              ),
+              children: List.generate(4, (index) {
+                return Container(
+                  width: 10,
+                  height: 10,
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: hasError
+                        ? const Color(0xffE61F27)
+                        : widget.viewModel is BankCardPinChoosenViewModel
+                        ? ClientConfig.getCustomColors().success
+                        : index >= _newPIN.length
+                        ? ClientConfig.getCustomColors().neutral500
+                        : ClientConfig.getCustomColors().neutral900,
+                  ),
+                );
+              }),
             ),
           ),
           SizedBox(
@@ -388,52 +379,44 @@ class _ChangePinBodyState extends State<ChangePinBody> {
               autofocus: true,
               controller: _controller,
               focusNode: _focusPin,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration.collapsed(
-                hintText: 'PIN',
-              ),
-              style: TextStyle(
-                color: Colors.grey.withOpacity(0),
-              ),
+              decoration: const InputDecoration.collapsed(hintText: 'PIN'),
+              style: TextStyle(color: Colors.grey.withOpacity(0)),
               cursorColor: Colors.transparent,
               cursorRadius: const Radius.circular(0),
               cursorWidth: 0,
               onChanged: (text) {
                 if (text.length <= 4) {
-                  setState(
-                    () {
-                      _newPIN = text;
-                      hasError = !hasConsecutiveDigits(_newPIN) ||
-                          !containsPostalCode(
-                              _newPIN,
-                              user.person.address?.postalCode ??
-                                  'postalCode') ||
-                          !hasRepeatingDigits(_newPIN) ||
-                          !containsBirthDate(
-                              _newPIN, user.person.birthDate ?? DateTime.now());
+                  setState(() {
+                    _newPIN = text;
+                    hasError =
+                        !hasConsecutiveDigits(_newPIN) ||
+                        !containsPostalCode(
+                          _newPIN,
+                          user.person.address?.postalCode ?? 'postalCode',
+                        ) ||
+                        !hasRepeatingDigits(_newPIN) ||
+                        !containsBirthDate(
+                          _newPIN,
+                          user.person.birthDate ?? DateTime.now(),
+                        );
 
-                      if (hasError && text.length == 4) {
-                        Future.delayed(
-                          const Duration(seconds: 2),
-                          () {
-                            resetErrorNotifiers();
-                            clearPinAndResetFocus();
-                          },
-                        );
-                      } else if (!hasError && text.length == 4) {
-                        _focusPin.unfocus();
-                        StoreProvider.of<AppState>(context).dispatch(
-                          BankCardChoosePinCommandAction(
-                            pin: _newPIN,
-                            bankCard: widget.viewModel.bankCard!,
-                          ),
-                        );
-                      }
-                    },
-                  );
+                    if (hasError && text.length == 4) {
+                      Future.delayed(const Duration(seconds: 2), () {
+                        resetErrorNotifiers();
+                        clearPinAndResetFocus();
+                      });
+                    } else if (!hasError && text.length == 4) {
+                      _focusPin.unfocus();
+                      StoreProvider.of<AppState>(context).dispatch(
+                        BankCardChoosePinCommandAction(
+                          pin: _newPIN,
+                          bankCard: widget.viewModel.bankCard!,
+                        ),
+                      );
+                    }
+                  });
                 }
               },
             ),
@@ -472,117 +455,111 @@ class ChangePinChecks extends StatelessWidget {
             "Your PIN should not contain:",
             style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
           ),
-          const SizedBox(
-            height: 8,
+          const SizedBox(height: 8),
+          ValueListenableBuilder<bool>(
+            valueListenable: birthdayErrorNotifier,
+            builder: (context, hasError, child) {
+              return Row(
+                children: [
+                  Icon(
+                    Icons.close,
+                    size: 24,
+                    color: birthdayErrorNotifier.value
+                        ? const Color(0xffE61F27)
+                        : ClientConfig.getCustomColors().neutral700,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    "Your date of birth",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular
+                        .copyWith(
+                          color: birthdayErrorNotifier.value
+                              ? const Color(0xffE61F27)
+                              : ClientConfig.getCustomColors().neutral700,
+                        ),
+                  ),
+                ],
+              );
+            },
           ),
           ValueListenableBuilder<bool>(
-              valueListenable: birthdayErrorNotifier,
-              builder: (context, hasError, child) {
-                return Row(
-                  children: [
-                    Icon(
-                      Icons.close,
-                      size: 24,
-                      color: birthdayErrorNotifier.value
-                          ? const Color(0xffE61F27)
-                          : ClientConfig.getCustomColors().neutral700,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      "Your date of birth",
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodyLargeRegular
-                          .copyWith(
-                              color: birthdayErrorNotifier.value
-                                  ? const Color(0xffE61F27)
-                                  : ClientConfig.getCustomColors().neutral700),
-                    ),
-                  ],
-                );
-              }),
+            valueListenable: postalCodeErrorNotifier,
+            builder: (context, hasError, child) {
+              return Row(
+                children: [
+                  Icon(
+                    Icons.close,
+                    size: 24,
+                    color: postalCodeErrorNotifier.value
+                        ? const Color(0xffE61F27)
+                        : ClientConfig.getCustomColors().neutral700,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    "Your postal code",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular
+                        .copyWith(
+                          color: postalCodeErrorNotifier.value
+                              ? const Color(0xffE61F27)
+                              : ClientConfig.getCustomColors().neutral700,
+                        ),
+                  ),
+                ],
+              );
+            },
+          ),
           ValueListenableBuilder<bool>(
-              valueListenable: postalCodeErrorNotifier,
-              builder: (context, hasError, child) {
-                return Row(
-                  children: [
-                    Icon(
-                      Icons.close,
-                      size: 24,
-                      color: postalCodeErrorNotifier.value
-                          ? const Color(0xffE61F27)
-                          : ClientConfig.getCustomColors().neutral700,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      "Your postal code",
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodyLargeRegular
-                          .copyWith(
-                              color: postalCodeErrorNotifier.value
-                                  ? const Color(0xffE61F27)
-                                  : ClientConfig.getCustomColors().neutral700),
-                    ),
-                  ],
-                );
-              }),
+            valueListenable: sequenceErrorNotifier,
+            builder: (context, hasError, child) {
+              return Row(
+                children: [
+                  Icon(
+                    Icons.close,
+                    size: 24,
+                    color: sequenceErrorNotifier.value
+                        ? const Color(0xffE61F27)
+                        : ClientConfig.getCustomColors().neutral700,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    "Number sequences, e.g. 1234",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular
+                        .copyWith(
+                          color: sequenceErrorNotifier.value
+                              ? const Color(0xffE61F27)
+                              : ClientConfig.getCustomColors().neutral700,
+                        ),
+                  ),
+                ],
+              );
+            },
+          ),
           ValueListenableBuilder<bool>(
-              valueListenable: sequenceErrorNotifier,
-              builder: (context, hasError, child) {
-                return Row(
-                  children: [
-                    Icon(
-                      Icons.close,
-                      size: 24,
-                      color: sequenceErrorNotifier.value
-                          ? const Color(0xffE61F27)
-                          : ClientConfig.getCustomColors().neutral700,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      "Number sequences, e.g. 1234",
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodyLargeRegular
-                          .copyWith(
-                              color: sequenceErrorNotifier.value
-                                  ? const Color(0xffE61F27)
-                                  : ClientConfig.getCustomColors().neutral700),
-                    ),
-                  ],
-                );
-              }),
-          ValueListenableBuilder<bool>(
-              valueListenable: repeatingErrorNotifier,
-              builder: (context, hasError, child) {
-                return Row(
-                  children: [
-                    Icon(
-                      Icons.close,
-                      size: 24,
-                      color: repeatingErrorNotifier.value
-                          ? const Color(0xffE61F27)
-                          : ClientConfig.getCustomColors().neutral700,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      "More than two digits repeating",
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodyLargeRegular
-                          .copyWith(
-                              color: repeatingErrorNotifier.value
-                                  ? const Color(0xffE61F27)
-                                  : ClientConfig.getCustomColors().neutral700),
-                    ),
-                  ],
-                );
-              }),
+            valueListenable: repeatingErrorNotifier,
+            builder: (context, hasError, child) {
+              return Row(
+                children: [
+                  Icon(
+                    Icons.close,
+                    size: 24,
+                    color: repeatingErrorNotifier.value
+                        ? const Color(0xffE61F27)
+                        : ClientConfig.getCustomColors().neutral700,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    "More than two digits repeating",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular
+                        .copyWith(
+                          color: repeatingErrorNotifier.value
+                              ? const Color(0xffE61F27)
+                              : ClientConfig.getCustomColors().neutral700,
+                        ),
+                  ),
+                ],
+              );
+            },
+          ),
         ],
       ),
     );

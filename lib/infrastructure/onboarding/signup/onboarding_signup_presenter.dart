@@ -6,8 +6,10 @@ import 'package:solarisdemo/redux/auth/auth_state.dart';
 import 'package:solarisdemo/redux/onboarding/signup/onboarding_signup_state.dart';
 
 class OnboardingSignupPresenter {
-  static OnboardingSignupViewModel present(
-      {required OnboardingSignupState signupState, AuthState? authState}) {
+  static OnboardingSignupViewModel present({
+    required OnboardingSignupState signupState,
+    AuthState? authState,
+  }) {
     final isAuthenticated = authState is AuthenticationInitializedState;
     final isAccountCreated = signupState.isSuccessful == true;
     final isAuthLoading = authState is AuthLoadingState;
@@ -35,6 +37,10 @@ class OnboardingSignupViewModel extends Equatable {
   });
 
   @override
-  List<Object?> get props =>
-      [signupAttributes, isLoading, isSuccessful, errorType];
+  List<Object?> get props => [
+    signupAttributes,
+    isLoading,
+    isSuccessful,
+    errorType,
+  ];
 }

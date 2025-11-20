@@ -39,7 +39,8 @@ class OnboardingStartScreen extends StatelessWidget {
                     TextSpan(
                       children: [
                         const TextSpan(
-                            text: "Get your credit card instantly in just "),
+                          text: "Get your credit card instantly in just ",
+                        ),
                         TextSpan(
                           text: "25 minutes!",
                           style: ClientConfig.getTextStyleScheme()
@@ -54,7 +55,8 @@ class OnboardingStartScreen extends StatelessWidget {
                     TextSpan(
                       children: [
                         const TextSpan(
-                            text: "Please make sure your information is "),
+                          text: "Please make sure your information is ",
+                        ),
                         TextSpan(
                           text: "accurate, ",
                           style: ClientConfig.getTextStyleScheme()
@@ -81,8 +83,9 @@ class OnboardingStartScreen extends StatelessWidget {
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text:
-                                "to ensure our services are tailored to your needs.")
+                          text:
+                              "to ensure our services are tailored to your needs.",
+                        ),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -102,15 +105,18 @@ class OnboardingStartScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: PrimaryButton(
-                        text: "Let's start",
-                        onPressed: () => Navigator.pushNamed(context,
-                            OnboardingGermanResidencyScreen.routeName)),
+                      text: "Let's start",
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        OnboardingGermanResidencyScreen.routeName,
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 16)
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

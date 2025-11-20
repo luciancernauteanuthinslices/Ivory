@@ -4,8 +4,9 @@ import '../../../models/transfer/credit_card_application.dart';
 import '../../../redux/onboarding/card_configuration/onboarding_card_configuration_state.dart';
 
 class OnboardingCardConfigurationPresenter {
-  static OnboardingCardConfigurationViewModel presentCardConfiguration(
-      {required OnboardingCardConfigurationState cardConfigurationState}) {
+  static OnboardingCardConfigurationViewModel presentCardConfiguration({
+    required OnboardingCardConfigurationState cardConfigurationState,
+  }) {
     if (cardConfigurationState
         is OnboardingCardConfigurationGenericErrorState) {
       return OnboardingCardConfigurationGenericErrorViewModel();

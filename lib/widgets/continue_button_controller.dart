@@ -16,7 +16,7 @@ class ContinueButtonState {
 
 class ContinueButtonController extends ValueNotifier<ContinueButtonState> {
   ContinueButtonController({bool isEnabled = false, bool isLoading = false})
-      : super(ContinueButtonState(isEnabled: isEnabled, isLoading: isLoading));
+    : super(ContinueButtonState(isEnabled: isEnabled, isLoading: isLoading));
 
   ContinueButtonState get state => value;
 

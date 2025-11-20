@@ -42,22 +42,25 @@ class OnboardingUsaTaxPayerScreen extends StatelessWidget {
                     TextSpan(
                       children: [
                         const TextSpan(
-                            text: "If you as the account holder are "),
+                          text: "If you as the account holder are ",
+                        ),
                         TextSpan(
                           text: "established in the USA",
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text: ", have been in the past or have "),
+                          text: ", have been in the past or have ",
+                        ),
                         TextSpan(
                           text: "tax residency in the USA",
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text:
-                                ", we will not be able to open your credit account."),
+                          text:
+                              ", we will not be able to open your credit account.",
+                        ),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -96,7 +99,9 @@ class OnboardingUsaTaxPayerScreen extends StatelessWidget {
                       borderWidth: 2,
                       text: "Yes, I am a USA taxpayer",
                       onPressed: () => Navigator.pushNamed(
-                          context, OnboardingUsaTaxPayerErrorScreen.routeName),
+                        context,
+                        OnboardingUsaTaxPayerErrorScreen.routeName,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -112,11 +117,11 @@ class OnboardingUsaTaxPayerScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(height: 16)
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -140,8 +145,9 @@ class _TaxpayerBottomSheetContent extends StatelessWidget {
                 style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
               ),
               const TextSpan(
-                  text:
-                      ", generally requires that foreign financial Institutions and certain other non-financial foreign entities report on the foreign assets held by their U.S. account holders or be subject to withholding on withholdable payments."),
+                text:
+                    ", generally requires that foreign financial Institutions and certain other non-financial foreign entities report on the foreign assets held by their U.S. account holders or be subject to withholding on withholdable payments.",
+              ),
             ],
             style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
           ),
@@ -155,15 +161,10 @@ class _TaxpayerBottomSheetContent extends StatelessWidget {
                 text: "www.irs.gov",
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    launchUrl(
-                      Uri.parse("https://www.irs.gov"),
-                    );
+                    launchUrl(Uri.parse("https://www.irs.gov"));
                   },
-                style: ClientConfig.getTextStyleScheme()
-                    .bodyLargeRegularBold
-                    .copyWith(
-                      color: ClientConfig.getColorScheme().secondary,
-                    ),
+                style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
+                    .copyWith(color: ClientConfig.getColorScheme().secondary),
               ),
               const TextSpan(text: "."),
             ],

@@ -2,7 +2,9 @@ import 'package:solarisdemo/redux/person/reference_account/reference_account_act
 import 'package:solarisdemo/redux/person/reference_account/reference_account_state.dart';
 
 ReferenceAccountState referenceAccountReducer(
-    ReferenceAccountState currentState, dynamic action) {
+  ReferenceAccountState currentState,
+  dynamic action,
+) {
   if (action is GetReferenceAccountCommandAction) {
     return ReferenceAccountLoadingState();
   } else if (action is ReferenceAccountFetchedEventAction) {

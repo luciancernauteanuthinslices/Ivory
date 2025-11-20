@@ -23,10 +23,12 @@ class GetCategoriesMiddleware extends MiddlewareClass<AppState> {
       store.dispatch(CategoriesLoadingEventAction());
 
       final response = await _categoriesService.getCategories(
-          user: authState.authenticatedUser.cognito);
+        user: authState.authenticatedUser.cognito,
+      );
       if (response is GetCategoriesSuccessResponse) {
         store.dispatch(
-            WithCategoriesEventAction(categories: response.categories));
+          WithCategoriesEventAction(categories: response.categories),
+        );
       } else {
         store.dispatch(CategoriesFailedEventAction());
       }

@@ -42,9 +42,7 @@ void main() {
     });
 
     test('fromJson and toJson should work correctly with null fields', () {
-      var transaction = Transaction(
-        recordedAt: DateTime.now(),
-      );
+      var transaction = Transaction(recordedAt: DateTime.now());
 
       var json = transaction.toJson();
       var fromJson = Transaction.fromJson(json);

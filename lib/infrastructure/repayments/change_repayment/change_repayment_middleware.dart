@@ -30,8 +30,11 @@ class CardApplicationMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is UpdateCardApplicationSuccessResponse) {
-        store.dispatch(UpdateCardApplicationEventAction(
-            creditCardApplication: response.creditCardApplication));
+        store.dispatch(
+          UpdateCardApplicationEventAction(
+            creditCardApplication: response.creditCardApplication,
+          ),
+        );
       } else {
         store.dispatch(CardApplicationFailedEventAction());
       }
@@ -43,8 +46,11 @@ class CardApplicationMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (response is GetCardApplicationSuccessResponse) {
-        store.dispatch(CardApplicationFetchedEventAction(
-            creditCardApplication: response.creditCardApplication));
+        store.dispatch(
+          CardApplicationFetchedEventAction(
+            creditCardApplication: response.creditCardApplication,
+          ),
+        );
       } else {
         store.dispatch(CardApplicationFailedEventAction());
       }

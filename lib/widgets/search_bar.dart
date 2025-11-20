@@ -43,38 +43,43 @@ class CustomSearchBar extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 6.0),
-          child: Stack(children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(
-                  color: ClientConfig.getColorScheme().primary,
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: ClientConfig.getColorScheme().primary,
+                  ),
+                ),
+                child: PlatformIconButton(
+                  icon: SvgPicture.asset(
+                    "assets/icons/filter_icon.svg",
+                    colorFilter: ColorFilter.mode(
+                      ClientConfig.getColorScheme().primary,
+                      BlendMode.srcIn,
+                    ),
+                    height: 16,
+                    width: 16,
+                  ),
+                  onPressed: onPressedFilterButton,
                 ),
               ),
-              child: PlatformIconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/filter_icon.svg",
-                  colorFilter: ColorFilter.mode(
-                      ClientConfig.getColorScheme().primary, BlendMode.srcIn),
-                  height: 16,
-                  width: 16,
-                ),
-                onPressed: onPressedFilterButton,
-              ),
-            ),
-            if (showButtonIndicator)
-              Positioned(
-                right: 10,
-                top: 10,
-                child: Container(
-                  height: 6,
-                  width: 6,
-                  decoration: BoxDecoration(
+              if (showButtonIndicator)
+                Positioned(
+                  right: 10,
+                  top: 10,
+                  child: Container(
+                    height: 6,
+                    width: 6,
+                    decoration: BoxDecoration(
                       color: const Color(0xff2BCCFF),
-                      borderRadius: BorderRadius.circular(100)),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                 ),
-              )
-          ]),
+            ],
+          ),
         ),
       ],
     );

@@ -73,8 +73,10 @@ class _OnboardingBasicInfoScreenState extends State<OnboardingBasicInfoScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 16),
-                  Text("Preferred title, first & last name",
-                      style: ClientConfig.getTextStyleScheme().heading2),
+                  Text(
+                    "Preferred title, first & last name",
+                    style: ClientConfig.getTextStyleScheme().heading2,
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     "Select your title and fill in your first and last name. Include all names if you have multiple.",
@@ -121,14 +123,18 @@ class _OnboardingBasicInfoScreenState extends State<OnboardingBasicInfoScreen> {
                                 StoreProvider.of<AppState>(context).dispatch(
                                   SubmitOnboardingBasicInfoCommandAction(
                                     title: _selectTitleController
-                                        .selectedOptions.first.value,
+                                        .selectedOptions
+                                        .first
+                                        .value,
                                     firstName: _firstNameController.text,
                                     lastName: _lastNameController.text,
                                   ),
                                 );
 
                                 Navigator.pushNamed(
-                                    context, OnboardingEmailScreen.routeName);
+                                  context,
+                                  OnboardingEmailScreen.routeName,
+                                );
                               }
                             : null,
                       ),

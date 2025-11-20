@@ -20,82 +20,78 @@ class BankCardDetailsActivationSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
-        converter: (store) => BankCardPresenter.presentBankCard(
-              bankCardState: store.state.bankCardState,
-              user: user,
-            ),
-        builder: (context, viewModel) {
-          return ScreenScaffold(
-            body: Padding(
-              padding:
-                  ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const AppToolbar(
-                    backButtonEnabled: false,
-                  ),
-                  Text(
-                    'Physical card successfully activated!',
-                    style: ClientConfig.getTextStyleScheme().heading1,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'You can now start using your PIN to make in-store purchases, make withdrawals and more.',
-                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-                  ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IvoryAssetWithBadge(
-                        childWidget: const BankCardWidget(
-                          showCardDetails: false,
-                          customHeight: 148,
-                          customWidth: 231,
-                          imageScaledownFactor: 1.5,
-                        ),
-                        childPosition: BadgePosition.topEnd(
-                          top: -32,
-                          end: -32,
-                        ),
-                        isSuccess: true,
+      converter: (store) => BankCardPresenter.presentBankCard(
+        bankCardState: store.state.bankCardState,
+        user: user,
+      ),
+      builder: (context, viewModel) {
+        return ScreenScaffold(
+          body: Padding(
+            padding:
+                ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const AppToolbar(backButtonEnabled: false),
+                Text(
+                  'Physical card successfully activated!',
+                  style: ClientConfig.getTextStyleScheme().heading1,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'You can now start using your PIN to make in-store purchases, make withdrawals and more.',
+                  style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IvoryAssetWithBadge(
+                      childWidget: const BankCardWidget(
+                        showCardDetails: false,
+                        customHeight: 148,
+                        customWidth: 231,
+                        imageScaledownFactor: 1.5,
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 124,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Button(
-                      disabledColor: ClientConfig.getCustomColors().neutral300,
-                      color: ClientConfig.getColorScheme().tertiary,
-                      textColor: ClientConfig.getColorScheme().surface,
-                      text: 'Back to "Card"',
-                      onPressed: () {
-                        Navigator.popUntil(
-                          context,
-                          ModalRoute.withName(HomeScreen.routeName),
-                        );
-                        StoreProvider.of<AppState>(context)
-                            .dispatch(GetBankCardCommandAction(
+                      childPosition: BadgePosition.topEnd(top: -32, end: -32),
+                      isSuccess: true,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 124),
+                SizedBox(
+                  width: double.infinity,
+                  child: Button(
+                    disabledColor: ClientConfig.getCustomColors().neutral300,
+                    color: ClientConfig.getColorScheme().tertiary,
+                    textColor: ClientConfig.getColorScheme().surface,
+                    text: 'Back to "Card"',
+                    onPressed: () {
+                      Navigator.popUntil(
+                        context,
+                        ModalRoute.withName(HomeScreen.routeName),
+                      );
+                      StoreProvider.of<AppState>(context).dispatch(
+                        GetBankCardCommandAction(
                           cardId: viewModel.bankCard!.id,
                           forceReloadCardData: true,
-                        ));
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

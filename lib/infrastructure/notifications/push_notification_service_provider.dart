@@ -9,7 +9,8 @@ class PushNotificationServiceProvider {
   PushNotificationService? _service;
 
   factory PushNotificationServiceProvider.init(
-      PushNotificationService service) {
+    PushNotificationService service,
+  ) {
     instance._service = service;
     return instance;
   }

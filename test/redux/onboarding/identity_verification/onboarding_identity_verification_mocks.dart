@@ -14,7 +14,8 @@ class FakeOnbordingIdentityVerificationService
     required String termsAndCondsSignedAt,
   }) async {
     return const CreateIdentificationSuccessResponse(
-        urlForIntegration: 'https://url.com');
+      urlForIntegration: 'https://url.com',
+    );
   }
 
   @override
@@ -36,20 +37,23 @@ class FakeOnbordingIdentityVerificationService
           fileSize: 2048,
           fileType: 'PDF',
           documentType: DocumentType.creditCardContract,
-        )
+        ),
       ],
     );
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> authorizeIdentification(
-      {required User user}) async {
+  Future<IdentityVerificationServiceResponse> authorizeIdentification({
+    required User user,
+  }) async {
     return AuthorizeIdentificationSuccessResponse();
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> signWithTan(
-      {required User user, required String tan}) async {
+  Future<IdentityVerificationServiceResponse> signWithTan({
+    required User user,
+    required String tan,
+  }) async {
     return SignWithTanSuccessResponse();
   }
 
@@ -78,7 +82,8 @@ class FakeFailingOnbordingIdentityVerificationService
     required String termsAndCondsSignedAt,
   }) async {
     return const IdentityVerificationServiceErrorResponse(
-        errorType: OnboardingIdentityVerificationErrorType.unknown);
+      errorType: OnboardingIdentityVerificationErrorType.unknown,
+    );
   }
 
   @override
@@ -86,21 +91,27 @@ class FakeFailingOnbordingIdentityVerificationService
     required User user,
   }) async {
     return const IdentityVerificationServiceErrorResponse(
-        errorType: OnboardingIdentityVerificationErrorType.unknown);
+      errorType: OnboardingIdentityVerificationErrorType.unknown,
+    );
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> authorizeIdentification(
-      {required User user}) async {
+  Future<IdentityVerificationServiceResponse> authorizeIdentification({
+    required User user,
+  }) async {
     return const IdentityVerificationServiceErrorResponse(
-        errorType: OnboardingIdentityVerificationErrorType.unknown);
+      errorType: OnboardingIdentityVerificationErrorType.unknown,
+    );
   }
 
   @override
-  Future<IdentityVerificationServiceResponse> signWithTan(
-      {required User user, required String tan}) async {
+  Future<IdentityVerificationServiceResponse> signWithTan({
+    required User user,
+    required String tan,
+  }) async {
     return const IdentityVerificationServiceErrorResponse(
-        errorType: OnboardingIdentityVerificationErrorType.unknown);
+      errorType: OnboardingIdentityVerificationErrorType.unknown,
+    );
   }
 
   @override

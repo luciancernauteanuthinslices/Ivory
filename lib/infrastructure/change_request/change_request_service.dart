@@ -26,11 +26,13 @@ class ChangeRequestService extends ApiService {
 
       if (data['success'] == false) {
         return ChangeRequestServiceErrorResponse(
-            errorType: ChangeRequestErrorType.confirmationFailed);
+          errorType: ChangeRequestErrorType.confirmationFailed,
+        );
       } else if (data['response']['response_body']['decline_reason'] ==
           'insufficient_balance') {
         return ChangeRequestServiceErrorResponse(
-            errorType: ChangeRequestErrorType.insufficientFunds);
+          errorType: ChangeRequestErrorType.insufficientFunds,
+        );
       }
 
       return ConfirmTransferChangeRequestSuccessResponse(
@@ -39,7 +41,8 @@ class ChangeRequestService extends ApiService {
           transfer: ReferenceAccountTransfer(
             description: data['response']['response_body']['description'],
             amount: ReferenceAccountTransferAmount(
-              value: (data['response']['response_body']['amount']['value']
+              value:
+                  (data['response']['response_body']['amount']['value']
                       as int) /
                   100,
             ),
@@ -72,14 +75,17 @@ class ChangeRequestService extends ApiService {
 
       if (data['status'] != "CONFIRMATION_REQUIRED") {
         return ChangeRequestServiceErrorResponse(
-            errorType: ChangeRequestErrorType.authorizationFailed);
+          errorType: ChangeRequestErrorType.authorizationFailed,
+        );
       }
 
       return AuthorizeChangeRequestSuccessResponse(
-          stringToSign: data['string_to_sign'] as String);
+        stringToSign: data['string_to_sign'] as String,
+      );
     } catch (e) {
       return ChangeRequestServiceErrorResponse(
-          errorType: ChangeRequestErrorType.authorizationFailed);
+        errorType: ChangeRequestErrorType.authorizationFailed,
+      );
     }
   }
 
@@ -107,13 +113,15 @@ class ChangeRequestService extends ApiService {
 
       if (data['success'] == false) {
         return ChangeRequestServiceErrorResponse(
-            errorType: ChangeRequestErrorType.confirmationFailed);
+          errorType: ChangeRequestErrorType.confirmationFailed,
+        );
       }
 
       return ConfirmChangeRequestSuccessResponse();
     } catch (e) {
       return ChangeRequestServiceErrorResponse(
-          errorType: ChangeRequestErrorType.confirmationFailed);
+        errorType: ChangeRequestErrorType.confirmationFailed,
+      );
     }
   }
 }
@@ -139,9 +147,7 @@ class AuthorizeChangeRequestSuccessResponse
     extends ChangeRequestServiceResponse {
   final String stringToSign;
 
-  AuthorizeChangeRequestSuccessResponse({
-    required this.stringToSign,
-  });
+  AuthorizeChangeRequestSuccessResponse({required this.stringToSign});
 
   @override
   List<Object> get props => [stringToSign];

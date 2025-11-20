@@ -14,163 +14,106 @@ import 'onboarding_progress_mocks.dart';
 
 void main() {
   final user = MockUser();
-  final authentionInitializedState =
-      AuthenticationInitializedState(user, AuthType.withTan);
+  final authentionInitializedState = AuthenticationInitializedState(
+    user,
+    AuthType.withTan,
+  );
 
   test(
-      "When fetching onboarding progress and authState is initial, step will be <start>",
-      () async {
-    // given
-    final store = createTestStore(
-      onboardingService: FakeOnboardingService(),
-      initialState: createAppState(
-        authState: AuthInitialState(),
-        onboardingProgressState: OnboardingProgressInitialLoadingState(),
-      ),
-    );
-
-    final appState = store.onChange.firstWhere((element) =>
-        element.onboardingProgressState is OnboardingProgressFetchedState);
-
-    // when
-    store.dispatch(GetOnboardingProgressCommandAction());
-
-    // then
-    expect((await appState).onboardingProgressState,
-        isA<OnboardingProgressFetchedState>());
-    final onboardingProgressState = (await appState).onboardingProgressState
-        as OnboardingProgressFetchedState;
-
-    expect(onboardingProgressState.step, OnboardingStep.start);
-  });
-
-  test(
-      "When onboarding progress is fetched successfully, the state should be loaded",
-      () async {
-    // given
-    final store = createTestStore(
-      onboardingService: FakeOnboardingService(),
-      initialState: createAppState(
-        authState: authentionInitializedState,
-        onboardingProgressState: OnboardingProgressInitialLoadingState(),
-      ),
-    );
-
-    final appState = store.onChange.firstWhere((element) =>
-        element.onboardingProgressState is OnboardingProgressFetchedState);
-
-    // when
-    store.dispatch(GetOnboardingProgressCommandAction());
-
-    // then
-    expect((await appState).onboardingProgressState,
-        isA<OnboardingProgressFetchedState>());
-  });
-
-  test("When fetching the progress, the state should change to loading",
-      () async {
-    // given
-    final store = createTestStore(
-      onboardingService: FakeOnboardingService(),
-      initialState: createAppState(
-        authState: authentionInitializedState,
-        onboardingProgressState:
-            OnboardingProgressFetchedState(step: OnboardingStep.start),
-      ),
-    );
-
-    final appState = store.onChange.firstWhere((element) => element
-        .onboardingProgressState is OnboardingProgressInitialLoadingState);
-
-    // when
-    store.dispatch(GetOnboardingProgressCommandAction());
-
-    // then
-    expect((await appState).onboardingProgressState,
-        isA<OnboardingProgressInitialLoadingState>());
-  });
-
-  test(
-      "When onboarding progress has failed fetching the state should change to error",
-      () async {
-    // given
-    final store = createTestStore(
-      onboardingService: FakeFailingOnboardingService(),
-      initialState: createAppState(
-        authState: authentionInitializedState,
-        onboardingProgressState: OnboardingProgressInitialLoadingState(),
-      ),
-    );
-
-    final appState = store.onChange.firstWhere((element) =>
-        element.onboardingProgressState is OnboardingProgressErrorState);
-
-    // when
-    store.dispatch(GetOnboardingProgressCommandAction());
-
-    // then
-    expect((await appState).onboardingProgressState,
-        isA<OnboardingProgressErrorState>());
-  });
-
-  test(
-      "When onboarding progress contains a not empty mobileNumber, OnboardingPersonalDetailsState should update with that mobileNumber.",
-      () async {
-    // given
-    final store = createTestStore(
-      onboardingService: FakeOnboardingServiceWithMobileNumber(),
-      initialState: createAppState(
-        authState: authentionInitializedState,
-        onboardingProgressState: OnboardingProgressFetchedState(
-            step: OnboardingStep.phoneNumberVerified),
-        onboardingPersonalDetailsState: const OnboardingPersonalDetailsState(
-          attributes: OnboardingPersonalDetailsAttributes(mobileNumber: ''),
+    "When fetching onboarding progress and authState is initial, step will be <start>",
+    () async {
+      // given
+      final store = createTestStore(
+        onboardingService: FakeOnboardingService(),
+        initialState: createAppState(
+          authState: AuthInitialState(),
+          onboardingProgressState: OnboardingProgressInitialLoadingState(),
         ),
-      ),
-    );
+      );
 
-    final appState = store.onChange.firstWhere((element) => element
-        .onboardingPersonalDetailsState.attributes.mobileNumber!.isNotEmpty);
+      final appState = store.onChange.firstWhere(
+        (element) =>
+            element.onboardingProgressState is OnboardingProgressFetchedState,
+      );
 
-    // when
-    store.dispatch(GetOnboardingProgressCommandAction());
+      // when
+      store.dispatch(GetOnboardingProgressCommandAction());
 
-    // then
-    expect(
-        (await appState).onboardingPersonalDetailsState.attributes.mobileNumber,
-        '123456');
-  });
+      // then
+      expect(
+        (await appState).onboardingProgressState,
+        isA<OnboardingProgressFetchedState>(),
+      );
+      final onboardingProgressState =
+          (await appState).onboardingProgressState
+              as OnboardingProgressFetchedState;
 
-  group("Finalizing onboarding", () {
-    test(
-        "When finalizing onboarding is in progress, the state should change to loading",
-        () async {
+      expect(onboardingProgressState.step, OnboardingStep.start);
+    },
+  );
+
+  test(
+    "When onboarding progress is fetched successfully, the state should be loaded",
+    () async {
+      // given
+      final store = createTestStore(
+        onboardingService: FakeOnboardingService(),
+        initialState: createAppState(
+          authState: authentionInitializedState,
+          onboardingProgressState: OnboardingProgressInitialLoadingState(),
+        ),
+      );
+
+      final appState = store.onChange.firstWhere(
+        (element) =>
+            element.onboardingProgressState is OnboardingProgressFetchedState,
+      );
+
+      // when
+      store.dispatch(GetOnboardingProgressCommandAction());
+
+      // then
+      expect(
+        (await appState).onboardingProgressState,
+        isA<OnboardingProgressFetchedState>(),
+      );
+    },
+  );
+
+  test(
+    "When fetching the progress, the state should change to loading",
+    () async {
       // given
       final store = createTestStore(
         onboardingService: FakeOnboardingService(),
         initialState: createAppState(
           authState: authentionInitializedState,
           onboardingProgressState: OnboardingProgressFetchedState(
-              step: OnboardingStep.creditCardApplicationCreated),
+            step: OnboardingStep.start,
+          ),
         ),
       );
 
       final appState = store.onChange.firstWhere(
-        (element) => element.onboardingProgressState
-            is OnboardingProgressInitialLoadingState,
+        (element) =>
+            element.onboardingProgressState
+                is OnboardingProgressInitialLoadingState,
       );
 
       // when
-      store.dispatch(FinalizeOnboardingCommandAction());
+      store.dispatch(GetOnboardingProgressCommandAction());
 
       // then
-      expect((await appState).onboardingProgressState,
-          isA<OnboardingProgressInitialLoadingState>());
-    });
+      expect(
+        (await appState).onboardingProgressState,
+        isA<OnboardingProgressInitialLoadingState>(),
+      );
+    },
+  );
 
-    test(
-        "When finalize onboarding has failed, the state should change to error",
-        () async {
+  test(
+    "When onboarding progress has failed fetching the state should change to error",
+    () async {
       // given
       final store = createTestStore(
         onboardingService: FakeFailingOnboardingService(),
@@ -180,47 +123,152 @@ void main() {
         ),
       );
 
-      final appState = store.onChange.firstWhere((element) =>
-          element.onboardingProgressState is OnboardingProgressErrorState);
+      final appState = store.onChange.firstWhere(
+        (element) =>
+            element.onboardingProgressState is OnboardingProgressErrorState,
+      );
 
       // when
-      store.dispatch(FinalizeOnboardingCommandAction());
+      store.dispatch(GetOnboardingProgressCommandAction());
 
       // then
-      expect((await appState).onboardingProgressState,
-          isA<OnboardingProgressErrorState>());
-    });
+      expect(
+        (await appState).onboardingProgressState,
+        isA<OnboardingProgressErrorState>(),
+      );
+    },
+  );
 
-    test(
-        "When finalize onboarding is successful, onboardingProgressState and authState should be success",
-        () async {
+  test(
+    "When onboarding progress contains a not empty mobileNumber, OnboardingPersonalDetailsState should update with that mobileNumber.",
+    () async {
       // given
       final store = createTestStore(
-        onboardingService: FakeOnboardingService(),
-        deviceService: FakeDeviceService(),
-        authService: FakeAuthService(),
-        personService: FakePersonService(),
+        onboardingService: FakeOnboardingServiceWithMobileNumber(),
         initialState: createAppState(
           authState: authentionInitializedState,
           onboardingProgressState: OnboardingProgressFetchedState(
-              step: OnboardingStep.creditCardApplicationCreated),
+            step: OnboardingStep.phoneNumberVerified,
+          ),
+          onboardingPersonalDetailsState: const OnboardingPersonalDetailsState(
+            attributes: OnboardingPersonalDetailsAttributes(mobileNumber: ''),
+          ),
         ),
       );
+
       final appState = store.onChange.firstWhere(
-        (element) =>
-            element.onboardingProgressState is OnboardingFinalizedState,
-      );
-      final authState = store.onChange.firstWhere(
-        (element) => element.authState is AuthenticatedState,
+        (element) => element
+            .onboardingPersonalDetailsState
+            .attributes
+            .mobileNumber!
+            .isNotEmpty,
       );
 
       // when
-      store.dispatch(FinalizeOnboardingCommandAction());
+      store.dispatch(GetOnboardingProgressCommandAction());
 
       // then
-      expect((await appState).onboardingProgressState,
-          isA<OnboardingFinalizedState>());
-      expect((await authState).authState, isA<AuthenticatedState>());
-    });
+      expect(
+        (await appState).onboardingPersonalDetailsState.attributes.mobileNumber,
+        '123456',
+      );
+    },
+  );
+
+  group("Finalizing onboarding", () {
+    test(
+      "When finalizing onboarding is in progress, the state should change to loading",
+      () async {
+        // given
+        final store = createTestStore(
+          onboardingService: FakeOnboardingService(),
+          initialState: createAppState(
+            authState: authentionInitializedState,
+            onboardingProgressState: OnboardingProgressFetchedState(
+              step: OnboardingStep.creditCardApplicationCreated,
+            ),
+          ),
+        );
+
+        final appState = store.onChange.firstWhere(
+          (element) =>
+              element.onboardingProgressState
+                  is OnboardingProgressInitialLoadingState,
+        );
+
+        // when
+        store.dispatch(FinalizeOnboardingCommandAction());
+
+        // then
+        expect(
+          (await appState).onboardingProgressState,
+          isA<OnboardingProgressInitialLoadingState>(),
+        );
+      },
+    );
+
+    test(
+      "When finalize onboarding has failed, the state should change to error",
+      () async {
+        // given
+        final store = createTestStore(
+          onboardingService: FakeFailingOnboardingService(),
+          initialState: createAppState(
+            authState: authentionInitializedState,
+            onboardingProgressState: OnboardingProgressInitialLoadingState(),
+          ),
+        );
+
+        final appState = store.onChange.firstWhere(
+          (element) =>
+              element.onboardingProgressState is OnboardingProgressErrorState,
+        );
+
+        // when
+        store.dispatch(FinalizeOnboardingCommandAction());
+
+        // then
+        expect(
+          (await appState).onboardingProgressState,
+          isA<OnboardingProgressErrorState>(),
+        );
+      },
+    );
+
+    test(
+      "When finalize onboarding is successful, onboardingProgressState and authState should be success",
+      () async {
+        // given
+        final store = createTestStore(
+          onboardingService: FakeOnboardingService(),
+          deviceService: FakeDeviceService(),
+          authService: FakeAuthService(),
+          personService: FakePersonService(),
+          initialState: createAppState(
+            authState: authentionInitializedState,
+            onboardingProgressState: OnboardingProgressFetchedState(
+              step: OnboardingStep.creditCardApplicationCreated,
+            ),
+          ),
+        );
+        final appState = store.onChange.firstWhere(
+          (element) =>
+              element.onboardingProgressState is OnboardingFinalizedState,
+        );
+        final authState = store.onChange.firstWhere(
+          (element) => element.authState is AuthenticatedState,
+        );
+
+        // when
+        store.dispatch(FinalizeOnboardingCommandAction());
+
+        // then
+        expect(
+          (await appState).onboardingProgressState,
+          isA<OnboardingFinalizedState>(),
+        );
+        expect((await authState).authState, isA<AuthenticatedState>());
+      },
+    );
   });
 }

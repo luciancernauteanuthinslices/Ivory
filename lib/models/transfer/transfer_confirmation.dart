@@ -5,10 +5,7 @@ class TransferConfirmation extends Equatable {
   final bool success;
   final ReferenceAccountTransfer transfer;
 
-  const TransferConfirmation({
-    required this.success,
-    required this.transfer,
-  });
+  const TransferConfirmation({required this.success, required this.transfer});
 
   @override
   List<Object?> get props => [];

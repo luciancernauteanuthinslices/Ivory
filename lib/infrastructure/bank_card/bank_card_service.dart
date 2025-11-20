@@ -16,9 +16,7 @@ class BankCardService extends ApiService {
     try {
       final data = await post('/account/cards', body: reqBody.toJson());
 
-      return CreateBankCardSuccessResponse(
-        bankCard: BankCard.fromJson(data),
-      );
+      return CreateBankCardSuccessResponse(bankCard: BankCard.fromJson(data));
     } catch (e) {
       return BankCardErrorResponse();
     }
@@ -33,17 +31,13 @@ class BankCardService extends ApiService {
     try {
       final data = await get('/account/cards/$cardId');
 
-      return GetBankCardSuccessResponse(
-        bankCard: BankCard.fromJson(data),
-      );
+      return GetBankCardSuccessResponse(bankCard: BankCard.fromJson(data));
     } catch (e) {
       return BankCardErrorResponse();
     }
   }
 
-  Future<BankCardServiceResponse> getBankCards({
-    required User user,
-  }) async {
+  Future<BankCardServiceResponse> getBankCards({required User user}) async {
     this.user = user;
 
     try {
@@ -66,9 +60,7 @@ class BankCardService extends ApiService {
     try {
       final data = await post('/account/cards/$cardId');
 
-      return ActivateBankCardSuccessResponse(
-        bankCard: BankCard.fromJson(data),
-      );
+      return ActivateBankCardSuccessResponse(bankCard: BankCard.fromJson(data));
     } catch (e) {
       return BankCardErrorResponse();
     }
@@ -87,9 +79,7 @@ class BankCardService extends ApiService {
         body: reqBody.toJson(),
       );
 
-      return GetCardDetailsSuccessResponse(
-        encodedCardDetails: data['data'],
-      );
+      return GetCardDetailsSuccessResponse(encodedCardDetails: data['data']);
     } catch (e) {
       return BankCardErrorResponse();
     }
@@ -104,9 +94,7 @@ class BankCardService extends ApiService {
     try {
       final data = await get('/account/cards/$cardId/pin_keys/latest');
 
-      return GetLatestPinKeySuccessResponse(
-        jwkJson: data,
-      );
+      return GetLatestPinKeySuccessResponse(jwkJson: data);
     } catch (e) {
       return BankCardErrorResponse();
     }
@@ -120,8 +108,10 @@ class BankCardService extends ApiService {
     this.user = user;
 
     try {
-      await post('/account/cards/$cardId/change_card_pin',
-          body: reqBody.toJson());
+      await post(
+        '/account/cards/$cardId/change_card_pin',
+        body: reqBody.toJson(),
+      );
       return ChangePinSuccessResponse();
     } catch (e) {
       return BankCardErrorResponse();
@@ -137,9 +127,7 @@ class BankCardService extends ApiService {
     try {
       final data = await post('/account/cards/$cardId/block');
 
-      return FreezeBankCardSuccessResponse(
-        bankCard: BankCard.fromJson(data),
-      );
+      return FreezeBankCardSuccessResponse(bankCard: BankCard.fromJson(data));
     } catch (e) {
       return BankCardErrorResponse();
     }
@@ -154,9 +142,7 @@ class BankCardService extends ApiService {
     try {
       final data = await post('/account/cards/$cardId/unblock');
 
-      return UnfreezeBankCardSuccessResponse(
-        bankCard: BankCard.fromJson(data),
-      );
+      return UnfreezeBankCardSuccessResponse(bankCard: BankCard.fromJson(data));
     } catch (e) {
       return BankCardErrorResponse();
     }

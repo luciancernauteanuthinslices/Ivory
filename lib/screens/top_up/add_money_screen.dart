@@ -50,16 +50,11 @@ class _AddMoneyScreenState extends State<AddMoneyScreen> {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Add money',
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 16),
-            Center(
-              child: CustomContainer(),
-            ),
+            Center(child: CustomContainer()),
             AmountTransfer(amountController: amountController),
             const Spacer(),
             SizedBox(
@@ -112,32 +107,34 @@ class CustomContainer extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(24)),
                         border: Border.all(
-                            color: ClientConfig.getCustomColors().neutral200,
-                            width: 1),
+                          color: ClientConfig.getCustomColors().neutral200,
+                          width: 1,
+                        ),
                         color: Colors.white,
                       ),
                       child: Icon(Icons.credit_card),
                     ),
                     const SizedBox(width: 8.0),
                     Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'ING BANK',
-                            style: TextStyle(
-                              color: ClientConfig.getCustomColors().neutral900,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'ING BANK',
+                          style: TextStyle(
+                            color: ClientConfig.getCustomColors().neutral900,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Text(
-                            'Visa *9482',
-                            style: TextStyle(
-                              color: ClientConfig.getCustomColors().neutral700,
-                              fontSize: 14.0,
-                            ),
+                        ),
+                        Text(
+                          'Visa *9482',
+                          style: TextStyle(
+                            color: ClientConfig.getCustomColors().neutral700,
+                            fontSize: 14.0,
                           ),
-                        ]),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],
@@ -171,7 +168,7 @@ class AmountTransfer extends StatelessWidget {
   final TextEditingController amountController;
 
   const AmountTransfer({Key? key, required this.amountController})
-      : super(key: key);
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -29,8 +29,7 @@ class DocumentsHttpResponse {
 
   static Response invalid = Response("{}", 200);
 
-  static Response creditCardContractAndSecci = Response(
-    '''[
+  static Response creditCardContractAndSecci = Response('''[
       {
         "id": "creditCardContractId",
         "document_type": "CREDIT_CARD_CONTRACT",
@@ -43,27 +42,19 @@ class DocumentsHttpResponse {
         "document_content_type": "application/pdf",
         "document_size": 2048
       }
-    ]''',
-    200,
-  );
+    ]''', 200);
 
-  static Response creditCardContract = Response(
-    '''[{
+  static Response creditCardContract = Response('''[{
       "id": "creditCardContractId",
       "document_type": "CREDIT_CARD_CONTRACT",
       "document_content_type": "application/pdf",
       "document_size": 1024
-    }]''',
-    200,
-  );
+    }]''', 200);
 
-  static Response unknownDocument = Response(
-    '''[{
+  static Response unknownDocument = Response('''[{
       "id": "unknownDocumentId",
       "document_type": "UNKNOWN_DOCUMENT",
       "document_content_type": "application/pdf",
       "document_size": 1024
-    }]''',
-    200,
-  );
+    }]''', 200);
 }

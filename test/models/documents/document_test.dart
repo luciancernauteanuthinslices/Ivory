@@ -18,17 +18,18 @@ void main() {
 
     for (var i = 0; i < inputs.length; i++) {
       test(
-          "when input is '${inputs[i]}' then it should return ${expectedOutputs[i]}",
-          () {
-        // given
-        final input = inputs[i];
+        "when input is '${inputs[i]}' then it should return ${expectedOutputs[i]}",
+        () {
+          // given
+          final input = inputs[i];
 
-        // when
-        final output = DocumentTypeParser.parse(input);
+          // when
+          final output = DocumentTypeParser.parse(input);
 
-        // then
-        expect(output, equals(expectedOutputs[i]));
-      });
+          // then
+          expect(output, equals(expectedOutputs[i]));
+        },
+      );
     }
   });
 
@@ -68,17 +69,18 @@ void main() {
 
     for (var i = 0; i < inputDocuments.length; i++) {
       test(
-          "when document type is '${inputDocuments[i].documentType}' then it should return ${expectedOutputs[i]}",
-          () {
-        // given
-        final input = inputDocuments[i];
+        "when document type is '${inputDocuments[i].documentType}' then it should return ${expectedOutputs[i]}",
+        () {
+          // given
+          final input = inputDocuments[i];
 
-        // when
-        final output = input.fileName;
+          // when
+          final output = input.fileName;
 
-        // then
-        expect(output, equals(expectedOutputs[i]));
-      });
+          // then
+          expect(output, equals(expectedOutputs[i]));
+        },
+      );
     }
   });
 }

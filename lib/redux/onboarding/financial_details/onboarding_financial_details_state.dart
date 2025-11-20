@@ -18,9 +18,9 @@ class OnboardingFinancialDetailsState extends Equatable {
 
   @override
   List<Object?> get props => [
-        financialDetailsAttributes,
-        isLoading,
-        errorType,
-        isCreditCardApplicationCreated
-      ];
+    financialDetailsAttributes,
+    isLoading,
+    errorType,
+    isCreditCardApplicationCreated,
+  ];
 }

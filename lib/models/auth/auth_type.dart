@@ -1,5 +1,1 @@
-enum AuthType {
-  withBiometrics,
-  withTan,
-  onboarding,
-}
+enum AuthType { withBiometrics, withTan, onboarding }

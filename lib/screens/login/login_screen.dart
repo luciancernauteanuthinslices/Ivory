@@ -40,10 +40,7 @@ class LoginScreen extends StatelessWidget {
         if (previousViewModel is AuthLoadingViewModel &&
             newViewModel is AuthInitializedViewModel &&
             newViewModel.authType == AuthType.withTan) {
-          Navigator.pushNamed(
-            context,
-            LoginWithTanScreen.routeName,
-          );
+          Navigator.pushNamed(context, LoginWithTanScreen.routeName);
         }
         if (previousViewModel is AuthLoadingViewModel &&
             newViewModel is AuthInitializedViewModel &&
@@ -70,9 +67,7 @@ class LoginScreen extends StatelessWidget {
                 scrollController: scrollController,
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
-                actions: const [
-                  AppbarLogo(),
-                ],
+                actions: const [AppbarLogo()],
               ),
               Expanded(
                 child: ScrollableScreenContainer(
@@ -82,9 +77,7 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const ScreenTitle(
-                        "Login",
-                      ),
+                      const ScreenTitle("Login"),
                       const SizedBox(height: 24),
                       Expanded(
                         child: TabView(
@@ -93,7 +86,8 @@ class LoginScreen extends StatelessWidget {
                             const TabViewItem(
                               text: "Mobile",
                               child: PhoneNumberLoginForm(
-                                  key: ValueKey("MobileTab")),
+                                key: ValueKey("MobileTab"),
+                              ),
                             ),
                             TabViewItem(
                               text: "Email",
@@ -176,7 +170,8 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
 
     if (!passwordIsValid && !_passwordInputController.hasError) {
       _passwordInputController.setErrorText(
-          'Please input a valid password with at least 6 characters');
+        'Please input a valid password with at least 6 characters',
+      );
     } else if (passwordIsValid && _passwordInputController.hasError) {
       _passwordInputController.setError(false);
     }
@@ -244,10 +239,10 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                                     _phoneInputController.text = phoneCode;
 
                                     setState(() {
-                                      _phoneNumberFormatter = InputFormatter
-                                          .createPhoneNumberFormatter(
-                                        phoneNumberFormat,
-                                      );
+                                      _phoneNumberFormatter =
+                                          InputFormatter.createPhoneNumberFormatter(
+                                            phoneNumberFormat,
+                                          );
                                     });
 
                                     onChangedPhoneNumber();
@@ -261,9 +256,12 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                               child: Row(
                                 children: [
                                   _selectCountryController
-                                          .selectedOptions.isNotEmpty
+                                          .selectedOptions
+                                          .isNotEmpty
                                       ? _selectCountryController
-                                          .selectedOptions.first.prefix!
+                                            .selectedOptions
+                                            .first
+                                            .prefix!
                                       : const SizedBox(),
                                   const SizedBox(width: 4),
                                   Icon(
@@ -274,9 +272,9 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                                   VerticalDivider(
                                     color: _phoneInputFocusNode.hasFocus
                                         ? ClientConfig.getCustomColors()
-                                            .neutral900
+                                              .neutral900
                                         : ClientConfig.getCustomColors()
-                                            .neutral400,
+                                              .neutral400,
                                     thickness: 1,
                                     width: 20,
                                   ),
@@ -287,9 +285,7 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                         );
                       },
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                     IvoryTextField(
                       key: const Key("PasswordTextFieldForMobileTab"),
                       label: "Password",
@@ -298,9 +294,7 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                       onChanged: (inputValue) {},
                       keyboardType: TextInputType.visiblePassword,
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                     Row(
                       children: [
                         CheckboxWidget(
@@ -322,17 +316,14 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                     Text(
                       "Forgot your password?",
                       key: const Key("ForgotPasswordButton"),
-                      style: ClientConfig.getTextStyleScheme()
-                          .labelMedium
+                      style: ClientConfig.getTextStyleScheme().labelMedium
                           .copyWith(
                             color: viewModel is AuthLoadingViewModel
                                 ? ClientConfig.getCustomColors().neutral500
                                 : ClientConfig.getColorScheme().secondary,
                           ),
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                     SizedBox(
                       child: ListenableBuilder(
                         key: const Key("ContinueButton"),
@@ -375,17 +366,15 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
     _selectCountryController.setOptions(options);
     _selectCountryController.toggleOptionSelection(preselectedOption, 0);
     _phoneInputController.text = phoneCode;
-    _phoneNumberFormatter =
-        InputFormatter.createPhoneNumberFormatter(phoneNumberFormat);
+    _phoneNumberFormatter = InputFormatter.createPhoneNumberFormatter(
+      phoneNumberFormat,
+    );
   }
 }
 
 class EmailLoginForm extends StatefulWidget {
   final AuthViewModel viewModel;
-  const EmailLoginForm({
-    super.key,
-    required this.viewModel,
-  });
+  const EmailLoginForm({super.key, required this.viewModel});
 
   @override
   State<EmailLoginForm> createState() => _EmailLoginFormState();
@@ -494,9 +483,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                               AuthErrorContainer(
                                 errorType: viewModel.errorType!,
                               ),
-                              const SizedBox(
-                                height: 24,
-                              ),
+                              const SizedBox(height: 24),
                             ],
                           );
                         } else {
@@ -512,9 +499,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                       focusNode: _emailFocusNode,
                       inputType: TextFieldInputType.email,
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                     const SizedBox(height: 8),
                     IvoryTextField(
                       key: const Key("PasswordTextFieldForEmailTab"),
@@ -523,9 +508,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                       controller: _passwordInputController,
                       focusNode: _passwordFocusNode,
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                     Row(
                       children: [
                         CheckboxWidget(
@@ -534,8 +517,9 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                           onChanged: viewModel is AuthLoadingViewModel
                               ? null
                               : (bool value) {
-                                  _passwordInputController
-                                      .setObscureText(!value);
+                                  _passwordInputController.setObscureText(
+                                    !value,
+                                  );
                                 },
                         ),
                         const SizedBox(width: 8),
@@ -544,26 +528,21 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 32,
-                ),
+                const SizedBox(height: 32),
                 const Spacer(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Forgot your password?",
-                      style: ClientConfig.getTextStyleScheme()
-                          .labelMedium
+                      style: ClientConfig.getTextStyleScheme().labelMedium
                           .copyWith(
                             color: viewModel is AuthLoadingViewModel
                                 ? ClientConfig.getCustomColors().neutral500
                                 : ClientConfig.getColorScheme().secondary,
                           ),
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                     SizedBox(
                       width: double.infinity,
                       height: 48,
@@ -584,14 +563,18 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                                     _emailFocusNode.unfocus();
                                     _passwordFocusNode.unfocus();
                                     if (isEmailValid(
-                                            _emailInputController.text) &&
+                                          _emailInputController.text,
+                                        ) &&
                                         isPasswordValid(
-                                            _passwordInputController.text)) {
+                                          _passwordInputController.text,
+                                        )) {
                                       _emailInputController.setEnabled(false);
-                                      _passwordInputController
-                                          .setEnabled(false);
-                                      StoreProvider.of<AppState>(context)
-                                          .dispatch(
+                                      _passwordInputController.setEnabled(
+                                        false,
+                                      );
+                                      StoreProvider.of<AppState>(
+                                        context,
+                                      ).dispatch(
                                         InitUserAuthenticationCommandAction(
                                           email: _emailInputController.text
                                               .toLowerCase(),
@@ -601,14 +584,18 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                                       );
                                     } else {
                                       if (!isEmailValid(
-                                          _emailInputController.text)) {
+                                        _emailInputController.text,
+                                      )) {
                                         _emailInputController.setErrorText(
-                                            'Please input a valid email address: example@gmail.com');
+                                          'Please input a valid email address: example@gmail.com',
+                                        );
                                       }
                                       if (!isPasswordValid(
-                                          _passwordInputController.text)) {
+                                        _passwordInputController.text,
+                                      )) {
                                         _passwordInputController.setErrorText(
-                                            'Please input a valid password with at least 6 characters');
+                                          'Please input a valid password with at least 6 characters',
+                                        );
                                       }
                                     }
                                   }
@@ -631,10 +618,8 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
 class AuthErrorContainer extends StatelessWidget {
   final AuthErrorType errorType;
 
-  const AuthErrorContainer({
-    Key? key,
-    required this.errorType,
-  }) : super(key: key);
+  const AuthErrorContainer({Key? key, required this.errorType})
+    : super(key: key);
 
   String getErrorTitle() {
     switch (errorType) {
@@ -691,9 +676,7 @@ class AuthErrorContainer extends StatelessWidget {
             getErrorTitle(),
             style: ClientConfig.getTextStyleScheme().bodySmallBold,
           ),
-          const SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           Text(
             getErrorDescription(),
             style: ClientConfig.getTextStyleScheme().bodySmallRegular,

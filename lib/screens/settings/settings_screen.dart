@@ -38,9 +38,7 @@ class SettingsScreen extends StatelessWidget {
                     padding: ClientConfig.getCustomClientUiSettings()
                         .defaultScreenHorizontalPadding,
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
                   const IvoryListTile(
                     leftIcon: Icons.person_outline,
                     title: 'Account',
@@ -58,8 +56,9 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Security',
                     subtitle: 'Password & device pairing',
                     rightIcon: Icons.arrow_forward_ios,
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(SettingsSecurityScreen.routeName),
+                    onTap: () => Navigator.of(
+                      context,
+                    ).pushNamed(SettingsSecurityScreen.routeName),
                   ),
                   const IvoryListTile(
                     leftIcon: Icons.help_outline,

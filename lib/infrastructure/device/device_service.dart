@@ -13,8 +13,9 @@ import 'package:solarisdemo/utilities/crypto/crypto_key_generator.dart';
 import 'package:solarisdemo/utilities/crypto/crypto_message_signer.dart';
 import 'package:solarisdemo/utilities/crypto/crypto_utils.dart';
 
-MethodChannel _platform =
-    const MethodChannel('com.thinslices.solarisdemo/native');
+MethodChannel _platform = const MethodChannel(
+  'com.thinslices.solarisdemo/native',
+);
 
 const deviceIdKey = 'device_id';
 const consentIdsKey = 'consents';
@@ -29,8 +30,9 @@ class DeviceService {
       String? consentsJson = prefs.getString('consents');
 
       if (consentsJson == null) return null;
-      Map<String, String> consents =
-          Map<String, String>.from(json.decode(consentsJson));
+      Map<String, String> consents = Map<String, String>.from(
+        json.decode(consentsJson),
+      );
 
       return consents[personId];
     } catch (e) {
@@ -41,7 +43,8 @@ class DeviceService {
   Future<void> saveConsentIdInCache(String consentId, String personId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, String> consents = Map<String, String>.from(
-        json.decode(prefs.getString(consentIdsKey) ?? '{}'));
+      json.decode(prefs.getString(consentIdsKey) ?? '{}'),
+    );
 
     consents[personId] = consentId;
     await prefs.setString(consentIdsKey, json.encode(consents));
@@ -59,7 +62,9 @@ class DeviceService {
   Future<void> saveDevicePairingTriedAt() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt(
-        'device_pairing_tried_at', DateTime.now().millisecondsSinceEpoch);
+      'device_pairing_tried_at',
+      DateTime.now().millisecondsSinceEpoch,
+    );
   }
 
   Future<int?> getDevicePairingTriedAt() async {
@@ -67,20 +72,21 @@ class DeviceService {
     return prefs.getInt('device_pairing_tried_at');
   }
 
-  Future<String?> encryptPin(
-      {required String pinToEncrypt,
-      required Map<String, dynamic> pinKey}) async {
+  Future<String?> encryptPin({
+    required String pinToEncrypt,
+    required Map<String, dynamic> pinKey,
+  }) async {
     try {
       if (defaultTargetPlatform == TargetPlatform.android) {
-        return _platform.invokeMethod(
-          encryptPinMethod,
-          {'pinKey': pinKey, 'pinToEncrypt': pinToEncrypt},
-        );
+        return _platform.invokeMethod(encryptPinMethod, {
+          'pinKey': pinKey,
+          'pinToEncrypt': pinToEncrypt,
+        });
       } else {
-        return _platform.invokeMethod(
-          encryptPinMethod,
-          {'pinKey': jsonEncode(pinKey), 'pinToEncrypt': pinToEncrypt},
-        );
+        return _platform.invokeMethod(encryptPinMethod, {
+          'pinKey': jsonEncode(pinKey),
+          'pinToEncrypt': pinToEncrypt,
+        });
       }
     } catch (e) {
       return null;
@@ -115,8 +121,9 @@ class DeviceService {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      String? keyPairData = prefs
-          .getString(restricted ? 'restrictedKeyPair' : 'unrestrictedKeyPair');
+      String? keyPairData = prefs.getString(
+        restricted ? 'restrictedKeyPair' : 'unrestrictedKeyPair',
+      );
       if (keyPairData != null) {
         Map<String, dynamic> keyPairObject = json.decode(keyPairData);
 
@@ -158,11 +165,15 @@ class DeviceService {
     }
   }
 
-  String? generateSignature(
-      {required String privateKey, required String stringToSign}) {
+  String? generateSignature({
+    required String privateKey,
+    required String stringToSign,
+  }) {
     try {
       return CryptoMessageSigner.signMessage(
-          message: stringToSign, encodedPrivateKey: privateKey);
+        message: stringToSign,
+        encodedPrivateKey: privateKey,
+      );
     } catch (e) {
       return null;
     }
@@ -232,8 +243,5 @@ class DeviceKeyPairs {
   final String publicKey;
   final String privateKey;
 
-  DeviceKeyPairs({
-    required this.publicKey,
-    required this.privateKey,
-  });
+  DeviceKeyPairs({required this.publicKey, required this.privateKey});
 }

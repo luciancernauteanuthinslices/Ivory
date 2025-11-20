@@ -37,8 +37,10 @@ class TransactionListItem extends StatelessWidget {
     return InkWell(
       onTap: isClickable
           ? () => Navigator.pushNamed(
-              context, TransactionDetailScreen.routeName,
-              arguments: transaction)
+              context,
+              TransactionDetailScreen.routeName,
+              arguments: transaction,
+            )
           : null,
       child: Padding(
         padding: ClientConfig.getCustomClientUiSettings()
@@ -76,7 +78,10 @@ class TransactionListItem extends StatelessWidget {
       child: Row(
         children: [
           Skeleton(
-              height: 24, width: 24, borderRadius: BorderRadius.circular(100)),
+            height: 24,
+            width: 24,
+            borderRadius: BorderRadius.circular(100),
+          ),
           const SizedBox(width: 16),
           const Expanded(
             child: Column(
@@ -120,8 +125,10 @@ class UpcomingTransactionListItem extends StatelessWidget {
     return InkWell(
       onTap: isClickable!
           ? () => Navigator.pushNamed(
-              context, TransactionDetailScreen.routeName,
-              arguments: upcomingTransaction)
+              context,
+              TransactionDetailScreen.routeName,
+              arguments: upcomingTransaction,
+            )
           : null,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -138,31 +145,31 @@ class UpcomingTransactionListItem extends StatelessWidget {
                     width: 20,
                     height: 20,
                     colorFilter: ColorFilter.mode(
-                        ClientConfig.getColorScheme().secondary,
-                        BlendMode.srcIn),
+                      ClientConfig.getColorScheme().secondary,
+                      BlendMode.srcIn,
+                    ),
                   ),
-                  const SizedBox(
-                    width: 16,
-                  ),
+                  const SizedBox(width: 16),
                   Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Automatic repayment',
-                          style: ClientConfig.getTextStyleScheme().heading4,
-                        ),
-                        Text(
-                          formattedDate,
-                          style: ClientConfig.getTextStyleScheme()
-                              .bodySmallRegular,
-                        )
-                      ]),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Automatic repayment',
+                        style: ClientConfig.getTextStyleScheme().heading4,
+                      ),
+                      Text(
+                        formattedDate,
+                        style:
+                            ClientConfig.getTextStyleScheme().bodySmallRegular,
+                      ),
+                    ],
+                  ),
                 ],
               ),
               Text(
                 Format.amountWithSign(upcomingTransaction.outstandingAmount!),
                 style: ClientConfig.getTextStyleScheme().heading4,
-              )
+              ),
             ],
           ),
         ),
@@ -211,21 +218,22 @@ class TransactionCard extends StatelessWidget {
                 size: 20,
                 color: ClientConfig.getColorScheme().secondary,
               ),
-              const SizedBox(
-                width: 16,
+              const SizedBox(width: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    recipientName.isNotEmpty
+                        ? recipientName
+                        : defaultTransactionRecipientName,
+                    style: ClientConfig.getTextStyleScheme().heading4,
+                  ),
+                  Text(
+                    formattedDate,
+                    style: ClientConfig.getTextStyleScheme().bodySmallRegular,
+                  ),
+                ],
               ),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(
-                  recipientName.isNotEmpty
-                      ? recipientName
-                      : defaultTransactionRecipientName,
-                  style: ClientConfig.getTextStyleScheme().heading4,
-                ),
-                Text(
-                  formattedDate,
-                  style: ClientConfig.getTextStyleScheme().bodySmallRegular,
-                )
-              ]),
             ],
           ),
           TextCurrencyValue(

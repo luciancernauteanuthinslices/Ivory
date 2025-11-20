@@ -1,9 +1,7 @@
 class AuthorizeTransactionCommandAction {
   final String changeRequestId;
 
-  AuthorizeTransactionCommandAction({
-    required this.changeRequestId,
-  });
+  AuthorizeTransactionCommandAction({required this.changeRequestId});
 }
 
 class AuthorizedTransactionEventAction {

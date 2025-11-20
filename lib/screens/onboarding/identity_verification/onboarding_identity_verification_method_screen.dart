@@ -65,7 +65,7 @@ class _OnboardingIdentityVerificationMethodScreenState
                               "One of our agents will verify your identity in a very short video call. Available from Monday to Sunday, 8:00 - 24:00 CEST.",
                           timeEstimation: "5-15 MIN",
                           value: "videoIdentification",
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -81,16 +81,19 @@ class _OnboardingIdentityVerificationMethodScreenState
 
                               if (identificationMethod ==
                                   "bankIdentification") {
-                                Navigator.pushNamed(context,
-                                    OnboardingContractsConfirmScreen.routeName);
+                                Navigator.pushNamed(
+                                  context,
+                                  OnboardingContractsConfirmScreen.routeName,
+                                );
                               }
 
                               if (identificationMethod ==
                                   "videoIdentification") {
                                 Navigator.pushNamed(
-                                    context,
-                                    OnboardingVideoIdentificationNotAvailableScreen
-                                        .routeName);
+                                  context,
+                                  OnboardingVideoIdentificationNotAvailableScreen
+                                      .routeName,
+                                );
                               }
                             }
                           : null,

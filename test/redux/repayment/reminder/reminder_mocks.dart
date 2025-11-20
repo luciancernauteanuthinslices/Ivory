@@ -7,13 +7,15 @@ class FakeRepaymentReminderService extends RepaymentReminderService {
   Future<RepaymentReminderServiceResponse> getRepaymentReminders({
     User? user,
   }) async {
-    return GetRepaymentReminderSuccessResponse(repaymentReminders: [
-      RepaymentReminder(
-        id: "1",
-        datetime: DateTime.now(),
-        description: "Test",
-      ),
-    ]);
+    return GetRepaymentReminderSuccessResponse(
+      repaymentReminders: [
+        RepaymentReminder(
+          id: "1",
+          datetime: DateTime.now(),
+          description: "Test",
+        ),
+      ],
+    );
   }
 
   @override
@@ -27,7 +29,7 @@ class FakeRepaymentReminderService extends RepaymentReminderService {
           id: "1",
           datetime: DateTime.now(),
           description: "Test",
-        )
+        ),
       ],
     );
   }

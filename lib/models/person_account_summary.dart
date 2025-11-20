@@ -37,8 +37,9 @@ class PersonAccountSummary {
         spending: json["spending"]?.toDouble() ?? zeroValue,
         iban: json["iban"] ?? emptyStringValue,
         bic: json["bic"] ?? emptyStringValue,
-        balance:
-            json["balance"] == null ? null : Balance.fromJson(json["balance"]),
+        balance: json["balance"] == null
+            ? null
+            : Balance.fromJson(json["balance"]),
         availableBalance: json["available_balance"] == null
             ? null
             : Balance.fromJson(json["available_balance"]),
@@ -47,24 +48,20 @@ class PersonAccountSummary {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "income": income,
-        "spending": spending,
-        "iban": iban,
-        "bic": bic,
-        "balance": balance?.toJson(),
-        "available_balance": availableBalance?.toJson(),
-        "credit_limit": creditLimit,
-        "outstanding_amount": outstandingAmount,
-      };
+    "id": id,
+    "income": income,
+    "spending": spending,
+    "iban": iban,
+    "bic": bic,
+    "balance": balance?.toJson(),
+    "available_balance": availableBalance?.toJson(),
+    "credit_limit": creditLimit,
+    "outstanding_amount": outstandingAmount,
+  };
 }
 
 class Balance {
-  Balance({
-    this.currency,
-    this.value,
-    this.unit,
-  });
+  Balance({this.currency, this.value, this.unit});
 
   String? currency;
   String? unit;
@@ -75,14 +72,14 @@ class Balance {
   String toRawJson() => json.encode(toJson());
 
   factory Balance.fromJson(Map<String, dynamic> json) => Balance(
-        currency: json["currency"] ?? defaultCurrency,
-        value: json["value"]?.toDouble() ?? zeroValue,
-        unit: json["unit"] ?? zeroValue,
-      );
+    currency: json["currency"] ?? defaultCurrency,
+    value: json["value"]?.toDouble() ?? zeroValue,
+    unit: json["unit"] ?? zeroValue,
+  );
 
   Map<String, dynamic> toJson() => {
-        "currency": currency,
-        "value": value,
-        "unit": unit,
-      };
+    "currency": currency,
+    "value": value,
+    "unit": unit,
+  };
 }

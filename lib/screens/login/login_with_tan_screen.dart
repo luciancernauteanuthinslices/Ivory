@@ -16,9 +16,7 @@ import 'package:solarisdemo/integration_test_keys.dart';
 class LoginWithTanScreen extends StatefulWidget {
   static const routeName = "/loginTanScreen";
 
-  const LoginWithTanScreen({
-    super.key,
-  });
+  const LoginWithTanScreen({super.key});
 
   @override
   State<LoginWithTanScreen> createState() => _LoginWithTanScreenState();
@@ -48,7 +46,8 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
     final isComplete = _tanInputController.text.length == 6;
     if (_isInputComplete != isComplete) {
       debugPrint(
-          'OTP Input Complete: $isComplete (length: ${_tanInputController.text.length})');
+        'OTP Input Complete: $isComplete (length: ${_tanInputController.text.length})',
+      );
       setState(() {
         _isInputComplete = isComplete;
         if (isComplete) {
@@ -81,18 +80,16 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
       builder: (context, viewModel) {
         return ScreenScaffold(
           popAction: () {
-            StoreProvider.of<AppState>(context).dispatch(
-              LogoutUserCommandAction(),
-            );
+            StoreProvider.of<AppState>(
+              context,
+            ).dispatch(LogoutUserCommandAction());
           },
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppToolbar(
                 backButtonEnabled: viewModel is! AuthLoadingViewModel,
-                actions: const [
-                  AppbarLogo(),
-                ],
+                actions: const [AppbarLogo()],
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
               ),
@@ -107,9 +104,7 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                         "Verify login",
                         style: ClientConfig.getTextStyleScheme().heading1,
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       RichText(
                         text: TextSpan(
                           style: ClientConfig.getTextStyleScheme()
@@ -117,20 +112,20 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                           children: [
                             const TextSpan(text: 'Please enter below the '),
                             TextSpan(
-                                text: '6-digit code ',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '6-digit code ',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(text: 'we sent to '),
                             TextSpan(
-                                text: '+49 (30) 4587 8734.',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '+49 (30) 4587 8734.',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       TanInput(
                         controller: _tanInputController,
                         focusNode: _focusNode,
@@ -155,18 +150,20 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                                   StoreProvider.of<AppState>(context).dispatch(
                                     AuthenticateUserCommandAction(
                                       authType: AuthType.withTan,
-                                      cognitoUser: (StoreProvider.of<AppState>(
-                                                      context)
-                                                  .state
-                                                  .authState
-                                              as AuthenticationInitializedState)
-                                          .cognitoUser,
+                                      cognitoUser:
+                                          (StoreProvider.of<AppState>(
+                                                    context,
+                                                  ).state.authState
+                                                  as AuthenticationInitializedState)
+                                              .cognitoUser,
                                       tan: _tanInputController.text,
                                       onSuccess: () {
-                                        Navigator.of(context)
-                                            .pushNamedAndRemoveUntil(
-                                                HomeScreen.routeName,
-                                                (route) => false);
+                                        Navigator.of(
+                                          context,
+                                        ).pushNamedAndRemoveUntil(
+                                          HomeScreen.routeName,
+                                          (route) => false,
+                                        );
                                       },
                                     ),
                                   );

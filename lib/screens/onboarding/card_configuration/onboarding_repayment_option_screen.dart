@@ -33,13 +33,17 @@ class _OnboardingRepaymentOptionScreenState
             previousViewModel.isLoading == true &&
             newViewModel is OnboardingCreditCardApplicationUpdatedViewModel) {
           Navigator.pushNamedAndRemoveUntil(
-              context, OnboardingCongratulationsScreen.routeName, (_) => false);
+            context,
+            OnboardingCongratulationsScreen.routeName,
+            (_) => false,
+          );
         }
       },
       converter: (store) =>
           OnboardingCardConfigurationPresenter.presentCardConfiguration(
-        cardConfigurationState: store.state.onboardingCardConfigurationState,
-      ),
+            cardConfigurationState:
+                store.state.onboardingCardConfigurationState,
+          ),
       builder: (context, viewModel) {
         return ScreenScaffold(
           body: Column(
@@ -52,13 +56,8 @@ class _OnboardingRepaymentOptionScreenState
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
               ),
-              AnimatedLinearProgressIndicator.step(
-                current: 3,
-                totalSteps: 3,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+              AnimatedLinearProgressIndicator.step(current: 3, totalSteps: 3),
+              const SizedBox(height: 16),
               Expanded(
                 child: ScrollableScreenContainer(
                   padding: ClientConfig.getCustomClientUiSettings()
@@ -78,43 +77,42 @@ class _OnboardingRepaymentOptionScreenState
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           border: Border.all(
-                              color: ClientConfig.getCustomColors().neutral200),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8)),
+                            color: ClientConfig.getCustomColors().neutral200,
+                          ),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(8),
+                          ),
                           color: ClientConfig.getCustomColors().neutral100,
                         ),
                         child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(Icons.info_outline),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    '5% interest rate',
-                                    style: ClientConfig.getTextStyleScheme()
-                                        .heading4,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Our fixed interest rate of 5% remains the same, no matter the repayment type or rate you select. It will accrue based on your outstanding balance after the repayment has been deducted.',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodySmallRegular,
-                              ),
-                            ]),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(Icons.info_outline),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '5% interest rate',
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .heading4,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Our fixed interest rate of 5% remains the same, no matter the repayment type or rate you select. It will accrue based on your outstanding balance after the repayment has been deducted.',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodySmallRegular,
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       if (viewModel
                           is OnboardingCreditCardApplicationFetchedViewModel)
                         OnboardingRepaymentOptionPageContent(
@@ -169,23 +167,42 @@ class _OnboardingRepaymentOptionPageContentState
   void initState() {
     super.initState();
 
-    minFixedRate = (widget.viewModel.cardApplication.repaymentOptions!
-                .minimumAmountUpperThreshold.value /
+    minFixedRate =
+        (widget
+                .viewModel
+                .cardApplication
+                .repaymentOptions!
+                .minimumAmountUpperThreshold
+                .value /
             100) *
         0.05;
-    maxFixedRate = (widget.viewModel.cardApplication.repaymentOptions!
-                .minimumAmountUpperThreshold.value /
+    maxFixedRate =
+        (widget
+                .viewModel
+                .cardApplication
+                .repaymentOptions!
+                .minimumAmountUpperThreshold
+                .value /
             100) *
         0.9;
-    inputFixedRateController.text = (widget.viewModel.cardApplication
-                    .repaymentOptions!.minimumAmount.value /
+    inputFixedRateController.text =
+        (widget
+                    .viewModel
+                    .cardApplication
+                    .repaymentOptions!
+                    .minimumAmount
+                    .value /
                 100) <
             minFixedRate
         ? minFixedRate.toStringAsFixed(2)
-        : (widget.viewModel.cardApplication.repaymentOptions!.minimumAmount
-                    .value /
-                100)
-            .toStringAsFixed(2);
+        : (widget
+                      .viewModel
+                      .cardApplication
+                      .repaymentOptions!
+                      .minimumAmount
+                      .value /
+                  100)
+              .toStringAsFixed(2);
     initialPercentageRate =
         widget.viewModel.cardApplication.repaymentOptions!.minimumPercentage;
 

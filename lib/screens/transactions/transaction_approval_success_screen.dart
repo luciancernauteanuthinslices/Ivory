@@ -22,8 +22,10 @@ class TransactionApprovalSuccessScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const AppToolbar(),
-            Text("Payment Authorized!\nOne more step left...",
-                style: ClientConfig.getTextStyleScheme().heading1),
+            Text(
+              "Payment Authorized!\nOne more step left...",
+              style: ClientConfig.getTextStyleScheme().heading1,
+            ),
             const SizedBox(height: 16),
             RichText(
               text: TextSpan(
@@ -36,7 +38,8 @@ class TransactionApprovalSuccessScreen extends StatelessWidget {
                         ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
-                      text: " you ordered from and complete the checkout.")
+                    text: " you ordered from and complete the checkout.",
+                  ),
                 ],
               ),
             ),
@@ -58,7 +61,10 @@ class TransactionApprovalSuccessScreen extends StatelessWidget {
                 text: "OK, I understand",
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
-                      context, HomeScreen.routeName, (route) => false);
+                    context,
+                    HomeScreen.routeName,
+                    (route) => false,
+                  );
                 },
               ),
             ),

@@ -41,9 +41,10 @@ class _OnboardingBankVerificationScreenState
 
             if (url != null && url.endsWith("?success")) {
               Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  OnboardingReviewUpdatedContractsScreen.routeName,
-                  (route) => false);
+                context,
+                OnboardingReviewUpdatedContractsScreen.routeName,
+                (route) => false,
+              );
             }
           },
         ),
@@ -68,11 +69,11 @@ class _OnboardingBankVerificationScreenState
         },
         builder: (context, viewModel) =>
             pageLoaded && viewModel.urlForIntegration != null
-                ? GestureDetector(
-                    onVerticalDragUpdate: (dragUpdateDetails) {},
-                    child: WebViewWidget(controller: controller),
-                  )
-                : const Center(child: CircularLoadingIndicator(width: 128)),
+            ? GestureDetector(
+                onVerticalDragUpdate: (dragUpdateDetails) {},
+                child: WebViewWidget(controller: controller),
+              )
+            : const Center(child: CircularLoadingIndicator(width: 128)),
       ),
     );
   }

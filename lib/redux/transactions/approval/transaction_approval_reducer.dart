@@ -2,7 +2,9 @@ import 'package:solarisdemo/redux/transactions/approval/transaction_approval_act
 import 'package:solarisdemo/redux/transactions/approval/transaction_approval_state.dart';
 
 TransactionApprovalState transactionApprovalReducer(
-    TransactionApprovalState state, dynamic action) {
+  TransactionApprovalState state,
+  dynamic action,
+) {
   if (action is AuthorizeTransactionCommandAction ||
       action is ConfirmTransactionCommandAction ||
       action is RejectTransactionCommandAction) {

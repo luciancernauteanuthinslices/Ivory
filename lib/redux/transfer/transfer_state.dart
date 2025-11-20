@@ -15,17 +15,13 @@ class TransferLoadingState extends TransferState {}
 class TransferNeedConfirmationState extends TransferState {
   final TransferAuthorizationRequest transferAuthorizationRequest;
 
-  TransferNeedConfirmationState({
-    required this.transferAuthorizationRequest,
-  });
+  TransferNeedConfirmationState({required this.transferAuthorizationRequest});
 }
 
 class TransferConfirmedState extends TransferState {
   final double amount;
 
-  TransferConfirmedState({
-    required this.amount,
-  });
+  TransferConfirmedState({required this.amount});
 }
 
 class TransferFailedState extends TransferState {

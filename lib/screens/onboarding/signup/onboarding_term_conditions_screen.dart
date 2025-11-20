@@ -27,7 +27,8 @@ class _OnboardingTermConditionsScreenState
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingSignupViewModel>(
       converter: (store) => OnboardingSignupPresenter.present(
-          signupState: store.state.onboardingSignupState),
+        signupState: store.state.onboardingSignupState,
+      ),
       builder: (context, viewModel) => ScreenScaffold(
         body: Column(
           children: [

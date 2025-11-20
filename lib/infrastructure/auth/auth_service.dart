@@ -22,11 +22,12 @@ class AuthService {
         username: username,
         password: passcode,
       );
-      CognitoUserSession? session =
-          await cognitoUser.authenticateUser(authDetails);
+      CognitoUserSession? session = await cognitoUser.authenticateUser(
+        authDetails,
+      );
 
-      List<CognitoUserAttribute>? attributes =
-          await cognitoUser.getUserAttributes();
+      List<CognitoUserAttribute>? attributes = await cognitoUser
+          .getUserAttributes();
 
       // Schemathesis token export
       // debug only
@@ -47,7 +48,8 @@ class AuthService {
     } catch (e) {
       //additional error handling needed here
       return AuthServiceErrorResponse(
-          errorType: AuthErrorType.invalidCredentials);
+        errorType: AuthErrorType.invalidCredentials,
+      );
     }
   }
 }

@@ -28,9 +28,10 @@ class TransactionDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final argument = ModalRoute.of(context)!.settings.arguments;
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
     final scrollController = ScrollController();
 
     AmountValue amountValue;
@@ -56,7 +57,9 @@ class TransactionDetailScreen extends StatelessWidget {
       status = 'Completed';
       category = argument.bookingType == 'AUTOMATIC_REPAYMENT'
           ? const Category(
-              id: 'automaticRepayment', name: 'Automatic repayment')
+              id: 'automaticRepayment',
+              name: 'Automatic repayment',
+            )
           : argument.category!;
       accountOwner = user.person.firstName;
       iban = argument.recipientIban;
@@ -89,7 +92,7 @@ class TransactionDetailScreen extends StatelessWidget {
             subtitle: "If you did't make this transaction",
             leftIcon: Icons.report_gmailerrorred_rounded,
             actionItem: IvorySwitch(),
-          )
+          ),
       ];
     } else if (argument is UpcomingTransaction) {
       amountValue = argument.outstandingAmount!;
@@ -107,9 +110,9 @@ class TransactionDetailScreen extends StatelessWidget {
             ),
             TextSpan(
               text: 'Go to “Repayments” ',
-              style: ClientConfig.getTextStyleScheme()
-                  .bodySmallBold
-                  .copyWith(color: ClientConfig.getColorScheme().secondary),
+              style: ClientConfig.getTextStyleScheme().bodySmallBold.copyWith(
+                color: ClientConfig.getColorScheme().secondary,
+              ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () =>
                     Navigator.of(context).pushNamed(RepaymentsScreen.routeName),
@@ -117,20 +120,21 @@ class TransactionDetailScreen extends StatelessWidget {
             TextSpan(
               text:
                   'to view the repayment to be debited from your reference account.',
-              style: ClientConfig.getTextStyleScheme()
-                  .bodySmallRegular
+              style: ClientConfig.getTextStyleScheme().bodySmallRegular
                   .copyWith(color: ClientConfig.getCustomColors().neutral900),
             ),
           ],
-          style: ClientConfig.getTextStyleScheme()
-              .bodySmallRegular
-              .copyWith(color: ClientConfig.getColorScheme().secondary),
+          style: ClientConfig.getTextStyleScheme().bodySmallRegular.copyWith(
+            color: ClientConfig.getColorScheme().secondary,
+          ),
         ),
       );
 
       status = 'Upcoming';
-      category =
-          const Category(id: 'automaticRepayment', name: 'Automatic repayment');
+      category = const Category(
+        id: 'automaticRepayment',
+        name: 'Automatic repayment',
+      );
       accountOwner = user.person.firstName;
       iban = user.personAccount.iban;
 
@@ -222,9 +226,7 @@ class _Content extends StatelessWidget {
               Material(
                 color: ClientConfig.getCustomColors().neutral100,
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(16),
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: Column(
                   children: [
@@ -246,11 +248,14 @@ class _Content extends StatelessWidget {
                               if (amountExplainerWidget != null)
                                 Padding(
                                   padding: const EdgeInsets.only(left: 2),
-                                  child: Text('*',
-                                      style: TextStyle(
-                                          color: ClientConfig.getColorScheme()
-                                              .secondary,
-                                          fontSize: 34)),
+                                  child: Text(
+                                    '*',
+                                    style: TextStyle(
+                                      color: ClientConfig.getColorScheme()
+                                          .secondary,
+                                      fontSize: 34,
+                                    ),
+                                  ),
                                 ),
                               const Spacer(),
                               Container(
@@ -262,13 +267,16 @@ class _Content extends StatelessWidget {
                                 child: (mainIcon != null)
                                     ? Icon(mainIcon, size: 26)
                                     : SvgPicture.asset(
-                                        "assets/images/currency_exchange_euro.svg"),
+                                        "assets/images/currency_exchange_euro.svg",
+                                      ),
                               ),
                             ],
                           ),
-                          Text(subtitle,
-                              style: ClientConfig.getTextStyleScheme()
-                                  .bodySmallBold),
+                          Text(
+                            subtitle,
+                            style:
+                                ClientConfig.getTextStyleScheme().bodySmallBold,
+                          ),
                           Text(
                             Format.date(dateTime, pattern: 'MMM dd, HH:mm'),
                             style: ClientConfig.getTextStyleScheme()
@@ -282,8 +290,8 @@ class _Content extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16),
                         child: amountExplainerWidget!,
-                      )
-                    ]
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -292,8 +300,10 @@ class _Content extends StatelessWidget {
                 space: 8,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Details',
-                      style: ClientConfig.getTextStyleScheme().heading4),
+                  Text(
+                    'Details',
+                    style: ClientConfig.getTextStyleScheme().heading4,
+                  ),
                   ExpandedDetailsRow(title: 'Status', trailing: status),
                   ExpandedDetailsRow(
                     title: 'Category',
@@ -308,9 +318,11 @@ class _Content extends StatelessWidget {
                                 height: 16,
                               ),
                         const SizedBox(width: 8),
-                        Text(category.name,
-                            style: ClientConfig.getTextStyleScheme()
-                                .bodyLargeRegularBold),
+                        Text(
+                          category.name,
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
+                        ),
                       ],
                     ),
                   ),
@@ -332,9 +344,10 @@ class _Content extends StatelessWidget {
                       ],
                     ),
                   if (note != null) ...[
-                    Text('Note',
-                        style:
-                            ClientConfig.getTextStyleScheme().bodyLargeRegular),
+                    Text(
+                      'Note',
+                      style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                    ),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
@@ -355,12 +368,14 @@ class _Content extends StatelessWidget {
           Padding(
             padding: ClientConfig.getCustomClientUiSettings()
                 .defaultScreenHorizontalPadding,
-            child: Text('Actions',
-                style: ClientConfig.getTextStyleScheme().heading4),
+            child: Text(
+              'Actions',
+              style: ClientConfig.getTextStyleScheme().heading4,
+            ),
           ),
           const SizedBox(height: 8),
           ...actions!,
-        ]
+        ],
       ],
     );
   }

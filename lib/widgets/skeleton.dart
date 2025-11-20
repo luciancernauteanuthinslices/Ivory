@@ -8,10 +8,7 @@ class SkeletonTheme {
   final Color baseColor;
   final Color highlightColor;
 
-  const SkeletonTheme({
-    required this.baseColor,
-    required this.highlightColor,
-  });
+  const SkeletonTheme({required this.baseColor, required this.highlightColor});
 }
 
 class SkeletonContainer extends StatelessWidget {
@@ -43,13 +40,15 @@ class SkeletonContainer extends StatelessWidget {
     final map = {
       SkeletonColorTheme.light: SkeletonTheme(
         baseColor: ClientConfig.getCustomColors().neutral100.withOpacity(0.15),
-        highlightColor:
-            ClientConfig.getCustomColors().neutral100.withOpacity(0.02),
+        highlightColor: ClientConfig.getCustomColors().neutral100.withOpacity(
+          0.02,
+        ),
       ),
       SkeletonColorTheme.dark: SkeletonTheme(
         baseColor: ClientConfig.getCustomColors().neutral900.withOpacity(0.15),
-        highlightColor:
-            ClientConfig.getCustomColors().neutral900.withOpacity(0.05),
+        highlightColor: ClientConfig.getCustomColors().neutral900.withOpacity(
+          0.05,
+        ),
       ),
     };
 

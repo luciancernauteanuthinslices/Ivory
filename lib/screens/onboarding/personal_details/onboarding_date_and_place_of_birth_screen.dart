@@ -84,8 +84,9 @@ class _OnboardingDateAndPlaceOfBirthScreenState
 
   bool _notValidNationality() {
     final supportedNationalities = ["DE", "DEMO"];
-    return !supportedNationalities
-        .contains(_selectNationalityController.selectedOptions.first.value);
+    return !supportedNationalities.contains(
+      _selectNationalityController.selectedOptions.first.value,
+    );
   }
 
   bool _isValidInputDate() {
@@ -128,8 +129,10 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 16),
-                  Text("Date & place of birth",
-                      style: ClientConfig.getTextStyleScheme().heading2),
+                  Text(
+                    "Date & place of birth",
+                    style: ClientConfig.getTextStyleScheme().heading2,
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     "Enter your date of birth and country of birth below.",
@@ -169,7 +172,9 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                       if (countryCode == "DEMO") {
                         _selectCityController.setOptions(const [
                           SelectOption(
-                              value: "Demo city", textLabel: "Demo city"),
+                            value: "Demo city",
+                            textLabel: "Demo city",
+                          ),
                         ]);
 
                         return;
@@ -177,7 +182,8 @@ class _OnboardingDateAndPlaceOfBirthScreenState
 
                       StoreProvider.of<AppState>(context).dispatch(
                         FetchCitySuggestionsCommandAction(
-                            countryCode: countryCode),
+                          countryCode: countryCode,
+                        ),
                       );
                     },
                   ),
@@ -194,12 +200,14 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                         _selectCityController.setEnabled(false);
                       } else if (newViewModel
                           is CitySuggestionsFetchedViewModel) {
-                        _selectCityController.setOptions(newViewModel.cities
-                            .map((city) => SelectOption(
-                                  textLabel: city,
-                                  value: city,
-                                ))
-                            .toList());
+                        _selectCityController.setOptions(
+                          newViewModel.cities
+                              .map(
+                                (city) =>
+                                    SelectOption(textLabel: city, value: city),
+                              )
+                              .toList(),
+                        );
                         _selectCityController.setLoading(false);
                         _selectCityController.setEnabled(true);
                       } else if (newViewModel
@@ -227,9 +235,9 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                                       style: ClientConfig.getTextStyleScheme()
                                           .bodyLargeRegularBold
                                           .copyWith(
-                                              color:
-                                                  ClientConfig.getColorScheme()
-                                                      .secondary),
+                                            color: ClientConfig.getColorScheme()
+                                                .secondary,
+                                          ),
                                     ),
                                     const TextSpan(text: "."),
                                   ],
@@ -241,19 +249,22 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                                 onPressed: () {
                                   Navigator.pop(context);
                                   if (_selectCountryController
-                                      .selectedOptions.isEmpty) {
+                                      .selectedOptions
+                                      .isEmpty) {
                                     return;
                                   }
 
                                   StoreProvider.of<AppState>(context).dispatch(
                                     FetchCitySuggestionsCommandAction(
                                       countryCode: _selectCountryController
-                                          .selectedOptions.first.value,
+                                          .selectedOptions
+                                          .first
+                                          .value,
                                       searchTerm: newViewModel.searchTerm,
                                     ),
                                   );
                                 },
-                              )
+                              ),
                             ],
                           ),
                         );
@@ -271,10 +282,10 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                       bottomSheetExpanded: true,
                       searchFieldInitialText:
                           viewModel is CitySuggestionsFetchedViewModel
-                              ? viewModel.searchTerm ?? ""
-                              : viewModel is CitySuggestionsFetchedViewModel
-                                  ? viewModel.searchTerm ?? ""
-                                  : "",
+                          ? viewModel.searchTerm ?? ""
+                          : viewModel is CitySuggestionsFetchedViewModel
+                          ? viewModel.searchTerm ?? ""
+                          : "",
                       onOptionSelected: (option) {
                         onChanged();
                       },
@@ -285,7 +296,9 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                           StoreProvider.of<AppState>(context).dispatch(
                             FetchCitySuggestionsCommandAction(
                               countryCode: _selectCountryController
-                                  .selectedOptions.first.value,
+                                  .selectedOptions
+                                  .first
+                                  .value,
                               searchTerm: value,
                             ),
                           );
@@ -321,9 +334,10 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                               ? () {
                                   if (_notValidNationality()) {
                                     Navigator.pushNamed(
-                                        context,
-                                        OnboardingNationalityNotSupportedScreen
-                                            .routeName);
+                                      context,
+                                      OnboardingNationalityNotSupportedScreen
+                                          .routeName,
+                                    );
                                     return;
                                   }
 
@@ -331,8 +345,9 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                                     _dateOfBirthController.text,
                                     pattern: textFieldDatePattern,
                                   )) {
-                                    _dateOfBirthController
-                                        .setErrorText("Invalid date of birth");
+                                    _dateOfBirthController.setErrorText(
+                                      "Invalid date of birth",
+                                    );
                                     return;
                                   }
 
@@ -342,18 +357,25 @@ class _OnboardingDateAndPlaceOfBirthScreenState
                                     SubmitOnboardingBirthInfoCommandAction(
                                       birthDate: _dateOfBirthController.text,
                                       country: _selectCountryController
-                                          .selectedOptions.first.value,
+                                          .selectedOptions
+                                          .first
+                                          .value,
                                       city: _selectCityController
-                                          .selectedOptions.first.value,
+                                          .selectedOptions
+                                          .first
+                                          .value,
                                       nationality: _selectNationalityController
-                                          .selectedOptions.first.value,
+                                          .selectedOptions
+                                          .first
+                                          .value,
                                     ),
                                   );
 
                                   Navigator.pushNamed(
-                                      context,
-                                      OnboardingAddressOfResidenceScreen
-                                          .routeName);
+                                    context,
+                                    OnboardingAddressOfResidenceScreen
+                                        .routeName,
+                                  );
                                 }
                               : null,
                         );
@@ -371,8 +393,9 @@ class _OnboardingDateAndPlaceOfBirthScreenState
   }
 
   Future<void> _loadCountries() async {
-    final List<SelectOption> options =
-        await loadCountryPickerOptions(addPhoneCode: false);
+    final List<SelectOption> options = await loadCountryPickerOptions(
+      addPhoneCode: false,
+    );
 
     _selectCountryController.setOptions(options);
     _selectNationalityController.setOptions(options);

@@ -24,8 +24,10 @@ Future<void> setSliderToPercent(
   final double sliderMin = (min ?? sliderWidget.min).toDouble();
   final double sliderMax = (max ?? sliderWidget.max).toDouble();
 
-  final int clampedTarget =
-      targetPercent.clamp(sliderMin.round(), sliderMax.round());
+  final int clampedTarget = targetPercent.clamp(
+    sliderMin.round(),
+    sliderMax.round(),
+  );
 
   int current = _readSliderPercent($, slider);
   if (current == clampedTarget) return;
@@ -35,11 +37,13 @@ Future<void> setSliderToPercent(
   final double right = rect.right - 1;
 
   // First jump directly to the theoretical position
-  final double t =
-      ((clampedTarget - sliderMin) / (sliderMax - sliderMin)).clamp(0.0, 1.0);
+  final double t = ((clampedTarget - sliderMin) / (sliderMax - sliderMin))
+      .clamp(0.0, 1.0);
   // Bias slightly to the left to avoid truncation rounding up to next int
-  final double initialX =
-      (rect.left + rect.width * t - 0.25 * stepPx).clamp(left, right);
+  final double initialX = (rect.left + rect.width * t - 0.25 * stepPx).clamp(
+    left,
+    right,
+  );
   await $.tester.tapAt(Offset(initialX, rect.center.dy));
   await $.pumpAndSettle();
 
@@ -73,10 +77,11 @@ Future<void> setSliderToPercent(
 
   // Small local scan around the target if still off by 1
   if (current != clampedTarget) {
-    final double targetX = (rect.left +
-            rect.width *
-                ((clampedTarget - sliderMin) / (sliderMax - sliderMin)))
-        .clamp(left, right);
+    final double targetX =
+        (rect.left +
+                rect.width *
+                    ((clampedTarget - sliderMin) / (sliderMax - sliderMin)))
+            .clamp(left, right);
     // try within +/- 16 pixels with fine granularity
     for (double dx = -16; dx <= 16 && current != clampedTarget; dx += 0.5) {
       final double x = (targetX + dx).clamp(left, right);
@@ -93,10 +98,12 @@ Future<void> setSliderToPercent(
     while (current != clampedTarget && n < maxNudges) {
       final bool goLeft = current > clampedTarget;
       final double nudge = (goLeft ? -0.6 : 0.6) * stepPx;
-      final double x = (rect.left +
-              rect.width * ((current - sliderMin) / (sliderMax - sliderMin)) +
-              nudge)
-          .clamp(left, right);
+      final double x =
+          (rect.left +
+                  rect.width *
+                      ((current - sliderMin) / (sliderMax - sliderMin)) +
+                  nudge)
+              .clamp(left, right);
       await $.tester.tapAt(Offset(x, rect.center.dy));
       await $.pumpAndSettle();
       current = _readSliderPercent($, slider);
@@ -110,9 +117,11 @@ Future<void> setSliderToPercent(
     int k = 0;
     while (current != clampedTarget && k < maxDrags) {
       final bool needLeft = current > clampedTarget;
-      final double currentX = (rect.left +
-              rect.width * ((current - sliderMin) / (sliderMax - sliderMin)))
-          .clamp(left, right);
+      final double currentX =
+          (rect.left +
+                  rect.width *
+                      ((current - sliderMin) / (sliderMax - sliderMin)))
+              .clamp(left, right);
       final double dragDx = (needLeft ? -1.5 : 1.5) * stepPx;
 
       await $.tester.dragFrom(

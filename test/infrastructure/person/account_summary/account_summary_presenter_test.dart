@@ -10,16 +10,8 @@ void main() {
     spending: 678.9,
     iban: "DE60110101014274796688",
     bic: "SOBKDEB2XXX",
-    balance: Balance(
-      currency: "EUR",
-      value: 1306.22,
-      unit: "value",
-    ),
-    availableBalance: Balance(
-      currency: "EUR",
-      value: 1306.22,
-      unit: "value",
-    ),
+    balance: Balance(currency: "EUR", value: 1306.22, unit: "value"),
+    availableBalance: Balance(currency: "EUR", value: 1306.22, unit: "value"),
     creditLimit: 10000,
     outstandingAmount: 200.32,
   );
@@ -29,7 +21,8 @@ void main() {
     final accountSummaryState = AccountSummaryLoadingState();
     //when
     final viewModel = AccountSummaryPresenter.presentAccountSummary(
-        accountSummaryState: accountSummaryState);
+      accountSummaryState: accountSummaryState,
+    );
     //then
     expect(viewModel, AccountSummaryLoadingViewModel());
   });
@@ -39,10 +32,13 @@ void main() {
     final accountSummaryState = WithAccountSummaryState(accountSummary);
     //when
     final viewModel = AccountSummaryPresenter.presentAccountSummary(
-        accountSummaryState: accountSummaryState);
+      accountSummaryState: accountSummaryState,
+    );
     //then
-    expect(viewModel,
-        AccountSummaryFetchedViewModel(accountSummary: accountSummary));
+    expect(
+      viewModel,
+      AccountSummaryFetchedViewModel(accountSummary: accountSummary),
+    );
   });
 
   test("When fetching fails should return error", () {
@@ -50,7 +46,8 @@ void main() {
     final accountSummaryState = AccountSummaryErrorState();
     //when
     final viewModel = AccountSummaryPresenter.presentAccountSummary(
-        accountSummaryState: accountSummaryState);
+      accountSummaryState: accountSummaryState,
+    );
     //then
     expect(viewModel, AccountSummaryErrorViewModel());
   });

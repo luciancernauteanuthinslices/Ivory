@@ -33,7 +33,10 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel.isAuthorized == true) {
           Navigator.pushNamedAndRemoveUntil(
-              context, OnboardingSignWithTanScreen.routeName, (_) => false);
+            context,
+            OnboardingSignWithTanScreen.routeName,
+            (_) => false,
+          );
         } else if (newViewModel.errorType != null) {
           Navigator.pushNamedAndRemoveUntil(
             context,
@@ -75,18 +78,16 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Review updated contract",
-                style: ClientConfig.getTextStyleScheme().heading2),
+            Text(
+              "Review updated contract",
+              style: ClientConfig.getTextStyleScheme().heading2,
+            ),
             const SizedBox(height: 24),
             Text(
               "Please bear with us a couple of seconds while we update your contract...",
               style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
             ),
-            Expanded(
-              child: Center(
-                child: _buildLoadingSkeleton(),
-              ),
-            )
+            Expanded(child: Center(child: _buildLoadingSkeleton())),
           ],
         ),
       ),
@@ -104,9 +105,10 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Skeleton(
-                    width: 24,
-                    height: 24,
-                    borderRadius: BorderRadius.circular(100)),
+                  width: 24,
+                  height: 24,
+                  borderRadius: BorderRadius.circular(100),
+                ),
                 const SizedBox(width: 16),
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +122,7 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
                 ),
               ],
             ),
-          ]
+          ],
         ],
       ),
     );
@@ -137,8 +139,10 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
           Padding(
             padding: ClientConfig.getCustomClientUiSettings()
                 .defaultScreenHorizontalPadding,
-            child: Text("Review updated contract",
-                style: ClientConfig.getTextStyleScheme().heading2),
+            child: Text(
+              "Review updated contract",
+              style: ClientConfig.getTextStyleScheme().heading2,
+            ),
           ),
           const SizedBox(height: 24),
           Padding(
@@ -155,8 +159,9 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
                         ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
-                      text:
-                          "to the “Credit Card Application” contract. Please take a moment to carefully review these changes. \n\n"),
+                    text:
+                        "to the “Credit Card Application” contract. Please take a moment to carefully review these changes. \n\n",
+                  ),
                   const TextSpan(text: "We've also prepared your "),
                   TextSpan(
                     text: "“Qualified Electronic Signature (QES)” ",
@@ -164,8 +169,9 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
                         ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const TextSpan(
-                      text:
-                          "for digital signing. It will enable you to sign your “Application Contract” in the next step using a TAN code."),
+                    text:
+                        "for digital signing. It will enable you to sign your “Application Contract” in the next step using a TAN code.",
+                  ),
                 ],
               ),
             ),
@@ -205,8 +211,9 @@ class OnboardingReviewUpdatedContractsScreen extends StatelessWidget {
             child: PrimaryButton(
               isLoading: identityVerificationViewModel.isLoading,
               onPressed: () {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(AuthorizeIdentificationSigningCommandAction());
+                StoreProvider.of<AppState>(
+                  context,
+                ).dispatch(AuthorizeIdentificationSigningCommandAction());
               },
               text: "Continue to signing",
             ),

@@ -51,13 +51,9 @@ class BankCardWidget extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         elevation: 0,
         margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: Container(
-          decoration: BoxDecoration(
-            gradient: _buildGradient(),
-          ),
+          decoration: BoxDecoration(gradient: _buildGradient()),
           child: Stack(
             children: _buildBackgroundLayers()..add(_buildCardContent()),
           ),
@@ -70,9 +66,7 @@ class BankCardWidget extends StatelessWidget {
     List<String> cardNumberParts = Format.iban(cardNumber ?? '').split(" ");
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 16,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
         children: [
           Row(
@@ -98,23 +92,20 @@ class BankCardWidget extends StatelessWidget {
                   ...cardNumberParts.map((cardNumberPart) {
                     Text textContent = Text(
                       cardNumberPart,
-                      style: ClientConfig.getTextStyleScheme()
-                          .heading2
+                      style: ClientConfig.getTextStyleScheme().heading2
                           .copyWith(color: Colors.white),
                     );
                     if (cardNumberPart == "****") {
                       return SizedBox(height: 29, child: textContent);
                     }
                     return textContent;
-                  })
+                  }),
                 ],
               ),
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -124,17 +115,15 @@ class BankCardWidget extends StatelessWidget {
                       if (cardHolder != null && cardHolder!.isNotEmpty)
                         Text(
                           "CARD HOLDER",
-                          style: ClientConfig.getTextStyleScheme()
-                              .labelCaps
+                          style: ClientConfig.getTextStyleScheme().labelCaps
                               .copyWith(color: Colors.white),
                         ),
                       if (cardHolder != null) const SizedBox(height: 3),
                       Text(
                         cardHolder ?? '',
-                        style: ClientConfig.getTextStyleScheme()
-                            .labelMedium
+                        style: ClientConfig.getTextStyleScheme().labelMedium
                             .copyWith(color: Colors.white),
-                      )
+                      ),
                     ],
                   ),
                   Column(
@@ -143,23 +132,21 @@ class BankCardWidget extends StatelessWidget {
                       if (cardExpiry != null && cardExpiry!.isNotEmpty)
                         Text(
                           "EXPIRY DATE",
-                          style: ClientConfig.getTextStyleScheme()
-                              .labelCaps
+                          style: ClientConfig.getTextStyleScheme().labelCaps
                               .copyWith(color: Colors.white),
                         ),
                       if (cardExpiry != null) const SizedBox(height: 3),
                       Text(
                         cardExpiry ?? '',
-                        style: ClientConfig.getTextStyleScheme()
-                            .labelMedium
+                        style: ClientConfig.getTextStyleScheme().labelMedium
                             .copyWith(color: Colors.white),
                       ),
                     ],
                   ),
                 ],
               ),
-            )
-          ]
+            ),
+          ],
         ],
       ),
     );
@@ -219,7 +206,7 @@ class BankCardWidget extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
       ];
     }
 
@@ -230,7 +217,7 @@ class BankCardWidget extends StatelessWidget {
           fit: BoxFit.scaleDown,
           scale: imageScaledownFactor,
         ),
-      )
+      ),
     ];
   }
 }
@@ -238,18 +225,12 @@ class BankCardWidget extends StatelessWidget {
 class CardTypeLabel extends StatelessWidget {
   final BankCardType cardType;
 
-  const CardTypeLabel({
-    super.key,
-    required this.cardType,
-  });
+  const CardTypeLabel({super.key, required this.cardType});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -261,9 +242,10 @@ class CardTypeLabel extends StatelessWidget {
         cardType.toString().toLowerCase().contains('virtual')
             ? 'Virtual card'
             : 'Physical card',
-        style: ClientConfig.getTextStyleScheme()
-            .labelXSmall
-            .copyWith(color: Colors.black, height: 1.2),
+        style: ClientConfig.getTextStyleScheme().labelXSmall.copyWith(
+          color: Colors.black,
+          height: 1.2,
+        ),
       ),
     );
   }

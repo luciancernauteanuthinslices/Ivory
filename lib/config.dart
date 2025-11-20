@@ -26,20 +26,25 @@ class ClientConfig {
       String client = const String.fromEnvironment('CLIENT');
       switch (client) {
         case 'porsche':
-          _clientConfigData =
-              ClientConfigData(uiSettings: PorscheTheme.clientUiSettings);
+          _clientConfigData = ClientConfigData(
+            uiSettings: PorscheTheme.clientUiSettings,
+          );
         case 'solaris':
-          _clientConfigData =
-              ClientConfigData(uiSettings: SolarisTheme.clientUiSettings);
+          _clientConfigData = ClientConfigData(
+            uiSettings: SolarisTheme.clientUiSettings,
+          );
         case 'iulius':
-          _clientConfigData =
-              ClientConfigData(uiSettings: IuliusTheme.clientUiSettings);
+          _clientConfigData = ClientConfigData(
+            uiSettings: IuliusTheme.clientUiSettings,
+          );
         case 'mercedes':
-          _clientConfigData =
-              ClientConfigData(uiSettings: MercedesTheme.clientUiSettings);
+          _clientConfigData = ClientConfigData(
+            uiSettings: MercedesTheme.clientUiSettings,
+          );
         default:
-          _clientConfigData =
-              ClientConfigData(uiSettings: DefaultTheme.clientUiSettings);
+          _clientConfigData = ClientConfigData(
+            uiSettings: DefaultTheme.clientUiSettings,
+          );
       }
     }
 

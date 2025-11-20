@@ -53,37 +53,24 @@ class MockUser extends Mock implements User {
 
 class FakeAuthService extends AuthService {
   @override
-  Future<AuthServiceResponse> login(
-    String email,
-    String password,
-  ) async {
-    return LoginSuccessResponse(
-      user: MockUser(),
-    );
+  Future<AuthServiceResponse> login(String email, String password) async {
+    return LoginSuccessResponse(user: MockUser());
   }
 }
 
 class FakeAuthServiceWithOnboardingUser extends AuthService {
   @override
-  Future<AuthServiceResponse> login(
-    String email,
-    String password,
-  ) async {
+  Future<AuthServiceResponse> login(String email, String password) async {
     final user = MockUser();
     when(user.userGroup).thenReturn(CognitoUserGroup.registering);
 
-    return LoginSuccessResponse(
-      user: user,
-    );
+    return LoginSuccessResponse(user: user);
   }
 }
 
 class FakeFailingAuthService extends AuthService {
   @override
-  Future<AuthServiceResponse> login(
-    String email,
-    String password,
-  ) async {
+  Future<AuthServiceResponse> login(String email, String password) async {
     return AuthServiceErrorResponse(
       errorType: AuthErrorType.invalidCredentials,
     );
@@ -119,7 +106,8 @@ class FakeFailingFingerprintService extends DeviceFingerprintService {
     User? user,
   }) async {
     return DeviceFingerprintServiceErrorResponse(
-        errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+      errorType: DeviceFingerprintErrorType.unableToCreateActivity,
+    );
   }
 
   @override
@@ -129,7 +117,8 @@ class FakeFailingFingerprintService extends DeviceFingerprintService {
     required String deviceFingerprint,
   }) async {
     return DeviceFingerprintServiceErrorResponse(
-        errorType: DeviceFingerprintErrorType.unableToCreateActivity);
+      errorType: DeviceFingerprintErrorType.unableToCreateActivity,
+    );
   }
 
   @override
@@ -154,18 +143,13 @@ class FakeFailingBiometricsService extends BiometricsService {
 
 class FakeDeviceBindingService extends DeviceBindingService {
   @override
-  Future<DeviceBindingServiceResponse> getDeviceBinding(
-      {required User user}) async {
+  Future<DeviceBindingServiceResponse> getDeviceBinding({
+    required User user,
+  }) async {
     return GetDeviceBindingSuccessResponse(
       devices: [
-        Device(
-          deviceId: 'deviceId',
-          deviceName: 'deviceName',
-        ),
-        Device(
-          deviceId: 'deviceId2',
-          deviceName: 'deviceName2',
-        ),
+        Device(deviceId: 'deviceId', deviceName: 'deviceName'),
+        Device(deviceId: 'deviceId2', deviceName: 'deviceName2'),
       ],
     );
   }

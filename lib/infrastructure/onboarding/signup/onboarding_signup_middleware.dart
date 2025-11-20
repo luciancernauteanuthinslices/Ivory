@@ -22,15 +22,17 @@ class OnboardingSignupMiddleware extends MiddlewareClass<AppState> {
       await _pushNotificationService.init(store);
       final hasPermission = await _pushNotificationService.hasPermission();
 
-      store.dispatch(UpdatedPushNotificationsPermissionEventAction(
-          allowed: hasPermission));
+      store.dispatch(
+        UpdatedPushNotificationsPermissionEventAction(allowed: hasPermission),
+      );
     }
 
     if (action is CheckPushNotificationPermissionCommandAction) {
       final hasPermission = await _pushNotificationService.hasPermission();
 
-      store.dispatch(UpdatedPushNotificationsPermissionEventAction(
-          allowed: hasPermission));
+      store.dispatch(
+        UpdatedPushNotificationsPermissionEventAction(allowed: hasPermission),
+      );
     }
 
     if (action is CreateAccountCommandAction) {
@@ -57,7 +59,8 @@ class OnboardingSignupMiddleware extends MiddlewareClass<AppState> {
         );
       } else if (response is CreatePersonErrorResponse) {
         store.dispatch(
-            OnboardingSignupFailedEventAction(errorType: response.errorType));
+          OnboardingSignupFailedEventAction(errorType: response.errorType),
+        );
       }
     }
   }

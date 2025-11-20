@@ -102,10 +102,12 @@ class _OnboardingReferenceAccountIbanScreenState
                     children: [
                       const SizedBox(height: 16),
                       Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('Reference account IBAN',
-                              style:
-                                  ClientConfig.getTextStyleScheme().heading2)),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Reference account IBAN',
+                          style: ClientConfig.getTextStyleScheme().heading2,
+                        ),
+                      ),
                       const SizedBox(height: 24),
                       Text.rich(
                         style:
@@ -114,47 +116,54 @@ class _OnboardingReferenceAccountIbanScreenState
                           children: [
                             const TextSpan(text: 'Please provide the '),
                             TextSpan(
-                                text: 'IBAN',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: 'IBAN',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(text: ' for your '),
                             TextSpan(
                               text: 'reference bank account',
                               style: ClientConfig.getTextStyleScheme()
                                   .bodyLargeRegularBold
                                   .copyWith(
-                                      color: ClientConfig.getColorScheme()
-                                          .secondary),
+                                    color:
+                                        ClientConfig.getColorScheme().secondary,
+                                  ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () => showBottomModal(
-                                      context: context,
-                                      title: 'What is a reference account?',
-                                      textWidget: Column(
-                                        children: [
-                                          for (final referenceAccountCheck
-                                              in referenceAccountChecks) ...[
-                                            _buildReferenceBankAccount(
-                                                referenceAccountCheck),
-                                            const SizedBox(height: 24),
-                                          ]
-                                        ],
-                                      ),
-                                    ),
+                                  context: context,
+                                  title: 'What is a reference account?',
+                                  textWidget: Column(
+                                    children: [
+                                      for (final referenceAccountCheck
+                                          in referenceAccountChecks) ...[
+                                        _buildReferenceBankAccount(
+                                          referenceAccountCheck,
+                                        ),
+                                        const SizedBox(height: 24),
+                                      ],
+                                    ],
+                                  ),
+                                ),
                             ),
                             const TextSpan(
-                                text:
-                                    '. In the following steps, you will need to enter your '),
+                              text:
+                                  '. In the following steps, you will need to enter your ',
+                            ),
                             TextSpan(
-                                text: 'bank credentials',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: 'bank credentials',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(
-                                text:
-                                    ', after which we will initiate a transfer of '),
+                              text:
+                                  ', after which we will initiate a transfer of ',
+                            ),
                             TextSpan(
-                                text: '0.01€',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '0.01€',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(text: ' from this account.'),
                           ],
                         ),
@@ -167,8 +176,9 @@ class _OnboardingReferenceAccountIbanScreenState
                         inputFormatters: [
                           TextInputFormatter.withFunction((oldValue, newValue) {
                             if (newValue.text.isEmpty ||
-                                newValue.text
-                                    .contains(RegExp(r'^[a-zA-Z0-9]+'))) {
+                                newValue.text.contains(
+                                  RegExp(r'^[a-zA-Z0-9]+'),
+                                )) {
                               return newValue;
                             }
                             return oldValue;
@@ -183,7 +193,8 @@ class _OnboardingReferenceAccountIbanScreenState
                         onChanged: (value) {
                           if (value != 'DE11110101010100000020') {
                             _accountIbanController.setErrorText(
-                                'IBAN not found. Please try again with a different one.');
+                              'IBAN not found. Please try again with a different one.',
+                            );
                           } else {
                             _accountIbanController.setErrorText(null);
                           }
@@ -207,12 +218,14 @@ class _OnboardingReferenceAccountIbanScreenState
                             children: [
                               const TextSpan(text: 'I agree to the '),
                               TextSpan(
-                                  text: 'Swisscom\'s Terms & Conditions',
-                                  style: ClientConfig.getTextStyleScheme()
-                                      .bodyLargeRegularBold
-                                      .copyWith(
-                                          color: ClientConfig.getColorScheme()
-                                              .secondary)),
+                                text: 'Swisscom\'s Terms & Conditions',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold
+                                    .copyWith(
+                                      color: ClientConfig.getColorScheme()
+                                          .secondary,
+                                    ),
+                              ),
                               const TextSpan(text: '.'),
                             ],
                           ),
@@ -222,20 +235,19 @@ class _OnboardingReferenceAccountIbanScreenState
                       ListenableBuilder(
                         listenable: _continueButtonController,
                         builder: (context, child) => PrimaryButton(
-                            text: "Continue to verification",
-                            isLoading: _continueButtonController.isLoading,
-                            onPressed: _continueButtonController.isEnabled
-                                ? () {
-                                    StoreProvider.of<AppState>(context)
-                                        .dispatch(
-                                      CreateIdentificationCommandAction(
-                                        accountName:
-                                            _accountNameController.text,
-                                        iban: _accountIbanController.text,
-                                      ),
-                                    );
-                                  }
-                                : null),
+                          text: "Continue to verification",
+                          isLoading: _continueButtonController.isLoading,
+                          onPressed: _continueButtonController.isEnabled
+                              ? () {
+                                  StoreProvider.of<AppState>(context).dispatch(
+                                    CreateIdentificationCommandAction(
+                                      accountName: _accountNameController.text,
+                                      iban: _accountIbanController.text,
+                                    ),
+                                  );
+                                }
+                              : null,
+                        ),
                       ),
                       const SizedBox(height: 16),
                     ],
@@ -256,9 +268,7 @@ class _OnboardingReferenceAccountIbanScreenState
         SizedBox(
           width: 24,
           height: 24,
-          child: SvgPicture.asset(
-            'assets/icons/check_icon.svg',
-          ),
+          child: SvgPicture.asset('assets/icons/check_icon.svg'),
         ),
         const SizedBox(width: 16),
         Expanded(
@@ -308,9 +318,7 @@ class ApprovePolicy extends StatelessWidget {
             onChanged: (value) => onChanged(value),
           ),
           const SizedBox(width: 8),
-          Expanded(
-            child: message,
-          ),
+          Expanded(child: message),
         ],
       ),
     );
@@ -331,7 +339,8 @@ List<InlineSpan> referenceAccountChecks = [
   TextSpan(
     children: [
       const TextSpan(
-          text: 'It\'s essential to ensure that your reference account has '),
+        text: 'It\'s essential to ensure that your reference account has ',
+      ),
       TextSpan(
         text: 'sufficient funds available',
         style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
@@ -342,8 +351,9 @@ List<InlineSpan> referenceAccountChecks = [
   TextSpan(
     children: [
       const TextSpan(
-          text:
-              'Please note that changing your default account for automatic deductions '),
+        text:
+            'Please note that changing your default account for automatic deductions ',
+      ),
       TextSpan(
         text: 'will require a call to our support team',
         style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,

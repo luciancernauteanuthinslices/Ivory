@@ -5,12 +5,11 @@ import '../../../models/user.dart';
 import '../../../services/api_service.dart';
 
 class AccountSummaryService extends ApiService {
-  AccountSummaryService({
-    super.user,
-  });
+  AccountSummaryService({super.user});
 
-  Future<AccountSummaryServiceResponse> getPersonAccountSummary(
-      {required User user}) async {
+  Future<AccountSummaryServiceResponse> getPersonAccountSummary({
+    required User user,
+  }) async {
     this.user = user;
     try {
       String path = 'account/summary';

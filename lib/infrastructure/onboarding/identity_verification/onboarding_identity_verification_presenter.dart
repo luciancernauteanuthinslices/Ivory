@@ -59,14 +59,14 @@ class OnboardingIdentityVerificationViewModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        urlForIntegration,
-        isLoading,
-        errorType,
-        identificationStatus,
-        isAuthorized,
-        isTanConfirmed,
-        creditLimit,
-        isScoringSuccessful,
-        isIdentificationSuccessful,
-      ];
+    urlForIntegration,
+    isLoading,
+    errorType,
+    identificationStatus,
+    isAuthorized,
+    isTanConfirmed,
+    creditLimit,
+    isScoringSuccessful,
+    isIdentificationSuccessful,
+  ];
 }

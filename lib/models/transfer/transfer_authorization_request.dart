@@ -14,10 +14,5 @@ class TransferAuthorizationRequest extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        id,
-        status,
-        stringToSign,
-        confirmUrl,
-      ];
+  List<Object?> get props => [id, status, stringToSign, confirmUrl];
 }

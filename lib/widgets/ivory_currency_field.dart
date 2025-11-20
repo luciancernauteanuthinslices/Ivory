@@ -75,61 +75,65 @@ class _InputCurrencyFieldState extends State<InputCurrencyField> {
               ListenableBuilder(
                 listenable: _focusNode,
                 builder: ((context, child) => Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 11),
-                          decoration: BoxDecoration(
-                              color: ClientConfig.getCustomColors().neutral100,
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(8),
-                                  bottomLeft: Radius.circular(8)),
-                              border: Border(
-                                top: BorderSide(
-                                  width: 1,
-                                  color: _focusNode.hasFocus
-                                      ? ClientConfig.getColorScheme().primary
-                                      : const Color(0x00FFFFFF),
-                                ),
-                                right: BorderSide(
-                                  width: 1,
-                                  color: _focusNode.hasFocus
-                                      ? ClientConfig.getColorScheme().primary
-                                      : const Color(0x00FFFFFF),
-                                ),
-                                bottom: BorderSide(
-                                  width: 1,
-                                  color: _focusNode.hasFocus
-                                      ? ClientConfig.getColorScheme().primary
-                                      : const Color(0x00FFFFFF),
-                                ),
-                                left: BorderSide(
-                                  width: 1,
-                                  color: _focusNode.hasFocus
-                                      ? ClientConfig.getColorScheme().primary
-                                      : const Color(0x00FFFFFF),
-                                ),
-                              )),
-                          child: SvgPicture.asset(
-                            widget.currencyPathIcon,
-                            width: 24,
-                            height: 24,
-                            fit: BoxFit.cover,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 11,
+                      ),
+                      decoration: BoxDecoration(
+                        color: ClientConfig.getCustomColors().neutral100,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                        ),
+                        border: Border(
+                          top: BorderSide(
+                            width: 1,
+                            color: _focusNode.hasFocus
+                                ? ClientConfig.getColorScheme().primary
+                                : const Color(0x00FFFFFF),
+                          ),
+                          right: BorderSide(
+                            width: 1,
+                            color: _focusNode.hasFocus
+                                ? ClientConfig.getColorScheme().primary
+                                : const Color(0x00FFFFFF),
+                          ),
+                          bottom: BorderSide(
+                            width: 1,
+                            color: _focusNode.hasFocus
+                                ? ClientConfig.getColorScheme().primary
+                                : const Color(0x00FFFFFF),
+                          ),
+                          left: BorderSide(
+                            width: 1,
+                            color: _focusNode.hasFocus
+                                ? ClientConfig.getColorScheme().primary
+                                : const Color(0x00FFFFFF),
                           ),
                         ),
-                        if (!_focusNode.hasFocus) ...[
-                          SizedBox(
-                            width: 1,
-                            height: 48,
-                            child: VerticalDivider(
-                              width: 1,
-                              thickness: 1,
-                              color: ClientConfig.getCustomColors().neutral400,
-                            ),
-                          )
-                        ],
-                      ],
-                    )),
+                      ),
+                      child: SvgPicture.asset(
+                        widget.currencyPathIcon,
+                        width: 24,
+                        height: 24,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    if (!_focusNode.hasFocus) ...[
+                      SizedBox(
+                        width: 1,
+                        height: 48,
+                        child: VerticalDivider(
+                          width: 1,
+                          thickness: 1,
+                          color: ClientConfig.getCustomColors().neutral400,
+                        ),
+                      ),
+                    ],
+                  ],
+                )),
               ),
               Expanded(
                 child: TextField(
@@ -137,26 +141,30 @@ class _InputCurrencyFieldState extends State<InputCurrencyField> {
                   style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                   controller: _currencyController,
                   focusNode: _focusNode,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  inputFormatters: [
-                    ThousandsSeparatorInputFormatter(),
-                  ],
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  inputFormatters: [ThousandsSeparatorInputFormatter()],
                   decoration: InputDecoration(
                     counterText: '',
                     hintText: widget.placeHolder,
                     hintStyle: ClientConfig.getTextStyleScheme()
                         .bodyLargeRegular
                         .copyWith(
-                            color: ClientConfig.getCustomColors().neutral400),
+                          color: ClientConfig.getCustomColors().neutral400,
+                        ),
                     contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 12),
-                    border:
-                        const OutlineInputBorder(borderSide: BorderSide.none),
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(8),
-                          bottomRight: Radius.circular(8)),
+                        topRight: Radius.circular(8),
+                        bottomRight: Radius.circular(8),
+                      ),
                       borderSide: BorderSide(
                         width: 1,
                         color: ClientConfig.getColorScheme().primary,
@@ -176,7 +184,9 @@ class _InputCurrencyFieldState extends State<InputCurrencyField> {
 class ThousandsSeparatorInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     if (newValue.text.isEmpty) {
       return newValue.copyWith(text: '');
     } else if (newValue.text.compareTo(oldValue.text) != 0) {
@@ -188,7 +198,8 @@ class ThousandsSeparatorInputFormatter extends TextInputFormatter {
       return TextEditingValue(
         text: formattedValue,
         selection: TextSelection.collapsed(
-            offset: formattedValue.length - selectionIndexFromTheRight),
+          offset: formattedValue.length - selectionIndexFromTheRight,
+        ),
       );
     } else {
       return newValue;
@@ -198,8 +209,9 @@ class ThousandsSeparatorInputFormatter extends TextInputFormatter {
   String _formatInput(String input) {
     final onlyNumbers = input.replaceAll(RegExp(r'[^0-9.]'), '');
     final integerAndDecimalValues = onlyNumbers.split('.');
-    final integerValueFormatted =
-        _formatIntegerPart(integerAndDecimalValues[0]);
+    final integerValueFormatted = _formatIntegerPart(
+      integerAndDecimalValues[0],
+    );
 
     final wholeNumberFormatted = integerAndDecimalValues.length == 1
         ? integerValueFormatted

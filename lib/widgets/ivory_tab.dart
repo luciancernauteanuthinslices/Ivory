@@ -8,10 +8,7 @@ class IvoryTab extends Equatable {
   final String title;
   final void Function()? onPressed;
 
-  const IvoryTab({
-    required this.title,
-    this.onPressed,
-  });
+  const IvoryTab({required this.title, this.onPressed});
 
   @override
   List<Object?> get props => [title];
@@ -22,7 +19,7 @@ class IvoryTabBar extends StatelessWidget {
   final List<IvoryTab> tabs;
 
   IvoryTabBar({super.key, required this.tabs, required this.controller})
-      : assert(tabs.length == controller.tabsCount);
+    : assert(tabs.length == controller.tabsCount);
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +39,10 @@ class IvoryTabBar extends StatelessWidget {
             Expanded(
               child: Button(
                 text: title,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 color: isActive
                     ? Colors.white
                     : ClientConfig.getCustomColors().neutral300,
@@ -82,11 +81,8 @@ class IvoryTabView extends StatelessWidget {
   final IvoryTabController controller;
   final List<Widget> children;
 
-  IvoryTabView({
-    super.key,
-    required this.controller,
-    required this.children,
-  }) : assert(children.length == controller.tabsCount);
+  IvoryTabView({super.key, required this.controller, required this.children})
+    : assert(children.length == controller.tabsCount);
 
   @override
   Widget build(BuildContext context) {

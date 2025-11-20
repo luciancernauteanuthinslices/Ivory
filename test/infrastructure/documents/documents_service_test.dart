@@ -22,77 +22,83 @@ void main() {
 
       documentsService.client = httpClient;
 
-      when(httpClient.get(any, headers: anyNamed("headers"))).thenAnswer(
-        (_) async => DocumentsHttpResponse.emptyList,
-      );
+      when(
+        httpClient.get(any, headers: anyNamed("headers")),
+      ).thenAnswer((_) async => DocumentsHttpResponse.emptyList);
 
       // when
-      final response =
-          await documentsService.getPostboxDocuments(user: mockUser);
+      final response = await documentsService.getPostboxDocuments(
+        user: mockUser,
+      );
 
       // then
       expect(response, isA<GetDocumentsSuccessResponse>());
-    });
-
-    test('When response is a list of documents it should return success',
-        () async {
-      // given
-      final documentsService = DocumentsService();
-      final httpClient = MockHttpClient();
-
-      documentsService.client = httpClient;
-
-      when(httpClient.get(any, headers: anyNamed("headers"))).thenAnswer(
-        (_) async => DocumentsHttpResponse.creditCardContractAndSecci,
-      );
-
-      // when
-      final response =
-          await documentsService.getPostboxDocuments(user: mockUser);
-
-      // then
-      expect(response, isA<GetDocumentsSuccessResponse>());
-      expect(
-        response as GetDocumentsSuccessResponse,
-        equals(
-          GetDocumentsSuccessResponse(
-            documents: const [
-              MockDocuments.creditCardContract,
-              MockDocuments.creditCardSecci,
-            ],
-          ),
-        ),
-      );
     });
 
     test(
-        "When document type is unknown it should return succes with unknown document type",
-        () async {
-      // given
-      final documentsService = DocumentsService();
-      final httpClient = MockHttpClient();
+      'When response is a list of documents it should return success',
+      () async {
+        // given
+        final documentsService = DocumentsService();
+        final httpClient = MockHttpClient();
 
-      documentsService.client = httpClient;
+        documentsService.client = httpClient;
 
-      when(httpClient.get(any, headers: anyNamed("headers"))).thenAnswer(
-        (_) async => DocumentsHttpResponse.unknownDocument,
-      );
+        when(httpClient.get(any, headers: anyNamed("headers"))).thenAnswer(
+          (_) async => DocumentsHttpResponse.creditCardContractAndSecci,
+        );
 
-      // when
-      final response =
-          await documentsService.getPostboxDocuments(user: mockUser);
+        // when
+        final response = await documentsService.getPostboxDocuments(
+          user: mockUser,
+        );
 
-      // then
-      expect(response, isA<GetDocumentsSuccessResponse>());
-      expect(
-        response as GetDocumentsSuccessResponse,
-        equals(
-          GetDocumentsSuccessResponse(
-            documents: const [MockDocuments.unknownDocument],
+        // then
+        expect(response, isA<GetDocumentsSuccessResponse>());
+        expect(
+          response as GetDocumentsSuccessResponse,
+          equals(
+            GetDocumentsSuccessResponse(
+              documents: const [
+                MockDocuments.creditCardContract,
+                MockDocuments.creditCardSecci,
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
+
+    test(
+      "When document type is unknown it should return succes with unknown document type",
+      () async {
+        // given
+        final documentsService = DocumentsService();
+        final httpClient = MockHttpClient();
+
+        documentsService.client = httpClient;
+
+        when(
+          httpClient.get(any, headers: anyNamed("headers")),
+        ).thenAnswer((_) async => DocumentsHttpResponse.unknownDocument);
+
+        // when
+        final response = await documentsService.getPostboxDocuments(
+          user: mockUser,
+        );
+
+        // then
+        expect(response, isA<GetDocumentsSuccessResponse>());
+        expect(
+          response as GetDocumentsSuccessResponse,
+          equals(
+            GetDocumentsSuccessResponse(
+              documents: const [MockDocuments.unknownDocument],
+            ),
+          ),
+        );
+      },
+    );
 
     test("When response is not a list it should return error", () async {
       // given
@@ -101,13 +107,14 @@ void main() {
 
       documentsService.client = httpClient;
 
-      when(httpClient.get(any, headers: anyNamed("headers"))).thenAnswer(
-        (_) async => DocumentsHttpResponse.invalid,
-      );
+      when(
+        httpClient.get(any, headers: anyNamed("headers")),
+      ).thenAnswer((_) async => DocumentsHttpResponse.invalid);
 
       // when
-      final response =
-          await documentsService.getPostboxDocuments(user: mockUser);
+      final response = await documentsService.getPostboxDocuments(
+        user: mockUser,
+      );
 
       // then
       expect(response, isA<DocumentsServiceErrorResponse>());
@@ -119,29 +126,35 @@ void main() {
       );
     });
 
-    test("When the request is throwing an error it should return error",
-        () async {
-      // given
-      final documentsService = DocumentsService();
-      final httpClient = MockHttpClient();
+    test(
+      "When the request is throwing an error it should return error",
+      () async {
+        // given
+        final documentsService = DocumentsService();
+        final httpClient = MockHttpClient();
 
-      documentsService.client = httpClient;
+        documentsService.client = httpClient;
 
-      when(httpClient.get(any, headers: anyNamed("headers")))
-          .thenThrow(Exception("error"));
+        when(
+          httpClient.get(any, headers: anyNamed("headers")),
+        ).thenThrow(Exception("error"));
 
-      // when
-      final response =
-          await documentsService.getPostboxDocuments(user: mockUser);
+        // when
+        final response = await documentsService.getPostboxDocuments(
+          user: mockUser,
+        );
 
-      // then
-      expect(response, isA<DocumentsServiceErrorResponse>());
-      expect(
-        response as DocumentsServiceErrorResponse,
-        equals(
-          DocumentsServiceErrorResponse(errorType: DocumentsErrorType.unknown),
-        ),
-      );
-    });
+        // then
+        expect(response, isA<DocumentsServiceErrorResponse>());
+        expect(
+          response as DocumentsServiceErrorResponse,
+          equals(
+            DocumentsServiceErrorResponse(
+              errorType: DocumentsErrorType.unknown,
+            ),
+          ),
+        );
+      },
+    );
   });
 }

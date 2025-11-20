@@ -23,8 +23,9 @@ class OnboardingProgressFetchedState extends OnboardingProgressState {
 class OnboardingProgressErrorState extends OnboardingProgressState {
   final OnboardingServiceErrorType errorType;
 
-  OnboardingProgressErrorState(
-      {this.errorType = OnboardingServiceErrorType.unknown});
+  OnboardingProgressErrorState({
+    this.errorType = OnboardingServiceErrorType.unknown,
+  });
 
   @override
   List<Object?> get props => [errorType];

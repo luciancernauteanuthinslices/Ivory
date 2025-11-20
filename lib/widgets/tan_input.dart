@@ -56,16 +56,14 @@ class TanInputState extends State<TanInput> {
                   ),
                   hintText: List.filled(widget.length, '#').join(),
                   textStyle: widget.isLoading != null && widget.isLoading!
-                      ? ClientConfig.getTextStyleScheme()
-                          .bodyLargeRegular
-                          .copyWith(
-                            color: ClientConfig.getCustomColors().neutral500,
-                          )
-                      : ClientConfig.getTextStyleScheme()
-                          .bodyLargeRegular
-                          .copyWith(
-                            color: ClientConfig.getCustomColors().neutral900,
-                          ),
+                      ? ClientConfig.getTextStyleScheme().bodyLargeRegular
+                            .copyWith(
+                              color: ClientConfig.getCustomColors().neutral500,
+                            )
+                      : ClientConfig.getTextStyleScheme().bodyLargeRegular
+                            .copyWith(
+                              color: ClientConfig.getCustomColors().neutral900,
+                            ),
                   hintTextStyle: ClientConfig.getTextStyleScheme()
                       .bodyLargeRegular
                       .copyWith(
@@ -78,9 +76,7 @@ class TanInputState extends State<TanInput> {
                     ? !widget.isLoading!
                     : true,
                 keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 onSubmit: (pin) {
                   debugPrint('submit pin:$pin');
                 },

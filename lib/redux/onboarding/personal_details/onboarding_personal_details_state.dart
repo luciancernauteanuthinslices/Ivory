@@ -21,10 +21,10 @@ class OnboardingPersonalDetailsState extends Equatable {
 
   @override
   List<Object?> get props => [
-        attributes,
-        isLoading,
-        tanRequestedAt,
-        isAddressSaved,
-        isMobileConfirmed
-      ];
+    attributes,
+    isLoading,
+    tanRequestedAt,
+    isAddressSaved,
+    isMobileConfirmed,
+  ];
 }

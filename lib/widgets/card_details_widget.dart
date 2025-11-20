@@ -21,7 +21,10 @@ class BankCardShowDetailsWidget extends StatelessWidget {
   });
 
   void showAlertDialog(
-      BuildContext context, String stringToCopy, String typeOfString) async {
+    BuildContext context,
+    String stringToCopy,
+    String typeOfString,
+  ) async {
     copyToClipboard(stringToCopy);
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -47,8 +50,9 @@ class BankCardShowDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> cardNumberParts =
-        Format.iban(cardDetails.cardNumber).split(" ");
+    List<String> cardNumberParts = Format.iban(
+      cardDetails.cardNumber,
+    ).split(" ");
 
     return SizedBox(
       width: 310,
@@ -59,9 +63,7 @@ class BankCardShowDetailsWidget extends StatelessWidget {
           elevation: 0,
           margin: EdgeInsets.zero,
           color: Colors.black,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -73,8 +75,9 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                 ],
               ),
               image: DecorationImage(
-                image:
-                    AssetImage(ClientConfig.getAssetImagePath('card_logo.png')),
+                image: AssetImage(
+                  ClientConfig.getAssetImagePath('card_logo.png'),
+                ),
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -111,8 +114,7 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                           children: [
                             Text(
                               "CARD NUMBER",
-                              style: ClientConfig.getTextStyleScheme()
-                                  .labelCaps
+                              style: ClientConfig.getTextStyleScheme().labelCaps
                                   .copyWith(color: Colors.white),
                             ),
                             Row(
@@ -126,7 +128,7 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                                       style: ClientConfig.getTextStyleScheme()
                                           .labelMedium
                                           .copyWith(color: Colors.white),
-                                    )
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(width: 8),
@@ -144,8 +146,10 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                                       showSnackbar(
                                         context,
                                         text: "Copied to clipboard",
-                                        icon: const Icon(Icons.copy,
-                                            color: Colors.white),
+                                        icon: const Icon(
+                                          Icons.copy,
+                                          color: Colors.white,
+                                        ),
                                         backgroundColor:
                                             ClientConfig.getCustomColors()
                                                 .neutral900,
@@ -213,8 +217,10 @@ class BankCardShowDetailsWidget extends StatelessWidget {
                                           showSnackbar(
                                             context,
                                             text: "Copied to clipboard",
-                                            icon: const Icon(Icons.copy,
-                                                color: Colors.white),
+                                            icon: const Icon(
+                                              Icons.copy,
+                                              color: Colors.white,
+                                            ),
                                             backgroundColor:
                                                 ClientConfig.getCustomColors()
                                                     .neutral900,
@@ -242,9 +248,7 @@ class BankCardShowDetailsWidget extends StatelessWidget {
 }
 
 class VisaSvgIcon extends StatelessWidget {
-  const VisaSvgIcon({
-    super.key,
-  });
+  const VisaSvgIcon({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -258,19 +262,13 @@ class VisaSvgIcon extends StatelessWidget {
 }
 
 class EyeIcon extends StatelessWidget {
-  const EyeIcon({
-    super.key,
-  });
+  const EyeIcon({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.only(right: 20),
-      child: Icon(
-        Icons.remove_red_eye_outlined,
-        color: Colors.white,
-        size: 25,
-      ),
+      child: Icon(Icons.remove_red_eye_outlined, color: Colors.white, size: 25),
     );
   }
 }
@@ -278,18 +276,12 @@ class EyeIcon extends StatelessWidget {
 class CardTypeLabel extends StatelessWidget {
   final String cardType;
 
-  const CardTypeLabel({
-    super.key,
-    required this.cardType,
-  });
+  const CardTypeLabel({super.key, required this.cardType});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -299,9 +291,10 @@ class CardTypeLabel extends StatelessWidget {
       ),
       child: Text(
         cardType,
-        style: ClientConfig.getTextStyleScheme()
-            .labelXSmall
-            .copyWith(color: Colors.black, height: 1.2),
+        style: ClientConfig.getTextStyleScheme().labelXSmall.copyWith(
+          color: Colors.black,
+          height: 1.2,
+        ),
       ),
     );
   }

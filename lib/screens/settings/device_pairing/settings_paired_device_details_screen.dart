@@ -18,19 +18,14 @@ import '../../../config.dart';
 class SettingsPairedDeviceDetailsScreenParams {
   final Device device;
 
-  const SettingsPairedDeviceDetailsScreenParams({
-    required this.device,
-  });
+  const SettingsPairedDeviceDetailsScreenParams({required this.device});
 }
 
 class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
   static const routeName = "/settingsPairedDeviceDetailsScreen";
   final SettingsPairedDeviceDetailsScreenParams params;
 
-  const SettingsPairedDeviceDetailsScreen({
-    super.key,
-    required this.params,
-  });
+  const SettingsPairedDeviceDetailsScreen({super.key, required this.params});
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +34,13 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
         onDidChange: (previousViewModel, newViewModel) {
           if (previousViewModel is DeviceBindingLoadingViewModel &&
               newViewModel is DeviceBindingDeletedViewModel) {
-            Navigator.popUntil(context,
-                ModalRoute.withName(SettingsDevicePairingScreen.routeName));
-            StoreProvider.of<AppState>(context).dispatch(
-              FetchBoundDevicesCommandAction(),
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(SettingsDevicePairingScreen.routeName),
             );
+            StoreProvider.of<AppState>(
+              context,
+            ).dispatch(FetchBoundDevicesCommandAction());
           }
         },
         converter: (store) => DeviceBindingPresenter.presentDeviceBinding(
@@ -53,22 +50,12 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
           if (viewModel is DeviceBindingLoadingViewModel) {
             return const Column(
               children: [
-                Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
+                Expanded(child: Center(child: CircularProgressIndicator())),
               ],
             );
           } else if (viewModel is DeviceBindingErrorViewModel) {
             return const Column(
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Text('Error'),
-                  ),
-                ),
-              ],
+              children: [Expanded(child: Center(child: Text('Error')))],
             );
           }
           return Column(
@@ -118,12 +105,11 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           color: ClientConfig.getColorScheme()
                                               .surface,
-                                          borderRadius:
-                                              BorderRadius.circular(1000),
+                                          borderRadius: BorderRadius.circular(
+                                            1000,
+                                          ),
                                         ),
-                                        child: const Icon(
-                                          Icons.phone_iphone,
-                                        ),
+                                        child: const Icon(Icons.phone_iphone),
                                       ),
                                     ],
                                   ),
@@ -140,8 +126,10 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                                                   .bodyLargeRegular,
                                         ),
                                         Text(
-                                          params.device.deviceId
-                                              .substring(0, 13),
+                                          params.device.deviceId.substring(
+                                            0,
+                                            13,
+                                          ),
                                           style:
                                               ClientConfig.getTextStyleScheme()
                                                   .bodyLargeRegularBold,
@@ -155,9 +143,7 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       const IvoryListTitle(title: 'Actions'),
                       IvoryListTile(
                         leftIcon: Icons.mobile_off,
@@ -172,9 +158,7 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
                             .colorscheme
                             .error,
                         onTap: () {
-                          _showUnpairModal(
-                            context: context,
-                          );
+                          _showUnpairModal(context: context);
                         },
                       ),
                     ],
@@ -188,12 +172,11 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
     );
   }
 
-  void _showUnpairModal({
-    required BuildContext context,
-  }) {
+  void _showUnpairModal({required BuildContext context}) {
     showBottomModal(
       context: context,
-      title: 'Are you sure you want to unpair ${params.device.deviceName} '
+      title:
+          'Are you sure you want to unpair ${params.device.deviceName} '
           '(ID: ${params.device.deviceId})?',
       textWidget: Text(
         'You will not be able to make any transactions or other complex actions with this device.',
@@ -201,9 +184,7 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
       ),
       content: Column(
         children: [
-          const SizedBox(
-            height: 24,
-          ),
+          const SizedBox(height: 24),
           Button(
             text: 'No, go back',
             textColor: ClientConfig.getColorScheme().primary,
@@ -215,9 +196,7 @@ class SettingsPairedDeviceDetailsScreen extends StatelessWidget {
             color: ClientConfig.getColorScheme().background,
             onPressed: () => Navigator.pop(context),
           ),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Button(
             text: 'Yes, unpair',
             color: const Color(0xFFE61F27),

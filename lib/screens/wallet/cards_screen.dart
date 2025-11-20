@@ -24,9 +24,10 @@ class BankCardsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
     ScrollController scrollController = ScrollController();
 
     return StoreConnector<AppState, BankCardsViewModel>(
@@ -134,11 +135,13 @@ class _CardSlider extends StatelessWidget {
             controller: pageController,
             clipBehavior: Clip.none,
             itemCount: cards.length,
-            onPageChanged: (cardIndex) => StoreProvider.of<AppState>(context)
-                .dispatch(GetBankCardCommandAction(
-              cardId: cards[cardIndex].id,
-              forceReloadCardData: false,
-            )),
+            onPageChanged: (cardIndex) =>
+                StoreProvider.of<AppState>(context).dispatch(
+                  GetBankCardCommandAction(
+                    cardId: cards[cardIndex].id,
+                    forceReloadCardData: false,
+                  ),
+                ),
             itemBuilder: (context, cardIndex) {
               BankCard card = cards[cardIndex];
 
@@ -148,7 +151,7 @@ class _CardSlider extends StatelessWidget {
                   card.representation?.line2 ?? emptyStringValue;
               String cardExpiry =
                   card.representation?.formattedExpirationDate ??
-                      emptyStringValue;
+                  emptyStringValue;
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -179,8 +182,9 @@ class _CardSlider extends StatelessWidget {
               dotWidth: 8,
               dotHeight: 4,
               activeDotColor: ClientConfig.getColorScheme().secondary,
-              dotColor:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(0.23),
+              dotColor: Theme.of(
+                context,
+              ).colorScheme.onBackground.withOpacity(0.23),
             ),
           ),
         ),
@@ -208,9 +212,10 @@ class _OrderCardButton extends StatelessWidget {
 }
 
 void addNewCard(BuildContext context) {
-  final user = (StoreProvider.of<AppState>(context).state.authState
-          as AuthenticatedState)
-      .authenticatedUser;
+  final user =
+      (StoreProvider.of<AppState>(context).state.authState
+              as AuthenticatedState)
+          .authenticatedUser;
   StoreProvider.of<AppState>(context).dispatch(
     CreateCardCommandAction(
       firstName: user.person.firstName!,

@@ -54,8 +54,8 @@ class _TransferScreenState extends State<TransferScreen> {
             amountController.addListener(() {
               setState(() {
                 final value = double.tryParse(amountController.text) ?? 0;
-                final balance =
-                    newViewModel.personAccount.balance!.value.toDouble();
+                final balance = newViewModel.personAccount.balance!.value
+                    .toDouble();
 
                 if (value > balance) {
                   _errorText = "Not enough balance";
@@ -83,16 +83,18 @@ class _TransferScreenState extends State<TransferScreen> {
                 ),
                 viewModel is TransferAccountsLoadingViewModel
                     ? const Expanded(
-                        child: Center(child: CircularProgressIndicator()))
+                        child: Center(child: CircularProgressIndicator()),
+                      )
                     : viewModel is TransferAccountsFetchedViewModel
-                        ? Expanded(child: _buildScreenBody(viewModel))
-                        : IvoryErrorWidget(
-                            viewModel is TransferAccountsErrorViewModel &&
-                                    viewModel.errorType ==
-                                        TransferAccountsErrorType
-                                            .referenceAccountUnavailable
-                                ? "Reference account is not set"
-                                : "Could not load accounts"),
+                    ? Expanded(child: _buildScreenBody(viewModel))
+                    : IvoryErrorWidget(
+                        viewModel is TransferAccountsErrorViewModel &&
+                                viewModel.errorType ==
+                                    TransferAccountsErrorType
+                                        .referenceAccountUnavailable
+                            ? "Reference account is not set"
+                            : "Could not load accounts",
+                      ),
               ],
             ),
           );
@@ -127,8 +129,7 @@ class _TransferScreenState extends State<TransferScreen> {
                   const SizedBox(height: 32),
                   Text(
                     "Enter transfer amount",
-                    style: ClientConfig.getTextStyleScheme()
-                        .bodySmallBold
+                    style: ClientConfig.getTextStyleScheme().bodySmallBold
                         .copyWith(
                           color: _errorText != null
                               ? Colors.red
@@ -146,11 +147,8 @@ class _TransferScreenState extends State<TransferScreen> {
                     const SizedBox(height: 8),
                     Text(
                       _errorText!,
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodySmallBold
-                          .copyWith(
-                            color: Colors.red,
-                          ),
+                      style: ClientConfig.getTextStyleScheme().bodySmallBold
+                          .copyWith(color: Colors.red),
                     ),
                   ],
                   const SizedBox(height: 40),
@@ -160,7 +158,8 @@ class _TransferScreenState extends State<TransferScreen> {
                         context: context,
                         title: "How to top up your Ivory account?",
                         content: TopUpBottomSheetContent(
-                            iban: viewModel.personAccount.iban!),
+                          iban: viewModel.personAccount.iban!,
+                        ),
                       );
                     },
                     child: Text(
@@ -193,8 +192,9 @@ class _TransferScreenState extends State<TransferScreen> {
                         context,
                         TransferReviewScreen.routeName,
                         arguments: TransferReviewScreenParams(
-                          transferAmountValue:
-                              double.parse(amountController.text),
+                          transferAmountValue: double.parse(
+                            amountController.text,
+                          ),
                         ),
                       );
                     }
@@ -212,11 +212,7 @@ class _Card extends StatelessWidget {
   final String iban;
   final double? balance;
 
-  const _Card({
-    required this.title,
-    required this.iban,
-    this.balance,
-  });
+  const _Card({required this.title, required this.iban, this.balance});
 
   @override
   Widget build(BuildContext context) {
@@ -228,19 +224,24 @@ class _Card extends StatelessWidget {
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(children: [
-              Text(title, style: ClientConfig.getTextStyleScheme().heading4),
-              if (balance != null) ...[
-                const Spacer(),
-                Text(
-                  "€${balance!.toStringAsFixed(2)}",
-                  style: ClientConfig.getTextStyleScheme().heading4,
-                ),
-                Text("*",
+            child: Row(
+              children: [
+                Text(title, style: ClientConfig.getTextStyleScheme().heading4),
+                if (balance != null) ...[
+                  const Spacer(),
+                  Text(
+                    "€${balance!.toStringAsFixed(2)}",
+                    style: ClientConfig.getTextStyleScheme().heading4,
+                  ),
+                  Text(
+                    "*",
                     style: ClientConfig.getTextStyleScheme().heading4.copyWith(
-                        color: ClientConfig.getColorScheme().secondary)),
-              ]
-            ]),
+                      color: ClientConfig.getColorScheme().secondary,
+                    ),
+                  ),
+                ],
+              ],
+            ),
           ),
           const SizedBox(height: 4),
           Padding(
@@ -257,7 +258,7 @@ class _Card extends StatelessWidget {
                     "Balance",
                     style: ClientConfig.getTextStyleScheme().bodySmallRegular,
                   ),
-                ]
+                ],
               ],
             ),
           ),
@@ -271,8 +272,7 @@ class _Card extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: "*",
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodySmallBold
+                      style: ClientConfig.getTextStyleScheme().bodySmallBold
                           .copyWith(
                             color: ClientConfig.getColorScheme().secondary,
                           ),
@@ -285,7 +285,7 @@ class _Card extends StatelessWidget {
                 ),
               ),
             ),
-          ]
+          ],
         ],
       ),
     );

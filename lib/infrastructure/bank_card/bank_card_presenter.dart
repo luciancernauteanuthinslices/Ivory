@@ -61,9 +61,7 @@ class BankCardPresenter {
     } else if (bankCardsState is BankCardsErrorState) {
       return BankCardsErrorViewModel();
     } else if (bankCardsState is BankCardsFetchedState) {
-      return BankCardsFetchedViewModel(
-        bankCards: bankCardsState.bankCards,
-      );
+      return BankCardsFetchedViewModel(bankCards: bankCardsState.bankCards);
     }
     return BankCardsInitialViewModel();
   }
@@ -76,8 +74,13 @@ abstract class BankCardViewModel extends Equatable {
   final AuthenticatedUser? user;
   final BankCardFetchedDetails? cardDetails;
 
-  const BankCardViewModel(
-      {this.user, this.pin, this.bankCard, this.cardDetails, this.bankCards});
+  const BankCardViewModel({
+    this.user,
+    this.pin,
+    this.bankCard,
+    this.cardDetails,
+    this.bankCards,
+  });
 
   @override
   List<Object?> get props => [pin];
@@ -90,9 +93,8 @@ class BankCardLoadingViewModel extends BankCardViewModel {}
 class BankCardErrorViewModel extends BankCardViewModel {}
 
 class BankCardNoBoundedDevicesViewModel extends BankCardViewModel {
-  const BankCardNoBoundedDevicesViewModel({
-    required BankCard bankCard,
-  }) : super(bankCard: bankCard);
+  const BankCardNoBoundedDevicesViewModel({required BankCard bankCard})
+    : super(bankCard: bankCard);
 
   @override
   List<Object?> get props => [bankCard];
@@ -165,9 +167,8 @@ class BankCardsInitialViewModel extends BankCardsViewModel {}
 class BankCardsLoadingViewModel extends BankCardsViewModel {}
 
 class BankCardsFetchedViewModel extends BankCardsViewModel {
-  const BankCardsFetchedViewModel({
-    required List<BankCard> bankCards,
-  }) : super(bankCards: bankCards);
+  const BankCardsFetchedViewModel({required List<BankCard> bankCards})
+    : super(bankCards: bankCards);
 
   @override
   List<Object?> get props => [bankCards];

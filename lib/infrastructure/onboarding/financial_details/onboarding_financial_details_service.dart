@@ -27,7 +27,8 @@ class OnboardingFinancialDetailsService extends ApiService {
       return CreateTaxIdSuccesResponse();
     } catch (e) {
       return const CreateTaxIdErrorResponse(
-          errorType: FinancialDetailsErrorType.taxIdNotValid);
+        errorType: FinancialDetailsErrorType.taxIdNotValid,
+      );
     }
   }
 
@@ -47,8 +48,9 @@ class OnboardingFinancialDetailsService extends ApiService {
 
     try {
       final formattedDateOfEmployment = dateOfEmployment.isNotEmpty
-          ? DateFormat('yyyy-MM-dd')
-              .format(DateFormat('dd/MM/yyyy').parse(dateOfEmployment))
+          ? DateFormat(
+              'yyyy-MM-dd',
+            ).format(DateFormat('dd/MM/yyyy').parse(dateOfEmployment))
           : '';
 
       await post(
@@ -57,8 +59,9 @@ class OnboardingFinancialDetailsService extends ApiService {
           'maritalStatus': getOnboardingMaritalStatusValue(maritalStatus),
           'livingSituation': getOnboardingLivingSituationValue(livingSituation),
           'numberOfDependents': numberOfDependents,
-          'employmentStatus':
-              getOnboardingOccupationalStatusValue(occupationalStatus),
+          'employmentStatus': getOnboardingOccupationalStatusValue(
+            occupationalStatus,
+          ),
           'currentEmploymentStartDate': formattedDateOfEmployment,
           'monthlyIncome': monthlyIncome,
           'monthlyExpenses': monthlyExpense,
@@ -88,8 +91,9 @@ class CreateTaxIdSuccesResponse extends FinancialDetailsServiceResponse {}
 class CreateTaxIdErrorResponse extends FinancialDetailsServiceResponse {
   final FinancialDetailsErrorType errorType;
 
-  const CreateTaxIdErrorResponse(
-      {this.errorType = FinancialDetailsErrorType.taxIdNotValid});
+  const CreateTaxIdErrorResponse({
+    this.errorType = FinancialDetailsErrorType.taxIdNotValid,
+  });
 
   @override
   List<Object?> get props => [errorType];
@@ -102,9 +106,9 @@ class CreateCreditCardApplicationErrorResponse
     extends FinancialDetailsServiceResponse {
   final FinancialDetailsErrorType errorType;
 
-  const CreateCreditCardApplicationErrorResponse(
-      {this.errorType =
-          FinancialDetailsErrorType.cantCreateCreditCardApplication});
+  const CreateCreditCardApplicationErrorResponse({
+    this.errorType = FinancialDetailsErrorType.cantCreateCreditCardApplication,
+  });
 
   @override
   List<Object?> get props => [errorType];

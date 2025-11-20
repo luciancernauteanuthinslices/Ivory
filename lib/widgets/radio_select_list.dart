@@ -48,10 +48,12 @@ class _RadioSelectListState extends State<RadioSelectList> {
               item: item,
               isItemSelected: isItemSelected,
               onTap: () {
-                final newSelectedValue =
-                    isItemSelected && widget.toggleable ? null : item.value;
-                widget.onSelectionChanged
-                    ?.call(newSelectedValue != null ? item : null);
+                final newSelectedValue = isItemSelected && widget.toggleable
+                    ? null
+                    : item.value;
+                widget.onSelectionChanged?.call(
+                  newSelectedValue != null ? item : null,
+                );
                 _selectedValue.value = newSelectedValue != null ? item : null;
               },
             );
@@ -64,9 +66,7 @@ class _RadioSelectListState extends State<RadioSelectList> {
       }
     }
 
-    return Column(
-      children: children,
-    );
+    return Column(children: children);
   }
 }
 
@@ -141,11 +141,12 @@ class RadioSelectListTile extends StatelessWidget {
   final bool isItemSelected;
   final VoidCallback? onTap;
 
-  const RadioSelectListTile(
-      {super.key,
-      required this.item,
-      required this.isItemSelected,
-      this.onTap});
+  const RadioSelectListTile({
+    super.key,
+    required this.item,
+    required this.isItemSelected,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -176,37 +177,38 @@ class RadioSelectListTile extends StatelessWidget {
                       Expanded(
                         child: Text(
                           item.title,
-                          style: ClientConfig.getTextStyleScheme()
-                              .labelMedium
+                          style: ClientConfig.getTextStyleScheme().labelMedium
                               .copyWith(
-                                  color: ClientConfig.getCustomColors()
-                                      .neutral900),
+                                color:
+                                    ClientConfig.getCustomColors().neutral900,
+                              ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         item.timeEstimation,
-                        style: ClientConfig.getTextStyleScheme()
-                            .labelCaps
+                        style: ClientConfig.getTextStyleScheme().labelCaps
                             .copyWith(
-                                color:
-                                    ClientConfig.getCustomColors().neutral700),
+                              color: ClientConfig.getCustomColors().neutral700,
+                            ),
                       ),
                       const SizedBox(width: 8),
-                      Icon(Icons.alarm,
-                          size: 18,
-                          color: ClientConfig.getCustomColors().neutral700),
+                      Icon(
+                        Icons.alarm,
+                        size: 18,
+                        color: ClientConfig.getCustomColors().neutral700,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
                   Text(
                     item.subtitle,
-                    style: ClientConfig.getTextStyleScheme()
-                        .bodySmallRegular
+                    style: ClientConfig.getTextStyleScheme().bodySmallRegular
                         .copyWith(
-                            color: ClientConfig.getCustomColors().neutral900),
-                  )
+                          color: ClientConfig.getCustomColors().neutral900,
+                        ),
+                  ),
                 ],
               ),
             ),

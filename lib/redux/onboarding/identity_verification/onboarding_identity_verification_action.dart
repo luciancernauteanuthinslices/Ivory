@@ -24,8 +24,9 @@ class GetSignupIdentificationInfoCommandAction {}
 class SignupIdentificationInfoFetchedEventAction {
   final OnboardingIdentificationStatus identificationStatus;
 
-  SignupIdentificationInfoFetchedEventAction(
-      {required this.identificationStatus});
+  SignupIdentificationInfoFetchedEventAction({
+    required this.identificationStatus,
+  });
 }
 
 class AuthorizeIdentificationSigningCommandAction {}

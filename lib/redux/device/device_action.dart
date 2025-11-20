@@ -9,9 +9,7 @@ class DeviceBindingFailedEventAction {}
 class DeviceBindingNotPossibleEventAction {
   final DeviceBindingNotPossibleReason reason;
 
-  DeviceBindingNotPossibleEventAction({
-    required this.reason,
-  });
+  DeviceBindingNotPossibleEventAction({required this.reason});
 }
 
 class DeviceBindingCheckIfPossibleCommandAction {}
@@ -21,17 +19,13 @@ class CreateDeviceBindingCommandAction {}
 class VerifyDeviceBindingSignatureCommandAction {
   final String tan;
 
-  VerifyDeviceBindingSignatureCommandAction({
-    required this.tan,
-  });
+  VerifyDeviceBindingSignatureCommandAction({required this.tan});
 }
 
 class DeleteBoundDeviceCommandAction {
   final String deviceId;
 
-  DeleteBoundDeviceCommandAction({
-    required this.deviceId,
-  });
+  DeleteBoundDeviceCommandAction({required this.deviceId});
 }
 
 class DeleteIncompleteDeviceBindingCommandAction {}

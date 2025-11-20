@@ -18,10 +18,7 @@ class IvoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        color: color,
-      ),
+      decoration: BoxDecoration(borderRadius: borderRadius, color: color),
       padding: padding,
       child: child,
     );

@@ -4,10 +4,7 @@ import 'package:solarisdemo/models/device.dart';
 import 'package:solarisdemo/redux/device/device_state.dart';
 
 void main() {
-  final device = Device(
-    deviceId: "deviceId",
-    deviceName: "deviceName",
-  );
+  final device = Device(deviceId: "deviceId", deviceName: "deviceName");
 
   test("When fetching is in progress it should return loading", () {
     // given
@@ -15,7 +12,8 @@ void main() {
 
     // when
     final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingLoadingState);
+      deviceBindingState: deviceBindingLoadingState,
+    );
 
     // then
     expect(viewModel, isA<DeviceBindingLoadingViewModel>());
@@ -27,7 +25,8 @@ void main() {
 
     // when
     final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingErrorState);
+      deviceBindingState: deviceBindingErrorState,
+    );
 
     // then
     expect(viewModel, isA<DeviceBindingErrorViewModel>());
@@ -35,12 +34,17 @@ void main() {
 
   test("When fetching is successful it should return fetched", () {
     // given
-    final deviceBindingFetchedState =
-        DeviceBindingFetchedState([device], device, true, true);
+    final deviceBindingFetchedState = DeviceBindingFetchedState(
+      [device],
+      device,
+      true,
+      true,
+    );
 
     // when
     final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingFetchedState);
+      deviceBindingState: deviceBindingFetchedState,
+    );
 
     // then
     expect(viewModel, isA<DeviceBindingFetchedViewModel>());
@@ -53,7 +57,8 @@ void main() {
 
     // when
     final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingLoadingState);
+      deviceBindingState: deviceBindingLoadingState,
+    );
 
     // then
     expect(viewModel, isA<DeviceBindingLoadingViewModel>());
@@ -65,26 +70,34 @@ void main() {
 
     // when
     final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingErrorState);
+      deviceBindingState: deviceBindingErrorState,
+    );
 
     // then
     expect(viewModel, isA<DeviceBindingErrorViewModel>());
   });
 
-  test('When creating a device binding is successful it should return fetched',
-      () {
-    // given
-    final deviceBindingFetchedState =
-        DeviceBindingFetchedState([device], device, true, true);
+  test(
+    'When creating a device binding is successful it should return fetched',
+    () {
+      // given
+      final deviceBindingFetchedState = DeviceBindingFetchedState(
+        [device],
+        device,
+        true,
+        true,
+      );
 
-    // when
-    final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingFetchedState);
+      // when
+      final viewModel = DeviceBindingPresenter.presentDeviceBinding(
+        deviceBindingState: deviceBindingFetchedState,
+      );
 
-    // then
-    expect(viewModel, isA<DeviceBindingFetchedViewModel>());
-    expect((viewModel as DeviceBindingFetchedViewModel).devices, [device]);
-  });
+      // then
+      expect(viewModel, isA<DeviceBindingFetchedViewModel>());
+      expect((viewModel as DeviceBindingFetchedViewModel).devices, [device]);
+    },
+  );
 
   test('When deleting a device binding it should return loading', () {
     // given
@@ -92,7 +105,8 @@ void main() {
 
     // when
     final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingLoadingState);
+      deviceBindingState: deviceBindingLoadingState,
+    );
 
     // then
     expect(viewModel, isA<DeviceBindingLoadingViewModel>());
@@ -104,24 +118,32 @@ void main() {
 
     // when
     final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingErrorState);
+      deviceBindingState: deviceBindingErrorState,
+    );
 
     // then
     expect(viewModel, isA<DeviceBindingErrorViewModel>());
   });
 
-  test('When deleting a device binding is successful it should return fetched',
-      () {
-    // given
-    final deviceBindingFetchedState =
-        DeviceBindingFetchedState([device], device, false, true);
+  test(
+    'When deleting a device binding is successful it should return fetched',
+    () {
+      // given
+      final deviceBindingFetchedState = DeviceBindingFetchedState(
+        [device],
+        device,
+        false,
+        true,
+      );
 
-    // when
-    final viewModel = DeviceBindingPresenter.presentDeviceBinding(
-        deviceBindingState: deviceBindingFetchedState);
+      // when
+      final viewModel = DeviceBindingPresenter.presentDeviceBinding(
+        deviceBindingState: deviceBindingFetchedState,
+      );
 
-    // then
-    expect(viewModel, isA<DeviceBindingFetchedViewModel>());
-    expect((viewModel as DeviceBindingFetchedViewModel).devices, [device]);
-  });
+      // then
+      expect(viewModel, isA<DeviceBindingFetchedViewModel>());
+      expect((viewModel as DeviceBindingFetchedViewModel).devices, [device]);
+    },
+  );
 }

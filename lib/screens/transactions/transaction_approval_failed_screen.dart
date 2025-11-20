@@ -20,8 +20,10 @@ class TransactionApprovalFailedScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const AppToolbar(),
-            Text("Online payment was unsuccessful!",
-                style: ClientConfig.getTextStyleScheme().heading1),
+            Text(
+              "Online payment was unsuccessful!",
+              style: ClientConfig.getTextStyleScheme().heading1,
+            ),
             const SizedBox(height: 16),
             Text(
               "Due to a technical issue, your online payment was unsuccessful. Please try again.",
@@ -36,7 +38,10 @@ class TransactionApprovalFailedScreen extends StatelessWidget {
                 text: "Back to \"Home\"",
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
-                      context, HomeScreen.routeName, (route) => false);
+                    context,
+                    HomeScreen.routeName,
+                    (route) => false,
+                  );
                 },
               ),
             ),

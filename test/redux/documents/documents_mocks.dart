@@ -9,22 +9,26 @@ import 'package:solarisdemo/models/user.dart';
 
 class MockDocumentsService extends Mock implements DocumentsService {
   @override
-  Future<DocumentsServiceResponse> getPostboxDocuments(
-      {required User? user}) async {
+  Future<DocumentsServiceResponse> getPostboxDocuments({
+    required User? user,
+  }) async {
     return super.noSuchMethod(
       Invocation.method(#getPostboxDocuments, [], {#user: user}),
-      returnValue:
-          Future.value(GetDocumentsSuccessResponse(documents: const [])),
-      returnValueForMissingStub:
-          Future.value(GetDocumentsSuccessResponse(documents: const [])),
+      returnValue: Future.value(
+        GetDocumentsSuccessResponse(documents: const []),
+      ),
+      returnValueForMissingStub: Future.value(
+        GetDocumentsSuccessResponse(documents: const []),
+      ),
     );
   }
 }
 
 class FakeDocumentsService extends DocumentsService {
   @override
-  Future<DocumentsServiceResponse> getPostboxDocuments(
-      {required User user}) async {
+  Future<DocumentsServiceResponse> getPostboxDocuments({
+    required User user,
+  }) async {
     return GetDocumentsSuccessResponse(
       documents: const [
         Document(
@@ -50,7 +54,9 @@ class FakeDocumentsService extends DocumentsService {
     required DocumentDownloadLocation downloadLocation,
   }) async {
     return DownloadDocumentSuccessResponse(
-        document: document, file: Uint8List(0));
+      document: document,
+      file: Uint8List(0),
+    );
   }
 
   @override
@@ -64,8 +70,9 @@ class FakeDocumentsService extends DocumentsService {
 
 class FakeFailingDocumentsService extends DocumentsService {
   @override
-  Future<DocumentsServiceResponse> getPostboxDocuments(
-      {required User user}) async {
+  Future<DocumentsServiceResponse> getPostboxDocuments({
+    required User user,
+  }) async {
     return DocumentsServiceErrorResponse(errorType: DocumentsErrorType.unknown);
   }
 
@@ -89,9 +96,10 @@ class FakeFailingDocumentsService extends DocumentsService {
 
 class FakeFileSaverService extends FileSaverService {
   @override
-  Future<void> saveFile(
-      {required String name,
-      String? ext,
-      required Uint8List bytes,
-      String? mimeType}) async {}
+  Future<void> saveFile({
+    required String name,
+    String? ext,
+    required Uint8List bytes,
+    String? mimeType,
+  }) async {}
 }

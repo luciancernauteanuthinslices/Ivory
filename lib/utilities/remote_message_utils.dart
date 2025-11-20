@@ -17,7 +17,8 @@ class RemoteMessageUtils {
   }
 
   static NotificationTransactionMessage getNotificationTransactionMessage(
-      RemoteMessage message) {
+    RemoteMessage message,
+  ) {
     return NotificationTransactionMessage(
       cardId: message.data["card_id"] as String,
       amountUnit: message.data["amount_unit"] as String,
@@ -27,8 +28,9 @@ class RemoteMessageUtils {
       changeRequestId: message.data["change_request_id"] as String,
       declineChangeRequestId:
           message.data["decline_change_request_id"] as String,
-      dateTime:
-          DateTime.parse(message.data["challenged_at"] as String).toLocal(),
+      dateTime: DateTime.parse(
+        message.data["challenged_at"] as String,
+      ).toLocal(),
     );
   }
 }

@@ -8,11 +8,7 @@ class Debouncer {
   final int seconds;
   final int milliseconds;
 
-  Debouncer({
-    this.minutes = 0,
-    this.seconds = 0,
-    this.milliseconds = 0,
-  });
+  Debouncer({this.minutes = 0, this.seconds = 0, this.milliseconds = 0});
 
   void run(VoidCallback action) {
     if (_timer != null) {

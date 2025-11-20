@@ -73,13 +73,14 @@ class _ChangeRepaymentRateScreenState extends State<ChangeRepaymentRateScreen> {
                     store.dispatch(GetCardApplicationCommandAction()),
                 converter: (store) =>
                     CardApplicationPresenter.presentCardApplication(
-                  cardApplicationState: store.state.cardApplicationState,
-                ),
+                      cardApplicationState: store.state.cardApplicationState,
+                    ),
                 distinct: true,
                 builder: (context, viewModel) {
                   if (viewModel is CardApplicationErrorViewModel) {
                     return const Center(
-                        child: Text("Error at change repayment rate screen"));
+                      child: Text("Error at change repayment rate screen"),
+                    );
                   }
 
                   if (viewModel is CardApplicationFetchedViewModel) {
@@ -97,7 +98,7 @@ class _ChangeRepaymentRateScreenState extends State<ChangeRepaymentRateScreen> {
                             acceptToContinue: (value) => {
                               setState(() {
                                 canGoBack = value;
-                              })
+                              }),
                             },
                           ),
                         ],
@@ -154,23 +155,42 @@ class _PageContentState extends State<PageContent> {
   void initState() {
     super.initState();
 
-    minFixedRate = (widget.viewModel.cardApplication!.repaymentOptions!
-                .minimumAmountUpperThreshold.value /
+    minFixedRate =
+        (widget
+                .viewModel
+                .cardApplication!
+                .repaymentOptions!
+                .minimumAmountUpperThreshold
+                .value /
             100) *
         0.05;
-    maxFixedRate = (widget.viewModel.cardApplication!.repaymentOptions!
-                .minimumAmountUpperThreshold.value /
+    maxFixedRate =
+        (widget
+                .viewModel
+                .cardApplication!
+                .repaymentOptions!
+                .minimumAmountUpperThreshold
+                .value /
             100) *
         0.9;
-    inputFixedRateController.text = (widget.viewModel.cardApplication!
-                    .repaymentOptions!.minimumAmount.value /
+    inputFixedRateController.text =
+        (widget
+                    .viewModel
+                    .cardApplication!
+                    .repaymentOptions!
+                    .minimumAmount
+                    .value /
                 100) <
             minFixedRate
         ? minFixedRate.toStringAsFixed(2)
-        : (widget.viewModel.cardApplication!.repaymentOptions!.minimumAmount
-                    .value /
-                100)
-            .toStringAsFixed(2);
+        : (widget
+                      .viewModel
+                      .cardApplication!
+                      .repaymentOptions!
+                      .minimumAmount
+                      .value /
+                  100)
+              .toStringAsFixed(2);
     initialPercentageRate =
         widget.viewModel.cardApplication!.repaymentOptions!.minimumPercentage;
 
@@ -255,11 +275,13 @@ class _PageContentState extends State<PageContent> {
                       );
 
                       Navigator.pushNamed(
-                          context, RepaymentSuccessfullyChangedScreen.routeName,
-                          arguments: RepaymentSuccessfullyScreenParams(
-                            fixedRate: chosenFixedRate,
-                            interestRate: chosenPercentageRate,
-                          ));
+                        context,
+                        RepaymentSuccessfullyChangedScreen.routeName,
+                        arguments: RepaymentSuccessfullyScreenParams(
+                          fixedRate: chosenFixedRate,
+                          interestRate: chosenPercentageRate,
+                        ),
+                      );
                     }
                   : null,
             ),
@@ -279,7 +301,7 @@ class ChooseRepaymentType extends StatefulWidget {
   final int maxPercentageRate;
   final int thumbPercentageRate;
   final void Function(int value, int minValue, int maxValue)
-      onPercentageRateChanged;
+  onPercentageRateChanged;
   final TextEditingController inputFixedRateController;
 
   const ChooseRepaymentType({
@@ -400,11 +422,15 @@ class _ChooseRepaymentTypeState extends State<ChooseRepaymentType> {
           if (type == RepaymentType.percentage &&
               type == selectedRepaymentType) ...[
             PercentageRepayment(
-                minPercentageRate: widget.minPercentageRate,
-                maxPercentageRate: widget.maxPercentageRate,
-                thumbPercentageValue: widget.thumbPercentageRate,
-                onChanged: (value) => widget.onPercentageRateChanged(
-                    value, widget.minPercentageRate, widget.maxPercentageRate)),
+              minPercentageRate: widget.minPercentageRate,
+              maxPercentageRate: widget.maxPercentageRate,
+              thumbPercentageValue: widget.thumbPercentageRate,
+              onChanged: (value) => widget.onPercentageRateChanged(
+                value,
+                widget.minPercentageRate,
+                widget.maxPercentageRate,
+              ),
+            ),
           ],
           if (type == RepaymentType.fixed && type == selectedRepaymentType) ...[
             FixedRepayment(
@@ -412,7 +438,7 @@ class _ChooseRepaymentTypeState extends State<ChooseRepaymentType> {
               maxFixedRate: widget.maxFixedRate,
               controller: widget.inputFixedRateController,
             ),
-          ]
+          ],
         ],
       ),
     );
@@ -463,23 +489,17 @@ class _PercentageRepaymentState extends State<PercentageRepayment> {
                       text: 'Choose your preferred percentage rate. The ',
                     ),
                     TextSpan(
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodySmallRegular
+                      style: ClientConfig.getTextStyleScheme().bodySmallRegular
                           .copyWith(fontWeight: FontWeight.bold),
                       text: 'minimum is ${widget.minPercentageRate}%',
                     ),
-                    const TextSpan(
-                      text: ' and the ',
-                    ),
+                    const TextSpan(text: ' and the '),
                     TextSpan(
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodySmallRegular
+                      style: ClientConfig.getTextStyleScheme().bodySmallRegular
                           .copyWith(fontWeight: FontWeight.bold),
                       text: 'maximum is ${widget.maxPercentageRate}%',
                     ),
-                    const TextSpan(
-                      text: '.',
-                    ),
+                    const TextSpan(text: '.'),
                   ],
                 ),
               ),
@@ -583,25 +603,19 @@ class _FixedRepaymentState extends State<FixedRepayment> {
                       text: 'Choose your preferred fixed rate. The ',
                     ),
                     TextSpan(
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodySmallRegular
+                      style: ClientConfig.getTextStyleScheme().bodySmallRegular
                           .copyWith(fontWeight: FontWeight.bold),
                       text:
                           'minimum is ${Format.currency(widget.minFixedRate)}',
                     ),
-                    const TextSpan(
-                      text: ' and the ',
-                    ),
+                    const TextSpan(text: ' and the '),
                     TextSpan(
-                      style: ClientConfig.getTextStyleScheme()
-                          .bodySmallRegular
+                      style: ClientConfig.getTextStyleScheme().bodySmallRegular
                           .copyWith(fontWeight: FontWeight.bold),
                       text:
                           'maximum is ${Format.currency(widget.maxFixedRate)}',
                     ),
-                    const TextSpan(
-                      text: '.',
-                    ),
+                    const TextSpan(text: '.'),
                   ],
                 ),
               ),
@@ -625,15 +639,16 @@ class _FixedRepaymentState extends State<FixedRepayment> {
                   style: BorderStyle.solid,
                 ),
                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    bottomLeft: Radius.circular(8)),
+                  topLeft: Radius.circular(8),
+                  bottomLeft: Radius.circular(8),
+                ),
                 color: ClientConfig.getCustomColors().neutral100,
               ),
               child: Text(
                 '€',
-                style: ClientConfig.getTextStyleScheme()
-                    .heading2
-                    .copyWith(color: ClientConfig.getCustomColors().neutral700),
+                style: ClientConfig.getTextStyleScheme().heading2.copyWith(
+                  color: ClientConfig.getCustomColors().neutral700,
+                ),
               ),
             ),
             Expanded(
@@ -646,7 +661,7 @@ class _FixedRepaymentState extends State<FixedRepayment> {
                   setState(() {
                     isErrorRange =
                         (double.parse(inputValue) < widget.minFixedRate ||
-                            double.parse(inputValue) > widget.maxFixedRate);
+                        double.parse(inputValue) > widget.maxFixedRate);
                   });
 
                   if (double.parse(inputValue) < widget.minFixedRate) {
@@ -659,23 +674,20 @@ class _FixedRepaymentState extends State<FixedRepayment> {
                         'Rate is too high. The maximum is € ${widget.maxFixedRate}.';
                   }
                 },
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.allow(regExp),
-                  TextInputFormatter.withFunction(
-                    (oldValue, newValue) {
-                      final inputValue = newValue.text;
+                  TextInputFormatter.withFunction((oldValue, newValue) {
+                    final inputValue = newValue.text;
 
-                      if (inputValue.isEmpty) {
-                        return newValue.copyWith(text: '');
-                      }
+                    if (inputValue.isEmpty) {
+                      return newValue.copyWith(text: '');
+                    }
 
-                      return (inputValue.contains(regExp))
-                          ? newValue
-                          : oldValue;
-                    },
-                  ),
+                    return (inputValue.contains(regExp)) ? newValue : oldValue;
+                  }),
                 ],
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(
@@ -766,9 +778,9 @@ class CustomThumb extends SliderComponentShape {
 
     final textSpan = TextSpan(
       text: '${label.round()}%',
-      style: ClientConfig.getTextStyleScheme()
-          .labelSmall
-          .copyWith(color: Colors.white),
+      style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+        color: Colors.white,
+      ),
     );
 
     final textPainter = TextPainter(
@@ -779,7 +791,9 @@ class CustomThumb extends SliderComponentShape {
     textPainter.layout();
 
     final textOffset = Offset(
-        center.dx - textPainter.width / 2, center.dy - textPainter.height / 2);
+      center.dx - textPainter.width / 2,
+      center.dy - textPainter.height / 2,
+    );
 
     textPainter.paint(canvas, textOffset);
   }
@@ -811,7 +825,9 @@ class ShowBottomModalActions extends StatelessWidget {
           CustomAction(
             path: () {
               Navigator.popUntil(
-                  context, ModalRoute.withName(RepaymentsScreen.routeName));
+                context,
+                ModalRoute.withName(RepaymentsScreen.routeName),
+              );
             },
             message: 'Yes, discard changes',
             backgroundColor: Colors.red,
@@ -858,18 +874,10 @@ class CustomAction extends StatelessWidget {
           ),
           elevation: 0,
         ),
-        child: Text(
-          message,
-          style: TextStyle(
-            color: messageColor,
-          ),
-        ),
+        child: Text(message, style: TextStyle(color: messageColor)),
       ),
     );
   }
 }
 
-enum RepaymentType {
-  percentage,
-  fixed,
-}
+enum RepaymentType { percentage, fixed }

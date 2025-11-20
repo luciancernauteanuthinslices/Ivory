@@ -9,8 +9,11 @@ class AuthErrorScreen extends StatelessWidget {
   final String title;
   final String message;
 
-  const AuthErrorScreen(
-      {super.key, required this.message, required this.title});
+  const AuthErrorScreen({
+    super.key,
+    required this.message,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +32,10 @@ class AuthErrorScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.popUntil(
                         context,
-                        ModalRoute.withName(
-                          WelcomeScreen.routeName,
-                        ),
+                        ModalRoute.withName(WelcomeScreen.routeName),
                       );
                     },
-                  )
+                  ),
                 ],
               ),
             ),

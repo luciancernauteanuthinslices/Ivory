@@ -7,16 +7,15 @@ import '../../services/api_service.dart';
 class CreditLineService extends ApiService {
   CreditLineService({super.user});
 
-  Future<CreditLineServiceResponse> getCreditLine({
-    required User user,
-  }) async {
+  Future<CreditLineServiceResponse> getCreditLine({required User user}) async {
     this.user = user;
 
     try {
       final data = await get('credit_card/repayment');
 
       return GetCreditLineSuccessResponse(
-          creditLine: CreditLine.fromJson(data));
+        creditLine: CreditLine.fromJson(data),
+      );
     } catch (e) {
       return CreditLineServiceErrorResponse();
     }

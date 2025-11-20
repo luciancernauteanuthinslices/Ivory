@@ -43,43 +43,31 @@ void main() {
   final List<Transaction> transactions = [
     transaction1,
     transaction2,
-    transaction3
+    transaction3,
   ];
 
   final upcomingTransactions1 = UpcomingTransaction(
     id: "6e40fbd5-d7fa-5656-bff8-e19a8f4fa540",
     dueDate: DateTime.parse("2023-07-05T09:06:02Z"),
-    outstandingAmount: AmountValue(
-      currency: "EUR",
-      unit: "cents",
-      value: 100,
-    ),
+    outstandingAmount: AmountValue(currency: "EUR", unit: "cents", value: 100),
   );
 
   final upcomingTransactions2 = UpcomingTransaction(
     id: "6e40fbd5-d7fa-5656-bff8-e19a8f4fa540",
     dueDate: DateTime.parse("2023-07-05T09:06:02Z"),
-    outstandingAmount: AmountValue(
-      currency: "EUR",
-      unit: "cents",
-      value: 100,
-    ),
+    outstandingAmount: AmountValue(currency: "EUR", unit: "cents", value: 100),
   );
 
   final upcomingTransactions3 = UpcomingTransaction(
     id: "6e40fbd5-d7fa-5656-bff8-e19a8f4fa540",
     dueDate: DateTime.parse("2023-07-05T09:06:02Z"),
-    outstandingAmount: AmountValue(
-      currency: "EUR",
-      unit: "cents",
-      value: 100,
-    ),
+    outstandingAmount: AmountValue(currency: "EUR", unit: "cents", value: 100),
   );
 
   final List<UpcomingTransaction> upcomingTransactions = [
     upcomingTransactions1,
     upcomingTransactions2,
-    upcomingTransactions3
+    upcomingTransactions3,
   ];
 
   test("When fetching is in progress should return loading", () {
@@ -87,7 +75,8 @@ void main() {
     final transactionsState = TransactionsLoadingState(null);
     //when
     final viewModel = TransactionPresenter.presentTransactions(
-        transactionsState: transactionsState);
+      transactionsState: transactionsState,
+    );
     //then
     expect(viewModel, const TransactionsLoadingViewModel());
   });
@@ -97,7 +86,8 @@ void main() {
     final transactionsState = TransactionsFetchedState(transactions, null);
     //when
     final viewModel = TransactionPresenter.presentTransactions(
-        transactionsState: transactionsState);
+      transactionsState: transactionsState,
+    );
     //then
     expect(viewModel, TransactionsFetchedViewModel(transactions: transactions));
   });
@@ -107,24 +97,31 @@ void main() {
     final transactionsState = TransactionsErrorState();
     //when
     final viewModel = TransactionPresenter.presentTransactions(
-        transactionsState: transactionsState);
+      transactionsState: transactionsState,
+    );
     //then
     expect(viewModel, TransactionsErrorViewModel());
   });
 
   test(
-      "When fetching upcoming transactions is successful should return a list of upcoming transactions",
-      () {
-    //given
-    final upcomingTransactionsState =
-        UpcomingTransactionsFetchedState(upcomingTransactions, null);
-    //when
-    final viewModel = TransactionPresenter.presentTransactions(
-        transactionsState: upcomingTransactionsState);
-    //then
-    expect(
+    "When fetching upcoming transactions is successful should return a list of upcoming transactions",
+    () {
+      //given
+      final upcomingTransactionsState = UpcomingTransactionsFetchedState(
+        upcomingTransactions,
+        null,
+      );
+      //when
+      final viewModel = TransactionPresenter.presentTransactions(
+        transactionsState: upcomingTransactionsState,
+      );
+      //then
+      expect(
         viewModel,
         UpcomingTransactionsFetchedViewModel(
-            upcomingTransactions: upcomingTransactions));
-  });
+          upcomingTransactions: upcomingTransactions,
+        ),
+      );
+    },
+  );
 }

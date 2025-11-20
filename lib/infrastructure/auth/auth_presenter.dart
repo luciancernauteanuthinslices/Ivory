@@ -5,9 +5,7 @@ import 'package:solarisdemo/models/user.dart';
 import 'package:solarisdemo/redux/auth/auth_state.dart';
 
 class AuthPresenter {
-  static AuthViewModel presentAuth({
-    required AuthState authState,
-  }) {
+  static AuthViewModel presentAuth({required AuthState authState}) {
     if (authState is AuthCredentialsLoadedState) {
       return AuthCredentialsLoadedViewModel(
         email: authState.email ?? authState.email,
@@ -17,9 +15,7 @@ class AuthPresenter {
     } else if (authState is AuthLoadingState) {
       return AuthLoadingViewModel();
     } else if (authState is AuthErrorState) {
-      return AuthErrorViewModel(
-        authState.errorType,
-      );
+      return AuthErrorViewModel(authState.errorType);
     } else if (authState is AuthenticationInitializedState) {
       return AuthInitializedViewModel(
         cognitoUser: authState.cognitoUser,
@@ -72,9 +68,8 @@ class AuthCredentialsLoadedViewModel extends AuthViewModel {
 class AuthLoadingViewModel extends AuthViewModel {}
 
 class AuthErrorViewModel extends AuthViewModel {
-  const AuthErrorViewModel(
-    AuthErrorType errorType,
-  ) : super(errorType: errorType);
+  const AuthErrorViewModel(AuthErrorType errorType)
+    : super(errorType: errorType);
 }
 
 class AuthInitializedViewModel extends AuthViewModel {
@@ -88,9 +83,8 @@ class AuthInitializedViewModel extends AuthViewModel {
 }
 
 class AuthenticatedViewModel extends AuthViewModel {
-  const AuthenticatedViewModel({
-    required AuthenticatedUser authenticatedUser,
-  }) : super(authenticatedUser: authenticatedUser);
+  const AuthenticatedViewModel({required AuthenticatedUser authenticatedUser})
+    : super(authenticatedUser: authenticatedUser);
 
   @override
   List<Object?> get props => [authenticatedUser];

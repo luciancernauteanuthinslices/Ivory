@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:solarisdemo/config.dart';
 
 const double _defaultFontSize = 16;
-const BorderRadiusGeometry _defaultBorderRadius =
-    BorderRadius.all(Radius.circular(4));
+const BorderRadiusGeometry _defaultBorderRadius = BorderRadius.all(
+  Radius.circular(4),
+);
 
 class Button extends StatelessWidget {
   final String text;
@@ -67,9 +68,9 @@ class Button extends StatelessWidget {
                   child: CircularProgressIndicator(
                     color: ClientConfig.getCustomColors().neutral500,
                   ),
-                )
+                ),
               ]
-            : [const SizedBox(width: 24)])
+            : [const SizedBox(width: 24)]),
       ],
     );
 
@@ -82,9 +83,7 @@ class Button extends StatelessWidget {
         minimumSize: const Size(0, 0),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        shape: RoundedRectangleBorder(
-          borderRadius: borderRadius,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: borderRadius),
       ),
       onPressed: isDisabled ? null : (onPressed as void Function()?),
       child: buttonChild,

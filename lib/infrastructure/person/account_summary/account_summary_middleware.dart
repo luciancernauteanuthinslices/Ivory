@@ -29,10 +29,14 @@ class GetAccountSummaryMiddleware extends MiddlewareClass<AppState> {
       store.dispatch(AccountSummaryLoadingEventAction());
 
       final response = await _accountSummaryService.getPersonAccountSummary(
-          user: authState.authenticatedUser.cognito);
+        user: authState.authenticatedUser.cognito,
+      );
       if (response is GetAccountSummarySuccessResponse) {
-        store.dispatch(AccountSummaryFetchedEventAction(
-            accountSummary: response.accountSummary));
+        store.dispatch(
+          AccountSummaryFetchedEventAction(
+            accountSummary: response.accountSummary,
+          ),
+        );
       } else {
         store.dispatch(AccountSummaryFailedEventAction());
       }

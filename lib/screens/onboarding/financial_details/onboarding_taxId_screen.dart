@@ -24,8 +24,9 @@ class OnboardingTaxIdScreen extends StatefulWidget {
 }
 
 class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
-  final IvoryTextFieldController _taxIdController =
-      IvoryTextFieldController(text: '489 543 712 07');
+  final IvoryTextFieldController _taxIdController = IvoryTextFieldController(
+    text: '489 543 712 07',
+  );
   final ContinueButtonController _continueButtonController =
       ContinueButtonController();
 
@@ -69,16 +70,19 @@ class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
                 children: [
                   const SizedBox(height: 16),
                   Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Tax ID',
-                          style: ClientConfig.getTextStyleScheme().heading2)),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Tax ID',
+                      style: ClientConfig.getTextStyleScheme().heading2,
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   IvoryTextField(
                     label: 'Tax ID number',
                     placeholder: 'E.g. 489 543 712 07',
                     controller: _taxIdController,
                     inputFormatters: [
-                      InputFormatter.taxId(_taxIdController.text)
+                      InputFormatter.taxId(_taxIdController.text),
                     ],
                     inputType: TextFieldInputType.number,
                     keyboardType: TextInputType.number,
@@ -87,21 +91,26 @@ class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
                   StoreConnector<AppState, OnboardingFinancialDetailsViewModel>(
                     converter: (store) =>
                         OnboardingFinancialDetailsPresenter.present(
-                            financialState:
-                                store.state.onboardingFinancialDetailsState),
+                          financialState:
+                              store.state.onboardingFinancialDetailsState,
+                        ),
                     onWillChange: (previousViewModel, newViewModel) {
                       if (newViewModel.isLoading) {
                         _continueButtonController.setLoading();
                       } else if (previousViewModel!
-                                  .financialDetailsAttributes.taxId ==
+                                  .financialDetailsAttributes
+                                  .taxId ==
                               null &&
                           newViewModel.financialDetailsAttributes.taxId !=
                               null) {
                         Navigator.pushNamed(
-                            context, OnboardingPublicStatusScreen.routeName);
+                          context,
+                          OnboardingPublicStatusScreen.routeName,
+                        );
                       } else if (newViewModel.errorType != null) {
                         _taxIdController.setErrorText(
-                            'This Tax ID is invalid for Germany. Please try another.');
+                          'This Tax ID is invalid for Germany. Please try another.',
+                        );
                       }
                     },
                     distinct: true,
@@ -113,9 +122,14 @@ class _OnboardingTaxIdScreenState extends State<OnboardingTaxIdScreen> {
                           isLoading: _continueButtonController.isLoading,
                           onPressed: _continueButtonController.isEnabled
                               ? () => StoreProvider.of<AppState>(context)
-                                  .dispatch(CreateTaxIdCommandAction(
-                                      taxId: _taxIdController.text
-                                          .replaceAll(' ', '')))
+                                    .dispatch(
+                                      CreateTaxIdCommandAction(
+                                        taxId: _taxIdController.text.replaceAll(
+                                          ' ',
+                                          '',
+                                        ),
+                                      ),
+                                    )
                               : null,
                         ),
                       );

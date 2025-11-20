@@ -60,14 +60,12 @@ class _MoreCreditScreenState extends State<MoreCreditScreen> {
                           throw 'Could not launch $phoneNumber';
                         }
                       },
-                    style:
-                        ClientConfig.getTextStyleScheme().labelLarge.copyWith(
-                              color: ClientConfig.getColorScheme().secondary,
-                            ),
+                    style: ClientConfig.getTextStyleScheme().labelLarge
+                        .copyWith(
+                          color: ClientConfig.getColorScheme().secondary,
+                        ),
                   ),
-                  const TextSpan(
-                    text: '.',
-                  ),
+                  const TextSpan(text: '.'),
                 ],
               ),
             ),
@@ -99,9 +97,9 @@ class _MoreCreditScreenState extends State<MoreCreditScreen> {
                   color: ClientConfig.getColorScheme().tertiary,
                   textColor: ClientConfig.getColorScheme().surface,
                   onPressed: () {
-                    StoreProvider.of<AppState>(context).dispatch(
-                      UpdateMoreCreditCommandAction(),
-                    );
+                    StoreProvider.of<AppState>(
+                      context,
+                    ).dispatch(UpdateMoreCreditCommandAction());
                     Navigator.pushNamed(
                       context,
                       MoreCreditWaitlistScreen.routeName,

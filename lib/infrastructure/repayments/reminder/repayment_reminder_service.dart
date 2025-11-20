@@ -33,15 +33,16 @@ class RepaymentReminderService extends ApiService {
     try {
       final datetime =
           "${reminder.datetime.toIso8601String().replaceAll("Z", "")}Z"; // TODO: Fix this hack
-      final data = await post('notifications/scheduled', body: {
-        "datetime": datetime,
-        "title": "Repayment Reminder",
-        "body": "You have a repayment due on $datetime",
-        "type": "REPAYMENT_REMINDER",
-        "details": {
-          "description": reminder.description,
-        }
-      });
+      final data = await post(
+        'notifications/scheduled',
+        body: {
+          "datetime": datetime,
+          "title": "Repayment Reminder",
+          "body": "You have a repayment due on $datetime",
+          "type": "REPAYMENT_REMINDER",
+          "details": {"description": reminder.description},
+        },
+      );
 
       return AddRepaymentReminderSuccessResponse(
         repaymentReminder: RepaymentReminder(

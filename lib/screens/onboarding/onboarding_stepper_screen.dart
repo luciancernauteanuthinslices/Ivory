@@ -33,43 +33,52 @@ class _OnboardingStepperScreenState extends State<OnboardingStepperScreen> {
         onInit: (store) => store.dispatch(GetOnboardingProgressCommandAction()),
         converter: (store) =>
             OnboardingProgressPresenter.presentOnboardingProgress(
-          onboardingProgressState: store.state.onboardingProgressState,
-        ),
+              onboardingProgressState: store.state.onboardingProgressState,
+            ),
         distinct: true,
         onWillChange: (previousViewModel, newViewModel) {
           if (newViewModel is RedirectToScoringSuccessViewModel) {
             Navigator.pushNamedAndRemoveUntil(
-                context,
-                OnboardingCreditLimitCongratulationsScreen.routeName,
-                (route) => false);
+              context,
+              OnboardingCreditLimitCongratulationsScreen.routeName,
+              (route) => false,
+            );
           } else if (newViewModel is RedirectToScoringFailedViewModel) {
-            Navigator.pushNamedAndRemoveUntil(context,
-                OnboardingScoringRejectedScreen.routeName, (route) => false);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              OnboardingScoringRejectedScreen.routeName,
+              (route) => false,
+            );
           } else if (newViewModel is RedirectToCongratulationsViewModel) {
-            Navigator.pushNamedAndRemoveUntil(context,
-                OnboardingCongratulationsScreen.routeName, (route) => false);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              OnboardingCongratulationsScreen.routeName,
+              (route) => false,
+            );
           }
         },
         builder: (context, viewModel) {
           return viewModel is OnboardingProgressFetchedViewModel
               ? _buildContent(context, viewModel)
               : viewModel is OnboardingProgressErrorViewModel
-                  ? GenericErrorScreenBody(
-                      isLoading:
-                          viewModel is OnboardingProgressLoadingViewModel,
-                      onTryAgainPressed: () {
-                        StoreProvider.of<AppState>(context)
-                            .dispatch(GetOnboardingProgressCommandAction());
-                      },
-                    )
-                  : _buildLoadingSkeleton();
+              ? GenericErrorScreenBody(
+                  isLoading: viewModel is OnboardingProgressLoadingViewModel,
+                  onTryAgainPressed: () {
+                    StoreProvider.of<AppState>(
+                      context,
+                    ).dispatch(GetOnboardingProgressCommandAction());
+                  },
+                )
+              : _buildLoadingSkeleton();
         },
       ),
     );
   }
 
   Widget _buildContent(
-      BuildContext context, OnboardingProgressFetchedViewModel viewModel) {
+    BuildContext context,
+    OnboardingProgressFetchedViewModel viewModel,
+  ) {
     final percent = viewModel.progress.progressPercentage / 100;
     final activeStep = viewModel.progress.activeStep;
     final routeName = viewModel.progress.routeName;
@@ -272,7 +281,9 @@ class OnboardingStepListTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-            color: ClientConfig.getCustomColors().neutral200, width: 1),
+          color: ClientConfig.getCustomColors().neutral200,
+          width: 1,
+        ),
         color: state != OnboardingStepState.inProgress
             ? ClientConfig.getCustomColors().neutral100
             : ClientConfig.getColorScheme().background,
@@ -286,45 +297,52 @@ class OnboardingStepListTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TileIcon(
-                  state: state,
-                  index: index,
-                ),
+                TileIcon(state: state, index: index),
                 const SizedBox(width: 16),
                 Text(
                   item.title,
                   style: (state == OnboardingStepState.notStarted)
                       ? ClientConfig.getTextStyleScheme().labelMedium.copyWith(
-                          color: ClientConfig.getCustomColors().neutral500)
+                          color: ClientConfig.getCustomColors().neutral500,
+                        )
                       : ClientConfig.getTextStyleScheme().labelMedium,
                 ),
                 const Spacer(),
                 if (state == OnboardingStepState.inProgress) ...[
                   Row(
                     children: [
-                      Text(item.timeEstimation,
-                          style: ClientConfig.getTextStyleScheme().labelCaps),
+                      Text(
+                        item.timeEstimation,
+                        style: ClientConfig.getTextStyleScheme().labelCaps,
+                      ),
                       const SizedBox(width: 8),
-                      SvgPicture.asset('assets/icons/clock.svg',
-                          width: 16, height: 16),
+                      SvgPicture.asset(
+                        'assets/icons/clock.svg',
+                        width: 16,
+                        height: 16,
+                      ),
                     ],
                   ),
                 ] else if (state == OnboardingStepState.notStarted) ...[
                   Row(
                     children: [
-                      Text(item.timeEstimation,
-                          style: ClientConfig.getTextStyleScheme()
-                              .labelCaps
-                              .copyWith(
-                                  color: ClientConfig.getCustomColors()
-                                      .neutral500)),
+                      Text(
+                        item.timeEstimation,
+                        style: ClientConfig.getTextStyleScheme().labelCaps
+                            .copyWith(
+                              color: ClientConfig.getCustomColors().neutral500,
+                            ),
+                      ),
                       const SizedBox(width: 8),
-                      SvgPicture.asset('assets/icons/clock.svg',
-                          width: 16,
-                          height: 16,
-                          colorFilter: ColorFilter.mode(
-                              ClientConfig.getCustomColors().neutral500,
-                              BlendMode.srcIn))
+                      SvgPicture.asset(
+                        'assets/icons/clock.svg',
+                        width: 16,
+                        height: 16,
+                        colorFilter: ColorFilter.mode(
+                          ClientConfig.getCustomColors().neutral500,
+                          BlendMode.srcIn,
+                        ),
+                      ),
                     ],
                   ),
                 ] else
@@ -356,11 +374,7 @@ class TileIcon extends StatelessWidget {
   final OnboardingStepState state;
   final int index;
 
-  const TileIcon({
-    super.key,
-    required this.state,
-    required this.index,
-  });
+  const TileIcon({super.key, required this.state, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -372,8 +386,11 @@ class TileIcon extends StatelessWidget {
           shape: BoxShape.circle,
           color: ClientConfig.getColorScheme().secondary,
         ),
-        child: Icon(Icons.check,
-            size: 16, color: ClientConfig.getColorScheme().surface),
+        child: Icon(
+          Icons.check,
+          size: 16,
+          color: ClientConfig.getColorScheme().surface,
+        ),
       );
     }
     if (state == OnboardingStepState.inProgress) {
@@ -388,9 +405,10 @@ class TileIcon extends StatelessWidget {
           child: Text(
             '$index',
             style: TextStyle(
-                color: ClientConfig.getColorScheme().surface,
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
+              color: ClientConfig.getColorScheme().surface,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       );
@@ -401,7 +419,9 @@ class TileIcon extends StatelessWidget {
       height: 32,
       decoration: BoxDecoration(
         border: Border.all(
-            width: 2, color: ClientConfig.getCustomColors().neutral500),
+          width: 2,
+          color: ClientConfig.getCustomColors().neutral500,
+        ),
         shape: BoxShape.circle,
         color: const Color(0x00000000),
       ),
@@ -433,8 +453,4 @@ class OnboardingStepperItem {
   });
 }
 
-enum OnboardingStepState {
-  completed,
-  inProgress,
-  notStarted,
-}
+enum OnboardingStepState { completed, inProgress, notStarted }

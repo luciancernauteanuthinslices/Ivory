@@ -41,11 +41,13 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         );
 
         if (response is OnboardingCreatePersonSuccessResponse) {
-          store.dispatch(CreatePersonAccountSuccessEventAction(
-              personId: response.personId));
+          store.dispatch(
+            CreatePersonAccountSuccessEventAction(personId: response.personId),
+          );
         } else if (response is OnboardingPersonalDetailsServiceErrorResponse) {
-          store.dispatch(CreatePersonAccountFailedEventAction(
-              errorType: response.errorType));
+          store.dispatch(
+            CreatePersonAccountFailedEventAction(errorType: response.errorType),
+          );
         }
       }
     }
@@ -63,11 +65,13 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         );
 
         if (response is CreateMobileNumberSuccessResponse) {
-          store.dispatch(MobileNumberCreatedEventAction(
-              mobileNumber: action.mobileNumber));
+          store.dispatch(
+            MobileNumberCreatedEventAction(mobileNumber: action.mobileNumber),
+          );
         } else if (response is MobileNumberServiceErrorResponse) {
-          store.dispatch(MobileNumberCreateFailedEventAction(
-              errorType: response.errorType));
+          store.dispatch(
+            MobileNumberCreateFailedEventAction(errorType: response.errorType),
+          );
         }
       }
     }
@@ -88,8 +92,11 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         if (response is ConfirmMobileNumberSuccessResponse) {
           store.dispatch(MobileNumberConfirmedEventAction());
         } else if (response is MobileNumberServiceErrorResponse) {
-          store.dispatch(MobileNumberConfirmationFailedEventAction(
-              errorType: response.errorType));
+          store.dispatch(
+            MobileNumberConfirmationFailedEventAction(
+              errorType: response.errorType,
+            ),
+          );
         }
       }
     }
@@ -107,8 +114,9 @@ class OnboardingPersonalDetailsMiddleware extends MiddlewareClass<AppState> {
         if (response is VerifyMobileNumberSuccessResponse) {
           store.dispatch(MobileNumberVerifiedEventAction());
         } else if (response is MobileNumberServiceErrorResponse) {
-          store.dispatch(MobileNumberCreateFailedEventAction(
-              errorType: response.errorType));
+          store.dispatch(
+            MobileNumberCreateFailedEventAction(errorType: response.errorType),
+          );
         }
       }
     }

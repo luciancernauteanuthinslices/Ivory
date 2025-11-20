@@ -23,12 +23,12 @@ class NotificationTransactionMessage extends Equatable {
 
   @override
   List<Object?> get props => [
-        cardId,
-        amountUnit,
-        amountValue,
-        merchantName,
-        amountCurrency,
-        changeRequestId,
-        declineChangeRequestId,
-      ];
+    cardId,
+    amountUnit,
+    amountValue,
+    merchantName,
+    amountCurrency,
+    changeRequestId,
+    declineChangeRequestId,
+  ];
 }

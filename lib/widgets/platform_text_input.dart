@@ -84,11 +84,7 @@ class PlatformTextInput extends StatelessWidget {
               if (icon != null)
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
-                  child: Icon(
-                    icon,
-                    color: const Color(0xFF667085),
-                    size: 16,
-                  ),
+                  child: Icon(icon, color: const Color(0xFF667085), size: 16),
                 ),
               Expanded(
                 child: TextFormField(

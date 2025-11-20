@@ -39,19 +39,13 @@ class _ChooseMethodScreenState extends State<ChooseMethodScreen> {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Choose method',
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 16),
             const Text(
               'Recommended',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             CustomBox(
@@ -69,10 +63,7 @@ class _ChooseMethodScreenState extends State<ChooseMethodScreen> {
             const SizedBox(height: 8),
             const Text(
               'Other methods',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             CustomBox(
               title: 'Apple Pay',
@@ -134,8 +125,9 @@ class CustomBox extends StatelessWidget {
             ],
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(
-                color: isSelected ? Colors.orange : Colors.transparent,
-                width: 2),
+              color: isSelected ? Colors.orange : Colors.transparent,
+              width: 2,
+            ),
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -145,8 +137,10 @@ class CustomBox extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
-                Icon(icon,
-                    color: icon == Icons.apple ? Colors.black : Colors.orange),
+                Icon(
+                  icon,
+                  color: icon == Icons.apple ? Colors.black : Colors.orange,
+                ),
                 const SizedBox(width: 16.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,10 +164,7 @@ class CustomBox extends StatelessWidget {
                 ),
                 const Spacer(),
                 if (isSelected)
-                  const Icon(
-                    Icons.check_sharp,
-                    color: Colors.green,
-                  ),
+                  const Icon(Icons.check_sharp, color: Colors.green),
               ],
             ),
           ),

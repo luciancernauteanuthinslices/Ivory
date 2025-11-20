@@ -35,9 +35,13 @@ void main() {
     test('getActivityType', () {
       expect(getActivityType("APP_START"), DeviceActivityType.APP_START);
       expect(
-          getActivityType("PASSWORD_RESET"), DeviceActivityType.PASSWORD_RESET);
-      expect(getActivityType("CONSENT_PROVIDED"),
-          DeviceActivityType.CONSENT_PROVIDED);
+        getActivityType("PASSWORD_RESET"),
+        DeviceActivityType.PASSWORD_RESET,
+      );
+      expect(
+        getActivityType("CONSENT_PROVIDED"),
+        DeviceActivityType.CONSENT_PROVIDED,
+      );
     });
 
     test('getActivityType() - Invalid activity type', () {

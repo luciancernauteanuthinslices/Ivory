@@ -33,7 +33,8 @@ class FakeFailingOnboardingPersonalDetailsService
     required String addressLine,
   }) async {
     return OnboardingPersonalDetailsServiceErrorResponse(
-        errorType: OnboardingPersonalDetailsErrorType.unknown);
+      errorType: OnboardingPersonalDetailsErrorType.unknown,
+    );
   }
 }
 

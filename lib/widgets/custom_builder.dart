@@ -4,11 +4,7 @@ class CustomBuilder extends StatelessWidget {
   final Widget? child;
   final Widget Function(BuildContext context, Widget? child) builder;
 
-  const CustomBuilder({
-    super.key,
-    required this.builder,
-    this.child,
-  });
+  const CustomBuilder({super.key, required this.builder, this.child});
 
   @override
   Widget build(BuildContext context) {

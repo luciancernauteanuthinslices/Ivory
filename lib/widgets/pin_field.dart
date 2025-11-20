@@ -119,10 +119,7 @@ class FourDigitPinCodeInput extends StatefulWidget {
   final ValueChanged<String> onCompleted;
   late String pin;
 
-  FourDigitPinCodeInput({
-    super.key,
-    required this.onCompleted,
-  });
+  FourDigitPinCodeInput({super.key, required this.onCompleted});
 
   @override
   FourDigitPinCodeInputState createState() => FourDigitPinCodeInputState();
@@ -130,10 +127,14 @@ class FourDigitPinCodeInput extends StatefulWidget {
 
 class FourDigitPinCodeInputState extends State<FourDigitPinCodeInput> {
   FocusNode focusNode = FocusNode();
-  final List<TextEditingController> _controllers =
-      List.generate(4, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes =
-      List<FocusNode>.generate(4, (index) => FocusNode());
+  final List<TextEditingController> _controllers = List.generate(
+    4,
+    (_) => TextEditingController(),
+  );
+  final List<FocusNode> _focusNodes = List<FocusNode>.generate(
+    4,
+    (index) => FocusNode(),
+  );
 
   List<GlobalKey<PinFieldState>> pinFieldKeys = List.generate(
     4,
@@ -209,14 +210,11 @@ class FourDigitPinCodeInputState extends State<FourDigitPinCodeInput> {
 
   void toggleValidity() {
     setAllFieldsInvalid();
-    Future.delayed(
-      const Duration(milliseconds: 1000),
-      () {
-        if (mounted) {
-          setAllFieldsValid();
-        }
-      },
-    );
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      if (mounted) {
+        setAllFieldsValid();
+      }
+    });
   }
 
   void setAllFieldsValid() {

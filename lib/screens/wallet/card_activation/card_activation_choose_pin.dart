@@ -33,9 +33,10 @@ class _BankCardDetailsChoosePinScreenState
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return StoreConnector<AppState, BankCardViewModel>(
       converter: (store) => BankCardPresenter.presentBankCard(
@@ -48,19 +49,19 @@ class _BankCardDetailsChoosePinScreenState
             children: [
               AppToolbar(
                 richTextTitle: RichText(
-                    text: TextSpan(
-                  style: ClientConfig.getTextStyleScheme().heading4,
-                  children: <TextSpan>[
-                    const TextSpan(
-                      text: 'Step 2 ',
-                    ),
-                    TextSpan(
-                      text: 'out of 4',
-                      style: TextStyle(
-                          color: ClientConfig.getCustomColors().neutral700),
-                    ),
-                  ],
-                )),
+                  text: TextSpan(
+                    style: ClientConfig.getTextStyleScheme().heading4,
+                    children: <TextSpan>[
+                      const TextSpan(text: 'Step 2 '),
+                      TextSpan(
+                        text: 'out of 4',
+                        style: TextStyle(
+                          color: ClientConfig.getCustomColors().neutral700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
                 backButtonEnabled: true,
@@ -73,9 +74,7 @@ class _BankCardDetailsChoosePinScreenState
                 color: ClientConfig.getColorScheme().secondary,
                 backgroundColor: ClientConfig.getCustomColors().neutral200,
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Padding(
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
@@ -167,9 +166,7 @@ class _BankCardDetailsChoosePinScreenState
                         validColor: ClientConfig.getCustomColors().neutral900,
                         invalidColor: const Color(0xFFE61F27),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                     ],
                   ),
                 ),
@@ -211,10 +208,7 @@ class _BankCardDetailsChoosePinScreenState
 
     Future.delayed(const Duration(milliseconds: 500), () {
       StoreProvider.of<AppState>(context).dispatch(
-        BankCardChoosePinCommandAction(
-          bankCard: viewModel.bankCard!,
-          pin: pin,
-        ),
+        BankCardChoosePinCommandAction(bankCard: viewModel.bankCard!, pin: pin),
       );
       Navigator.pushNamed(context, BankCardDetailsConfirmPinScreen.routeName);
 
@@ -247,21 +241,16 @@ class _BankCardDetailsChoosePinScreenState
         postalCode,
         pin,
       );
-      pinIsNotASequence = PinValidator.checkIfPinIsNotSequence(
-        pin,
-      );
+      pinIsNotASequence = PinValidator.checkIfPinIsNotSequence(pin);
       pinNotContainsRepeatingDigits = PinValidator.checkPinHasNoDigitsRepeating(
         pin,
       );
     });
-    Future.delayed(
-      const Duration(milliseconds: 1000),
-      () {
-        if (mounted) {
-          restoreValidity();
-        }
-      },
-    );
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      if (mounted) {
+        restoreValidity();
+      }
+    });
   }
 
   void restoreValidity() {
@@ -306,16 +295,12 @@ class PinValidityRule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 24,
-          color: isValid ? validColor : invalidColor,
-        ),
+        Icon(icon, size: 24, color: isValid ? validColor : invalidColor),
         Text(
           text,
-          style: ClientConfig.getTextStyleScheme()
-              .bodyLargeRegular
-              .copyWith(color: isValid ? validColor : invalidColor),
+          style: ClientConfig.getTextStyleScheme().bodyLargeRegular.copyWith(
+            color: isValid ? validColor : invalidColor,
+          ),
         ),
       ],
     );

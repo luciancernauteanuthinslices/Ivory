@@ -29,9 +29,10 @@ class _BankCardDetailsConfirmPinScreenState
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
     return StoreConnector<AppState, BankCardViewModel>(
       converter: (store) => BankCardPresenter.presentBankCard(
         user: user,
@@ -44,26 +45,24 @@ class _BankCardDetailsConfirmPinScreenState
             children: [
               AppToolbar(
                 richTextTitle: RichText(
-                    text: TextSpan(
-                  style: ClientConfig.getTextStyleScheme().heading4,
-                  children: <TextSpan>[
-                    const TextSpan(
-                      text: 'Step 3 ',
-                    ),
-                    TextSpan(
-                      text: 'out of 4',
-                      style: TextStyle(
-                          color: ClientConfig.getCustomColors().neutral700),
-                    ),
-                  ],
-                )),
+                  text: TextSpan(
+                    style: ClientConfig.getTextStyleScheme().heading4,
+                    children: <TextSpan>[
+                      const TextSpan(text: 'Step 3 '),
+                      TextSpan(
+                        text: 'out of 4',
+                        style: TextStyle(
+                          color: ClientConfig.getCustomColors().neutral700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
                 backButtonEnabled: true,
                 onBackButtonPressed: () {
-                  Navigator.pop(
-                    context,
-                  );
+                  Navigator.pop(context);
                 },
               ),
               LinearProgressIndicator(
@@ -71,9 +70,7 @@ class _BankCardDetailsConfirmPinScreenState
                 color: ClientConfig.getColorScheme().secondary,
                 backgroundColor: ClientConfig.getCustomColors().neutral200,
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Padding(
                 padding: ClientConfig.getCustomClientUiSettings()
                     .defaultScreenHorizontalPadding,
@@ -91,9 +88,7 @@ class _BankCardDetailsConfirmPinScreenState
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
+                        const SizedBox(height: 16),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -106,26 +101,19 @@ class _BankCardDetailsConfirmPinScreenState
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 32,
-                    ),
+                    const SizedBox(height: 32),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FourDigitPinCodeInput(
                           key: fourDigitPinKey,
                           onCompleted: (confirmPin) {
-                            if (isPinValid(
-                              viewModel.pin!,
-                              confirmPin,
-                            )) {
+                            if (isPinValid(viewModel.pin!, confirmPin)) {
                               fourDigitPinKey.currentState?.unfocusAllFields();
                               fourDigitPinKey.currentState?.setAllFieldsDone();
                               markCompleted();
                               Future.delayed(
-                                const Duration(
-                                  milliseconds: 500,
-                                ),
+                                const Duration(milliseconds: 500),
                                 () {
                                   Navigator.pushNamed(
                                     context,
@@ -164,12 +152,10 @@ class _BankCardDetailsConfirmPinScreenState
                           : ClientConfig.getCustomColors().neutral900,
                       invalidColor: const Color(0xFFE61F27),
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                    const SizedBox(height: 24),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         );
@@ -181,24 +167,15 @@ class _BankCardDetailsConfirmPinScreenState
     return !PinValidator.checkIfPinDiffersFromString(secondPin, firstPin);
   }
 
-  void highlightReasonsForInvalidPin(
-    String pin,
-    String confirmPin,
-  ) {
+  void highlightReasonsForInvalidPin(String pin, String confirmPin) {
     setState(() {
-      twoPinsMatch = !PinValidator.checkIfPinDiffersFromString(
-        pin,
-        confirmPin,
-      );
+      twoPinsMatch = !PinValidator.checkIfPinDiffersFromString(pin, confirmPin);
     });
-    Future.delayed(
-      const Duration(milliseconds: 1000),
-      () {
-        if (mounted) {
-          restoreValidity();
-        }
-      },
-    );
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      if (mounted) {
+        restoreValidity();
+      }
+    });
   }
 
   void restoreValidity() {

@@ -5,10 +5,7 @@ class Category extends Equatable {
   final String id;
   final String name;
 
-  const Category({
-    required this.id,
-    required this.name,
-  });
+  const Category({required this.id, required this.name});
 
   IconData get icon {
     switch (id) {
@@ -52,9 +49,6 @@ class Category extends Equatable {
     final id = json['id'] ?? "other";
     final name = json['name'] ?? "Other";
 
-    return Category(
-      id: id,
-      name: name,
-    );
+    return Category(id: id, name: name);
   }
 }

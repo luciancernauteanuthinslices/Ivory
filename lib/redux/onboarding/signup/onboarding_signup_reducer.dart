@@ -2,7 +2,9 @@ import 'package:solarisdemo/redux/onboarding/signup/onboarding_signup_action.dar
 import 'package:solarisdemo/redux/onboarding/signup/onboarding_signup_state.dart';
 
 OnboardingSignupState onboardingSignupReducer(
-    OnboardingSignupState state, dynamic action) {
+  OnboardingSignupState state,
+  dynamic action,
+) {
   if (action is SubmitOnboardingBasicInfoCommandAction) {
     return OnboardingSignupState(
       signupAttributes: state.signupAttributes.copyWith(
@@ -13,9 +15,7 @@ OnboardingSignupState onboardingSignupReducer(
     );
   } else if (action is SubmitOnboardingEmailCommandAction) {
     return OnboardingSignupState(
-      signupAttributes: state.signupAttributes.copyWith(
-        email: action.email,
-      ),
+      signupAttributes: state.signupAttributes.copyWith(email: action.email),
     );
   } else if (action is SubmitOnboardingPasswordCommandAction) {
     return OnboardingSignupState(

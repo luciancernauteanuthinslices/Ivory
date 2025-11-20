@@ -37,8 +37,11 @@ class _OnboardingContractsConfirmScreenState
       ),
       onWillChange: (previousViewModel, newViewModel) {
         if (newViewModel is DocumentsConfirmedViewModel) {
-          Navigator.pushNamedAndRemoveUntil(context,
-              OnboardingReferenceAccountIbanScreen.routeName, (route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            OnboardingReferenceAccountIbanScreen.routeName,
+            (route) => false,
+          );
         } else if (newViewModel is DocumentsErrorViewModel ||
             newViewModel is DocumentsConfirmErrorViewModel) {
           Navigator.pushNamedAndRemoveUntil(
@@ -67,8 +70,8 @@ class _OnboardingContractsConfirmScreenState
             viewModel is DocumentsLoadingViewModel
                 ? _buildLoadingContent()
                 : viewModel is DocumentsFetchedViewModel
-                    ? _buildFetchedDocumentsContent(viewModel)
-                    : const SizedBox(),
+                ? _buildFetchedDocumentsContent(viewModel)
+                : const SizedBox(),
             const SizedBox(height: 16),
           ],
         ),
@@ -84,18 +87,16 @@ class _OnboardingContractsConfirmScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Read & confirm contracts",
-                style: ClientConfig.getTextStyleScheme().heading2),
+            Text(
+              "Read & confirm contracts",
+              style: ClientConfig.getTextStyleScheme().heading2,
+            ),
             const SizedBox(height: 24),
             Text(
               "Please bear with us a couple of seconds while we create your contracts...",
               style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
             ),
-            Expanded(
-              child: Center(
-                child: _buildLoadingSkeleton(),
-              ),
-            )
+            Expanded(child: Center(child: _buildLoadingSkeleton())),
           ],
         ),
       ),
@@ -113,9 +114,10 @@ class _OnboardingContractsConfirmScreenState
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Skeleton(
-                    width: 24,
-                    height: 24,
-                    borderRadius: BorderRadius.circular(100)),
+                  width: 24,
+                  height: 24,
+                  borderRadius: BorderRadius.circular(100),
+                ),
                 const SizedBox(width: 16),
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +131,7 @@ class _OnboardingContractsConfirmScreenState
                 ),
               ],
             ),
-          ]
+          ],
         ],
       ),
     );
@@ -143,8 +145,10 @@ class _OnboardingContractsConfirmScreenState
           Padding(
             padding: ClientConfig.getCustomClientUiSettings()
                 .defaultScreenHorizontalPadding,
-            child: Text("Read & confirm contracts",
-                style: ClientConfig.getTextStyleScheme().heading2),
+            child: Text(
+              "Read & confirm contracts",
+              style: ClientConfig.getTextStyleScheme().heading2,
+            ),
           ),
           const SizedBox(height: 24),
           Padding(
@@ -256,14 +260,15 @@ class DocumentListItem extends StatelessWidget {
                   Text(
                     title,
                     style: ClientConfig.getTextStyleScheme().heading4.copyWith(
-                        color: ClientConfig.getCustomColors().neutral900),
+                      color: ClientConfig.getCustomColors().neutral900,
+                    ),
                   ),
                   Text(
                     "$fileSize, $fileType",
-                    style: ClientConfig.getTextStyleScheme()
-                        .bodySmallRegular
+                    style: ClientConfig.getTextStyleScheme().bodySmallRegular
                         .copyWith(
-                            color: ClientConfig.getCustomColors().neutral700),
+                          color: ClientConfig.getCustomColors().neutral700,
+                        ),
                   ),
                 ],
               ),
@@ -273,12 +278,12 @@ class DocumentListItem extends StatelessWidget {
                 ? const SizedBox(
                     height: 20,
                     width: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 3,
-                    ),
+                    child: CircularProgressIndicator(strokeWidth: 3),
                   )
-                : Icon(Icons.download_outlined,
-                    color: ClientConfig.getColorScheme().tertiary),
+                : Icon(
+                    Icons.download_outlined,
+                    color: ClientConfig.getColorScheme().tertiary,
+                  ),
           ],
         ),
       ),

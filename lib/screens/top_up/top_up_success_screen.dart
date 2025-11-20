@@ -44,7 +44,8 @@ class TopUpSuccessfulScreen extends StatelessWidget {
                       text: TextSpan(
                         text: "You have successfully transferred ",
                         style: TextStyle(
-                            color: ClientConfig.getCustomColors().neutral900),
+                          color: ClientConfig.getCustomColors().neutral900,
+                        ),
                         children: [
                           TextSpan(
                             children: [
@@ -53,13 +54,12 @@ class TopUpSuccessfulScreen extends StatelessWidget {
                                 style: ClientConfig.getTextStyleScheme()
                                     .labelSmall
                                     .copyWith(
-                                        color: ClientConfig.getCustomColors()
-                                            .neutral800,
-                                        fontSize: 14),
+                                      color: ClientConfig.getCustomColors()
+                                          .neutral800,
+                                      fontSize: 14,
+                                    ),
                               ),
-                              TextSpan(
-                                text: " to your Iulius bank account.",
-                              ),
+                              TextSpan(text: " to your Iulius bank account."),
                             ],
                           ),
                         ],
@@ -70,24 +70,27 @@ class TopUpSuccessfulScreen extends StatelessWidget {
                       text: TextSpan(
                         text: "Your can review the transfer in the ",
                         style: TextStyle(
-                            color: ClientConfig.getCustomColors().neutral900),
+                          color: ClientConfig.getCustomColors().neutral900,
+                        ),
                         children: [
                           TextSpan(
                             text: "Transactions ",
                             style: TextStyle(
-                                color: ClientConfig.getColorScheme().secondary),
+                              color: ClientConfig.getColorScheme().secondary,
+                            ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Navigator.pushNamedAndRemoveUntil(
-                                    context,
-                                    TransactionsScreen.routeName,
-                                    (route) => false,
-                                  ),
+                                context,
+                                TransactionsScreen.routeName,
+                                (route) => false,
+                              ),
                             children: [
                               TextSpan(
                                 text: "section.",
                                 style: TextStyle(
-                                    color: ClientConfig.getCustomColors()
-                                        .neutral900),
+                                  color:
+                                      ClientConfig.getCustomColors().neutral900,
+                                ),
                               ),
                             ],
                           ),
@@ -122,7 +125,10 @@ class TopUpSuccessfulScreen extends StatelessWidget {
               text: "Back to \"Home\"",
               textColor: ClientConfig.getColorScheme().surface,
               onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                  context, HomeScreen.routeName, (route) => false),
+                context,
+                HomeScreen.routeName,
+                (route) => false,
+              ),
             ),
           ),
           const SizedBox(height: 16),

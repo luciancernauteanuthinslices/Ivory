@@ -13,11 +13,7 @@ class AuthCredentialsLoadedState extends AuthState {
   final String? password;
   final String? deviceId;
 
-  AuthCredentialsLoadedState({
-    this.email,
-    this.password,
-    this.deviceId,
-  });
+  AuthCredentialsLoadedState({this.email, this.password, this.deviceId});
 }
 
 class AuthInitialState extends AuthState {}
@@ -36,10 +32,7 @@ class AuthenticationInitializedState extends AuthState {
   final AuthType authType;
   final User cognitoUser;
 
-  AuthenticationInitializedState(
-    this.cognitoUser,
-    this.authType,
-  );
+  AuthenticationInitializedState(this.cognitoUser, this.authType);
 
   @override
   List<Object?> get props => [cognitoUser, authType];
@@ -48,10 +41,7 @@ class AuthenticationInitializedState extends AuthState {
 class AuthenticatedState extends AuthState {
   final AuthType authType;
   final AuthenticatedUser authenticatedUser;
-  AuthenticatedState(
-    this.authenticatedUser,
-    this.authType,
-  );
+  AuthenticatedState(this.authenticatedUser, this.authType);
 
   @override
   List<Object?> get props => [authenticatedUser];

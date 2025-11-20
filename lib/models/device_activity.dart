@@ -2,11 +2,7 @@
 
 import 'dart:convert';
 
-enum DeviceActivityType {
-  APP_START,
-  PASSWORD_RESET,
-  CONSENT_PROVIDED,
-}
+enum DeviceActivityType { APP_START, PASSWORD_RESET, CONSENT_PROVIDED }
 
 CreateDeviceActivityRequest createDeviceActivityRequestFromJson(String str) =>
     CreateDeviceActivityRequest.fromJson(json.decode(str));
@@ -30,9 +26,9 @@ class CreateDeviceActivityRequest {
       );
 
   Map<String, dynamic> toJson() => {
-        "device_data": deviceData,
-        "activity_type": activityType.name,
-      };
+    "device_data": deviceData,
+    "activity_type": activityType.name,
+  };
 }
 
 DeviceActivityType getActivityType(String type) {

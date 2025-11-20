@@ -46,7 +46,8 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
                 strokeWidth: 5,
                 backgroundColor: ClientConfig.getCustomColors().neutral200,
                 valueColor: AlwaysStoppedAnimation<Color>(
-                    ClientConfig.getColorScheme().secondary),
+                  ClientConfig.getColorScheme().secondary,
+                ),
               ),
             ),
             Center(
@@ -54,7 +55,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
                 '${(widget.percent * 100).toInt()} %',
                 style: ClientConfig.getTextStyleScheme().labelSmall,
               ),
-            )
+            ),
           ],
         );
       },

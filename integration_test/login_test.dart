@@ -7,17 +7,19 @@ import 'build_app/test_app.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  patrolTest('Simple login test',
-      tags: ['smoke'],
-      framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive,
-      ($) async {
-    //build app for test
-    final app = await buildTestApp();
+  patrolTest(
+    'Simple login test',
+    tags: ['smoke'],
+    framePolicy: LiveTestWidgetsFlutterBindingFramePolicy.fullyLive,
+    ($) async {
+      //build app for test
+      final app = await buildTestApp();
 
-    await $.pumpWidgetAndSettle(app, timeout: const Duration(seconds: 20));
-    final bottomActionButtons = BottomActionButtons($);
+      await $.pumpWidgetAndSettle(app, timeout: const Duration(seconds: 20));
+      final bottomActionButtons = BottomActionButtons($);
 
-    //login to app
-    await LoginToApp($).login();
-  });
+      //login to app
+      await LoginToApp($).login();
+    },
+  );
 }

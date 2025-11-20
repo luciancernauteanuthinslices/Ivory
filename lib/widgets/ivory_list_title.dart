@@ -12,10 +12,7 @@ class IvoryListTitle extends StatelessWidget {
       padding: ClientConfig.getCustomClientUiSettings()
           .defaultScreenHorizontalPadding,
       margin: const EdgeInsets.only(bottom: 8),
-      child: Text(
-        title,
-        style: ClientConfig.getTextStyleScheme().labelLarge,
-      ),
+      child: Text(title, style: ClientConfig.getTextStyleScheme().labelLarge),
     );
   }
 }

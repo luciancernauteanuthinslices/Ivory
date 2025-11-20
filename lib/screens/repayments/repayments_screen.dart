@@ -33,9 +33,10 @@ class RepaymentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
     final ScrollController scrollController = ScrollController();
 
     return ScreenScaffold(
@@ -111,26 +112,39 @@ class RepaymentsScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Skeleton(
-                                  height: 16, width: 136, transparent: true),
+                                height: 16,
+                                width: 136,
+                                transparent: true,
+                              ),
                               SizedBox(height: 12),
                               Skeleton(
-                                  height: 32, width: 192, transparent: true),
+                                height: 32,
+                                width: 192,
+                                transparent: true,
+                              ),
                             ],
                           ),
                         ),
                         Divider(
-                            height: 24,
-                            color: Colors.transparent.withOpacity(0)),
+                          height: 24,
+                          color: Colors.transparent.withOpacity(0),
+                        ),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Skeleton(
-                                  height: 16, width: 136, transparent: true),
+                                height: 16,
+                                width: 136,
+                                transparent: true,
+                              ),
                               SizedBox(height: 12),
                               Skeleton(
-                                  height: 32, width: 192, transparent: true),
+                                height: 32,
+                                width: 192,
+                                transparent: true,
+                              ),
                             ],
                           ),
                         ),
@@ -138,12 +152,16 @@ class RepaymentsScreen extends StatelessWidget {
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Skeleton(
-                              height: 10, width: 64, transparent: true),
+                            height: 10,
+                            width: 64,
+                            transparent: true,
+                          ),
                         ),
                         const SizedBox(height: 12),
                         Divider(
-                            height: 1,
-                            color: Colors.transparent.withOpacity(0)),
+                          height: 1,
+                          color: Colors.transparent.withOpacity(0),
+                        ),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Column(
@@ -151,7 +169,10 @@ class RepaymentsScreen extends StatelessWidget {
                               SizedBox(height: 18),
                               Center(
                                 child: Skeleton(
-                                    height: 18, width: 160, transparent: true),
+                                  height: 18,
+                                  width: 160,
+                                  transparent: true,
+                                ),
                               ),
                               SizedBox(height: 19),
                             ],
@@ -173,9 +194,7 @@ class RepaymentsScreen extends StatelessWidget {
               .defaultScreenHorizontalPadding,
           child: SkeletonContainer(
             child: Column(
-              children: [
-                for (var i = 0; i < 5; i++) const ActionSkeleton(),
-              ],
+              children: [for (var i = 0; i < 5; i++) const ActionSkeleton()],
             ),
           ),
         ),
@@ -199,9 +218,7 @@ class RepaymentsScreen extends StatelessWidget {
                 clipBehavior: Clip.none,
                 color: ClientConfig.getCustomColors().neutral100,
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(16),
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: viewModel is CreditLineErrorViewModel
                     ? Container(
@@ -209,10 +226,12 @@ class RepaymentsScreen extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.all(16),
                         child: const IvoryErrorWidget(
-                            'Error loading credit line details'),
+                          'Error loading credit line details',
+                        ),
                       )
                     : _DetailsContent(
-                        viewModel: viewModel as CreditLineFetchedViewModel),
+                        viewModel: viewModel as CreditLineFetchedViewModel,
+                      ),
               ),
               const SizedBox(height: 20),
             ],
@@ -254,7 +273,8 @@ class RepaymentsScreen extends StatelessWidget {
         IvoryListTile(
           leftIcon: Icons.back_hand_outlined,
           title: 'Need more credit?',
-          subtitle: (viewModel is CreditLineFetchedViewModel &&
+          subtitle:
+              (viewModel is CreditLineFetchedViewModel &&
                   viewModel.waitlist == false)
               ? ('Sign up for our waitlist')
               : ('You\'re on our waitlist'),
@@ -263,7 +283,9 @@ class RepaymentsScreen extends StatelessWidget {
                     viewModel.waitlist == false)
                 ? Navigator.pushNamed(context, MoreCreditScreen.routeName)
                 : Navigator.pushNamed(
-                    context, MoreCreditWaitlistScreen.routeName);
+                    context,
+                    MoreCreditWaitlistScreen.routeName,
+                  );
           },
         ),
       ],
@@ -295,8 +317,9 @@ class _DetailsContentState extends State<_DetailsContent> {
         children: [
           _DetailsItem(
             title: 'Outstanding balance',
-            subtitle:
-                outstandingAmount == 0 ? '€ 0' : Format.euro(outstandingAmount),
+            subtitle: outstandingAmount == 0
+                ? '€ 0'
+                : Format.euro(outstandingAmount),
             onInfoIconTap: () {
               showBottomModal(
                 context: context,
@@ -311,8 +334,9 @@ class _DetailsContentState extends State<_DetailsContent> {
           const Divider(height: 24),
           _DetailsItem(
             title: 'Next full repayment',
-            subtitle:
-                currentBillAmount == 0 ? '€ 0' : Format.euro(currentBillAmount),
+            subtitle: currentBillAmount == 0
+                ? '€ 0'
+                : Format.euro(currentBillAmount),
             onInfoIconTap: () {
               showBottomModal(
                 context: context,
@@ -329,9 +353,9 @@ class _DetailsContentState extends State<_DetailsContent> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               'Due on ${Format.date(widget.viewModel.creditLine.dueDate, pattern: 'MMM dd')}',
-              style: ClientConfig.getTextStyleScheme()
-                  .labelSmall
-                  .copyWith(color: ClientConfig.getCustomColors().neutral900),
+              style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                color: ClientConfig.getCustomColors().neutral900,
+              ),
             ),
           ),
           const SizedBox(height: 12),
@@ -339,20 +363,19 @@ class _DetailsContentState extends State<_DetailsContent> {
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             child: _detailsExpanded
-                ? Column(children: [
-                    _ExpandedDetails(viewModel: widget.viewModel),
-                    const Divider(height: 1)
-                  ])
+                ? Column(
+                    children: [
+                      _ExpandedDetails(viewModel: widget.viewModel),
+                      const Divider(height: 1),
+                    ],
+                  )
                 : const SizedBox(),
           ),
           MaterialButton(
             onPressed: () =>
                 setState(() => _detailsExpanded = !_detailsExpanded),
             minWidth: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              vertical: 16,
-              horizontal: 16,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(16),
@@ -364,11 +387,8 @@ class _DetailsContentState extends State<_DetailsContent> {
               children: [
                 Text(
                   !_detailsExpanded ? 'View Details' : 'View less',
-                  style: ClientConfig.getTextStyleScheme()
-                      .bodyLargeRegularBold
-                      .copyWith(
-                        color: ClientConfig.getColorScheme().secondary,
-                      ),
+                  style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold
+                      .copyWith(color: ClientConfig.getColorScheme().secondary),
                 ),
                 const SizedBox(width: 8),
                 Transform.rotate(
@@ -419,10 +439,7 @@ class _DetailsItem extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          Text(
-            subtitle,
-            style: ClientConfig.getTextStyleScheme().heading2,
-          ),
+          Text(subtitle, style: ClientConfig.getTextStyleScheme().heading2),
         ],
       ),
     );
@@ -446,13 +463,15 @@ class _ExpandedDetails extends StatelessWidget {
             space: 8,
             children: [
               ExpandedDetailsRow(
-                  title: 'Amount spent',
-                  trailing: Format.currency(viewModel.creditLine.spentAmount)),
+                title: 'Amount spent',
+                trailing: Format.currency(viewModel.creditLine.spentAmount),
+              ),
               if (repaymentPercentageRate < 10) ...[
                 ExpandedDetailsRow(
                   title: 'Fixed repayment rate',
-                  trailing:
-                      Format.currency(viewModel.creditLine.fixedRate.value),
+                  trailing: Format.currency(
+                    viewModel.creditLine.fixedRate.value,
+                  ),
                   onInfoIconTap: () {
                     showBottomModal(
                       context: context,
@@ -488,8 +507,10 @@ class _ExpandedDetails extends StatelessWidget {
                 ),
                 ExpandedDetailsRow(
                   title: 'Repayment amount',
-                  trailing: Format.currency(viewModel.creditLine.spentAmount *
-                      (repaymentPercentageRate / 100)),
+                  trailing: Format.currency(
+                    viewModel.creditLine.spentAmount *
+                        (repaymentPercentageRate / 100),
+                  ),
                 ),
               ],
               ExpandedDetailsRow(
@@ -509,7 +530,8 @@ class _ExpandedDetails extends StatelessWidget {
               ExpandedDetailsRow(
                 title: 'Interest amount',
                 trailing: Format.currency(
-                    viewModel.creditLine.accumulatedInterestAmount.value),
+                  viewModel.creditLine.accumulatedInterestAmount.value,
+                ),
               ),
             ],
           ),
@@ -528,27 +550,32 @@ class _ExpandedDetails extends StatelessWidget {
                         ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
                   ),
                   const SizedBox(width: 4),
-                  InfoIconButton(onTap: () {
-                    showBottomModal(
-                      context: context,
-                      title: 'Reference account',
-                      textWidget: Text(
-                        'For your convenience, we automatically deduct the amount due from your designated reference account on the 4th of each month.'
-                        '\n\nIf you want to change your reference account, please contact us at +49 151 23456789.',
-                        style:
-                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
-                      ),
-                    );
-                  }),
+                  InfoIconButton(
+                    onTap: () {
+                      showBottomModal(
+                        context: context,
+                        title: 'Reference account',
+                        textWidget: Text(
+                          'For your convenience, we automatically deduct the amount due from your designated reference account on the 4th of each month.'
+                          '\n\nIf you want to change your reference account, please contact us at +49 151 23456789.',
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegular,
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
               ExpandedDetailsRow(
-                  title: 'Account owner',
-                  trailing: viewModel.creditLine.referenceAccount.ownerName),
+                title: 'Account owner',
+                trailing: viewModel.creditLine.referenceAccount.ownerName,
+              ),
               ExpandedDetailsRow(
-                  title: 'IBAN',
-                  trailing:
-                      Format.iban(viewModel.creditLine.referenceAccount.iban)),
+                title: 'IBAN',
+                trailing: Format.iban(
+                  viewModel.creditLine.referenceAccount.iban,
+                ),
+              ),
             ],
           ),
         ),
@@ -568,9 +595,10 @@ class ActionSkeleton extends StatelessWidget {
         Row(
           children: [
             Skeleton(
-                height: 24,
-                width: 24,
-                borderRadius: BorderRadius.circular(100)),
+              height: 24,
+              width: 24,
+              borderRadius: BorderRadius.circular(100),
+            ),
             const SizedBox(width: 16),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,

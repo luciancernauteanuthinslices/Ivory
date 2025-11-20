@@ -28,10 +28,7 @@ class AccountDetailsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.content_copy,
-              color: Colors.white,
-            ),
+            Icon(Icons.content_copy, color: Colors.white),
             SizedBox(width: 8),
             Text(
               "Copied to clipboard",
@@ -70,10 +67,7 @@ class AccountDetailsScreen extends StatelessWidget {
           children: [
             const AppToolbar(),
             const SizedBox(height: 24),
-            Text(
-              'Account',
-              style: ClientConfig.getTextStyleScheme().heading1,
-            ),
+            Text('Account', style: ClientConfig.getTextStyleScheme().heading1),
             const SizedBox(height: 24),
             Text(
               'Details',
@@ -83,81 +77,88 @@ class AccountDetailsScreen extends StatelessWidget {
             Material(
               color: ClientConfig.getCustomColors().neutral100,
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(16)),
               ),
               child: StoreConnector<AppState, AccountSummaryViewModel>(
-                  onInit: (store) {
-                    store.dispatch(GetAccountSummaryCommandAction(
-                        forceAccountSummaryReload: false));
-                  },
-                  converter: (store) =>
-                      AccountSummaryPresenter.presentAccountSummary(
-                          accountSummaryState: store.state.accountSummaryState),
-                  builder: (context, viewModel) {
-                    return Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'IBAN',
-                                    style: ClientConfig.getTextStyleScheme()
-                                        .labelSmall,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  ibanFromViewModel(viewModel),
-                                ],
-                              ),
-                              CopyContentButton(
-                                onPressed: () {
-                                  inspect(viewModel.accountSummary?.iban ?? '');
-                                  showAlertDialog(context,
-                                      viewModel.accountSummary?.iban ?? '');
-                                },
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'BIC',
-                                    style: ClientConfig.getTextStyleScheme()
-                                        .labelSmall,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  bicFromViewModel(viewModel),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              CopyContentButton(
-                                onPressed: () {
-                                  inspect(viewModel.accountSummary?.bic ?? '');
-                                  showAlertDialog(context,
-                                      viewModel.accountSummary?.bic ?? '');
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
+                onInit: (store) {
+                  store.dispatch(
+                    GetAccountSummaryCommandAction(
+                      forceAccountSummaryReload: false,
+                    ),
+                  );
+                },
+                converter: (store) =>
+                    AccountSummaryPresenter.presentAccountSummary(
+                      accountSummaryState: store.state.accountSummaryState,
+                    ),
+                builder: (context, viewModel) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'IBAN',
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .labelSmall,
+                                ),
+                                const SizedBox(height: 4),
+                                ibanFromViewModel(viewModel),
+                              ],
+                            ),
+                            CopyContentButton(
+                              onPressed: () {
+                                inspect(viewModel.accountSummary?.iban ?? '');
+                                showAlertDialog(
+                                  context,
+                                  viewModel.accountSummary?.iban ?? '',
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'BIC',
+                                  style: ClientConfig.getTextStyleScheme()
+                                      .labelSmall,
+                                ),
+                                const SizedBox(height: 4),
+                                bicFromViewModel(viewModel),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            CopyContentButton(
+                              onPressed: () {
+                                inspect(viewModel.accountSummary?.bic ?? '');
+                                showAlertDialog(
+                                  context,
+                                  viewModel.accountSummary?.bic ?? '',
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -194,10 +195,7 @@ class AccountDetailsScreen extends StatelessWidget {
 class CopyContentButton extends StatelessWidget {
   final Function? onPressed;
 
-  const CopyContentButton({
-    super.key,
-    required this.onPressed,
-  });
+  const CopyContentButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -207,10 +205,7 @@ class CopyContentButton extends StatelessWidget {
       child: IconButton(
         padding: const EdgeInsets.all(0.0),
         iconSize: 24,
-        icon: const Icon(
-          Icons.content_copy,
-          color: Colors.black,
-        ),
+        icon: const Icon(Icons.content_copy, color: Colors.black),
         onPressed: () {
           onPressed!();
         },
@@ -240,10 +235,7 @@ class StatementButton extends StatelessWidget {
       iconSize: 24,
       alignment: alignment,
       constraints: const BoxConstraints(),
-      icon: Icon(
-        icon,
-        color: iconColor,
-      ),
+      icon: Icon(icon, color: iconColor),
       onPressed: () {
         onPressed();
       },

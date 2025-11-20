@@ -45,9 +45,7 @@ class FakeChangeRequestService extends ChangeRequestService {
         success: true,
         transfer: ReferenceAccountTransfer(
           description: 'transfer description',
-          amount: ReferenceAccountTransferAmount(
-            value: 100,
-          ),
+          amount: ReferenceAccountTransferAmount(value: 100),
         ),
       ),
     );

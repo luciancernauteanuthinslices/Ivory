@@ -10,7 +10,8 @@ void main() {
 
     // when
     final viewModel = AddressSuggestionsPresenter.present(
-        addressSuggestionsState: addressSuggestionsState);
+      addressSuggestionsState: addressSuggestionsState,
+    );
 
     // then
     expect(viewModel, isA<AddressSuggestionsInitialViewModel>());
@@ -22,7 +23,8 @@ void main() {
 
     // when
     final viewModel = AddressSuggestionsPresenter.present(
-        addressSuggestionsState: addressSuggestionsState);
+      addressSuggestionsState: addressSuggestionsState,
+    );
 
     // then
     expect(viewModel, isA<AddressSuggestionsLoadingViewModel>());
@@ -30,12 +32,14 @@ void main() {
 
   test("When state is fetched it should return fetched view model", () {
     // given
-    final addressSuggestionsState =
-        AddressSuggestionsFetchedState(suggestions: const []);
+    final addressSuggestionsState = AddressSuggestionsFetchedState(
+      suggestions: const [],
+    );
 
     // when
     final viewModel = AddressSuggestionsPresenter.present(
-        addressSuggestionsState: addressSuggestionsState);
+      addressSuggestionsState: addressSuggestionsState,
+    );
 
     // then
     expect(viewModel, isA<AddressSuggestionsFetchedViewModel>());
@@ -44,11 +48,13 @@ void main() {
   test("When state is error it should return error view model", () {
     // given
     final addressSuggestionsState = AddressSuggestionsErrorState(
-        errorType: AddressSuggestionsErrorType.unknown);
+      errorType: AddressSuggestionsErrorType.unknown,
+    );
 
     // when
     final viewModel = AddressSuggestionsPresenter.present(
-        addressSuggestionsState: addressSuggestionsState);
+      addressSuggestionsState: addressSuggestionsState,
+    );
 
     // then
     expect(viewModel, isA<AddressSuggestionsErrorViewModel>());

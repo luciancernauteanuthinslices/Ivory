@@ -56,17 +56,15 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                     padding: ClientConfig.getCustomClientUiSettings()
                         .defaultScreenHorizontalPadding,
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
                   StoreConnector<AppState, DeviceBindingViewModel>(
                     onInit: (store) {
                       store.dispatch(FetchBoundDevicesCommandAction());
                     },
                     converter: (store) =>
                         DeviceBindingPresenter.presentDeviceBinding(
-                      deviceBindingState: store.state.deviceBindingState,
-                    ),
+                          deviceBindingState: store.state.deviceBindingState,
+                        ),
                     onWillChange: (previousViewModel, newViewModel) {
                       if (previousViewModel is DeviceBindingFetchedViewModel &&
                           newViewModel is DeviceBindingNotPossibleViewModel) {
@@ -74,35 +72,36 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                             DeviceBindingNotPossibleReason
                                 .alreadyTriedInLast5Minutes) {
                           Navigator.pushNamed(
-                              context,
-                              SettingsDevicePairingTemporaryRestrictionScreen
-                                  .routeName);
+                            context,
+                            SettingsDevicePairingTemporaryRestrictionScreen
+                                .routeName,
+                          );
                         }
                         if (newViewModel.reason ==
                             DeviceBindingNotPossibleReason
                                 .noBiometricsAvailable) {
-                          Navigator.pushNamed(context,
-                              AppSettingsBiometricNeededScreen.routeName);
+                          Navigator.pushNamed(
+                            context,
+                            AppSettingsBiometricNeededScreen.routeName,
+                          );
                         }
                       }
                       if (newViewModel is DeviceBindingFetchedViewModel &&
                           newViewModel.isBindingPossible == true) {
-                        Navigator.pushNamed(context,
-                            SettingsDevicePairingInitialScreen.routeName);
+                        Navigator.pushNamed(
+                          context,
+                          SettingsDevicePairingInitialScreen.routeName,
+                        );
                       }
                     },
                     builder: (context, viewModel) {
                       if (viewModel is DeviceBindingLoadingViewModel) {
                         return const Expanded(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                          child: Center(child: CircularProgressIndicator()),
                         );
                       }
                       if (viewModel is DeviceBindingErrorViewModel) {
-                        return const Center(
-                          child: Text('Error'),
-                        );
+                        return const Center(child: Text('Error'));
                       }
                       if (viewModel is DeviceBindingFetchedViewModel) {
                         return _buildPageContent(
@@ -111,9 +110,7 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                         );
                       }
                       return const Expanded(
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                        child: Center(child: CircularProgressIndicator()),
                       );
                     },
                   ),
@@ -136,9 +133,7 @@ class SettingsDevicePairingScreen extends StatelessWidget {
         Container(
           margin: ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(16),
-            ),
+            borderRadius: const BorderRadius.all(Radius.circular(16)),
             color: ClientConfig.getCustomColors().neutral100,
           ),
           child: Column(
@@ -163,9 +158,7 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                             color: ClientConfig.getColorScheme().background,
                             borderRadius: BorderRadius.circular(1000),
                           ),
-                          child: const Icon(
-                            Icons.phone_iphone,
-                          ),
+                          child: const Icon(Icons.phone_iphone),
                         ),
                       ],
                     ),
@@ -174,18 +167,19 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                         Icon(
                           Icons.mobile_off,
                           size: 16,
-                          color: (viewModel is DeviceBindingFetchedViewModel &&
+                          color:
+                              (viewModel is DeviceBindingFetchedViewModel &&
                                   viewModel.isBoundDevice!)
                               ? Colors.green
                               : Colors.red,
                         ),
-                        const SizedBox(
-                          width: 4,
+                        const SizedBox(width: 4),
+                        Text(
+                          (viewModel is DeviceBindingFetchedViewModel &&
+                                  viewModel.isBoundDevice!)
+                              ? 'Paired'
+                              : 'Not paired',
                         ),
-                        Text((viewModel is DeviceBindingFetchedViewModel &&
-                                viewModel.isBoundDevice!)
-                            ? 'Paired'
-                            : 'Not paired'),
                       ],
                     ),
                   ],
@@ -223,13 +217,14 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                               ClientConfig.getCustomColors().neutral200,
                           progressColor:
                               viewModel is DeviceBindingFetchedViewModel &&
-                                          viewModel.devices!.length < 5 ||
-                                      viewModel.isBoundDevice!
-                                  ? ClientConfig.getColorScheme().secondary
-                                  : ClientConfig.getColorScheme().error,
+                                      viewModel.devices!.length < 5 ||
+                                  viewModel.isBoundDevice!
+                              ? ClientConfig.getColorScheme().secondary
+                              : ClientConfig.getColorScheme().error,
                           lineHeight: 8,
                           barRadius: const Radius.circular(1000),
-                          percent: (viewModel.devices != null
+                          percent:
+                              (viewModel.devices != null
                                   ? viewModel.devices!.length
                                   : 0) /
                               5,
@@ -254,19 +249,19 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                                       text: 'Limit reached. ',
                                       style: !viewModel.isBoundDevice!
                                           ? ClientConfig.getTextStyleScheme()
-                                              .bodySmallBold
-                                              .copyWith(
-                                                color: ClientConfig
-                                                        .getColorScheme()
-                                                    .error,
-                                              )
+                                                .bodySmallBold
+                                                .copyWith(
+                                                  color:
+                                                      ClientConfig.getColorScheme()
+                                                          .error,
+                                                )
                                           : ClientConfig.getTextStyleScheme()
-                                              .bodySmallBold
-                                              .copyWith(
-                                                color: ClientConfig
-                                                        .getCustomColors()
-                                                    .neutral700,
-                                              ),
+                                                .bodySmallBold
+                                                .copyWith(
+                                                  color:
+                                                      ClientConfig.getCustomColors()
+                                                          .neutral700,
+                                                ),
                                     ),
                                     if (!viewModel.isBoundDevice!)
                                       TextSpan(
@@ -291,7 +286,7 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                                                   ClientConfig.getCustomColors()
                                                       .neutral700,
                                             ),
-                                      )
+                                      ),
                                   ],
                                 ),
                               ),
@@ -312,8 +307,9 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                   viewModel.devices!.length < 5)
                 GestureDetector(
                   onTap: () async {
-                    StoreProvider.of<AppState>(context)
-                        .dispatch(DeviceBindingCheckIfPossibleCommandAction());
+                    StoreProvider.of<AppState>(
+                      context,
+                    ).dispatch(DeviceBindingCheckIfPossibleCommandAction());
                   },
                   child: SizedBox(
                     height: 48,
@@ -321,8 +317,7 @@ class SettingsDevicePairingScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Pair device',
-                        style: ClientConfig.getTextStyleScheme()
-                            .labelMedium
+                        style: ClientConfig.getTextStyleScheme().labelMedium
                             .copyWith(
                               color: ClientConfig.getColorScheme().secondary,
                             ),
@@ -334,14 +329,9 @@ class SettingsDevicePairingScreen extends StatelessWidget {
           ),
         ),
         if (viewModel is DeviceBindingFetchedViewModel)
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
         if (viewModel is DeviceBindingFetchedViewModel)
-          _buildDeviceList(
-            context: context,
-            viewModel: viewModel,
-          ),
+          _buildDeviceList(context: context, viewModel: viewModel),
       ],
     );
   }
@@ -361,8 +351,9 @@ class SettingsDevicePairingScreen extends StatelessWidget {
             Navigator.pushNamed(
               context,
               SettingsPairedDeviceDetailsScreen.routeName,
-              arguments:
-                  SettingsPairedDeviceDetailsScreenParams(device: device),
+              arguments: SettingsPairedDeviceDetailsScreenParams(
+                device: device,
+              ),
             );
           },
         ),
@@ -379,29 +370,35 @@ class SettingsDevicePairingScreen extends StatelessWidget {
     );
   }
 
-  void _handleBackNavigation({
-    required BuildContext context,
-  }) {
-    if (IvoryApp.generalRouteObserver
-        .isRouteInStackButNotCurrent(BankCardDetailsScreen.routeName)) {
+  void _handleBackNavigation({required BuildContext context}) {
+    if (IvoryApp.generalRouteObserver.isRouteInStackButNotCurrent(
+      BankCardDetailsScreen.routeName,
+    )) {
       Navigator.popUntil(
-          context, ModalRoute.withName(BankCardDetailsScreen.routeName));
+        context,
+        ModalRoute.withName(BankCardDetailsScreen.routeName),
+      );
       StoreProvider.of<AppState>(context).dispatch(
         BankCardFetchDetailsCommandAction(
-          bankCard: (StoreProvider.of<AppState>(context).state.bankCardState
-                  as BankCardNoBoundedDevicesState)
-              .bankCard,
+          bankCard:
+              (StoreProvider.of<AppState>(context).state.bankCardState
+                      as BankCardNoBoundedDevicesState)
+                  .bankCard,
         ),
       );
-    } else if (IvoryApp.generalRouteObserver
-        .isRouteInStackButNotCurrent(BankCardChangePinChooseScreen.routeName)) {
-      Navigator.popUntil(context,
-          ModalRoute.withName(BankCardChangePinChooseScreen.routeName));
+    } else if (IvoryApp.generalRouteObserver.isRouteInStackButNotCurrent(
+      BankCardChangePinChooseScreen.routeName,
+    )) {
+      Navigator.popUntil(
+        context,
+        ModalRoute.withName(BankCardChangePinChooseScreen.routeName),
+      );
       StoreProvider.of<AppState>(context).dispatch(
         BankCardInitiatePinChangeCommandAction(
-          bankCard: (StoreProvider.of<AppState>(context).state.bankCardState
-                  as BankCardNoBoundedDevicesState)
-              .bankCard,
+          bankCard:
+              (StoreProvider.of<AppState>(context).state.bankCardState
+                      as BankCardNoBoundedDevicesState)
+                  .bankCard,
         ),
       );
     } else {

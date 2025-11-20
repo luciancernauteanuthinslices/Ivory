@@ -51,26 +51,25 @@ Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  PushNotificationServiceProvider.init(
+    FirebasePushNotificationService(
+      storageService: PushNotificationSharedPreferencesStorageService(),
+    ),
   );
-
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
-  PushNotificationServiceProvider.init(FirebasePushNotificationService(
-    storageService: PushNotificationSharedPreferencesStorageService(),
-  ));
 
   final pushNotificationService =
       PushNotificationServiceProvider.instance.service;
 
   final store = _buildStore(pushNotificationService);
 
-  runApp(IvoryApp(
-    clientConfig: clientConfig,
-    store: store,
-  ));
+  runApp(IvoryApp(clientConfig: clientConfig, store: store));
 }
 
 Store<AppState> _buildStore(PushNotificationService pushNotificationService) {

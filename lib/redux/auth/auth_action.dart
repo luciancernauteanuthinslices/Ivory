@@ -33,11 +33,7 @@ class CredentialsLoadedEventAction {
   final String? email;
   final String? password;
   final String? deviceId;
-  CredentialsLoadedEventAction({
-    this.email,
-    this.password,
-    this.deviceId,
-  });
+  CredentialsLoadedEventAction({this.email, this.password, this.deviceId});
 }
 
 class AuthenticationInitializedEventAction {
@@ -69,7 +65,5 @@ class AuthLoadingEventAction {}
 class AuthFailedEventAction {
   final AuthErrorType errorType;
 
-  AuthFailedEventAction({
-    required this.errorType,
-  });
+  AuthFailedEventAction({required this.errorType});
 }

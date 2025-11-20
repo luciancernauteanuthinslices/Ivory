@@ -59,9 +59,10 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                     store.dispatch(GetRepaymentRemindersCommandAction()),
                 converter: (store) =>
                     RepaymentReminderPresenter.presentRepaymentReminder(
-                  repaymentReminderState: store.state.repaymentReminderState,
-                  creditLineState: store.state.creditLineState,
-                ),
+                      repaymentReminderState:
+                          store.state.repaymentReminderState,
+                      creditLineState: store.state.creditLineState,
+                    ),
                 onDidChange: (oldViewModel, viewModel) {
                   if (viewModel is RepaymentReminderFetchedViewModel) {
                     _reminders.clear();
@@ -76,15 +77,17 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                 builder: (context, viewModel) {
                   if (viewModel is RepaymentReminderLoadingViewModel) {
                     return const Align(
-                        alignment: Alignment.topCenter,
-                        child: CircularProgressIndicator());
+                      alignment: Alignment.topCenter,
+                      child: CircularProgressIndicator(),
+                    );
                   }
 
                   if (viewModel is RepaymentReminderErrorViewModel) {
                     return const Align(
                       alignment: Alignment.topCenter,
-                      child:
-                          IvoryErrorWidget('Error loading repayment reminders'),
+                      child: IvoryErrorWidget(
+                        'Error loading repayment reminders',
+                      ),
                     );
                   }
 
@@ -98,17 +101,20 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                                 (reminder) => ListTile(
                                   minLeadingWidth: 0,
                                   leading: Icon(
-                                      Icons.notifications_none_rounded,
-                                      color: ClientConfig.getColorScheme()
-                                          .secondary),
+                                    Icons.notifications_none_rounded,
+                                    color:
+                                        ClientConfig.getColorScheme().secondary,
+                                  ),
                                   title: Text(
                                     reminder.description,
                                     style: ClientConfig.getTextStyleScheme()
                                         .heading4,
                                   ),
                                   trailing: IconButton(
-                                    icon: const Icon(Icons.delete_outline,
-                                        color: Color(0xFFCC0000)),
+                                    icon: const Icon(
+                                      Icons.delete_outline,
+                                      color: Color(0xFFCC0000),
+                                    ),
                                     onPressed: () async {
                                       final value = await showBottomModal(
                                         context: context,
@@ -153,8 +159,9 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                               style: ClientConfig.getTextStyleScheme()
                                   .bodyLargeRegularBold
                                   .copyWith(
-                                      color: ClientConfig.getColorScheme()
-                                          .secondary),
+                                    color:
+                                        ClientConfig.getColorScheme().secondary,
+                                  ),
                             ),
                             onPressed: () async {
                               final value = await showBottomModal(
@@ -162,9 +169,10 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                                 title: 'Add reminder',
                                 content: _PopUpContent(
                                   reminders: _reminders,
-                                  repaymentDueDate: (viewModel
-                                          as RepaymentReminderFetchedViewModel)
-                                      .repaymentDueDate,
+                                  repaymentDueDate:
+                                      (viewModel
+                                              as RepaymentReminderFetchedViewModel)
+                                          .repaymentDueDate,
                                 ),
                               );
 
@@ -173,9 +181,12 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
                                     .subtract(value.duration);
                                 final description = value.description(1);
                                 setState(() {
-                                  _reminders.add(RepaymentReminder(
+                                  _reminders.add(
+                                    RepaymentReminder(
                                       datetime: reminderDate,
-                                      description: description));
+                                      description: description,
+                                    ),
+                                  );
                                 });
                               } else if (value is RepaymentReminder) {
                                 setState(() => _reminders.add(value));
@@ -208,8 +219,9 @@ class _RepaymentReminderScreenState extends State<RepaymentReminderScreen> {
 
   void _onDeleteReminder(RepaymentReminder reminder) {
     if (reminder.id != null) {
-      StoreProvider.of<AppState>(context)
-          .dispatch(DeleteRepaymentReminderCommandAction(reminder: reminder));
+      StoreProvider.of<AppState>(
+        context,
+      ).dispatch(DeleteRepaymentReminderCommandAction(reminder: reminder));
     }
   }
 
@@ -234,8 +246,10 @@ class _PopUpContent extends StatelessWidget {
   final List<RepaymentReminder> reminders;
   final DateTime repaymentDueDate;
 
-  const _PopUpContent(
-      {required this.repaymentDueDate, required this.reminders});
+  const _PopUpContent({
+    required this.repaymentDueDate,
+    required this.reminders,
+  });
 
   bool _isReminderSelected(TimePeriod value) {
     final existingReminder = reminders.firstWhereOrNull((reminder) {
@@ -252,8 +266,9 @@ class _PopUpContent extends StatelessWidget {
         _ReminderListTile(
           title: '1 hour before',
           value: TimePeriod.hours,
-          groupValue:
-              _isReminderSelected(TimePeriod.hours) ? TimePeriod.hours : null,
+          groupValue: _isReminderSelected(TimePeriod.hours)
+              ? TimePeriod.hours
+              : null,
           onChanged: !_isReminderSelected(TimePeriod.hours)
               ? (value) => Navigator.pop(context, value)
               : null,
@@ -261,8 +276,9 @@ class _PopUpContent extends StatelessWidget {
         _ReminderListTile(
           title: '1 day before',
           value: TimePeriod.days,
-          groupValue:
-              _isReminderSelected(TimePeriod.days) ? TimePeriod.days : null,
+          groupValue: _isReminderSelected(TimePeriod.days)
+              ? TimePeriod.days
+              : null,
           onChanged: !_isReminderSelected(TimePeriod.days)
               ? (value) => Navigator.pop(context, value)
               : null,
@@ -270,8 +286,9 @@ class _PopUpContent extends StatelessWidget {
         _ReminderListTile(
           title: '1 week before',
           value: TimePeriod.weeks,
-          groupValue:
-              _isReminderSelected(TimePeriod.weeks) ? TimePeriod.weeks : null,
+          groupValue: _isReminderSelected(TimePeriod.weeks)
+              ? TimePeriod.weeks
+              : null,
           onChanged: !_isReminderSelected(TimePeriod.weeks)
               ? (value) => Navigator.pop(context, value)
               : null,
@@ -285,8 +302,9 @@ class _PopUpContent extends StatelessWidget {
               content: const _CustomReminderPopUpContent(),
             ).then((value) {
               if (value is (int, TimePeriod)) {
-                final reminderDate =
-                    repaymentDueDate.subtract(value.$2.duration * value.$1);
+                final reminderDate = repaymentDueDate.subtract(
+                  value.$2.duration * value.$1,
+                );
                 final reminder = RepaymentReminder(
                   datetime: reminderDate,
                   description: value.$2.description(value.$1),
@@ -324,7 +342,9 @@ class _CustomReminderPopUpContentState
     return Column(
       children: [
         IvoryTextField(
-            controller: _textController, keyboardType: TextInputType.number),
+          controller: _textController,
+          keyboardType: TextInputType.number,
+        ),
         const SizedBox(height: 16),
         _ReminderListTile(
           title: 'Hours',
@@ -352,8 +372,9 @@ class _CustomReminderPopUpContentState
             color: ClientConfig.getColorScheme().tertiary,
             textColor: ClientConfig.getColorScheme().surface,
             onPressed: () {
-              Navigator.of(context)
-                  .pop((int.parse(_textController.text), _timePeriod));
+              Navigator.of(
+                context,
+              ).pop((int.parse(_textController.text), _timePeriod));
             },
           ),
         ),
@@ -372,8 +393,9 @@ class _RemoveReminderPopUp extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: SecondaryButton(
-              text: 'No, go back',
-              onPressed: () => Navigator.of(context).pop()),
+            text: 'No, go back',
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ),
         const SizedBox(height: 16),
         SizedBox(

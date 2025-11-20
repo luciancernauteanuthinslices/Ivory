@@ -25,8 +25,9 @@ class OnboardingPasswordScreen extends StatefulWidget {
 }
 
 class _OnboardingPasswordScreenState extends State<OnboardingPasswordScreen> {
-  final IvoryTextFieldController passwordController =
-      IvoryTextFieldController(obscureText: true);
+  final IvoryTextFieldController passwordController = IvoryTextFieldController(
+    obscureText: true,
+  );
   final IvoryTextFieldController confirmPasswordController =
       IvoryTextFieldController(obscureText: true);
   final ContinueButtonController _continueButtonController =
@@ -39,10 +40,12 @@ class _OnboardingPasswordScreenState extends State<OnboardingPasswordScreen> {
       return;
     }
 
-    bool isValidPrimaryField = passwordValidators
-        .every((validator) => validator.validate(passwordController.text));
+    bool isValidPrimaryField = passwordValidators.every(
+      (validator) => validator.validate(passwordController.text),
+    );
     bool isValidSecondaryField = passwordValidators.every(
-        (validator) => validator.validate(confirmPasswordController.text));
+      (validator) => validator.validate(confirmPasswordController.text),
+    );
 
     if (isValidPrimaryField &&
         isValidSecondaryField &&
@@ -59,7 +62,8 @@ class _OnboardingPasswordScreenState extends State<OnboardingPasswordScreen> {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnboardingSignupViewModel>(
       converter: (store) => OnboardingSignupPresenter.present(
-          signupState: store.state.onboardingSignupState),
+        signupState: store.state.onboardingSignupState,
+      ),
       onInitialBuild: (viewModel) {
         passwordController.text = viewModel.signupAttributes.password ?? "";
         confirmPasswordController.text =
@@ -87,13 +91,17 @@ class _OnboardingPasswordScreenState extends State<OnboardingPasswordScreen> {
                       const SizedBox(height: 16),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('Password',
-                            style: ClientConfig.getTextStyleScheme().heading2),
+                        child: Text(
+                          'Password',
+                          style: ClientConfig.getTextStyleScheme().heading2,
+                        ),
                       ),
                       const SizedBox(height: 16),
-                      Text('Choose your password and verify it below.',
-                          style: ClientConfig.getTextStyleScheme()
-                              .bodyLargeRegular),
+                      Text(
+                        'Choose your password and verify it below.',
+                        style:
+                            ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                      ),
                       const SizedBox(height: 24),
                       IvoryTextField(
                         label: 'Password',
@@ -180,21 +188,25 @@ class _OnboardingPasswordScreenState extends State<OnboardingPasswordScreen> {
                                 confirmPasswordController,
                               ]),
                               builder: (context, child) => Checkbox(
-                                value: !passwordController.obscureText &&
+                                value:
+                                    !passwordController.obscureText &&
                                     !confirmPasswordController.obscureText,
                                 onChanged: (value) {
                                   if (value == null) return;
                                   passwordController.setObscureText(!value);
-                                  confirmPasswordController
-                                      .setObscureText(!value);
+                                  confirmPasswordController.setObscureText(
+                                    !value,
+                                  );
                                 },
                               ),
                             ),
                           ),
                           const SizedBox(width: 8),
-                          Text('Show passwords',
-                              style: ClientConfig.getTextStyleScheme()
-                                  .bodyLargeRegular),
+                          Text(
+                            'Show passwords',
+                            style: ClientConfig.getTextStyleScheme()
+                                .bodyLargeRegular,
+                          ),
                         ],
                       ),
                       const Spacer(),
@@ -207,16 +219,19 @@ class _OnboardingPasswordScreenState extends State<OnboardingPasswordScreen> {
                             isLoading: _continueButtonController.isLoading,
                             onPressed: _continueButtonController.isEnabled
                                 ? () {
-                                    StoreProvider.of<AppState>(context)
-                                        .dispatch(
+                                    StoreProvider.of<AppState>(
+                                      context,
+                                    ).dispatch(
                                       SubmitOnboardingPasswordCommandAction(
-                                          password: passwordController.text),
+                                        password: passwordController.text,
+                                      ),
                                     );
 
                                     Navigator.pushNamed(
-                                        context,
-                                        OnboardingAllowNotificationsScreen
-                                            .routeName);
+                                      context,
+                                      OnboardingAllowNotificationsScreen
+                                          .routeName,
+                                    );
                                   }
                                 : null,
                           ),

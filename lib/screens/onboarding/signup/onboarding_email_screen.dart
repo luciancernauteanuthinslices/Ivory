@@ -76,13 +76,16 @@ class _OnboardingEmailScreenState extends State<OnboardingEmailScreen> {
                   const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Email address',
-                        style: ClientConfig.getTextStyleScheme().heading2),
+                    child: Text(
+                      'Email address',
+                      style: ClientConfig.getTextStyleScheme().heading2,
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  Text('Enter your email address below.',
-                      style:
-                          ClientConfig.getTextStyleScheme().bodyLargeRegular),
+                  Text(
+                    'Enter your email address below.',
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                  ),
                   const SizedBox(height: 24),
                   IvoryTextField(
                     label: 'Email address',
@@ -103,14 +106,18 @@ class _OnboardingEmailScreenState extends State<OnboardingEmailScreen> {
                                 if (isValidEmail(_emailController.text)) {
                                   StoreProvider.of<AppState>(context).dispatch(
                                     SubmitOnboardingEmailCommandAction(
-                                        email: _emailController.text),
+                                      email: _emailController.text,
+                                    ),
                                   );
 
-                                  Navigator.pushNamed(context,
-                                      OnboardingPasswordScreen.routeName);
+                                  Navigator.pushNamed(
+                                    context,
+                                    OnboardingPasswordScreen.routeName,
+                                  );
                                 } else {
                                   _emailController.setErrorText(
-                                      'Please input a valid email address (e.g. name@domain.com).');
+                                    'Please input a valid email address (e.g. name@domain.com).',
+                                  );
                                 }
                               }
                             : null,

@@ -40,7 +40,8 @@ class _AddCardScreenState extends State<AddCardScreen> {
 
   void updateExpiryDate() {
     setState(() {
-      expiryDate = _monthCardNumberController.text.isNotEmpty &&
+      expiryDate =
+          _monthCardNumberController.text.isNotEmpty &&
               _yearCardNumberController.text.isNotEmpty
           ? '${_monthCardNumberController.text}/${_yearCardNumberController.text}'
           : defaultExpiryDateFormat;
@@ -86,8 +87,9 @@ class _AddCardScreenState extends State<AddCardScreen> {
         _continueButtonController.setDisabled();
       }
 
-      this.cardNumber =
-          isCardNumberValid ? cardNumber : defaultCardNumberFormat;
+      this.cardNumber = isCardNumberValid
+          ? cardNumber
+          : defaultCardNumberFormat;
       this.cardHolderName = isNameValid ? nameOnCard : defaultCardHolderFormat;
       this.expiryDate = (isMonthValid && isYearValid)
           ? '$month/$year'
@@ -120,10 +122,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Add a card',
-                  style: TextStyle(
-                    fontSize: 32.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 16),
@@ -158,7 +157,9 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               ),
                             );
                             Navigator.pushNamed(
-                                context, AddMoneyScreen.routeName);
+                              context,
+                              AddMoneyScreen.routeName,
+                            );
                           }
                         : null,
                   ),
@@ -197,8 +198,8 @@ class VisaCard extends StatelessWidget {
 
     final Color textColor =
         isDefaultCardNumber || isDefaultCardHolderName || isDefaultExpiryDate
-            ? ClientConfig.getCustomColors().neutral600
-            : Colors.black;
+        ? ClientConfig.getCustomColors().neutral600
+        : Colors.black;
     return Center(
       child: Container(
         width: width,
@@ -206,21 +207,14 @@ class VisaCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xFFF8F9FA),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: const Color(0xFFDFE2E6),
-            width: 1,
-          ),
+          border: Border.all(color: const Color(0xFFDFE2E6), width: 1),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                'assets/images/card_logo.png',
-                width: 60,
-                height: 40,
-              ),
+              Image.asset('assets/images/card_logo.png', width: 60, height: 40),
               Expanded(
                 child: Center(
                   child: Text(
@@ -325,7 +319,7 @@ class CreditCardForm extends StatelessWidget {
             inputType: TextFieldInputType.number,
             keyboardType: TextInputType.number,
             inputFormatters: [
-              InputFormatter.cardNumber(cardNumberController.text)
+              InputFormatter.cardNumber(cardNumberController.text),
             ],
             controller: cardNumberController,
           ),
@@ -368,7 +362,7 @@ class CreditCardForm extends StatelessWidget {
                 controller: yearCardNumberController,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
-                  LengthLimitingTextInputFormatter(2)
+                  LengthLimitingTextInputFormatter(2),
                 ],
                 onChanged: (value) {
                   final currentYear = DateTime.now().year;
@@ -388,15 +382,16 @@ class CreditCardForm extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width / 2.5,
           child: IvoryTextField(
-              label: 'CVV',
-              placeholder: 'CVV',
-              inputType: TextFieldInputType.number,
-              keyboardType: TextInputType.number,
-              controller: cvvController,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(3)
-              ]),
+            label: 'CVV',
+            placeholder: 'CVV',
+            inputType: TextFieldInputType.number,
+            keyboardType: TextInputType.number,
+            controller: cvvController,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              LengthLimitingTextInputFormatter(3),
+            ],
+          ),
         ),
         const SizedBox(height: 24),
       ],

@@ -63,8 +63,11 @@ class WelcomeScreen extends StatelessWidget {
             if (previousViewModel is AuthLoadingViewModel &&
                 newViewModel is AuthInitializedViewModel &&
                 newViewModel.authType == AuthType.withBiometrics) {
-              Navigator.pushNamedAndRemoveUntil(context,
-                  LoginWithBiometricsScreen.routeName, (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                LoginWithBiometricsScreen.routeName,
+                (route) => false,
+              );
               FlutterNativeSplash.remove();
             }
           },
@@ -77,10 +80,7 @@ class WelcomeScreen extends StatelessWidget {
             }
 
             return const Column(
-              children: [
-                HeroVideo(),
-                WelcomeScreenContent(),
-              ],
+              children: [HeroVideo(), WelcomeScreenContent()],
             );
           },
         ),
@@ -109,8 +109,10 @@ class _HeroVideoState extends State<HeroVideo>
 
     final videoPath =
         ClientConfig.getClientConfig().uiSettings.welcomeVideoPath;
-    _controller = VideoPlayerController.asset(videoPath,
-        videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: false));
+    _controller = VideoPlayerController.asset(
+      videoPath,
+      videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: false),
+    );
 
     _initializeVideoPlayerFuture = _controller.initialize().then((_) {
       // Remove splash screen after video is loaded
@@ -195,10 +197,11 @@ class _HeroVideoState extends State<HeroVideo>
               child: Text(
                 "Error loading video",
                 style: ClientConfig.getTextStyleScheme().heading4.copyWith(
-                    color: ClientConfig.getClientConfig()
-                        .uiSettings
-                        .colorscheme
-                        .primary),
+                  color: ClientConfig.getClientConfig()
+                      .uiSettings
+                      .colorscheme
+                      .primary,
+                ),
               ),
             );
           }
@@ -251,7 +254,9 @@ class WelcomeScreenContent extends StatelessWidget {
                 key: keys.welcomeScreen.signUpButton,
                 text: "Sign up",
                 onPressed: () => Navigator.pushNamed(
-                    context, OnboardingStartScreen.routeName),
+                  context,
+                  OnboardingStartScreen.routeName,
+                ),
               ),
             ),
           ],
@@ -281,7 +286,7 @@ class _Carousel extends StatelessWidget {
         title: "Generous credit limit",
         content:
             "Enjoy competitive interest rates and flexible repayment options tailored to your needs be it fixed or percentage-based.",
-      )
+      ),
     ];
 
     return Column(
@@ -303,10 +308,11 @@ class _Carousel extends StatelessWidget {
             dotWidth: 8,
             dotHeight: 4,
             activeDotColor: ClientConfig.getColorScheme().secondary,
-            dotColor:
-                Theme.of(context).colorScheme.onBackground.withOpacity(0.23),
+            dotColor: Theme.of(
+              context,
+            ).colorScheme.onBackground.withOpacity(0.23),
           ),
-        )
+        ),
       ],
     );
   }
@@ -323,10 +329,7 @@ class _Slide extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: ClientConfig.getTextStyleScheme().heading2,
-        ),
+        Text(title, style: ClientConfig.getTextStyleScheme().heading2),
         const SizedBox(height: 8),
         Expanded(
           child: Text(

@@ -28,12 +28,17 @@ class GetTransactionsMiddleware extends MiddlewareClass<AppState> {
 
       store.dispatch(TransactionsLoadingEventAction(filter: action.filter));
       final response = await _transactionService.getTransactions(
-          filter: action.filter, user: authState.authenticatedUser.cognito);
+        filter: action.filter,
+        user: authState.authenticatedUser.cognito,
+      );
 
       if (response is GetTransactionsSuccessResponse) {
-        store.dispatch(TransactionsFetchedEventAction(
+        store.dispatch(
+          TransactionsFetchedEventAction(
             transactions: response.transactions,
-            transactionListFilter: action.filter));
+            transactionListFilter: action.filter,
+          ),
+        );
       } else {
         store.dispatch(TransactionsFailedEventAction());
       }
@@ -43,11 +48,15 @@ class GetTransactionsMiddleware extends MiddlewareClass<AppState> {
       store.dispatch(TransactionsLoadingEventAction(filter: action.filter));
 
       final response = await _transactionService.getUpcomingTransactions(
-          user: authState.authenticatedUser.cognito);
+        user: authState.authenticatedUser.cognito,
+      );
 
       if (response is GetUpcomingTransactionsSuccessResponse) {
-        store.dispatch(UpcomingTransactionsFetchedEventAction(
-            upcomingTransactions: response.upcomingTransactions));
+        store.dispatch(
+          UpcomingTransactionsFetchedEventAction(
+            upcomingTransactions: response.upcomingTransactions,
+          ),
+        );
       } else {
         store.dispatch(TransactionsFailedEventAction());
       }
@@ -60,11 +69,16 @@ class GetTransactionsMiddleware extends MiddlewareClass<AppState> {
       }
       store.dispatch(HomeTransactionsLoadingEventAction());
       final response = await _transactionService.getTransactions(
-          filter: action.filter, user: authState.authenticatedUser.cognito);
+        filter: action.filter,
+        user: authState.authenticatedUser.cognito,
+      );
 
       if (response is GetTransactionsSuccessResponse) {
-        store.dispatch(HomeTransactionsFetchedEventAction(
-            transactions: response.transactions));
+        store.dispatch(
+          HomeTransactionsFetchedEventAction(
+            transactions: response.transactions,
+          ),
+        );
       } else {
         store.dispatch(HomeTransactionsFailedEventAction());
       }

@@ -56,8 +56,8 @@ class OnboardingNationalityNotSupportedScreen extends StatelessWidget {
                           style: ClientConfig.getTextStyleScheme()
                               .bodyLargeRegular
                               .copyWith(
-                                  color:
-                                      ClientConfig.getColorScheme().secondary),
+                                color: ClientConfig.getColorScheme().secondary,
+                              ),
                         ),
                         const TextSpan(text: '.'),
                       ],
@@ -80,7 +80,10 @@ class OnboardingNationalityNotSupportedScreen extends StatelessWidget {
                   PrimaryButton(
                     text: "Return to \"Login Screen\"",
                     onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                        context, LoginScreen.routeName, (route) => false),
+                      context,
+                      LoginScreen.routeName,
+                      (route) => false,
+                    ),
                   ),
                   const SizedBox(height: 16),
                 ],

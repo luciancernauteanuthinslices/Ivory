@@ -48,7 +48,9 @@ class _OnboardingGeneralErrorScreenState
             newViewModel.errorType ==
                 OnboardingSignupErrorType.emailAlreadyExists) {
           Navigator.pushReplacementNamed(
-              context, OnboardingErrorEmailScreen.routeName);
+            context,
+            OnboardingErrorEmailScreen.routeName,
+          );
         } else if (newViewModel.isLoading) {
           _continueButtonController.setLoading();
         } else if (newViewModel.errorType != null) {
@@ -87,8 +89,9 @@ class _OnboardingGeneralErrorScreenState
                                 .bodyLargeRegular,
                             children: [
                               const TextSpan(
-                                  text:
-                                      'We\'re sorry, but it seems an error has cropped up, which is preventing you from completing this step. Here\'s what you can do:\n\n'),
+                                text:
+                                    'We\'re sorry, but it seems an error has cropped up, which is preventing you from completing this step. Here\'s what you can do:\n\n',
+                              ),
                               TextSpan(
                                 text:
                                     '1. Try closing the app and reopening it.\n\n2. Check your internet connection and try again.\n\n3. If the issue persists, reach out ',
@@ -96,19 +99,21 @@ class _OnboardingGeneralErrorScreenState
                                     .bodyLargeRegularBold,
                               ),
                               const TextSpan(
-                                  text: 'to our friendly support team at '),
+                                text: 'to our friendly support team at ',
+                              ),
                               TextSpan(
                                 text: '+49 (0)123 456789',
                                 style: ClientConfig.getTextStyleScheme()
                                     .bodyLargeRegularBold
                                     .copyWith(
-                                      color: (_continueButtonController
+                                      color:
+                                          (_continueButtonController
                                                   .isLoading ==
                                               false)
                                           ? ClientConfig.getColorScheme()
-                                              .secondary
+                                                .secondary
                                           : ClientConfig.getCustomColors()
-                                              .neutral500,
+                                                .neutral500,
                                     ),
                               ),
                               const TextSpan(text: ' or '),
@@ -117,13 +122,14 @@ class _OnboardingGeneralErrorScreenState
                                 style: ClientConfig.getTextStyleScheme()
                                     .bodyLargeRegularBold
                                     .copyWith(
-                                      color: (_continueButtonController
+                                      color:
+                                          (_continueButtonController
                                                   .isLoading ==
                                               false)
                                           ? ClientConfig.getColorScheme()
-                                              .secondary
+                                                .secondary
                                           : ClientConfig.getCustomColors()
-                                              .neutral500,
+                                                .neutral500,
                                     ),
                               ),
                               const TextSpan(text: '. We\'re here to help.'),
@@ -132,8 +138,9 @@ class _OnboardingGeneralErrorScreenState
                         ),
                       ),
                       Expanded(
-                        child:
-                            SvgPicture.asset('assets/images/general_error.svg'),
+                        child: SvgPicture.asset(
+                          'assets/images/general_error.svg',
+                        ),
                       ),
                       ListenableBuilder(
                         listenable: _continueButtonController,
@@ -143,8 +150,9 @@ class _OnboardingGeneralErrorScreenState
                             text: "Try again",
                             isLoading: _continueButtonController.isLoading,
                             onPressed: _continueButtonController.isEnabled
-                                ? () => StoreProvider.of<AppState>(context)
-                                    .dispatch(CreateAccountCommandAction())
+                                ? () => StoreProvider.of<AppState>(
+                                    context,
+                                  ).dispatch(CreateAccountCommandAction())
                                 : null,
                           ),
                         ),

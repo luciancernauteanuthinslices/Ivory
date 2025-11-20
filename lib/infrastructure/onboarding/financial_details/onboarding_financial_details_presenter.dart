@@ -4,8 +4,9 @@ import 'package:solarisdemo/models/onboarding/onboarding_financial_details_error
 import 'package:solarisdemo/redux/onboarding/financial_details/onboarding_financial_details_state.dart';
 
 class OnboardingFinancialDetailsPresenter {
-  static OnboardingFinancialDetailsViewModel present(
-      {required OnboardingFinancialDetailsState financialState}) {
+  static OnboardingFinancialDetailsViewModel present({
+    required OnboardingFinancialDetailsState financialState,
+  }) {
     return OnboardingFinancialDetailsViewModel(
       financialDetailsAttributes: financialState.financialDetailsAttributes,
       isLoading: financialState.isLoading,
@@ -31,9 +32,9 @@ class OnboardingFinancialDetailsViewModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        financialDetailsAttributes,
-        isLoading,
-        errorType,
-        isCreditCardApplicationCreated
-      ];
+    financialDetailsAttributes,
+    isLoading,
+    errorType,
+    isCreditCardApplicationCreated,
+  ];
 }

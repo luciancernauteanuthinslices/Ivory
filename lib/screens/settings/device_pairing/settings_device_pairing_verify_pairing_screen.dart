@@ -52,7 +52,9 @@ class _SettingsDevicePairingVerifyPairingScreenState
           if (previousViewModel is DeviceBindingLoadingViewModel &&
               viewModel is DeviceBindingChallengeVerifiedViewModel) {
             Navigator.pushNamed(
-                context, SettingsDevicePairingSuccessScreen.routeName);
+              context,
+              SettingsDevicePairingSuccessScreen.routeName,
+            );
           }
           if (previousViewModel is DeviceBindingLoadingViewModel &&
               viewModel is DeviceBindingVerificationErrorViewModel) {
@@ -69,9 +71,7 @@ class _SettingsDevicePairingVerifyPairingScreenState
                       text:
                           'To ensure your account security, we\'ve temporarily restricted device pairing after an incorrect attempt. \n\n',
                     ),
-                    const TextSpan(
-                      text: 'Please ',
-                    ),
+                    const TextSpan(text: 'Please '),
                     TextSpan(
                       text: 'try again in approximately 5 minutes.',
                       style: ClientConfig.getTextStyleScheme()
@@ -89,11 +89,14 @@ class _SettingsDevicePairingVerifyPairingScreenState
                       text: 'Try again later',
                       onPressed: () async {
                         StoreProvider.of<AppState>(context).dispatch(
-                            DeleteIncompleteDeviceBindingCommandAction());
+                          DeleteIncompleteDeviceBindingCommandAction(),
+                        );
                         Navigator.popUntil(
-                            context,
-                            ModalRoute.withName(
-                                SettingsDevicePairingScreen.routeName));
+                          context,
+                          ModalRoute.withName(
+                            SettingsDevicePairingScreen.routeName,
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -107,9 +110,7 @@ class _SettingsDevicePairingVerifyPairingScreenState
         ),
         builder: (context, viewModel) {
           if (viewModel is DeviceBindingErrorViewModel) {
-            return const Center(
-              child: Text('Error'),
-            );
+            return const Center(child: Text('Error'));
           }
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +126,8 @@ class _SettingsDevicePairingVerifyPairingScreenState
                     showCloseButton: true,
                     title: 'Are you sure you want to leave device pairing?',
                     textWidget: const Text(
-                        'You will need to wait for 5 minutes to pair your device again if you leave now.'),
+                      'You will need to wait for 5 minutes to pair your device again if you leave now.',
+                    ),
                     content: Column(
                       children: [
                         const SizedBox(height: 24),
@@ -146,9 +148,11 @@ class _SettingsDevicePairingVerifyPairingScreenState
                             text: 'Yes, leave',
                             onPressed: () async {
                               Navigator.popUntil(
-                                  context,
-                                  ModalRoute.withName(
-                                      SettingsDevicePairingScreen.routeName));
+                                context,
+                                ModalRoute.withName(
+                                  SettingsDevicePairingScreen.routeName,
+                                ),
+                              );
                               StoreProvider.of<AppState>(context).dispatch(
                                 DeleteIncompleteDeviceBindingCommandAction(),
                               );
@@ -172,9 +176,7 @@ class _SettingsDevicePairingVerifyPairingScreenState
                         style: ClientConfig.getTextStyleScheme().heading2,
                         textAlign: TextAlign.left,
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       RichText(
                         text: TextSpan(
                           style: ClientConfig.getTextStyleScheme()
@@ -182,20 +184,20 @@ class _SettingsDevicePairingVerifyPairingScreenState
                           children: [
                             const TextSpan(text: 'Please enter below the '),
                             TextSpan(
-                                text: '6-digit code ',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '6-digit code ',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                             const TextSpan(text: 'we sent to '),
                             TextSpan(
-                                text: '+49 (30) 4587 8734.',
-                                style: ClientConfig.getTextStyleScheme()
-                                    .bodyLargeRegularBold),
+                              text: '+49 (30) 4587 8734.',
+                              style: ClientConfig.getTextStyleScheme()
+                                  .bodyLargeRegularBold,
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       TanInput(
                         isLoading: viewModel is DeviceBindingLoadingViewModel,
                         length: 6,
@@ -228,7 +230,7 @@ class _SettingsDevicePairingVerifyPairingScreenState
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           );
         },

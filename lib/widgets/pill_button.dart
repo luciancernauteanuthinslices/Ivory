@@ -25,10 +25,7 @@ class PillButton extends StatelessWidget {
       child: SizedBox(
         // height: 25,
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 4,
-            horizontal: 8,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: active
@@ -49,7 +46,8 @@ class PillButton extends StatelessWidget {
                 style: active
                     ? ClientConfig.getTextStyleScheme().labelSmall
                     : ClientConfig.getTextStyleScheme().labelSmall.copyWith(
-                        color: ClientConfig.getColorScheme().tertiary),
+                        color: ClientConfig.getColorScheme().tertiary,
+                      ),
               ),
               if (icon != null)
                 GestureDetector(

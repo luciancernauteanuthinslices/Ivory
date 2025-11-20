@@ -70,7 +70,9 @@ class FakeDeviceBindingService extends DeviceBindingService {
     required CreateDeviceBindingRequest reqBody,
   }) async {
     return const CreateDeviceBindingSuccessResponse(
-        deviceId: 'deviceId', deviceName: 'deviceName');
+      deviceId: 'deviceId',
+      deviceName: 'deviceName',
+    );
   }
 
   @override
@@ -119,7 +121,8 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required CreateDeviceBindingRequest reqBody,
   }) async {
     return const DeviceBindingServiceErrorResponse(
-        errorType: DeviceBindingServiceErrorType.deviceBindingFailed);
+      errorType: DeviceBindingServiceErrorType.deviceBindingFailed,
+    );
   }
 
   @override
@@ -127,7 +130,8 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required User user,
   }) async {
     return const DeviceBindingServiceErrorResponse(
-        errorType: DeviceBindingServiceErrorType.getDeviceBindingFailed);
+      errorType: DeviceBindingServiceErrorType.getDeviceBindingFailed,
+    );
   }
 
   @override
@@ -138,8 +142,9 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required String signature,
   }) async {
     return const DeviceBindingServiceErrorResponse(
-        errorType:
-            DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed);
+      errorType:
+          DeviceBindingServiceErrorType.verifyDeviceBindingSignatureFailed,
+    );
   }
 
   @override
@@ -148,7 +153,8 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required CreateRestrictedKeyRequest reqBody,
   }) async {
     return const DeviceBindingServiceErrorResponse(
-        errorType: DeviceBindingServiceErrorType.createRestrictedKeyFailed);
+      errorType: DeviceBindingServiceErrorType.createRestrictedKeyFailed,
+    );
   }
 
   @override
@@ -157,7 +163,8 @@ class FakeFailingDeviceBindingService extends DeviceBindingService {
     required String deviceId,
   }) async {
     return const DeviceBindingServiceErrorResponse(
-        errorType: DeviceBindingServiceErrorType.deletingDeviceBindingFailed);
+      errorType: DeviceBindingServiceErrorType.deletingDeviceBindingFailed,
+    );
   }
 }
 
@@ -198,8 +205,10 @@ class FakeDeviceService extends DeviceService {
   }
 
   @override
-  String? generateSignature(
-      {required String privateKey, required String stringToSign}) {
+  String? generateSignature({
+    required String privateKey,
+    required String stringToSign,
+  }) {
     return 'signature';
   }
 
@@ -211,24 +220,19 @@ class FakeDeviceService extends DeviceService {
   @override
   RSAKeyPair? generateRSAKey() {
     return RSAKeyPair(
-        publicKey: RSAPublicKey(
-          BigInt.zero,
-          BigInt.zero,
-        ),
-        privateKey: RSAPrivateKey(
-          BigInt.zero,
-          BigInt.zero,
-          BigInt.zero,
-          BigInt.zero,
-        ));
+      publicKey: RSAPublicKey(BigInt.zero, BigInt.zero),
+      privateKey: RSAPrivateKey(
+        BigInt.zero,
+        BigInt.zero,
+        BigInt.zero,
+        BigInt.zero,
+      ),
+    );
   }
 
   @override
   Jwk? convertRSAPublicKeyToJWK({required RSAPublicKey rsaPublicKey}) {
-    return Jwk(
-      n: 'n',
-      e: 'e',
-    );
+    return Jwk(n: 'n', e: 'e');
   }
 
   @override
@@ -277,8 +281,10 @@ class FakeFailingDeviceService extends DeviceService {
   }
 
   @override
-  String? generateSignature(
-      {required String privateKey, required String stringToSign}) {
+  String? generateSignature({
+    required String privateKey,
+    required String stringToSign,
+  }) {
     return null;
   }
 

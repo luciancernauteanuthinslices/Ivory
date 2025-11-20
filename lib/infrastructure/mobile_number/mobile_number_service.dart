@@ -22,14 +22,12 @@ class MobileNumberService extends ApiService {
     try {
       String path = 'person/create_mobile_number';
 
-      await post(
-        path,
-        body: reqBody.toJson(),
-      );
+      await post(path, body: reqBody.toJson());
       return CreateMobileNumberSuccessResponse();
     } catch (e) {
       return MobileNumberServiceErrorResponse(
-          errorType: MobileNumberErrorType.cantCreateMobileNumber);
+        errorType: MobileNumberErrorType.cantCreateMobileNumber,
+      );
     }
   }
 
@@ -50,14 +48,12 @@ class MobileNumberService extends ApiService {
     try {
       String path = 'person/confirm_mobile_number';
 
-      await post(
-        path,
-        body: reqBody.toJson(),
-      );
+      await post(path, body: reqBody.toJson());
       return ConfirmMobileNumberSuccessResponse();
     } catch (e) {
       return MobileNumberServiceErrorResponse(
-          errorType: MobileNumberErrorType.cantConfirmMobileNumber);
+        errorType: MobileNumberErrorType.cantConfirmMobileNumber,
+      );
     }
   }
 
@@ -76,14 +72,12 @@ class MobileNumberService extends ApiService {
     try {
       String path = 'person/verify_mobile_number';
 
-      await post(
-        path,
-        body: reqBody.toJson(),
-      );
+      await post(path, body: reqBody.toJson());
       return VerifyMobileNumberSuccessResponse();
     } catch (e) {
       return MobileNumberServiceErrorResponse(
-          errorType: MobileNumberErrorType.cantVerifyMobileNumber);
+        errorType: MobileNumberErrorType.cantVerifyMobileNumber,
+      );
     }
   }
 }

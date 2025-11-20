@@ -5,16 +5,18 @@ import 'package:pointycastle/export.dart';
 class CryptoKeyGenerator {
   static CryptoKeyPair generateECKeyPair() {
     var keyPair = _createECKeyGenerator().generateKeyPair();
-    var publicKeyUncompressedForm =
-        _toUncompressedForm(keyPair.publicKey as ECPublicKey);
+    var publicKeyUncompressedForm = _toUncompressedForm(
+      keyPair.publicKey as ECPublicKey,
+    );
 
     var stop = false;
     var i = 0;
     while (i < 10 && stop != true) {
       if (publicKeyUncompressedForm.length % 2 != 0) {
         keyPair = _createECKeyGenerator().generateKeyPair();
-        publicKeyUncompressedForm =
-            _toUncompressedForm(keyPair.publicKey as ECPublicKey);
+        publicKeyUncompressedForm = _toUncompressedForm(
+          keyPair.publicKey as ECPublicKey,
+        );
         i++;
       } else {
         stop = true;
@@ -30,26 +32,30 @@ class CryptoKeyGenerator {
     final keyPair = _createRSAKeyGenerator().generateKeyPair();
     final publicKey = keyPair.publicKey as RSAPublicKey;
     final privateKey = keyPair.privateKey as RSAPrivateKey;
-    return RSAKeyPair(
-      publicKey: publicKey,
-      privateKey: privateKey,
-    );
+    return RSAKeyPair(publicKey: publicKey, privateKey: privateKey);
   }
 
   static ECKeyGenerator _createECKeyGenerator() {
     final keyGen = ECKeyGenerator();
 
-    keyGen.init(ParametersWithRandom(
-        ECKeyGeneratorParameters(ECCurve_secp256r1()), _secureRandom()));
+    keyGen.init(
+      ParametersWithRandom(
+        ECKeyGeneratorParameters(ECCurve_secp256r1()),
+        _secureRandom(),
+      ),
+    );
     return keyGen;
   }
 
   static RSAKeyGenerator _createRSAKeyGenerator() {
     final keyGen = RSAKeyGenerator();
 
-    keyGen.init(ParametersWithRandom(
+    keyGen.init(
+      ParametersWithRandom(
         RSAKeyGeneratorParameters(BigInt.parse('65537'), 2048, 64),
-        _secureRandom()));
+        _secureRandom(),
+      ),
+    );
     return keyGen;
   }
 
@@ -80,18 +86,12 @@ class CryptoKeyPair {
   final String publicKey;
   final String privateKey;
 
-  CryptoKeyPair({
-    required this.publicKey,
-    required this.privateKey,
-  });
+  CryptoKeyPair({required this.publicKey, required this.privateKey});
 }
 
 class RSAKeyPair {
   final RSAPublicKey publicKey;
   final RSAPrivateKey privateKey;
 
-  RSAKeyPair({
-    required this.publicKey,
-    required this.privateKey,
-  });
+  RSAKeyPair({required this.publicKey, required this.privateKey});
 }

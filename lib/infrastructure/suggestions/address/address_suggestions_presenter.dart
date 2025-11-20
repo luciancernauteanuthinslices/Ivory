@@ -4,16 +4,19 @@ import 'package:solarisdemo/models/suggestions/address_suggestions_error_type.da
 import 'package:solarisdemo/redux/suggestions/address/address_suggestions_state.dart';
 
 class AddressSuggestionsPresenter {
-  static AddressSuggestionsViewModel present(
-      {required AddressSuggestionsState addressSuggestionsState}) {
+  static AddressSuggestionsViewModel present({
+    required AddressSuggestionsState addressSuggestionsState,
+  }) {
     if (addressSuggestionsState is AddressSuggestionsFetchedState) {
       return AddressSuggestionsFetchedViewModel(
-          suggestions: addressSuggestionsState.suggestions);
+        suggestions: addressSuggestionsState.suggestions,
+      );
     } else if (addressSuggestionsState is AddressSuggestionsLoadingState) {
       return AddressSuggestionsLoadingViewModel();
     } else if (addressSuggestionsState is AddressSuggestionsErrorState) {
       return AddressSuggestionsErrorViewModel(
-          errorType: addressSuggestionsState.errorType);
+        errorType: addressSuggestionsState.errorType,
+      );
     }
 
     return AddressSuggestionsInitialViewModel();

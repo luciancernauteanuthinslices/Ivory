@@ -22,9 +22,10 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
     return StoreConnector<AppState, BankCardViewModel>(
       converter: (store) {
         return BankCardPresenter.presentBankCard(
@@ -41,9 +42,7 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AppToolbar(
-                  backButtonEnabled: false,
-                ),
+                const AppToolbar(backButtonEnabled: false),
                 Text(
                   'PIN successfully\nchanged!',
                   style: ClientConfig.getTextStyleScheme().heading1,
@@ -66,10 +65,7 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        childPosition: BadgePosition.topEnd(
-                          top: -32,
-                          end: -32,
-                        ),
+                        childPosition: BadgePosition.topEnd(top: -32, end: -32),
                         isSuccess: true,
                       ),
                     ],
@@ -87,11 +83,12 @@ class BankCardChangePinSuccessScreen extends StatelessWidget {
                         context,
                         ModalRoute.withName(HomeScreen.routeName),
                       );
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(GetBankCardCommandAction(
-                        cardId: viewModel.bankCard!.id,
-                        forceReloadCardData: true,
-                      ));
+                      StoreProvider.of<AppState>(context).dispatch(
+                        GetBankCardCommandAction(
+                          cardId: viewModel.bankCard!.id,
+                          forceReloadCardData: true,
+                        ),
+                      );
                     },
                   ),
                 ),

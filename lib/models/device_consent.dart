@@ -2,10 +2,7 @@
 
 import 'dart:convert';
 
-enum DeviceConsentEventType {
-  APPROVED,
-  REJECTED,
-}
+enum DeviceConsentEventType { APPROVED, REJECTED }
 
 CreateDeviceConsentRequest createDeviceConsentRequestFromJson(String str) =>
     CreateDeviceConsentRequest.fromJson(json.decode(str));
@@ -29,9 +26,9 @@ class CreateDeviceConsentRequest {
       );
 
   Map<String, dynamic> toJson() => {
-        "event_type": eventType.name,
-        "confirmed_at": confirmedAt.toIso8601String(),
-      };
+    "event_type": eventType.name,
+    "confirmed_at": confirmedAt.toIso8601String(),
+  };
 }
 
 DeviceConsentEventType getEventType(String type) {
@@ -76,10 +73,10 @@ class CreateDeviceConsentResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "person_id": personId,
-        "event_type": eventType.name,
-        "confirmed_at": confirmedAt.toIso8601String(),
-        "created_at": createdAt.toIso8601String(),
-      };
+    "id": id,
+    "person_id": personId,
+    "event_type": eventType.name,
+    "confirmed_at": confirmedAt.toIso8601String(),
+    "created_at": createdAt.toIso8601String(),
+  };
 }

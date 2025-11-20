@@ -34,35 +34,44 @@ class OnboardingRememberScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 16),
                   Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Remember...',
-                          style: ClientConfig.getTextStyleScheme().heading2)),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Remember...',
+                      style: ClientConfig.getTextStyleScheme().heading2,
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   Text.rich(
                     TextSpan(
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                       children: [
                         const TextSpan(
-                            text:
-                                'In order to make the best out of our credit services, we need some additional '),
+                          text:
+                              'In order to make the best out of our credit services, we need some additional ',
+                        ),
                         TextSpan(
-                            text: 'personal & financial information',
-                            style: ClientConfig.getTextStyleScheme()
-                                .bodyLargeRegularBold),
+                          text: 'personal & financial information',
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
+                        ),
                         const TextSpan(
-                            text:
-                                ' to score you, such as your living situation, occupation, income etc.\n\n'),
+                          text:
+                              ' to score you, such as your living situation, occupation, income etc.\n\n',
+                        ),
                         TextSpan(
-                            text: 'Protecting your privacy',
-                            style: ClientConfig.getTextStyleScheme()
-                                .bodyLargeRegularBold),
+                          text: 'Protecting your privacy',
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
+                        ),
                         const TextSpan(
-                            text:
-                                ' is our utmost priority. The information provided will solely be utilized '),
+                          text:
+                              ' is our utmost priority. The information provided will solely be utilized ',
+                        ),
                         TextSpan(
-                            text: 'for your scoring.',
-                            style: ClientConfig.getTextStyleScheme()
-                                .bodyLargeRegularBold),
+                          text: 'for your scoring.',
+                          style: ClientConfig.getTextStyleScheme()
+                              .bodyLargeRegularBold,
+                        ),
                       ],
                     ),
                   ),
@@ -72,8 +81,8 @@ class OnboardingRememberScreen extends StatelessWidget {
                         SvgAssetLoader(
                           'assets/images/onboarding_remember.svg',
                           colorMapper: IvoryColorMapper(
-                              baseColor:
-                                  ClientConfig.getColorScheme().secondary),
+                            baseColor: ClientConfig.getColorScheme().secondary,
+                          ),
                         ),
                       ),
                     ),
@@ -81,11 +90,14 @@ class OnboardingRememberScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: PrimaryButton(
-                        text: 'OK, continue',
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, OnboardingTaxIdScreen.routeName);
-                        }),
+                      text: 'OK, continue',
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          OnboardingTaxIdScreen.routeName,
+                        );
+                      },
+                    ),
                   ),
                   const SizedBox(height: 16),
                 ],

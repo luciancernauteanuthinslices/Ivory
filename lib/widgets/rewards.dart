@@ -51,11 +51,11 @@ class Rewards extends StatelessWidget {
                 "See all",
                 textAlign: TextAlign.right,
                 style: ClientConfig.getTextStyleScheme().labelMedium.copyWith(
-                      color: ClientConfig.getColorScheme().secondary,
-                    ),
+                  color: ClientConfig.getColorScheme().secondary,
+                ),
               ),
               onPressed: () {},
-            )
+            ),
           ],
         ),
         SizedBox(
@@ -66,9 +66,7 @@ class Rewards extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return RewardCard(
-                reward: rewards[index],
-              );
+              return RewardCard(reward: rewards[index]);
             },
             separatorBuilder: (context, index) => const SizedBox(width: 16),
             itemCount: rewards.length,
@@ -89,16 +87,11 @@ class RewardCard extends StatelessWidget {
       height: 160,
       width: 260,
       child: ClipRRect(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(16),
-        ),
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              reward.imageUrl,
-              fit: BoxFit.fill,
-            ),
+            Image.asset(reward.imageUrl, fit: BoxFit.fill),
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
@@ -119,24 +112,19 @@ class RewardCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   Text(
                     reward.provider,
-                    style: ClientConfig.getTextStyleScheme()
-                        .labelXSmall
+                    style: ClientConfig.getTextStyleScheme().labelXSmall
                         .copyWith(color: Colors.white),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   Text(
                     reward.description,
-                    style: ClientConfig.getTextStyleScheme()
-                        .heading2
-                        .copyWith(color: Colors.white),
-                  )
+                    style: ClientConfig.getTextStyleScheme().heading2.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
               ),
             ),

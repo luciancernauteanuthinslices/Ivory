@@ -57,9 +57,7 @@ class BillDetailScreen extends StatelessWidget {
                       Material(
                         color: ClientConfig.getCustomColors().neutral100,
                         shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(16),
-                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
                         ),
                         child: Column(
                           children: [
@@ -69,48 +67,57 @@ class BillDetailScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 space: 8,
                                 children: [
-                                  Text('Repayment details',
-                                      style: ClientConfig.getTextStyleScheme()
-                                          .bodyLargeRegularBold),
+                                  Text(
+                                    'Repayment details',
+                                    style: ClientConfig.getTextStyleScheme()
+                                        .bodyLargeRegularBold,
+                                  ),
                                   if (viewModel.transactionsLoaded) ...[
                                     ExpandedDetailsRow(
                                       title: 'Amount spent',
-                                      trailing:
-                                          Format.euro(bill.amountSpent!.value),
+                                      trailing: Format.euro(
+                                        bill.amountSpent!.value,
+                                      ),
                                     ),
                                     ...bill.transactions!.map(
                                       (transaction) => Padding(
                                         padding: EdgeInsets.only(
-                                            left: ClientConfig
-                                                    .getCustomClientUiSettings()
-                                                .defaultScreenLeftPadding),
+                                          left:
+                                              ClientConfig.getCustomClientUiSettings()
+                                                  .defaultScreenLeftPadding,
+                                        ),
                                         child: ExpandedDetailsRow(
                                           title: transaction.merchantName,
                                           trailing: Format.euro(
-                                              transaction.amount.value),
+                                            transaction.amount.value,
+                                          ),
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ] else
                                     const Center(
                                       child: SizedBox.square(
                                         dimension: 24,
                                         child: CircularProgressIndicator(
-                                            strokeWidth: 2),
+                                          strokeWidth: 2,
+                                        ),
                                       ),
                                     ),
                                   ExpandedDetailsRow(
                                     title: 'Fixed repayment rate',
                                     trailing: Format.euro(
-                                        bill.currentBillAmount.value),
+                                      bill.currentBillAmount.value,
+                                    ),
                                   ),
                                   ExpandedDetailsRow(
-                                      title: 'Interest rate',
-                                      trailing: '${bill.interestRate}%'),
+                                    title: 'Interest rate',
+                                    trailing: '${bill.interestRate}%',
+                                  ),
                                   ExpandedDetailsRow(
                                     title: 'Interest amount',
                                     trailing: Format.euro(
-                                        bill.currentBillAmount.value),
+                                      bill.currentBillAmount.value,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -125,16 +132,19 @@ class BillDetailScreen extends StatelessWidget {
                                   ExpandedDetailsRow(
                                     title: 'Total repayment amount',
                                     trailing: Format.euro(
-                                        bill.currentBillAmount.value),
+                                      bill.currentBillAmount.value,
+                                    ),
                                   ),
                                   ExpandedDetailsRow(
                                     title: 'Due date',
-                                    trailing: Format.date(bill.dueDate,
-                                        pattern: 'MMM d, yyyy'),
+                                    trailing: Format.date(
+                                      bill.dueDate,
+                                      pattern: 'MMM d, yyyy',
+                                    ),
                                   ),
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -142,9 +152,7 @@ class BillDetailScreen extends StatelessWidget {
                       Material(
                         color: ClientConfig.getCustomColors().neutral100,
                         shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(16),
-                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(16),
@@ -152,27 +160,33 @@ class BillDetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             space: 8,
                             children: [
-                              Text('Outstanding balance',
-                                  style: ClientConfig.getTextStyleScheme()
-                                      .bodyLargeRegularBold),
+                              Text(
+                                'Outstanding balance',
+                                style: ClientConfig.getTextStyleScheme()
+                                    .bodyLargeRegularBold,
+                              ),
                               ExpandedDetailsRow(
                                 title: 'Before repayment',
-                                trailing:
-                                    Format.euro(bill.outstandingAmount.value),
+                                trailing: Format.euro(
+                                  bill.outstandingAmount.value,
+                                ),
                               ),
                               ExpandedDetailsRow(
                                 title: 'After repaymeny',
                                 trailing: Format.euro(
-                                    bill.outstandingAmount.value -
-                                        bill.currentBillAmount.value),
+                                  bill.outstandingAmount.value -
+                                      bill.currentBillAmount.value,
+                                ),
                               ),
                             ],
                           ),
                         ),
                       ),
                       const SizedBox(height: 24),
-                      Text('Actions',
-                          style: ClientConfig.getTextStyleScheme().heading4),
+                      Text(
+                        'Actions',
+                        style: ClientConfig.getTextStyleScheme().heading4,
+                      ),
                       const SizedBox(height: 8),
                       _DownloadBillButton(bill: bill),
                     ],

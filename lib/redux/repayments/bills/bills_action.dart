@@ -12,8 +12,11 @@ class DownloadBillCommandAction {
   final Bill bill;
   final VoidCallback? onDownloaded;
   final VoidCallback? onDownloadFailed;
-  DownloadBillCommandAction(
-      {required this.bill, this.onDownloaded, this.onDownloadFailed});
+  DownloadBillCommandAction({
+    required this.bill,
+    this.onDownloaded,
+    this.onDownloadFailed,
+  });
 }
 
 class BillsLoadingEventAction {}

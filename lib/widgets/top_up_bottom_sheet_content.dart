@@ -18,9 +18,11 @@ class TopUpBottomSheetContent extends StatelessWidget {
         const SizedBox(height: 24),
         _buildRow(context, text: "Log into your reference bank account."),
         const SizedBox(height: 24),
-        _buildRow(context,
-            text:
-                "Make a transfer to your Ivory account using the IBAN you copied."),
+        _buildRow(
+          context,
+          text:
+              "Make a transfer to your Ivory account using the IBAN you copied.",
+        ),
         const SizedBox(height: 24),
       ],
     );
@@ -36,8 +38,10 @@ class TopUpBottomSheetContent extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(text,
-                  style: ClientConfig.getTextStyleScheme().bodyLargeRegular),
+              Text(
+                text,
+                style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+              ),
               if (iban != null) ...[
                 const SizedBox(height: 4),
                 Row(
@@ -63,8 +67,10 @@ class TopUpBottomSheetContent extends StatelessWidget {
                               ClientConfig.getCustomColors().neutral900,
                         );
                       },
-                      child: Icon(Icons.copy,
-                          color: ClientConfig.getCustomColors().neutral900),
+                      child: Icon(
+                        Icons.copy,
+                        color: ClientConfig.getCustomColors().neutral900,
+                      ),
                     ),
                   ],
                 ),

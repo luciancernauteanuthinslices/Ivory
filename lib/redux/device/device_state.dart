@@ -38,12 +38,20 @@ class DeviceBindingFetchedState extends DeviceBindingState {
   final bool isBoundDevice;
   final bool isBindingPossible;
 
-  DeviceBindingFetchedState(this.devices, this.thisDevice, this.isBoundDevice,
-      this.isBindingPossible);
+  DeviceBindingFetchedState(
+    this.devices,
+    this.thisDevice,
+    this.isBoundDevice,
+    this.isBindingPossible,
+  );
 
   @override
-  List<Object?> get props =>
-      [devices, thisDevice, isBoundDevice, isBindingPossible];
+  List<Object?> get props => [
+    devices,
+    thisDevice,
+    isBoundDevice,
+    isBindingPossible,
+  ];
 }
 
 class DeviceBindingDeletedState extends DeviceBindingState {}

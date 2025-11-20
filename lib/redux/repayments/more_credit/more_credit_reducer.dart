@@ -3,7 +3,9 @@ import 'package:solarisdemo/redux/repayments/more_credit/more_credit_action.dart
 import 'more_credit_state.dart';
 
 MoreCreditState moreCreditReducer(
-    MoreCreditState currentState, dynamic action) {
+  MoreCreditState currentState,
+  dynamic action,
+) {
   if (action is MoreCreditLoadingEventAction) {
     return MoreCreditLoadingState();
   } else if (action is MoreCreditFailedEventAction) {

@@ -15,15 +15,18 @@ void main() {
         citySuggestionsState: CitySuggestionsInitialState(),
       ),
     );
-    final appState = store.onChange.firstWhere((element) =>
-        element.citySuggestionsState is CitySuggestionsLoadingState);
+    final appState = store.onChange.firstWhere(
+      (element) => element.citySuggestionsState is CitySuggestionsLoadingState,
+    );
 
     // when
     store.dispatch(FetchCitySuggestionsCommandAction(countryCode: "DE"));
 
     // then
-    expect((await appState).citySuggestionsState,
-        isA<CitySuggestionsLoadingState>());
+    expect(
+      (await appState).citySuggestionsState,
+      isA<CitySuggestionsLoadingState>(),
+    );
   });
 
   test("When cities are fetched, state should change to fetched", () async {
@@ -34,102 +37,144 @@ void main() {
         citySuggestionsState: CitySuggestionsInitialState(),
       ),
     );
-    final loadingState = store.onChange.firstWhere((element) =>
-        element.citySuggestionsState is CitySuggestionsLoadingState);
-    final appState = store.onChange.firstWhere((element) =>
-        element.citySuggestionsState is CitySuggestionsFetchedState);
+    final loadingState = store.onChange.firstWhere(
+      (element) => element.citySuggestionsState is CitySuggestionsLoadingState,
+    );
+    final appState = store.onChange.firstWhere(
+      (element) => element.citySuggestionsState is CitySuggestionsFetchedState,
+    );
 
     // when
     store.dispatch(FetchCitySuggestionsCommandAction(countryCode: "DE"));
 
     // then
-    expect((await loadingState).citySuggestionsState,
-        isA<CitySuggestionsLoadingState>());
-    expect((await appState).citySuggestionsState,
-        isA<CitySuggestionsFetchedState>());
+    expect(
+      (await loadingState).citySuggestionsState,
+      isA<CitySuggestionsLoadingState>(),
+    );
+    expect(
+      (await appState).citySuggestionsState,
+      isA<CitySuggestionsFetchedState>(),
+    );
   });
 
   test(
-      "When fetching for cities using a search term, the search term should be passed to the service",
-      () async {
-    // given
-    final store = createTestStore(
-      citySuggestionsService: FakeCitySuggestionsService(),
-      initialState: createAppState(
-        citySuggestionsState: CitySuggestionsInitialState(),
-      ),
-    );
-    final loadingState = store.onChange.firstWhere((element) =>
-        element.citySuggestionsState is CitySuggestionsLoadingState);
-    final appState = store.onChange.firstWhere((element) =>
-        element.citySuggestionsState is CitySuggestionsFetchedState);
+    "When fetching for cities using a search term, the search term should be passed to the service",
+    () async {
+      // given
+      final store = createTestStore(
+        citySuggestionsService: FakeCitySuggestionsService(),
+        initialState: createAppState(
+          citySuggestionsState: CitySuggestionsInitialState(),
+        ),
+      );
+      final loadingState = store.onChange.firstWhere(
+        (element) =>
+            element.citySuggestionsState is CitySuggestionsLoadingState,
+      );
+      final appState = store.onChange.firstWhere(
+        (element) =>
+            element.citySuggestionsState is CitySuggestionsFetchedState,
+      );
 
-    // when
-    store.dispatch(FetchCitySuggestionsCommandAction(
-        countryCode: "DE", searchTerm: "Berlin"));
+      // when
+      store.dispatch(
+        FetchCitySuggestionsCommandAction(
+          countryCode: "DE",
+          searchTerm: "Berlin",
+        ),
+      );
 
-    // then
-    expect((await loadingState).citySuggestionsState,
-        isA<CitySuggestionsLoadingState>());
-    expect((await appState).citySuggestionsState,
-        isA<CitySuggestionsFetchedState>());
-    expect(
+      // then
+      expect(
+        (await loadingState).citySuggestionsState,
+        isA<CitySuggestionsLoadingState>(),
+      );
+      expect(
+        (await appState).citySuggestionsState,
+        isA<CitySuggestionsFetchedState>(),
+      );
+      expect(
         ((await appState).citySuggestionsState as CitySuggestionsFetchedState)
             .searchTerm,
-        "Berlin");
-  });
-
-  test("When failed fetching cities, the state should change to error",
-      () async {
-    // given
-    final store = createTestStore(
-      citySuggestionsService: FakeFailingCitySuggestionsService(),
-      initialState: createAppState(
-        citySuggestionsState: CitySuggestionsInitialState(),
-      ),
-    );
-    final loadingState = store.onChange.firstWhere((element) =>
-        element.citySuggestionsState is CitySuggestionsLoadingState);
-    final appState = store.onChange.firstWhere(
-        (element) => element.citySuggestionsState is CitySuggestionsErrorState);
-
-    // when
-    store.dispatch(FetchCitySuggestionsCommandAction(countryCode: "DE"));
-
-    // then
-    expect((await loadingState).citySuggestionsState,
-        isA<CitySuggestionsLoadingState>());
-    expect((await appState).citySuggestionsState,
-        isA<CitySuggestionsErrorState>());
-  });
+        "Berlin",
+      );
+    },
+  );
 
   test(
-      "When failed fetching cities with searchTerm, the error state should contain the searchTerm",
-      () async {
-    // given
-    final store = createTestStore(
-      citySuggestionsService: FakeFailingCitySuggestionsService(),
-      initialState: createAppState(
-        citySuggestionsState: CitySuggestionsInitialState(),
-      ),
-    );
-    final loadingState = store.onChange.firstWhere((element) =>
-        element.citySuggestionsState is CitySuggestionsLoadingState);
-    final appState = store.onChange.firstWhere(
-        (element) => element.citySuggestionsState is CitySuggestionsErrorState);
+    "When failed fetching cities, the state should change to error",
+    () async {
+      // given
+      final store = createTestStore(
+        citySuggestionsService: FakeFailingCitySuggestionsService(),
+        initialState: createAppState(
+          citySuggestionsState: CitySuggestionsInitialState(),
+        ),
+      );
+      final loadingState = store.onChange.firstWhere(
+        (element) =>
+            element.citySuggestionsState is CitySuggestionsLoadingState,
+      );
+      final appState = store.onChange.firstWhere(
+        (element) => element.citySuggestionsState is CitySuggestionsErrorState,
+      );
 
-    // when
-    store.dispatch(FetchCitySuggestionsCommandAction(
-        countryCode: "DE", searchTerm: "Berlin"));
+      // when
+      store.dispatch(FetchCitySuggestionsCommandAction(countryCode: "DE"));
 
-    // then
-    expect((await loadingState).citySuggestionsState,
-        isA<CitySuggestionsLoadingState>());
-    expect((await appState).citySuggestionsState,
-        isA<CitySuggestionsErrorState>());
-    expect(
+      // then
+      expect(
+        (await loadingState).citySuggestionsState,
+        isA<CitySuggestionsLoadingState>(),
+      );
+      expect(
+        (await appState).citySuggestionsState,
+        isA<CitySuggestionsErrorState>(),
+      );
+    },
+  );
+
+  test(
+    "When failed fetching cities with searchTerm, the error state should contain the searchTerm",
+    () async {
+      // given
+      final store = createTestStore(
+        citySuggestionsService: FakeFailingCitySuggestionsService(),
+        initialState: createAppState(
+          citySuggestionsState: CitySuggestionsInitialState(),
+        ),
+      );
+      final loadingState = store.onChange.firstWhere(
+        (element) =>
+            element.citySuggestionsState is CitySuggestionsLoadingState,
+      );
+      final appState = store.onChange.firstWhere(
+        (element) => element.citySuggestionsState is CitySuggestionsErrorState,
+      );
+
+      // when
+      store.dispatch(
+        FetchCitySuggestionsCommandAction(
+          countryCode: "DE",
+          searchTerm: "Berlin",
+        ),
+      );
+
+      // then
+      expect(
+        (await loadingState).citySuggestionsState,
+        isA<CitySuggestionsLoadingState>(),
+      );
+      expect(
+        (await appState).citySuggestionsState,
+        isA<CitySuggestionsErrorState>(),
+      );
+      expect(
         ((await appState).citySuggestionsState as CitySuggestionsErrorState)
             .searchTerm,
-        "Berlin");
-  });
+        "Berlin",
+      );
+    },
+  );
 }

@@ -59,7 +59,10 @@ class TransferFailedScreen extends StatelessWidget {
               text: "Back to \"Home\"",
               textColor: ClientConfig.getColorScheme().surface,
               onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                  context, HomeScreen.routeName, (route) => false),
+                context,
+                HomeScreen.routeName,
+                (route) => false,
+              ),
             ),
           ),
           const SizedBox(height: 16),

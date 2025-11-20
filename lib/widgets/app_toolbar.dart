@@ -75,9 +75,10 @@ class _AppToolbarState extends State<AppToolbar> {
       animation: widget.scrollController!,
       builder: (controller, child) {
         final offset = widget.scrollController!.offset;
-        final titleOpacity =
-            max(0, min(1, offset / widget.titleMaxOpacityScrollOffset))
-                .toDouble();
+        final titleOpacity = max(
+          0,
+          min(1, offset / widget.titleMaxOpacityScrollOffset),
+        ).toDouble();
 
         return _buildAppToolbar(context, titleOpacity: titleOpacity);
       },
@@ -114,16 +115,17 @@ class _AppToolbarState extends State<AppToolbar> {
             toolbarHeight: widget.toolbarHeight,
             elevation: 0,
             leadingWidth: 25,
-            leading: (widget.backButtonEnabled &&
+            leading:
+                (widget.backButtonEnabled &&
                     (widget.onBackButtonPressed != null ||
                         Navigator.canPop(context)))
                 ? InkWell(
                     onTap: widget.backButtonAppearanceDisabled
                         ? null
                         : widget.onBackButtonPressed ??
-                            () => Navigator.canPop(context)
-                                ? Navigator.pop(context)
-                                : null,
+                              () => Navigator.canPop(context)
+                                  ? Navigator.pop(context)
+                                  : null,
                     child: Icon(
                       widget.backIcon.icon,
                       color: widget.backButtonAppearanceDisabled
@@ -141,8 +143,11 @@ class _AppToolbarState extends State<AppToolbar> {
           if (widget.includeBottomScreenTitle)
             Opacity(
               opacity: 1 - titleOpacity,
-              child: ScreenTitle(widget.title,
-                  padding: EdgeInsets.zero, scale: 1 - titleOpacity),
+              child: ScreenTitle(
+                widget.title,
+                padding: EdgeInsets.zero,
+                scale: 1 - titleOpacity,
+              ),
             ),
           if (widget.children != null) SizedBox(height: 8 * (1 - titleOpacity)),
           if (widget.children != null) ...widget.children!,
@@ -175,20 +180,20 @@ class StepRichTextTitle extends RichText {
   final int totalSteps;
 
   StepRichTextTitle({super.key, required this.step, required this.totalSteps})
-      : super(
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: 'Step $step',
-                style: ClientConfig.getTextStyleScheme().heading4,
+    : super(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: 'Step $step',
+              style: ClientConfig.getTextStyleScheme().heading4,
+            ),
+            TextSpan(
+              text: " out of $totalSteps",
+              style: ClientConfig.getTextStyleScheme().heading4.copyWith(
+                color: ClientConfig.getCustomColors().neutral700,
               ),
-              TextSpan(
-                text: " out of $totalSteps",
-                style: ClientConfig.getTextStyleScheme()
-                    .heading4
-                    .copyWith(color: ClientConfig.getCustomColors().neutral700),
-              ),
-            ],
-          ),
-        );
+            ),
+          ],
+        ),
+      );
 }

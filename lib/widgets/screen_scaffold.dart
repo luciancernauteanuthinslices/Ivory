@@ -120,11 +120,7 @@ class GenericLoadingScreen extends StatelessWidget {
             padding: ClientConfig.getCustomClientUiSettings()
                 .defaultScreenHorizontalPadding,
           ),
-          const Expanded(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
+          const Expanded(child: Center(child: CircularProgressIndicator())),
         ],
       ),
     );
@@ -188,8 +184,9 @@ class GenericErrorScreenBody extends StatelessWidget {
                     style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     children: [
                       const TextSpan(
-                          text:
-                              'We\'re sorry, but it seems an error has cropped up, which is preventing you from completing this step. Here\'s what you can do:\n\n'),
+                        text:
+                            'We\'re sorry, but it seems an error has cropped up, which is preventing you from completing this step. Here\'s what you can do:\n\n',
+                      ),
                       TextSpan(
                         text:
                             '1. Try closing the app and reopening it.\n\n2. Check your internet connection and try again.\n\n3. If the issue persists, reach out ',
@@ -202,9 +199,10 @@ class GenericErrorScreenBody extends StatelessWidget {
                         style: ClientConfig.getTextStyleScheme()
                             .bodyLargeRegularBold
                             .copyWith(
-                                color: isLoading
-                                    ? ClientConfig.getCustomColors().neutral500
-                                    : ClientConfig.getColorScheme().secondary),
+                              color: isLoading
+                                  ? ClientConfig.getCustomColors().neutral500
+                                  : ClientConfig.getColorScheme().secondary,
+                            ),
                       ),
                       const TextSpan(text: ' or '),
                       TextSpan(
@@ -212,9 +210,10 @@ class GenericErrorScreenBody extends StatelessWidget {
                         style: ClientConfig.getTextStyleScheme()
                             .bodyLargeRegularBold
                             .copyWith(
-                                color: isLoading
-                                    ? ClientConfig.getCustomColors().neutral500
-                                    : ClientConfig.getColorScheme().secondary),
+                              color: isLoading
+                                  ? ClientConfig.getCustomColors().neutral500
+                                  : ClientConfig.getColorScheme().secondary,
+                            ),
                       ),
                       const TextSpan(text: '. We\'re here to help.'),
                     ],
@@ -222,8 +221,8 @@ class GenericErrorScreenBody extends StatelessWidget {
                 ),
                 Expanded(
                   child: Center(
-                      child:
-                          SvgPicture.asset('assets/images/general_error.svg')),
+                    child: SvgPicture.asset('assets/images/general_error.svg'),
+                  ),
                 ),
                 SizedBox(
                   width: double.infinity,

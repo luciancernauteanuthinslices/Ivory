@@ -4,7 +4,9 @@ import 'package:solarisdemo/redux/onboarding/personal_details/onboarding_persona
 import 'package:solarisdemo/redux/onboarding/personal_details/onboarding_personal_details_state.dart';
 
 OnboardingPersonalDetailsState onboardingPersonDetailsReducer(
-    OnboardingPersonalDetailsState state, dynamic action) {
+  OnboardingPersonalDetailsState state,
+  dynamic action,
+) {
   if (action is SubmitOnboardingBirthInfoCommandAction) {
     return OnboardingPersonalDetailsState(
       attributes: state.attributes.copyWith(

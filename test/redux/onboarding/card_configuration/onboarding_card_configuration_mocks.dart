@@ -43,20 +43,23 @@ final mockCardApplication = CreditCardApplication(
 class FakeOnboardingCardConfigurationService
     extends OnboardingCardConfigurationService {
   @override
-  Future<OnboardingCardConfigurationResponse> getCardholderName(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> getCardholderName({
+    required User user,
+  }) async {
     return GetCardholderNameSuccessResponse(cardholderName: "Ivory TS");
   }
 
   @override
-  Future<OnboardingCardConfigurationResponse> onboardingCreateCard(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingCreateCard({
+    required User user,
+  }) async {
     return OnboardingCardConfigurationSuccessResponse();
   }
 
   @override
-  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo({
+    required User user,
+  }) async {
     return GetCardInfoSuccessResponse(
       cardholderName: "Ivory TS",
       maskedPAN: "493441******6055",
@@ -68,20 +71,23 @@ class FakeOnboardingCardConfigurationService
 class FakeFailingOnboardingCardConfigurationService
     extends OnboardingCardConfigurationService {
   @override
-  Future<OnboardingCardConfigurationResponse> getCardholderName(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> getCardholderName({
+    required User user,
+  }) async {
     return OnboardingCardConfigurationErrorResponse();
   }
 
   @override
-  Future<OnboardingCardConfigurationResponse> onboardingCreateCard(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingCreateCard({
+    required User user,
+  }) async {
     return OnboardingCardConfigurationErrorResponse();
   }
 
   @override
-  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo(
-      {required User user}) async {
+  Future<OnboardingCardConfigurationResponse> onboardingGetCardInfo({
+    required User user,
+  }) async {
     return OnboardingCardConfigurationErrorResponse();
   }
 }

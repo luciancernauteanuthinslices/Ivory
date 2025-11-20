@@ -3,11 +3,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:solarisdemo/models/amount_value.dart';
 
 class Format {
-  static String currency(
-    num number, {
-    int digits = 2,
-    String symbol = "€ ",
-  }) {
+  static String currency(num number, {int digits = 2, String symbol = "€ "}) {
     NumberFormat formatter = NumberFormat.currency(
       symbol: symbol,
       decimalDigits: digits,
@@ -50,11 +46,7 @@ class Format {
     return formatter.format(number);
   }
 
-  static String euro(
-    num value, {
-    int digits = 0,
-    int maxDigits = 2,
-  }) {
+  static String euro(num value, {int digits = 0, int maxDigits = 2}) {
     if (digits == 0 && maxDigits > 0 && value % 1 != 0) {
       return Format.currency(value, digits: maxDigits);
     }
@@ -170,19 +162,16 @@ class InputFormatter {
       MaskTextInputFormatter(
         initialText: initialText,
         mask: "000 000 000 000 000 000",
-        filter: {
-          "0": RegExp(r"[0-9]"),
-        },
+        filter: {"0": RegExp(r"[0-9]")},
       );
 
   static MaskTextInputFormatter createPhoneNumberFormatter(
-      String phoneNumberFormat) {
+    String phoneNumberFormat,
+  ) {
     return MaskTextInputFormatter(
       type: MaskAutoCompletionType.eager,
       mask: phoneNumberFormat,
-      filter: {
-        "#": RegExp(r"[0-9]"),
-      },
+      filter: {"#": RegExp(r"[0-9]")},
     );
   }
 
@@ -191,17 +180,13 @@ class InputFormatter {
         mask: "##/##/####",
         initialText: initialText,
         type: MaskAutoCompletionType.eager,
-        filter: {
-          "#": RegExp(r"[0-9]"),
-        },
+        filter: {"#": RegExp(r"[0-9]")},
       );
 
   static MaskTextInputFormatter cardNumber(String initialText) =>
       MaskTextInputFormatter(
         initialText: initialText,
         mask: "0000 0000 0000 0000",
-        filter: {
-          "0": RegExp(r"[0-9]"),
-        },
+        filter: {"0": RegExp(r"[0-9]")},
       );
 }

@@ -50,7 +50,8 @@ class _CircularLoadingIndicatorState extends State<CircularLoadingIndicator>
         size: Size.fromRadius(widget.width / 2),
         painter: CircularLoadingIndicatorPainter(
           radius: widget.width / 2,
-          gradientColors: widget.gradientColors ??
+          gradientColors:
+              widget.gradientColors ??
               [ClientConfig.getColorScheme().secondary, Colors.white],
           strokeWidth: widget.strokeWidth,
         ),
@@ -81,7 +82,8 @@ class CircularLoadingIndicatorPainter extends CustomPainter {
     size = Size.fromRadius(radius);
     double offset = strokeWidth / 2;
 
-    Rect rect = Offset(offset, offset) &
+    Rect rect =
+        Offset(offset, offset) &
         Size(size.width - strokeWidth, size.height - strokeWidth);
 
     var paint = Paint()
@@ -105,11 +107,7 @@ class CircularLoadingIndicatorPainter extends CustomPainter {
 
     canvas.drawArc(rect, 0.0, 2 * math.pi, false, paint);
 
-    canvas.drawCircle(
-      thumbPositionOffset,
-      strokeWidth / 2,
-      thumbPaint,
-    );
+    canvas.drawCircle(thumbPositionOffset, strokeWidth / 2, thumbPaint);
   }
 
   @override

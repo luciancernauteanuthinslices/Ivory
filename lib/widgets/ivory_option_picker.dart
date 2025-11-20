@@ -58,22 +58,23 @@ class _IvoryOptionPickerState extends State<IvoryOptionPicker> {
               child: IvoryTextField(
                 placeholder: widget.searchFieldPlaceholder,
                 initialText: initialText,
-                suffix: Icon(Icons.search,
-                    color: ClientConfig.getCustomColors().neutral700, size: 20),
+                suffix: Icon(
+                  Icons.search,
+                  color: ClientConfig.getCustomColors().neutral700,
+                  size: 20,
+                ),
                 onChanged: (value) {
                   widget.onSearchChanged?.call(value);
 
                   if (widget.filterOptions) {
-                    _debouncer.run(
-                      () {
-                        if (value.isEmpty) {
-                          widget.controller.resetFilter();
-                          return;
-                        }
+                    _debouncer.run(() {
+                      if (value.isEmpty) {
+                        widget.controller.resetFilter();
+                        return;
+                      }
 
-                        widget.controller.filterOptionsByText(value);
-                      },
-                    );
+                      widget.controller.filterOptionsByText(value);
+                    });
                   }
                 },
               ),

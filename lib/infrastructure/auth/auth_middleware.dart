@@ -61,7 +61,8 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
 
       if (action.email.isEmpty || action.email == '') {
         store.dispatch(
-            AuthFailedEventAction(errorType: AuthErrorType.invalidCredentials));
+          AuthFailedEventAction(errorType: AuthErrorType.invalidCredentials),
+        );
         return;
       }
 
@@ -71,7 +72,8 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
       );
       if (loginResponse is! LoginSuccessResponse) {
         store.dispatch(
-            AuthFailedEventAction(errorType: AuthErrorType.invalidCredentials));
+          AuthFailedEventAction(errorType: AuthErrorType.invalidCredentials),
+        );
         return;
       }
 
@@ -83,75 +85,82 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
       );
 
       if (loginResponse.user.userGroup == CognitoUserGroup.registering) {
-        store.dispatch(AuthenticationInitializedEventAction(
-          cognitoUser: user,
-          authType: AuthType.onboarding,
-          boundDevices: List<Device>.empty(growable: true),
-          thisDevice: Device(
-            deviceId: '',
-            deviceName: await _deviceInfoService.getDeviceName(),
+        store.dispatch(
+          AuthenticationInitializedEventAction(
+            cognitoUser: user,
+            authType: AuthType.onboarding,
+            boundDevices: List<Device>.empty(growable: true),
+            thisDevice: Device(
+              deviceId: '',
+              deviceName: await _deviceInfoService.getDeviceName(),
+            ),
           ),
-        ));
+        );
         return;
       }
 
       String? consentId = await _deviceService.getConsentId(user.personId!);
 
       if (consentId == null) {
-        final newConsentResponse =
-            await _deviceFingerprintService.createDeviceConsent(user: user);
+        final newConsentResponse = await _deviceFingerprintService
+            .createDeviceConsent(user: user);
 
         if (newConsentResponse is! CreateDeviceConsentResponse) {
-          store.dispatch(AuthFailedEventAction(
-              errorType: AuthErrorType.cantCreateConsent));
+          store.dispatch(
+            AuthFailedEventAction(errorType: AuthErrorType.cantCreateConsent),
+          );
           return;
         }
 
         consentId = (newConsentResponse).consentId;
         await _deviceService.saveConsentIdInCache(consentId, user.personId!);
 
-        final deviceFingerprint =
-            await _deviceFingerprintService.getDeviceFingerprint(consentId);
+        final deviceFingerprint = await _deviceFingerprintService
+            .getDeviceFingerprint(consentId);
         if (deviceFingerprint == null) {
-          store.dispatch(AuthFailedEventAction(
-              errorType: AuthErrorType.cantCreateFingerprint));
+          store.dispatch(
+            AuthFailedEventAction(
+              errorType: AuthErrorType.cantCreateFingerprint,
+            ),
+          );
           return;
         }
-        final deviceActivity =
-            await _deviceFingerprintService.createDeviceActivity(
-          activityType: DeviceActivityType.CONSENT_PROVIDED,
-          deviceFingerprint: deviceFingerprint,
-        );
+        final deviceActivity = await _deviceFingerprintService
+            .createDeviceActivity(
+              activityType: DeviceActivityType.CONSENT_PROVIDED,
+              deviceFingerprint: deviceFingerprint,
+            );
         if (deviceActivity is! CreateDeviceActivityResponse) {
-          store.dispatch(AuthFailedEventAction(
-              errorType: AuthErrorType.cantCreateActivity));
+          store.dispatch(
+            AuthFailedEventAction(errorType: AuthErrorType.cantCreateActivity),
+          );
           return;
         }
       }
 
-      final deviceFingerprint =
-          await _deviceFingerprintService.getDeviceFingerprint(consentId);
+      final deviceFingerprint = await _deviceFingerprintService
+          .getDeviceFingerprint(consentId);
       if (deviceFingerprint == null) {
-        store.dispatch(AuthFailedEventAction(
-            errorType: AuthErrorType.cantCreateFingerprint));
+        store.dispatch(
+          AuthFailedEventAction(errorType: AuthErrorType.cantCreateFingerprint),
+        );
         return;
       }
-      final deviceActivity =
-          await _deviceFingerprintService.createDeviceActivity(
-        activityType: DeviceActivityType.APP_START,
-        deviceFingerprint: deviceFingerprint,
-        user: user,
-      );
+      final deviceActivity = await _deviceFingerprintService
+          .createDeviceActivity(
+            activityType: DeviceActivityType.APP_START,
+            deviceFingerprint: deviceFingerprint,
+            user: user,
+          );
       if (deviceActivity is! CreateDeviceActivityResponse) {
         store.dispatch(
-            AuthFailedEventAction(errorType: AuthErrorType.cantCreateActivity));
+          AuthFailedEventAction(errorType: AuthErrorType.cantCreateActivity),
+        );
         return;
       }
 
-      final getBoundDevicesResponse =
-          await _deviceBindingService.getDeviceBinding(
-        user: user,
-      );
+      final getBoundDevicesResponse = await _deviceBindingService
+          .getDeviceBinding(user: user);
 
       final cachedDeviceId = await _deviceService.getDeviceId();
       Device? boundDevice;
@@ -170,49 +179,59 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
         }
       }
 
-      store.dispatch(AuthenticationInitializedEventAction(
-        cognitoUser: user,
-        authType:
-            boundDevice != null ? AuthType.withBiometrics : AuthType.withTan,
-        thisDevice: boundDevice ??
-            Device(
-              deviceId: '',
-              deviceName: await _deviceInfoService.getDeviceName(),
-            ),
-        boundDevices: boundDevices,
-      ));
+      store.dispatch(
+        AuthenticationInitializedEventAction(
+          cognitoUser: user,
+          authType: boundDevice != null
+              ? AuthType.withBiometrics
+              : AuthType.withTan,
+          thisDevice:
+              boundDevice ??
+              Device(
+                deviceId: '',
+                deviceName: await _deviceInfoService.getDeviceName(),
+              ),
+          boundDevices: boundDevices,
+        ),
+      );
     }
 
     if (action is AuthenticateUserCommandAction) {
-      store.dispatch(
-        AuthLoadingEventAction(),
-      );
+      store.dispatch(AuthLoadingEventAction());
 
       if (action.authType == AuthType.withBiometrics) {
-        final biometricAuth =
-            await _biometricsService.authenticateWithBiometrics(
-                message: "Please use biometric to authenticate");
+        final biometricAuth = await _biometricsService
+            .authenticateWithBiometrics(
+              message: "Please use biometric to authenticate",
+            );
 
         if (biometricAuth != true) {
-          store.dispatch(AuthFailedEventAction(
-              errorType: AuthErrorType.biometricAuthFailed));
+          store.dispatch(
+            AuthFailedEventAction(errorType: AuthErrorType.biometricAuthFailed),
+          );
           return;
         }
       }
 
-      final personResponse =
-          await _personService.getPerson(user: action.cognitoUser);
+      final personResponse = await _personService.getPerson(
+        user: action.cognitoUser,
+      );
       if (personResponse is! GetPersonSuccessResponse) {
         store.dispatch(
-            AuthFailedEventAction(errorType: AuthErrorType.cantGetPersonData));
+          AuthFailedEventAction(errorType: AuthErrorType.cantGetPersonData),
+        );
         return;
       }
 
-      final personAccountResponse =
-          await _personService.getPersonAccount(user: action.cognitoUser);
+      final personAccountResponse = await _personService.getPersonAccount(
+        user: action.cognitoUser,
+      );
       if (personAccountResponse is! GetPersonAccountSuccessResponse) {
-        store.dispatch(AuthFailedEventAction(
-            errorType: AuthErrorType.cantGetPersonAccountData));
+        store.dispatch(
+          AuthFailedEventAction(
+            errorType: AuthErrorType.cantGetPersonAccountData,
+          ),
+        );
         return;
       }
 
@@ -222,10 +241,12 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
         personAccount: personAccountResponse.personAccount,
       );
 
-      store.dispatch(AuthenticatedEventAction(
-        authenticatedUser: authenticatedUser,
-        authType: action.authType,
-      ));
+      store.dispatch(
+        AuthenticatedEventAction(
+          authenticatedUser: authenticatedUser,
+          authType: action.authType,
+        ),
+      );
       action.onSuccess();
     }
 

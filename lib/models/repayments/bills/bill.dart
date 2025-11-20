@@ -39,8 +39,9 @@ class Bill {
           ? AmountValue.fromJson(json['amount_spent'])
           : AmountValue.empty(), // TODO: null
       currentBillAmount: AmountValue.fromJson(json['current_bill_amount']),
-      totalOutstandingAmount:
-          AmountValue.fromJson(json['total_outstanding_amount']),
+      totalOutstandingAmount: AmountValue.fromJson(
+        json['total_outstanding_amount'],
+      ),
       outstandingAmount: AmountValue.fromJson(json['outstanding_amount']),
       interestRate: json['interest_rate'] ?? 15, // TODO: null
       transactions: ((json['transactions']) as List?)
@@ -54,10 +55,7 @@ class BillTransaction {
   final String merchantName;
   final AmountValue amount;
 
-  const BillTransaction({
-    required this.merchantName,
-    required this.amount,
-  });
+  const BillTransaction({required this.merchantName, required this.amount});
 
   factory BillTransaction.fromJson(Map<String, dynamic> json) {
     return BillTransaction(

@@ -4,9 +4,7 @@ import 'api_service.dart';
 import '../models/person_model.dart';
 
 class PersonService extends ApiService {
-  PersonService({
-    super.user,
-  });
+  PersonService({super.user});
 
   Future<Person>? getPerson() async {
     try {
@@ -32,7 +30,8 @@ class PersonService extends ApiService {
   }
 
   Future<CreatePersonResponse>? createPerson(
-      CreatePersonReqBody createPersonReqBody) async {
+    CreatePersonReqBody createPersonReqBody,
+  ) async {
     try {
       String path = 'person';
 
@@ -49,7 +48,8 @@ class PersonService extends ApiService {
   }
 
   Future<CreateTaxIdentificationResponse>? createTaxIdentification(
-      CreateTaxIdentificationReqBody createTaxIdentificationReqBody) async {
+    CreateTaxIdentificationReqBody createTaxIdentificationReqBody,
+  ) async {
     try {
       String path = 'person/tax_identification';
 

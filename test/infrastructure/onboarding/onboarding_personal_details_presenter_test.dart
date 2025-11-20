@@ -12,40 +12,44 @@ void main() {
     country: "DE",
     nationality: "DE",
     selectedAddress: AddressSuggestion(
-        address: "Berlin Strasse", city: "Berlin", country: "DE"),
+      address: "Berlin Strasse",
+      city: "Berlin",
+      country: "DE",
+    ),
   );
 
   test(
-      "When OnboardingPersonalDetailsState have data, it should return the correct OnboardingPersonalDetailsViewModel",
-      () {
-    // given
-    final currentDate = DateTime.now();
-    final state = OnboardingPersonalDetailsState(
-      attributes: attributes,
-      isLoading: false,
-      isAddressSaved: true,
-      isMobileConfirmed: true,
-      tanRequestedAt: currentDate,
-      errorType: OnboardingPersonalDetailsErrorType.unknown,
-    );
-
-    // when
-    final viewModel =
-        OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
-      onboardingPersonalDetailsState: state,
-    );
-
-    // then
-    expect(
-      viewModel,
-      OnboardingPersonalDetailsViewModel(
+    "When OnboardingPersonalDetailsState have data, it should return the correct OnboardingPersonalDetailsViewModel",
+    () {
+      // given
+      final currentDate = DateTime.now();
+      final state = OnboardingPersonalDetailsState(
         attributes: attributes,
         isLoading: false,
         isAddressSaved: true,
         isMobileConfirmed: true,
         tanRequestedAt: currentDate,
         errorType: OnboardingPersonalDetailsErrorType.unknown,
-      ),
-    );
-  });
+      );
+
+      // when
+      final viewModel =
+          OnboardingPersonalDetailsPresenter.presentOnboardingPersonalDetails(
+            onboardingPersonalDetailsState: state,
+          );
+
+      // then
+      expect(
+        viewModel,
+        OnboardingPersonalDetailsViewModel(
+          attributes: attributes,
+          isLoading: false,
+          isAddressSaved: true,
+          isMobileConfirmed: true,
+          tanRequestedAt: currentDate,
+          errorType: OnboardingPersonalDetailsErrorType.unknown,
+        ),
+      );
+    },
+  );
 }

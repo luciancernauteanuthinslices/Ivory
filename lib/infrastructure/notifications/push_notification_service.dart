@@ -29,8 +29,9 @@ Future<void> _onBackgroundMessage(RemoteMessage message) async {
 
 void saveNotificationMessage(RemoteMessage message) async {
   debugPrint("Save notification message");
-  await PushNotificationSharedPreferencesStorageService()
-      .add(jsonEncode(message.toMap()));
+  await PushNotificationSharedPreferencesStorageService().add(
+    jsonEncode(message.toMap()),
+  );
 }
 
 abstract class PushNotificationService extends ApiService {
@@ -114,12 +115,14 @@ class FirebasePushNotificationService extends PushNotificationService {
     }
 
     FirebaseMessaging.onBackgroundMessage(
-        _onBackgroundMessage); // App is in background and notification received
-    FirebaseMessaging.onMessageOpenedApp
-        .listen(_onMessage); // App was in background and notification clicked
-    FirebaseMessaging.instance
-        .getInitialMessage()
-        .then(_onMessage); // App was terminated and notification clicked
+      _onBackgroundMessage,
+    ); // App is in background and notification received
+    FirebaseMessaging.onMessageOpenedApp.listen(
+      _onMessage,
+    ); // App was in background and notification clicked
+    FirebaseMessaging.instance.getInitialMessage().then(
+      _onMessage,
+    ); // App was terminated and notification clicked
     FirebaseMessaging.onMessage.listen(_pushNotificationReceived);
 
     _isInitialized = true;
@@ -133,15 +136,15 @@ class FirebasePushNotificationService extends PushNotificationService {
     if (Platform.isIOS) {
       _messaging.getAPNSToken().then((apnsToken) {
         if (apnsToken != null) {
-          _messaging
-              .getToken()
-              .then(_onTokenRefresh); // Initial token (on app start)
+          _messaging.getToken().then(
+            _onTokenRefresh,
+          ); // Initial token (on app start)
         }
       });
     } else {
-      _messaging
-          .getToken()
-          .then(_onTokenRefresh); // Initial token (on app start)
+      _messaging.getToken().then(
+        _onTokenRefresh,
+      ); // Initial token (on app start)
     }
     _messaging.onTokenRefresh.listen(_onTokenRefresh); // Token refresh
   }
@@ -170,9 +173,10 @@ class FirebasePushNotificationService extends PushNotificationService {
       highImportanceChannelId,
       importance: Importance.max,
     );
-    final androidImplementation =
-        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
+    final androidImplementation = flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
 
     await androidImplementation?.initialize(
       const AndroidInitializationSettings('@mipmap/ic_launcher'),
@@ -194,12 +198,16 @@ class FirebasePushNotificationService extends PushNotificationService {
     try {
       if (await hasPermission() == false) {
         debugPrint(
-            'onTokenRefresh: User declined or has not accepted notifications');
+          'onTokenRefresh: User declined or has not accepted notifications',
+        );
         return;
       }
 
-      await post('notifications/token',
-          body: {'token': token}, authNeeded: true);
+      await post(
+        'notifications/token',
+        body: {'token': token},
+        authNeeded: true,
+      );
     } catch (e) {
       log(e.toString());
       throw Exception("Could not update token");
@@ -217,16 +225,22 @@ class FirebasePushNotificationService extends PushNotificationService {
 
     debugPrint("Redirect from notification");
     final context = navigatorKey.currentContext as BuildContext;
-    final notificationType =
-        RemoteMessageUtils.getNotificationType(message.data["type"] as String);
+    final notificationType = RemoteMessageUtils.getNotificationType(
+      message.data["type"] as String,
+    );
 
     if (notificationType == NotificationType.scaChallenge) {
-      store!.dispatch(ReceivedTransactionApprovalNotificationEventAction(
-        user: user!,
-        message: RemoteMessageUtils.getNotificationTransactionMessage(message),
-      ));
-      Navigator.of(context)
-          .pushNamed(TransactionApprovalPendingScreen.routeName);
+      store!.dispatch(
+        ReceivedTransactionApprovalNotificationEventAction(
+          user: user!,
+          message: RemoteMessageUtils.getNotificationTransactionMessage(
+            message,
+          ),
+        ),
+      );
+      Navigator.of(
+        context,
+      ).pushNamed(TransactionApprovalPendingScreen.routeName);
     } else if (notificationType == NotificationType.scoringSuccessful) {
       store!.dispatch(ReceivedScoringSuccessfulNotificationEventAction());
     } else if (notificationType == NotificationType.scoringFailed) {

@@ -60,8 +60,9 @@ class OnboardingErrorEmailScreen extends StatelessWidget {
                                   .bodyLargeRegularBold,
                             ),
                             const TextSpan(
-                                text:
-                                    ' is already in use. Please choose a different one and try again.'),
+                              text:
+                                  ' is already in use. Please choose a different one and try again.',
+                            ),
                           ],
                         ),
                       );
@@ -84,13 +85,14 @@ class OnboardingErrorEmailScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: PrimaryButton(
-                        text: "Go to email address",
-                        onPressed: () {
-                          Navigator.popUntil(
-                              context,
-                              ModalRoute.withName(
-                                  OnboardingEmailScreen.routeName));
-                        }),
+                      text: "Go to email address",
+                      onPressed: () {
+                        Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(OnboardingEmailScreen.routeName),
+                        );
+                      },
+                    ),
                   ),
                   const SizedBox(height: 16),
                 ],

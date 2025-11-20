@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ButtonWithIcon extends StatelessWidget {
   final Widget
-      iconWidget; // This can be Image.asset, Icon, or any other widget.
+  iconWidget; // This can be Image.asset, Icon, or any other widget.
   final String text;
   final TextStyle? textStyle;
   final VoidCallback? onPressed;
@@ -28,9 +28,7 @@ class ButtonWithIcon extends StatelessWidget {
     return TextButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: buttonColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: borderRadius,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: borderRadius),
       ),
       onPressed: onPressed,
       child: Padding(
@@ -43,10 +41,7 @@ class ButtonWithIcon extends StatelessWidget {
           children: [
             iconWidget,
             const SizedBox(width: 6.0),
-            Text(
-              text,
-              style: textStyle,
-            ),
+            Text(text, style: textStyle),
           ],
         ),
       ),

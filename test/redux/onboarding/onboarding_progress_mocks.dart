@@ -18,7 +18,9 @@ class FakeOnboardingService extends OnboardingService {
   @override
   Future<OnboardingServiceResponse> getOnboardingProgress({User? user}) async {
     return OnboardingProgressSuccessResponse(
-        step: OnboardingStep.signedUp, mobileNumber: '');
+      step: OnboardingStep.signedUp,
+      mobileNumber: '',
+    );
   }
 
   @override
@@ -43,7 +45,9 @@ class FakeOnboardingServiceWithMobileNumber extends OnboardingService {
   @override
   Future<OnboardingServiceResponse> getOnboardingProgress({User? user}) async {
     return OnboardingProgressSuccessResponse(
-        step: OnboardingStep.phoneNumberVerified, mobileNumber: '123456');
+      step: OnboardingStep.phoneNumberVerified,
+      mobileNumber: '123456',
+    );
   }
 }
 
@@ -51,7 +55,10 @@ class FakeDeviceService extends DeviceService {
   @override
   Future<CacheCredentials?> getCredentialsFromCache() async {
     return CacheCredentials(
-        email: 'email@example.com', password: 'password', deviceId: null);
+      email: 'email@example.com',
+      password: 'password',
+      deviceId: null,
+    );
   }
 }
 

@@ -25,8 +25,14 @@ class OnboardingPersonalDetailsAttributes extends Equatable {
       nationality != null;
 
   @override
-  List<Object?> get props =>
-      [birthDate, country, city, nationality, selectedAddress, mobileNumber];
+  List<Object?> get props => [
+    birthDate,
+    country,
+    city,
+    nationality,
+    selectedAddress,
+    mobileNumber,
+  ];
 
   OnboardingPersonalDetailsAttributes copyWith({
     String? birthDate,

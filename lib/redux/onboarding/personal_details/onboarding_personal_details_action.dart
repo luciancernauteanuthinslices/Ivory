@@ -57,17 +57,17 @@ class CreateMobileNumberCommandAction {
 class VerifyMobileNumberCommandAction {
   final String mobileNumber;
 
-  VerifyMobileNumberCommandAction({
-    required this.mobileNumber,
-  });
+  VerifyMobileNumberCommandAction({required this.mobileNumber});
 }
 
 class ConfirmMobileNumberCommandAction {
   final String mobileNumber;
   final String token;
 
-  ConfirmMobileNumberCommandAction(
-      {required this.mobileNumber, required this.token});
+  ConfirmMobileNumberCommandAction({
+    required this.mobileNumber,
+    required this.token,
+  });
 }
 
 class MobileNumberCreatedEventAction {

@@ -38,9 +38,7 @@ class _OnboardingOrderCardScreenState extends State<OnboardingOrderCardScreen> {
                 .defaultScreenHorizontalPadding,
           ),
           AnimatedLinearProgressIndicator.step(current: 1, totalSteps: 3),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Padding(
             padding:
                 ClientConfig.getCustomClientUiSettings().defaultScreenPadding,
@@ -58,14 +56,16 @@ class _OnboardingOrderCardScreenState extends State<OnboardingOrderCardScreen> {
                       is OnboardingCardConfigurationGenericSuccessViewModel &&
                   ModalRoute.of(context)?.isCurrent == true) {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                    OnboardingConfigureCardScreen.routeName, (route) => false);
+                  OnboardingConfigureCardScreen.routeName,
+                  (route) => false,
+                );
               }
             },
             converter: (store) =>
                 OnboardingCardConfigurationPresenter.presentCardConfiguration(
-              cardConfigurationState:
-                  store.state.onboardingCardConfigurationState,
-            ),
+                  cardConfigurationState:
+                      store.state.onboardingCardConfigurationState,
+                ),
             builder: (context, viewModel) {
               return _buildFrom(viewModel, context);
             },
@@ -77,7 +77,9 @@ class _OnboardingOrderCardScreenState extends State<OnboardingOrderCardScreen> {
 }
 
 Widget _buildFrom(
-    OnboardingCardConfigurationViewModel viewModel, BuildContext context) {
+  OnboardingCardConfigurationViewModel viewModel,
+  BuildContext context,
+) {
   if (viewModel is WithCardholderNameViewModel) {
     return Expanded(
       child: Padding(
@@ -86,21 +88,25 @@ Widget _buildFrom(
         child: Column(
           children: [
             Text.rich(
-              TextSpan(children: [
-                TextSpan(
-                  text: "You should receive it at your residential address in",
-                  style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-                ),
-                TextSpan(
-                  text: " 2-5 working days. ",
-                  style: ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
-                ),
-                TextSpan(
-                  text:
-                      "You’ll have to activate it in the app once it arrives. Then you'll be ready to start using it.",
-                  style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-                ),
-              ]),
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text:
+                        "You should receive it at your residential address in",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                  ),
+                  TextSpan(
+                    text: " 2-5 working days. ",
+                    style:
+                        ClientConfig.getTextStyleScheme().bodyLargeRegularBold,
+                  ),
+                  TextSpan(
+                    text:
+                        "You’ll have to activate it in the app once it arrives. Then you'll be ready to start using it.",
+                    style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
+                  ),
+                ],
+              ),
             ),
             const Spacer(),
             Padding(
@@ -117,14 +123,13 @@ Widget _buildFrom(
             PrimaryButton(
               text: "Order my card",
               onPressed: () {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(OnboardingCreateCardCommandAction());
+                StoreProvider.of<AppState>(
+                  context,
+                ).dispatch(OnboardingCreateCardCommandAction());
               },
               isLoading: viewModel.isLoading,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
@@ -206,9 +211,7 @@ Widget _buildFrom(
           _buildLoadingSkeleton(),
           const Spacer(),
           const PrimaryButton(text: "Order my card"),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
         ],
       ),
     ),

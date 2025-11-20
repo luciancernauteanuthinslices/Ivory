@@ -49,73 +49,70 @@ class PersonAccount {
   String toRawJson() => json.encode(toJson());
 
   factory PersonAccount.fromJson(Map<String, dynamic> json) => PersonAccount(
-        id: json["id"],
-        iban: json["iban"],
-        bic: json["bic"],
-        type: json["type"],
-        overdraft: json["overdraft"] == null
-            ? null
-            : PersonAccountOverdraft.fromJson(json["overdraft"]),
-        balance: json["balance"] == null
-            ? null
-            : AmountValue.fromJson(json["balance"]),
-        income: json["income"] == null
-            ? null
-            : AmountValue.fromJson(json["income"]),
-        spending: json["spending"] == null
-            ? null
-            : AmountValue.fromJson(json["spending"]),
-        availableBalance: json["available_balance"] == null
-            ? null
-            : AmountValue.fromJson(json["available_balance"]),
-        lockingStatus: json["locking_status"],
-        lockingReasons: json["locking_reasons"] == null
-            ? []
-            : List<String>.from(json["locking_reasons"]!.map((x) => x)),
-        accountLimit: json["account_limit"] == null
-            ? null
-            : AmountValue.fromJson(json["account_limit"]),
-        personId: json["person_id"],
-        businessId: json["business_id"],
-        partnerId: json["partner_id"],
-        openedAt: json["opened_at"] == null
-            ? null
-            : DateTime.parse(json["opened_at"]),
-        status: json["status"],
-        closedAt: json["closed_at"] == null
-            ? null
-            : DateTime.parse(json["closed_at"]),
-      );
+    id: json["id"],
+    iban: json["iban"],
+    bic: json["bic"],
+    type: json["type"],
+    overdraft: json["overdraft"] == null
+        ? null
+        : PersonAccountOverdraft.fromJson(json["overdraft"]),
+    balance: json["balance"] == null
+        ? null
+        : AmountValue.fromJson(json["balance"]),
+    income: json["income"] == null
+        ? null
+        : AmountValue.fromJson(json["income"]),
+    spending: json["spending"] == null
+        ? null
+        : AmountValue.fromJson(json["spending"]),
+    availableBalance: json["available_balance"] == null
+        ? null
+        : AmountValue.fromJson(json["available_balance"]),
+    lockingStatus: json["locking_status"],
+    lockingReasons: json["locking_reasons"] == null
+        ? []
+        : List<String>.from(json["locking_reasons"]!.map((x) => x)),
+    accountLimit: json["account_limit"] == null
+        ? null
+        : AmountValue.fromJson(json["account_limit"]),
+    personId: json["person_id"],
+    businessId: json["business_id"],
+    partnerId: json["partner_id"],
+    openedAt: json["opened_at"] == null
+        ? null
+        : DateTime.parse(json["opened_at"]),
+    status: json["status"],
+    closedAt: json["closed_at"] == null
+        ? null
+        : DateTime.parse(json["closed_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "iban": iban,
-        "bic": bic,
-        "type": type,
-        "overdraft": overdraft?.toJson(),
-        "balance": balance?.toJson(),
-        "income": income?.toJson(),
-        "spending": spending?.toJson(),
-        "available_balance": availableBalance?.toJson(),
-        "locking_status": lockingStatus,
-        "locking_reasons": lockingReasons == null
-            ? []
-            : List<dynamic>.from(lockingReasons!.map((x) => x)),
-        "account_limit": accountLimit?.toJson(),
-        "person_id": personId,
-        "business_id": businessId,
-        "partner_id": partnerId,
-        "opened_at": openedAt?.toIso8601String(),
-        "status": status,
-        "closed_at": closedAt?.toIso8601String(),
-      };
+    "id": id,
+    "iban": iban,
+    "bic": bic,
+    "type": type,
+    "overdraft": overdraft?.toJson(),
+    "balance": balance?.toJson(),
+    "income": income?.toJson(),
+    "spending": spending?.toJson(),
+    "available_balance": availableBalance?.toJson(),
+    "locking_status": lockingStatus,
+    "locking_reasons": lockingReasons == null
+        ? []
+        : List<dynamic>.from(lockingReasons!.map((x) => x)),
+    "account_limit": accountLimit?.toJson(),
+    "person_id": personId,
+    "business_id": businessId,
+    "partner_id": partnerId,
+    "opened_at": openedAt?.toIso8601String(),
+    "status": status,
+    "closed_at": closedAt?.toIso8601String(),
+  };
 }
 
 class PersonAccountOverdraft {
-  PersonAccountOverdraft({
-    this.rate,
-    this.limit,
-  });
+  PersonAccountOverdraft({this.rate, this.limit});
 
   double? rate;
   int? limit;
@@ -131,10 +128,7 @@ class PersonAccountOverdraft {
         limit: json["limit"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "rate": rate,
-        "limit": limit,
-      };
+  Map<String, dynamic> toJson() => {"rate": rate, "limit": limit};
 }
 
 CreateAccountResponse createAccountResponseFromJson(String str) =>
@@ -147,10 +141,7 @@ class CreateAccountResponse {
   String personId;
   String accountId;
 
-  CreateAccountResponse({
-    required this.personId,
-    required this.accountId,
-  });
+  CreateAccountResponse({required this.personId, required this.accountId});
 
   factory CreateAccountResponse.fromJson(Map<String, dynamic> json) =>
       CreateAccountResponse(
@@ -159,7 +150,7 @@ class CreateAccountResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        "person_id": personId,
-        "account_id": accountId,
-      };
+    "person_id": personId,
+    "account_id": accountId,
+  };
 }

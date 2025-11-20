@@ -38,171 +38,184 @@ void main() {
   });
 
   test(
-      "When onboarding step is unknown it should return the correct OnboardingProgress",
-      () {
-    // given
-    final onboardingProgressState =
-        OnboardingProgressFetchedState(step: OnboardingStep.unknown);
+    "When onboarding step is unknown it should return the correct OnboardingProgress",
+    () {
+      // given
+      final onboardingProgressState = OnboardingProgressFetchedState(
+        step: OnboardingStep.unknown,
+      );
 
-    // when
-    final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-      onboardingProgressState: onboardingProgressState,
-    );
+      // when
+      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+        onboardingProgressState: onboardingProgressState,
+      );
 
-    // then
-    const progress = OnboardingProgress(
-      activeStep: StepperItemType.unknown,
-      progressPercentage: 0,
-      routeName: OnboardingBasicInfoScreen.routeName,
-    );
+      // then
+      const progress = OnboardingProgress(
+        activeStep: StepperItemType.unknown,
+        progressPercentage: 0,
+        routeName: OnboardingBasicInfoScreen.routeName,
+      );
 
-    expect(
-      viewModel,
-      OnboardingProgressFetchedViewModel(progress: progress),
-    );
-  });
+      expect(viewModel, OnboardingProgressFetchedViewModel(progress: progress));
+    },
+  );
 
   group("Onboarding steps", () {
     test(
-        "When onboarding step is <start> it should return the correct OnboardingProgress",
-        () {
-      // given
-      final onboardingProgressState =
-          OnboardingProgressFetchedState(step: OnboardingStep.start);
+      "When onboarding step is <start> it should return the correct OnboardingProgress",
+      () {
+        // given
+        final onboardingProgressState = OnboardingProgressFetchedState(
+          step: OnboardingStep.start,
+        );
 
-      // when
-      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-        onboardingProgressState: onboardingProgressState,
-      );
+        // when
+        final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+          onboardingProgressState: onboardingProgressState,
+        );
 
-      // then
-      expect(
-        viewModel,
-        OnboardingProgressFetchedViewModel(
-          progress: const OnboardingProgress(
-            activeStep: StepperItemType.signUp,
-            progressPercentage: 1,
-            routeName: OnboardingBasicInfoScreen.routeName,
+        // then
+        expect(
+          viewModel,
+          OnboardingProgressFetchedViewModel(
+            progress: const OnboardingProgress(
+              activeStep: StepperItemType.signUp,
+              progressPercentage: 1,
+              routeName: OnboardingBasicInfoScreen.routeName,
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
 
     test(
-        "When onboarding step is <signedUp> it should return the correct OnboardingProgress",
-        () {
-      // given
-      final onboardingProgressState =
-          OnboardingProgressFetchedState(step: OnboardingStep.signedUp);
+      "When onboarding step is <signedUp> it should return the correct OnboardingProgress",
+      () {
+        // given
+        final onboardingProgressState = OnboardingProgressFetchedState(
+          step: OnboardingStep.signedUp,
+        );
 
-      // when
-      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-        onboardingProgressState: onboardingProgressState,
-      );
+        // when
+        final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+          onboardingProgressState: onboardingProgressState,
+        );
 
-      // then
-      expect(
-        viewModel,
-        OnboardingProgressFetchedViewModel(
-          progress: const OnboardingProgress(
-            activeStep: StepperItemType.personalDetails,
-            progressPercentage: 20,
-            routeName: OnboardingDateAndPlaceOfBirthScreen.routeName,
+        // then
+        expect(
+          viewModel,
+          OnboardingProgressFetchedViewModel(
+            progress: const OnboardingProgress(
+              activeStep: StepperItemType.personalDetails,
+              progressPercentage: 20,
+              routeName: OnboardingDateAndPlaceOfBirthScreen.routeName,
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
 
     test(
-        "When onboarding step is <scoringSuccessful> it should return the redirect view model",
-        () {
-      // given
-      final onboardingProgressState = OnboardingProgressFetchedState(
-          step: OnboardingStep.scoringSuccessful);
+      "When onboarding step is <scoringSuccessful> it should return the redirect view model",
+      () {
+        // given
+        final onboardingProgressState = OnboardingProgressFetchedState(
+          step: OnboardingStep.scoringSuccessful,
+        );
 
-      // when
-      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-        onboardingProgressState: onboardingProgressState,
-      );
+        // when
+        final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+          onboardingProgressState: onboardingProgressState,
+        );
 
-      // then
-      expect(viewModel, RedirectToScoringSuccessViewModel());
-    });
-
-    test(
-        "When onboarding step is <scoringFailed> it should return the redirect view model",
-        () {
-      // given
-      final onboardingProgressState =
-          OnboardingProgressFetchedState(step: OnboardingStep.scoringFailed);
-
-      // when
-      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-        onboardingProgressState: onboardingProgressState,
-      );
-
-      // then
-      expect(viewModel, RedirectToScoringFailedViewModel());
-    });
+        // then
+        expect(viewModel, RedirectToScoringSuccessViewModel());
+      },
+    );
 
     test(
-        "When onboarding step is <identificationContractsSigned> it should return the correct onboarding progress",
-        () {
-      // given
-      final onboardingProgressState = OnboardingProgressFetchedState(
-          step: OnboardingStep.identificationContractsSigned);
+      "When onboarding step is <scoringFailed> it should return the redirect view model",
+      () {
+        // given
+        final onboardingProgressState = OnboardingProgressFetchedState(
+          step: OnboardingStep.scoringFailed,
+        );
 
-      // when
-      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-        onboardingProgressState: onboardingProgressState,
-      );
+        // when
+        final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+          onboardingProgressState: onboardingProgressState,
+        );
 
-      // then
-      expect(
-        viewModel,
-        OnboardingProgressFetchedViewModel(
-          progress: const OnboardingProgress(
-            activeStep: StepperItemType.identityVerification,
-            progressPercentage: 60,
-            routeName: OnboardingScoringWaitingScreen.routeName,
+        // then
+        expect(viewModel, RedirectToScoringFailedViewModel());
+      },
+    );
+
+    test(
+      "When onboarding step is <identificationContractsSigned> it should return the correct onboarding progress",
+      () {
+        // given
+        final onboardingProgressState = OnboardingProgressFetchedState(
+          step: OnboardingStep.identificationContractsSigned,
+        );
+
+        // when
+        final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+          onboardingProgressState: onboardingProgressState,
+        );
+
+        // then
+        expect(
+          viewModel,
+          OnboardingProgressFetchedViewModel(
+            progress: const OnboardingProgress(
+              activeStep: StepperItemType.identityVerification,
+              progressPercentage: 60,
+              routeName: OnboardingScoringWaitingScreen.routeName,
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
 
     test(
-        "When onboarding step is <repaymentConfigured> it should return the redirect view model",
-        () {
-      // given
-      final onboardingProgressState = OnboardingProgressFetchedState(
-          step: OnboardingStep.repaymentConfigured);
+      "When onboarding step is <repaymentConfigured> it should return the redirect view model",
+      () {
+        // given
+        final onboardingProgressState = OnboardingProgressFetchedState(
+          step: OnboardingStep.repaymentConfigured,
+        );
 
-      // when
-      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-        onboardingProgressState: onboardingProgressState,
-      );
+        // when
+        final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+          onboardingProgressState: onboardingProgressState,
+        );
 
-      // then
-      expect(viewModel, RedirectToCongratulationsViewModel());
-    });
+        // then
+        expect(viewModel, RedirectToCongratulationsViewModel());
+      },
+    );
   });
 
   group("Onboarding finalize", () {
-    test("When onboarding finalize is in progress it should return loading",
-        () {
-      // given
-      final onboardingProgressState = OnboardingProgressInitialLoadingState();
-      final authState = AuthStatePlaceholder.inOnboardingState();
+    test(
+      "When onboarding finalize is in progress it should return loading",
+      () {
+        // given
+        final onboardingProgressState = OnboardingProgressInitialLoadingState();
+        final authState = AuthStatePlaceholder.inOnboardingState();
 
-      // when
-      final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
-        onboardingProgressState: onboardingProgressState,
-        authState: authState,
-      );
+        // when
+        final viewModel = OnboardingProgressPresenter.presentOnboardingProgress(
+          onboardingProgressState: onboardingProgressState,
+          authState: authState,
+        );
 
-      // then
-      expect(viewModel, OnboardingProgressLoadingViewModel());
-    });
+        // then
+        expect(viewModel, OnboardingProgressLoadingViewModel());
+      },
+    );
 
     test("When onboarding is finalized it should return redirect to home", () {
       // given

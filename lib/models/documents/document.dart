@@ -38,12 +38,7 @@ class Document extends Equatable {
   List<Object> get props => [id, fileType, fileSize, documentType];
 }
 
-enum DocumentType {
-  creditCardContract,
-  creditCardSecci,
-  qesDocument,
-  unknown,
-}
+enum DocumentType { creditCardContract, creditCardSecci, qesDocument, unknown }
 
 extension DocumentTypeParser on DocumentType {
   static DocumentType parse(String documentType) {

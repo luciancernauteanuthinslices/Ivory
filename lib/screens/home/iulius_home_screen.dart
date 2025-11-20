@@ -21,9 +21,10 @@ class IuliusHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (StoreProvider.of<AppState>(context).state.authState
-            as AuthenticatedState)
-        .authenticatedUser;
+    final user =
+        (StoreProvider.of<AppState>(context).state.authState
+                as AuthenticatedState)
+            .authenticatedUser;
 
     return Screen(
       title: 'Welcome ${user.cognito.firstName}!',
@@ -31,16 +32,13 @@ class IuliusHomeScreen extends StatelessWidget {
       appBarColor: ClientConfig.getColorScheme().primary,
       trailingActions: [
         IconButton(
-          icon: const Icon(
-            Icons.savings_outlined,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.savings_outlined, color: Colors.white),
           onPressed: () {},
-        )
+        ),
       ],
-      titleTextStyle: ClientConfig.getTextStyleScheme()
-          .heading3
-          .copyWith(color: Colors.white),
+      titleTextStyle: ClientConfig.getTextStyleScheme().heading3.copyWith(
+        color: Colors.white,
+      ),
       centerTitle: false,
       child: const HomePageContent(),
     );
@@ -48,9 +46,7 @@ class IuliusHomeScreen extends StatelessWidget {
 }
 
 class HomePageContent extends StatelessWidget {
-  const HomePageContent({
-    Key? key,
-  }) : super(key: key);
+  const HomePageContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,19 +69,19 @@ class HomePageContent extends StatelessWidget {
 }
 
 class HomePageHeader extends StatelessWidget {
-  const HomePageHeader({
-    Key? key,
-  }) : super(key: key);
+  const HomePageHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AccountSummaryViewModel>(
       onInit: (store) {
         store.dispatch(
-            GetAccountSummaryCommandAction(forceAccountSummaryReload: false));
+          GetAccountSummaryCommandAction(forceAccountSummaryReload: false),
+        );
       },
       converter: (store) => AccountSummaryPresenter.presentAccountSummary(
-          accountSummaryState: store.state.accountSummaryState),
+        accountSummaryState: store.state.accountSummaryState,
+      ),
       builder: (context, viewModel) {
         return Container(
           padding: ClientConfig.getCustomClientUiSettings()
@@ -101,9 +97,7 @@ class HomePageHeader extends StatelessWidget {
           child: Row(
             children: [
               viewModel is AccountSummaryFetchedViewModel
-                  ? AccountSummary(
-                      viewModel: viewModel,
-                    )
+                  ? AccountSummary(viewModel: viewModel)
                   : Center(child: AccountSummary.loadingSkeleton()),
               const SizedBox(height: 8),
             ],
@@ -117,22 +111,15 @@ class HomePageHeader extends StatelessWidget {
 class AccountSummary extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
 
-  const AccountSummary({
-    super.key,
-    required this.viewModel,
-  });
+  const AccountSummary({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AccountBalance(
-          viewModel: viewModel,
-        ),
-        AccountStats(
-          viewModel: viewModel,
-        ),
+        AccountBalance(viewModel: viewModel),
+        AccountStats(viewModel: viewModel),
       ],
     );
   }
@@ -185,16 +172,13 @@ class AccountSummary extends StatelessWidget {
 class AccountBalance extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
 
-  const AccountBalance({
-    Key? key,
-    required this.viewModel,
-  }) : super(key: key);
+  const AccountBalance({Key? key, required this.viewModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final creditLimitPercent =
         ((viewModel.accountSummary?.outstandingAmount ?? 0) /
-            (viewModel.accountSummary?.creditLimit ?? 0.01));
+        (viewModel.accountSummary?.creditLimit ?? 0.01));
 
     return Padding(
       padding: const EdgeInsets.only(top: 16, bottom: 16),
@@ -205,9 +189,9 @@ class AccountBalance extends StatelessWidget {
             children: [
               Text(
                 "Available Balance",
-                style: ClientConfig.getTextStyleScheme()
-                    .labelSmall
-                    .copyWith(color: ClientConfig.getCustomColors().neutral400),
+                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                  color: ClientConfig.getCustomColors().neutral400,
+                ),
               ),
               const SizedBox(height: 8),
               Text.rich(
@@ -215,10 +199,9 @@ class AccountBalance extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: Format.currencyWithSymbol(
-                          viewModel.accountSummary?.availableBalance?.value ??
-                              0),
-                      style: ClientConfig.getTextStyleScheme()
-                          .labelSmall
+                        viewModel.accountSummary?.availableBalance?.value ?? 0,
+                      ),
+                      style: ClientConfig.getTextStyleScheme().labelSmall
                           .copyWith(color: Colors.white, fontSize: 32),
                     ),
                   ],
@@ -237,10 +220,7 @@ class AccountBalance extends StatelessWidget {
 class AccountStats extends StatelessWidget {
   final AccountSummaryFetchedViewModel viewModel;
 
-  const AccountStats({
-    super.key,
-    required this.viewModel,
-  });
+  const AccountStats({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -254,9 +234,9 @@ class AccountStats extends StatelessWidget {
             children: [
               Text(
                 "Cashback available",
-                style: ClientConfig.getTextStyleScheme()
-                    .labelSmall
-                    .copyWith(color: Colors.grey),
+                style: ClientConfig.getTextStyleScheme().labelSmall.copyWith(
+                  color: Colors.grey,
+                ),
               ),
               const SizedBox(width: 5),
               const SizedBox(height: 4),
@@ -265,12 +245,13 @@ class AccountStats extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: Format.currencyWithSymbol(
-                          viewModel.accountSummary?.outstandingAmount ?? 0),
-                      style: ClientConfig.getTextStyleScheme()
-                          .labelSmall
+                        viewModel.accountSummary?.outstandingAmount ?? 0,
+                      ),
+                      style: ClientConfig.getTextStyleScheme().labelSmall
                           .copyWith(
-                              color: ClientConfig.getCustomColors().neutral400,
-                              fontSize: 18),
+                            color: ClientConfig.getCustomColors().neutral400,
+                            fontSize: 18,
+                          ),
                     ),
                   ],
                 ),
@@ -301,10 +282,7 @@ class AccountOptions extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             onPressed: () =>
                 Navigator.pushNamed(context, ChooseMethodScreen.routeName),
-            iconWidget: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
+            iconWidget: const Icon(Icons.add, color: Colors.white),
             buttonColor: Colors.deepOrange,
             horizontalPadding: 0,
             verticalPadding: 0,

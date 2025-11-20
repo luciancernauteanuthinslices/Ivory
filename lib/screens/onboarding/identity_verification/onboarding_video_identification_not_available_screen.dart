@@ -57,7 +57,8 @@ class OnboardingVideoIdentificationNotAvailableScreen extends StatelessWidget {
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text: '. Thank you for your understanding!'),
+                          text: '. Thank you for your understanding!',
+                        ),
                       ],
                     ),
                   ),

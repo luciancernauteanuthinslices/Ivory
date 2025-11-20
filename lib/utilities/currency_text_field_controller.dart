@@ -36,18 +36,18 @@ class CurrencyTextFieldController extends TextEditingController {
     int numberOfDecimals = 2,
     bool currencyOnLeft = true,
     bool enableNegative = true,
-  })  : assert(
-          !(initDoubleValue != null && initIntValue != null),
-          "You must set either 'initDoubleValue' or 'initIntValue' parameter",
-        ),
-        _currencySymbol = currencySymbol,
-        _decimalSymbol = decimalSymbol,
-        _thousandSymbol = thousandSymbol,
-        _currencySeparator = currencySeparator,
-        _maxDigits = maxDigits,
-        _numberOfDecimals = numberOfDecimals,
-        _currencyOnLeft = currencyOnLeft,
-        _enableNegative = enableNegative {
+  }) : assert(
+         !(initDoubleValue != null && initIntValue != null),
+         "You must set either 'initDoubleValue' or 'initIntValue' parameter",
+       ),
+       _currencySymbol = currencySymbol,
+       _decimalSymbol = decimalSymbol,
+       _thousandSymbol = thousandSymbol,
+       _currencySeparator = currencySeparator,
+       _maxDigits = maxDigits,
+       _numberOfDecimals = numberOfDecimals,
+       _currencyOnLeft = currencyOnLeft,
+       _enableNegative = enableNegative {
     if (initDoubleValue != null) {
       _value = initDoubleValue;
       initValue();
@@ -74,8 +74,9 @@ class CurrencyTextFieldController extends TextEditingController {
       if (text.lastChars(1).isNumeric()) {
         clearText = (_getOnlyNumbers(string: text) ?? '').trim();
       } else {
-        clearText =
-            (_getOnlyNumbers(string: text) ?? '').trim().allBeforeLastN(1);
+        clearText = (_getOnlyNumbers(string: text) ?? '').trim().allBeforeLastN(
+          1,
+        );
       }
     }
 

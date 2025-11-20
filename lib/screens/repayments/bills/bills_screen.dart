@@ -52,9 +52,7 @@ class BillsScreen extends StatelessWidget {
             builder: (context, viewModel) {
               if (viewModel is BillsLoadingViewModel ||
                   viewModel is BillsInitialViewModel) {
-                return Expanded(
-                  child: _BillsScrollView.loadingSkeleton(),
-                );
+                return Expanded(child: _BillsScrollView.loadingSkeleton());
               } else if (viewModel is BillsErrorViewModel) {
                 return Container(
                   alignment: Alignment.center,
@@ -70,13 +68,15 @@ class BillsScreen extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('No bills yet',
-                        style: ClientConfig.getTextStyleScheme().heading4),
+                    Text(
+                      'No bills yet',
+                      style: ClientConfig.getTextStyleScheme().heading4,
+                    ),
                     const SizedBox(height: 16),
                     Text(
                       'Your future bills will be displayed here after your automatic repayments go through.',
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
-                    )
+                    ),
                   ],
                 );
               }
@@ -88,7 +88,7 @@ class BillsScreen extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );
@@ -185,10 +185,9 @@ class _BillItem extends StatelessWidget {
         ),
       ),
       contentPadding: EdgeInsets.zero,
-      onTap: () => Navigator.of(context).pushNamed(
-        BillDetailScreen.routeName,
-        arguments: bill.id,
-      ),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(BillDetailScreen.routeName, arguments: bill.id),
     );
   }
 
@@ -198,7 +197,10 @@ class _BillItem extends StatelessWidget {
       child: Row(
         children: [
           Skeleton(
-              height: 24, width: 24, borderRadius: BorderRadius.circular(100)),
+            height: 24,
+            width: 24,
+            borderRadius: BorderRadius.circular(100),
+          ),
           const SizedBox(width: 16),
           const Skeleton(height: 16, width: 128),
         ],

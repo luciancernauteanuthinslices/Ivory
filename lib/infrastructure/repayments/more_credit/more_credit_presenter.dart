@@ -10,9 +10,7 @@ class MoreCreditPresenter {
     } else if (moreCreditState is MoreCreditErrorState) {
       return MoreCreditErrorViewModel();
     } else if (moreCreditState is MoreCreditFetchedState) {
-      return MoreCreditFetchedViewModel(
-        waitlist: moreCreditState.waitlist,
-      );
+      return MoreCreditFetchedViewModel(waitlist: moreCreditState.waitlist);
     }
 
     return MoreCreditInitialViewModel();
@@ -35,9 +33,7 @@ class MoreCreditErrorViewModel extends MoreCreditViewModel {}
 class MoreCreditFetchedViewModel extends MoreCreditViewModel {
   final bool waitlist;
 
-  const MoreCreditFetchedViewModel({
-    required this.waitlist,
-  });
+  const MoreCreditFetchedViewModel({required this.waitlist});
 
   @override
   List<Object?> get props => [waitlist];

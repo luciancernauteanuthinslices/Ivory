@@ -21,14 +21,17 @@ class ReferenceAccountMiddleware extends MiddlewareClass<AppState> {
 
     if (action is GetReferenceAccountCommandAction) {
       final response = await _personService.getReferenceAccount(
-          user: authState.authenticatedUser.cognito);
+        user: authState.authenticatedUser.cognito,
+      );
 
       if (response is GetReferenceAccountSuccessResponse) {
         store.dispatch(
-            ReferenceAccountFetchedEventAction(response.referenceAccount));
+          ReferenceAccountFetchedEventAction(response.referenceAccount),
+        );
       } else if (response is PersonServiceErrorResponse) {
-        store.dispatch(GetReferenceAccountFailedEventAction(
-            errorType: response.errorType));
+        store.dispatch(
+          GetReferenceAccountFailedEventAction(errorType: response.errorType),
+        );
       }
     }
   }

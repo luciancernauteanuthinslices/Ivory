@@ -17,17 +17,20 @@ void forceReloadAppStates(Store<AppState> store) {
     GetTransactionsCommandAction(filter: filter, forceReloadTransactions: true),
   );
 
-  store.dispatch(GetHomeTransactionsCommandAction(
-    filter: const TransactionListFilter(
-      size: 3,
-      page: 1,
-      sort: '-recorded_at',
+  store.dispatch(
+    GetHomeTransactionsCommandAction(
+      filter: const TransactionListFilter(
+        size: 3,
+        page: 1,
+        sort: '-recorded_at',
+      ),
+      forceReloadTransactions: true,
     ),
-    forceReloadTransactions: true,
-  ));
+  );
 
   store.dispatch(GetBankCardsCommandAction(forceCardsReload: true));
 
   store.dispatch(
-      GetAccountSummaryCommandAction(forceAccountSummaryReload: true));
+    GetAccountSummaryCommandAction(forceAccountSummaryReload: true),
+  );
 }

@@ -40,6 +40,12 @@ class OnboardingSignupAttributes extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [title, firstName, lastName, email, password, notificationsAllowed];
+  List<Object?> get props => [
+    title,
+    firstName,
+    lastName,
+    email,
+    password,
+    notificationsAllowed,
+  ];
 }

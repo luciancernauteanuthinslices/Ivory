@@ -54,31 +54,33 @@ class MockPushNotificationStorageService extends Mock
 }
 
 class MockRemoteMessages {
-  static RemoteMessage unknownMessageType = const RemoteMessage(data: {
-    'type': 'UNKNOWN_TYPE',
-  });
+  static RemoteMessage unknownMessageType = const RemoteMessage(
+    data: {'type': 'UNKNOWN_TYPE'},
+  );
 
-  static RemoteMessage scaChallengeMessage = const RemoteMessage(data: {
-    'type': 'SCA_CHALLENGE',
-    'card_id': 'card_id',
-    'amount_unit': 'amount_unit',
-    'amount_value': 'amount_value',
-    'merchant_name': 'merchant_name',
-    'amount_currency': 'amount_currency',
-    'change_request_id': 'change_request_id',
-    'decline_change_request_id': 'decline_change_request_id',
-    'challenged_at': '2023-12-04T00:00:00.000Z',
-  });
+  static RemoteMessage scaChallengeMessage = const RemoteMessage(
+    data: {
+      'type': 'SCA_CHALLENGE',
+      'card_id': 'card_id',
+      'amount_unit': 'amount_unit',
+      'amount_value': 'amount_value',
+      'merchant_name': 'merchant_name',
+      'amount_currency': 'amount_currency',
+      'change_request_id': 'change_request_id',
+      'decline_change_request_id': 'decline_change_request_id',
+      'challenged_at': '2023-12-04T00:00:00.000Z',
+    },
+  );
 
-  static RemoteMessage scoringSuccessfulMessage = const RemoteMessage(data: {
-    'type': 'SCORING_SUCCESSFUL',
-  });
+  static RemoteMessage scoringSuccessfulMessage = const RemoteMessage(
+    data: {'type': 'SCORING_SUCCESSFUL'},
+  );
 
-  static RemoteMessage scoringFailedMessage = const RemoteMessage(data: {
-    'type': 'SCORING_FAILED',
-  });
+  static RemoteMessage scoringFailedMessage = const RemoteMessage(
+    data: {'type': 'SCORING_FAILED'},
+  );
 
-  static RemoteMessage scoringInProgressMessage = const RemoteMessage(data: {
-    'type': 'SCORING_IN_PROGRESS',
-  });
+  static RemoteMessage scoringInProgressMessage = const RemoteMessage(
+    data: {'type': 'SCORING_IN_PROGRESS'},
+  );
 }

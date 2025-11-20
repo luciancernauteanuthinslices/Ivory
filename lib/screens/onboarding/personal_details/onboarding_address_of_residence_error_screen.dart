@@ -48,8 +48,9 @@ class OnboardingAddressOfResidenceErrorScreen extends StatelessWidget {
                               .bodyLargeRegularBold,
                         ),
                         const TextSpan(
-                            text:
-                                "to proceed with your credit account application. ")
+                          text:
+                              "to proceed with your credit account application. ",
+                        ),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -59,8 +60,9 @@ class OnboardingAddressOfResidenceErrorScreen extends StatelessWidget {
                     TextSpan(
                       children: [
                         const TextSpan(
-                            text:
-                                "For any questions or concerns you may have, please don't hesitate to "),
+                          text:
+                              "For any questions or concerns you may have, please don't hesitate to ",
+                        ),
                         TextSpan(
                           text: "contact us",
                           style: ClientConfig.getTextStyleScheme()
@@ -73,7 +75,7 @@ class OnboardingAddressOfResidenceErrorScreen extends StatelessWidget {
                               print("tap: contact us");
                             },
                         ),
-                        const TextSpan(text: ".")
+                        const TextSpan(text: "."),
                       ],
                       style: ClientConfig.getTextStyleScheme().bodyLargeRegular,
                     ),
@@ -103,11 +105,11 @@ class OnboardingAddressOfResidenceErrorScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16)
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

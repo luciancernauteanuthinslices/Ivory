@@ -22,9 +22,11 @@ class NotificationsMiddleware extends MiddlewareClass<AppState> {
     }
 
     if (action is ReceivedTransactionApprovalNotificationEventAction) {
-      store.dispatch(AuthorizeTransactionCommandAction(
-        changeRequestId: action.message.changeRequestId,
-      ));
+      store.dispatch(
+        AuthorizeTransactionCommandAction(
+          changeRequestId: action.message.changeRequestId,
+        ),
+      );
     }
   }
 }
