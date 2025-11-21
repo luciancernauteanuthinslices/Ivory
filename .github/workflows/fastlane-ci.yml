@@ -64,14 +64,24 @@ jobs:
       - name: Install Patrol CLI
         run: dart pub global activate patrol_cli 3.10.0
 
-      - name: Create .env file with test credentials
+      - name: Create .env file with all environment variables
         run: |
           cat > .env << EOF
-          # Environment variables for integration tests
+          # PROD Configuration
+          COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}
+          COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}
+          API_BASE_URL=${{ secrets.API_BASE_URL }}
+          GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
+          
+          # Test Credentials
           EMAIL=${{ secrets.PATROL_EMAIL }}
           PASSWORD=${{ secrets.PATROL_PASSWORD }}
           EOF
-          echo "✅ Created .env with test credentials"
+          echo "✅ Created .env file with:"
+          echo "  - API_BASE_URL: ${{ secrets.API_BASE_URL }}"
+          echo "  - COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}"
+          echo "  - Test email: ${{ secrets.PATROL_EMAIL }}"
+          echo "  - Credentials configured: ✓"
 
       - name: Enable KVM group perms
         run: |
@@ -156,14 +166,24 @@ jobs:
       - name: Install Patrol CLI
         run: dart pub global activate patrol_cli 3.10.0
 
-      - name: Create .env file with test credentials
+      - name: Create .env file with all environment variables
         run: |
           cat > .env << EOF
-          # Environment variables for integration tests
+          # PROD Configuration
+          COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}
+          COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}
+          API_BASE_URL=${{ secrets.API_BASE_URL }}
+          GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
+          
+          # Test Credentials
           EMAIL=${{ secrets.PATROL_EMAIL }}
           PASSWORD=${{ secrets.PATROL_PASSWORD }}
           EOF
-          echo "✅ Created .env with test credentials"
+          echo "✅ Created .env file with:"
+          echo "  - API_BASE_URL: ${{ secrets.API_BASE_URL }}"
+          echo "  - COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}"
+          echo "  - Test email: ${{ secrets.PATROL_EMAIL }}"
+          echo "  - Credentials configured: ✓"
 
       - name: Get Flutter dependencies
         run: flutter pub get
