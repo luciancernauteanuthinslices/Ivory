@@ -81,29 +81,23 @@ class LoginToApp {
 
     debugPrint('Continue button tapped successfully');
 
-    // CRITICAL: Wait for "Verify login" text to confirm navigation to OTP screen completed
-    // Without this, we might try to interact with the password field from login screen
+    // Wait and check for navigation or errors
     debugPrint('Waiting for navigation to OTP screen...');
-    await $.pump(const Duration(
-        milliseconds: 2000)); // Give time for navigation animation
+    await $.pumpAndSettle(timeout: const Duration(seconds: 5));
 
-    debugPrint('Looking for Verify login text...');
-    // await $.waitUntilVisible($('Verify login'),
-    //     timeout: const Duration(seconds: 20)); // Generous timeout for slow CI
-    debugPrint('OTP screen loaded - Verify login text found!');
+    // Debug: Check what's actually on screen after Continue
+    debugPrint('=== Screen state after Continue tap ===');
+    debugPrint(
+        'Login title still visible: ${$(keys.loginPage.loginTitle).exists}');
+    debugPrint(
+        'Email field still visible: ${$(IvoryTextField).containing('Email address').exists}');
+    debugPrint('TanInput exists: ${$(TanInput).exists}');
+    debugPrint('Verify login text exists: ${$('Verify login').exists}');
+    debugPrint(
+        'OTP field key exists: ${$(keys.loginPage.otpTextField).exists}');
+    debugPrint('Continue button still exists: ${$("Continue").exists}');
+    debugPrint('======================================');
 
-    // Give UI extra time to settle
-    await $.pump(const Duration(milliseconds: 1500));
-
-    // Now find and tap the OTP input field
-    // debugPrint('Looking for Verify login text...');
-    // await $.waitUntilVisible($('Verify login'),
-    // timeout: const Duration(seconds: 20));
-    debugPrint('OTP screen loaded - Verify login text found!');
-
-    await $.pump(const Duration(milliseconds: 1500));
-
-    debugPrint('Waiting for OTP field key to appear...');
     await $.waitUntilVisible($(keys.loginPage.otpTextField),
         timeout: const Duration(seconds: 20));
 
