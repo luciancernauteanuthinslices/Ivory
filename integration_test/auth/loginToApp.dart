@@ -128,27 +128,26 @@ class LoginToApp {
     final hasToken = await hasAccessToken();
     debugPrint('Has access token: $hasToken');
 
-    // Debug: Check what's actually on screen after Continue
-    debugPrint('=== Screen state after Continue tap ===');
-    debugPrint(
-        'Login title still visible: ${$(keys.loginPage.loginTitle).exists}');
-    debugPrint(
-        'Email field still visible: ${$(IvoryTextField).containing('Email address').exists}');
-    debugPrint('TanInput exists: ${$(TanInput).exists}');
-    debugPrint('Verify login text exists: ${$('Verify login').exists}');
-    debugPrint(
-        'OTP field key exists: ${$(keys.loginPage.otpTextField).exists}');
-    debugPrint('Continue button still exists: ${$("Continue").exists}');
-    debugPrint('======================================');
-
+    // ASSERTION: Verify that authentication succeeded and we navigated to OTP screen
     if (!hasToken) {
-      debugPrint('⚠️  WARNING: No access token found after Continue tap!');
+      debugPrint('❌ AUTHENTICATION FAILED - Cannot proceed to OTP screen');
       debugPrint(
-          'This indicates authentication did not complete successfully.');
+          'Login title still visible: ${$(keys.loginPage.loginTitle).exists}');
+      debugPrint('OTP screen visible: ${$('Verify login').exists}');
+
+      throw Exception('Authentication failed after tapping Continue. '
+          'Expected to navigate to OTP screen but still on login screen. '
+          'Check test credentials in .env or CI environment variables.');
     }
 
+    // Assert that we successfully navigated to OTP screen
+    debugPrint('✅ Authentication succeeded - verifying OTP screen is visible');
+    expect($('Verify login').exists, true,
+        reason:
+            'Expected to navigate to OTP screen after successful authentication');
+
     await $.waitUntilVisible($(keys.loginPage.otpTextField),
-        timeout: const Duration(seconds: 20));
+        timeout: const Duration(seconds: 10));
 
     final otpField = $(keys.loginPage.otpTextField);
     await otpField.tap();
