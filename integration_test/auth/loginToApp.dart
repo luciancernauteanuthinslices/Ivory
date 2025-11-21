@@ -12,6 +12,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:solarisdemo/redux/app_state.dart';
 import 'package:solarisdemo/redux/auth/auth_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:solarisdemo/models/auth/auth_error_type.dart';
 
 class LoginToApp {
   final PatrolIntegrationTester $;
@@ -55,6 +56,12 @@ class LoginToApp {
 
       debugPrint(
           '❌ No access token found. Auth state: ${authState.runtimeType}');
+
+      // Log specific error if AuthErrorState
+      if (authState is AuthErrorState) {
+        debugPrint('🔴 Authentication error type: ${authState.errorType}');
+      }
+
       return false;
     } catch (e) {
       debugPrint('❌ Error checking access token: $e');
