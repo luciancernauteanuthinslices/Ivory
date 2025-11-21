@@ -103,9 +103,11 @@ class LoginToApp {
 
     await $.pump(const Duration(milliseconds: 1500));
 
-    debugPrint(
-        'Looking for OTP EditableText (after confirming OTP screen loaded)...');
-    final otpField = $(find.byType(EditableText));
+    debugPrint('Waiting for OTP field key to appear...');
+    await $.waitUntilVisible($(keys.loginPage.otpTextField),
+        timeout: const Duration(seconds: 20));
+
+    final otpField = $(keys.loginPage.otpTextField);
     await otpField.tap();
     await otpField.enterText('212212');
 
@@ -117,8 +119,9 @@ class LoginToApp {
     await $(keys.loginPage.otpConfirmButton).tap();
 
     // Assert we are on Home Page
-    await $.waitUntilVisible($('Welcome Doe!'));
-    expect($('Welcome Doe!'), findsOneWidget);
+    await $.waitUntilVisible($(keys.homeScreen.welcomeTitle),
+        timeout: const Duration(seconds: 20));
+    expect($(keys.homeScreen.welcomeTitle), findsOneWidget);
 
     //end of login flow
   }

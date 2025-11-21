@@ -12,6 +12,7 @@ class Screen extends StatelessWidget {
   final Icon? backButtonIcon;
   final bool hideBottomNavbar;
   final TextStyle? titleTextStyle;
+  final Key? titleKey;
   final List<Widget>? trailingActions;
   final Future<void> Function()? onRefresh;
   final Function? customBackButtonCallback;
@@ -32,6 +33,7 @@ class Screen extends StatelessWidget {
     this.hideBackButton = false,
     this.hideBottomNavbar = false,
     this.customBackButtonCallback,
+    this.titleKey,
   });
 
   @override
@@ -41,6 +43,7 @@ class Screen extends StatelessWidget {
         : createAppBar(
             context,
             title: title ?? '',
+            titleKey: titleKey,
             centerTitle: centerTitle,
             backgroundColor: appBarColor,
             hideBackButton: hideBackButton,
@@ -128,6 +131,7 @@ AppBar createAppBar(
   bool? hideBackButton,
   Icon? backButtonIcon,
   required String title,
+  Key? titleKey,
   bool? centerTitle = true,
   TextStyle? titleTextStyle,
   List<Widget>? trailingActions,
@@ -137,6 +141,7 @@ AppBar createAppBar(
 }) {
   Text titleText = Text(
     title,
+    key: titleKey,
     style: titleTextStyle,
   );
 

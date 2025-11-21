@@ -18,6 +18,7 @@ class LoginPage {
   final mobileNumberPrefixDropdown = const Key("MobileNumberPrefixDropdown");
   final mobileNumberPrefixSearchField =
       const Key("mobileNumberPrefixSearchField");
+  final otpTextField = const Key("OtpTextField");
   final otpConfirmButton = const Key("OtpConfirmationButton");
 }
 
@@ -34,12 +35,17 @@ class CardsPage {
   final cardsPageTitle = const Key("cardsPageTitle");
 }
 
+class HomeScreenKeys {
+  final welcomeTitle = const Key("HomeWelcomeTitle");
+}
+
 class Keys {
   final welcomeScreen = WelcomeScreenKeys();
   final loginPage = LoginPage();
   final navigation = NavigationKeys();
   final cardsPage = CardsPage();
   final cardActions = CardActions();
+  final homeScreen = HomeScreenKeys();
 }
 
 final keys = Keys();

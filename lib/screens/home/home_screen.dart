@@ -14,6 +14,7 @@ import 'package:solarisdemo/widgets/skeleton.dart';
 
 import '../../config.dart';
 import '../../infrastructure/transactions/transaction_presenter.dart';
+import '../../integration_test_keys.dart';
 import '../../models/transactions/transaction_model.dart';
 import '../../redux/app_state.dart';
 import '../../redux/person/account_summary/account_summay_action.dart';
@@ -44,6 +45,7 @@ class HomeScreen extends StatelessWidget {
 
     return Screen(
       title: 'Welcome ${user.cognito.firstName}!',
+      titleKey: keys.homeScreen.welcomeTitle,
       hideBackButton: true,
       appBarColor: ClientConfig.getColorScheme().primary,
       trailingActions: [
