@@ -10,7 +10,6 @@ class TanInput extends StatefulWidget {
   final FocusNode focusNode;
   final bool? isLoading;
   final Function(String tan) onChanged;
-  final Key? fieldKey;
 
   const TanInput({
     super.key,
@@ -19,7 +18,6 @@ class TanInput extends StatefulWidget {
     required this.controller,
     required this.focusNode,
     this.isLoading,
-    this.fieldKey,
   });
 
   @override
@@ -44,7 +42,7 @@ class TanInputState extends State<TanInput> {
             SizedBox(
               height: 64,
               child: tan_input.PinInputTextField(
-                key: widget.fieldKey,
+                key: widget.key,
                 pinLength: widget.length,
                 decoration: tan_input.BoxLooseDecoration(
                   gapSpace: 8,

@@ -132,7 +132,7 @@ class _LoginWithTanScreenState extends State<LoginWithTanScreen> {
                         height: 24,
                       ),
                       TanInput(
-                        fieldKey: keys.loginPage.otpTextField,
+                        key: keys.loginPage.otpTextField,
                         controller: _tanInputController,
                         focusNode: _focusNode,
                         isLoading: viewModel is AuthLoadingViewModel,
