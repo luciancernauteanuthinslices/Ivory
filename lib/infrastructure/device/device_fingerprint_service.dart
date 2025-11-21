@@ -12,6 +12,10 @@ MethodChannel _platform =
 const getDeviceFingerprintMethod = 'getDeviceFingerprint';
 const getIosDeviceFingerprintMethod = 'getIosDeviceFingerprint';
 
+// Check if running in test/CI environment
+const bool kIsPatrolTestEnv =
+    bool.fromEnvironment('PATROL_TEST', defaultValue: false);
+
 class DeviceFingerprintService extends ApiService {
   DeviceFingerprintService({super.user});
 
@@ -68,6 +72,12 @@ class DeviceFingerprintService extends ApiService {
       return null;
     }
 
+    // In test/CI environment, return a mock fingerprint to bypass Seon SDK
+    if (kIsPatrolTestEnv) {
+      debugPrint('🧪 PATROL_TEST mode: Using mock device fingerprint');
+      return 'mock_device_fingerprint_for_ci_testing_${consentId}_${DateTime.now().millisecondsSinceEpoch}';
+    }
+
     try {
       if (defaultTargetPlatform == TargetPlatform.android) {
         return _platform.invokeMethod(
@@ -83,6 +93,12 @@ class DeviceFingerprintService extends ApiService {
 
       return null;
     } catch (e) {
+      debugPrint('⚠️  Device fingerprint error: $e');
+      // In test mode, return mock even on error
+      if (kIsPatrolTestEnv) {
+        debugPrint('🧪 Returning mock fingerprint due to error in test mode');
+        return 'mock_device_fingerprint_error_fallback_${consentId}';
+      }
       return null;
     }
   }
