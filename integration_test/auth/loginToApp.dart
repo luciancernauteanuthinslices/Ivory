@@ -9,6 +9,9 @@ import 'package:solarisdemo/widgets/tan_input.dart';
 import 'package:solarisdemo/widgets/ivory_text_field.dart';
 import 'package:solarisdemo/integration_test_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:solarisdemo/redux/app_state.dart';
+import 'package:solarisdemo/redux/auth/auth_state.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 class LoginToApp {
   final PatrolIntegrationTester $;
@@ -30,6 +33,34 @@ class LoginToApp {
                     ''
                 ? const String.fromEnvironment('PATROL_PASSWORD')
                 : dotenv.env['PASSWORD'] ?? '');
+
+  /// Check if authentication was successful by verifying access token exists
+  Future<bool> hasAccessToken() async {
+    try {
+      // Get the Redux store from the widget tree
+      final context =
+          $.tester.element(find.byType(StoreProvider<AppState>).first);
+      final store = StoreProvider.of<AppState>(context);
+      final authState = store.state.authState;
+
+      if (authState is AuthenticationInitializedState) {
+        final accessToken =
+            authState.cognitoUser.session.getAccessToken().getJwtToken();
+        if (accessToken != null && accessToken.isNotEmpty) {
+          debugPrint(
+              '✅ Access token obtained: ${accessToken.substring(0, 50)}...');
+          return true;
+        }
+      }
+
+      debugPrint(
+          '❌ No access token found. Auth state: ${authState.runtimeType}');
+      return false;
+    } catch (e) {
+      debugPrint('❌ Error checking access token: $e');
+      return false;
+    }
+  }
 
   Future<void> login() async {
     // Try to navigate back to welcome screen if we're not there already
@@ -82,8 +113,13 @@ class LoginToApp {
     debugPrint('Continue button tapped successfully');
 
     // Wait and check for navigation or errors
-    debugPrint('Waiting for navigation to OTP screen...');
+    debugPrint('Waiting for authentication to complete...');
     await $.pumpAndSettle(timeout: const Duration(seconds: 5));
+
+    // Check if we have an access token (indicates successful authentication)
+    debugPrint('=== Checking authentication status ===');
+    final hasToken = await hasAccessToken();
+    debugPrint('Has access token: $hasToken');
 
     // Debug: Check what's actually on screen after Continue
     debugPrint('=== Screen state after Continue tap ===');
@@ -97,6 +133,12 @@ class LoginToApp {
         'OTP field key exists: ${$(keys.loginPage.otpTextField).exists}');
     debugPrint('Continue button still exists: ${$("Continue").exists}');
     debugPrint('======================================');
+
+    if (!hasToken) {
+      debugPrint('⚠️  WARNING: No access token found after Continue tap!');
+      debugPrint(
+          'This indicates authentication did not complete successfully.');
+    }
 
     await $.waitUntilVisible($(keys.loginPage.otpTextField),
         timeout: const Duration(seconds: 20));

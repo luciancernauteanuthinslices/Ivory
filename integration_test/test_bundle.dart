@@ -9,10 +9,7 @@ import 'package:patrol/src/native/contracts/contracts.dart';
 import 'package:test_api/src/backend/invoker.dart';
 
 // START: GENERATED TEST IMPORTS
-import 'cardCanBeFrozenOrUnfreeze_test.dart' as cardCanBeFrozenOrUnfreeze_test;
 import 'login_test.dart' as login_test;
-import 'repaymentRateIsSaved_test.dart' as repaymentRateIsSaved_test;
-import 'repaymentReminderIsSaved_test.dart' as repaymentReminderIsSaved_test;
 // END: GENERATED TEST IMPORTS
 
 Future<void> main() async {
@@ -73,10 +70,7 @@ Future<void> main() async {
   });
 
   // START: GENERATED TEST GROUPS
-  group('cardCanBeFrozenOrUnfreeze_test', cardCanBeFrozenOrUnfreeze_test.main);
   group('login_test', login_test.main);
-  group('repaymentRateIsSaved_test', repaymentRateIsSaved_test.main);
-  group('repaymentReminderIsSaved_test', repaymentReminderIsSaved_test.main);
   // END: GENERATED TEST GROUPS
 
   final dartTestGroup = await testExplorationCompleter.future;
