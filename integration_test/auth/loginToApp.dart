@@ -109,6 +109,7 @@ class LoginToApp {
 
     final otpField = $(keys.loginPage.otpTextField);
     await otpField.tap();
+
     await otpField.enterText('212212');
 
     await $.pump(const Duration(milliseconds: 1500));

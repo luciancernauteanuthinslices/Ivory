@@ -200,7 +200,7 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
           AuthPresenter.presentAuth(authState: store.state.authState),
       builder: (context, viewModel) {
         return Expanded(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               children: <Widget>[
@@ -315,7 +315,7 @@ class _PhoneNumberLoginFormState extends State<PhoneNumberLoginForm> {
                     ),
                   ],
                 ),
-                const Spacer(),
+                const SizedBox(height: 24),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -478,7 +478,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
           _passwordInputController.text = viewModel.password ?? '';
         }
         return Expanded(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               children: <Widget>[
@@ -547,7 +547,6 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                 const SizedBox(
                   height: 32,
                 ),
-                const Spacer(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

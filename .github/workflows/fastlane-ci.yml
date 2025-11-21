@@ -117,9 +117,16 @@ jobs:
           name: android-test-results
           path: |
             build/app/outputs/
+          retention-days: 7
+          
+      - name: Upload logcat
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-test-results
+          path: |
             android_test_logcat.txt
           retention-days: 7
-
   ios:
     name: iOS - Build & Test
     runs-on: macos-14
