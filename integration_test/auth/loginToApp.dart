@@ -100,28 +100,29 @@ class LoginToApp {
     await $(IvoryTextField).containing('Email address').enterText(email);
     await $(IvoryTextField).containing('Password').enterText(password);
 
-    // Scroll and tap the Continue button
-    debugPrint('Scrolling to Continue button...');
-    try {
-      await $.scrollUntilVisible(
-        finder: $("Continue"),
-        view: $(find.byType(Scrollable)),
-        delta: 100,
-        maxScrolls: 10,
-      );
-      debugPrint('Continue button scrolled into view');
-    } catch (e) {
-      debugPrint('Scroll for Continue failed (may already be visible): $e');
-    }
-
     debugPrint('Tapping Continue button...');
     await $("Continue").tap();
 
     debugPrint('Continue button tapped successfully');
 
-    // Wait and check for navigation or errors
+    // Wait for authentication to complete
+    // Note: Using pump instead of pumpAndSettle because there may be continuous animations
     debugPrint('Waiting for authentication to complete...');
-    await $.pumpAndSettle(timeout: const Duration(seconds: 5));
+    for (int i = 0; i < 10; i++) {
+      await $.pump(const Duration(milliseconds: 500));
+      debugPrint('Pump iteration $i - checking for OTP screen...');
+
+      // Check if OTP screen appeared
+      if ($('Verify login').exists) {
+        debugPrint('✅ OTP screen detected!');
+        break;
+      }
+
+      // Check if still on login screen with error
+      if ($(keys.loginPage.loginTitle).exists && i > 4) {
+        debugPrint('⚠️  Still on login screen after ${i * 0.5} seconds');
+      }
+    }
 
     // Check if we have an access token (indicates successful authentication)
     debugPrint('=== Checking authentication status ===');

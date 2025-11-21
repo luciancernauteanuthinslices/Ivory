@@ -1,0 +1,1349 @@
+--------- beginning of main
+11-21 14:34:31.914  3337  3361 I PatrolServer: PatrolJUnitRunner.runDartTest(repaymentReminderIsSaved_test Repayment reminder is saved correctly): Requested execution
+11-21 14:34:31.914  3337  3361 I PatrolServer: PatrolAppServiceClient.runDartTest(repaymentReminderIsSaved_test Repayment reminder is saved correctly)
+11-21 14:34:31.932  3337  3337 I flutter : PatrolAppService.runDartTest(repaymentReminderIsSaved_test Repayment reminder is saved correctly) called
+11-21 14:34:31.932  3337  3337 I flutter : PatrolAppService: registered test "cardCanBeFrozenOrUnfreeze_test Check if virtual card can be frozen and unfrozen" was not matched by requested test "repaymentReminderIsSaved_test Repayment reminder is saved correctly"
+11-21 14:34:31.965  3337  3337 I flutter : PatrolBinding: tearDown(): count: 1, results: {Check if virtual card can be frozen and unfrozen: success}
+11-21 14:34:31.965  3337  3337 I flutter : PatrolBinding: finished test cardCanBeFrozenOrUnfreeze_test Check if virtual card can be frozen and unfrozen, but it was not requested, so its status will not be reported back to the native side
+11-21 14:34:31.966  3337  3337 I flutter : 00:00 +2: login_test Simple login test
+11-21 14:34:32.155  3337  3368 W Parcel  : Expecting binder but got null!
+11-21 14:34:32.165   556   576 W ziparchive: Unable to open '/data/app/~~U9Yny-zBaQd8_bD5RGXrCA==/com.thinslices.solarisdemo-b4g5x2OiRNQ5XBUev-sUDA==/base.dm': No such file or directory
+11-21 14:34:32.166   556   576 I ActivityTaskManager: Displayed com.thinslices.solarisdemo/.MainActivity: +1s768ms
+11-21 14:34:32.171  3337  3337 I flutter : PatrolAppService: registered "login_test Simple login test"
+11-21 14:34:32.171  3337  3337 I flutter : PatrolAppService: registered test "login_test Simple login test" was not matched by requested test "repaymentReminderIsSaved_test Repayment reminder is saved correctly"
+11-21 14:34:32.175  3337  3337 I flutter : PatrolBinding: tearDown(): count: 2, results: {Check if virtual card can be frozen and unfrozen: success, Simple login test: success}
+11-21 14:34:32.175  3337  3337 I flutter : PatrolBinding: finished test login_test Simple login test, but it was not requested, so its status will not be reported back to the native side
+11-21 14:34:32.182  3337  3337 I flutter : 00:00 +3: repaymentRateIsSaved_test Repayment rate is saved correctly
+--------- beginning of system
+11-21 14:34:32.185   556  1040 D CoreBackPreview: Window{540cba7 u0 Splash Screen com.thinslices.solarisdemo EXITING}: Setting back callback null
+11-21 14:34:32.186   556  1079 W InputManager-JNI: Input channel object '540cba7 Splash Screen com.thinslices.solarisdemo (client)' was disposed without first being removed with the input manager!
+11-21 14:34:32.199  3337  3337 I flutter : PatrolAppService: registered "repaymentRateIsSaved_test Repayment rate is saved correctly"
+11-21 14:34:32.200  3337  3337 I flutter : PatrolAppService: registered test "repaymentRateIsSaved_test Repayment rate is saved correctly" was not matched by requested test "repaymentReminderIsSaved_test Repayment reminder is saved correctly"
+11-21 14:34:32.205  3337  3337 I flutter : PatrolBinding: tearDown(): count: 3, results: {Check if virtual card can be frozen and unfrozen: success, Simple login test: success, Repayment rate is saved correctly: success}
+11-21 14:34:32.205  3337  3337 I flutter : PatrolBinding: finished test repaymentRateIsSaved_test Repayment rate is saved correctly, but it was not requested, so its status will not be reported back to the native side
+11-21 14:34:32.205  3337  3337 I flutter : 00:00 +4: repaymentReminderIsSaved_test Repayment reminder is saved correctly
+11-21 14:34:32.212  3337  3337 I flutter : PatrolAppService: registered "repaymentReminderIsSaved_test Repayment reminder is saved correctly"
+11-21 14:34:32.212  3337  3337 I flutter : PatrolAppService: requested execution of test "repaymentReminderIsSaved_test Repayment reminder is saved correctly"
+11-21 14:34:32.213  3337  3337 I flutter : Patrol (native): configure() started
+11-21 14:34:32.214   434   447 W TransactionTracing: Could not find layer handle 0x734de906ebf0
+11-21 14:34:32.215   434   447 W TransactionTracing: Could not find layer handle 0x734de90702d0
+11-21 14:34:32.215   434   447 W TransactionTracing: Could not find layer handle 0x734de9065710
+11-21 14:34:32.215   434   447 W TransactionTracing: Could not find layer handle 0x734de9070b10
+11-21 14:34:32.215   434   447 W TransactionTracing: Could not find layer handle 0x734de90702d0
+11-21 14:34:32.223   556  1079 D CompatibilityChangeReporter: Compat change id reported: 214016041; UID 10126; state: ENABLED
+11-21 14:34:32.247   434   447 W TransactionTracing: Could not find layer handle 0x734de9070c30
+11-21 14:34:32.256  3337  3364 I PatrolServer: POST /configure started
+11-21 14:34:32.257  3337  3364 I PatrolServer: Timeout: 10000 ms
+11-21 14:34:32.257  3337  3364 I PatrolServer: Android UiAutomator configuration:
+11-21 14:34:32.257  3337  3364 I PatrolServer: 	waitForSelectorTimeout: 10000 ms
+11-21 14:34:32.257  3337  3364 I PatrolServer: 	waitForIdleTimeout: 5000 ms
+11-21 14:34:32.257  3337  3364 I PatrolServer: 	keyInjectionDelay: 50 ms
+11-21 14:34:32.257  3337  3364 I PatrolServer: 	actionAcknowledgmentTimeout: 3000 ms
+11-21 14:34:32.257  3337  3364 I PatrolServer: 	scrollAcknowledgmentTimeout: 200 ms
+11-21 14:34:32.257  3337  3364 I PatrolServer: 	toolType: 1
+11-21 14:34:32.257  3337  3364 I PatrolServer: 	uiAutomationFlags: 1
+11-21 14:34:32.257  3337  3364 I PatrolServer: POST /configure took 1 ms
+11-21 14:34:32.264  3337  3337 I flutter : Patrol (native): configure() succeeded
+11-21 14:34:32.271  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:32.264530","type":"test","name":"Repayment reminder is saved correctly","status":"start","error":null}
+11-21 14:34:32.361   799   963 D EGL_emulation: app_time_stats: avg=506.59ms min=162.61ms max=850.57ms count=2
+11-21 14:34:32.475  3337  3337 I flutter : 00:00 +4: cardCanBeFrozenOrUnfreeze_test Check if virtual card can be frozen and unfrozen
+11-21 14:34:32.475  3337  3337 I flutter : [PUSH] null ⬆️ /welcomeScreen
+11-21 14:34:32.989  3337  3337 I ExoPlayerImpl: Init 6b2127a [AndroidXMedia3/1.5.1] [emulator64_x86_64, Android SDK built for x86_64, unknown, 33]
+11-21 14:34:33.016  3337  3337 W ces.solarisdemo: Accessing hidden method Landroid/media/AudioTrack;->getLatency()I (unsupported, reflection, allowed)
+11-21 14:34:33.057   434   434 E SurfaceFlinger: Attempt to set frame rate on an unrecognized IGraphicBufferProducer
+11-21 14:34:33.069   556  3318 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:33.070   556  3318 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:33.082   556  3318 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:33.082   556  3318 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:33.124  3337  3375 D EGL_emulation: app_time_stats: avg=134.14ms min=5.75ms max=466.29ms count=9
+11-21 14:34:33.148   366   418 E android.hardware.audio@7.1-impl.ranchu: device/generic/goldfish/audio/primary_device.cpp:getParameters:211 failure: Result::NOT_SUPPORTED
+11-21 14:34:33.158   556  3318 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:33.158   556  3318 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:33.159  3337  3424 I DMCodecAdapterFactory: Creating an asynchronous MediaCodec adapter for track type video
+11-21 14:34:33.206  3337  3428 D CCodec  : allocate(c2.goldfish.h264.decoder)
+11-21 14:34:33.208  3337  3428 I Codec2Client: Available Codec2 services: "default" "software"
+11-21 14:34:33.213  3337  3428 I CCodec  : setting up 'default' as default (vendor) store
+11-21 14:34:33.214   382  2866 I GoldfishComponentStore: in init
+11-21 14:34:33.214   382  2866 I GoldfishComponentStore: loading dll of path libcodec2_goldfish_avcdec.so
+11-21 14:34:33.215   382  2866 I GoldfishComponentStore: Create()
+11-21 14:34:33.215   382  2866 I GoldfishComponentStore: created interface
+11-21 14:34:33.215   382  2866 I GoldfishComponentStore: created component
+11-21 14:34:33.216  3337  3428 I CCodec  : Created component [c2.goldfish.h264.decoder]
+11-21 14:34:33.217  3337  3428 D CCodecConfig: read media type: video/avc
+11-21 14:34:33.218  3337  3428 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.max-count.values
+11-21 14:34:33.218  3337  3428 D ReflectedParamUpdater: extent() != 1 for single value type: output.subscribed-indices.values
+11-21 14:34:33.219  3337  3428 D ReflectedParamUpdater: extent() != 1 for single value type: input.buffers.allocator-ids.values
+11-21 14:34:33.219  3337  3428 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.allocator-ids.values
+11-21 14:34:33.220  3337  3428 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.allocator-ids.values
+11-21 14:34:33.220  3337  3428 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.pool-ids.values
+11-21 14:34:33.220  3337  3428 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.pool-ids.values
+11-21 14:34:33.221  3337  3428 D ReflectedParamUpdater: ignored struct field coded.color-format.locations
+11-21 14:34:33.222  3337  3428 D CCodecConfig: ignoring local param raw.size (0xd2001800) as it is already supported
+11-21 14:34:33.222  3337  3428 D CCodecConfig: ignoring local param default.color (0x5200180b) as it is already supported
+11-21 14:34:33.222  3337  3428 D ReflectedParamUpdater: ignored struct field raw.hdr-static-info.mastering
+11-21 14:34:33.223  3337  3428 I CCodecConfig: query failed after returning 12 values (BAD_INDEX)
+11-21 14:34:33.223  3337  3428 D CCodecConfig: c2 config diff is Dict {
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 coded.pl.level = 20496
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 coded.pl.profile = 20481
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 coded.vui.color.matrix = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 coded.vui.color.primaries = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 coded.vui.color.range = 2
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 coded.vui.color.transfer = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 default.color.matrix = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 default.color.primaries = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 default.color.range = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 default.color.transfer = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 input.buffers.max-size.value = 6291456
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 input.delay.value = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   string input.media-type.value = "video/avc"
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 output.delay.value = 8
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   string output.media-type.value = "video/raw"
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.color.matrix = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.color.primaries = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.color.range = 2
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.color.transfer = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.max-size.height = 240
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.max-size.width = 320
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.pixel-format.value = 35
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::i32 raw.rotation.flip = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::i32 raw.rotation.value = 0
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.sar.height = 1
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.sar.width = 1
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.size.height = 240
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2::u32 raw.size.width = 320
+11-21 14:34:33.223  3337  3428 D CCodecConfig:   c2:
+11-21 14:34:33.224  3337  3428 W ColorUtils: expected specified color aspects (2:0:0:0)
+11-21 14:34:33.235  3337  3427 I MediaCodec: MediaCodec will operate in async mode
+11-21 14:34:33.236  3337  3427 D SurfaceUtils: connecting to surface 0x766620afd850, reason connectToSurface
+11-21 14:34:33.236  3337  3427 I MediaCodec: [c2.goldfish.h264.decoder] setting surface generation to 3417089
+11-21 14:34:33.237  3337  3427 D SurfaceUtils: disconnecting from surface 0x766620afd850, reason connectToSurface(reconnect)
+11-21 14:34:33.237  3337  3427 D SurfaceUtils: connecting to surface 0x766620afd850, reason connectToSurface(reconnect)
+11-21 14:34:33.237  3337  3428 D CCodec  : [c2.goldfish.h264.decoder] buffers are bound to CCodec for this session
+11-21 14:34:33.237  3337  3428 D CCodecConfig: no c2 equivalents for log-session-id
+11-21 14:34:33.238  3337  3428 D CCodecConfig: no c2 equivalents for color-standard
+11-21 14:34:33.238  3337  3428 D CCodecConfig: no c2 equivalents for csd-1
+11-21 14:34:33.238  3337  3428 D CCodecConfig: no c2 equivalents for native-window
+11-21 14:34:33.238  3337  3428 D CCodecConfig: no c2 equivalents for flags
+11-21 14:34:33.239  3337  3428 D CCodecConfig: config failed => CORRUPTED
+11-21 14:34:33.239  3337  3428 D CCodecConfig: c2 config diff is   c2::u32 default.color.matrix = 3
+11-21 14:34:33.239  3337  3428 D CCodecConfig:   c2::u32 default.color.primaries = 3
+11-21 14:34:33.239  3337  3428 D CCodecConfig:   c2::u32 default.color.range = 2
+11-21 14:34:33.239  3337  3428 D CCodecConfig:   c2::u32 default.color.transfer = 3
+11-21 14:34:33.239  3337  3428 D CCodecConfig:   c2::u32 raw.max-size.height = 1080
+11-21 14:34:33.239  3337  3428 D CCodecConfig:   c2::u32 raw.max-size.width = 1920
+11-21 14:34:33.239  3337  3428 D CCodecConfig:   c2::u32 raw.size.height = 1080
+11-21 14:34:33.239  3337  3428 D CCodecConfig:   c2::u32 raw.size.width = 1920
+11-21 14:34:33.240  3337  3428 W Codec2Client: query -- param skipped: index = 1107298332.
+11-21 14:34:33.240  3337  3428 D CCodec  : client requested max input size 392013, which is smaller than what component recommended (6291456); overriding with component recommendation.
+11-21 14:34:33.240  3337  3428 W CCodec  : This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+11-21 14:34:33.240  3337  3428 D CCodec  : encoding statistics level = 0
+11-21 14:34:33.240  3337  3428 D CCodec  : setup formats input: AMessage(what = 0x00000000) = {
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t height = 1080
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t level = 65536
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t max-input-size = 6291456
+11-21 14:34:33.240  3337  3428 D CCodec  :   string mime = "video/avc"
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t profile = 65536
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t width = 1920
+11-21 14:34:33.240  3337  3428 D CCodec  :   Rect crop(0, 0, 1919, 1079)
+11-21 14:34:33.240  3337  3428 D CCodec  : }
+11-21 14:34:33.240  3337  3428 D CCodec  : setup formats output: AMessage(what = 0x00000000) = {
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t android._color-format = 2135033992
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t android._video-scaling = 1
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t rotation-degrees = 0
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t color-standard = 1
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t color-range = 2
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t color-transfer = 3
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t sar-height = 1
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t sar-width = 1
+11-21 14:34:33.240  3337  3428 D CCodec  :   Rect crop(0, 0, 1919, 1079)
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t width = 1920
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t height = 1080
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t max-height = 1080
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t max-width = 1920
+11-21 14:34:33.240  3337  3428 D CCodec  :   string mime = "video/raw"
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t android._dataspace = 260
+11-21 14:34:33.240  3337  3428 D CCodec  :   int32_t color-format = 2130708361
+11-21 14:34:33.240  3337  3428 D CCodec  : }
+11-21 14:34:33.240  3337  3428 I CCodecConfig: query failed after returning 12 values (BAD_INDEX)
+11-21 14:34:33.240  3337  3428 D CCodecConfig: c2 config diff is   c2::u32 raw.color.matrix = 3
+11-21 14:34:33.240  3337  3428 D CCodecConfig:   c2::u32 raw.color.primaries = 3
+11-21 14:34:33.240  3337  3428 D CCodecConfig:   c2::u32 raw.color.transfer = 3
+11-21 14:34:33.247  3337  3424 D MediaCodec: keep callback message for reclaim
+11-21 14:34:33.248   382  3434 D C2GoldfishAvcDec: calling onInit
+11-21 14:34:33.249  3337  3428 W Codec2Client: query -- param skipped: index = 1342179345.
+11-21 14:34:33.249  3337  3428 W Codec2Client: query -- param skipped: index = 2415921170.
+11-21 14:34:33.249  3337  3428 W Codec2Client: query -- param skipped: index = 1610614798.
+11-21 14:34:33.249  3337  3428 W Codec2Client: query -- param skipped: index = 2684356609.
+11-21 14:34:33.249  3337  3428 D C2Store : Using DMABUF Heaps
+11-21 14:34:33.250  3337  3428 D CCodecBufferChannel: [c2.goldfish.h264.decoder#526] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+11-21 14:34:33.251  3337  3428 D CCodecBufferChannel: [c2.goldfish.h264.decoder#526] Query output surface allocator returned 0 params => BAD_INDEX (6)
+11-21 14:34:33.251  3337  3428 I CCodecBufferChannel: [c2.goldfish.h264.decoder#526] Created output block pool with allocatorID 18 => poolID 20 - OK
+11-21 14:34:33.251  3337  3428 D CCodecBufferChannel: [c2.goldfish.h264.decoder#526] Configured output block pool ids 20 => OK
+11-21 14:34:33.251  3337  3428 D Codec2-OutputBufferQueue: remote graphic buffer migration 0/0
+11-21 14:34:33.251  3337  3428 D Codec2Client: setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+11-21 14:34:33.251  3337  3428 D Codec2Client: setOutputSurface -- generation=3417089 consumer usage=0x900
+11-21 14:34:33.254   382   437 D C2BqBuffer: local generation change 3417089 , bqId: 14332305866754 migrated buffers # 0
+11-21 14:34:33.254  3337  3428 D Codec2Client: Surface configure completed
+11-21 14:34:33.254  3337  3428 I DMABUFHEAPS: Using DMA-BUF heap named: system
+11-21 14:34:33.255   493   849 W ResourceManagerService: Ignoring request to add new resource entry with value <= 0
+11-21 14:34:33.258  3337  3424 I DMCodecAdapterFactory: Creating an asynchronous MediaCodec adapter for track type audio
+11-21 14:34:33.258   382  3434 D SimpleC2Component: Using output block pool with poolID 20 => got 20 - 0
+11-21 14:34:33.262   556  3318 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:33.262   556  3318 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:33.264  3337  3437 D CCodec  : allocate(c2.android.aac.decoder)
+11-21 14:34:33.265  3337  3437 I CCodec  : setting up 'default' as default (vendor) store
+11-21 14:34:33.266   498   846 V C2Store : in init
+11-21 14:34:33.266   498   846 V C2Store : loading dll
+11-21 14:34:33.267  3337  3437 I CCodec  : Created component [c2.android.aac.decoder]
+11-21 14:34:33.267  3337  3437 D CCodecConfig: read media type: audio/mp4a-latm
+11-21 14:34:33.267  3337  3437 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.max-count.values
+11-21 14:34:33.267  3337  3437 D ReflectedParamUpdater: extent() != 1 for single value type: output.subscribed-indices.values
+11-21 14:34:33.268  3337  3437 D ReflectedParamUpdater: extent() != 1 for single value type: input.buffers.allocator-ids.values
+11-21 14:34:33.268  3337  3437 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.allocator-ids.values
+11-21 14:34:33.268  3337  3437 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.allocator-ids.values
+11-21 14:34:33.268  3337  3437 D ReflectedParamUpdater: extent() != 1 for single value type: output.buffers.pool-ids.values
+11-21 14:34:33.268  3337  3437 D ReflectedParamUpdater: extent() != 1 for single value type: algo.buffers.pool-ids.values
+11-21 14:34:33.269  3337  3437 I CCodecConfig: query failed after returning 20 values (BAD_INDEX)
+11-21 14:34:33.269  3337  3437 D CCodecConfig: c2 config diff is Dict {
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 coded.aac-packaging.value = 0
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 coded.bitrate.value = 64000
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 coded.pl.level = 0
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 coded.pl.profile = 8192
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::i32 coding.drc.album-mode.value = 0
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::float coding.drc.attenuation-factor.value = 1
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::float coding.drc.boost-factor.value = 1
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::i32 coding.drc.compression-mode.value = 3
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::i32 coding.drc.effect-type.value = 3
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::float coding.drc.encoded-level.value = 0.25
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::float coding.drc.reference-level.value = -16
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 input.buffers.max-size.value = 8192
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 input.delay.value = 0
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   string input.media-type.value = "audio/mp4a-latm"
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 output.delay.value = 2
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::float output.drc.output-loudness.value = 0.25
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   string output.media-type.value = "audio/raw"
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 raw.channel-count.value = 1
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 raw.channel-mask.value = 0
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 raw.max-channel-count.value = 8
+11-21 14:34:33.269  3337  3437 D CCodecConfig:   c2::u32 raw.sample-rate.value = 44100
+11-21 14:34:33.269  3337  3437 D CCodecConfig: }
+11-21 14:34:33.272  3337  3437 I MediaCodec: MediaCodec will operate in async mode
+11-21 14:34:33.272  3337  3437 D CCodec  : [c2.android.aac.decoder] buffers are bound to CCodec for this session
+11-21 14:34:33.273  3337  3437 D CCodecConfig: no c2 equivalents for log-session-id
+11-21 14:34:33.273  3337  3437 D CCodecConfig: no c2 equivalents for flags
+11-21 14:34:33.273  3337  3437 D CCodecConfig: config failed => CORRUPTED
+11-21 14:34:33.273  3337  3437 D CCodecConfig: c2 config diff is   c2::u32 raw.channel-count.value = 2
+11-21 14:34:33.273  3337  3437 W Codec2Client: query -- param skipped: index = 1107298332.
+11-21 14:34:33.273  3337  3437 D CCodec  : client requested max input size 402, which is smaller than what component recommended (8192); overriding with component recommendation.
+11-21 14:34:33.273  3337  3437 W CCodec  : This behavior is subject to change. It is recommended that app developers double check whether the requested max input size is in reasonable range.
+11-21 14:34:33.273  3337  3437 D CCodec  : encoding statistics level = 0
+11-21 14:34:33.273  3337  3437 D CCodec  : setup formats input: AMessage(what = 0x00000000) = {
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-album-mode = 0
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-boost-level = 127
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-cut-level = 127
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-effect-type = 3
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-encoded-target-level = -1
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-max-output-channel_count = 8
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-target-ref-level = 64
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t bitrate = 64000
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t channel-count = 2
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t channel-mask = 0
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t level = 0
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t max-input-size = 8192
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t max-output-channel-count = 8
+11-21 14:34:33.273  3337  3437 D CCodec  :   string mime = "audio/mp4a-latm"
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t profile = 2
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t sample-rate = 44100
+11-21 14:34:33.273  3337  3437 D CCodec  : }
+11-21 14:34:33.273  3337  3437 D CCodec  : setup formats output: AMessage(what = 0x00000000) = {
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-album-mode = 0
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-boost-level = 127
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-cut-level = 127
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-effect-type = 3
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-drc-output-loudness = -1
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-encoded-target-level = -1
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-max-output-channel_count = 8
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t aac-target-ref-level = 64
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t channel-count = 2
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t channel-mask = 0
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t max-output-channel-count = 8
+11-21 14:34:33.273  3337  3437 D CCodec  :   string mime = "audio/raw"
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t sample-rate = 44100
+11-21 14:34:33.273  3337  3437 D CCodec  :   int32_t android._config-pcm-encoding = 2
+11-21 14:34:33.273  3337  3437 D CCodec  : }
+11-21 14:34:33.274  3337  3437 I CCodecConfig: query failed after returning 20 values (BAD_INDEX)
+11-21 14:34:33.274  3337  3424 D MediaCodec: keep callback message for reclaim
+11-21 14:34:33.274   382  3434 E GoldfishH264Helper: failed to call decoder function for header
+11-21 14:34:33.274   382  3434 E GoldfishH264Helper: error in decodeHeader: 0x200
+11-21 14:34:33.274  3337  3437 W Codec2Client: query -- param skipped: index = 1342179345.
+11-21 14:34:33.274  3337  3437 W Codec2Client: query -- param skipped: index = 2415921170.
+11-21 14:34:33.274  3337  3437 W Codec2Client: query -- param skipped: index = 1610614798.
+11-21 14:34:33.274  3337  3437 D CCodecBufferChannel: [c2.android.aac.decoder#61] Created input block pool with allocatorID 16 => poolID 18 - OK (0)
+11-21 14:34:33.275  3337  3437 I CCodecBufferChannel: [c2.android.aac.decoder#61] Created output block pool with allocatorID 16 => poolID 29 - OK
+11-21 14:34:33.275   382  3434 E GoldfishH264Helper: failed to call decoder function for header
+11-21 14:34:33.275   382  3434 E GoldfishH264Helper: error in decodeHeader: 0x882
+11-21 14:34:33.275   382  3434 E GoldfishH264Helper: could not decode w/h
+11-21 14:34:33.275  3337  3437 D CCodecBufferChannel: [c2.android.aac.decoder#61] Configured output block pool ids 29 => OK
+11-21 14:34:33.280   498  3438 D SimpleC2Component: Using output block pool with poolID 29 => got 29 - 0
+11-21 14:34:33.313   498  3438 I C2SoftAacDec: Reconfiguring decoder: 0->44100 Hz, 0->2 channels
+11-21 14:34:33.327  3337  3437 D CCodecConfig: c2 config diff is   c2::u32 raw.channel-mask.value = 12
+11-21 14:34:33.327  3337  3437 D CCodecBuffers: [c2.android.aac.decoder#61:Output[N]] popFromStashAndRegister: at 1000000000000us, output format changed to AMessage(what = 0x00000000) = {
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-drc-album-mode = 0
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-drc-boost-level = 127
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-drc-cut-level = 127
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-drc-effect-type = 3
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-drc-output-loudness = -1
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-encoded-target-level = -1
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-max-output-channel_count = 8
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t aac-target-ref-level = 64
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t channel-count = 2
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t channel-mask = 12
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t max-output-channel-count = 8
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   string mime = "audio/raw"
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t sample-rate = 44100
+11-21 14:34:33.327  3337  3437 D CCodecBuffers:   int32_t android._config-pcm-encoding = 2
+11-21 14:34:33.327  3337  3437 D CCodecBuffers: }
+11-21 14:34:33.392  3337  3428 D CCodecConfig: c2 config diff is   c2::u32 raw.crop.height = 1080
+11-21 14:34:33.392  3337  3428 D CCodecConfig:   c2::u32 raw.crop.left = 0
+11-21 14:34:33.392  3337  3428 D CCodecConfig:   c2::u32 raw.crop.top = 0
+11-21 14:34:33.392  3337  3428 D CCodecConfig:   c2::u32 raw.crop.width = 1920
+11-21 14:34:33.396   423  3319 W AudioFlinger: createTrack_l(): mismatch between requested flags (00000008) and output flags (00000002)
+11-21 14:34:33.406   423  3319 D AudioFlinger: Client defaulted notificationFrames to 5512 for frameCount 11025
+11-21 14:34:33.407   423  3319 D AF::TrackHandle: OpPlayAudio: track:59 usage:1 not muted
+11-21 14:34:33.523   210   210 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-21 14:34:33.534   556  1895 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-21 14:34:33.598   556  3318 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:33.598   556  3318 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:33.607   556  3318 I MediaFocusControl: requestAudioFocus() from uid/pid 10126/3337 AA=USAGE_MEDIA/CONTENT_TYPE_MOVIE clientId=android.media.AudioManager@7695aceandroidx.media3.exoplayer.AudioFocusManager$AudioFocusListener@ada9def callingPack=com.thinslices.solarisdemo req=1 flags=0x0 sdk=36
+11-21 14:34:33.614   556  3318 I AudioService.FadeOutManager: unfadeOutUid() uid:10126
+11-21 14:34:33.617   556  3318 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:33.618   556  3318 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:33.673   434   434 E SurfaceFlinger: Attempt to set frame rate on an unrecognized IGraphicBufferProducer
+11-21 14:34:33.751   423   535 D AudioFlinger: mixer(0x7ea06c0069a0) throttle end: throttle time(34)
+11-21 14:34:34.128   423   535 D AudioFlinger: mixer(0x7ea06c0069a0) throttle end: throttle time(150)
+11-21 14:34:34.222  3337  3375 D EGL_emulation: app_time_stats: avg=87.68ms min=5.67ms max=460.46ms count=12
+11-21 14:34:34.338  3337  3337 I flutter : 00:02 +4: repaymentReminderIsSaved_test Repayment reminder is saved correctly
+11-21 14:34:34.339  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:34.311474","type":"step","action":"\u001b[36mwaitUntilVisible\u001b[0m widgets with key [<'LoginButton'>].","status":"start","data":null}
+11-21 14:34:34.341  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:34.341185","type":"step","action":"\u001b[36mwaitUntilVisible\u001b[0m widgets with key [<'LoginButton'>].","status":"success","data":null}
+11-21 14:34:34.349   423   535 D AudioFlinger: mixer(0x7ea06c0069a0) throttle end: throttle time(34)
+11-21 14:34:34.356  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:34.354500","type":"step","action":"\u001b[33mtap\u001b[0m widgets with key [<'LoginButton'>].","status":"start","data":null}
+11-21 14:34:34.452  3337  3337 I flutter : [PUSH] /welcomeScreen ⬆️ /loginScreen
+11-21 14:34:34.515   556  3318 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:34.516   434   434 E SurfaceFlinger: Attempt to set frame rate on an unrecognized IGraphicBufferProducer
+11-21 14:34:34.516   556  3318 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:34.523   498   833 D BufferPoolAccessor2.0: evictor expired: 1, evicted: 0
+11-21 14:34:35.142   799   963 D EGL_emulation: app_time_stats: avg=2781.34ms min=2781.34ms max=2781.34ms count=1
+11-21 14:34:35.685  3337  3375 D EGL_emulation: app_time_stats: avg=361.69ms min=6.67ms max=673.53ms count=4
+11-21 14:34:35.760  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:35.750998","type":"step","action":"\u001b[33mtap\u001b[0m widgets with key [<'LoginButton'>].","status":"success","data":null}
+11-21 14:34:35.831  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:35.751184","type":"step","action":"\u001b[36mwaitUntilVisible\u001b[0m widgets with key [<'LoginTitle'>].","status":"start","data":null}
+11-21 14:34:35.834  3337  3337 I flutter : Logging in with email: lifebloom77@yahoo.com
+11-21 14:34:35.851  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:35.830968","type":"step","action":"\u001b[36mwaitUntilVisible\u001b[0m widgets with key [<'LoginTitle'>].","status":"success","data":null}
+11-21 14:34:35.851  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:35.839487","type":"step","action":"\u001b[35menterText\u001b[0m widgets with type \"IvoryTextField\" that are ancestors of widgets with text \"Email address\".","status":"start","data":null}
+11-21 14:34:35.890  3337  3447 D ProfileInstaller: Installing profile for com.thinslices.solarisdemo
+11-21 14:34:36.699  3337  3375 D EGL_emulation: app_time_stats: avg=12.10ms min=2.41ms max=165.71ms count=39
+11-21 14:34:37.714  3337  3375 D EGL_emulation: app_time_stats: avg=3.01ms min=2.39ms max=5.15ms count=61
+11-21 14:34:38.715  3337  3375 D EGL_emulation: app_time_stats: avg=2.97ms min=2.35ms max=5.15ms count=60
+11-21 14:34:39.579   498   833 D BufferPoolAccessor2.0: bufferpool2 0x73a7c042a538 : 4(16384 size) total buffers - 2(8192 size) used buffers - 46/50 (recycle/alloc) - 4/50 (fetch/transfer)
+11-21 14:34:39.579   498   833 D BufferPoolAccessor2.0: evictor expired: 1, evicted: 1
+11-21 14:34:39.715  3337  3375 D EGL_emulation: app_time_stats: avg=2.90ms min=2.41ms max=4.75ms count=60
+11-21 14:34:39.873  3337  3346 W System  : A resource failed to call close. 
+11-21 14:34:40.030   230  3305 I keystore2: keystore2::watchdog: Watchdog thread idle -> terminating. Have a great day.
+11-21 14:34:40.282  3337  3432 D BufferPoolAccessor2.0: bufferpool2 0x766580b12168 : 5(40960 size) total buffers - 0(0 size) used buffers - 49/54 (recycle/alloc) - 5/54 (fetch/transfer)
+11-21 14:34:40.283  3337  3432 D BufferPoolAccessor2.0: evictor expired: 1, evicted: 1
+11-21 14:34:40.732  3337  3375 D EGL_emulation: app_time_stats: avg=2.76ms min=2.40ms max=3.89ms count=61
+11-21 14:34:41.283  3337  3432 D BufferPoolAccessor2.0: bufferpool2 0x766580b0d518 : 5(31457280 size) total buffers - 0(0 size) used buffers - 33/38 (recycle/alloc) - 8/38 (fetch/transfer)
+11-21 14:34:41.283  3337  3432 D BufferPoolAccessor2.0: evictor expired: 1, evicted: 1
+11-21 14:34:41.748  3337  3375 D EGL_emulation: app_time_stats: avg=2.84ms min=2.38ms max=5.41ms count=61
+11-21 14:34:41.980   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:41.980   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:41.980   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:42.059   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:42.065  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:42.060676","type":"step","action":"\u001b[35menterText\u001b[0m widgets with type \"IvoryTextField\" that are ancestors of widgets with text \"Email address\".","status":"success","data":null}
+11-21 14:34:42.065  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:42.060888","type":"step","action":"\u001b[35menterText\u001b[0m widgets with type \"IvoryTextField\" that are ancestors of widgets with text \"Password\".","status":"start","data":null}
+11-21 14:34:42.765  3337  3375 D EGL_emulation: app_time_stats: avg=12.41ms min=2.31ms max=28.97ms count=59
+11-21 14:34:42.959   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:43.292   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:43.294   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:43.525   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:43.765  3337  3375 D EGL_emulation: app_time_stats: avg=16.62ms min=14.68ms max=19.41ms count=60
+11-21 14:34:43.925   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:43.925   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:43.926   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.592   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.592   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.593   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.747   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.748   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:44.765  3337  3375 D EGL_emulation: app_time_stats: avg=16.60ms min=10.71ms max=26.78ms count=60
+11-21 14:34:45.781  3337  3375 D EGL_emulation: app_time_stats: avg=16.61ms min=15.23ms max=17.61ms count=61
+11-21 14:34:46.360   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.360   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.361   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.361   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.745   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.781  3337  3375 D EGL_emulation: app_time_stats: avg=16.62ms min=14.95ms max=18.50ms count=60
+11-21 14:34:46.784   556   641 D ActivityManager: freezing 1250 com.android.cellbroadcastreceiver.module
+11-21 14:34:46.997   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.997   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.997   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:46.999   556   641 D ActivityManager: freezing 1739 com.android.imsserviceentitlement
+11-21 14:34:47.113   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:47.114   556   641 D ActivityManager: freezing 2104 com.android.onetimeinitializer
+11-21 14:34:47.114   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:47.343   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:47.382   556   641 D ActivityManager: freezing 2150 com.android.remoteprovisioner
+11-21 14:34:47.478   556   641 D ActivityManager: freezing 989 com.android.settings
+11-21 14:34:47.561   556   641 D ActivityManager: freezing 2187 com.android.statementservice
+11-21 14:34:47.782  3337  3375 D EGL_emulation: app_time_stats: avg=16.60ms min=14.81ms max=19.09ms count=60
+11-21 14:34:48.111   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.531   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.777   434   447 W TransactionTracing: Could not find layer id -1
+11-21 14:34:48.797  3337  3375 D EGL_emulation: app_time_stats: avg=16.60ms min=15.26ms max=18.51ms count=61
+11-21 14:34:49.212  3337  3337 I flutter : Scrolling to Continue button...
+11-21 14:34:49.214  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:49.211973","type":"step","action":"\u001b[35menterText\u001b[0m widgets with type \"IvoryTextField\" that are ancestors of widgets with text \"Password\".","status":"success","data":null}
+11-21 14:34:49.215  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:49.212756","type":"step","action":"\u001b[32mscrollUntilVisible\u001b[0m widgets with type \"Scrollable\".","status":"start","data":null}
+11-21 14:34:49.219  3337  3337 I flutter : Continue button scrolled into view
+11-21 14:34:49.219  3337  3337 I flutter : Tapping Continue button...
+11-21 14:34:49.221  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:49.219422","type":"step","action":"\u001b[32mscrollUntilVisible\u001b[0m widgets with type \"Scrollable\".","status":"success","data":null}
+11-21 14:34:49.221  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:49.220076","type":"step","action":"\u001b[33mtap\u001b[0m widgets with text \"Continue\".","status":"start","data":null}
+11-21 14:34:49.283   423   535 D AudioFlinger: mixer(0x7ea06c0069a0) throttle end: throttle time(71)
+11-21 14:34:49.348  3337  3337 I ExoPlayerImpl: Release 6b2127a [AndroidXMedia3/1.5.1] [emulator64_x86_64, Android SDK built for x86_64, unknown, 33] [media3.common, media3.exoplayer, media3.decoder, media3.datasource, media3.extractor]
+11-21 14:34:49.348   556   572 I MediaFocusControl: abandonAudioFocus() from uid/pid 10126/3337 clientId=android.media.AudioManager@7695aceandroidx.media3.exoplayer.AudioFocusManager$AudioFocusListener@ada9def
+11-21 14:34:49.349  3337  3424 D MediaCodec: keep callback message for reclaim
+11-21 14:34:49.349  3337  3427 I CCodecConfig: query failed after returning 12 values (BAD_INDEX)
+11-21 14:34:49.350  3337  3427 D CCodecConfig: c2 config diff is   c2::u32 coded.vui.color.matrix = 3
+11-21 14:34:49.350  3337  3427 D CCodecConfig:   c2::u32 coded.vui.color.primaries = 3
+11-21 14:34:49.350  3337  3427 D CCodecConfig:   c2::u32 coded.vui.color.transfer = 3
+11-21 14:34:49.350  3337  3427 W Codec2Client: query -- param skipped: index = 1342179345.
+11-21 14:34:49.350  3337  3427 W Codec2Client: query -- param skipped: index = 2415921170.
+11-21 14:34:49.350  3337  3427 W Codec2Client: query -- param skipped: index = 1610614798.
+11-21 14:34:49.350  3337  3427 D BufferPoolAccessor2.0: bufferpool2 0x766580b0d518 : 1(6291456 size) total buffers - 1(6291456 size) used buffers - 33/39 (recycle/alloc) - 8/38 (fetch/transfer)
+11-21 14:34:49.352  3337  3437 D CCodecBuffers: [c2.android.aac.decoder#61:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 0
+11-21 14:34:49.352  3337  3437 D CCodecBuffers: [c2.android.aac.decoder#61:1D-Output.Impl[N]] Client returned a buffer it does not own according to our record: 1
+11-21 14:34:49.352  3337  3424 D MediaCodec: keep callback message for reclaim
+11-21 14:34:49.353  3337  3437 I CCodecConfig: query failed after returning 20 values (BAD_INDEX)
+11-21 14:34:49.353  3337  3437 W Codec2Client: query -- param skipped: index = 1342179345.
+11-21 14:34:49.353  3337  3437 W Codec2Client: query -- param skipped: index = 2415921170.
+11-21 14:34:49.353  3337  3437 W Codec2Client: query -- param skipped: index = 1610614798.
+11-21 14:34:49.353  3337  3437 D BufferPoolAccessor2.0: bufferpool2 0x766580b12168 : 1(8192 size) total buffers - 1(8192 size) used buffers - 49/55 (recycle/alloc) - 5/54 (fetch/transfer)
+11-21 14:34:49.355  3337  3427 D SurfaceUtils: connecting to surface 0x766620b03e80, reason connectToSurface
+11-21 14:34:49.355  3337  3427 I MediaCodec: [c2.goldfish.h264.decoder] setting surface generation to 3417090
+11-21 14:34:49.355  3337  3427 D SurfaceUtils: disconnecting from surface 0x766620b03e80, reason connectToSurface(reconnect)
+11-21 14:34:49.355  3337  3427 D SurfaceUtils: connecting to surface 0x766620b03e80, reason connectToSurface(reconnect)
+11-21 14:34:49.356  3337  3427 D Codec2-OutputBufferQueue: remote graphic buffer migration 0/0
+11-21 14:34:49.356  3337  3427 D Codec2Client: setOutputSurface -- failed to set consumer usage (6/BAD_INDEX)
+11-21 14:34:49.356  3337  3427 D Codec2Client: setOutputSurface -- generation=3417090 consumer usage=0x900
+11-21 14:34:49.358   382   437 D C2BqBuffer: local generation change 3417090 , bqId: 14332305866755 migrated buffers # 0
+11-21 14:34:49.358  3337  3427 D Codec2Client: Surface configure completed
+11-21 14:34:49.358  3337  3427 D SurfaceUtils: disconnecting from surface 0x766620afd850, reason disconnectFromSurface
+11-21 14:34:49.361  3337  3427 D CCodecBufferChannel: [c2.goldfish.h264.decoder#526] MediaCodec discarded an unknown buffer
+11-21 14:34:49.361  3337  3427 D CCodecBufferChannel: [c2.goldfish.h264.decoder#526] MediaCodec discarded an unknown buffer
+11-21 14:34:49.361  3337  3427 D CCodecBufferChannel: [c2.goldfish.h264.decoder#526] MediaCodec discarded an unknown buffer
+11-21 14:34:49.361  3337  3427 D CCodecBufferChannel: [c2.goldfish.h264.decoder#526] MediaCodec discarded an unknown buffer
+11-21 14:34:49.363  3337  3437 D CCodecBufferChannel: [c2.android.aac.decoder#61] MediaCodec discarded an unknown buffer
+11-21 14:34:49.363  3337  3437 D CCodecBufferChannel: [c2.android.aac.decoder#61] MediaCodec discarded an unknown buffer
+11-21 14:34:49.363  3337  3437 D CCodecBufferChannel: [c2.android.aac.decoder#61] MediaCodec discarded an unknown buffer
+11-21 14:34:49.363  3337  3437 D CCodecBufferChannel: [c2.android.aac.decoder#61] MediaCodec discarded an unknown buffer
+11-21 14:34:49.363   382   437 D C2BqBuffer: configuring null producer: igbp_information(0)
+11-21 14:34:49.363   382   437 I hw-BpHwBinder: onLastStrongRef automatically unlinking death recipients
+11-21 14:34:49.363   382   437 I GoldfishComponentStore: in ~ComponentModule
+11-21 14:34:49.363   382   437 I GoldfishComponentStore: unloading dll
+11-21 14:34:49.363  3337  3428 I hw-BpHwBinder: onLastStrongRef automatically unlinking death recipients
+11-21 14:34:49.365  3337  3427 D SurfaceUtils: disconnecting from surface 0x766620b03e80, reason disconnectFromSurface
+11-21 14:34:49.368   498   846 I hw-BpHwBinder: onLastStrongRef automatically unlinking death recipients
+11-21 14:34:49.369   498   846 I hw-BpHwBinder: onLastStrongRef automatically unlinking death recipients
+11-21 14:34:49.369  3337  3459 I hw-BpHwBinder: onLastStrongRef automatically unlinking death recipients
+11-21 14:34:49.372   498   846 V C2Store : in ~ComponentModule
+11-21 14:34:49.372   498   846 V C2Store : unloading dll
+11-21 14:34:49.374   498   846 D BufferPoolAccessor2.0: bufferpool2 0x73a7c042a538 : 0(0 size) total buffers - 0(0 size) used buffers - 46/50 (recycle/alloc) - 4/50 (fetch/transfer)
+11-21 14:34:49.386   556   964 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:49.386   556   964 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:49.449   556   964 D MediaMetricsManagerService: failed to get player_metrics_app_blocklist from DeviceConfig
+11-21 14:34:49.449   556   964 V MediaMetricsManagerService: Logging level blocked: Failed to get PLAYER_METRICS_APP_BLOCKLIST.
+11-21 14:34:49.801  3337  3375 D EGL_emulation: app_time_stats: avg=20.81ms min=14.33ms max=117.59ms count=48
+11-21 14:34:50.817  3337  3375 D EGL_emulation: app_time_stats: avg=17.21ms min=12.76ms max=50.77ms count=59
+11-21 14:34:51.054  3337  3470 D CompatibilityChangeReporter: Compat change id reported: 170188668; UID 10126; state: ENABLED
+11-21 14:34:51.103  3337  3470 I DrmHalHidl: found instance=clearkey version=android.hardware.drm@1.4::IDrmFactory
+11-21 14:34:51.103  3337  3470 I DrmHalHidl: found instance=default version=android.hardware.drm@1.0::IDrmFactory
+11-21 14:34:51.103  3337  3470 E DrmHalHidl: uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:51.104  3337  3470 E DrmHalHidl: uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:51.104  3337  3470 E DrmHalHidl: uuid=[1077efecc0b24d02 ace33c1e52e2fb4b] No supported hal instance found
+11-21 14:34:51.105   377   377 E hidl_ClearKeyPlugin: App requested unknown property: deviceUniqueId
+11-21 14:34:51.106  3337  3470 D DrmHalHidl: framework logs size 5; plugin logs size 1
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: java.lang.IllegalArgumentException: Failed to get property: BAD_VALUE
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: ============================== Beginning of DRM Plugin Log ==============================
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe:   11-21 14:34:51.103 I found instance=clearkey version=android.hardware.drm@1.4::IDrmFactory
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe:   11-21 14:34:51.103 I found instance=default version=android.hardware.drm@1.0::IDrmFactory
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe:   11-21 14:34:51.103 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe:   11-21 14:34:51.104 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe:   11-21 14:34:51.104 E uuid=[1077efecc0b24d02 ace33c1e52e2fb4b] No supported hal instance found
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe:   11-21 14:34:51.105 E Not implemented
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: ============================== End of DRM Plugin Log ==============================
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at android.media.MediaDrm.getPropertyByteArray(Native Method)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.MediaProbe.a(Unknown Source:45)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.MediaProbe.a(Unknown Source:110)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.MediaProbe.b(Unknown Source:2)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.TelephonyProbe.c(Unknown Source:63)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.TelephonyProbe.$r8$lambda$VVja_7Her5DvXY6TF_YyvXqFJSE(Unknown Source:0)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.TelephonyProbe$$ExternalSyntheticLambda2.a(D8$$SyntheticClass:0)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.AbstractSeonProbe.a(Unknown Source:0)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.TelephonyProbe.e(Unknown Source:38)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.SeonFingerprint.d(Unknown Source:104)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:0)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:2)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.SeonFingerprint.$r8$lambda$PNkqYGJBtYWYhirBPFTBFLCx5dY(Unknown Source:0)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at io.seon.androidsdk.service.SeonFingerprint$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:463)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-21 14:34:51.106  3337  3470 D io.seon.androidsdk.service.AbstractSeonProbe: 	at java.lang.Thread.run(Thread.java:1012)
+11-21 14:34:51.139  3337  3470 W ces.solarisdemo: Accessing hidden method Lcom/android/internal/os/PowerProfile;-><init>(Landroid/content/Context;)V (unsupported, reflection, allowed)
+11-21 14:34:51.140  3337  3470 W ces.solarisdemo: Accessing hidden method Lcom/android/internal/os/PowerProfile;->getBatteryCapacity()D (unsupported, reflection, allowed)
+11-21 14:34:51.173  3337  3373 D TrafficStats: tagSocket(130) with statsTag=0xffffffff, statsUid=-1
+11-21 14:34:51.422  3337  3373 D TrafficStats: tagSocket(130) with statsTag=0xffffffff, statsUid=-1
+11-21 14:34:51.833  3337  3375 D EGL_emulation: app_time_stats: avg=12.83ms min=2.57ms max=40.87ms count=61
+11-21 14:34:52.833  3337  3375 D EGL_emulation: app_time_stats: avg=4.17ms min=2.68ms max=8.97ms count=60
+11-21 14:34:53.833  3337  3375 D EGL_emulation: app_time_stats: avg=3.41ms min=1.99ms max=5.05ms count=60
+11-21 14:34:54.351  3337  3432 D BufferPoolAccessor2.0: bufferpool2 0x766580b0d518 : 0(0 size) total buffers - 0(0 size) used buffers - 33/42 (recycle/alloc) - 8/38 (fetch/transfer)
+11-21 14:34:54.351  3337  3432 D BufferPoolAccessor2.0: evictor expired: 1, evicted: 1
+11-21 14:34:54.375   498   833 D BufferPoolAccessor2.0: bufferpool2 0x73a7c042a538 : 0(0 size) total buffers - 0(0 size) used buffers - 46/50 (recycle/alloc) - 4/50 (fetch/transfer)
+11-21 14:34:54.375   498   833 D BufferPoolAccessor2.0: evictor expired: 1, evicted: 1
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: java.net.SocketTimeoutException: timeout
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.Okio$3.newTimeoutException(Okio.java:214)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.AsyncTimeout.exit(AsyncTimeout.java:263)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.AsyncTimeout$2.read(AsyncTimeout.java:217)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.RealBufferedSource.indexOf(RealBufferedSource.java:307)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.RealBufferedSource.indexOf(RealBufferedSource.java:301)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.RealBufferedSource.readUtf8LineStrict(RealBufferedSource.java:197)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.http.Http1xStream.readResponse(Http1xStream.java:188)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.http.Http1xStream.readResponseHeaders(Http1xStream.java:129)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.http.HttpEngine.readNetworkResponse(HttpEngine.java:750)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.http.HttpEngine.readResponse(HttpEngine.java:622)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.execute(HttpURLConnectionImpl.java:475)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getResponse(HttpURLConnectionImpl.java:411)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getResponseCode(HttpURLConnectionImpl.java:542)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.huc.DelegatingHttpsURLConnection.getResponseCode(DelegatingHttpsURLConnection.java:106)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.internal.huc.HttpsURLConnectionImpl.getResponseCode(HttpsURLConnectionImpl.java:30)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at io.seon.androidsdk.service.DynamicComponentTask.a(Unknown Source:209)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at io.seon.androidsdk.service.DynamicComponentTask.doInBackground(Unknown Source:2)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at android.os.AsyncTask$3.call(AsyncTask.java:394)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at android.os.AsyncTask$SerialExecutor$1.run(AsyncTask.java:305)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at java.lang.Thread.run(Thread.java:1012)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: Caused by: java.net.SocketException: Socket closed
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at java.net.SocketInputStream.read(SocketInputStream.java:188)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at java.net.SocketInputStream.read(SocketInputStream.java:143)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.org.conscrypt.ConscryptEngineSocket$SSLInputStream.readFromSocket(ConscryptEngineSocket.java:945)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.org.conscrypt.ConscryptEngineSocket$SSLInputStream.processDataFromSocket(ConscryptEngineSocket.java:909)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.org.conscrypt.ConscryptEngineSocket$SSLInputStream.readUntilDataAvailable(ConscryptEngineSocket.java:824)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.org.conscrypt.ConscryptEngineSocket$SSLInputStream.read(ConscryptEngineSocket.java:797)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.Okio$2.read(Okio.java:138)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	at com.android.okhttp.okio.AsyncTimeout$2.read(AsyncTimeout.java:213)
+11-21 14:34:54.732  3337  3373 D io.seon.androidsdk.service.DynamicComponentTask: 	... 20 more
+11-21 14:34:54.734  3337  3470 E DrmHalHidl: uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.734  3337  3470 E DrmHalHidl: uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.735  3337  3470 E DrmHalHidl: uuid=[e2719d58a985b3c9 781ab030af78d30e] No supported hal instance found
+11-21 14:34:54.735   377   377 E hidl_ClearKeyPlugin: App requested unknown property: deviceUniqueId
+11-21 14:34:54.736  3337  3470 D DrmHalHidl: framework logs size 8; plugin logs size 1
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: java.lang.IllegalArgumentException: Failed to get property: BAD_VALUE
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: ============================== Beginning of DRM Plugin Log ==============================
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.103 I found instance=clearkey version=android.hardware.drm@1.4::IDrmFactory
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.103 I found instance=default version=android.hardware.drm@1.0::IDrmFactory
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.103 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.104 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.104 E uuid=[1077efecc0b24d02 ace33c1e52e2fb4b] No supported hal instance found
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.734 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.734 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.735 E uuid=[e2719d58a985b3c9 781ab030af78d30e] No supported hal instance found
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.736 E Not implemented
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: ============================== End of DRM Plugin Log ==============================
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at android.media.MediaDrm.getPropertyByteArray(Native Method)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.MediaProbe.a(Unknown Source:45)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.MediaProbe.a(Unknown Source:110)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.MediaProbe.b(Unknown Source:2)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.DeviceHasher.a(Unknown Source:5)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.d(Unknown Source:509)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:0)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:2)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.$r8$lambda$PNkqYGJBtYWYhirBPFTBFLCx5dY(Unknown Source:0)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:463)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-21 14:34:54.736  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.lang.Thread.run(Thread.java:1012)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: java.lang.IllegalArgumentException: Failed to get property: BAD_VALUE
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: ============================== Beginning of DRM Plugin Log ==============================
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.103 I found instance=clearkey version=android.hardware.drm@1.4::IDrmFactory
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.103 I found instance=default version=android.hardware.drm@1.0::IDrmFactory
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.103 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.104 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:51.104 E uuid=[1077efecc0b24d02 ace33c1e52e2fb4b] No supported hal instance found
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.734 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.734 E uuid=[edef8ba979d64ace a3c827dcd51d21ed] No supported hal instance found
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.735 E uuid=[e2719d58a985b3c9 781ab030af78d30e] No supported hal instance found
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint:   11-21 14:34:54.736 E Not implemented
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: ============================== End of DRM Plugin Log ==============================
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at android.media.MediaDrm.getPropertyByteArray(Native Method)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.MediaProbe.a(Unknown Source:45)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.MediaProbe.a(Unknown Source:110)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.MediaProbe.b(Unknown Source:2)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.DeviceHasher.a(Unknown Source:5)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.d(Unknown Source:509)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:0)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:2)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint.$r8$lambda$PNkqYGJBtYWYhirBPFTBFLCx5dY(Unknown Source:0)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at io.seon.androidsdk.service.SeonFingerprint$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:463)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-21 14:34:54.737  3337  3470 E io.seon.androidsdk.service.SeonFingerprint: 	at java.lang.Thread.run(Thread.java:1012)
+11-21 14:34:54.737  3337  3470 W System.err: io.seon.androidsdk.exception.SeonException: Fingerprint could not be generated
+11-21 14:34:54.737  3337  3470 W System.err: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:14)
+11-21 14:34:54.737  3337  3470 W System.err: 	at io.seon.androidsdk.service.SeonFingerprint.a(Unknown Source:2)
+11-21 14:34:54.737  3337  3470 W System.err: 	at io.seon.androidsdk.service.SeonFingerprint.$r8$lambda$PNkqYGJBtYWYhirBPFTBFLCx5dY(Unknown Source:0)
+11-21 14:34:54.738  3337  3470 W System.err: 	at io.seon.androidsdk.service.SeonFingerprint$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+11-21 14:34:54.738  3337  3470 W System.err: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:463)
+11-21 14:34:54.738  3337  3470 W System.err: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-21 14:34:54.738  3337  3470 W System.err: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+11-21 14:34:54.738  3337  3470 W System.err: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+11-21 14:34:54.738  3337  3470 W System.err: 	at java.lang.Thread.run(Thread.java:1012)
+11-21 14:34:54.849  3337  3375 D EGL_emulation: app_time_stats: avg=3.62ms min=2.27ms max=6.24ms count=61
+11-21 14:34:55.352  3337  3432 D BufferPoolAccessor2.0: bufferpool2 0x766580b12168 : 0(0 size) total buffers - 0(0 size) used buffers - 49/59 (recycle/alloc) - 5/54 (fetch/transfer)
+11-21 14:34:55.352  3337  3432 D BufferPoolAccessor2.0: evictor expired: 1, evicted: 1
+11-21 14:34:55.849  3337  3375 D EGL_emulation: app_time_stats: avg=4.01ms min=2.52ms max=14.45ms count=59
+11-21 14:34:56.850  3337  3375 D EGL_emulation: app_time_stats: avg=3.50ms min=2.64ms max=5.79ms count=60
+11-21 14:34:57.866  3337  3375 D EGL_emulation: app_time_stats: avg=3.48ms min=2.47ms max=5.21ms count=61
+11-21 14:34:58.866  3337  3375 D EGL_emulation: app_time_stats: avg=3.44ms min=2.56ms max=5.12ms count=60
+11-21 14:34:59.351  3337  3337 I flutter : Continue button tapped successfully
+11-21 14:34:59.351  3337  3337 I flutter : Waiting for authentication to complete...
+11-21 14:34:59.352  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:34:59.351707","type":"step","action":"\u001b[33mtap\u001b[0m widgets with text \"Continue\".","status":"success","data":null}
+11-21 14:34:59.867  3337  3375 D EGL_emulation: app_time_stats: avg=4.92ms min=2.53ms max=17.70ms count=59
+11-21 14:35:00.038   799   963 D EGL_emulation: app_time_stats: avg=24895.67ms min=24895.67ms max=24895.67ms count=1
+11-21 14:35:00.882  3337  3375 D EGL_emulation: app_time_stats: avg=16.63ms min=13.43ms max=18.85ms count=61
+11-21 14:35:01.249   556   964 D WifiNl80211Manager: Scan result ready event
+11-21 14:35:01.249   556   964 D WifiNative: Scan result ready event
+11-21 14:35:01.900  3337  3375 D EGL_emulation: app_time_stats: avg=16.68ms min=14.68ms max=18.69ms count=61
+11-21 14:35:02.463   799   963 D EGL_emulation: app_time_stats: avg=2424.62ms min=2424.62ms max=2424.62ms count=1
+11-21 14:35:02.915  3337  3375 D EGL_emulation: app_time_stats: avg=16.64ms min=14.72ms max=20.59ms count=61
+11-21 14:35:03.933  3337  3375 D EGL_emulation: app_time_stats: avg=16.68ms min=13.83ms max=21.00ms count=61
+--------- beginning of kernel
+11-21 14:35:04.231     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-21 14:35:04.616  3337  3337 I flutter : ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+11-21 14:35:04.617  3337  3337 I flutter : The following assertion was thrown running a test:
+11-21 14:35:04.617  3337  3337 I flutter : pumpAndSettle timed out
+11-21 14:35:04.617  3337  3337 I flutter : 
+11-21 14:35:04.617  3337  3337 I flutter : When the exception was thrown, this was the stack:
+11-21 14:35:04.617  3337  3337 I flutter : #0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #2      PatrolTester.pumpAndSettle (package:patrol_finders/src/custom_finders/patrol_tester.dart:212:5)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #3      LoginToApp.login (file:///home/runner/work/Ivory/Ivory/integration_test/auth/loginToApp.dart:124:5)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #4      main.<anonymous closure> (file:///home/runner/work/Ivory/Ivory/integration_test/repaymentReminderIsSaved_test.dart:23:5)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #5      patrolTest.<anonymous closure> (package:patrol/src/common.dart:149:7)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #7      PatrolBinding._wrapTestBodyWithExceptionGatherer (package:patrol/src/binding.dart:250:5)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : #9      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:814:12)
+11-21 14:35:04.617  3337  3337 I flutter : <asynchronous suspension>
+11-21 14:35:04.617  3337  3337 I flutter : 
+11-21 14:35:04.617  3337  3337 I flutter : The test description was:
+11-21 14:35:04.617  3337  3337 I flutter :   Repayment reminder is saved correctly
+11-21 14:35:04.617  3337  3337 I flutter : ════════════════════════════════════════════════════════════════════════════════════════════════════
+11-21 14:35:04.619  3337  3337 I flutter : 00:33 +4: repaymentReminderIsSaved_test Repayment reminder is saved correctly [E]
+11-21 14:35:04.620  3337  3337 I flutter :   Test failed. See exception logs above.
+11-21 14:35:04.620  3337  3337 I flutter :   The test description was: Repayment reminder is saved correctly
+11-21 14:35:04.621  3337  3337 I flutter :   
+11-21 14:35:04.622  3337  3337 I flutter : PatrolBinding: tearDown(): count: 5, results: {Check if virtual card can be frozen and unfrozen: success, Simple login test: success, Repayment rate is saved correctly: success, repaymentReminderIsSaved_test Repayment reminder is saved correctly: {"methodName":"repaymentReminderIsSaved_test Repayment reminder is saved correctly","details":"══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════\nThe following assertion was thrown running a test:\npumpAndSettle timed out\n\nWhen the exception was thrown, this was the stack:\n#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)\n<asynchronous suspension>\n#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)\n<asynchronous suspension>\n#2      PatrolTester.pumpAndSettle (package:patrol_finders/src/custom_finders/patrol_tester.dart:212:5)\n<asynchronous suspension>\n#3      LoginToApp.login (file:///home/r
+11-21 14:35:04.623  3337  3337 I flutter : PatrolBinding: finished test repaymentReminderIsSaved_test Repayment reminder is saved correctly. Will report its status back to the native side
+11-21 14:35:04.623  3337  3337 I flutter : PatrolBinding: tearDown(): test "Repayment reminder is saved correctly" in group "repaymentReminderIsSaved_test Repayment reminder is saved correctly", passed: false
+11-21 14:35:04.624  3337  3337 I flutter : PatrolAppService.markDartTestAsCompleted(): repaymentReminderIsSaved_test Repayment reminder is saved correctly
+11-21 14:35:04.626  3337  3337 I flutter : 2025-11-21T14:34:31.924237  0:00:32.702169 POST    [200] /runDartTest
+11-21 14:35:04.627  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625242","type":"test","name":"repaymentReminderIsSaved_test Repayment reminder is saved correctly","status":"failure","error":null}
+11-21 14:35:04.629  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625505","type":"error","message":"══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════"}
+11-21 14:35:04.629  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625513","type":"error","message":"The following assertion was thrown running a test:"}
+11-21 14:35:04.630  3337  3337 I flutter : 00:33 +4 -1: Some tests failed.
+11-21 14:35:04.630  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625514","type":"error","message":"pumpAndSettle timed out"}
+11-21 14:35:04.632  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625514","type":"error","message":""}
+11-21 14:35:04.632  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625515","type":"error","message":"When the exception was thrown, this was the stack:"}
+11-21 14:35:04.632  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625516","type":"error","message":"#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)"}
+11-21 14:35:04.632  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625516","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.632  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625517","type":"error","message":"#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)"}
+11-21 14:35:04.632  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625517","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625518","type":"error","message":"#2      PatrolTester.pumpAndSettle (package:patrol_finders/src/custom_finders/patrol_tester.dart:212:5)"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625519","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625519","type":"error","message":"#3      LoginToApp.login (file:///home/runner/work/Ivory/Ivory/integration_test/auth/loginToApp.dart:124:5)"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625520","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625520","type":"error","message":"#4      main.<anonymous closure> (file:///home/runner/work/Ivory/Ivory/integration_test/repaymentReminderIsSaved_test.dart:23:5)"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625521","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625522","type":"error","message":"#5      patrolTest.<anonymous closure> (package:patrol/src/common.dart:149:7)"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625522","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.633  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625523","type":"error","message":"#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)"}
+11-21 14:35:04.634  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625523","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.634  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625524","type":"error","message":"#7      PatrolBinding._wrapTestBodyWithExceptionGatherer (package:patrol/src/binding.dart:250:5)"}
+11-21 14:35:04.634  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625524","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.634  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625525","type":"error","message":"#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)"}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625525","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625526","type":"error","message":"#9      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:814:12)"}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625527","type":"error","message":"<asynchronous suspension>"}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625527","type":"error","message":""}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625528","type":"error","message":"The test description was:"}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625528","type":"error","message":"  Repayment reminder is saved correctly"}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625529","type":"error","message":"═════════════════════════════════════════════════════════════════"}
+11-21 14:35:04.635  3337  3337 I flutter : PATROL_LOG {"timestamp":"2025-11-21T14:35:04.625529","type":"error","message":""}
+11-21 14:35:04.640   556   556 D BatterySaverPolicy: accessibility changed to false, updating policy.
+11-21 14:35:04.650   556   556 D BatterySaverPolicy: accessibility changed to true, updating policy.
+11-21 14:35:04.651  3337  3486 V UiAutomation: Init UiAutomation@6477005[id=9, flags=1]
+11-21 14:35:04.665  3337  3368 D EGL_emulation: app_time_stats: avg=10836.35ms min=61.55ms max=31871.15ms count=3
+11-21 14:35:04.849     0     0 I logd    : logdr: UID=2000 GID=2000 PID=3490 n tail=0 logMask=99 pid=3337 start=0ns deadline=0ns
+11-21 14:35:04.689  2557  2571 I AbstractFileContentProvider: file '/storage/emulated/0/googletest/test_outputfiles/allure-results/122b559e-2865-4163-9355-428ed337e9b8-attachment.txt': found
+11-21 14:35:04.703   210   210 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-21 14:35:04.704  3320  3336 I Gralloc4: mapper 4.x is not supported
+11-21 14:35:04.721  3320  3336 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-21 14:35:04.726  3320  3495 D libEGL  : loaded /vendor/lib64/egl/libEGL_emulation.so
+11-21 14:35:04.727  3320  3495 D libEGL  : loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+11-21 14:35:04.729  3320  3495 D libEGL  : loaded /vendor/lib64/egl/libGLESv2_emulation.so
+11-21 14:35:04.746  3320  3495 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-21 14:35:04.750  3320  3495 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-21 14:35:04.751  3320  3495 D EGL_emulation: eglCreateContext: 0x7c4301608ed0: maj 3 min 0 rcv 3
+11-21 14:35:04.752  3320  3495 D EGL_emulation: eglMakeCurrent: 0x7c4301608ed0: ver 3 0 (tinfo 0x7c452d772080) (first time)
+11-21 14:35:04.847  2557  2571 I AbstractFileContentProvider: file '/storage/emulated/0/googletest/test_outputfiles/allure-results/2a537580-356f-499d-87b9-b77c5bf71191-attachment.png': found
+11-21 14:35:04.952  3337  3375 D EGL_emulation: app_time_stats: avg=24.01ms min=3.01ms max=312.69ms count=39
+11-21 14:35:05.223  2557  2571 I AbstractFileContentProvider: file '/storage/emulated/0/googletest/test_outputfiles/allure-results/b92e7314-daca-40d0-bdcd-d458dbb65578-attachment.xml': found
+11-21 14:35:05.230  3337  3361 E TestRunner: failed: runDartTest[repaymentReminderIsSaved_test Repayment reminder is saved correctly](com.thinslices.solarisdemo.MainActivityTest)
+11-21 14:35:05.230  3337  3361 E TestRunner: ----- begin exception -----
+11-21 14:35:05.231  3337  3361 E TestRunner: java.lang.AssertionError: Dart test failed: repaymentReminderIsSaved_test Repayment reminder is saved correctly
+11-21 14:35:05.231  3337  3361 E TestRunner: ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+11-21 14:35:05.231  3337  3361 E TestRunner: The following assertion was thrown running a test:
+11-21 14:35:05.231  3337  3361 E TestRunner: pumpAndSettle timed out
+11-21 14:35:05.231  3337  3361 E TestRunner: 
+11-21 14:35:05.231  3337  3361 E TestRunner: When the exception was thrown, this was the stack:
+11-21 14:35:05.231  3337  3361 E TestRunner: #0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #2      PatrolTester.pumpAndSettle (package:patrol_finders/src/custom_finders/patrol_tester.dart:212:5)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #3      LoginToApp.login (file:///home/runner/work/Ivory/Ivory/integration_test/auth/loginToApp.dart:124:5)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #4      main.<anonymous closure> (file:///home/runner/work/Ivory/Ivory/integration_test/repaymentReminderIsSaved_test.dart:23:5)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #5      patrolTest.<anonymous closure> (package:patrol/src/common.dart:149:7)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #7      PatrolBinding._wrapTestBodyWithExceptionGatherer (package:patrol/src/binding.dart:250:5)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: #9      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:814:12)
+11-21 14:35:05.231  3337  3361 E TestRunner: <asynchronous suspension>
+11-21 14:35:05.231  3337  3361 E TestRunner: 
+11-21 14:35:05.231  3337  3361 E TestRunner: The test description was:
+11-21 14:35:05.231  3337  3361 E TestRunner:   Repayment reminder is saved correctly
+11-21 14:35:05.231  3337  3361 E TestRunner: ═════════════════════════════════════════════════════════════════
+11-21 14:35:05.231  3337  3361 E TestRunner: 
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at pl.leancode.patrol.PatrolJUnitRunner.runDartTest(PatrolJUnitRunner.java:158)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at com.thinslices.solarisdemo.MainActivityTest.runDartTest(MainActivityTest.java:43)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at com.thinslices.solarisdemo.AllureEnrichmentRule$apply$1.evaluate(AllureEnrichmentRule.kt:16)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at com.thinslices.solarisdemo.FilteredLogcatRule$apply$1.evaluate(FilteredLogcatRule.kt:26)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at io.qameta.allure.android.rules.ScreenshotRule$apply$1.evaluate(ScreenshotRule.kt:22)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at io.qameta.allure.android.rules.WindowHierarchyRule$apply$1.evaluate(WindowHierarchyRule.kt:21)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-21 14:35:05.231  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:67)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:58)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:446)
+11-21 14:35:05.236  3337  3361 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2361)
+11-21 14:35:05.236  3337  3361 E TestRunner: ----- end exception -----
+11-21 14:35:05.240  3337  3361 I TestRunner: finished: runDartTest[repaymentReminderIsSaved_test Repayment reminder is saved correctly](com.thinslices.solarisdemo.MainActivityTest)
+11-21 14:35:05.257  2557  2571 I AbstractFileContentProvider: file '/storage/emulated/0/googletest/test_outputfiles/allure-results/288a2b14-bb55-4a1d-8e48-c376f87b695f-result.json': found
+11-21 14:35:05.258  3337  3361 I TestRunner: run finished: 1 tests, 1 failed, 0 ignored
+11-21 14:35:05.266   556   556 D BatterySaverPolicy: accessibility changed to false, updating policy.
+11-21 14:35:05.266   556   964 I ActivityManager: Force stopping com.thinslices.solarisdemo appid=10126 user=0: finished inst
+11-21 14:35:05.268   556   964 I ActivityManager: Killing 3337:com.thinslices.solarisdemo/u0a126 (adj 0): stop com.thinslices.solarisdemo due to finished inst
+11-21 14:35:05.269   556   964 W ActivityTaskManager: Force removing ActivityRecord{732b9a8 u0 com.thinslices.solarisdemo/.MainActivity} t13 f}}: app died, no saved state
+11-21 14:35:05.270   556   964 W InputManager-JNI: Input channel object 'f6c2c08 com.thinslices.solarisdemo/com.thinslices.solarisdemo.MainActivity (client)' was disposed without first being removed with the input manager!
+11-21 14:35:05.273   556   589 I libprocessgroup: Successfully killed process cgroup uid 10126 pid 3337 in 5ms
+11-21 14:35:05.276   556   579 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-21 14:35:05.277   434   447 W TransactionTracing: Could not find layer handle 0x734de90703f0
+11-21 14:35:05.277   434   447 W TransactionTracing: Could not find layer handle 0x734de9070cf0
+11-21 14:35:05.277   434   447 W TransactionTracing: Could not find layer handle 0x734de906df30
+11-21 14:35:05.277   434   447 W TransactionTracing: Could not find layer handle 0x734de906d7b0
+11-21 14:35:05.277   434   447 W TransactionTracing: Could not find layer handle 0x734de90703f0
+11-21 14:35:05.277   434   447 W TransactionTracing: Could not find layer handle 0x734de906df30
+11-21 14:35:05.291  3320  3320 I app_process: System.exit called, status: 0
+11-21 14:35:05.291  3320  3320 I AndroidRuntime: VM exiting with result code 0.
+11-21 14:35:05.292   434   434 I BpBinder: onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+11-21 14:35:05.316   799   963 D EGL_emulation: app_time_stats: avg=2852.53ms min=2852.53ms max=2852.53ms count=1
+11-21 14:35:05.318   556  3318 I ActivityManager: Force stopping androidx.test.orchestrator appid=10127 user=0: finished inst
+11-21 14:35:05.319   556  3318 I ActivityManager: Killing 2592:androidx.test.orchestrator/u0a127 (adj 0): stop androidx.test.orchestrator due to finished inst
+11-21 14:35:05.504     0     0 I binder  : undelivered TRANSACTION_COMPLETE
+11-21 14:35:05.506     0     0 W binder_cleanup_transaction: 11 callbacks suppressed
+11-21 14:35:05.506     0     0 I binder  : undelivered transaction 202972, process died.
+11-21 14:35:05.334   434   447 W TransactionTracing: Could not find layer handle 0x734de906d8d0
+11-21 14:35:05.336   556   964 V ActivityManager: Got obituary of 2592:androidx.test.orchestrator
+11-21 14:35:05.338   361   361 I Zygote  : Process 2592 exited due to signal 9 (Killed)
+11-21 14:35:05.339  2574  2574 I app_process: System.exit called, status: 0
+11-21 14:35:05.339  2574  2574 I AndroidRuntime: VM exiting with result code 0.
+11-21 14:35:05.353  2542  2542 I app_process: System.exit called, status: 0
+11-21 14:35:05.353  2542  2542 I AndroidRuntime: VM exiting with result code 0.
+11-21 14:35:05.378   498   885 D BufferPoolAccessor2.0: bufferpool2 0x73a7c042a538 : 0(0 size) total buffers - 0(0 size) used buffers - 46/50 (recycle/alloc) - 4/50 (fetch/transfer)
+11-21 14:35:05.379   498   885 D BufferPoolAccessor2.0: Destruction - bufferpool2 0x73a7c042a538 cached: 0/0M, 0/0% in use; allocs: 50, 92% recycled; transfers: 50, 92% unfetched
+11-21 14:35:05.379   361   361 I Zygote  : Process 3337 exited due to signal 9 (Killed)
+11-21 14:35:05.382   556   589 I libprocessgroup: Successfully killed process cgroup uid 10127 pid 2592 in 0ms
+11-21 14:35:05.384   556  1040 V ActivityManager: Got obituary of 3337:com.thinslices.solarisdemo
+11-21 14:35:05.385   556   579 W ActivityManager: setHasOverlayUi called on unknown pid: 3337
+11-21 14:35:05.559     0     0 I binder  : undelivered TRANSACTION_COMPLETE
+11-21 14:35:05.562     0     0 I binder  : undelivered transaction 202794, process died.
+11-21 14:35:05.565     0     0 I binder  : undelivered transaction 202936, process died.
+11-21 14:35:05.387   556  2247 W WindowManager: Cannot find window which accessibility connection is added to
+11-21 14:35:05.567     0     0 I binder  : undelivered transaction 202734, process died.
+11-21 14:35:05.571     0     0 I binder  : undelivered transaction 202935, process died.
+11-21 14:35:05.392   434   434 E BpTransactionCompletedListener: Failed to transact (-32)
+11-21 14:35:05.392   434   434 E BpTransactionCompletedListener: Failed to transact (-32)
+11-21 14:35:06.517   556   587 I ActivityManager: Force stopping com.thinslices.solarisdemo appid=10126 user=-1: deletePackageX
+11-21 14:35:06.540   556   609 I PackageManager: Removing permission com.thinslices.solarisdemo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION that used to be declared by com.thinslices.solarisdemo
+11-21 14:35:06.541   556   609 I PackageManager: Permission ownership changed. Updating all permissions.
+11-21 14:35:06.550   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.550   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.550   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.550   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.550   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.550   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.550   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.551   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.551   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.551   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.551   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.551   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.551   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.743     0     0 I logd    : start watching /data/system/packages.list ...
+11-21 14:35:06.745     0     0 I logd    : ReadPackageList, total packages: 136
+11-21 14:35:06.576   556   609 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-21 14:35:06.576   556   609 D PackageManager: Clear ephemeral installer activity
+11-21 14:35:06.586   556  1895 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-21 14:35:06.588   556   609 I ActivityManager: Force stopping com.thinslices.solarisdemo appid=10126 user=0: pkg removed
+11-21 14:35:06.602   556  1895 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-21 14:35:06.605   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.606   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.607   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.607   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.610   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.610   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.611   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.611  1394  1394 I MediaProvider: Invalidating LocalCallingIdentity cache for package com.thinslices.solarisdemo. Reason: package android.intent.action.PACKAGE_REMOVED
+11-21 14:35:06.611   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.611   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.612  1394  1394 W MediaProvider: WorkProfileOwnerApps cache is empty
+11-21 14:35:06.612   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.615   556   642 I RoleService: Granting default roles...
+11-21 14:35:06.633   556   738 W WifiService: Couldn't get PackageInfo for package:com.thinslices.solarisdemo
+11-21 14:35:06.633   556   738 D WifiService: Remove settings for package:com.thinslices.solarisdemo
+11-21 14:35:06.633   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{f298782 com.thinslices.solarisdemo}
+11-21 14:35:06.633   556   658 V StorageManagerService: Package com.thinslices.solarisdemo does not have legacy storage
+11-21 14:35:06.633   556   651 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+11-21 14:35:06.642  1899  1899 V MediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_REMOVED
+11-21 14:35:06.644   984   984 D CarrierSvcBindHelper: onPackageRemoved: com.thinslices.solarisdemo
+11-21 14:35:06.645   984   984 D CarrierSvcBindHelper: No carrier app for: 0
+11-21 14:35:06.646   556   738 D WifiConfigStore: Writing to stores completed in 11 ms.
+11-21 14:35:06.646   556   738 I PasspointManager: No app ops listener found for com.thinslices.solarisdemo
+11-21 14:35:06.646  1344  1388 I LatinIME:LogUtils: Dictionary info: dictionary = main:en ; version = 54 ; date = 1414726273
+11-21 14:35:06.648   556   634 I RollbackManager: broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=com.thinslices.solarisdemo
+11-21 14:35:06.650   556   738 W WifiService: Couldn't get PackageInfo for package:com.thinslices.solarisdemo
+11-21 14:35:06.651   556   738 D WifiService: Remove settings for package:com.thinslices.solarisdemo
+11-21 14:35:06.651   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{b6c99ce com.thinslices.solarisdemo}
+11-21 14:35:06.657   556   738 D WifiConfigStore: Writing to stores completed in 6 ms.
+11-21 14:35:06.657   556   738 I PasspointManager: No app ops listener found for com.thinslices.solarisdemo
+11-21 14:35:06.662   556   587 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) } to com.android.gallery3d/.app.PackagesMonitor
+11-21 14:35:06.667   556   556 D ActivityManager: sync unfroze 989 com.android.settings
+11-21 14:35:06.668   556   556 D CompatibilityChangeReporter: Compat change id reported: 135634846; UID 1000; state: DISABLED
+11-21 14:35:06.672   361   361 D Zygote  : Forked child process 3624
+11-21 14:35:06.676  3624  3624 W ndroid.keychain: Unexpected CPU variant for x86: x86_64.
+11-21 14:35:06.676  3624  3624 W ndroid.keychain: Known variants: atom, sandybridge, silvermont, kabylake, default
+11-21 14:35:06.680   448   471 I adbd    : jdwp connection from 3624
+11-21 14:35:06.683   556   588 I ActivityManager: Start proc 3624:com.android.keychain/1000 for service {com.android.keychain/com.android.keychain.KeyChainService}
+11-21 14:35:06.711   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.711   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.712   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.713   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.713   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.713   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.720   556   556 I GameManagerService: Disabling downscale for com.thinslices.solarisdemo
+11-21 14:35:06.732   799   813 I ndroid.systemui: Background concurrent copying GC freed 147091(6955KB) AllocSpace objects, 69(1380KB) LOS objects, 49% free, 9310KB/18MB, paused 24us,19us total 134.123ms
+11-21 14:35:06.919     0     0 I logd    : start watching /data/system/packages.list ...
+11-21 14:35:06.927     0     0 I logd    : ReadPackageList, total packages: 135
+11-21 14:35:06.773   801  3638 W Role    : Cannot get ApplicationInfo for default holder: com.google.android.contacts
+11-21 14:35:06.776  3624  3624 D CompatibilityChangeReporter: Compat change id reported: 171979766; UID 1000; state: ENABLED
+11-21 14:35:06.776   556   587 I ActivityManager: Force stopping androidx.test.orchestrator appid=10127 user=-1: deletePackageX
+11-21 14:35:06.797   556   556 I Telecom : CarModeTracker: Package com.thinslices.solarisdemo is not tracked.: SSH.oR@AMk
+11-21 14:35:06.800   556   556 I Telecom : InCallController: updateCarModeForConnections: car mode apps: : SSH.oR@AMk
+11-21 14:35:06.802   556  2352 D CompatibilityChangeReporter: Compat change id reported: 168419799; UID 1000; state: DISABLED
+11-21 14:35:06.813   556   736 D NetworkStatsObservers: Registering observer for RequestInfo from pid/uid:556/1000(android) for DataUsageRequest [ requestId=6, networkTemplate=NetworkTemplate: matchRule=MOBILE, subscriberId=310260..., matchSubscriberIds=[310260...], matchWifiNetworkKeys=[], metered=YES, defaultNetwork=NO, subscriberIdMatchRule=EXACT_MATCH, thresholdInBytes=3554978 ] accessLevel:3
+11-21 14:35:06.814   556   798 D NetworkStatsObservers: Unregistering RequestInfo from pid/uid:556/1000(android) for DataUsageRequest [ requestId=5, networkTemplate=NetworkTemplate: matchRule=MOBILE, subscriberId=310260..., matchSubscriberIds=[310260...], matchWifiNetworkKeys=[], metered=YES, defaultNetwork=NO, subscriberIdMatchRule=EXACT_MATCH, thresholdInBytes=3571283 ] accessLevel:3
+11-21 14:35:06.817   556   556 I ConditionProviders: Disallowing condition provider com.thinslices.solarisdemo (userSet: true)
+11-21 14:35:06.818   556   609 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-21 14:35:06.818   556   609 D PackageManager: Clear ephemeral installer activity
+11-21 14:35:06.832   556  1895 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-21 14:35:06.847   556   609 I ActivityManager: Force stopping androidx.test.orchestrator appid=10127 user=0: pkg removed
+11-21 14:35:06.855   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.855   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.856   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.856   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:06.857  1394  1394 I MediaProvider: Invalidating LocalCallingIdentity cache for package androidx.test.orchestrator. Reason: package android.intent.action.PACKAGE_REMOVED
+11-21 14:35:06.857  1394  1394 W MediaProvider: WorkProfileOwnerApps cache is empty
+11-21 14:35:06.876   556   738 W WifiService: Couldn't get PackageInfo for package:androidx.test.orchestrator
+11-21 14:35:06.876   556   738 D WifiService: Remove settings for package:androidx.test.orchestrator
+11-21 14:35:06.876   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{c45db90 androidx.test.orchestrator}
+11-21 14:35:06.878   556   651 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+11-21 14:35:06.879   556   658 V StorageManagerService: Package androidx.test.orchestrator does not have legacy storage
+11-21 14:35:06.882  1899  1899 V MediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_REMOVED
+11-21 14:35:06.883   556   634 I RollbackManager: broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=androidx.test.orchestrator
+11-21 14:35:06.887  1344  1388 I LatinIME:LogUtils: Dictionary info: dictionary = main:en ; version = 54 ; date = 1414726273
+11-21 14:35:06.891   556   738 D WifiConfigStore: Writing to stores completed in 13 ms.
+11-21 14:35:06.891   556   738 I PasspointManager: No app ops listener found for androidx.test.orchestrator
+11-21 14:35:06.891   556   738 W WifiService: Couldn't get PackageInfo for package:androidx.test.orchestrator
+11-21 14:35:06.891   556   738 D WifiService: Remove settings for package:androidx.test.orchestrator
+11-21 14:35:06.891   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{ae46d3e androidx.test.orchestrator}
+11-21 14:35:06.899  1394  1795 I MediaProvider: Begin Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:06.899  1394  1795 D MediaProvider: Deleted 0 Android/media items belonging to com.thinslices.solarisdemo on /data/user/0/com.android.providers.media.module/databases/external.db
+11-21 14:35:06.900  1394  1795 I MediaProvider: End Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:06.903   984   984 D CarrierSvcBindHelper: onPackageRemoved: androidx.test.orchestrator
+11-21 14:35:06.905   984   984 D CarrierSvcBindHelper: No carrier app for: 0
+11-21 14:35:06.907   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.908   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.908   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.908   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.908   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.909   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.910   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.910   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.911   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.912   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.912   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.913   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.913   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.913   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.913   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.913   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.914   556   556 I GameManagerService: Disabling downscale for androidx.test.orchestrator
+11-21 14:35:06.916   556   738 D WifiConfigStore: Writing to stores completed in 10 ms.
+11-21 14:35:06.916   556   738 I PasspointManager: No app ops listener found for androidx.test.orchestrator
+11-21 14:35:06.923   556   568 I system_server: Background concurrent copying GC freed 224334(14MB) AllocSpace objects, 51(1908KB) LOS objects, 49% free, 20MB/40MB, paused 2.624ms,640us total 351.973ms
+11-21 14:35:06.923   556  1336 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) } to com.android.gallery3d/.app.PackagesMonitor
+11-21 14:35:06.925   556   587 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) } to com.android.musicfx/.Compatibility$Receiver
+11-21 14:35:06.931   556   556 I Telecom : CarModeTracker: Package androidx.test.orchestrator is not tracked.: SSH.oR@AMw
+11-21 14:35:06.931   556   556 I Telecom : InCallController: updateCarModeForConnections: car mode apps: : SSH.oR@AMw
+11-21 14:35:06.932   556   556 I ConditionProviders: Disallowing condition provider androidx.test.orchestrator (userSet: true)
+11-21 14:35:06.934   556   587 I ActivityManager: Force stopping androidx.test.services appid=10128 user=-1: deletePackageX
+11-21 14:35:06.935   556   587 I ActivityManager: Killing 2557:androidx.test.services/u0a128 (adj 200): stop androidx.test.services due to deletePackageX
+11-21 14:35:06.940   556   589 I libprocessgroup: Successfully killed process cgroup uid 10128 pid 2557 in 0ms
+11-21 14:35:06.952   556   587 W ActivityManager: Error canceling notification for service
+11-21 14:35:06.952   556   587 W ActivityManager: java.lang.SecurityException: Caller androidx.test.services:10128 cannot post for pkg androidx.test.services in user 0
+11-21 14:35:06.952   556   587 W ActivityManager: 	at com.android.server.notification.NotificationManagerService.resolveNotificationUid(NotificationManagerService.java:6851)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at com.android.server.notification.NotificationManagerService.cancelNotificationInternal(NotificationManagerService.java:6402)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at com.android.server.notification.NotificationManagerService$11.cancelNotification(NotificationManagerService.java:6300)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at com.android.server.am.ServiceRecord$3.run(ServiceRecord.java:1150)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at android.os.Handler.handleCallback(Handler.java:942)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at android.os.Looper.loopOnce(Looper.java:201)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at android.os.Looper.loop(Looper.java:288)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at android.os.HandlerThread.run(HandlerThread.java:67)
+11-21 14:35:06.952   556   587 W ActivityManager: 	at com.android.server.ServiceThread.run(ServiceThread.java:44)
+11-21 14:35:06.966   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.967   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.967   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.968   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.968   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.968   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.968   361   361 I Zygote  : Process 2557 exited due to signal 9 (Killed)
+11-21 14:35:06.969   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.970   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.970   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.970   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.970   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.970   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.970   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:06.972   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.983   556  2352 V ActivityManager: Got obituary of 2557:androidx.test.services
+11-21 14:35:06.984  3624  3624 V GraphicsEnvironment: ANGLE Developer option for 'com.android.keychain' set to: 'default'
+11-21 14:35:06.984  1346  1346 W NotificationEntry: Couldn't look up androidx.test.services
+11-21 14:35:06.984  3624  3624 V GraphicsEnvironment: ANGLE GameManagerService for com.android.keychain: false
+11-21 14:35:06.985  3624  3624 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+11-21 14:35:06.987  3624  3624 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+11-21 14:35:06.987  3624  3624 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+11-21 14:35:06.989  1394  1795 I MediaProvider: Begin Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:07.159     0     0 I logd    : start watching /data/system/packages.list ...
+11-21 14:35:07.161     0     0 I logd    : ReadPackageList, total packages: 134
+11-21 14:35:06.990  1394  1795 D MediaProvider: Deleted 0 Android/media items belonging to androidx.test.orchestrator on /data/user/0/com.android.providers.media.module/databases/external.db
+11-21 14:35:06.992   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.994   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.994   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.995   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.995   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.995   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.995   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.998  1394  1795 I MediaProvider: End Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:06.998   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.999   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:06.999   799   963 D EGL_emulation: app_time_stats: avg=1682.30ms min=1682.30ms max=1682.30ms count=1
+11-21 14:35:07.000   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.000   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.001   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.002   556   609 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-21 14:35:07.002   556   609 D PackageManager: Clear ephemeral installer activity
+11-21 14:35:07.002   556  1895 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-21 14:35:07.005   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.005   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.005   423   527 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.006   556   609 I ActivityManager: Force stopping androidx.test.services appid=10128 user=0: pkg removed
+11-21 14:35:07.018  1394  1394 I MediaProvider: Invalidating LocalCallingIdentity cache for package androidx.test.services. Reason: package android.intent.action.PACKAGE_REMOVED
+11-21 14:35:07.018  1394  1394 W MediaProvider: WorkProfileOwnerApps cache is empty
+11-21 14:35:07.021   556   738 W WifiService: Couldn't get PackageInfo for package:androidx.test.services
+11-21 14:35:07.021   556   738 D WifiService: Remove settings for package:androidx.test.services
+11-21 14:35:07.021   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{481ec14 androidx.test.services}
+11-21 14:35:07.023   556   651 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+11-21 14:35:07.023   556   658 V StorageManagerService: Package androidx.test.services does not have legacy storage
+11-21 14:35:07.026   556   738 D WifiConfigStore: Writing to stores completed in 4 ms.
+11-21 14:35:07.027   556   738 I PasspointManager: No app ops listener found for androidx.test.services
+11-21 14:35:07.027  1899  1899 V MediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_REMOVED
+11-21 14:35:07.028   556   634 I RollbackManager: broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=androidx.test.services
+11-21 14:35:07.029   556   738 W WifiService: Couldn't get PackageInfo for package:androidx.test.services
+11-21 14:35:07.029   556   738 D WifiService: Remove settings for package:androidx.test.services
+11-21 14:35:07.029   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{e57b5f androidx.test.services}
+11-21 14:35:07.037   984   984 D CarrierSvcBindHelper: onPackageRemoved: androidx.test.services
+11-21 14:35:07.037   984   984 D CarrierSvcBindHelper: No carrier app for: 0
+11-21 14:35:07.040  1344  1388 I LatinIME:LogUtils: Dictionary info: dictionary = main:en ; version = 54 ; date = 1414726273
+11-21 14:35:07.040   556   587 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) } to com.android.gallery3d/.app.PackagesMonitor
+11-21 14:35:07.041   556   556 I GameManagerService: Disabling downscale for androidx.test.services
+11-21 14:35:07.042   556   738 D WifiConfigStore: Writing to stores completed in 7 ms.
+11-21 14:35:07.042   556   738 I PasspointManager: No app ops listener found for androidx.test.services
+11-21 14:35:07.042   556   587 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) } to com.android.musicfx/.Compatibility$Receiver
+11-21 14:35:07.050   799  2850 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_0 
+11-21 14:35:07.050   799  2850 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-21 14:35:07.052   799  2850 D EGL_emulation: eglCreateContext: 0x766530b2bc10: maj 3 min 0 rcv 3
+11-21 14:35:07.052   799  2850 D EGL_emulation: eglMakeCurrent: 0x766530b2bc10: ver 3 0 (tinfo 0x76674fd74200) (first time)
+11-21 14:35:07.061   556   556 I Telecom : CarModeTracker: Package androidx.test.services is not tracked.: SSH.oR@AM8
+11-21 14:35:07.061   556   556 I Telecom : InCallController: updateCarModeForConnections: car mode apps: : SSH.oR@AM8
+11-21 14:35:07.061   556   556 I ConditionProviders: Disallowing condition provider androidx.test.services (userSet: true)
+11-21 14:35:07.064   556   556 D CompatibilityChangeReporter: Compat change id reported: 175319604; UID 1000; state: ENABLED
+11-21 14:35:07.064   556   556 D CompatibilityChangeReporter: Compat change id reported: 195579280; UID 1000; state: ENABLED
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.076   556   609 W PackageManager: Package com.android.providers.media.module is an APK in APEX, but has permission allowlist on the system image. Please bundle the allowlist in the com.android.mediaprovider APEX instead.
+11-21 14:35:07.078   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.079   556   587 I ActivityManager: Force stopping com.thinslices.solarisdemo.test appid=10129 user=-1: deletePackageX
+11-21 14:35:07.083  1394  1795 I MediaProvider: Begin Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:07.083  1394  1795 D MediaProvider: Deleted 0 Android/media items belonging to androidx.test.services on /data/user/0/com.android.providers.media.module/databases/external.db
+11-21 14:35:07.269     0     0 I logd    : start watching /data/system/packages.list ...
+11-21 14:35:07.271     0     0 I logd    : ReadPackageList, total packages: 133
+11-21 14:35:07.092   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.092   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.092   556   609 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+11-21 14:35:07.092   556   609 D PackageManager: Clear ephemeral installer activity
+11-21 14:35:07.093   556  1895 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-21 14:35:07.094   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.094   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.095   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.096   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.097   556   609 I ActivityManager: Force stopping com.thinslices.solarisdemo.test appid=10129 user=0: pkg removed
+11-21 14:35:07.104   556   658 V StorageManagerService: Package com.thinslices.solarisdemo.test does not have legacy storage
+11-21 14:35:07.105  1394  1394 I MediaProvider: Invalidating LocalCallingIdentity cache for package com.thinslices.solarisdemo.test. Reason: package android.intent.action.PACKAGE_REMOVED
+11-21 14:35:07.106  1899  1899 V MediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_REMOVED
+11-21 14:35:07.107   556   738 W WifiService: Couldn't get PackageInfo for package:com.thinslices.solarisdemo.test
+11-21 14:35:07.107   556   738 D WifiService: Remove settings for package:com.thinslices.solarisdemo.test
+11-21 14:35:07.107   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{ff1723c com.thinslices.solarisdemo.test}
+11-21 14:35:07.107   556   651 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+11-21 14:35:07.111  1394  1394 W MediaProvider: WorkProfileOwnerApps cache is empty
+11-21 14:35:07.112   556   738 D WifiConfigStore: Writing to stores completed in 3 ms.
+11-21 14:35:07.112   556   738 I PasspointManager: No app ops listener found for com.thinslices.solarisdemo.test
+11-21 14:35:07.113   984   984 D CarrierSvcBindHelper: onPackageRemoved: com.thinslices.solarisdemo.test
+11-21 14:35:07.113   984   984 D CarrierSvcBindHelper: No carrier app for: 0
+11-21 14:35:07.114   556   587 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package: flg=0x4000010 (has extras) } to com.android.gallery3d/.app.PackagesMonitor
+11-21 14:35:07.115   556   556 I GameManagerService: Disabling downscale for com.thinslices.solarisdemo.test
+11-21 14:35:07.118   556   556 I Telecom : CarModeTracker: Package com.thinslices.solarisdemo.test is not tracked.: SSH.oR@ANI
+11-21 14:35:07.118   556   556 I Telecom : InCallController: updateCarModeForConnections: car mode apps: : SSH.oR@ANI
+11-21 14:35:07.119   556   556 I ConditionProviders: Disallowing condition provider com.thinslices.solarisdemo.test (userSet: true)
+11-21 14:35:07.120   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.120   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.121   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.121   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.121   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.122   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.122   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.122   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.123   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.123   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.124   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.124   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.125   556   634 I RollbackManager: broadcast=ACTION_PACKAGE_FULLY_REMOVED pkg=com.thinslices.solarisdemo.test
+11-21 14:35:07.125   556   738 W WifiService: Couldn't get PackageInfo for package:com.thinslices.solarisdemo.test
+11-21 14:35:07.125   556   738 D WifiService: Remove settings for package:com.thinslices.solarisdemo.test
+11-21 14:35:07.126   556   738 D WifiConfigManager: Remove all networks for app ApplicationInfo{681eab1 com.thinslices.solarisdemo.test}
+11-21 14:35:07.127   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.127   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.127   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.128   423  3319 D AF::TrackHandle: OpPlayAudio: track:56 usage:13 not muted
+11-21 14:35:07.141  1394  1795 I MediaProvider: End Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:07.151   556   738 D WifiConfigStore: Writing to stores completed in 25 ms.
+11-21 14:35:07.152   556   738 I PasspointManager: No app ops listener found for com.thinslices.solarisdemo.test
+11-21 14:35:07.152  1394  1795 I MediaProvider: Begin Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:07.154  3624  3664 W KeyChain: Creating new DB.
+11-21 14:35:07.157  1394  1795 D MediaProvider: Deleted 0 Android/media items belonging to com.thinslices.solarisdemo.test on /data/user/0/com.android.providers.media.module/databases/external.db
+11-21 14:35:07.168  1394  1795 I MediaProvider: End Intent { act=android.intent.action.PACKAGE_FULLY_REMOVED dat=package: flg=0x5000010 cmp=com.android.providers.media.module/com.android.providers.media.MediaService (has extras) }
+11-21 14:35:07.188  1057  1057 D Launcher.Model: package removed received com.thinslices.solarisdemo
+11-21 14:35:07.191  1057  1099 D PackageUpdatedTask: Removing app iconcom.thinslices.solarisdemo
+11-21 14:35:07.215  1057  1099 D ModelWriter: removing items from db . Reason: [removed because the corresponding package or component is removed. mOp=3 removedPackages=[com.thinslices.solarisdemo] removedComponents=[]]
+11-21 14:35:07.236  1057  1494 D EGL_emulation: app_time_stats: avg=974.05ms min=48.18ms max=1899.92ms count=2
+11-21 14:35:07.240   556  1336 E AtomicFile: Failed to rename /data/system/cachequota.xml.new to /data/system/cachequota.xml
+11-21 14:35:07.276   556   568 I system_server: Background concurrent copying GC freed 336775(18MB) AllocSpace objects, 63(2416KB) LOS objects, 49% free, 13MB/26MB, paused 39us,29us total 273.786ms
+11-21 14:35:07.279  1057  1057 D Launcher.Model: package removed received androidx.test.orchestrator
+11-21 14:35:07.279  1057  1099 D PackageUpdatedTask: Removing app iconandroidx.test.orchestrator
+11-21 14:35:07.285   556   578 I DropBoxManagerService: add tag=system_server_strictmode isTagEnabled=true flags=0x2
+11-21 14:35:07.286  1057  1099 D ModelWriter: removing items from db . Reason: [removed because the corresponding package or component is removed. mOp=3 removedPackages=[androidx.test.orchestrator] removedComponents=[]]
+11-21 14:35:07.287  1057  1057 D Launcher.Model: package removed received androidx.test.services
+11-21 14:35:07.287  1057  1099 D PackageUpdatedTask: Removing app iconandroidx.test.services
+11-21 14:35:07.290  1057  1099 D ModelWriter: removing items from db . Reason: [removed because the corresponding package or component is removed. mOp=3 removedPackages=[androidx.test.services] removedComponents=[]]
+11-21 14:35:07.297  1057  1057 D Launcher.Model: package removed received com.thinslices.solarisdemo.test
+11-21 14:35:07.297  1057  1099 D PackageUpdatedTask: Removing app iconcom.thinslices.solarisdemo.test
+11-21 14:35:07.302  1057  1099 D ModelWriter: removing items from db . Reason: [removed because the corresponding package or component is removed. mOp=3 removedPackages=[com.thinslices.solarisdemo.test] removedComponents=[]]
+11-21 14:35:07.613   556   642 I RoleService: Granting default roles...
+11-21 14:35:07.613   448   448 W adbd    : timeout expired while flushing socket, closing
+11-21 14:35:07.618   801  3638 W Role    : Cannot get ApplicationInfo for default holder: com.google.android.contacts
+11-21 14:35:08.170  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.353     0     0 W binder_transaction: 74 callbacks suppressed
+11-21 14:35:08.353     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.168  3681  3681 W service : type=1400 audit(0.0:137): avc: denied { call } for scontext=u:r:shell:s0 tcontext=u:r:hal_camera_default:s0 tclass=binder permissive=0
+11-21 14:35:08.180  3681  3681 W service : type=1400 audit(0.0:138): avc: denied { call } for scontext=u:r:shell:s0 tcontext=u:r:hal_identity_default:s0 tclass=binder permissive=0
+11-21 14:35:08.362     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.364     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.180  3681  3681 W service : type=1400 audit(0.0:139): avc: denied { call } for scontext=u:r:shell:s0 tcontext=u:r:hal_light_default:s0 tclass=binder permissive=0
+11-21 14:35:08.371     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.188  3681  3681 W service : type=1400 audit(0.0:140): avc: denied { call } for scontext=u:r:shell:s0 tcontext=u:r:hal_power_default:s0 tclass=binder permissive=0
+11-21 14:35:08.378     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.196  3681  3681 W service : type=1400 audit(0.0:141): avc: denied { call } for scontext=u:r:shell:s0 tcontext=u:r:rild:s0 tclass=binder permissive=0
+11-21 14:35:08.386     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.204  3681  3681 W service : type=1400 audit(0.0:142): avc: denied { call } for scontext=u:r:shell:s0 tcontext=u:r:rild:s0 tclass=binder permissive=0
+11-21 14:35:08.392     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.208  3681  3681 W service : type=1400 audit(0.0:143): avc: denied { call } for scontext=u:r:shell:s0 tcontext=u:r:rild:s0 tclass=binder permissive=0
+11-21 14:35:08.399     0     0 W audit   : audit_lost=103 audit_rate_limit=5 audit_backlog_limit=64
+11-21 14:35:08.406     0     0 E audit   : rate limit exceeded
+11-21 14:35:08.407     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.409     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.412     0     0 I binder  : 3681:3681 transaction failed 29201/-1, size 0-0 line 2935
+11-21 14:35:08.239   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=android.service.gatekeeper.IGateKeeperService scontext=u:r:shell:s0 tcontext=u:object_r:gatekeeper_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.239  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.242  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.243  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.245  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.248  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.249  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.250  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.251  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.252  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.252   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=dnsresolver scontext=u:r:shell:s0 tcontext=u:object_r:dnsresolver_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.254  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.255  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.257   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=incident scontext=u:r:shell:s0 tcontext=u:object_r:incident_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.258   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=installd scontext=u:r:shell:s0 tcontext=u:object_r:installd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.261  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.262  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.263   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=mdns scontext=u:r:shell:s0 tcontext=u:object_r:mdns_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.269  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.271   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=netd scontext=u:r:shell:s0 tcontext=u:object_r:netd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.273  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.277  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.278  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.281  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.285  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.290   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=suspend_control scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.291   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=suspend_control_internal scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_internal_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.291  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.293  3681  3681 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.300   209   209 E SELinux : avc:  denied  { find } for pid=3681 uid=2000 name=vold scontext=u:r:shell:s0 tcontext=u:object_r:vold_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.321  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.333   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=android.service.gatekeeper.IGateKeeperService scontext=u:r:shell:s0 tcontext=u:object_r:gatekeeper_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.334  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.338  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.340  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.342  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.347  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.348  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.349  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.351  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.352  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.353   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=dnsresolver scontext=u:r:shell:s0 tcontext=u:object_r:dnsresolver_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.358  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.364  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.365   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=incident scontext=u:r:shell:s0 tcontext=u:object_r:incident_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.368   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=installd scontext=u:r:shell:s0 tcontext=u:object_r:installd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.375  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.377  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.377   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=mdns scontext=u:r:shell:s0 tcontext=u:object_r:mdns_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.382  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.383   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=netd scontext=u:r:shell:s0 tcontext=u:object_r:netd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.385  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.388  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.390  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.392  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.395  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.400   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=suspend_control scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.400   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=suspend_control_internal scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_internal_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.401  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.402  3683  3683 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.408   209   209 E SELinux : avc:  denied  { find } for pid=3683 uid=2000 name=vold scontext=u:r:shell:s0 tcontext=u:object_r:vold_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.429   556   609 W PackageManager: Not removing non-existent package com.thinslices.solarisdemo
+11-21 14:35:08.457  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.463   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=android.service.gatekeeper.IGateKeeperService scontext=u:r:shell:s0 tcontext=u:object_r:gatekeeper_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.464  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.466  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.467  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.468  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.471  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.472  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.473  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.474  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.475  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.475   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=dnsresolver scontext=u:r:shell:s0 tcontext=u:object_r:dnsresolver_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.476  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.478  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.479   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=incident scontext=u:r:shell:s0 tcontext=u:object_r:incident_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.481   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=installd scontext=u:r:shell:s0 tcontext=u:object_r:installd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.484  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.485  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.486   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=mdns scontext=u:r:shell:s0 tcontext=u:object_r:mdns_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.490  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.491   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=netd scontext=u:r:shell:s0 tcontext=u:object_r:netd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.493  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.497  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.498  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.500  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.504  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.508   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=suspend_control scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.508   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=suspend_control_internal scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_internal_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.509  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.511  3690  3690 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.516   209   209 E SELinux : avc:  denied  { find } for pid=3690 uid=2000 name=vold scontext=u:r:shell:s0 tcontext=u:object_r:vold_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.535  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.539   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=android.service.gatekeeper.IGateKeeperService scontext=u:r:shell:s0 tcontext=u:object_r:gatekeeper_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.540  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.543  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.544  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.545  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.548  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.549  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.549  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.551  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.551  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.552   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=dnsresolver scontext=u:r:shell:s0 tcontext=u:object_r:dnsresolver_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.554  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.556  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.557   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=incident scontext=u:r:shell:s0 tcontext=u:object_r:incident_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.559   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=installd scontext=u:r:shell:s0 tcontext=u:object_r:installd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.563  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.564  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.564   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=mdns scontext=u:r:shell:s0 tcontext=u:object_r:mdns_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.569  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.571   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=netd scontext=u:r:shell:s0 tcontext=u:object_r:netd_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.573  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.577  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.578  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.580  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.584  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.587   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=suspend_control scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.587   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=suspend_control_internal scontext=u:r:shell:s0 tcontext=u:object_r:system_suspend_control_internal_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.588  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.590  3692  3692 E Parcel  : Reading a NULL string not supported here.
+11-21 14:35:08.595   209   209 E SELinux : avc:  denied  { find } for pid=3692 uid=2000 name=vold scontext=u:r:shell:s0 tcontext=u:object_r:vold_service:s0 tclass=service_manager permissive=0
+11-21 14:35:08.614   556   609 W PackageManager: Not removing non-existent package com.thinslices.solarisdemo.test
+11-21 14:35:08.795     0     0 I init    : Untracked pid 2506 received signal 1
+11-21 14:35:08.797     0     0 I init    : Untracked pid 2506 did not have an associated service entry and will not be reaped
+11-21 14:35:08.825     0     0 I logd    : logdr: UID=2000 GID=2000 PID=3699 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns
