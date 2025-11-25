@@ -66,22 +66,15 @@ jobs:
 
       - name: Create .env file with all environment variables
         run: |
-          cat > .env << EOF
-          # PROD Configuration
-          COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}
-          COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}
-          API_BASE_URL=${{ secrets.API_BASE_URL }}
-          GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
-          
-          # Test Credentials
-          EMAIL=${{ secrets.PATROL_EMAIL }}
-          PASSWORD=${{ secrets.PATROL_PASSWORD }}
-          EOF
-          echo "✅ Created .env file with:"
-          echo "  - API_BASE_URL: ${{ secrets.API_BASE_URL }}"
-          echo "  - COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}"
-          echo "  - Test email: ${{ secrets.PATROL_EMAIL }}"
-          echo "  - Credentials configured: ✓"
+          echo "COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}" > .env
+          echo "COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}" >> .env
+          echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
+          echo "GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}" >> .env
+          echo "EMAIL=${{ secrets.PATROL_EMAIL }}" >> .env
+          echo "PASSWORD=${{ secrets.PATROL_PASSWORD }}" >> .env
+          echo "✅ Created .env file:"
+          cat .env | grep -v PASSWORD | grep -v EMAIL
+          echo "Test credentials: configured ✓"
 
       - name: Enable KVM group perms
         run: |
@@ -168,22 +161,15 @@ jobs:
 
       - name: Create .env file with all environment variables
         run: |
-          cat > .env << EOF
-          # PROD Configuration
-          COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}
-          COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}
-          API_BASE_URL=${{ secrets.API_BASE_URL }}
-          GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}
-          
-          # Test Credentials
-          EMAIL=${{ secrets.PATROL_EMAIL }}
-          PASSWORD=${{ secrets.PATROL_PASSWORD }}
-          EOF
-          echo "✅ Created .env file with:"
-          echo "  - API_BASE_URL: ${{ secrets.API_BASE_URL }}"
-          echo "  - COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}"
-          echo "  - Test email: ${{ secrets.PATROL_EMAIL }}"
-          echo "  - Credentials configured: ✓"
+          echo "COGNITO_USER_POOL_ID=${{ secrets.COGNITO_USER_POOL_ID }}" > .env
+          echo "COGNITO_CLIENT_ID=${{ secrets.COGNITO_CLIENT_ID }}" >> .env
+          echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
+          echo "GEONAMES_USERNAME=${{ secrets.GEONAMES_USERNAME }}" >> .env
+          echo "EMAIL=${{ secrets.PATROL_EMAIL }}" >> .env
+          echo "PASSWORD=${{ secrets.PATROL_PASSWORD }}" >> .env
+          echo "✅ Created .env file:"
+          cat .env | grep -v PASSWORD | grep -v EMAIL
+          echo "Test credentials: configured ✓"
 
       - name: Get Flutter dependencies
         run: flutter pub get
